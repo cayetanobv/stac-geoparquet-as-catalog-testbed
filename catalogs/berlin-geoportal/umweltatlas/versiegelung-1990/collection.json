@@ -1,0 +1,212 @@
+{
+  "type": "Collection",
+  "id": "umweltatlas/versiegelung-1990",
+  "stac_version": "1.1.0",
+  "description": "Versiegelungsklassen in 10% Stufen, aus Luft- und Satellitenbildauswertung gewonnenen. Raumbezug: Berlin, ca. 25.000 Baubl\u00f6cke/Blockteile, 1 : 50.000, Stand 1990. F\u00fcr Stra\u00dfen und Gleisanlagen wird kein Versiegelungsgrad angegeben.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ua_versiegelung_1990_versieg_1990.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Versiegelung 1990 (Umweltatlas)",
+      "pmtiles:layers": [
+        "ua_versiegelung_1990_versieg_1990"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/versiegelung-1990-umweltatlas-wfs-3bd22170",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ua_versiegelung_1990",
+      "rel": "related",
+      "title": "WFS source service: versieg-1990",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 22080,
+  "table:row_count": 22080,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "importid",
+      "type": "int64",
+      "description": "Laufende technische Kennung des Imports."
+    },
+    {
+      "name": "schluessel",
+      "type": "string",
+      "description": "Blockschl\u00fcssel, 16-stellig."
+    },
+    {
+      "name": "fl_in_qm",
+      "type": "DECIMAL(38,0)",
+      "description": "Fl\u00e4che des Blocks in Quadratmetern, laut Feldname."
+    },
+    {
+      "name": "vers_grad",
+      "type": "int64",
+      "description": "Versiegelungsgrad in Prozent, in 10-Prozent-Stufen laut Datensatzbeschreibung."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Versiegelung 1990 (Umweltatlas)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08444695,
+          52.33204256,
+          13.76066259,
+          52.67536799
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1990-01-01T00:00:00Z",
+          "1990-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Versiegelung 1990 (Umweltatlas) default style",
+      "description": "Default visualization for Versiegelung 1990 (Umweltatlas), drawn in #fdcc8a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1312,
+      "file:checksum": "12209953b02e1827e3b5c8d052ac2211b289ba1773d4d82a0132f7a2356afd0ff5e6"
+    },
+    "ua_versiegelung_1990_versieg_1990": {
+      "href": "./ua_versiegelung_1990_versieg_1990.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10644719,
+      "file:checksum": "12207ab3d1c3be2a7230d77b4b8f200837c26b80ca7856dce99f553950c94d43de1b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ua_versiegelung_1990_versieg_1990.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Versiegelung 1990 (Umweltatlas) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9605941,
+      "file:checksum": "1220b0c91dedd1e4142c92f16137d42e7a3790dd476171775a055f1af9563abebbc5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Versiegelung 1990 (Umweltatlas) graduated style",
+      "description": "Graduated visualization coloring Versiegelung 1990 (Umweltatlas) by importid, ramped from 1.0 to 22080.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2081,
+      "file:checksum": "1220d2202e6928df7aa06928cb42763c3faac2bc6c27f832bdd1d6e3231483b6621c"
+    },
+    "thumbnail": {
+      "href": "./ua_versiegelung_1990_versieg_1990.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Versiegelung 1990 (Umweltatlas)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 139528,
+      "file:checksum": "1220a362c557461b144f29686690653f6e0a5c49b6d8d727905fb7cf8c523294e559"
+    }
+  },
+  "keywords": [
+    "Umweltatlas",
+    "Versiegelungsklassen",
+    "versiegelt",
+    "Luftbildauswertung",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Versiegelung 1990 (Umweltatlas), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geoportal@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T23:45:21Z"
+}

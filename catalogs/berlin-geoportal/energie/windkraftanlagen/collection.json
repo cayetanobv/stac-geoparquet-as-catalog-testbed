@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "energie/windkraftanlagen",
+  "stac_version": "1.1.0",
+  "description": "Die Sachdaten umfassen Standort- und fl\u00e4chenbezogene Informationen zu stromeinspeisenden Windkraftanlagen in Bezug auf ihre Leistung und ihre Stromeinspeisung. Sachdaten zu den Standorten von Windkraftanlagen, die nach EEG gef\u00f6rdert werden und in das Stromnetz einspeisen. Kleinanlagen (bis maximal 30 kW) werden aus Datenschutzgr\u00fcnden zusammengefasst auf das jeweilige Postleitzahlengebiet dargestellt. Sachdaten zur Stromeinspeisung der Windkraftanlagen von gesamt Berlin, die nach EEG gef\u00f6rdert werden. Aufgrund von datenschutzrechtlichen Vorgaben ist eine anlagenspezifische Darstellung nicht m\u00f6glich.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ea_windkraft_windkraft_anlagen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Windkraftanlagen \u2013 Standorte",
+      "pmtiles:layers": [
+        "ea_windkraft_windkraft_anlagen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/windkraft-wfs-8c173889",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ea_windkraft",
+      "rel": "related",
+      "title": "WFS source service: windkraft-anlagen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 9,
+  "table:row_count": 9,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "importid",
+      "type": "int64"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "inst_leistung",
+      "type": "double"
+    },
+    {
+      "name": "inbetriebnahme",
+      "type": "string"
+    },
+    {
+      "name": "quelle",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Windkraftanlagen \u2013 Standorte",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.26614507,
+          52.54214949,
+          13.501463,
+          52.64080604
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Windkraftanlagen \u2013 Standorte default style",
+      "description": "Default visualization for Windkraftanlagen \u2013 Standorte, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1293,
+      "file:checksum": "12209e95bf4ad7e1dd5de44421f2f725f519b30705cb8db3e9594db0e113091f21c2"
+    },
+    "ea_windkraft_windkraft_anlagen": {
+      "href": "./ea_windkraft_windkraft_anlagen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4336,
+      "file:checksum": "12204324db2bb4f9e74b0daaa0e65c4e20395b73d27de35e76df5a0cff2657971d33",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ea_windkraft_windkraft_anlagen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Windkraftanlagen \u2013 Standorte (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8542,
+      "file:checksum": "1220959cd4622ce38086cfdd69fcbe15aaf9bbaabd7a3f353806cc8b8ea94b88e7bc"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Windkraftanlagen \u2013 Standorte categorical style",
+      "description": "Categorical visualization coloring Windkraftanlagen \u2013 Standorte by bezirk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2006,
+      "file:checksum": "12202e416c5208433939a89ec4bae0825baade202e6faaa1a2c749be37522ac3e6f1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Windkraftanlagen \u2013 Standorte labeled style",
+      "description": "Default visualization for Windkraftanlagen \u2013 Standorte with bezirk shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1744,
+      "file:checksum": "1220139e1c122f9231dfea8eb9e27764031d6233d7a0ce7ccda1efb7fa731f3f4bc3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Windkraftanlagen \u2013 Standorte graduated style",
+      "description": "Graduated visualization coloring Windkraftanlagen \u2013 Standorte by inst_leistung, ramped from 0.2 to 4200.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2076,
+      "file:checksum": "1220823698280172978a674ec1bd541b32957b953ae6dc6e65d6ec6b99db63860aca"
+    },
+    "thumbnail": {
+      "href": "./ea_windkraft_windkraft_anlagen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Windkraftanlagen \u2013 Standorte",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 86280,
+      "file:checksum": "122042a1025bc3b7c76e5da1c401359673bde23876e28540ff58d92cbc78f6304a5e"
+    }
+  },
+  "keywords": [
+    "Anlagen",
+    "Berlin",
+    "EEG",
+    "Energieatlas",
+    "Geodaten",
+    "Karten",
+    "Postleitzahl",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Wirtschaft, Energie und Betriebe Berlin",
+      "description": "Datenquelle Geoportal Berlin, Windkraft, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "energieatlas@senweb.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

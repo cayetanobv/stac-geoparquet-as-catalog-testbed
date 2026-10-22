@@ -1,0 +1,256 @@
+{
+  "type": "Collection",
+  "id": "energie/stromverbrauch-2022-bloecke",
+  "stac_version": "1.1.0",
+  "description": "Der Datenbestand Stromverbr\u00e4uche in Berlin f\u00fcr das Jahr 2022, aggregiert nach Geb\u00e4udebl\u00f6cken, Bezirken und Postleitzahlgebieten. Die Daten ber\u00fccksichtigen keinen Eigenverbrauch oder Netzverluste. F\u00fcr einzelne Geb\u00e4udebl\u00f6cken wird der Verbrauch aus Datenschutzgr\u00fcnden nicht angegeben",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ua_stromverbrauch_a_verbrauchstromblock.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock",
+      "pmtiles:layers": [
+        "ua_stromverbrauch_a_verbrauchstromblock"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/energieverbrauch-strom-wfs-238921d9",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ua_stromverbrauch",
+      "rel": "related",
+      "title": "WFS source service: a-verbrauchstromblock",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 16390,
+  "table:row_count": 16390,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "blknr",
+      "type": "double"
+    },
+    {
+      "name": "verbrauch_mwh",
+      "type": "double"
+    },
+    {
+      "name": "ausgeschlossen",
+      "type": "string"
+    },
+    {
+      "name": "verbrauch_mwh2023",
+      "type": "double"
+    },
+    {
+      "name": "ausgeschlossen2023",
+      "type": "string"
+    },
+    {
+      "name": "verbrauch_mwh2022",
+      "type": "double"
+    },
+    {
+      "name": "ausgeschlossen2022",
+      "type": "string"
+    },
+    {
+      "name": "verbrauch_mwh2021",
+      "type": "double"
+    },
+    {
+      "name": "ausgeschlossen2021",
+      "type": "string"
+    },
+    {
+      "name": "verbrauch_mwh2020",
+      "type": "double"
+    },
+    {
+      "name": "ausgeschlossen2020",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08835368,
+          52.3382456,
+          13.76113997,
+          52.67550862
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock default style",
+      "description": "Default visualization for Energieverbrauch Strom 2022 je Geb\u00e4udeblock, drawn in #f7b800.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1371,
+      "file:checksum": "12201990b828bb4f82a13d872d21a0be08765a3d46228b36cf85db54ead8e2caf9bc"
+    },
+    "ua_stromverbrauch_a_verbrauchstromblock": {
+      "href": "./ua_stromverbrauch_a_verbrauchstromblock.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3715670,
+      "file:checksum": "1220c278dbff70e924f9dcc398bade8f5e113db78cd167401fb6c6006248ffcd462b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ua_stromverbrauch_a_verbrauchstromblock.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9035573,
+      "file:checksum": "1220e7bb2a84cf64e7672f9c42f4afd63e3338dc66e634216107808178a89984cedf"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock categorical style",
+      "description": "Categorical visualization coloring Energieverbrauch Strom 2022 je Geb\u00e4udeblock by ausgeschlossen, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2242,
+      "file:checksum": "1220bd7c6ad5d11ab6cd2371773fa684dba2e7a20b48215ca071d15f05429459ebd9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock labeled style",
+      "description": "Default visualization for Energieverbrauch Strom 2022 je Geb\u00e4udeblock with ausgeschlossen shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1848,
+      "file:checksum": "1220f9cd07327ac2bd52ae5f7a07672855c11b5e0b74f45059b3aeb77ba782bdece1"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Energieverbrauch Strom 2022 je Geb\u00e4udeblock graduated style",
+      "description": "Graduated visualization coloring Energieverbrauch Strom 2022 je Geb\u00e4udeblock by blknr, ramped from 1001.0 to 195903.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2140,
+      "file:checksum": "1220c72af5530d35e98d224106dd241a2f29f51f295baa755ef44106fa0e0c3edf4e"
+    },
+    "thumbnail": {
+      "href": "./ua_stromverbrauch_a_verbrauchstromblock.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Energieverbrauch Strom 2022 je Geb\u00e4udeblock",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 167977,
+      "file:checksum": "1220478bca89200cbfde73968fd475ea5d5e61c4b48ee221c1411576a36fed9c113e"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bezirk",
+    "Energieatlas",
+    "Energieverbrauch",
+    "Energieverbr\u00e4uche",
+    "Fernw\u00e4rme",
+    "Gas",
+    "Geodaten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Wirtschaft, Energie und Betriebe Berlin",
+      "description": "Datenquelle Geoportal Berlin, Energieverbrauch - Strom, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "energieatlas@senweb.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

@@ -1,0 +1,268 @@
+{
+  "type": "Collection",
+  "id": "bildung/schulen",
+  "stac_version": "1.1.0",
+  "description": "Standorte der Berliner Schulen mit Informationen zu Schulart, Name, Anschrift und Kontaktm\u00f6glichkeiten. Die Daten beinhalten auch die Information, ob es sich um eine \u00f6ffentliche oder private Schule handelt. Es werden nur die Hauptstandorte dargestellt. Der Datensatz beinhaltet die Einschulbereiche f\u00fcr das aktuelle Schuljahr. Die Einschulbereiche werden durch die zw\u00f6lf Bezirksschul\u00e4mter festgelegt und im Amt f\u00fcr Statistik Berlin-Brandenburg zusammengef\u00fchrt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./schulen_schulen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schulen",
+      "pmtiles:layers": [
+        "schulen_schulen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/schulen-wfs-ebc64e18",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/schulen",
+      "rel": "related",
+      "title": "WFS source service: schulen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 929,
+  "table:row_count": 929,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "bsn",
+      "type": "string"
+    },
+    {
+      "name": "schulname",
+      "type": "string"
+    },
+    {
+      "name": "schulart",
+      "type": "string"
+    },
+    {
+      "name": "traeger",
+      "type": "string"
+    },
+    {
+      "name": "schultyp",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "ortsteil",
+      "type": "string"
+    },
+    {
+      "name": "plz",
+      "type": "int64"
+    },
+    {
+      "name": "strasse",
+      "type": "string"
+    },
+    {
+      "name": "hausnr",
+      "type": "int64"
+    },
+    {
+      "name": "telefon",
+      "type": "string"
+    },
+    {
+      "name": "fax",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "internet",
+      "type": "string"
+    },
+    {
+      "name": "schuljahr",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Schulen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.1184303,
+          52.37616099,
+          13.70302608,
+          52.64076694
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen default style",
+      "description": "Default visualization for Schulen, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1162,
+      "file:checksum": "1220e8e498ed17ecd5f48664c0d72f4d73b0134bd9e350544d4ebaba65f42f60be43"
+    },
+    "schulen_schulen": {
+      "href": "./schulen_schulen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 97417,
+      "file:checksum": "122010230b41f0dc850995b896ee2011b17a3f616a574f25345fb60f2b7e3d2c47fa",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./schulen_schulen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schulen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 324055,
+      "file:checksum": "1220b92d0e41e1d4855be42d5980d3853b563ec18a2564bc81920209e67bff2b8d2f"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen categorical style",
+      "description": "Categorical visualization coloring Schulen by traeger, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1747,
+      "file:checksum": "1220f8c1a6b80ae29771c8117494ce6bea7a74fbba4e7b356dcba473856011987ccd"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen labeled style",
+      "description": "Default visualization for Schulen with schulname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1586,
+      "file:checksum": "1220d71d8181a1335d08d325814dbff046e3759636a92665c6de6c182ffeeed8ecf6"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen graduated style",
+      "description": "Graduated visualization coloring Schulen by plz, ramped from 10115.0 to 14199.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1923,
+      "file:checksum": "1220dd6a8b12dcd7169648ab24c7ddfa76d39b4b75e25f0f0e2f8ebbae947f2d1eea"
+    },
+    "thumbnail": {
+      "href": "./schulen_schulen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Schulen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 131295,
+      "file:checksum": "1220ffddba255922edb0529b4b57c1353c6a3c675fa094f3e621dc86de25546c6c26"
+    }
+  },
+  "keywords": [
+    "Schulen",
+    "Bildung",
+    "Schulstandorte",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Schulen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "philipp.heise@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T02:00:01Z"
+}

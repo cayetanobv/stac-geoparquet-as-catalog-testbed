@@ -1,0 +1,232 @@
+{
+  "type": "Collection",
+  "id": "alkis/bezirke",
+  "stac_version": "1.1.0",
+  "description": "Berliner Bezirksgrenzen, abgeleitet aus dem ALKIS Datenbestand",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./alkis_bezirke_bezirksgrenzen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS Berlin Bezirke",
+      "pmtiles:layers": [
+        "alkis_bezirke_bezirksgrenzen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/alkis-berlin-bezirke-wfs-ced31d7d",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/alkis_bezirke",
+      "rel": "related",
+      "title": "WFS source service: bezirksgrenzen",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wms/alkis_bezirke?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "ALKIS Berlin Bezirke (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 12,
+  "table:row_count": 12,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "name",
+      "type": "int64",
+      "description": "Gesamtschl\u00fcssel des Bezirks, achtstellig, zum Beispiel 11000001 f\u00fcr Mitte."
+    },
+    {
+      "name": "gem",
+      "type": "double",
+      "description": "Schl\u00fcssel des Bezirks, vom Publizierer dreistellig als Text gef\u00fchrt, zum Beispiel 001; im Probelauf vom 18.9.2026 als Zahl 1.0 ohne f\u00fchrende Nullen angekommen, siehe Quirks."
+    },
+    {
+      "name": "namgem",
+      "type": "string",
+      "description": "Name des Bezirks, zum Beispiel Mitte."
+    },
+    {
+      "name": "namlan",
+      "type": "string",
+      "description": "Bezeichnung des Landes, stets Berlin."
+    },
+    {
+      "name": "lan",
+      "type": "int64",
+      "description": "Schl\u00fcssel des Landes, stets 11."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "ALKIS Berlin Bezirke",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.0883476,
+          52.33824557,
+          13.76115913,
+          52.6755077
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Bezirke default style",
+      "description": "Default visualization for ALKIS Berlin Bezirke, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1266,
+      "file:checksum": "1220f9e0815bdce979ccabc98cdeb17497e6e6fd697ef9ebea5cea65e63b295b220b"
+    },
+    "alkis_bezirke_bezirksgrenzen": {
+      "href": "./alkis_bezirke_bezirksgrenzen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 350137,
+      "file:checksum": "12207e96e047028210f76af5a6c2de64ad6141b246c22459488c47d39f0c9366af90",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./alkis_bezirke_bezirksgrenzen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS Berlin Bezirke (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 238838,
+      "file:checksum": "122023cbb13addde2fca239f37ec6d6e41b340730c1fc03f700ac0726cf611620ef5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Bezirke labeled style",
+      "description": "Default visualization for ALKIS Berlin Bezirke with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1711,
+      "file:checksum": "122013427ec279b94dd7eaebe40d0a05b310f399d81a5c0a07c6b7f824492bd8a344"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Bezirke graduated style",
+      "description": "Graduated visualization coloring ALKIS Berlin Bezirke by name, ramped from 11000001.0 to 11000012.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2058,
+      "file:checksum": "1220f3c058b6bc5093fc9e6f27cf3a23d8f654eae9dda1bc7a785930e020a4bfadea"
+    },
+    "thumbnail": {
+      "href": "./alkis_bezirke_bezirksgrenzen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of ALKIS Berlin Bezirke",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 126339,
+      "file:checksum": "12200583f20059b7d6054cf7de5c5734134c3935383a148ee42452edc56cdb6c1b51"
+    }
+  },
+  "keywords": [
+    "ALKIS",
+    "Bezirke",
+    "Bezirksgrenzen Berlin",
+    "Verwaltungseinheiten",
+    "Geobasisdaten",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, ALKIS Berlin Bezirke, abgerufen am 18.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geobasisdatenbereitstellung@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T18:44:21Z"
+}

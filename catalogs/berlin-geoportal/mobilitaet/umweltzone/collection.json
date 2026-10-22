@@ -1,0 +1,187 @@
+{
+  "type": "Collection",
+  "id": "mobilitaet/umweltzone",
+  "stac_version": "1.1.0",
+  "description": "Als Umweltzone wird das Gebiet innerhalb des S-Bahn-Ringes bezeichnet, in dem nur Fahrzeuge fahren d\u00fcrfen, die bestimmte Abgasstandards einhalten. Die Umweltzone gilt ab 1. Januar 2008.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./umweltzone_umweltzone.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Umweltzone",
+      "pmtiles:layers": [
+        "umweltzone_umweltzone"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/umweltzone-wfs-3fe977ae",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/umweltzone",
+      "rel": "related",
+      "title": "WFS source service: umweltzone",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 1,
+  "table:row_count": 1,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "schluessel",
+      "type": "string"
+    },
+    {
+      "name": "nam",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Umweltzone",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.28207817,
+          52.46450361,
+          13.47554809,
+          52.54980689
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Umweltzone default style",
+      "description": "Default visualization for Umweltzone, drawn in #006d2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1207,
+      "file:checksum": "122048498732a5653161e3572b4f043c99cafd7523cdcdb547c0b82220486846ba25"
+    },
+    "umweltzone_umweltzone": {
+      "href": "./umweltzone_umweltzone.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6204,
+      "file:checksum": "1220efd91dd03d860d132608f886af2a00bb6d53df0e3acd3f05c57c02cf4f864b72",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./umweltzone_umweltzone.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Umweltzone (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 13671,
+      "file:checksum": "1220ffbc24e616c90f7ba96cd8d2f61b956e198328202e01ae2127347665bd17fdbb"
+    },
+    "thumbnail": {
+      "href": "./umweltzone_umweltzone.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Umweltzone",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 141870,
+      "file:checksum": "1220334bab1b3725f376ef86a6eac1a34c264105ac8cb19cb28ece926bbde014a644"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Emissionsminderung",
+    "Feinstaub",
+    "Geodaten",
+    "Karten",
+    "Luftreinhalteplan",
+    "NO2",
+    "PM10"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Umweltzone, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "efthalia.nulis@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

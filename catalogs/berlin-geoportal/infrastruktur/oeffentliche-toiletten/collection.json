@@ -1,0 +1,264 @@
+{
+  "type": "Collection",
+  "id": "infrastruktur/oeffentliche-toiletten",
+  "stac_version": "1.1.0",
+  "description": "In diesem Datensatz sind die Standorte aller \u00f6ffentlichen Toiletten, die von der Wall GmbH betrieben werden, sowie einige Standorte von Toiletten, die von anderen Dienstleistern betrieben werden. Diese Daten werden mindestens einmal im Jahr bei den Bezirken abgefragt und aktualisiert. Charakteristisch f\u00fcr die \u00f6ffentlichen Toiletten in Berlin sind die neuen, modernen, barrierefreien Unisex-Modultoilettenanlagen \u201eBerliner Toilette\u201c, die die bis 2019 bestehenden City Toiletten ersetzen. Die 278 Berliner Toiletten werden dabei erg\u00e4nzt durch WC-Center, Toiletten in \u00f6ffentlichen Geb\u00e4uden, oder zum Beispiel in Bahnh\u00f6fen der Deutschen Bahn. Auch Standorte von Pissoirs und den sogenannten \"Caf\u00e9 Achtecks\" sind im Datensatz enthalten. Insgesamt gibt es 2025 in Berlin nun 485 \u00f6ffentliche Toilettenanlagen, 14 Pissoirs und 10 Toiletten, die zu besonderen Anl\u00e4ssen ge\u00f6ffnet sind.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./toiletten_toiletten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliche Toiletten",
+      "pmtiles:layers": [
+        "toiletten_toiletten"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/offentliche-toiletten-wfs-ad2c0c24",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/toiletten",
+      "rel": "related",
+      "title": "WFS source service: toiletten",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 525,
+  "table:row_count": 525,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "fid",
+      "type": "int64"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "standort",
+      "type": "string"
+    },
+    {
+      "name": "vertrag",
+      "type": "string"
+    },
+    {
+      "name": "betreiber",
+      "type": "string"
+    },
+    {
+      "name": "modelltyp",
+      "type": "string"
+    },
+    {
+      "name": "symbol",
+      "type": "string"
+    },
+    {
+      "name": "oeffnungszeiten",
+      "type": "string"
+    },
+    {
+      "name": "nutzungsentgelt",
+      "type": "double"
+    },
+    {
+      "name": "zahlungsart",
+      "type": "string"
+    },
+    {
+      "name": "barrierefrei",
+      "type": "string"
+    },
+    {
+      "name": "barrierearm",
+      "type": "string"
+    },
+    {
+      "name": "wickeltisch",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "\u00d6ffentliche Toiletten",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.11545833,
+          52.37581704,
+          13.72100464,
+          52.63868904
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Toiletten default style",
+      "description": "Default visualization for \u00d6ffentliche Toiletten, drawn in #7570b3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1209,
+      "file:checksum": "1220f0acfd10bd72da4f0cfeeeae06f300a50b8fd39be197f7bce896c442895ddd50"
+    },
+    "toiletten_toiletten": {
+      "href": "./toiletten_toiletten.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 44024,
+      "file:checksum": "1220a538bece9bd9dd15e7deb351bb9a104a63eb20113b3ca12b47ea4ecf643b5d77",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./toiletten_toiletten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliche Toiletten (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 194173,
+      "file:checksum": "12200e473684079ebcbcdcb9907dc4750c57e85746eee8a4d57fbee256f48e5d7abc"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Toiletten categorical style",
+      "description": "Categorical visualization coloring \u00d6ffentliche Toiletten by barrierefrei, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1781,
+      "file:checksum": "122017552b9489506260fd31e464363566f6428e5ecba8becc3198ae67e6fc52edb0"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Toiletten labeled style",
+      "description": "Default visualization for \u00d6ffentliche Toiletten with barrierefrei shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1644,
+      "file:checksum": "1220864d4e30e61f0bfae0e321b65aa779e1c3bbcf380313f06ff177c2c7ef350ca3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Toiletten graduated style",
+      "description": "Graduated visualization coloring \u00d6ffentliche Toiletten by nutzungsentgelt, ramped from 0.0 to 2.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1982,
+      "file:checksum": "122072d3016ac1eef75170d896a1f808cc96f4fbb9ae5d81b7ee3b85836b3dfa0e1d"
+    },
+    "thumbnail": {
+      "href": "./toiletten_toiletten.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of \u00d6ffentliche Toiletten",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 130817,
+      "file:checksum": "12204e51f156054f3c76a2ddef2d36eb9c0f5c8d749f733d24884756883121ee940d"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "City-Toilette",
+    "Geodaten",
+    "Karten",
+    "Klo",
+    "Missoir",
+    "Parktoilette",
+    "Pissoir"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, \u00d6ffentliche Toiletten, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "Berliner-Toilette@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

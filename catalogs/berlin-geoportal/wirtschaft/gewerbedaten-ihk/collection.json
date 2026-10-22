@@ -1,0 +1,284 @@
+{
+  "type": "Collection",
+  "id": "wirtschaft/gewerbedaten-ihk",
+  "stac_version": "1.1.0",
+  "description": "Die Daten zeigen die geografische Verteilung der IHK-Mitglieder des Landes Berlin, nach Branche, Besch\u00e4ftigtenklasse, Alter des Unternehmens und Rechtsform. Die Daten werden monatlich aktualisiert und stellen die von der IHK als Mitglieder erfassten, aktiven Gewerbetreibenden Berlins (Hauptsitze und Filialen) dar. Der Datensatz inkludiert die geografische Aufl\u00f6sung nach den Lebensweltlich orientierten R\u00e4umen (LOR) Berlins.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gewerbedaten_gewerbedaten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gewerbedaten IHK Berlin",
+      "pmtiles:layers": [
+        "gewerbedaten_gewerbedaten"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/gewerbedaten-ihk-berlin-wfs-b76e3aef",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/gewerbedaten",
+      "rel": "related",
+      "title": "WFS source service: gewerbedaten",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 366357,
+  "table:row_count": 366357,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "opendata_id",
+      "type": "int64"
+    },
+    {
+      "name": "postcode",
+      "type": "int64"
+    },
+    {
+      "name": "city",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "ortsteil",
+      "type": "string"
+    },
+    {
+      "name": "prognoseraum",
+      "type": "string"
+    },
+    {
+      "name": "bezirksregion",
+      "type": "string"
+    },
+    {
+      "name": "planungsraum",
+      "type": "string"
+    },
+    {
+      "name": "planungsraum_id",
+      "type": "double"
+    },
+    {
+      "name": "ihk_branch_id",
+      "type": "string"
+    },
+    {
+      "name": "ihk_branch_desc",
+      "type": "string"
+    },
+    {
+      "name": "nace_id",
+      "type": "string"
+    },
+    {
+      "name": "nace_desc",
+      "type": "string"
+    },
+    {
+      "name": "branch_top_level_id",
+      "type": "string"
+    },
+    {
+      "name": "branch_top_level_desc",
+      "type": "string"
+    },
+    {
+      "name": "employees_range",
+      "type": "string"
+    },
+    {
+      "name": "business_age",
+      "type": "string"
+    },
+    {
+      "name": "business_type",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Gewerbedaten IHK Berlin",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09656013,
+          52.34048098,
+          13.7408824,
+          52.66008454
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gewerbedaten IHK Berlin default style",
+      "description": "Default visualization for Gewerbedaten IHK Berlin, drawn in #08519c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1248,
+      "file:checksum": "12202ec6d6d43a5c1ae08781680e156ea1412bd4b311419b42ee4a2ca8d1eb4dbbf7"
+    },
+    "gewerbedaten_gewerbedaten": {
+      "href": "./gewerbedaten_gewerbedaten.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 11317699,
+      "file:checksum": "12202a63695d37004a0cd05a313b5d2be588a6c512225948f4cb1379405b1c68d7b6",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./gewerbedaten_gewerbedaten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gewerbedaten IHK Berlin (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18146180,
+      "file:checksum": "1220565fb730e61fdec6ef84794461fc296b7759289424de6deffd9fd4682c5ad1bb"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gewerbedaten IHK Berlin categorical style",
+      "description": "Categorical visualization coloring Gewerbedaten IHK Berlin by business_type, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1962,
+      "file:checksum": "12205fa193a09e66fda189919ac27dce1f9ea460ca8a73e7e17d9b0d7b79ea655eea"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gewerbedaten IHK Berlin labeled style",
+      "description": "Default visualization for Gewerbedaten IHK Berlin with business_type shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1696,
+      "file:checksum": "12201fb2246e5e7b152151053003a3245aad617de9047061ecb530506bbeeb3d2737"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gewerbedaten IHK Berlin graduated style",
+      "description": "Graduated visualization coloring Gewerbedaten IHK Berlin by opendata_id, ramped from 572114.0 to 68169999881428.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2098,
+      "file:checksum": "1220e5de94876413a366d01842f4a1f41d9efb0f253e9b720bbd21ea42eb085e14a1"
+    },
+    "thumbnail": {
+      "href": "./gewerbedaten_gewerbedaten.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Gewerbedaten IHK Berlin",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 237108,
+      "file:checksum": "1220774bda2aff3ec67e07175b205bc305cb1526a6507cb3e80b5ebe17632729dab1"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Berliner Standorte",
+    "Betriebsst\u00e4tten",
+    "Bezirke",
+    "Branchen",
+    "Geodaten",
+    "Geopunkte",
+    "Gewerbedaten"
+  ],
+  "providers": [
+    {
+      "name": "IHK Berlin",
+      "description": "Datenquelle Geoportal Berlin, Gewerbedaten IHK Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "datenmanagement@berlin.ihk.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

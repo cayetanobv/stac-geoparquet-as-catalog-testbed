@@ -1,0 +1,210 @@
+{
+  "type": "Collection",
+  "id": "energie/waermepumpen-plz",
+  "stac_version": "1.1.0",
+  "description": "Aktueller Ausbauzustand der durch das BAFA gef\u00f6rderten W\u00e4rmepumpen in Berlin, einschlie\u00dflich der Anzahl der Anlagen und ihrer elektrischen Leistung, je Bezirk bzw. Postleitzahl.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ea_waermepumpen_waermepumpen_plz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl",
+      "pmtiles:layers": [
+        "ea_waermepumpen_waermepumpen_plz"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/warmepumpen-wfs-a61a5674",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ea_waermepumpen",
+      "rel": "related",
+      "title": "WFS source service: waermepumpen-plz",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 142,
+  "table:row_count": 142,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "plz",
+      "type": "int64"
+    },
+    {
+      "name": "anzahl_plz",
+      "type": "int64"
+    },
+    {
+      "name": "leistung_plz",
+      "type": "double"
+    },
+    {
+      "name": "anzahl_stadt",
+      "type": "int64"
+    },
+    {
+      "name": "leistung_stadt",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08834552,
+          52.33824234,
+          13.76113311,
+          52.67550599
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl default style",
+      "description": "Default visualization for W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl, drawn in #fd8d3c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1325,
+      "file:checksum": "12201775c4291f9617c5c8508f89dc94d8e2ed25fcf83cc975b3abe09c43439b8e68"
+    },
+    "ea_waermepumpen_waermepumpen_plz": {
+      "href": "./ea_waermepumpen_waermepumpen_plz.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 473570,
+      "file:checksum": "12205d756b48c514c8fa5deb1e6836c710ada3a41cdacc08e9f5c14d6d510c26e33a",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ea_waermepumpen_waermepumpen_plz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 652008,
+      "file:checksum": "1220a4156129d6da104b2bbe75eb3346bf476f23bbd68e8954c0f1fc8fd7bf4faf16"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl graduated style",
+      "description": "Graduated visualization coloring W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl by plz, ramped from 10115.0 to 14199.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2086,
+      "file:checksum": "12201c9fc72540aaadb6c3e4ac7525c2dcb7dac3087585fdb7e876b60c76e8b76acf"
+    },
+    "thumbnail": {
+      "href": "./ea_waermepumpen_waermepumpen_plz.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of W\u00e4rmepumpen \u2013 Ausbaustand je Postleitzahl",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 146095,
+      "file:checksum": "122065ac83c60e3e9e6913678f9c731a318c3e29b482f998509b3425c1ec1f631c6a"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bezirk",
+    "Energieatlas",
+    "Geodaten",
+    "Heizung",
+    "Karten",
+    "Postleitzahl",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Wirtschaft, Energie und Betriebe Berlin",
+      "description": "Datenquelle Geoportal Berlin, W\u00e4rmepumpen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "energieatlas@senweb.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

@@ -1,0 +1,237 @@
+{
+  "type": "Collection",
+  "id": "infrastruktur/schornsteinfegerkehrbezirke",
+  "stac_version": "1.1.0",
+  "description": "\u00dcbersicht \u00fcber die Berliner Kehrbezirke mit jeweiliger Angabe des zust\u00e4ndigen bevollm\u00e4chtigten Bezirksschornsteinfegers. Die Karte zeigt fl\u00e4chenhaft die Gebiete der unterschiedlichen Kehrbezirke (mit Kehrbezirksnummer). In der Sachdatentabelle sind die zust\u00e4ndigen Schornsteinfeger mit Namen hinterlegt. Es sind auch Fl\u00e4chen mit Inseln in anderen Gebieten vorhanden. D.h., dass ein Schornsteinfeger in bspw. Mitte auch f\u00fcr kleinere Gebiete oder einzelne H\u00e4user in anderen Bezirken zust\u00e4ndig ist.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./kehrbezirke_kbz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schornsteinfegerkehrbezirke",
+      "pmtiles:layers": [
+        "kehrbezirke_kbz"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/schornsteinfegerkehrbezirke-wfs-19c8f96f",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/kehrbezirke",
+      "rel": "related",
+      "title": "WFS source service: kbz",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 188,
+  "table:row_count": 188,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "kbz_nr",
+      "type": "double"
+    },
+    {
+      "name": "nachname",
+      "type": "string"
+    },
+    {
+      "name": "vorname",
+      "type": "string"
+    },
+    {
+      "name": "status_s",
+      "type": "string"
+    },
+    {
+      "name": "adresse_we",
+      "type": "string"
+    },
+    {
+      "name": "plz_werkst",
+      "type": "string"
+    },
+    {
+      "name": "telnr",
+      "type": "string"
+    },
+    {
+      "name": "email",
+      "type": "string"
+    },
+    {
+      "name": "anmerkung",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Schornsteinfegerkehrbezirke",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08838009,
+          52.33816602,
+          13.76116697,
+          52.6755077
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schornsteinfegerkehrbezirke default style",
+      "description": "Default visualization for Schornsteinfegerkehrbezirke, drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1182,
+      "file:checksum": "1220c08ff8b39381ae4262cc94b2e4c2059ea28d437b88e6fc810b632c755a020e33"
+    },
+    "kehrbezirke_kbz": {
+      "href": "./kehrbezirke_kbz.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 311077,
+      "file:checksum": "12208b05a398128625cc0696267435eadfe3e64cc321e97f364ed3830ebfec638fab",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./kehrbezirke_kbz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schornsteinfegerkehrbezirke (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1198095,
+      "file:checksum": "1220448a2fabd7be9db6779972f8ba0dedafcae4a70f8b10d3265d26d62f20d802e9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schornsteinfegerkehrbezirke labeled style",
+      "description": "Default visualization for Schornsteinfegerkehrbezirke with nachname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1605,
+      "file:checksum": "12200663cdeff1b138b0dd86def720fbfdc0297e7f4c2b3522febca1166f1d4efe37"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schornsteinfegerkehrbezirke graduated style",
+      "description": "Graduated visualization coloring Schornsteinfegerkehrbezirke by kbz_nr, ramped from 101.0 to 9999.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1943,
+      "file:checksum": "12201b5a5699568d192d70d8eb029983d0d5cecb2248765bdcb07b95ee1264bbc4a6"
+    },
+    "thumbnail": {
+      "href": "./kehrbezirke_kbz.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Schornsteinfegerkehrbezirke",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 151062,
+      "file:checksum": "12201e32caccdd0c159c6c27c3d356d0003afff3932f4956be6fc9d1a7c83ed8d6f5"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Energieeinsparung",
+    "Feuersicherheit",
+    "Gasfeuerst\u00e4tte",
+    "Geodaten",
+    "Heizungsanlage",
+    "Innung",
+    "KBZ"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Schornsteinfegerkehrbezirke, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "eric.wichmann@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

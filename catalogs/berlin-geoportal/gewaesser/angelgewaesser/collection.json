@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "id": "gewaesser/angelgewaesser",
+  "stac_version": "1.1.0",
+  "description": "Angelgew\u00e4sser in Berlin mit Standorten und Informationen zu den Ausgabestellen f\u00fcr Fischereischeine, Angelkarten und Fischereiabgabemarken in Berlin und im Brandenburger Umland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./angelgewaesser_c_angel_gew.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe",
+      "pmtiles:layers": [
+        "angelgewaesser_c_angel_gew"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/angelgewasser-in-berlin-wfs-9c14cd96",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/angelgewaesser",
+      "rel": "related",
+      "title": "WFS source service: c-angel-gew",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 549,
+  "table:row_count": 549,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "ausgabestelle",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.99827744,
+          52.32041804,
+          13.87865194,
+          52.67528172
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe default style",
+      "description": "Default visualization for Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe, drawn in #33a02c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1294,
+      "file:checksum": "12208e3f0af02de556c5f4490fc957fbf314f97ec70c1489daec7c54e9fbdd73fb33"
+    },
+    "angelgewaesser_c_angel_gew": {
+      "href": "./angelgewaesser_c_angel_gew.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 364439,
+      "file:checksum": "122081082d6c22403e5d8b5a0c283abe59942bc9720781fa7b929fc3d0d9bb7646ac",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./angelgewaesser_c_angel_gew.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 416223,
+      "file:checksum": "1220fb4c38e3b9037eab61906b944d9b8278fcdbb17c8c491a43ad19b3cdc18ef402"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe labeled style",
+      "description": "Default visualization for Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1735,
+      "file:checksum": "12207142c41102d383a98f7905547e5ce4584670adab2c58de8a7f5f49c511fec497"
+    },
+    "thumbnail": {
+      "href": "./angelgewaesser_c_angel_gew.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Angelgew\u00e4sser \u2013 Gew\u00e4sser mit Angelkartenausgabe",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 155744,
+      "file:checksum": "1220623a19a1b0eeaeb8d62d87f540c4e28acf6a56950ac9ddb9a3c7dab275b50294"
+    }
+  },
+  "keywords": [
+    "Angel Club",
+    "Angelkarten",
+    "Angeln in Berlin",
+    "Angler",
+    "Angler Verein",
+    "Ausgabestellen",
+    "Berlin",
+    "Fisch"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt, Fischereiamt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Angelgew\u00e4sser in Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "milan.mueller@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

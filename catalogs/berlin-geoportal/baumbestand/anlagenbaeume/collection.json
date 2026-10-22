@@ -1,0 +1,303 @@
+{
+  "type": "Collection",
+  "id": "baumbestand/anlagenbaeume",
+  "stac_version": "1.1.0",
+  "description": "Die Daten umfassen Stra\u00dfenb\u00e4ume und einen Teil der B\u00e4ume in Gr\u00fcnanlagen. Anlagenb\u00e4ume (B\u00e4ume in Gr\u00fcnanlagen und auf Freifl\u00e4chen sofern diese in der Zust\u00e4ndigkeit der bezirklichen Gr\u00fcnfl\u00e4chen\u00e4mter liegen und als Einzelbaum erfasst wurden. B\u00e4ume in fl\u00e4chigen Geh\u00f6lzbest\u00e4nden oder in wenig frequentierten Bereichen werden z.B. in der Regel nicht einzeln erfasst.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./baumbestand_anlagenbaeume.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume",
+      "pmtiles:layers": [
+        "baumbestand_anlagenbaeume"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/baumbestand-berlin-wfs-48ad3a23",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/baumbestand",
+      "rel": "related",
+      "title": "WFS source service: anlagenbaeume",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wms/baumbestand?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "Baumbestand Berlin (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 527780,
+  "table:row_count": 527780,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "gisid",
+      "type": "string",
+      "description": "Technischer Schl\u00fcssel des Baums im GRIS; aus Nullen bestehend bei Standorten ohne Sachdatensatz."
+    },
+    {
+      "name": "pitid",
+      "type": "string",
+      "description": "Berlinweit eindeutige Baum- und Standortnummer (PITID)."
+    },
+    {
+      "name": "standortnr",
+      "type": "string",
+      "description": "Bezirkliche Baum- und Standortnummer; laut Publizierer nicht eindeutig."
+    },
+    {
+      "name": "kennzeich",
+      "type": "string",
+      "description": "Objektnummer, die bezirkliche Nummer des Pflegeobjekts (der Gr\u00fcnanlage), dem der Baum zugeordnet ist."
+    },
+    {
+      "name": "namenr",
+      "type": "string",
+      "description": "Objektname, der bezirkliche Name des Pflegeobjekts, zum Beispiel Spreebogenpark."
+    },
+    {
+      "name": "art_dtsch",
+      "type": "string",
+      "description": "Baumart auf Deutsch."
+    },
+    {
+      "name": "art_bot",
+      "type": "string",
+      "description": "Baumart botanisch."
+    },
+    {
+      "name": "gattung_deutsch",
+      "type": "string",
+      "description": "Gattung auf Deutsch, in Gro\u00dfbuchstaben."
+    },
+    {
+      "name": "gattung",
+      "type": "string",
+      "description": "Gattung botanisch, in Gro\u00dfbuchstaben."
+    },
+    {
+      "name": "art_gruppe",
+      "type": "string",
+      "description": "Baumartgruppe. M\u00f6gliche Werte laut Publizierer sind Nadelb\u00e4ume, Laubb\u00e4ume, Obstb\u00e4ume, Gro\u00dfstr\u00e4ucher und Str\u00e4ucher."
+    },
+    {
+      "name": "pflanzjahr",
+      "type": "int64",
+      "description": "Pflanzjahr des Baums, vom Publizierer als Text gef\u00fchrt."
+    },
+    {
+      "name": "standalter",
+      "type": "double",
+      "description": "Standalter in Jahren."
+    },
+    {
+      "name": "kronedurch",
+      "type": "double",
+      "description": "Kronendurchmesser in Metern."
+    },
+    {
+      "name": "stammumfg",
+      "type": "int64",
+      "description": "Stammumfang in Zentimetern."
+    },
+    {
+      "name": "baumhoehe",
+      "type": "double",
+      "description": "Baumh\u00f6he in Metern; vom WFS als Gleitkommazahl geliefert."
+    },
+    {
+      "name": "eigentuemer",
+      "type": "string",
+      "description": "Eigent\u00fcmer des Baums, in der Regel Land Berlin."
+    },
+    {
+      "name": "bezirk",
+      "type": "string",
+      "description": "Name des Bezirks, in dem der Baum steht; bei Standorten ohne Sachdatensatz leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09137813,
+          52.37464989,
+          13.73231538,
+          52.64888936
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume default style",
+      "description": "Default visualization for Baumbestand Berlin \u2013 Anlagenb\u00e4ume, drawn in #1b7837.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1268,
+      "file:checksum": "1220dddc72e46ceb7096513999970bf7e807c0a3ae9029c572e8b977339b8a9872ff"
+    },
+    "baumbestand_anlagenbaeume": {
+      "href": "./baumbestand_anlagenbaeume.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 28398930,
+      "file:checksum": "122075b025e51ec1a27739d622c349afc6df00794d8da94865ed3bcc90b94c00183d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./baumbestand_anlagenbaeume.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 28646640,
+      "file:checksum": "12208fcce240db7a7563e6e8dbd972fad06ad86f31641689282626ba4d84dc18e036"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume categorical style",
+      "description": "Categorical visualization coloring Baumbestand Berlin \u2013 Anlagenb\u00e4ume by art_gruppe, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1901,
+      "file:checksum": "1220da3ea16d77f6b1a01e156f6cb983b8a746026eb83a4edc643cdb1e19fe856097"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume labeled style",
+      "description": "Default visualization for Baumbestand Berlin \u2013 Anlagenb\u00e4ume with namenr shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1709,
+      "file:checksum": "12207a586e4d30512b87d9e694152bcb00b6e245e1b1c2d89ee43c15e2830d2f9d9e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Anlagenb\u00e4ume graduated style",
+      "description": "Graduated visualization coloring Baumbestand Berlin \u2013 Anlagenb\u00e4ume by pflanzjahr, ramped from 2.0 to 2000111.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2057,
+      "file:checksum": "12209e03eaa338487ccfb969dabc4ff595e9e7cba67cdb91bdfbe70137c382c70782"
+    },
+    "thumbnail": {
+      "href": "./baumbestand_anlagenbaeume.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Baumbestand Berlin \u2013 Anlagenb\u00e4ume",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 251115,
+      "file:checksum": "12203833a5367f344301ed821c3b57cf667e69192ff3bb01316e31d0fdebda91c85f"
+    }
+  },
+  "keywords": [
+    "Baum",
+    "B\u00e4ume",
+    "Anlagenb\u00e4ume",
+    "Baumbestand",
+    "GRIS",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Baumbestand Berlin, abgerufen am 18.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.berlin.de/sen/uvk/natur-und-gruen/stadtgruen/stadtbaeume/strassen-und-parkbaeume/",
+      "email": "bjoern.dejoks@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T18:44:21Z"
+}

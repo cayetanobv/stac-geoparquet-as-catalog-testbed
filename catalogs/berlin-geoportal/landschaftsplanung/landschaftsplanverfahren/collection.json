@@ -1,0 +1,284 @@
+{
+  "type": "Collection",
+  "id": "landschaftsplanung/landschaftsplanverfahren",
+  "stac_version": "1.1.0",
+  "description": "\u00dcbersicht \u00fcber die Verfahrensst\u00e4nde der einzelnen Landschaftspl\u00e4ne. Die Tabelle gibt eine \u00dcbersicht \u00fcber die Verfahrensst\u00e4nde der einzelnen Landschaftspl\u00e4ne im Land Berlin",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./lplan_lplan.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Landschaftsplanverfahren (\u00dcbersicht)",
+      "pmtiles:layers": [
+        "lplan_lplan"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/landschaftsplanverfahren-ubersicht-wfs-a4c3afd4",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/lplan",
+      "rel": "related",
+      "title": "WFS source service: lplan",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 122,
+  "table:row_count": 122,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "lp_nummer",
+      "type": "string"
+    },
+    {
+      "name": "titel",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "letzter_be",
+      "type": "string"
+    },
+    {
+      "name": "ba_beschlu",
+      "type": "date"
+    },
+    {
+      "name": "fbb_von",
+      "type": "date"
+    },
+    {
+      "name": "fbb_bis",
+      "type": "date"
+    },
+    {
+      "name": "toeb_absch",
+      "type": "date"
+    },
+    {
+      "name": "oeff_von",
+      "type": "date"
+    },
+    {
+      "name": "oeff_bis",
+      "type": "date"
+    },
+    {
+      "name": "rvo_vom",
+      "type": "date"
+    },
+    {
+      "name": "gvbl_seite",
+      "type": "int64"
+    },
+    {
+      "name": "flaeche_ha",
+      "type": "double"
+    },
+    {
+      "name": "bff",
+      "type": "string"
+    },
+    {
+      "name": "rvo_link",
+      "type": "string"
+    },
+    {
+      "name": "laplanlink",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Landschaftsplanverfahren (\u00dcbersicht)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.13543034,
+          52.37595428,
+          13.61404275,
+          52.64651159
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsplanverfahren (\u00dcbersicht) default style",
+      "description": "Default visualization for Landschaftsplanverfahren (\u00dcbersicht), drawn in #8c510a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1168,
+      "file:checksum": "12206a41a379990e3e70c73b0c6c900b937d84519a7ff8aa743650eb5671b2f5de42"
+    },
+    "lplan_lplan": {
+      "href": "./lplan_lplan.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 298472,
+      "file:checksum": "1220f3482df9f37fc1422c6a17e3e46442b308f2c6aa5cbcac506985a8e8850e8631",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./lplan_lplan.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Landschaftsplanverfahren (\u00dcbersicht) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 378505,
+      "file:checksum": "122016754bb2a01310613c4572b25c576666bdd6615587d1a4118e86815901f349e3"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsplanverfahren (\u00dcbersicht) categorical style",
+      "description": "Categorical visualization coloring Landschaftsplanverfahren (\u00dcbersicht) by bff, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1704,
+      "file:checksum": "122085f8a4dc71355ea81734ea4275d3ac74746d54ef8e3a5428b88d2261becd4786"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsplanverfahren (\u00dcbersicht) labeled style",
+      "description": "Default visualization for Landschaftsplanverfahren (\u00dcbersicht) with bff shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1578,
+      "file:checksum": "12202e2e13862e2293e8b9f2a5a0d4bec514d37e70b20961d66affc5de1a7612102f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsplanverfahren (\u00dcbersicht) graduated style",
+      "description": "Graduated visualization coloring Landschaftsplanverfahren (\u00dcbersicht) by gvbl_seite, ramped from 14.0 to 1299.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1939,
+      "file:checksum": "1220971fea35b11010403a92cb7b7f82648c47a77ecc3de514189f509dfe1d65ed97"
+    },
+    "thumbnail": {
+      "href": "./lplan_lplan.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Landschaftsplanverfahren (\u00dcbersicht)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 156070,
+      "file:checksum": "1220f03e89aeaf5e3c961efb4de1e48867a7d71925672b3c1a7b308233fbea3156ef"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bodennutzung",
+    "Geodaten",
+    "Karten",
+    "Landschaftsplanverfahren",
+    "Sachdaten",
+    "infoFeatureAccessService",
+    "inspireidentifiziert"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Landschaftsplanverfahren (\u00dcbersicht), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "uwe.borgenhagen@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

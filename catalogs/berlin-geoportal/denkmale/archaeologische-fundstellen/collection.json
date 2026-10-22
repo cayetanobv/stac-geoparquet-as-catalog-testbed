@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "denkmale/archaeologische-fundstellen",
+  "stac_version": "1.1.0",
+  "description": "Im Ortsaktenarchiv der Bodendenkmalpflege verzeichnete arch\u00e4ologische Fundstellen des Arch\u00e4ologischen Informationssystems Berlin (AISBer).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./arch_fundstellen_arch_fst.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Arch\u00e4ologische Fundstellen (AISBer)",
+      "pmtiles:layers": [
+        "arch_fundstellen_arch_fst"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/archaologische-fundstellen-und-bodendenkmale-aisber-fundstellen-wfs-459a407a",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/arch_fundstellen",
+      "rel": "related",
+      "title": "WFS source service: arch-fst",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 2276,
+  "table:row_count": 2276,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "fstnr",
+      "type": "string"
+    },
+    {
+      "name": "fundstelle",
+      "type": "string"
+    },
+    {
+      "name": "datierung",
+      "type": "string"
+    },
+    {
+      "name": "fundjahr",
+      "type": "string"
+    },
+    {
+      "name": "funde",
+      "type": "string"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Arch\u00e4ologische Fundstellen (AISBer)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09444079,
+          52.34775707,
+          13.73714749,
+          52.65234216
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Arch\u00e4ologische Fundstellen (AISBer) default style",
+      "description": "Default visualization for Arch\u00e4ologische Fundstellen (AISBer), drawn in #8c510a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1265,
+      "file:checksum": "1220647674f355ea73f774626ee9a17e97d626b032c907eb8fb6ac9eee4b3e6ab842"
+    },
+    "arch_fundstellen_arch_fst": {
+      "href": "./arch_fundstellen_arch_fst.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 174606,
+      "file:checksum": "12200e42ba747106b679de2f0745a983bcd4d1de956ba8d51c66a2fea1e38f199d35",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./arch_fundstellen_arch_fst.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Arch\u00e4ologische Fundstellen (AISBer) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 376726,
+      "file:checksum": "12206d5379ba28424cfd8faf17f61129eebafa0594bab06bed26f0d9331f6132364d"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Arch\u00e4ologische Fundstellen (AISBer) categorical style",
+      "description": "Categorical visualization coloring Arch\u00e4ologische Fundstellen (AISBer) by datierung, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2935,
+      "file:checksum": "1220de50006a4c20c8f8d4c458da136e378ee544248f4e44645da36fda21f645e5d4"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Arch\u00e4ologische Fundstellen (AISBer) labeled style",
+      "description": "Default visualization for Arch\u00e4ologische Fundstellen (AISBer) with datierung shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1709,
+      "file:checksum": "1220e29b1a7687668d3969ea29c30c79f722708fd94538024bcde13b9fdcedcf4a4e"
+    },
+    "thumbnail": {
+      "href": "./arch_fundstellen_arch_fst.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Arch\u00e4ologische Fundstellen (AISBer)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 132921,
+      "file:checksum": "1220aea3cb63ae767530e2ac26959b788264f63d6b0ef64d14a6c8c4f5889a24d347"
+    }
+  },
+  "keywords": [
+    "AISBer",
+    "Arch\u00e4ologie",
+    "Ausgrabungen",
+    "Berlin",
+    "Bodendenkmale",
+    "Fundstellen",
+    "Geodaten",
+    "Karten"
+  ],
+  "providers": [
+    {
+      "name": "Landesdenkmalamt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Arch\u00e4ologische Fundstellen und Bodendenkmale (AISBer) - Fundstellen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "gunnar.nath@lda.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

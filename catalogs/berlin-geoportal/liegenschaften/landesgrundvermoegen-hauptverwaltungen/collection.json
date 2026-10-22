@@ -1,0 +1,252 @@
+{
+  "type": "Collection",
+  "id": "liegenschaften/landesgrundvermoegen-hauptverwaltungen",
+  "stac_version": "1.1.0",
+  "description": "Dargestellt werden die Fl\u00e4chen der Verm\u00f6gensstellen von Bezirks- und Hauptverwaltungen sowie des Liegenschaftsfonds, des Sonderverm\u00f6gens Immobilien des Landes Berlin (SILB) und des Sonderverm\u00f6gens f\u00fcr Daseinsvorsorge- und nicht betriebsnotwendige Bestandsgrundst\u00fccke des Landes Berlin (SODA). Verm\u00f6gensstellen der Hauptverwaltungen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./landesgrundvermoegen_d_fme_haupt.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen",
+      "pmtiles:layers": [
+        "landesgrundvermoegen_d_fme_haupt"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/berliner-landesgrundvermogen-wfs-4e4aeecf",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/landesgrundvermoegen",
+      "rel": "related",
+      "title": "WFS source service: lgv-haupt",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 6832,
+  "table:row_count": 6832,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "objectid",
+      "type": "int64",
+      "description": "Laufende technische Kennung des Objekts im Dienst."
+    },
+    {
+      "name": "uuid",
+      "type": "string",
+      "description": "Objekt-ID im ALKIS-Format DEBE\u2026."
+    },
+    {
+      "name": "bezadf",
+      "type": "string",
+      "description": "Art der Festlegung als Bezeichnung, in der Stichprobe Landesgrundbesitzkataster."
+    },
+    {
+      "name": "bezirk",
+      "type": "string",
+      "description": "Bezirk als Schl\u00fcssel und Name in einem Feld, zum Beispiel 05 - Spandau."
+    },
+    {
+      "name": "bereich",
+      "type": "string",
+      "description": "Bereich der Verm\u00f6gensstelle: Bezirk, Hauptverwaltung oder Andere Bereiche."
+    },
+    {
+      "name": "vermoegensstelle",
+      "type": "string",
+      "description": "Verm\u00f6gensstelle, zum Beispiel Tiefbau, Forsten oder Liegenschaftsfonds."
+    },
+    {
+      "name": "dst",
+      "type": "int64",
+      "description": "Nummer der zust\u00e4ndigen Dienststelle, f\u00fcnfstellig."
+    },
+    {
+      "name": "flaeche_abgestimmt",
+      "type": "double",
+      "description": "Abgestimmte Fl\u00e4che laut Feldname; Einheit nicht dokumentiert, die Werte passen zu Quadratmetern; vom WFS als Text geliefert."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09136645,
+          52.34260676,
+          13.76115913,
+          52.6755077
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen default style",
+      "description": "Default visualization for Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen, drawn in #d95f02.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1332,
+      "file:checksum": "122028a3529be3ef30c03dfa6f307c060b8756c4169c3c0b30cf87ffec41802743be"
+    },
+    "landesgrundvermoegen_d_fme_haupt": {
+      "href": "./landesgrundvermoegen_d_fme_haupt.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2199044,
+      "file:checksum": "1220c02975651e03d200f6a3df44ccb8d6b8039ccad7c8cb04e5943216d4f5cb9042",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./landesgrundvermoegen_d_fme_haupt.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2636452,
+      "file:checksum": "12203d877749fa5e77f4ba6f96d98dca6166c5f45b7b17f57f2c1ed937feaa978dc9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen categorical style",
+      "description": "Categorical visualization coloring Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen by bezirk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2366,
+      "file:checksum": "122036fc5cf4604f4096f8897011c2c81547a50ea6ebf2b435cc7647d4e54ad11e01"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen labeled style",
+      "description": "Default visualization for Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen with bezirk shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1787,
+      "file:checksum": "12205a738b21e0675d66891175913de33b37e02396c01db305f82f5360fa82a63260"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen graduated style",
+      "description": "Graduated visualization coloring Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen by flaeche_abgestimmt, ramped from 0.02 to 1631343.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2156,
+      "file:checksum": "122001bc40b8cb3cb569ff80933095e1dd0c31f181b7cd18365eb41ade17e6c4ee80"
+    },
+    "thumbnail": {
+      "href": "./landesgrundvermoegen_d_fme_haupt.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Berliner Landesgrundverm\u00f6gen \u2013 Hauptverwaltungen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 195860,
+      "file:checksum": "122090f203ffa51d1e5d58daa0a171fca6160440816dd5b2d4c77aa64fed69b7395c"
+    }
+  },
+  "keywords": [
+    "Landesgrundverm\u00f6gen",
+    "Landeseigentum",
+    "Verm\u00f6genskarte",
+    "Besitzverh\u00e4ltnisse",
+    "Liegenschaften",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Berliner Landesgrundverm\u00f6gen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geobasisdatenbereitstellung@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T23:45:21Z"
+}

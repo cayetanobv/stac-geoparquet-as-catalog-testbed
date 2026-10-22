@@ -1,0 +1,233 @@
+{
+  "type": "Collection",
+  "id": "gruenflaechen/kleingartenbestand",
+  "stac_version": "1.1.0",
+  "description": "Darstellung der in Berlin gelegenen Kleingartenanlagen",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./kleingarten_kleingarten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kleingartenbestand Berlin",
+      "pmtiles:layers": [
+        "kleingarten_kleingarten"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/kleingartenbestand-berlin-wfs-350d69ef",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/kleingarten",
+      "rel": "related",
+      "title": "WFS source service: kleingarten",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 1038,
+  "table:row_count": 1038,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "ogr_fid",
+      "type": "int64"
+    },
+    {
+      "name": "anlagennummer",
+      "type": "double"
+    },
+    {
+      "name": "objektname",
+      "type": "string"
+    },
+    {
+      "name": "strasse",
+      "type": "string"
+    },
+    {
+      "name": "flaechengroesse",
+      "type": "int64"
+    },
+    {
+      "name": "parzellenanzahl",
+      "type": "int64"
+    },
+    {
+      "name": "landoderbezirk",
+      "type": "int64"
+    },
+    {
+      "name": "zwischenpaechter",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Kleingartenbestand Berlin",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.13823364,
+          52.36863083,
+          13.72009757,
+          52.64811617
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kleingartenbestand Berlin default style",
+      "description": "Default visualization for Kleingartenbestand Berlin, drawn in #78c679.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1236,
+      "file:checksum": "122033710b121014e953d4191849616f925a577dd0fb1205f520ccf6eb055420168e"
+    },
+    "kleingarten_kleingarten": {
+      "href": "./kleingarten_kleingarten.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 970821,
+      "file:checksum": "1220be932e24d7a8667da527e9db4623093ad6f42d8cdca93d7020c663daa607b1ee",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./kleingarten_kleingarten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kleingartenbestand Berlin (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 924524,
+      "file:checksum": "12207e45756130caae5f6748546445f49758c149d8996606fd0462fcb1e6fd4c78e1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kleingartenbestand Berlin labeled style",
+      "description": "Default visualization for Kleingartenbestand Berlin with objektname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1677,
+      "file:checksum": "1220046061d9d458c3365cfa6970133181ded0be721389de0910dfda16729388cc07"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kleingartenbestand Berlin graduated style",
+      "description": "Graduated visualization coloring Kleingartenbestand Berlin by flaechengroesse, ramped from 345.0 to 441693.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2045,
+      "file:checksum": "122090a5db11829dd9138ba7324b6d065a0f16987b0942c68888fdc7741a492a236b"
+    },
+    "thumbnail": {
+      "href": "./kleingarten_kleingarten.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kleingartenbestand Berlin",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 155355,
+      "file:checksum": "1220b71a3503b499dcc711c4ef896f263d5c0d23f252d1591c4dccaf5c8942562624"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Geodaten",
+    "Gr\u00fcnfl\u00e4chen",
+    "Karten",
+    "Kleingartenanlage",
+    "Kleingartenkolonie",
+    "Kleing\u00e4rten",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Kleingartenbestand Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "max.wilhelm@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

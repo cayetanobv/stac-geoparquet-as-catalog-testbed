@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "id": "geologie-forst/forstverwaltungseinheiten",
+  "stac_version": "1.1.0",
+  "description": "Verwaltungseinheiten der Berliner Forsten. Ein Forstamt wird darin in Reviere und Distrikte unterteilt. Ein Distrikt wird in Abteilungen, Unterabteilungen und Bestandseinheiten untergliedert.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./forstverwalt_b_forstverwalt.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Verwaltungseinheiten der Berliner Forsten",
+      "pmtiles:layers": [
+        "forstverwalt_b_forstverwalt"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/verwaltungseinheiten-der-berliner-forsten-wfs-cc4e2c96",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/forstverwalt",
+      "rel": "related",
+      "title": "WFS source service: b-forstverwalt",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 11522,
+  "table:row_count": 11522,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "best_dist",
+      "type": "string"
+    },
+    {
+      "name": "land",
+      "type": "string"
+    },
+    {
+      "name": "foa",
+      "type": "double"
+    },
+    {
+      "name": "foa_name",
+      "type": "string"
+    },
+    {
+      "name": "revier",
+      "type": "double"
+    },
+    {
+      "name": "rev_name",
+      "type": "string"
+    },
+    {
+      "name": "distrikt",
+      "type": "double"
+    },
+    {
+      "name": "gis_area",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Verwaltungseinheiten der Berliner Forsten",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.2313202,
+          52.1000177,
+          13.88302307,
+          52.85654715
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verwaltungseinheiten der Berliner Forsten default style",
+      "description": "Default visualization for Verwaltungseinheiten der Berliner Forsten, drawn in #01665e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1280,
+      "file:checksum": "1220acc115200e179318eeec0aa28837f0f4d6c526eda58568984d1470882c5b58f7"
+    },
+    "forstverwalt_b_forstverwalt": {
+      "href": "./forstverwalt_b_forstverwalt.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3278356,
+      "file:checksum": "1220d8df0ca7aaf10e179a4e4babd90f3b640e3eefbc9d0ac565369b6b09f878c292",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./forstverwalt_b_forstverwalt.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Verwaltungseinheiten der Berliner Forsten (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6187269,
+      "file:checksum": "1220e08d0433c6c5d2e03c757a4da835242a09eaa96be6c4df6d0f2faf5eb1f1ed17"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verwaltungseinheiten der Berliner Forsten categorical style",
+      "description": "Categorical visualization coloring Verwaltungseinheiten der Berliner Forsten by land, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1853,
+      "file:checksum": "12207b078f5c3d55f16e95b8c2393bcecf7e55bd350af9b49d14210195116b3d0581"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verwaltungseinheiten der Berliner Forsten labeled style",
+      "description": "Default visualization for Verwaltungseinheiten der Berliner Forsten with foa_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1727,
+      "file:checksum": "12209900093e7a3e4aab85c5603fa284fb43a8b6d159744bdd6d0712a709507d248a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verwaltungseinheiten der Berliner Forsten graduated style",
+      "description": "Graduated visualization coloring Verwaltungseinheiten der Berliner Forsten by gis_area, ramped from 0.72137211930347 to 1028789.0888024623.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2151,
+      "file:checksum": "12201b3e211b89c265c8c59eb7be68cde4f35af614d92b9d3fd231613e8282c2eaf9"
+    },
+    "thumbnail": {
+      "href": "./forstverwalt_b_forstverwalt.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Verwaltungseinheiten der Berliner Forsten",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 149090,
+      "file:checksum": "12206876d00e4974b0623000e32aad7fdf91a893cc2b9542c95cc92b087a394a4a61"
+    }
+  },
+  "keywords": [
+    "Abteilung",
+    "Berlin",
+    "Berliner Forsten",
+    "Berliner Wald",
+    "Brandenburg",
+    "Distrikt Bestandeseinheiten",
+    "Geodaten",
+    "Karten"
+  ],
+  "providers": [
+    {
+      "name": "Berliner Forsten",
+      "description": "Datenquelle Geoportal Berlin, Verwaltungseinheiten der Berliner Forsten, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "nina.jungius@forsten.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

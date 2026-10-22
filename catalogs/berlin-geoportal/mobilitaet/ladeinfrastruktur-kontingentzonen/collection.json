@@ -1,0 +1,213 @@
+{
+  "type": "Collection",
+  "id": "mobilitaet/ladeinfrastruktur-kontingentzonen",
+  "stac_version": "1.1.0",
+  "description": "Standort- und fl\u00e4chenbezogene Informationen zu \u00f6ffentlich-zug\u00e4nglicher Ladeinfrastruktur (LIS), unterschieden nach jener im \u00f6ffentlichen Raum und jener auf privatem Grund. Die Daten werden regelm\u00e4\u00dfig aktualisiert und mit den Datenbest\u00e4nden im Energieatlas synchronisiert. Zudem werden hier Informationen zu aktuellen LIS-Planungen oder zu anderen sektoralen Planungen betroffenen R\u00e4umen bereitgestellt, welche die Standortsuche im \u00f6ffentlichen Raum f\u00fcr LIS-Betreiber erleichtern sollen. Genauere Informationen sind \u00fcber die Verlinkung (weiterf\u00fchrender Link) einsehbar.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./eladeinfrastruktur_eladeinfrstr_zonengrenzennamen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen",
+      "pmtiles:layers": [
+        "eladeinfrastruktur_eladeinfrstr_zonengrenzennamen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/offentlich-zugangliche-ladeinfrastruktur-fur-e-fahrzeuge-wfs-077e2e20",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/eladeinfrastruktur",
+      "rel": "related",
+      "title": "WFS source service: eladeinfrstr-zonengrenzennamen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 22,
+  "table:row_count": 22,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "bezname",
+      "type": "string"
+    },
+    {
+      "name": "zone",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "\u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08834761,
+          52.3382456,
+          13.76113997,
+          52.6755077
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen default style",
+      "description": "Default visualization for \u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1450,
+      "file:checksum": "12201f2dbae2d14d7a7639b30b542e0e738a14ed13f9c2645e2aac05060e4c3a4a3c"
+    },
+    "eladeinfrastruktur_eladeinfrstr_zonengrenzennamen": {
+      "href": "./eladeinfrastruktur_eladeinfrstr_zonengrenzennamen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 358633,
+      "file:checksum": "1220c9a412e7ef1841af7f3500d104fbf37e1db8c61b2bc12d6b3a4b0ab6c4d80071",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./eladeinfrastruktur_eladeinfrstr_zonengrenzennamen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 277562,
+      "file:checksum": "1220b5dfe3da895b1af93e789f0e5bfb0f83ff7e8640aee1c29928e4eaa719873c9a"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen categorical style",
+      "description": "Categorical visualization coloring \u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen by zone, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2020,
+      "file:checksum": "1220c5032291832bbd18016c422a3b2b4c73201b618eeb9f8728acac3452777ea1d5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen labeled style",
+      "description": "Default visualization for \u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen with bezname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1940,
+      "file:checksum": "122048b8dbfc6584b8fb8fcc299e33d5b01fe462f4fca13f6a8d71a3b6fd6373bcc9"
+    },
+    "thumbnail": {
+      "href": "./eladeinfrastruktur_eladeinfrstr_zonengrenzennamen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of \u00d6ffentliche Ladeinfrastruktur \u2013 Kontingentzonen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 129685,
+      "file:checksum": "122043b6f138e9b40f0b6836426beedf16957d976c66c48b114a18a03f786609b7b4"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bezirk",
+    "Geodaten",
+    "Karten",
+    "Ladeart",
+    "Ladeinfrastruktur",
+    "Postleitzahl",
+    "Radverkehrsnetz"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, \u00d6ffentlich zug\u00e4ngliche Ladeinfrastruktur f\u00fcr E-Fahrzeuge, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "Norman.Doege@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

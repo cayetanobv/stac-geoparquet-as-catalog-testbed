@@ -1,0 +1,359 @@
+{
+  "type": "Collection",
+  "id": "umweltatlas/versiegelung-2021",
+  "stac_version": "1.1.0",
+  "description": "Versiegelung von Block- und Blockteilfl\u00e4chen in 10%-Stufen, ermittelt aus Satellitenbilddaten (Sentinel-2B, unbebauter Anteil) und Geb\u00e4udedaten (bebauter Anteil), sowie von Stra\u00dfenfl\u00e4chen, ermittelt aus Stra\u00dfenbefahrungsdaten, auf Grundlage der Blockkarte 1 : 5.000 (ISU5), Stand 2020. Zudem wird die Ver\u00e4nderungskartierung im Vergleich von 2016 zu 2021 dargestellt. Versiegelungsgrad 2021 [%].",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ua_versiegelung_2021_versieg2021.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas)",
+      "pmtiles:layers": [
+        "ua_versiegelung_2021_versieg2021"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/versiegelung-2021-umweltatlas-wfs-46d7bcf5",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ua_versiegelung_2021",
+      "rel": "related",
+      "title": "WFS source service: versieg2021",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 26378,
+  "table:row_count": 26378,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "schluessel",
+      "type": "double",
+      "description": "Schl\u00fcssel der Block- oder Blockteilfl\u00e4che in der Blockkarte ISU5, 16-stellig."
+    },
+    {
+      "name": "bezneu",
+      "type": "double",
+      "description": "Bezirksschl\u00fcssel, zweistellig."
+    },
+    {
+      "name": "bezklar",
+      "type": "string",
+      "description": "Bezirksname."
+    },
+    {
+      "name": "woz",
+      "type": "int64",
+      "description": "Nutzung als Schl\u00fcssel."
+    },
+    {
+      "name": "wozklar",
+      "type": "string",
+      "description": "Nutzung als Bezeichnung, zum Beispiel Wohnnutzung."
+    },
+    {
+      "name": "grz",
+      "type": "int64"
+    },
+    {
+      "name": "grzklar",
+      "type": "string"
+    },
+    {
+      "name": "typ",
+      "type": "int64",
+      "description": "Fl\u00e4chentyp als Schl\u00fcssel."
+    },
+    {
+      "name": "typklar",
+      "type": "string",
+      "description": "Fl\u00e4chentyp als Bezeichnung, zum Beispiel Freie Zeilenbebauung mit landschaftlichem Siedlungsgr\u00fcn (1950er - 1970er), 2 - 6-geschossig."
+    },
+    {
+      "name": "flalle",
+      "type": "double",
+      "description": "Fl\u00e4che der Block- oder Blockteilfl\u00e4che; Einheit nicht dokumentiert, die Werte passen zu Quadratmetern."
+    },
+    {
+      "name": "vg_2021",
+      "type": "double",
+      "description": "Versiegelungsgrad 2021 in Prozent laut Ebenen-Abstract."
+    },
+    {
+      "name": "probau_2021",
+      "type": "double"
+    },
+    {
+      "name": "provgneu_2021",
+      "type": "double"
+    },
+    {
+      "name": "vg_0_2021",
+      "type": "double"
+    },
+    {
+      "name": "provgneu_0_2021",
+      "type": "double"
+    },
+    {
+      "name": "kl1",
+      "type": "int64"
+    },
+    {
+      "name": "kl2",
+      "type": "int64"
+    },
+    {
+      "name": "kl3",
+      "type": "int64"
+    },
+    {
+      "name": "kl4",
+      "type": "int64"
+    },
+    {
+      "name": "vg_dif21_16",
+      "type": "double",
+      "description": "Differenz des Versiegelungsgrads 2021 gegen\u00fcber 2016 in Prozentpunkten."
+    },
+    {
+      "name": "probau_dif21_16",
+      "type": "double"
+    },
+    {
+      "name": "provgneu_dif21_16",
+      "type": "double"
+    },
+    {
+      "name": "pseudo_bemerkung",
+      "type": "string"
+    },
+    {
+      "name": "vg_2016",
+      "type": "double",
+      "description": "Versiegelungsgrad 2016 in Prozent, Vergleichswert der Vorg\u00e4ngerausgabe."
+    },
+    {
+      "name": "probau_2016",
+      "type": "double"
+    },
+    {
+      "name": "provgneu_2016",
+      "type": "double"
+    },
+    {
+      "name": "vg_0_2016",
+      "type": "double"
+    },
+    {
+      "name": "provgneu_0_2016",
+      "type": "double"
+    },
+    {
+      "name": "ewozklar",
+      "type": "string",
+      "description": "Nutzung als englische Bezeichnung des Publizierers."
+    },
+    {
+      "name": "egrzklar",
+      "type": "string"
+    },
+    {
+      "name": "etypklar",
+      "type": "string",
+      "description": "Fl\u00e4chentyp als englische Bezeichnung des Publizierers."
+    },
+    {
+      "name": "epseudo_bemerkung",
+      "type": "string"
+    },
+    {
+      "name": "kat",
+      "type": "int64",
+      "description": "Kategorie der Ver\u00e4nderungskartierung als Schl\u00fcssel; Bedeutung vom Publizierer im WFS nicht dokumentiert."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08835368,
+          52.3382456,
+          13.76113997,
+          52.67550862
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) default style",
+      "description": "Default visualization for Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas), drawn in #b30000.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1342,
+      "file:checksum": "12205f77901a86fd18fe74f890b09017d194048751abe395e5b0b25e6dfc12139cee"
+    },
+    "ua_versiegelung_2021_versieg2021": {
+      "href": "./ua_versiegelung_2021_versieg2021.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6184824,
+      "file:checksum": "12205b64cf0cdb5e69b3aff27909c961b0622f21928e66a6af55853599e2d62c6db6",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ua_versiegelung_2021_versieg2021.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18953040,
+      "file:checksum": "122057a5409d1a8275185f0baaad23c1f38347c823fb9003a15dd142941cdfbfd346"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) categorical style",
+      "description": "Categorical visualization coloring Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) by pseudo_bemerkung, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2680,
+      "file:checksum": "12208f2c087881db6931d94c6358e4537e46ed76de5c40a918f6d2b040448feb2cdb"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) labeled style",
+      "description": "Default visualization for Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) with provgneu_2021 shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1804,
+      "file:checksum": "1220a1f41dfe21ab62b06ebb15f2da9c03837239f1f023efa53016bdc2bb9ad2ce81"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) graduated style",
+      "description": "Graduated visualization coloring Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas) by schluessel, ramped from 100980011000100.0 to 2301959031000200.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2227,
+      "file:checksum": "12200aef1b8e361867c3cf3ed2118b3b22f750aeb37b5dcdb4fd7b9ebf9d16f13e64"
+    },
+    "thumbnail": {
+      "href": "./ua_versiegelung_2021_versieg2021.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Versiegelung der Block- und Blockteilfl\u00e4chen 2021 (Umweltatlas)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 267092,
+      "file:checksum": "12206958135e90889c2cc19eb79b9a666f441a4c262c17306a82462f12f6ec625051"
+    }
+  },
+  "keywords": [
+    "Umweltatlas",
+    "Versiegelungsklassen",
+    "versiegelt",
+    "Bodenbedeckung",
+    "Satellitenbildauswertung",
+    "Ver\u00e4nderungskartierung",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Versiegelung 2021 (Umweltatlas), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geoportal@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T23:45:21Z"
+}

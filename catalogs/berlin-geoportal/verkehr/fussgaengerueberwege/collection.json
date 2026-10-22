@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "verkehr/fussgaengerueberwege",
+  "stac_version": "1.1.0",
+  "description": "Die Daten enthalten alle ab 2001 fertig gestellten Fu\u00dfg\u00e4nger\u00fcberwege (Zebrastreifen) von Berlin.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./fgue_fgue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fu\u00dfg\u00e4nger\u00fcberwege",
+      "pmtiles:layers": [
+        "fgue_fgue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/fussgangeruberwege-wfs-d9083c07",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/fgue",
+      "rel": "related",
+      "title": "WFS source service: fgue",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 427,
+  "table:row_count": 427,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "kennz",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "plz",
+      "type": "int64"
+    },
+    {
+      "name": "strasse",
+      "type": "string"
+    },
+    {
+      "name": "hausnr",
+      "type": "string"
+    },
+    {
+      "name": "jahr",
+      "type": "int64"
+    },
+    {
+      "name": "lage",
+      "type": "string"
+    },
+    {
+      "name": "grund",
+      "type": "string"
+    },
+    {
+      "name": "besond",
+      "type": "string"
+    },
+    {
+      "name": "kosten",
+      "type": "int64"
+    },
+    {
+      "name": "fahrbahn",
+      "type": "string"
+    },
+    {
+      "name": "breite",
+      "type": "string"
+    },
+    {
+      "name": "fg",
+      "type": "string"
+    },
+    {
+      "name": "kfz",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Fu\u00dfg\u00e4nger\u00fcberwege",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.12659502,
+          52.38694198,
+          13.69161649,
+          52.64148119
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fu\u00dfg\u00e4nger\u00fcberwege default style",
+      "description": "Default visualization for Fu\u00dfg\u00e4nger\u00fcberwege, drawn in #fd8d3c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1145,
+      "file:checksum": "122022bacd61f368ef683cae3ebb8ce936e50353e064889ce84271dfc60317fc4fb2"
+    },
+    "fgue_fgue": {
+      "href": "./fgue_fgue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 42392,
+      "file:checksum": "12207d82d3b6621db4b5a3197bdc0ba66360508f240d8c2eff85e2072cc43acb755a",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./fgue_fgue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fu\u00dfg\u00e4nger\u00fcberwege (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 171434,
+      "file:checksum": "12201c28f698f93d4eabbfbdcd770901129ac2154879eb823fbac9b92f288914544e"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fu\u00dfg\u00e4nger\u00fcberwege categorical style",
+      "description": "Categorical visualization coloring Fu\u00dfg\u00e4nger\u00fcberwege by bezirk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2857,
+      "file:checksum": "12209001c24f4e26f999341a3a4a85cb026b7c3551aecf5741a6ed5084243efebc02"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fu\u00dfg\u00e4nger\u00fcberwege labeled style",
+      "description": "Default visualization for Fu\u00dfg\u00e4nger\u00fcberwege with bezirk shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1554,
+      "file:checksum": "1220f281c818e48ffceb34e130a7a0835f97230d462f6cff69127f00ca18ef7e96d3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fu\u00dfg\u00e4nger\u00fcberwege graduated style",
+      "description": "Graduated visualization coloring Fu\u00dfg\u00e4nger\u00fcberwege by kosten, ramped from 0.0 to 141800.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1909,
+      "file:checksum": "122007df26e8bafa43d3111afd3f94acf4ee850fc66df2a44ff4348fc2140ef87138"
+    },
+    "thumbnail": {
+      "href": "./fgue_fgue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Fu\u00dfg\u00e4nger\u00fcberwege",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 129464,
+      "file:checksum": "12206a709a1d5c421ce53ff1774a9d7d59463d17dfb67215e1ededc54b83708557fd"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Fussg\u00e4nger",
+    "Fu\u00dfg\u00e4nger",
+    "Fu\u00dfg\u00e4nger\u00fcberweg",
+    "Fu\u00dfverkehr",
+    "Fu\u00dfwege",
+    "Gehwege",
+    "Geodaten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Fu\u00dfg\u00e4nger\u00fcberwege, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "jutta.schramm@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

@@ -1,0 +1,243 @@
+{
+  "type": "Collection",
+  "id": "stadtentwicklung/fluchtlinien",
+  "stac_version": "1.1.0",
+  "description": "Die Daten beinhalten f\u00fcr die Bezirke Charlottenburg-Wilmersdorf, Friedrichshain-Kreuzberg, Neuk\u00f6lln, Reinickendorf, Spandau, Steglitz-Zehlendorf und Tempelhof-Sch\u00f6neberg die planungsrechtlich noch g\u00fcltigen f\u00f6rmlich festgestellten (ff.) Stra\u00dfen- oder Baufluchtlinien sowie Freifl\u00e4chengrenzen dar. G\u00fcltige Fluchtlinien sind nur f\u00fcr Gebiete im ehemaligen West-Berlin vorhanden. Wird ein neuer Bebauungsplan festgesetzt, werden entsprechende Fluchtlinien gel\u00f6scht. Es handelt sich bei dem hier \u00f6ffentlich gemachten Fluchtlinienplan um ein Informationsangebot, dessen Angaben trotz sorgf\u00e4ltiger Pr\u00fcfung der georeferenzierten Erfassung hinsichtlich der geometrischen Lage und der Vollst\u00e4ndigkeit unverbindlich sind.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./fluchtlinien_fluchtlinien.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fluchtlinien",
+      "pmtiles:layers": [
+        "fluchtlinien_fluchtlinien"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/fluchtlinien-wfs-f8a1fc2b",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/fluchtlinien",
+      "rel": "related",
+      "title": "WFS source service: fluchtlinien",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 17666,
+  "table:row_count": 17666,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "uid",
+      "type": "double"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "a_text",
+      "type": "string"
+    },
+    {
+      "name": "a_datum",
+      "type": "date"
+    },
+    {
+      "name": "a_datum2",
+      "type": "date"
+    },
+    {
+      "name": "typ",
+      "type": "string"
+    },
+    {
+      "name": "datum",
+      "type": "date"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Fluchtlinien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.13567911,
+          52.37617646,
+          13.52020212,
+          52.65995746
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fluchtlinien default style",
+      "description": "Default visualization for Fluchtlinien, drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1237,
+      "file:checksum": "1220bafa4b592891f25851da4254331fd6b86a422b9b2a3123cfbc5e19fe38973844"
+    },
+    "fluchtlinien_fluchtlinien": {
+      "href": "./fluchtlinien_fluchtlinien.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3591166,
+      "file:checksum": "1220c85b4d33d11119a205a7f4b0a55a0b888122f2fd1ee6213e271d7ee5826bfd0c",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./fluchtlinien_fluchtlinien.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fluchtlinien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3652140,
+      "file:checksum": "122083beeffedb1da98a2002851b461ab768aa2a06c287e7e023c696d4148c73909a"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fluchtlinien categorical style",
+      "description": "Categorical visualization coloring Fluchtlinien by bezirk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2043,
+      "file:checksum": "1220a78692fcdd743b88ca99a35b3484334a2ef506f923c59fad3f50934eaff53072"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fluchtlinien labeled style",
+      "description": "Default visualization for Fluchtlinien with bezirk shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1678,
+      "file:checksum": "1220c7e9714e6ce33d043377a0f43c5d0bbcd9d241d7ea4ada55c846e32f8a69a681"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fluchtlinien graduated style",
+      "description": "Graduated visualization coloring Fluchtlinien by uid, ramped from 43.0 to 12002451.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2004,
+      "file:checksum": "1220354a6f63abdaf44193901361c3b55dc42daeaa233fe07ae96814a3da6191455b"
+    },
+    "thumbnail": {
+      "href": "./fluchtlinien_fluchtlinien.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Fluchtlinien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 168335,
+      "file:checksum": "12202a54d4996e746b2650215f883223f58335f4df4e21d7cb9f77d16275b8fb3826"
+    }
+  },
+  "keywords": [
+    "Baufluchtlinien",
+    "Baugrenzen",
+    "Bauplanungsrecht",
+    "Berlin",
+    "Charlottenburg-Wilmersdorf",
+    "Fluchtlinien",
+    "Freifl\u00e4chengrenzen",
+    "Friedrichshain-Kreuzberg"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Fluchtlinien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "philipp.heise@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

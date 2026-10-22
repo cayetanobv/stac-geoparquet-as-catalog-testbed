@@ -1,0 +1,230 @@
+{
+  "type": "Collection",
+  "id": "naturschutz/naturschutzgebiete",
+  "stac_version": "1.1.0",
+  "description": "Naturschutz- und Landschaftsschutzgebiete, Naturdenkmale in fl\u00e4chiger Auspr\u00e4gung und als Objekte, gesch\u00fctzte Landschaftsbestandteile, Naturpark Barnim (Berliner Teil), FFH - Gebiete und Vogelschutzgebiete (SPA - Fl\u00e4chen) des Netzes Natura 2000, einstweilig sichergestellte Fl\u00e4chen in einer aktuellen, grundst\u00fccksgenauen Karte im Ma\u00dfstab 1:1.000). Die amtlichen Karten zur jeweiligen Schutzverordnung k\u00f6nnen bei der jeweils \u00f6rtlich zust\u00e4ndigen unteren Beh\u00f6rde f\u00fcr Naturschutz und Landschaftspflege im Bezirksamt oder bei der obersten Beh\u00f6rde f\u00fcr Naturschutz und Landschaftspflege (Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und UmweltAbt. III) eingesehen werden. Nur diese amtlichen analogen Karten sind rechtsverbindlich, sofern die Karten nicht im Gesetz- und Verordnungsblatt f\u00fcr Berlin mitver\u00f6ffentlicht wurden.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./schutzgebiete_h_nsg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Naturschutzgebiete",
+      "pmtiles:layers": [
+        "schutzgebiete_h_nsg"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/schutzgebiete-und-schutzobjekte-nach-naturschutzrecht-berlin-inklusive-natura-2000-wfs-c36fe3f2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/schutzgebiete",
+      "rel": "related",
+      "title": "WFS source service: h-nsg",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 44,
+  "table:row_count": 44,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gebietsnummer",
+      "type": "string"
+    },
+    {
+      "name": "schutzstatus",
+      "type": "string"
+    },
+    {
+      "name": "gebietsname",
+      "type": "string"
+    },
+    {
+      "name": "gebietsflaeche",
+      "type": "double"
+    },
+    {
+      "name": "eu_gebietsnummer",
+      "type": "string"
+    },
+    {
+      "name": "bezeichnung",
+      "type": "string"
+    },
+    {
+      "name": "datum_stammvo",
+      "type": "date"
+    },
+    {
+      "name": "doku_intranet",
+      "type": "string"
+    },
+    {
+      "name": "zitat",
+      "type": "string"
+    },
+    {
+      "name": "gebietsdaten",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Naturschutzgebiete",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.11826388,
+          52.39035443,
+          13.75562184,
+          52.65101186
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Naturschutzgebiete default style",
+      "description": "Default visualization for Naturschutzgebiete, drawn in #00441b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1201,
+      "file:checksum": "122021d230e084fab64136350d31d74104fffc75819065abeaa0ea9e1565471fb074"
+    },
+    "schutzgebiete_h_nsg": {
+      "href": "./schutzgebiete_h_nsg.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 178483,
+      "file:checksum": "12207aa067fe372287c2de9f42ed85400f64057ef14f4b5504ad96b98108e46989b9",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./schutzgebiete_h_nsg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Naturschutzgebiete (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 200692,
+      "file:checksum": "1220da27c718a420c9a49fd45cd854bcd6e51e506754b304fa34ab9a70987429a586"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Naturschutzgebiete labeled style",
+      "description": "Default visualization for Naturschutzgebiete with gebietsname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1635,
+      "file:checksum": "12201f501ea7d85262611db1ea1bbfe5a6b4ac2a39096ca0225c34664fb78791811c"
+    },
+    "thumbnail": {
+      "href": "./schutzgebiete_h_nsg.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Naturschutzgebiete",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 143270,
+      "file:checksum": "1220a88227de57a59f999e7deee9cae3a8caac91f50d050debf1f66eaccf7c2689a3"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "EU-Richtlinie",
+    "FFH-Gebiete",
+    "FND",
+    "Findlinge",
+    "Flora-Fauna-Habitat-Richtlinie",
+    "Fl\u00e4chenschutz",
+    "GLB"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Schutzgebiete und Schutzobjekte nach Naturschutzrecht Berlin (inklusive Natura 2000), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "schutzgebiete@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

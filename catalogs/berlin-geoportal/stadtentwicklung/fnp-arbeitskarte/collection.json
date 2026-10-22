@@ -1,0 +1,214 @@
+{
+  "type": "Collection",
+  "id": "stadtentwicklung/fnp-arbeitskarte",
+  "stac_version": "1.1.0",
+  "description": "Daten zur aktuellen Arbeitskarte des FNP Berlin. Es gilt das gedruckte Original in Verbindung mit den separat seit Neubekanntmachung ver\u00f6ffentlichten wirksamen FNP-\u00c4nderungen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./fnp_ak_fnp_ak_vektor.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "FNP Berlin \u2013 aktuelle Arbeitskarte",
+      "pmtiles:layers": [
+        "fnp_ak_fnp_ak_vektor"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/fnp-flachennutzungsplan-berlin-aktuelle-arbeitskarte-wfs-21d4b29c",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/fnp_ak",
+      "rel": "related",
+      "title": "WFS source service: fnp-ak-vektor",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 6641,
+  "table:row_count": 6641,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "string"
+    },
+    {
+      "name": "nutzungsart",
+      "type": "string"
+    },
+    {
+      "name": "os",
+      "type": "int64"
+    },
+    {
+      "name": "os_nr",
+      "type": "string"
+    },
+    {
+      "name": "zweckbestimmung",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "FNP Berlin \u2013 aktuelle Arbeitskarte",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08834736,
+          52.33823395,
+          13.76111321,
+          52.67547579
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "FNP Berlin \u2013 aktuelle Arbeitskarte default style",
+      "description": "Default visualization for FNP Berlin \u2013 aktuelle Arbeitskarte, drawn in #bcbddc.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1229,
+      "file:checksum": "1220e0a9718fd118f5bf4491e669026b20b545015e48f0aaacd6eeac10f4471826cf"
+    },
+    "fnp_ak_fnp_ak_vektor": {
+      "href": "./fnp_ak_fnp_ak_vektor.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2735892,
+      "file:checksum": "12204b8cd82fc36b71d25e1d394d151faafc298554e583a388a021498253aed13754",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./fnp_ak_fnp_ak_vektor.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "FNP Berlin \u2013 aktuelle Arbeitskarte (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3260404,
+      "file:checksum": "12209929bf40b81d4c03ab6c72d0dc2ec620aa4380e8ca33b9d27e97245ef7421cf1"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "FNP Berlin \u2013 aktuelle Arbeitskarte graduated style",
+      "description": "Graduated visualization coloring FNP Berlin \u2013 aktuelle Arbeitskarte by os, ramped from 7500150.0 to 7509353.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2004,
+      "file:checksum": "1220ead5b601bdc6cc73d48333858889b46cf72f4919de0038f31353df8963b624da"
+    },
+    "thumbnail": {
+      "href": "./fnp_ak_fnp_ak_vektor.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of FNP Berlin \u2013 aktuelle Arbeitskarte",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 142334,
+      "file:checksum": "1220f5fb42a9fad97839198127fc1a0f722e15271e29a7ecce300f09a55c6ee104d6"
+    }
+  },
+  "keywords": [
+    "Bauleitplan",
+    "Berlin",
+    "FNP Berlin",
+    "Fl\u00e4chennutzungsplanung",
+    "Geodaten",
+    "Karten",
+    "Sachdaten",
+    "Vorbereitende Bauleitplanung"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, FNP (Fl\u00e4chennutzungsplan Berlin), aktuelle Arbeitskarte, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "roland.heicke@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

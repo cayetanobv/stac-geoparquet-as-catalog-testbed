@@ -1,0 +1,228 @@
+{
+  "type": "Collection",
+  "id": "denkmale/gebaeudeatlas",
+  "stac_version": "1.1.0",
+  "description": "Der Berliner Geb\u00e4ude Atlas ist ein Online-Nachschlagewerk, das die Entwicklung der Architektur seit der Wende in Berlins Mitte dokumentiert. Er wurde parallel zum Berlin-Modell M 1:500 entwickelt und enth\u00e4lt Informationen zu allen Hochbauprojekten, die nach 1990 entstanden sind.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gebaeudeatlas_gebaeudeatlas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Berliner Geb\u00e4ude Atlas",
+      "pmtiles:layers": [
+        "gebaeudeatlas_gebaeudeatlas"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/berliner-gebaude-atlas-wfs-95a562a8",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/gebaeudeatlas",
+      "rel": "related",
+      "title": "WFS source service: gebaeudeatlas",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 808,
+  "table:row_count": 808,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "projekt",
+      "type": "string"
+    },
+    {
+      "name": "architekt",
+      "type": "string"
+    },
+    {
+      "name": "baujahr",
+      "type": "string"
+    },
+    {
+      "name": "bauprojekt",
+      "type": "string"
+    },
+    {
+      "name": "details",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Berliner Geb\u00e4ude Atlas",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.34869333,
+          52.4977643,
+          13.42024871,
+          52.53977566
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Geb\u00e4ude Atlas default style",
+      "description": "Default visualization for Berliner Geb\u00e4ude Atlas, drawn in #dd3497.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1266,
+      "file:checksum": "1220929f3586684c9be0782ae71d1018e2360627b15438dadb77ebda3e49d653bda2"
+    },
+    "gebaeudeatlas_gebaeudeatlas": {
+      "href": "./gebaeudeatlas_gebaeudeatlas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 526236,
+      "file:checksum": "12209d0f4a0f595b4e82ea0103193af3c0e6df71f8a70400a2c3d6c32e4970491b1d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./gebaeudeatlas_gebaeudeatlas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Berliner Geb\u00e4ude Atlas (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 435636,
+      "file:checksum": "1220dc755b19563f58d0405607afed408a4ae1222f09372ce49d729a239d84400458"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Geb\u00e4ude Atlas categorical style",
+      "description": "Categorical visualization coloring Berliner Geb\u00e4ude Atlas by bauprojekt, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1908,
+      "file:checksum": "1220453328b14be1ebbf81406cd3fb16a8f3478f7f447ccf1537cd0abd89387fb774"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Berliner Geb\u00e4ude Atlas labeled style",
+      "description": "Default visualization for Berliner Geb\u00e4ude Atlas with bauprojekt shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1715,
+      "file:checksum": "1220069098c86cab18f0552e87989a4ad790972535df3c21562c6cc871566531ad4c"
+    },
+    "thumbnail": {
+      "href": "./gebaeudeatlas_gebaeudeatlas.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Berliner Geb\u00e4ude Atlas",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 230701,
+      "file:checksum": "1220f57fb2b53eaed92598604b4a94d1d339eb4877dc8719c453e0a0487e49dbdb8a"
+    }
+  },
+  "keywords": [
+    "1990",
+    "Architektur",
+    "Architektur in Berlin",
+    "Berlin",
+    "Berlin-Modell 1:500",
+    "Berliner Architektur",
+    "Berliner Geb\u00e4ude Atlas",
+    "Berlins Mitte"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Berliner Geb\u00e4ude Atlas, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "claudia.gil@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

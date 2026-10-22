@@ -1,0 +1,236 @@
+{
+  "type": "Collection",
+  "id": "gruenflaechen/friedhofsbestand",
+  "stac_version": "1.1.0",
+  "description": "Alle ge\u00f6ffneten und geschlossenen Berliner Friedh\u00f6fe nach ihrem Tr\u00e4ger einschlie\u00dflich der drei gro\u00dfen sowjetischen Ehrenmale in Treptow, Sch\u00f6nholz und Tiergarten. In der Karte sind alle ge\u00f6ffneten und geschlossenen Berliner Friedh\u00f6fe nach ihrem Tr\u00e4ger einschlie\u00dflich der drei gro\u00dfen sowjetischen Ehrenmale in Treptow, Sch\u00f6nholz und Tiergarten dargestellt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./friedhofsbestand_friedhofsbestand_berlin.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Friedhofsbestand Berlin",
+      "pmtiles:layers": [
+        "friedhofsbestand_friedhofsbestand_berlin"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/friedhofsbestand-berlin-wfs-b6e64b05",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/friedhofsbestand",
+      "rel": "related",
+      "title": "WFS source service: friedhofsbestand-berlin",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 226,
+  "table:row_count": 226,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "pitid",
+      "type": "string"
+    },
+    {
+      "name": "frhkennz",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "strasse",
+      "type": "string"
+    },
+    {
+      "name": "konfess",
+      "type": "string"
+    },
+    {
+      "name": "fl\u00e4che",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Friedhofsbestand Berlin",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.118332763988,
+          52.346018081256,
+          13.716468902317,
+          52.648095954058
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friedhofsbestand Berlin default style",
+      "description": "Default visualization for Friedhofsbestand Berlin, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1353,
+      "file:checksum": "122054c2316914de353f8eb4183ab7327264935ec9d2dbc6eaa3c05ab307d3d8ec12"
+    },
+    "friedhofsbestand_friedhofsbestand_berlin": {
+      "href": "./friedhofsbestand_friedhofsbestand_berlin.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 198208,
+      "file:checksum": "1220e08e91e6775c2128bda2f0b32cfda0ab2f4e1135d6897c703d2ef9180e203d3e",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./friedhofsbestand_friedhofsbestand_berlin.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Friedhofsbestand Berlin (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 271408,
+      "file:checksum": "122048dc91427dc027929a426d410160f0477b2db6d7bccc4bd2bb3784918e02b13b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friedhofsbestand Berlin categorical style",
+      "description": "Categorical visualization coloring Friedhofsbestand Berlin by konfess, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2778,
+      "file:checksum": "1220cc95a948570ff29f0d8060023ed12b3f40e00f7bd57b1775870e0576215531d0"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friedhofsbestand Berlin labeled style",
+      "description": "Default visualization for Friedhofsbestand Berlin with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1822,
+      "file:checksum": "122096b19bf67e47053346a2f4b3caa1c6a0422c3aa296bac5bf0cf50d0759f8555b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friedhofsbestand Berlin graduated style",
+      "description": "Graduated visualization coloring Friedhofsbestand Berlin by fl\u00e4che, ramped from 1050.0 to 2060000.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2155,
+      "file:checksum": "122023fb959fbecbeb8ec076b37bf321f7195452f5b41b910fcd289a7aae28c46a98"
+    },
+    "thumbnail": {
+      "href": "./friedhofsbestand_friedhofsbestand_berlin.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Friedhofsbestand Berlin",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 143005,
+      "file:checksum": "1220fa40ba8f9760ae24861254cb73ba28ae8defddd48c3d00ee11f516c679054ede"
+    }
+  },
+  "keywords": [
+    "Friedh\u00f6fe",
+    "Gr\u00fcnfl\u00e4chen",
+    "GRIS",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Friedhofsbestand Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "regina.proepper@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T02:00:01Z"
+}

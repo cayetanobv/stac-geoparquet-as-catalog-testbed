@@ -1,0 +1,226 @@
+{
+  "type": "Collection",
+  "id": "sicherheit/polizeiwachen",
+  "stac_version": "1.1.0",
+  "description": "R\u00e4umlicher Zuschnitt der Direktionen, Abschnitte und Kontaktbereiche sowie Standorte Wachen der Polizei Berlin.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./polizei_a_polizei_wachen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Polizeiwachen",
+      "pmtiles:layers": [
+        "polizei_a_polizei_wachen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/polizeidirektionen-und-polizeiabschnitte-wfs-1cc4e86e",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/polizei",
+      "rel": "related",
+      "title": "WFS source service: a-polizei-wachen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 37,
+  "table:row_count": 37,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "string"
+    },
+    {
+      "name": "langbezeichnung",
+      "type": "string"
+    },
+    {
+      "name": "strasse",
+      "type": "string"
+    },
+    {
+      "name": "hausnummer",
+      "type": "string"
+    },
+    {
+      "name": "postleitzahl",
+      "type": "int64"
+    },
+    {
+      "name": "ortsteil",
+      "type": "string"
+    },
+    {
+      "name": "telefon",
+      "type": "string"
+    },
+    {
+      "name": "offen",
+      "type": "string"
+    },
+    {
+      "name": "internet",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Polizeiwachen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.18794967,
+          52.39419844,
+          13.59153247,
+          52.5872501
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Polizeiwachen default style",
+      "description": "Default visualization for Polizeiwachen, drawn in #08306b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1231,
+      "file:checksum": "122041d1bde122918df109a864739c219b9bf4eb87ab0a6e3ec4d23ef28742f852eb"
+    },
+    "polizei_a_polizei_wachen": {
+      "href": "./polizei_a_polizei_wachen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 7096,
+      "file:checksum": "122091c075792f68ce3e010ffee672ecb537f74fb3dbbd0a998c2494c862df6f4f22",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./polizei_a_polizei_wachen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Polizeiwachen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 34769,
+      "file:checksum": "122034b222f66537114063d6669e45c1857865bb6f2335a764efc9946d6ea923d489"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Polizeiwachen graduated style",
+      "description": "Graduated visualization coloring Polizeiwachen by postleitzahl, ramped from 10119.0 to 14129.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2028,
+      "file:checksum": "1220d65a1831dfe3bf432bfcf93fa3b43cbf47249b1f849146ffcd71aa610d8c5144"
+    },
+    "thumbnail": {
+      "href": "./polizei_a_polizei_wachen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Polizeiwachen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 116342,
+      "file:checksum": "1220446161e04c3e77d917d17e73208530834dfe79b81b832a75b4d737ba532fdc91"
+    }
+  },
+  "keywords": [
+    "Abschnitte",
+    "Berlin",
+    "Direktionen",
+    "Geodaten",
+    "Karten",
+    "Kontaktbereiche",
+    "Polizei",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Polizei Berlin",
+      "description": "Datenquelle Geoportal Berlin, Polizeidirektionen und Polizeiabschnitte, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "DirZSIKTC1GIS@polizei.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

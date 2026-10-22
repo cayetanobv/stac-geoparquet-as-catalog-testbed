@@ -1,0 +1,267 @@
+{
+  "type": "Collection",
+  "id": "gewaesser/gewaesserverzeichnis-fliessgewaesser",
+  "stac_version": "1.1.0",
+  "description": "Sachdaten des Gew\u00e4sserverzeichnisses im Sinne des BWG einschlie\u00dflich der amtlichen Gew\u00e4ssernummern von Berlin, nach Vorgabe eines bundeseinheitlichen Systems von der Bundesanstalt f\u00fcr Gew\u00e4sserkunde Koblenz.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gewaesserkarte_gew_nur_li.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser",
+      "pmtiles:layers": [
+        "gewaesserkarte_gew_nur_li"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/gewasserverzeichnis-wfs-353f1716",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/gewaesserkarte",
+      "rel": "related",
+      "title": "WFS source service: gew-nur-li",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 215,
+  "table:row_count": 215,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gewnralt",
+      "type": "string"
+    },
+    {
+      "name": "gewname",
+      "type": "string"
+    },
+    {
+      "name": "gewrneu",
+      "type": "int64"
+    },
+    {
+      "name": "neuer_bezi",
+      "type": "string"
+    },
+    {
+      "name": "ortsteil",
+      "type": "string"
+    },
+    {
+      "name": "vorfluter",
+      "type": "string"
+    },
+    {
+      "name": "gewflqm",
+      "type": "string"
+    },
+    {
+      "name": "gewlm",
+      "type": "string"
+    },
+    {
+      "name": "eigent",
+      "type": "string"
+    },
+    {
+      "name": "unterhaltu",
+      "type": "string"
+    },
+    {
+      "name": "gewart",
+      "type": "string"
+    },
+    {
+      "name": "gewordng",
+      "type": "string"
+    },
+    {
+      "name": "bemerkunge",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.12514418,
+          52.37658464,
+          13.69045036,
+          52.67346583
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser default style",
+      "description": "Default visualization for Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser, drawn in #1f78b4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1280,
+      "file:checksum": "122001378166912ddab5bf6d73e6fbf2e2ea4d76ca316a9d2ceac420799f55695dd5"
+    },
+    "gewaesserkarte_gew_nur_li": {
+      "href": "./gewaesserkarte_gew_nur_li.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 220208,
+      "file:checksum": "12202bba5a123012c83bd112ed8e86b8fb33e176082bcd557ff5de5366800befe59e",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./gewaesserkarte_gew_nur_li.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 505101,
+      "file:checksum": "12208e5df3525d815d114b65c15c0361fc3b93f762ebb002f1997dcc9e952e63534f"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser categorical style",
+      "description": "Categorical visualization coloring Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser by gewart, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1948,
+      "file:checksum": "1220bec2462e8d6414492acd58da7adbdadf1fe584087e1376e07e1defd384d360e1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser labeled style",
+      "description": "Default visualization for Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser with gewname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1722,
+      "file:checksum": "122066f57750a51affdd36829f3cd2488b33fb4909baf1c3910f0f46c2fc9f0a540b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser graduated style",
+      "description": "Graduated visualization coloring Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser by gewrneu, ramped from 58294.0 to 582942222242.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2099,
+      "file:checksum": "1220ea93272578af207ba83c895158d66756141613b82df6c9c7cd33eecaec1c84ac"
+    },
+    "thumbnail": {
+      "href": "./gewaesserkarte_gew_nur_li.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Gew\u00e4sserverzeichnis \u2013 Flie\u00dfgew\u00e4sser",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 156461,
+      "file:checksum": "12203496dacf266945520470cd844166009008ef76b723c01a30d23b5259c67fbf1a"
+    }
+  },
+  "keywords": [
+    "BWG",
+    "Berlin",
+    "Geodaten",
+    "Gew\u00e4sser",
+    "Gew\u00e4sserkarte",
+    "Gew\u00e4ssernetz",
+    "Karte",
+    "Karten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Gew\u00e4sserverzeichnis, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "christian.wegener@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

@@ -14,7 +14,6 @@ The question the testbed answers: can one Parquet file replace the walk through 
 | `indexes/` | Indexes built from the two test catalogs and from the whole registry on 2026-10-22 |
 | `results/` | Measurements and what they show |
 | `benchmarks/` | Synthetic benchmarks of column shapes at 5 million rows |
-| `docs/upstream-reply-draft.md` | Draft reply for the upstream issue |
 
 ## Results in one table
 

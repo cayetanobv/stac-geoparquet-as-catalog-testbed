@@ -1,0 +1,287 @@
+{
+  "type": "Collection",
+  "id": "health/animal-bites",
+  "stac_version": "1.1.0",
+  "description": "Animal bite reports made to the City of Saint Louis Department of Health and its Animal Care and Control section.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=130",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./animal-bites.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "animal-bites"
+      ]
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Health"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=130",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 6359,
+  "table:row_count": 6359,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "REQUESTID",
+      "type": "int32",
+      "description": "Request ID number of the submitted animal-bite ticket (portal field definition)."
+    },
+    {
+      "name": "PROBLEMCODE",
+      "type": "string",
+      "description": "Always 'Animal Bite' in this dataset (portal field definition)."
+    },
+    {
+      "name": "HOUSE_NUMBER",
+      "type": "int32",
+      "description": "Hundred-block house number where the issue occurred (portal field definition \u2014 addresses are generalized to the block)."
+    },
+    {
+      "name": "STREET",
+      "type": "string",
+      "description": "Street or streets of the ticket location (portal field definition)."
+    },
+    {
+      "name": "DATETIMEINIT",
+      "type": "timestamp[ms]",
+      "description": "Date/time the ticket was created (portal field definition); DATETIMECLOSED, DATECANCELLED and DATEINVTDONE are the closure, cancellation and investigation dates."
+    },
+    {
+      "name": "DATETIMECLOSED",
+      "type": "timestamp[ms]"
+    },
+    {
+      "name": "STATUS",
+      "type": "string",
+      "description": "Status of the ticket (portal field definition)."
+    },
+    {
+      "name": "DATEINVTDONE",
+      "type": "timestamp[ms]"
+    },
+    {
+      "name": "PRJCOMPLETEDATE",
+      "type": "string"
+    },
+    {
+      "name": "DATECANCELLED",
+      "type": "string"
+    },
+    {
+      "name": "NEIGHBORHOOD",
+      "type": "string",
+      "description": "City neighborhood number (portal field definition)."
+    },
+    {
+      "name": "WARD",
+      "type": "string",
+      "description": "Ward of the ticket location (portal field definition)."
+    },
+    {
+      "name": "PLAIN_ENGLISH_NAME_FOR_PROBLEMCODE",
+      "type": "string"
+    },
+    {
+      "name": "ANIMAL_TYPE",
+      "type": "string",
+      "description": "Type of animal involved (portal label)."
+    },
+    {
+      "name": "keep",
+      "type": "bool"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:total_size_bytes": 260192,
+  "portolan:asset_count": 1,
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "health",
+          "title": "Health"
+        },
+        {
+          "id": "leisure-and-culture",
+          "title": "Leisure and Culture"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "environmental-health-services",
+          "title": "Environmental Health Services"
+        }
+      ]
+    }
+  ],
+  "title": "Animal Bites",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3126793,
+          38.5470245,
+          -90.181882,
+          38.7263516
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Environmental Health Services",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=130"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "animal-bites": {
+      "href": "./animal-bites.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Animal Bites (GeoParquet)",
+      "file:size": 260192,
+      "file:checksum": "1220622cd13f4733d1fc3aab15aec54fb76307d964ff61797e710caefcf9ce916ea2",
+      "roles": [
+        "data"
+      ]
+    },
+    "animal-bites-tiles": {
+      "href": "./animal-bites.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Animal Bites (PMTiles)",
+      "file:size": 96455,
+      "file:checksum": "1220c1013b82efca1d62076b5d8a97927e6cdd00ef2607c2ed24824c2ccab5cf51e0",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Animal bites",
+      "description": "Reported animal bites since 2008 as points (Web-Mercator coordinates in the source, reprojected).",
+      "file:size": 860,
+      "file:checksum": "1220a8117e3f255682756e2ae6e76b6a4279781736b8c48ff90b63302997fc6fe8e3",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-animal": {
+      "href": "./styles/style-animal.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "By animal",
+      "description": "Dogs (brown, 5,300+), cats (orange), wildlife (green), unknown gray.",
+      "file:size": 1784,
+      "file:checksum": "12200fa9e6b89974a1f082ee1290176aa4f62cc7755449c807902f63dc5afb7f73dd",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-plain": {
+      "href": "./styles/style-plain.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Locations only",
+      "description": "Neutral points for overlays.",
+      "file:size": 729,
+      "file:checksum": "1220cc96eb4bc9fdda6a4d40af3470324688547b48b9f1e04466009c73fb2edcac92",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Animal Bites rendered with the default style",
+      "file:size": 369358,
+      "file:checksum": "1220621e77cbb10a4ea0745e9c9236d57abe531d08566bb104ed90f5f74091f5601c",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source": {
+      "href": "https://static.stlouis-mo.gov/open-data/HEALTH/ANIMAL-CONTROL/ANIMAL_BITES.csv",
+      "type": "text/csv",
+      "title": "Animal bites (CSV)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1208664,
+      "file:checksum": "1220dcf026dc31355174a737b8ef3c6bfc4d2016e5b79d1c12b6dd7a4500dcf4e50a",
+      "description": "The file this collection was built from. Served upstream by static.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  },
+  "keywords": [
+    "Environmental Health Services"
+  ]
+}

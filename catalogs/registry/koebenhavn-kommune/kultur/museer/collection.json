@@ -1,0 +1,234 @@
+{
+  "type": "Collection",
+  "id": "kultur/museer",
+  "stac_version": "1.1.0",
+  "description": "Museer driftet af K\u00f8benhavns Kommune",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_museer.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Museer",
+      "pmtiles:layers": [
+        "k101_museer"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/museer",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: museer",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 4,
+  "table:row_count": 4,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "post_nr",
+      "type": "int64"
+    },
+    {
+      "name": "postdistrikt",
+      "type": "string"
+    },
+    {
+      "name": "e_mail",
+      "type": "string"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Museer",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.569577674989471,
+          55.67426475091907,
+          12.58147441841156,
+          55.67879089433911
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Museer default style",
+      "description": "Default visualization for Museer, drawn in #d95f0e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1133,
+      "file:checksum": "122043d005e143738e45bc3c0f921320d8cc722a3ec990f9c61a51e7734a6a767f90"
+    },
+    "k101_museer": {
+      "href": "./k101_museer.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8820,
+      "file:checksum": "12202adaffbe29c445b97b4555dcd0a2202d990c8c7de6070505eb79a6d3a38174ca",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_museer.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Museer (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5890,
+      "file:checksum": "1220dcc72a6e944e8952e115dc9c8caf6b4c75f6e412f9481721afb1a8af1333fd68"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Museer categorical style",
+      "description": "Categorical visualization coloring Museer by postdistrikt, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1783,
+      "file:checksum": "1220fac70083ffe310c15314957dd999c83ff61fcce13ce617071930a568b55ae911"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Museer labeled style",
+      "description": "Default visualization for Museer with postdistrikt shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1552,
+      "file:checksum": "1220ba890a6be99306b9b1c9f40a790fb4210ab74b65f39eb0597b3fe6a4ba662988"
+    },
+    "thumbnail": {
+      "href": "./k101_museer.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Museer",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 148011,
+      "file:checksum": "1220ad598d46b960ce69c962919353a2600fe94184fb4730628379a91896e4d68e54"
+    }
+  },
+  "keywords": [
+    "Museum",
+    "kultur",
+    "Museer",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Museer, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/museer",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

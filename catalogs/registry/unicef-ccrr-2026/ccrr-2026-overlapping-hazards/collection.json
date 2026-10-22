@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "ccrr-2026-overlapping-hazards",
+  "stac_version": "1.1.0",
+  "description": "Long-format table from the Overlapping Hazards sheet of the UNICEF Children's Climate Risk Report 2026: for 197 countries and territories, the estimated number of children under 18 living in pixels where a specific combination of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) overlaps; 8,298 rows, 249 distinct combinations of 1 to 7 hazards. Values are fractional pixel sums from the pixel-level multi-hazard analysis; the sum over a country's rows is within a few children of its at-least-1-hazard figure in the national table. Join on ISO3. Modelled estimates. Source: Children's Climate Risk on HDX, retrieved 2026-09-23.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "UNICEF Children's Climate Risk Report 2026 (CCRR 2026) - mirror"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.humdata.org/dataset/children-climate-risk",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "ISO3",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-3 code; 197 distinct codes (not all 261 territories of the national table). Joins to iso3 of ccrr-2026-table and ccrr-2026-countries."
+    },
+    {
+      "name": "Country/ Territory",
+      "type": "string",
+      "description": "Publisher's country or territory name. Note the space after the slash in the column name (verbatim from the workbook)."
+    },
+    {
+      "name": "Hazard Combination",
+      "type": "string",
+      "description": "The specific combination of core climate hazards overlapping in the pixels counted, joined by ' + ' in a fixed order; 249 distinct strings over the eight names River Flood, Coastal Flood, Drought, Tropical Storm, Heatwave, Extreme Heat, Fire, Sand and Dust Storm (note River Flood, not Riverine, and no air pollution or malaria)."
+    },
+    {
+      "name": "Hazard count",
+      "type": "int64",
+      "description": "Number of hazards in the combination, 1 to 7 (no pixel in the world overlaps all eight)."
+    },
+    {
+      "name": "Exposed Children",
+      "type": "double",
+      "description": "Estimated children under 18 (WorldPop 2024) living in pixels where exactly this combination overlaps; fractional pixel sums as published (max 158,800,603.2; total 2,333,144,046). Rows per country are disjoint by construction, so their sum is the country's at-least-1-hazard figure within rounding."
+    }
+  ],
+  "table:row_count": 8298,
+  "title": "CCRR 2026 - children exposed to overlapping hazard combinations",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-01-01T00:00:00Z",
+          "2025-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "data": {
+      "href": "./data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 80638,
+      "file:checksum": "1220389a999b338d87661c1cc4ec4ff6a3d08f6ea25dc394d6edd7b24305fc2a1d8d",
+      "roles": [
+        "data"
+      ]
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/unicef-ccrr-2026/ccrr-2026-overlapping-hazards/data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: data",
+      "pipeline:upstream": true,
+      "file:size": 102681,
+      "file:checksum": "1220e70f4fad9dab3c5540b55581797f4211a933365ff775aa8d74c0cdd858df44b8"
+    }
+  },
+  "keywords": [
+    "UNICEF",
+    "children",
+    "climate risk",
+    "CCRR 2026",
+    "overlapping hazards",
+    "multi-hazard",
+    "tabular"
+  ],
+  "providers": [
+    {
+      "name": "UNICEF Data and Analytics (HQ)",
+      "description": "Indicator values: Children's Climate Risk Report 2026 (Global Child Hazard Database), HDX dataset children-climate-risk, resources dated 2026-06-22, retrieved 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.unicef.org/resources/childrens-climate-risk-report-2026/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T00:00:00Z"
+}

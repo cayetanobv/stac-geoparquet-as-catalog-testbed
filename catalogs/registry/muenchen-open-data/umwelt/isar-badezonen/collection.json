@@ -1,0 +1,216 @@
+{
+  "type": "Collection",
+  "id": "umwelt/isar-badezonen",
+  "stac_version": "1.1.0",
+  "description": "Die Isar durchflie\u00dft auf rund 14 Kilometern das Stadtgebiet von S\u00fcdwest nach Nordost und bietet viel Raum f\u00fcr Aktivit\u00e4ten und Erholung. Auch Baden ist an ausgewiesenen Stellen erlaubt. Hierbei ist zu beachten, dass Baden in der Isar immer auf eigene Gefahr erfolgt. Bei Hochwasser raten wir wegen der starken Str\u00f6mung und m\u00f6glichem Treibgut dringend davon ab, ins Wasser zu gehen. Das Baden ist generell in unmittelbarer N\u00e4he von Stau- und Triebwerksanlagen, \u00dcberf\u00e4llen, Schleusen, Strudelbildungen, Regenauslasskanaleinm\u00fcndungen und sonstigen Gefahrenstellen verboten.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rku_wfs_isar_baden.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baden in der Isar",
+      "pmtiles:layers": [
+        "rku_wfs_isar_baden"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.muenchen.de/dataset/baden_isar_opendata",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/rku_wfs/ows",
+      "rel": "related",
+      "title": "WFS source service: isar-baden",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/rku_wfs/wms?service=WMS&request=GetCapabilities",
+      "rel": "related",
+      "title": "Baden in der Isar (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 38,
+  "table:row_count": 38,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bwbez",
+      "type": "string"
+    },
+    {
+      "name": "badeverbot",
+      "type": "string"
+    },
+    {
+      "name": "art",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Baden in der Isar",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.538053114543088,
+          48.077884009290116,
+          11.631074368532788,
+          48.18683393996847
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baden in der Isar default style",
+      "description": "Default visualization for Baden in der Isar, drawn in #41b6c4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1193,
+      "file:checksum": "12201039007c9d55084798055f58514f5bd78b53ab93198fd2fdc078a404df479012"
+    },
+    "rku_wfs_isar_baden": {
+      "href": "./rku_wfs_isar_baden.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 175879,
+      "file:checksum": "122017ef4cc993e6a15b9407858b9615d5a9e9ee4539672e9122a1ef8b2c902be15b",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./rku_wfs_isar_baden.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baden in der Isar (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 52656,
+      "file:checksum": "122055ba74bec4607d14580536540bfb269db643d4d85dad407a18bc87f628a0a39e"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baden in der Isar categorical style",
+      "description": "Categorical visualization coloring Baden in der Isar by badeverbot, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1784,
+      "file:checksum": "1220e3700d33f1c3761c762e98a395cfcc6374108173ed70be5e1b62f6394165dccf"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baden in der Isar labeled style",
+      "description": "Default visualization for Baden in der Isar with badeverbot shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1624,
+      "file:checksum": "1220ec1f67900f2ebb8b1aa8dc282fec53315fce792da3d6a79093f6435027fe0769"
+    },
+    "thumbnail": {
+      "href": "./rku_wfs_isar_baden.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Baden in der Isar",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 102209,
+      "file:checksum": "1220b4d576701252125094b002f6fb649de8c8e274983925bd9b2d6713d610789949"
+    }
+  },
+  "keywords": [
+    "Digitaler Zwilling M\u00fcnchen",
+    "Landeshauptstadt M\u00fcnchen",
+    "Service",
+    "M\u00fcnchen",
+    "GeoPortal M\u00fcnchen"
+  ],
+  "providers": [
+    {
+      "name": "Landeshauptstadt M\u00fcnchen, Referat f\u00fcr Klima- und Umweltschutz",
+      "description": "Datenquelle Baden in der Isar, GeoPortal M\u00fcnchen der Landeshauptstadt M\u00fcnchen, abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.muenchen.de/organization/referat-fuer-klima-und-umweltschutz",
+      "email": "wasserrecht.rku@muenchen.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T07:15:00Z"
+}

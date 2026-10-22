@@ -1,0 +1,195 @@
+{
+  "type": "Collection",
+  "id": "community/heritage-list",
+  "stac_version": "1.1.0",
+  "description": "Shows sites of Historical interest within the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./heritage-list.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "heritage-list"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 68,
+  "table:row_count": 68,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Description",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 68 of 68 rows populated; 67 distinct values."
+    },
+    {
+      "name": "HeritageValue",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 67 of 68 rows populated; 65 distinct values."
+    },
+    {
+      "name": "YearBuilt",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 62 of 68 rows populated; 27 distinct values."
+    },
+    {
+      "name": "DesignatedHeritage",
+      "type": "int16",
+      "description": "Whether the site is protected by a heritage designation bylaw under Part 15 of the BC [Local Government Act](https://www.bclaws.gov.bc.ca/civix/document/id/complete/statreg/r15001_16), which restricts alteration and demolition. Distinct from appearing on the heritage register. Measured in this copy: 68 of 68 rows populated; values: 0, 1."
+    },
+    {
+      "name": "OnHeritageRegister",
+      "type": "int16",
+      "description": "Whether the site appears on the District's heritage register, a list maintained under the same Act. Listing is identification, not legal protection; see DesignatedHeritage for that. Measured in this copy: 68 of 68 rows populated; values: 0, 1."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Heritage List",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.72031313700255,
+          49.565518189265894,
+          -119.63333739864818,
+          49.61857624370341
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "heritage-list": {
+      "href": "./heritage-list.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 20709,
+      "file:checksum": "12202fdc3901770b66063d31b09abfde00a144a66543ddb2c57ab55e0b922852e231",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./heritage-list.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 20613,
+      "file:checksum": "1220e515d7f07fcc35e2299122c1bbec9d03f2d54bda35379e5bf6ec652bb830d628"
+    },
+    "heritage-list-tiles": {
+      "href": "./heritage-list.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "heritage-list (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 52376,
+      "file:checksum": "1220aebd6e4c7382e6ea6cec31b9148b6dbb625c742411b50a31b324c6ca2315adf8"
+    },
+    "styles/heritage-designation": {
+      "href": "./styles/heritage-designation.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Heritage designation",
+      "file:size": 680,
+      "file:checksum": "12204c183aa00ed2c7aa7bd6758818ab27f1ce5d3cfa89a642e2189cb975a529250a"
+    }
+  },
+  "keywords": [
+    "Heritage and History",
+    "Community Resources"
+  ]
+}

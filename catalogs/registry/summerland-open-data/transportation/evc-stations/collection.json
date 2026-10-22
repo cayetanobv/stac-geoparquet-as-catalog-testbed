@@ -1,0 +1,191 @@
+{
+  "type": "Collection",
+  "id": "transportation/evc-stations",
+  "stac_version": "1.1.0",
+  "description": "This layer shows the locations of existing, active Electrical Vehicle Charging (EVC) Stations that are owned and maintained by the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./evc-stations.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "evc-stations"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 25,
+  "table:row_count": 25,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "StationType",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 25 of 25 rows populated; values: Level 2, Level 3."
+    },
+    {
+      "name": "PlugType",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 25 of 25 rows populated; values: CHAdeMO & CCS Combo, J-1772."
+    },
+    {
+      "name": "Network",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 25 of 25 rows populated; values: FLO."
+    },
+    {
+      "name": "OnlineDate",
+      "type": "timestamp[ms]",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 25 of 25 rows populated; values: 2020-11-16 00:00:00, 2020-12-23 00:00:00, 2021-03-17 00:00:00, 2021-03-21 00:00:00, 2021-06-22 00:00:00."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "EVC Stations",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.68448807011525,
+          49.599822824725315,
+          -119.65362569855141,
+          49.608443994572646
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "evc-stations": {
+      "href": "./evc-stations.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 16214,
+      "file:checksum": "1220ba272a5be13b4bc78585c7b4fd495c33e0d20d41794440421c62a8abc26e7011",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./evc-stations.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 7036,
+      "file:checksum": "1220e20a6f41f1a370741452db99d7786c461ccaeb925c4f4c79f9eed632daca16d7"
+    },
+    "evc-stations-tiles": {
+      "href": "./evc-stations.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "evc-stations (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6409,
+      "file:checksum": "12202eead4bdb4d0f87cebc8f68a03349faec5ae9885693d8d83094fd869c11cd726"
+    },
+    "styles/charger-level": {
+      "href": "./styles/charger-level.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Charger level",
+      "file:size": 615,
+      "file:checksum": "1220d99ebf97373ff6a0e5480ab06641290e698cddd0c677df37777add23f9746b0e"
+    }
+  },
+  "keywords": [
+    "Sustainability",
+    "Environment",
+    "Transportation"
+  ]
+}

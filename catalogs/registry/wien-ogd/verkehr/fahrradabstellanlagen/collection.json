@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "verkehr/fahrradabstellanlagen",
+  "stac_version": "1.1.0",
+  "description": "Fahrradabstellanlagen, \u00fcberdachte Fahrradabstellanlage, Fahrradgarage und Fahrradbox - Standorte, Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_fahrradabstellanlageogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fahrradabstellanlagen Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_fahrradabstellanlageogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/97ef14eb-f280-48a7-96c0-df03859b06c2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: fahrradabstellanlageogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 8522,
+  "table:row_count": 8522,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "SE_SDO_ROWID",
+      "type": "int64",
+      "description": "Interne Zeilenkennung der Datenhaltung, nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirksnummer."
+    },
+    {
+      "name": "ADRESSE",
+      "type": "string",
+      "description": "Stra\u00dfenname, Orientierungsnummer."
+    },
+    {
+      "name": "ANZAHL",
+      "type": "int64",
+      "description": "Anzahl der Radabstellpl\u00e4tze."
+    },
+    {
+      "name": "ART_KAT",
+      "type": "int64",
+      "description": "Art der Anlage: 0 Fahrradabstellanlage, 1 \u00fcberdachte Fahrradabstellanlage, 2 Fahrradbox / -garage."
+    },
+    {
+      "name": "ART_TXT",
+      "type": "string",
+      "description": "Art der Anlage als Klartext."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Fahrradabstellanlagen Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.206114238958058,
+          48.125990607200215,
+          16.540778132173156,
+          48.30208544590637
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fahrradabstellanlagen Standorte Wien default style",
+      "description": "Default visualization for Fahrradabstellanlagen Standorte Wien, drawn in #74c476.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1303,
+      "file:checksum": "12205df3dfacb7935733e47eb50b4543279bd5d1a8674791fd740737a697a9782e58"
+    },
+    "ogdwien_fahrradabstellanlageogd": {
+      "href": "./ogdwien_fahrradabstellanlageogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 362325,
+      "file:checksum": "1220284b02491902ed579b4a8ac419b8389ac9b165268c4586e6d309c65d3fb2982f",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_fahrradabstellanlageogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fahrradabstellanlagen Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 373922,
+      "file:checksum": "12208596871845bedd9633c290ea0855d1bc2316031ade337a3a1be05edeacbe6e05"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fahrradabstellanlagen Standorte Wien categorical style",
+      "description": "Categorical visualization coloring Fahrradabstellanlagen Standorte Wien by ART_TXT, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1993,
+      "file:checksum": "12201e6d3ec1ebb47ce838cb4f963108f5136e47f6e2534e45e112bddac155244330"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fahrradabstellanlagen Standorte Wien labeled style",
+      "description": "Default visualization for Fahrradabstellanlagen Standorte Wien with ART_TXT shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1757,
+      "file:checksum": "1220a69bfff018d7fd7ea2d1fc94f8c000f458dc3cf0406ce5e60d561b3d33bfde96"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fahrradabstellanlagen Standorte Wien graduated style",
+      "description": "Graduated visualization coloring Fahrradabstellanlagen Standorte Wien by SE_SDO_ROWID, ramped from 14834327.0 to 14842848.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2127,
+      "file:checksum": "12208a033e5033fd70870b7c3158d2d1a2c7b9ad59862648c2e686a479d0a633b324"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_fahrradabstellanlageogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Fahrradabstellanlagen Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 128510,
+      "file:checksum": "12206a0aab6853678662a884bd9425f0d0a42a45abd227d408332f354667e95b4b36"
+    }
+  },
+  "keywords": [
+    "Radabstellanlage",
+    "Abstellm\u00f6glichkeit",
+    "Radparkplatz",
+    "ViennaGIS",
+    "Fahrradbox",
+    "Radgarage",
+    "Radbox",
+    "Fahrradgarage",
+    "\u00fcberdachte Fahrradabstellanlage",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Fahrradabstellanlagen Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

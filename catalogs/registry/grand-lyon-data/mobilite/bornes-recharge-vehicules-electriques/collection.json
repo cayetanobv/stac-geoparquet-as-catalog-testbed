@@ -1,0 +1,380 @@
+{
+  "type": "Collection",
+  "id": "mobilite/bornes-recharge-vehicules-electriques",
+  "stac_version": "1.1.0",
+  "description": "Localisation g\u00e9ographique et caract\u00e9ristiques techniques des stations et des points de recharge pour v\u00e9hicules \u00e9lectriques\nLes donn\u00e9es sont conformes au sch\u00e9ma national IRVE (https://schema.data.gouv.fr/etalab/schema-irve-statique/) \u00e0 l'exception de la suppression du champ 'coordonneesXY' (la donn\u00e9e \u00e9tant g\u00e9ographique, le t\u00e9l\u00e9chargement des donn\u00e9es au format CSV permet de r\u00e9cup\u00e9rer la localisation) et l'ajout d'un identifiant technique 'gid' (un identifiant de type entier \u00e9tant n\u00e9cessaire pour certains applicatifs)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./metropole_de_lyon_nrj_energie_irve.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques",
+      "pmtiles:layers": [
+        "metropole_de_lyon_nrj_energie_irve"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/stations-et-points-de-recharges-pour-vehicules-electriques-sur-le-territoire-de-la-metropole/info",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows",
+      "rel": "related",
+      "title": "WFS source service: irve",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques (WFS)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 2269,
+  "table:row_count": 2269,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "nom_amenageur",
+      "type": "string"
+    },
+    {
+      "name": "siren_amenageur",
+      "type": "string"
+    },
+    {
+      "name": "contact_amenageur",
+      "type": "string"
+    },
+    {
+      "name": "nom_operateur",
+      "type": "string"
+    },
+    {
+      "name": "contact_operateur",
+      "type": "string"
+    },
+    {
+      "name": "telephone_operateur",
+      "type": "string"
+    },
+    {
+      "name": "nom_enseigne",
+      "type": "string"
+    },
+    {
+      "name": "id_station_itinerance",
+      "type": "string"
+    },
+    {
+      "name": "id_station_local",
+      "type": "string"
+    },
+    {
+      "name": "nom_station",
+      "type": "string"
+    },
+    {
+      "name": "implantation_station",
+      "type": "string"
+    },
+    {
+      "name": "adresse_station",
+      "type": "string"
+    },
+    {
+      "name": "code_insee_commune",
+      "type": "int64"
+    },
+    {
+      "name": "nbre_pdc",
+      "type": "int64"
+    },
+    {
+      "name": "id_pdc_itinerance",
+      "type": "string"
+    },
+    {
+      "name": "id_pdc_local",
+      "type": "string"
+    },
+    {
+      "name": "puissance_nominale",
+      "type": "double"
+    },
+    {
+      "name": "prise_type_ef",
+      "type": "boolean"
+    },
+    {
+      "name": "prise_type_2",
+      "type": "boolean"
+    },
+    {
+      "name": "prise_type_combo_ccs",
+      "type": "boolean"
+    },
+    {
+      "name": "prise_type_chademo",
+      "type": "boolean"
+    },
+    {
+      "name": "prise_type_autre",
+      "type": "boolean"
+    },
+    {
+      "name": "gratuit",
+      "type": "boolean"
+    },
+    {
+      "name": "paiement_acte",
+      "type": "boolean"
+    },
+    {
+      "name": "paiement_cb",
+      "type": "boolean"
+    },
+    {
+      "name": "paiement_autre",
+      "type": "boolean"
+    },
+    {
+      "name": "tarification",
+      "type": "string"
+    },
+    {
+      "name": "condition_acces",
+      "type": "string"
+    },
+    {
+      "name": "reservation",
+      "type": "boolean"
+    },
+    {
+      "name": "horaires",
+      "type": "string"
+    },
+    {
+      "name": "accessibilite_pmr",
+      "type": "string"
+    },
+    {
+      "name": "restriction_gabarit",
+      "type": "string"
+    },
+    {
+      "name": "station_deux_roues",
+      "type": "boolean"
+    },
+    {
+      "name": "raccordement",
+      "type": "string"
+    },
+    {
+      "name": "num_pdl",
+      "type": "string"
+    },
+    {
+      "name": "date_mise_en_service",
+      "type": "date"
+    },
+    {
+      "name": "observations",
+      "type": "string"
+    },
+    {
+      "name": "date_maj",
+      "type": "date"
+    },
+    {
+      "name": "cable_t2_attache",
+      "type": "boolean"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.715171,
+          45.58059604,
+          5.076918,
+          45.91477004
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "etalab-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques default style",
+      "description": "Default visualization for Stations et points de recharges pour v\u00e9hicules \u00e9lectriques, drawn in #31a354.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1356,
+      "file:checksum": "12202ea4b972dca5e95bc11e64b7b699b2fde10d398abf21cb521541195e6b0c7168"
+    },
+    "metropole_de_lyon_nrj_energie_irve": {
+      "href": "./metropole_de_lyon_nrj_energie_irve.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 110539,
+      "file:checksum": "12201c55ea538ee0374e90d51f1adcc5d804af5bfb9bddaf664f1c4e07b3f26a93ef",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./metropole_de_lyon_nrj_energie_irve.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 507301,
+      "file:checksum": "1220844550d51b317ed4b203ef89901729df5c5a6bbca37d1dd831fa193c6d02d23b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques categorical style",
+      "description": "Categorical visualization coloring Stations et points de recharges pour v\u00e9hicules \u00e9lectriques by raccordement, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2057,
+      "file:checksum": "1220a89a6d732a9467b4ec87bf8c9de9654f4870bee45a0c22280a1ef3145b6b3596"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques labeled style",
+      "description": "Default visualization for Stations et points de recharges pour v\u00e9hicules \u00e9lectriques with nom_amenageur shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1822,
+      "file:checksum": "12204b7916f2692373280cbb85122075c71db87c29dde069d1f598ff33805f827686"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stations et points de recharges pour v\u00e9hicules \u00e9lectriques graduated style",
+      "description": "Graduated visualization coloring Stations et points de recharges pour v\u00e9hicules \u00e9lectriques by puissance_nominale, ramped from 0.0 to 748.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2153,
+      "file:checksum": "1220b42e1d6a9ca2ef0c59e94c19472ccebc88a77cf035a544d7b23da13d3fc29397"
+    },
+    "thumbnail": {
+      "href": "./metropole_de_lyon_nrj_energie_irve.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stations et points de recharges pour v\u00e9hicules \u00e9lectriques",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 145609,
+      "file:checksum": "1220cc8f864131eea4eaabd804c5384324451fa11d742d7dece710a1ed5e866cc95e"
+    }
+  },
+  "keywords": [
+    "\u00e9nergie",
+    "irve",
+    "mobilit\u00e9",
+    "M\u00e9tropole de Lyon"
+  ],
+  "providers": [
+    {
+      "name": "M\u00e9tropole de Lyon \u2013 Direction Innovation Num\u00e9rique et Syst\u00e8mes d'Information",
+      "description": "Source : M\u00e9tropole de Lyon, data.grandlyon.com, Stations et points de recharges pour v\u00e9hicules \u00e9lectriques, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.grandlyon.com/",
+      "email": "data@grandlyon.com"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:30:00Z"
+}

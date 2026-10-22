@@ -1,0 +1,301 @@
+{
+  "type": "Collection",
+  "id": "places",
+  "stac_version": "1.1.0",
+  "description": "NLS Finland GNR: Places",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./places.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Place",
+      "pmtiles:layers": [
+        "places"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/geographic-names",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/geographic-names/features/v1/collections/places/items",
+      "rel": "related",
+      "title": "OGC API source service: places",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 804950,
+  "table:row_count": 804950,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Running row identifier that the conversion added. It is not an attribute of the Geographic Names Register and it is not a stable identifier for the place. Use placeId for that."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The service's own feature identifier, formed as the letter P, an underscore, and the place identifier. It identifies the feature within this Collection rather than within the register."
+    },
+    {
+      "name": "placeId",
+      "type": "int32",
+      "description": "Permanent unique identifier of the place. The publisher defines it as an eight-digit integer beginning with 1."
+    },
+    {
+      "name": "placeVersionId",
+      "type": "int32",
+      "description": "Version number of the place record. It pairs with placeId to identify one state of that place, so the same placeId can appear across successive versions."
+    },
+    {
+      "name": "placeType",
+      "type": "int32",
+      "description": "The place's most precise classification, the fourth level of the place classification hierarchy. There are 153 seven-digit codes. The code list is published as Paikannimirekisterin paikkaluokitus and through the publisher's code list service as placetype."
+    },
+    {
+      "name": "placeTypeDescription",
+      "type": "int32",
+      "description": "The same seven-digit code as placeType, resolved against a separate code list that supplies the full prose definition of the place type instead of its short label. The publisher defines it as a more detailed description of the place type. All 153 codes carry a non-blank definition."
+    },
+    {
+      "name": "placeTypeCategory",
+      "type": "int32",
+      "description": "First level of the place classification hierarchy, a single digit. The nine values are 1 terrain, 2 waters, 3 populated places, 4 administration and public services, 5 protected sites, 6 transport, 7 production, industry and commerce, 8 culture, sports and recreation, and 9 other cultural objects."
+    },
+    {
+      "name": "placeTypeGroup",
+      "type": "int32",
+      "description": "Second level of the place classification hierarchy, three digits, 30 values. The code always begins with its own placeTypeCategory digit, so the hierarchy is strictly prefix-based. A group ending in 99 is the other category at that level."
+    },
+    {
+      "name": "placeTypeSubgroup",
+      "type": "int32",
+      "description": "Third level of the place classification hierarchy, five digits, 59 values. The code always begins with its own placeTypeGroup, and placeType in turn always begins with its subgroup."
+    },
+    {
+      "name": "placeElevation",
+      "type": "int32",
+      "description": "Height of the place's location point above sea level in metres, computed by interpolation from an elevation model. It is not a surveyed height."
+    },
+    {
+      "name": "tm35MapSheet",
+      "type": "string",
+      "description": "The TM35 map sheet the place's location point falls in. The identifier is prefix-decomposable, so the full seven characters name a sheet at 1 to 5,000, six characters a 6 by 6 kilometre sheet at 1 to 10,000, five a 12 by 24 kilometre sheet at 1 to 25,000, four a 24 by 48 kilometre sheet at 1 to 50,000, three a 48 by 96 kilometre sheet at 1 to 100,000 and two a 96 by 192 kilometre sheet at 1 to 200,000. The letter increases from south to north and the digit from west to east. This division is based on ETRS-TM35FIN and has been in use since 2007."
+    },
+    {
+      "name": "gslsMapSheet",
+      "type": "string",
+      "description": "The general map sheet division sheet, Finnish yleislehtijako, that the place's location point falls in. It is based on KKJ, the Finnish system used for printed maps before 2007, and its leading digit is the KKJ zone. The identifier is prefix-decomposable, seven characters naming a 5 by 5 kilometre sheet at 1 to 10,000, six a 10 by 10 kilometre sheet at 1 to 20,000, four a 30 by 40 kilometre sheet at 1 to 100,000, three a 60 by 80 kilometre sheet at 1 to 200,000 and two a 120 by 160 kilometre sheet at 1 to 400,000. There is deliberately no five-character level, because characters five and six form one field. The publisher nowhere expands the abbreviation GSLS."
+    },
+    {
+      "name": "rescueGridSquare",
+      "type": "string",
+      "description": "The rescue services grid square, Finnish pelastuspalveluruutu, that the place's location point falls in. The identifier is prefix-decomposable, six characters naming a 10 by 10 kilometre square, five a 20 by 20 kilometre square, four a 40 by 40 kilometre square and three an 80 by 80 kilometre square. There is no two-character level, so the leading two digits alone are not an identifier. The publisher supplies the decomposition but no defining authority document for the grid itself."
+    },
+    {
+      "name": "municipality",
+      "type": "string",
+      "description": "The municipality the place's location point falls in, as a three-digit zero-padded code. The classification is maintained by Statistics Finland and the code itself is issued by the Digital and Population Data Services Agency. Finland had 308 municipalities in 2026."
+    },
+    {
+      "name": "subregion",
+      "type": "string",
+      "description": "The sub-region the place's location point falls in, as a three-digit zero-padded code, 69 values. Statistics Finland states that sub-regional units ceased to be an official regional division at the beginning of 2015 and are maintained only for the time being. This is not a NUTS level."
+    },
+    {
+      "name": "region",
+      "type": "string",
+      "description": "The region the place's location point falls in, as a two-digit zero-padded code, 19 values from 01 to 21 with 03 unused. This is the NUTS 3 level for Finland."
+    },
+    {
+      "name": "scaleRelevance",
+      "type": "int32",
+      "description": "A ranking of the place's size and importance, expressed as the scale denominator of the smallest-scale national map product on which the place's name is shown. A higher number therefore means a more prominent place. The ten values are 0, meaning the name is not shown on the publisher's maps at all, then 25000, 50000, 100000, 250000, 500000, 1000000, 2000000, 4500000 and 8000000."
+    },
+    {
+      "name": "placeCreationTime",
+      "type": "timestamp with time zone",
+      "description": "Time at which the place was recorded in the register. The column is a timezone-aware timestamp in UTC. It does not state when the place came into being in the world."
+    },
+    {
+      "name": "placeModificationTime",
+      "type": "timestamp with time zone",
+      "description": "Time at which the place record was last changed in the register. The column is a timezone-aware timestamp in UTC."
+    },
+    {
+      "name": "placeDeletionTime",
+      "type": "string",
+      "description": "Time at which the place record was deleted from the register, empty for a place still in force. Every row sampled during authoring was empty, so the column may carry a text type rather than a timestamp type until a deleted place is harvested."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Every name the register holds for this place, as a JSON array of objects serialized into a string. Each object carries placeNameId, placeNameVersionId, spelling, language, languageOfficiality, languageDominance, placeNameSource, placeNameStatus and the three name timestamps. Finnish and Swedish spellings are checked by the Institute for the Languages of Finland and Sami spellings by the University of Oulu."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "The place's location point in WGS84 coordinates. The publisher's schema names this element placeLocation and defines it as a point near the feature's centre, and for a river the coordinates of its mouth. This Collection carries it as the feature's geometry rather than as an attribute, which is why no placeLocation column appears here. The register records places rather than their extents, so no Collection here carries an area or a line."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Bounding rectangle of the row's geometry in WGS84 coordinates. This is the GeoParquet bbox covering column, which speeds up spatial filtering. Because every geometry is a point, each box is degenerate and its minimum and maximum ordinates are equal."
+    }
+  ],
+  "title": "Place",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.1023425,
+          59.504533,
+          31.5815497,
+          70.0904453
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Place default style",
+      "description": "Default visualization for Place, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1097,
+      "file:checksum": "1220bec3a4994f1606f0fa7c239f162ffe4e0038e172d69658aa14c52fd55044da76"
+    },
+    "places": {
+      "href": "./places.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 57541592,
+      "file:checksum": "12207d5f57210e9b0e3f1147eaceb707edfe1a45b6412e94ba22156970878188e6a9",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./places.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Place (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 278575424,
+      "file:checksum": "122077aa2acbd251652540207bd0b0ea356ff1ecf9081214bb419a4e847bca9c1e81"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Place labeled style",
+      "description": "Default visualization for Place with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1498,
+      "file:checksum": "122000deb0da7f0e7b6153d0c2746c9ff177e55c2e696f012b5803b123207b503cc7"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Place graduated style",
+      "description": "Graduated visualization coloring Place by placeType, ramped from 1010105.0 to 9999999.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1900,
+      "file:checksum": "1220884b31737585d476f0c72eb71b9f868bf36634e02068b73ddf81b50122e3b0c7"
+    },
+    "thumbnail": {
+      "href": "./places.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Place",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 93493,
+      "file:checksum": "122065f7ea4086e1ff39b608c5bed1c9d1a00a97362ab8c356689b7be9abc39ee331"
+    }
+  },
+  "keywords": [
+    "Geographical names",
+    "Places",
+    "Finland"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Contains data from the National Land Survey of Finland Geographic Names Register, retrieved 9.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-09T13:53:39Z"
+}

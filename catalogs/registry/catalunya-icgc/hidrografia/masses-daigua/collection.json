@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "hidrografia/masses-daigua",
+  "stac_version": "1.1.0",
+  "description": "Xarxa hidrogr\u00e0fica de Catalunya publicada com a tema INSPIRE \u00abHydrography \u2013 Physical waters\u00bb. El productor enumera els tipus que hi conviuen: \u00abWatercourse, River, Stream, Lake, Reservoir\u00bb. Cada objecte porta el nom geogr\u00e0fic, l'origen natural o artificial, la persist\u00e8ncia del flux, si est\u00e0 sotm\u00e8s a marea i la longitud o la superf\u00edcie que en declara el productor.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./inspire_hy_physicalwaters_waterbodies.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY)",
+      "pmtiles:layers": [
+        "inspire_hy_physicalwaters_waterbodies"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: masses-daigua",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa inspire:HY.PhysicalWaters.Waterbodies, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 3439,
+  "table:row_count": 3439,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "localid",
+      "type": "string",
+      "description": "Identificador local de l'objecte dins de l'identificador INSPIRE (\u00abinspireId.localId\u00bb); el servei el retorna amb el patr\u00f3 ID.<tema>.<codi>."
+    },
+    {
+      "name": "geographicalname",
+      "type": "string",
+      "description": "Nom geogr\u00e0fic de l'element hidrogr\u00e0fic (element INSPIRE \u00abgeographicalName\u00bb); arriba nul quan l'element no en t\u00e9."
+    },
+    {
+      "name": "localtype",
+      "type": "string",
+      "description": "Tipus local de l'element en la terminologia del productor (element INSPIRE \u00ablocalType\u00bb), per exemple \u00abreservoir\u00bb."
+    },
+    {
+      "name": "origin",
+      "type": "string",
+      "description": "Origen de la massa d'aigua (element INSPIRE \u00aborigin\u00bb): natural o artificial."
+    },
+    {
+      "name": "persistence",
+      "type": "string",
+      "description": "Persist\u00e8ncia del flux (element INSPIRE \u00abpersistence\u00bb), per exemple perenne o intermitent."
+    },
+    {
+      "name": "tidal",
+      "type": "boolean",
+      "description": "Si l'element est\u00e0 sotm\u00e8s a la marea (element INSPIRE \u00abtidal\u00bb)."
+    },
+    {
+      "name": "length",
+      "type": "double",
+      "description": "Longitud de l'element lineal tal com la declara el servei; el servei no en documenta la unitat."
+    },
+    {
+      "name": "surfacearea",
+      "type": "double",
+      "description": "Superf\u00edcie de l'element superficial tal com la declara el servei; el servei no en documenta la unitat."
+    },
+    {
+      "name": "levelofdetail",
+      "type": "int64",
+      "description": "Denominador de l'escala de captura de l'element (element INSPIRE \u00ablevelOfDetail\u00bb); en els objectes observats el 21.9.2026, 50000."
+    },
+    {
+      "name": "namespace",
+      "type": "string",
+      "description": "Espai de noms de l'identificador INSPIRE; el servei retorna \u00abCatalunya.HY\u00bb per a aquesta capa."
+    },
+    {
+      "name": "versionid",
+      "type": "int64",
+      "description": "Versi\u00f3 del conjunt de dades que el productor associa a l'objecte; el servei retorna \u00ab1\u00bb en la lectura del 21.9.2026."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.11577823180029084,
+          40.52288224144321,
+          3.2875134594256568,
+          42.85726576791172
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY) default style",
+      "description": "Default visualization for Waterbody \u2013 masses d'aigua (INSPIRE HY), drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1353,
+      "file:checksum": "12205963d69c525128c0a7a5c6945b5e6aa5fa5ed1139d5cbce51b67ca0caba5bf6b"
+    },
+    "inspire_hy_physicalwaters_waterbodies": {
+      "href": "./inspire_hy_physicalwaters_waterbodies.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10482370,
+      "file:checksum": "1220ddd6df09dea23aa3f9cf285bed8315c23086a73b0f809e976172230374795967",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./inspire_hy_physicalwaters_waterbodies.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 11956175,
+      "file:checksum": "1220432de5489dc8f981a099a810dba12e8a8bd86b2b43658e3b78953c24d453e423"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY) categorical style",
+      "description": "Categorical visualization coloring Waterbody \u2013 masses d'aigua (INSPIRE HY) by localtype, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1934,
+      "file:checksum": "1220b5d692687596fb16385ffed37cfad31a5c21f96b2aaf83e879a16d4398168075"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY) labeled style",
+      "description": "Default visualization for Waterbody \u2013 masses d'aigua (INSPIRE HY) with geographicalname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1828,
+      "file:checksum": "12202dcc3ef12cdceef2e9fc6324fc45a488dce3acda3a684fccdc7f5cfeaed074a0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Waterbody \u2013 masses d'aigua (INSPIRE HY) graduated style",
+      "description": "Graduated visualization coloring Waterbody \u2013 masses d'aigua (INSPIRE HY) by surfacearea, ramped from 50010.03 to 16249279.51.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2170,
+      "file:checksum": "12201173a4e1843cb8887f75fc1f6436abb64053923dff79c2e16ae826aaf1d3d6e9"
+    },
+    "thumbnail": {
+      "href": "./inspire_hy_physicalwaters_waterbodies.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Waterbody \u2013 masses d'aigua (INSPIRE HY)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 192085,
+      "file:checksum": "1220f0d5978bbc0e5241e2015201f0075d6f32fc7a86db1e7fa524e2550a253370b3"
+    }
+  },
+  "keywords": [
+    "INSPIRE",
+    "Hydrography",
+    "hidrografia",
+    "rius",
+    "embassaments",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Waterbody \u2013 masses d'aigua (INSPIRE HY) de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,210 @@
+{
+  "type": "Collection",
+  "id": "transportation/sidewalks",
+  "stac_version": "1.1.0",
+  "description": "Shows the locations of sidewalks within the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sidewalks.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "sidewalks"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 190,
+  "table:row_count": 190,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Layer",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 99 of 190 rows populated; values: CLEARING-PW, CLEARING-PW-NOT, ClearingPW-Walkways, ClearingPW-WeekDays, SIDEWALK-EXISTING."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "OwnBy",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 190 of 190 rows populated; values: District of Summerland."
+    },
+    {
+      "name": "MainBy",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 190 of 190 rows populated; values: District of Summerland."
+    },
+    {
+      "name": "Category",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 188 of 190 rows populated; values: Transportation."
+    },
+    {
+      "name": "Subcategory",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 188 of 190 rows populated; values: Sidewalk."
+    },
+    {
+      "name": "Materials",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 189 of 190 rows populated; values: Concrete, Gravel."
+    },
+    {
+      "name": "Install_Year",
+      "type": "double",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 100 of 190 rows populated; 26 distinct values."
+    },
+    {
+      "name": "GlobalID",
+      "type": "large_string",
+      "description": "ArcGIS GlobalID assigned by the source service. More stable across refreshes than OBJECTID."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Sidewalks",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.70554278562724,
+          49.569677441358415,
+          -119.62027086689102,
+          49.61207883822588
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "sidewalks": {
+      "href": "./sidewalks.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 55242,
+      "file:checksum": "12205c7e4c7d165ed59e878944aabcc15f51d39f364d7a8ccc52393434122f7776de",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./sidewalks.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 24556,
+      "file:checksum": "12203b13e4bcf1853f5e5769e5af5a24a4e10f158507dd95476be42fe5b647a69240"
+    },
+    "sidewalks-tiles": {
+      "href": "./sidewalks.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "sidewalks (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 75582,
+      "file:checksum": "1220fdd060f2225c17faadb9bde0e1d23d310e0ec0810ca0bdd5c86b49c163218d42"
+    },
+    "styles/install-year": {
+      "href": "./styles/install-year.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Installation year",
+      "file:size": 633,
+      "file:checksum": "122082062ad97f6d49ae0719101da0f9f42b83c01b258535ab3a625153685fe41373"
+    }
+  },
+  "keywords": [
+    "Active Lifestyle",
+    "Infrastructure"
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "type": "Collection",
+  "id": "government/csb-311-requests",
+  "stac_version": "1.1.0",
+  "description": "The Citizens' Service Bureau (CSB) is the customer service department for the City of St. Louis. This dataset provides access to some of the data collected when services are requested. The X/Y coordinates are in WGS 84 Web Mercator (EPSG:3857). File new service request here: [https://www.stlouis-mo.gov/government/departments/public-safety/neighborhood-stabilization-office/citizens-service-bureau/csb-request-submit.cfm](https://www.stlouis-mo.gov/government/departments/public-safety/neighborhood-stabilization-office/citizens-service-bureau/csb-request-submit.cfm)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./csb-311-requests.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "csb-311-requests"
+      ]
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=5",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Government"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=5",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1477057,
+  "table:row_count": 1477057,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "CALLERTYPE",
+      "type": "string",
+      "description": "Method used by the customer to report the issue \u2014 Phone, Web, Twitter, CSB LTR, CSB VCML, etc. (portal field definition)."
+    },
+    {
+      "name": "CITY",
+      "type": "string"
+    },
+    {
+      "name": "DATECANCELLED",
+      "type": "timestamp[ms]",
+      "description": "Date cancelled \u2014 indicates the request was a duplicate, cancelled by the caller, or entered in error (portal field definition)."
+    },
+    {
+      "name": "DATEINVTDONE",
+      "type": "timestamp[ms]",
+      "description": "Date the investigation/inspection was done, which may differ from when a clerk closed the request (portal field definition)."
+    },
+    {
+      "name": "DATETIMECLOSED",
+      "type": "timestamp[ms]",
+      "description": "Date/time the request was closed, auto-stamped when an employee closed it (portal field definition)."
+    },
+    {
+      "name": "DATETIMEINIT",
+      "type": "timestamp[ms]",
+      "description": "Date/time the request was initiated, auto-stamped when saved or submitted online (portal field definition)."
+    },
+    {
+      "name": "DESCRIPTION",
+      "type": "string",
+      "description": "Same as the problem code or a more specific explanation of it (portal field definition)."
+    },
+    {
+      "name": "EXPLANATION",
+      "type": "string",
+      "description": "Additional details about the problem code, including the conditions under which it should be used (portal field definition)."
+    },
+    {
+      "name": "GRANDPARENT_ID",
+      "type": "int32"
+    },
+    {
+      "name": "GRANDPARENT_NODE",
+      "type": "string"
+    },
+    {
+      "name": "GROUP",
+      "type": "string",
+      "description": "Category the Citizens' Service Bureau currently groups that request type within (portal field definition)."
+    },
+    {
+      "name": "NEIGHBORHOOD",
+      "type": "string",
+      "description": "City neighborhood number 1-79 of the problem location (portal field definition, city 'Neighborhood' vocabulary)."
+    },
+    {
+      "name": "PARENT_ID",
+      "type": "int32",
+      "description": "Identifier of the parent problem-code node in the CSB problem-code hierarchy (GRANDPARENT_ID/PARENT_NODE/GRANDPARENT_NODE are the higher levels; inferred from names \u2014 not in the portal field list)."
+    },
+    {
+      "name": "PARENT_NODE",
+      "type": "string"
+    },
+    {
+      "name": "PLAIN_ENGLISH_NAME_FOR_PROBLEMCODE",
+      "type": "string"
+    },
+    {
+      "name": "PRJCOMPLETEDATE",
+      "type": "timestamp[ms]",
+      "description": "Projected completion date \u2014 the date by which the responsible division (SUBMITTO) should have the initial inspection completed (portal field definition)."
+    },
+    {
+      "name": "PROBADDRESS",
+      "type": "string",
+      "description": "Address or intersection where the problem is occurring (portal field definition)."
+    },
+    {
+      "name": "PROBADDTYPE",
+      "type": "string",
+      "description": "Problem address type: A = Parcel, B = Intersection (portal field definition)."
+    },
+    {
+      "name": "PROBLEMCODE",
+      "type": "string",
+      "description": "Type of report \u2014 the CSB problem code (portal field definition); PLAIN_ENGLISH_NAME_FOR_PROBLEMCODE is its public title."
+    },
+    {
+      "name": "PROBLEMSID",
+      "type": "int32",
+      "description": "Internal identifier of the problem record (name-based; not in the portal field list)."
+    },
+    {
+      "name": "PROBZIP",
+      "type": "string",
+      "description": "ZIP code of the problem location, often blank (portal field definition)."
+    },
+    {
+      "name": "PUBLICRESOLUTION",
+      "type": "string",
+      "description": "Public-facing resolution text recorded when the request was resolved (name-based; not in the portal field list)."
+    },
+    {
+      "name": "REQUESTID",
+      "type": "int32",
+      "description": "System-generated unique record number for the service request (portal field definition)."
+    },
+    {
+      "name": "STATUS",
+      "type": "string",
+      "description": "Status of the request (portal field definition)."
+    },
+    {
+      "name": "SUBMITTO",
+      "type": "string",
+      "description": "City division or department responsible for handling the request (portal field definition)."
+    },
+    {
+      "name": "WARD",
+      "type": "string",
+      "description": "Ward number of the problem location (portal field definition)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default",
+    "styles/style-category",
+    "styles/style-channel",
+    "styles/style-open"
+  ],
+  "portolan:total_size_bytes": 268904224,
+  "portolan:asset_count": 8,
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "government",
+          "title": "Government"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "neighborhood-stabilization--csb",
+          "title": "Neighborhood Stabilization / CSB"
+        }
+      ]
+    }
+  ],
+  "title": "CSB Service Requests (311)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3196727,
+          38.5338176,
+          -90.1808012,
+          38.7741115
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "asset-parcel",
+    "asset-street maintenance",
+    "department",
+    "intersection",
+    "neighborhood",
+    "property address",
+    "ward",
+    "Neighborhood Stabilization / CSB"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Neighborhood Stabilization / CSB",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=5"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "csb-311-requests": {
+      "href": "./csb-311-requests.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "CSB Service Requests (311) (GeoParquet)",
+      "file:size": 81370983,
+      "file:checksum": "122050da5a4fe0b535a5918214ce1365da2e5911f05a3937d973d718f1bb584fef33",
+      "roles": [
+        "data"
+      ]
+    },
+    "csb-311-requests-tiles": {
+      "href": "./csb-311-requests.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "csb-311-requests (vector tiles)",
+      "file:size": 54986053,
+      "file:checksum": "122089ff9f7b02c36eeb89d6fd248ab9bb6b3a43eb16aa8f14a7e3cfd12d3403db38",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "311 service requests",
+      "description": "1.48 million Citizens' Service Bureau requests since 2008, as a dense point field.",
+      "file:size": 845,
+      "file:checksum": "1220cbed61a992dee8263e693163c6d1cc19509e0cb7feb88d6fdca919ac91885b82",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-category": {
+      "href": "./styles/style-category.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Request category",
+      "description": "The eight biggest request groups \u2014 trash/debris leads with 400k, then right-of-way, trees, vehicles, street lights.",
+      "file:size": 2039,
+      "file:checksum": "122020fe23e11ead2ce9bbe7bf4c4d4e787be28441ebddce5e8b59133ee7f9ebf44b",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-channel": {
+      "href": "./styles/style-channel.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Reporting channel",
+      "description": "How requests arrive: web vs. phone vs. NSO staff vs. the Twitter era.",
+      "file:size": 1718,
+      "file:checksum": "12201e1515b0dd42b90713a81eb9c4468c59e5599840980756bc187020cf531691fa",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-open": {
+      "href": "./styles/style-open.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Open vs. resolved",
+      "description": "Requests not yet closed or cancelled in red \u2014 the live backlog against 1.4M resolved (light).",
+      "file:size": 1575,
+      "file:checksum": "1220181d4924107e356b7fd55d2ddc5ca31563f0361f6e8cf10501b314be54e904aa",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "CSB Service Requests (311) rendered with the default style",
+      "file:size": 378191,
+      "file:checksum": "1220dca6c18573ad0e30d26f1e826f6cd0f16c47c3c8ec22ae9c574e4b4e11220db6",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/csb.zip",
+      "type": "application/zip",
+      "title": "Citizens' Service Bureau requests (zipped CSVs, one per year)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 126232594,
+      "file:checksum": "1220dd704169448c3894eb3e7054c4dbe73baaaa4187d4b5a3bf83ade9d5bb1a202e",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  }
+}

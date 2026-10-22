@@ -1,0 +1,244 @@
+{
+  "type": "Collection",
+  "id": "territorio/aree-statistiche",
+  "stac_version": "1.1.0",
+  "description": "La suddivisione del territorio comunale in 90 aree statistiche risponde all\u2019esigenza di definire una \"griglia\" di lettura pi\u00f9 fine rispetto alla tradizionale suddivisione di Bologna in quartieri o zone e nello stesso tempo sufficientemente sintetica rispetto alla articolazione molto parcellizzata in sezioni censimento",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./areestatistiche.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Aree statistiche di Bologna",
+      "pmtiles:layers": [
+        "areestatistiche"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/aree-statistiche/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/aree-statistiche/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: areestatistiche",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 90,
+  "table:row_count": 90,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "codice_area_statistica",
+      "type": "int32",
+      "description": "Codice Area Statistica. Codice dell'area statistica."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "area_statistica",
+      "type": "string"
+    },
+    {
+      "name": "cod_quar",
+      "type": "int32"
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "cod_zona",
+      "type": "string"
+    },
+    {
+      "name": "zona",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Aree statistiche di Bologna",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.229655388117086,
+          44.42111295594283,
+          11.433714394127367,
+          44.556205390266975
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree statistiche di Bologna default style",
+      "description": "Default visualization for Aree statistiche di Bologna, drawn in #dd3497.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1182,
+      "file:checksum": "12201628ddd258ba6c67db34caad459f7747622a19f340e1d42ae63198b6c7fcaad8"
+    },
+    "areestatistiche": {
+      "href": "./areestatistiche.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 225945,
+      "file:checksum": "1220c6e04976e5f034da8ebf9303c838158dfb3b9987a13974228ef96a71c151a4b0",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./areestatistiche.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Aree statistiche di Bologna (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 244398,
+      "file:checksum": "1220a2b4ef63b392dd12756c6b02ac0b6dd73b8e7e81bc02c5595d45ec99cdae1822"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree statistiche di Bologna categorical style",
+      "description": "Categorical visualization coloring Aree statistiche di Bologna by quartiere, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2402,
+      "file:checksum": "122018f3c12dec39ed1946e08cf5988abf33f12ca1bf5b596ddf0935520743c5c49a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree statistiche di Bologna labeled style",
+      "description": "Default visualization for Aree statistiche di Bologna with quartiere shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1606,
+      "file:checksum": "12208239b81c07686237e8d92137b3313b2676c4c1738e2cf0d6537d82c3593a6e15"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree statistiche di Bologna graduated style",
+      "description": "Graduated visualization coloring Aree statistiche di Bologna by codice_area_statistica, ramped from 1.0 to 90.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1989,
+      "file:checksum": "12202389ccb2a6b110ace1ea5070af91b1c2727a58940b6aefb0fd1a8653c19721ed"
+    },
+    "thumbnail": {
+      "href": "./areestatistiche.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Aree statistiche di Bologna",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 125308,
+      "file:checksum": "12207bb00bdb803f5bd3ed5464d95b6bd373effea2e6e3a3cf4a07d2b5772a12042c"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0",
+    "PA alleata di cittadini e imprese",
+    "statistica"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abAree statistiche di Bologna\u00bb (aree-statistiche), pubblicato da Comune di Bologna - U.I. Ufficio Comunale di Statistica sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/aree-statistiche/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

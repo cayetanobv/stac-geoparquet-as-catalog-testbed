@@ -1,0 +1,237 @@
+{
+  "type": "Collection",
+  "id": "majetek/cenova-mapa-plochy",
+  "stac_version": "1.1.0",
+  "description": "cenov\u00e1 mapa stavebn\u00edch pozemk\u016f na \u00fazem\u00ed hl. m. Prahy - plochy. \u00da\u010del podle metadat: v\u00fdsledn\u00e1. P\u016fvod: Datov\u00e1 sada po\u0159\u00edzen\u00e1 HOM MHMP.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sed_cur_sed_cenovamapa_p.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Cenov\u00e1 mapa Hl. m. Prahy - plochy",
+      "pmtiles:layers": [
+        "sed_cur_sed_cenovamapa_p"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.geoportalpraha.cz/datasets/efa6767e08154a72a9a5931082dc1df2_0",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.geoportalpraha.cz/api/download/v1/items/efa6767e08154a72a9a5931082dc1df2/geojson?layers=0",
+      "rel": "related",
+      "title": "Upstream source: sed_cur_sed_cenovamapa_p",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://mp.iprpraha.cz/arcgis/rest/services/Hosted/SED_CUR_SED_CENOVAMAPA_P/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer SED_CUR_SED_CENOVAMAPA_P (\u017eiv\u00e1 slu\u017eba IPR Praha)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon Z",
+    "MultiPolygon Z"
+  ],
+  "geoparquet:feature_count": 9282,
+  "table:row_count": 9282,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Pr\u016fb\u011b\u017en\u00e9 \u010d\u00edslo \u0159\u00e1dku p\u0159idan\u00e9 konverz\u00ed GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); nen\u00ed atributem publik\u00e1tora ani stabiln\u00edm identifik\u00e1torem objektu."
+    },
+    {
+      "name": "objectid",
+      "type": "int32",
+      "description": "Intern\u00ed po\u0159adov\u00e9 \u010d\u00edslo objektu ve slu\u017eb\u011b ArcGIS (OBJECTID); nen\u00ed stabiln\u00ed mezi verzemi dat."
+    },
+    {
+      "name": "kod_uni",
+      "type": "int32"
+    },
+    {
+      "name": "cena",
+      "type": "string"
+    },
+    {
+      "name": "globalid",
+      "type": "string",
+      "description": "Glob\u00e1ln\u00ed jednozna\u010dn\u00fd identifik\u00e1tor objektu (GUID ve slo\u017een\u00fdch z\u00e1vork\u00e1ch) p\u0159id\u011blen\u00fd geodatab\u00e1z\u00ed publik\u00e1tora."
+    },
+    {
+      "name": "shape_Length",
+      "type": "double",
+      "description": "D\u00e9lka obvodu geometrie vypo\u010dten\u00e1 slu\u017ebou ArcGIS v jednotk\u00e1ch exportu, tj. ve stupn\u00edch WGS 84; bez praktick\u00e9ho v\u00fdznamu, d\u00e9lky po\u010d\u00edtejte ze sloupce geom (ST_Length_Spheroid po SET geometry_always_xy = true)."
+    },
+    {
+      "name": "shape_Area",
+      "type": "double",
+      "description": "Plocha geometrie vypo\u010dten\u00e1 slu\u017ebou ArcGIS v jednotk\u00e1ch exportu, tj. ve \u010dtvercov\u00fdch stupn\u00edch WGS 84; bez praktick\u00e9ho v\u00fdznamu, plochy po\u010d\u00edtejte ze sloupce geom (ST_Area_Spheroid po SET geometry_always_xy = true)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie objektu ve WGS 84 (OGC:CRS84), jak ji vrac\u00ed export Hubu ArcGIS; jedin\u00fd sloupec deklarovan\u00fd jako geometrie. Konverze jej pojmenov\u00e1v\u00e1 geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ohrani\u010duj\u00edc\u00ed obd\u00e9ln\u00edk geometrie jako struktura xmin, ymin, xmax, ymax, dopln\u011bn\u00fd konverz\u00ed."
+    }
+  ],
+  "title": "Cenov\u00e1 mapa Hl. m. Prahy - plochy",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          14.224437,
+          49.943148,
+          14.694666,
+          50.172044
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Cenov\u00e1 mapa Hl. m. Prahy - plochy default style",
+      "description": "Default visualization for Cenov\u00e1 mapa Hl. m. Prahy - plochy, drawn in #8c2d04.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1256,
+      "file:checksum": "1220dd9e03915a56e09419d34f7944b6592a7109ad6d97892dbb78b3d07a542223cb"
+    },
+    "sed_cur_sed_cenovamapa_p": {
+      "href": "./sed_cur_sed_cenovamapa_p.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 7724327,
+      "file:checksum": "12202a4963d9ec6a46d14439359a6896d922945396714a3c4235d0d1b14d481a60fa",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./sed_cur_sed_cenovamapa_p.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Cenov\u00e1 mapa Hl. m. Prahy - plochy (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8513904,
+      "file:checksum": "1220d10b9cc79e3081691983b389f4bffc998d4d13e3e53703a5e2f17adcb1e344d3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Cenov\u00e1 mapa Hl. m. Prahy - plochy graduated style",
+      "description": "Graduated visualization coloring Cenov\u00e1 mapa Hl. m. Prahy - plochy by kod_uni, ramped from 1.0 to 1570100.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2030,
+      "file:checksum": "12206756768d6a8d6121dc886bbf7bb6c8ba5502759c33f35734929a89698fe9892e"
+    },
+    "thumbnail": {
+      "href": "./sed_cur_sed_cenovamapa_p.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Cenov\u00e1 mapa Hl. m. Prahy - plochy",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 248081,
+      "file:checksum": "12202f854451df2835bbd65206cc2239661deb07188e701d4e09e1281712ea512e4e"
+    }
+  },
+  "keywords": [
+    "Ekonomie/Economics",
+    "Praha",
+    "IPR Praha"
+  ],
+  "providers": [
+    {
+      "name": "Institut pl\u00e1nov\u00e1n\u00ed a rozvoje hlavn\u00edho m\u011bsta Prahy (IPR Praha)",
+      "description": "Datov\u00fd podklad \u00a9 IPR Praha, Cenov\u00e1 mapa Hl. m. Prahy - plochy, opendata.geoportalpraha.cz, sta\u017eeno 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://geoportalpraha.cz/",
+      "email": "info@geoportalpraha.cz"
+    },
+    {
+      "name": "Magistr\u00e1t hlavn\u00edho m\u011bsta Prahy (MHMP)",
+      "description": "P\u016fvodce dat podle p\u016fvodu uveden\u00e9ho v metadatech IPR Praha (odbor hospoda\u0159en\u00ed s majetkem / evidence majetku).",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.praha.eu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "cs",
+    "name": "\u010ce\u0161tina",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

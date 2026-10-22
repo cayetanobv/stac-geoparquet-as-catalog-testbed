@@ -1,0 +1,257 @@
+{
+  "type": "Collection",
+  "id": "oepnv/einzugsbereiche-s-bahn",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz enth\u00e4lt die Einzugsbereiche von Haltestellen des Hamburger Verkehrsverbunds (HVV) im Hamburger Stadtgebiet. Der Einzugsbereich (Realfu\u00dfwegdistanz) von Fernverkehr, Regionalbahn (RE/RB/AKN), S-Bahn und U-Bahn betr\u00e4gt 720 m um die Haltestellen, der Einzugsbereich von Bushaltestellen betr\u00e4gt 480 m um die Haltestellen. F\u00fcr die zugeh\u00f6rigen Haltestellen ist der Haltestelleneingang bzw. der Bahnsteigzugang ma\u00dfgeblich. Bei gro\u00dfen Haltestellen gibt es entsprechend z.T. mehrere Haltestellenbereiche je Haltestelle. Der Datensatz enth\u00e4lt zudem verschiedene Attribute, wie z.B. den zugeh\u00f6rigen Haltestellennamen, die HaltestellenID, die Art des Transportmittels, die jeweiligen anfahrenden Liniennummern, die Anzahl der anfahrenden Linien (nur bei den Haltestellen), die Anzahl der Anfahrten pro Tag (nur bei den Haltestellen) und die Anzahl der erschlossenen Einwohner (nur bei den Einzugsbereichen).\nDer Datensatz wird vom HVV bereitgestellt und j\u00e4hrlich im Laufe des Fr\u00fchjahrs auf den aktuellen Jahresfahrplan aktualisiert.\nQuellen f\u00fcr die Auswertung der Einzugsbereiche:\nHaltestellen des HVV mit dem Stand des jeweiligen Jahresfahrplans\nFahrplandaten des HVV mit dem Stand des jeweiligen Jahresfahrplans\nzugrundeliegendes Fu\u00dfwegenetz: OSM Aufbereitung aus 2020\nzugrundeliegende Einwohnerdaten: Adressdaten aus Melderegister, Statistisches Amt f\u00fcr Hamburg und Schleswig-Holstein, Stand 31.12.2021",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./hvv_bahn_s.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s)",
+      "pmtiles:layers": [
+        "hvv_bahn_s"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://suche.transparenz.hamburg.de/dataset/einzugsbereiche-von-hvv-haltestellen-hamburg9",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WFS_HVV_Einzugsbereiche?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=de.hh.up:hvv_bahn_s&OUTPUTFORMAT=application/geo%2Bjson&SRSNAME=EPSG:4326",
+      "rel": "related",
+      "title": "Upstream source: hvv_bahn_s",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WFS_HVV_Einzugsbereiche?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "WFS HH_WFS_HVV_Einzugsbereiche (LGV Hamburg)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WMS_HVV_Einzugsbereiche?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS HH_WMS_HVV_Einzugsbereiche (LGV Hamburg)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 58,
+  "table:row_count": 58,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "dhid",
+      "type": "string"
+    },
+    {
+      "name": "einwohner",
+      "type": "int32"
+    },
+    {
+      "name": "linien",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.746908446657224,
+          53.452090141008505,
+          10.215252983447147,
+          53.65705475445178
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) default style",
+      "description": "Default visualization for Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s), drawn in #1b7837.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1192,
+      "file:checksum": "12208a2147dfc453226abe4ac30360836e9bb83f6f98d001d3dea22d7166990d85df"
+    },
+    "hvv_bahn_s": {
+      "href": "./hvv_bahn_s.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 317443,
+      "file:checksum": "1220a00cc47b6255ca4c1d8fac54db6071a7b612556d985feb42199d321a53aa3143",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./hvv_bahn_s.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 196071,
+      "file:checksum": "12205d8fe77b20e3757b0772ee560f4c2b9e86b8591d66912eb97eb27f9eb0e82a4b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) categorical style",
+      "description": "Categorical visualization coloring Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) by linien, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2964,
+      "file:checksum": "122017219054127aa88c29d41f02c7c7ce7ef761b7302f712128935bda69f840a260"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) labeled style",
+      "description": "Default visualization for Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1601,
+      "file:checksum": "1220951d7dcec94638abeb1ee5c7e7fac5cfc05252a0823a934a4bb965f3f3179966"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) graduated style",
+      "description": "Graduated visualization coloring Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s) by einwohner, ramped from 62.0 to 16798.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1965,
+      "file:checksum": "122043ac0fe8f866eba58e9ffc3c52066fb8a1809005b2c91665e8202d9f779f9670"
+    },
+    "thumbnail": {
+      "href": "./hvv_bahn_s.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Einzugsbereiche von HVV-Haltestellen \u2013 S-Bahn (de.hh.up:hvv_bahn_s)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 145415,
+      "file:checksum": "1220bc55bd76d30424d60b8d515ecc4dc03c28d5e251140988f24509aaf8d5d113a7"
+    }
+  },
+  "keywords": [
+    "AKN",
+    "Anbindung",
+    "Einzugsbereich",
+    "Entfernung",
+    "Erreichbarkeit",
+    "Geodaten",
+    "HVV",
+    "Haltestellen",
+    "Hamburgisches Geodateninfrastrukturgesetz  HmbGDIG",
+    "Hamburgisches Transparenzgesetz  HmbTG",
+    "Hochbahn",
+    "RB",
+    "RE",
+    "Regionalbahn",
+    "Verkehrsnetze",
+    "hvv_bahn_s",
+    "Hamburg",
+    "Freie und Hansestadt Hamburg"
+  ],
+  "providers": [
+    {
+      "name": "Beh\u00f6rde f\u00fcr Verkehr und Mobilit\u00e4tswende (BVM)",
+      "description": "Datenquelle: Beh\u00f6rde f\u00fcr Verkehr und Mobilit\u00e4tswende (BVM), \u00abEinzugsbereiche von HVV-Haltestellen Hamburg\u00bb, Transparenzportal Hamburg, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://suche.transparenz.hamburg.de/dataset/einzugsbereiche-von-hvv-haltestellen-hamburg9"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T20:30:00Z"
+}

@@ -1,0 +1,177 @@
+{
+  "type": "Collection",
+  "id": "grenzen/datamart_utr_gis_wijk",
+  "stac_version": "1.1.0",
+  "description": "Datamart Utr Gis Wijk",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./datamart_utr_gis_wijk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "datamart_utr_gis_wijk"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 10,
+  "table:row_count": 10,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "WIJK_ID",
+      "type": "string"
+    },
+    {
+      "name": "WIJKCODE",
+      "type": "string"
+    },
+    {
+      "name": "NAAM_WIJK",
+      "type": "string"
+    },
+    {
+      "name": "DGS_BRONDD",
+      "type": "timestamp[us]"
+    },
+    {
+      "name": "X_COORD",
+      "type": "double"
+    },
+    {
+      "name": "Y_COORD",
+      "type": "double"
+    },
+    {
+      "name": "LAT_COORD",
+      "type": "double"
+    },
+    {
+      "name": "LON_COORD",
+      "type": "double"
+    },
+    {
+      "name": "ESRI_OID",
+      "type": "int64"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Datamart Utr Gis Wijk",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.97009592885723,
+          52.0262821551492,
+          5.19515439179718,
+          52.1420509704284
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "datamart_utr_gis_wijk": {
+      "href": "./datamart_utr_gis_wijk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 83810,
+      "file:checksum": "1220e885ce3c94c950cdcf5161f868df4f791122ed6957944c251e107c4ca98edf5c",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./datamart_utr_gis_wijk.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 8376,
+      "file:checksum": "122088c83d3af3725a07030b888bc8218d255c1826defd38c2839caf051d934f44b8"
+    },
+    "datamart_utr_gis_wijk-tiles": {
+      "href": "./datamart_utr_gis_wijk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "datamart_utr_gis_wijk (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 36384,
+      "file:checksum": "12204357e3c30b6f25c96d2a9725c457f5a007369207e3d2d8efaa60fba56ae53d47"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 818,
+      "file:checksum": "1220b15418e6c385775f0eb56d24aeb58fa77fe7bd286521b4b1ba884c320d0d7f36",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

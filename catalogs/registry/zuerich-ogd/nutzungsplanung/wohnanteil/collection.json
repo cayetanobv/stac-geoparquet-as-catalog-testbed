@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "nutzungsplanung/wohnanteil",
+  "stac_version": "1.1.0",
+  "description": "Geodaten des Zonenplans und der Erg\u00e4nzungspl\u00e4ne gem\u00e4ss Art. 2 BauO.\nEs handelt sich um ein Extrakt des Geodatensatzes \"\u00d6REB-Kataster-STZH\" und wird stadtintern als \"Sekund\u00e4rdatensatz \u00d6REB Nutzungsplaung\" bezeichnet.\nZweck: Der Datensatz ist Teil der Bau- und Zonenordnung und somit gesetzlich vorgeschrieben.\nGeodatenelement bzo_zone_wohnanteil_v: Wohnanteilsgrenze",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bzo_zone_wohnanteil_v.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v)",
+      "pmtiles:layers": [
+        "bzo_zone_wohnanteil_v"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/rahmenbedingungen.html",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.stadt-zuerich.ch/dataset/geo_nutzungsplanung___kommunale_bau__und_zonenordnung__bzo_",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Nutzungsplanung___kommunale_Bau__und_Zonenordnung__BZO_?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=bzo_zone_wohnanteil_v",
+      "rel": "related",
+      "title": "Upstream source: bzo_zone_wohnanteil_v",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Nutzungsplanung___kommunale_Bau__und_Zonenordnung__BZO_?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.1.0",
+      "rel": "related",
+      "title": "WFS Nutzungsplanung___kommunale_Bau__und_Zonenordnung__BZO_ (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wms/geoportal/Nutzungsplanung___kommunale_Bau__und_Zonenordnung__BZO_?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS Nutzungsplanung___kommunale_Bau__und_Zonenordnung__BZO_ (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 1181,
+  "table:row_count": 1181,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Feature-Id der GeoJSON-Ausgabe des WFS (Form bzo_zone_wohnanteil_v.<n>), von der Konvertierung als Text \u00fcbernommen; nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "bemerkungen",
+      "type": "string"
+    },
+    {
+      "name": "geometrie_gdo",
+      "type": "string"
+    },
+    {
+      "name": "objectid",
+      "type": "int32"
+    },
+    {
+      "name": "rechtsstatus",
+      "type": "string",
+      "description": "Rechtsstatus. Kann in diesem Datensatz nur den folgenden Wert haben: * inKraft."
+    },
+    {
+      "name": "wohnanteil",
+      "type": "int32",
+      "description": "Wohnanteil (0-90 %)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Polygon) in WGS 84 (OGC:CRS84), vom WFS des Publizierers aus CH1903+ / LV95 (EPSG:2056) umgerechnet und auf sechs Dezimalstellen gerundet; einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 19.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.46633,
+          47.323397,
+          8.605692,
+          47.432326
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v) default style",
+      "description": "Default visualization for Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v), drawn in #66a61e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1266,
+      "file:checksum": "122082390a36a167daf367d2eba020e45098bb2f40339797cb34226a4550605a8e4f"
+    },
+    "bzo_zone_wohnanteil_v": {
+      "href": "./bzo_zone_wohnanteil_v.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1244566,
+      "file:checksum": "1220a38d5baa93287b4a981b27e05d52f4672b60e6a67a10086654383d452b98edf6",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./bzo_zone_wohnanteil_v.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 687010,
+      "file:checksum": "12208ac9c4f78ca2bc9b45c854062b12f990f615981d8296fc622e4931ef4b844e94"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v) graduated style",
+      "description": "Graduated visualization coloring Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v) by wohnanteil, ramped from 0.0 to 90.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2025,
+      "file:checksum": "1220796b4d0431af86a342c606115f190a73a345e2e3f68e0d22aa192d56e51079ff"
+    },
+    "thumbnail": {
+      "href": "./bzo_zone_wohnanteil_v.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Bau- und Zonenordnung (BZO) \u2013 Wohnanteil (bzo_zone_wohnanteil_v)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 162764,
+      "file:checksum": "1220350ed362b65d7510a2507bedece0c532dcde7922afb6b81608ae51847c6b9fb3"
+    }
+  },
+  "keywords": [
+    "abstandslinien",
+    "bauordnung",
+    "bzo",
+    "erganzungsplane",
+    "geodaten",
+    "geoportal",
+    "liniendaten",
+    "nutzungsplanung",
+    "polygondaten",
+    "stzh",
+    "vektordaten",
+    "zonenplan",
+    "bzo_zone_wohnanteil_v",
+    "Z\u00fcrich",
+    "Stadt Z\u00fcrich"
+  ],
+  "providers": [
+    {
+      "name": "Raumentwicklung & Architektur, Amt f\u00fcr St\u00e4dtebau, Hochbaudepartement",
+      "description": "Datenquelle: Stadt Z\u00fcrich, Raumentwicklung & Architektur, Amt f\u00fcr St\u00e4dtebau, Hochbaudepartement, \u00abNutzungsplanung - kommunale Bau- und Zonenordnung (BZO)\u00bb, Open Data Z\u00fcrich, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.stadt-zuerich.ch/dataset/geo_nutzungsplanung___kommunale_bau__und_zonenordnung__bzo_",
+      "email": "opendata@zuerich.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

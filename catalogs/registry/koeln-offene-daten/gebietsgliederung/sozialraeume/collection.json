@@ -1,0 +1,270 @@
+{
+  "type": "Collection",
+  "id": "gebietsgliederung/sozialraeume",
+  "stac_version": "1.1.0",
+  "description": "Ein Sozialraum wird im Konzept \u201eLebenswerte Veedel - B\u00fcrger- und Sozialraumorientierung in K\u00f6ln\u201c definiert. Das 2006 ins Leben gerufene und 2010 durch den Rat beschlossene Konzept soll durch Projekte zu Themen wie Bildung, Sport, Kultur oder Gemeinwesen die Zusammenarbeit und Vernetzung zwischen Stadt, privaten Tr\u00e4ger*innen und der Bev\u00f6lkerung st\u00e4rken. Im Jahr 2019 wurde die Anzahl der Sozialr\u00e4ume von 11 auf 15 erweitert und die Abgrenzungen leicht ver\u00e4ndert. Weitere Informationen unter https://www.stadt-koeln.de/leben-in-koeln/soziales/lebenswerte-veedel\nErl\u00e4uterung der Attribute ist dem Shapefile als CSV beigef\u00fcgt. \u00c4quivalent zu den Statistischen Quartieren, die als Grundlage f\u00fcr den Zuschnitt der Sozialr\u00e4ume dienten, besitzen einige Sozialr\u00e4ume Exklaven. Diese sind durch den Zusatz \u201e(Exklave)\u201c im Attribut Name gekennzeichnet.\nKoordinatensystem Shapefile: ETRS 1989 UTM Zone 32N\nKoordinatensystem KMZ & JSON: WGS 1984\nAlle Geodaten der der Kommunalen Gebietsgliederung, wahlorganisatorische Einheiten und weitere Gebietsgliederungen enth\u00e4lt der Datensatz Raumbezugssystem Geopackage.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Sozialraum.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sozialr\u00e4ume K\u00f6ln",
+      "pmtiles:layers": [
+        "Sozialraum"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/sozialraeume-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/kgg/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "KGG Sammeldienst WFS (Kommunale Gebietsgliederung, ArcGIS Server)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/kgg_labeled/MapServer",
+      "rel": "related",
+      "title": "Kommunale Gebietsgliederung K\u00f6ln (ArcGIS REST MapServer, beschriftet)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 20,
+  "table:row_count": 20,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string",
+      "description": "Nummer: Schl\u00fcssel des Sozialraums."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name des Sozialraums."
+    },
+    {
+      "name": "exklave",
+      "type": "string",
+      "description": "Gibt an, ob Polygon Feature die Exklave eines Sozialraums ist (j = ja, Exklave; n = nein, Kerngebiet)."
+    },
+    {
+      "name": "nr_stbez",
+      "type": "int64",
+      "description": "Stadtbezirk (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "stbezirk",
+      "type": "string",
+      "description": "Stadtbezirk: Name des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechneter Umfang beziehungsweise L\u00e4nge der Geometrie in Metern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechnete Fl\u00e4che der Geometrie in Quadratmetern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Sozialr\u00e4ume K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.832549696841173,
+          50.837370199841786,
+          7.133243216815226,
+          51.04246251882755
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sozialr\u00e4ume K\u00f6ln default style",
+      "description": "Default visualization for Sozialr\u00e4ume K\u00f6ln, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1146,
+      "file:checksum": "122067495de0cd2299997b86869433c146005c69cc9ae3438f630bdd74777e47a989"
+    },
+    "Sozialraum": {
+      "href": "./Sozialraum.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 128702,
+      "file:checksum": "1220dfae3842baca4cc6f0d323e82e25d6ce22dc3afa45792ee9da5511dce32c0a48",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Sozialraum.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sozialr\u00e4ume K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 105708,
+      "file:checksum": "122036765e7ae9088e874587e07c9ea4400988325572a08d575a89885c8e55e38747"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sozialr\u00e4ume K\u00f6ln categorical style",
+      "description": "Categorical visualization coloring Sozialr\u00e4ume K\u00f6ln by exklave, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1686,
+      "file:checksum": "1220c7e5b08aa7f165a9ae522a4645b2a5b2a1470c804ce6f7aa285aa1deba1a035a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sozialr\u00e4ume K\u00f6ln labeled style",
+      "description": "Default visualization for Sozialr\u00e4ume K\u00f6ln with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1555,
+      "file:checksum": "122080cfd68830aa203c9e916452413921ea7a773ccd0af43e6c6cd59d4db597c2c8"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sozialr\u00e4ume K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Sozialr\u00e4ume K\u00f6ln by Shape_Area, ramped from 3127.96934494 to 9201824.95921.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1998,
+      "file:checksum": "122051b37bf6fca3901746265a6b4c70dcfef4d09edc4dae507fbaaf8d62ea12e457"
+    },
+    "source": {
+      "href": "https://offenedaten-koeln.de/sites/default/files/uploaded_resources/Sozialraum.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: sozialraum",
+      "pipeline:upstream": true,
+      "file:size": 220011,
+      "file:checksum": "12209733f2ca330eabfbc06da0c845b0d5adb6149820cb86a2af3a5986187382a7e3"
+    },
+    "thumbnail": {
+      "href": "./Sozialraum.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Sozialr\u00e4ume K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 138476,
+      "file:checksum": "1220b46770ab87af60ccb23f7227bb0e76c61b46607418421be723d81974930b87da"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Infrastruktur",
+    "Bauen und Wohnen",
+    "Soziales",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik, \u201eSozialr\u00e4ume K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-stadtentwicklung-und-statistik",
+      "email": "statistik-rbs@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

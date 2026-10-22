@@ -1,0 +1,269 @@
+{
+  "type": "Collection",
+  "id": "reseaux-transport/axes-de-rues",
+  "stac_version": "1.1.0",
+  "description": "UrbIS \u2013 R\u00e9seaux de transport correspond au jeu de donn\u00e9es des r\u00e9seaux routiers et de tram et de train en R\u00e9gion bruxelloise. Ce jeu de donn\u00e9es est compos\u00e9 de trois classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond aux axes de rues (certains objets situ\u00e9s en Flandre ont \u00e9t\u00e9 int\u00e9gr\u00e9s \u00e0 des fins de continuit\u00e9 visuelle). La deuxi\u00e8me correspond aux noeuds de rues, et la troisi\u00e8me correspond au r\u00e9seau ferroviaire.\n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable, sous forme de shapefiles zipp\u00e9s. Le jeu de donn\u00e9es est notamment produit par int\u00e9gration des informations attributaires fournies par Bruxelles Mobilit\u00e9.\n\nCette collection reprend la classe \u00ab Axes de rues \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:StreetAxes (Street axes : \u00ab Median line of the road or traffic lane in question. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Vervoersnetwerken \u00bb ; titre anglais : \u00ab UrbIS - Transport networks \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_streetaxes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport)",
+      "pmtiles:layers": [
+        "urbisvector_streetaxes"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/af847c40-848b-11ee-9a1f-00090ffe0001",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: streetaxes",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 23365,
+  "table:row_count": 23365,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable de l'axe de voirie, fix\u00e9 et maintenu par Paradigm."
+    },
+    {
+      "name": "TYPE",
+      "type": "string",
+      "description": "Type de l'axe de voirie consid\u00e9r\u00e9 (code du catalogue d'objets)."
+    },
+    {
+      "name": "HIERARCHY",
+      "type": "string",
+      "description": "Hi\u00e9rarchie de l'axe de voirie (code du catalogue d'objets)."
+    },
+    {
+      "name": "LVL",
+      "type": "DECIMAL(38,0)",
+      "description": "Niveau relatif de l'axe par rapport \u00e0 un axe qui lui est s\u00e9cant."
+    },
+    {
+      "name": "STARTSN_ID",
+      "type": "string",
+      "description": "Identifiant du n\u0153ud d'origine de l'axe."
+    },
+    {
+      "name": "ENDSN_ID",
+      "type": "string",
+      "description": "Identifiant du n\u0153ud de destination de l'axe."
+    },
+    {
+      "name": "STRNAMEFRE",
+      "type": "string",
+      "description": "Nom fran\u00e7ais de l'axe de rue."
+    },
+    {
+      "name": "STRNAMEDUT",
+      "type": "string",
+      "description": "Nom n\u00e9erlandais de l'axe de rue."
+    },
+    {
+      "name": "SLOPE",
+      "type": "double",
+      "description": "Pente de l'axe de voirie."
+    },
+    {
+      "name": "LENGTH",
+      "type": "double",
+      "description": "Longueur de l'axe de voirie (m)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.2449320999337115,
+          50.76369453179032,
+          4.482234110333142,
+          50.91310349706878
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) default style",
+      "description": "Default visualization for Axes de rues (UrbIS \u2013 R\u00e9seaux de transport), drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1257,
+      "file:checksum": "12207193d6da0533fb905548c289f5fc13a0e64f867eb611f7fe8e4df082c911b902"
+    },
+    "urbisvector_streetaxes": {
+      "href": "./urbisvector_streetaxes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2414347,
+      "file:checksum": "1220641f9d1c5292305af000fb03d90768c034145acf90c8a4a96324e4e4b4a271ad",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_streetaxes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8148964,
+      "file:checksum": "1220e9f52f0ea7bc1d6486c44bcede4c67cb1ec4335e030dbb0d6326c49962d64b94"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) categorical style",
+      "description": "Categorical visualization coloring Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) by HIERARCHY, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2255,
+      "file:checksum": "122079651eaa8a95070e8d8c81f0a0c98ca7f279941bbbc4d39aedce092a4318efcd"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) labeled style",
+      "description": "Default visualization for Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) with STRNAMEFRE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1696,
+      "file:checksum": "1220bfcc3ed85a2bb4c8da83539c8714d99027f5b31b87be779077ad43373d7b88ab"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) graduated style",
+      "description": "Graduated visualization coloring Axes de rues (UrbIS \u2013 R\u00e9seaux de transport) by LENGTH, ramped from 0.998468552616653 to 2149.50830192966.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2120,
+      "file:checksum": "1220ea642991af14c2a580cd03a4ef3a36b984620e86d07ca83130564a6d416dab34"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_streetaxes.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Axes de rues (UrbIS \u2013 R\u00e9seaux de transport)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 221413,
+      "file:checksum": "122013b6106a831b4f98bf05e1f7b5c35ceaec53b86bd996fb35a10f639d6af3245e"
+    }
+  },
+  "keywords": [
+    "r\u00e9seau ferroviaire",
+    "transport routier",
+    "R\u00e9gions et villes",
+    "Transports",
+    "R\u00e9seaux de transport",
+    "R\u00e9gional",
+    "D\u00e9nomination de route",
+    "Ligne de voie ferr\u00e9e",
+    "N\u0153ud de route",
+    "N\u0153ud de transport",
+    "N\u0153ud de voie ferr\u00e9e",
+    "R\u00e9seau de transport",
+    "transport ferroviaire",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 R\u00e9seaux de transport \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

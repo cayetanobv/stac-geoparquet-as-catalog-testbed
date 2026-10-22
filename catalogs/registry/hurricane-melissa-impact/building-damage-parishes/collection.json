@@ -1,0 +1,371 @@
+{
+  "type": "Collection",
+  "id": "building-damage-parishes",
+  "stac_version": "1.1.0",
+  "description": "The Microsoft AI for Good Lab building-damage predictions summed per Jamaican parish, on the OCHA / Jamaica Social Development Commission COD-AB administrative level 1 polygons (14 parishes, P-codes JM01-JM14). Five parishes have any assessed footprints: Westmoreland (41,214 predicted damaged of 68,826 footprints across three assessments), Saint James (22,133 of 70,791), Saint Elizabeth (16,858 of 90,184, 51,389 of them cloud-obscured on 2025-10-29), Hanover (1,031 of 3,137) and Trelawny (63 of 304); the other nine parishes were not imaged and show zeros, not \"no damage\". Totals sum the four imagery assessments (Vantor 2025-10-29 and 2025-10-31, NOAA NGS 2025-11-01 and 2025-11-02), so buildings imaged twice are counted twice; per-assessment columns are included. AI predictions from overhead imagery, not ground assessments. Join to other Jamaica layers on adm1_pcode or adm1_name. Sources: building damage on HDX and Jamaica COD-AB on HDX, retrieved 2026-09-23.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica)",
+      "pmtiles:layers": [
+        "data"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.humdata.org/dataset/hurricane-melissa-building-damage-assessment-in-jamaica",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 14,
+  "table:row_count": 14,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "adm1_name",
+      "type": "string",
+      "description": "COD-AB parish name, e.g. Saint Elizabeth (COD-AB spells Saint, not St.); source attribute, unchanged."
+    },
+    {
+      "name": "adm1_pcode",
+      "type": "string",
+      "description": "COD-AB parish P-code JM01..JM14; the join key to the ocha-cod-jamaica parishes and every other COD-AB-coded layer."
+    },
+    {
+      "name": "adm0_name",
+      "type": "string",
+      "description": "COD-AB country name: Jamaica."
+    },
+    {
+      "name": "adm0_pcode",
+      "type": "string",
+      "description": "COD-AB country P-code: JM."
+    },
+    {
+      "name": "area_sqkm",
+      "type": "double",
+      "description": "Parish area in km2 as published in COD-AB (sum 10,956)."
+    },
+    {
+      "name": "valid_on",
+      "type": "date",
+      "description": "COD-AB validity date: 2024-08-02."
+    },
+    {
+      "name": "n_buildings",
+      "type": "int64",
+      "description": "Footprints whose centroid falls in the parish, summed over the four assessments (0 for the nine unimaged parishes)."
+    },
+    {
+      "name": "n_assessed",
+      "type": "int64",
+      "description": "Footprints with unknown_pct = 0, or all footprints for the NOAA files (no cloud column)."
+    },
+    {
+      "name": "n_cloud_obscured",
+      "type": "int64",
+      "description": "Footprints with unknown_pct > 0 (Vantor files only; 0 for NOAA)."
+    },
+    {
+      "name": "n_damaged",
+      "type": "int64",
+      "description": "Footprints with source damaged = 1 (= damage_pct_0m > 0); the default style grades this column."
+    },
+    {
+      "name": "n_damaged_assessed",
+      "type": "int64",
+      "description": "damaged = 1 and not cloud-obscured."
+    },
+    {
+      "name": "n_intact_assessed",
+      "type": "int64",
+      "description": "damaged = 0 and not cloud-obscured (publisher: intact, roof on)."
+    },
+    {
+      "name": "n_damaged_lt25",
+      "type": "int64",
+      "description": "Derived bin (CARTO): damaged = 1 with damage_pct_0m < 0.25."
+    },
+    {
+      "name": "n_damaged_25_50",
+      "type": "int64",
+      "description": "Derived bin: damaged = 1 with 0.25 <= damage_pct_0m < 0.5."
+    },
+    {
+      "name": "n_damaged_50_75",
+      "type": "int64",
+      "description": "Derived bin: damaged = 1 with 0.5 <= damage_pct_0m < 0.75."
+    },
+    {
+      "name": "n_damaged_gte75",
+      "type": "int64",
+      "description": "Derived bin: damaged = 1 with damage_pct_0m >= 0.75."
+    },
+    {
+      "name": "share_damaged",
+      "type": "double",
+      "description": "n_damaged_assessed / n_assessed, 0-1; NULL for unimaged parishes (Westmoreland 0.625, Saint James 0.459, Hanover 0.443, Saint Elizabeth 0.385, Trelawny 0.214)."
+    },
+    {
+      "name": "n_assessments",
+      "type": "int64",
+      "description": "Number of distinct assessments with footprints in the parish, 0-3."
+    },
+    {
+      "name": "assessments",
+      "type": "string",
+      "description": "Comma-separated assessment_id values present in the parish."
+    },
+    {
+      "name": "n_buildings_vantor_20251029",
+      "type": "int64",
+      "description": "Footprints of the Vantor 2025-10-29 assessment (vantor-20251029-st-elizabeth) in the parish."
+    },
+    {
+      "name": "n_damaged_vantor_20251029",
+      "type": "int64",
+      "description": "damaged = 1 footprints of the Vantor 2025-10-29 assessment in the parish."
+    },
+    {
+      "name": "n_buildings_vantor_20251031",
+      "type": "int64",
+      "description": "Footprints of the Vantor 2025-10-31 assessment (vantor-20251031-st-james) in the parish."
+    },
+    {
+      "name": "n_damaged_vantor_20251031",
+      "type": "int64",
+      "description": "damaged = 1 footprints of the Vantor 2025-10-31 assessment in the parish."
+    },
+    {
+      "name": "n_buildings_noaa_20251101a",
+      "type": "int64",
+      "description": "Footprints of the NOAA NGS 2025-11-01 assessment (noaa-20251101a-westmoreland) in the parish."
+    },
+    {
+      "name": "n_damaged_noaa_20251101a",
+      "type": "int64",
+      "description": "damaged = 1 footprints of the NOAA NGS 2025-11-01 assessment in the parish."
+    },
+    {
+      "name": "n_buildings_noaa_20251102a",
+      "type": "int64",
+      "description": "Footprints of the NOAA NGS 2025-11-02 assessment (noaa-20251102a-st-elizabeth) in the parish."
+    },
+    {
+      "name": "n_damaged_noaa_20251102a",
+      "type": "int64",
+      "description": "damaged = 1 footprints of the NOAA NGS 2025-11-02 assessment in the parish."
+    },
+    {
+      "name": "n_assigned_by_nearest",
+      "type": "int64",
+      "description": "Footprints whose centroid fell outside every COD-AB polygon (coastal) and were assigned to this nearest parish; 242 in total (Saint Elizabeth 147, Westmoreland 86, Saint James 9)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "COD-AB parish polygon (MultiPolygon or Polygon), WGS 84 longitude/latitude (EPSG:4326), unchanged; extent -78.369, 17.706, -76.183, 18.525."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bbox covering column (xmin, ymin, xmax, ymax), added by the conversion."
+    }
+  ],
+  "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.36921919599996,
+          17.705825219000076,
+          -76.18329188699988,
+          18.524969186000078
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-29T00:00:00Z",
+          "2025-11-02T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica) default style",
+      "description": "Default visualization for Building damage predictions per parish (Hurricane Melissa, Jamaica), drawn in #00838f.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1145,
+      "file:checksum": "12202f33c045a2977e6daf5a6f9e703dd056f9f80f7354ffedfc55b8527396e0336f"
+    },
+    "data": {
+      "href": "./data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 581471,
+      "file:checksum": "1220a49a3e28575245a8e28d11a6347ccd93d5f836095ebc27221d5ff664e508a9a8",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 935549,
+      "file:checksum": "1220dd1d2d4b7d9860c6fa92d3e945acef26d7c2b8e0cf51a62e797f8d914f014a2d"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica) categorical style",
+      "description": "Categorical visualization coloring Building damage predictions per parish (Hurricane Melissa, Jamaica) by assessments, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2934,
+      "file:checksum": "122054c1e51729310a2cb1d459b334b22bc05e2fcea5f96dedcba7f13cbdd5d29141"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica) labeled style",
+      "description": "Default visualization for Building damage predictions per parish (Hurricane Melissa, Jamaica) with adm1_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1547,
+      "file:checksum": "1220bf756fc2264764e0d3ecda384d39cb61ad173edde2cdfc9c2ff01dc3768cf0ff"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions per parish (Hurricane Melissa, Jamaica) graduated style",
+      "description": "Graduated visualization coloring Building damage predictions per parish (Hurricane Melissa, Jamaica) by n_damaged, ramped from 0.0 to 41214.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1918,
+      "file:checksum": "12207e030beeb127220d983c8fcb761a771de92dbdf789895808292a8181326de6d4"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/hurricane-melissa-impact/building-damage-parishes/data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: data",
+      "pipeline:upstream": true,
+      "file:size": 631047,
+      "file:checksum": "1220e7b4c8a51b9f97d9ccfa833520adf1d7473393b7e1c79fd3b482e25add64bd4f"
+    },
+    "thumbnail": {
+      "href": "./data.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Building damage predictions per parish (Hurricane Melissa, Jamaica)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 38056,
+      "file:checksum": "1220924735ce26e6cccaac5a043bc2bbe1453b754eb7bacb18532c622acf024a6260"
+    }
+  },
+  "keywords": [
+    "Hurricane Melissa",
+    "Jamaica",
+    "building damage",
+    "parishes",
+    "COD-AB",
+    "Microsoft AI for Good Lab",
+    "OCHA",
+    "HDX"
+  ],
+  "providers": [
+    {
+      "name": "Microsoft AI for Good Lab",
+      "description": "Building damage predictions (counts): HDX dataset hurricane-melissa-building-damage-assessment-in-jamaica, retrieved 2026-09-23. CC BY 4.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.humdata.org/organization/microsoft-ai4g-lab"
+    },
+    {
+      "name": "OCHA Field Information Services Section (FISS) / Jamaica Social Development Commission",
+      "description": "Parish polygons and P-codes: Jamaica - Subnational Administrative Boundaries (COD-AB) version 01, valid 2024-08-02, licence CC BY-IGO 3.0, HDX dataset cod-ab-jam, retrieved 2026-09-23. Credit both when redistributing.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.humdata.org/dataset/cod-ab-jam"
+    },
+    {
+      "name": "CARTO",
+      "description": "Footprint-to-parish assignment by centroid and the per-parish and per-assessment sums.",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T00:00:00Z"
+}

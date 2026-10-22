@@ -1,0 +1,174 @@
+{
+  "type": "Collection",
+  "id": "community/curbside-collection-roads",
+  "stac_version": "1.1.0",
+  "description": "Shows the curbside collection day based on the road. This is the layer to be used for curbside collection maps identifying the road going forward.\nSupporting Documents: [Curbside Collection](https://www.summerland.ca:443/city-services/garbage-recycling/curbside-collection) calendar and information",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./curbside-collection-roads.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "curbside-collection-roads"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 4,
+  "table:row_count": 4,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "CollectionDay",
+      "type": "large_string",
+      "description": "Permitted values: Friday, Thursday, Tuesday, Wednesday."
+    },
+    {
+      "name": "OBJECTID_1",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Curbside Collection Roads",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.74863167078627,
+          49.56061504027833,
+          -119.62081450146712,
+          49.667641380958116
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "curbside-collection-roads": {
+      "href": "./curbside-collection-roads.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 64744,
+      "file:checksum": "1220296cd6e1c49cd27833163bece62f091debb457e53d5f079e3c322d69a06c74fd",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./curbside-collection-roads.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 47887,
+      "file:checksum": "1220d054cda1a771d141bd59083a0327a00665439dfe912e182b7729321e08986c3d"
+    },
+    "curbside-collection-roads-tiles": {
+      "href": "./curbside-collection-roads.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "curbside-collection-roads (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 79063,
+      "file:checksum": "1220da0510c1587d74caba6195e2467ee2eaf943b8c7965236a4b394b247e9a5c73f"
+    },
+    "styles/collection-day": {
+      "href": "./styles/collection-day.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Collection day",
+      "file:size": 666,
+      "file:checksum": "122030ef85efd30e057d0eb68be759e6b74c049f5cdeca1e7686b7c4eab4cc0fe269"
+    }
+  },
+  "keywords": [
+    "Community Resources"
+  ]
+}

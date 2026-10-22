@@ -1,0 +1,1793 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+  ],
+  "id": "power",
+  "title": "Power Infrastructure",
+  "description": "OSM nodes, ways and relations tagged power=*: lines and cables, towers and poles, substations, plants and generators. Cut to the admin regions (states, provinces and territories) of Canada, Mexico and the United States, one GeoParquet file per region. This collection reads the nightly build, so its contents change every night. Read every region at once with the partition glob s3://parquetry/osm/latest/country=*/state=*/power.parquet through the anonymous S3 endpoint s3.geomermaids.com (path-style, empty credentials), or one region over plain HTTPS. The README gives both setups.",
+  "keywords": [
+    "OpenStreetMap",
+    "OSM",
+    "GeoParquet",
+    "power",
+    "Canada",
+    "Mexico",
+    "United States"
+  ],
+  "license": "ODbL-1.0",
+  "version": "2026-10-22",
+  "updated": "2026-10-22T10:03:49Z",
+  "providers": [
+    {
+      "name": "OpenStreetMap contributors",
+      "description": "Created and maintain the data, published under the ODbL 1.0.",
+      "url": "https://www.openstreetmap.org/",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geofabrik GmbH",
+      "description": "Publishes the daily regional OSM extracts this catalog is built from.",
+      "url": "https://download.geofabrik.de/",
+      "roles": [
+        "processor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converts the extracts to GeoParquet nightly, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -176.6605,
+          14.554265,
+          -52.6322,
+          82.524872
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-10-20T20:23:47Z",
+          "2026-10-20T20:23:47Z"
+        ]
+      ]
+    }
+  },
+  "partition:scheme": "hive",
+  "partition:strategy": "attribute",
+  "partition:keys": [
+    {
+      "name": "country",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "description": "ISO 3166-2 code of the admin region (state, province or territory), e.g. US-NY. One file per region."
+    }
+  ],
+  "partition:file_count": 98,
+  "partition:glob": "s3://parquetry/osm/latest/country=*/state=*/power.parquet",
+  "table:row_count": 13671541,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "osm_id",
+      "type": "BIGINT",
+      "description": "OSM element id. Unique only together with osm_type, since nodes, ways and relations have separate id spaces. An area carries the id of the way or relation it was built from. A feature crossing a region border appears once per region it touches."
+    },
+    {
+      "name": "osm_type",
+      "type": "VARCHAR",
+      "description": "OSM element type: node, way or relation."
+    },
+    {
+      "name": "country",
+      "type": "VARCHAR",
+      "description": "ISO 3166-1 alpha-2 country code. Same value as the country= partition key."
+    },
+    {
+      "name": "state_name",
+      "type": "VARCHAR",
+      "description": "Name of the admin region (state, province or territory) the file was cut to."
+    },
+    {
+      "name": "state_iso",
+      "type": "VARCHAR",
+      "description": "ISO 3166-2 code of the admin region, e.g. US-NY or CA-ON. Same value as the state= partition key."
+    },
+    {
+      "name": "power",
+      "type": "VARCHAR",
+      "description": "Value of the OSM power tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:power"
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR",
+      "description": "Value of the OSM name tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:name"
+    },
+    {
+      "name": "voltage",
+      "type": "INTEGER",
+      "description": "Highest voltage in the OSM voltage tag, in volts, as an integer. The tag lists one value per circuit separated by semicolons; NULL when absent or when no entry is a valid number. See https://wiki.openstreetmap.org/wiki/Key:voltage"
+    },
+    {
+      "name": "voltages",
+      "type": "INTEGER[]",
+      "description": "Every voltage in the OSM voltage tag, in volts, as a list of integers in tag order, one per circuit; entries that are not valid numbers are left out, NULL when none is. See https://wiki.openstreetmap.org/wiki/Key:voltage"
+    },
+    {
+      "name": "frequency",
+      "type": "DOUBLE",
+      "description": "Value of the OSM frequency tag as a number; NULL when absent or not a valid number. See https://wiki.openstreetmap.org/wiki/Key:frequency"
+    },
+    {
+      "name": "operator",
+      "type": "VARCHAR",
+      "description": "Value of the OSM operator tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:operator"
+    },
+    {
+      "name": "cables",
+      "type": "INTEGER",
+      "description": "Value of the OSM cables tag as an integer; NULL when absent or not a valid number. See https://wiki.openstreetmap.org/wiki/Key:cables"
+    },
+    {
+      "name": "tags",
+      "type": "MAP(VARCHAR, VARCHAR)",
+      "description": "Every OSM tag on the element, as a key to value map. The promoted columns are typed copies of single tags."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-feature bounding box in float32, rounded outward so it always contains the geometry (at most about 9 m of slack). Declared as the GeoParquet `covering` for the geometry column, and its Parquet min/max statistics let any engine skip row groups: filter on bbox.xmin/ymin/xmax/ymax before touching geometry."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Feature geometry, native Parquet GEOMETRY (GeoParquet 2.0), OGC:CRS84 longitude/latitude. Geometry types: Point, LineString, MultiPolygon."
+    }
+  ],
+  "assets": {
+    "data-ca-ab": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-AB/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alberta (CA-AB)",
+      "description": "224,464 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-AB/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6035436
+    },
+    "data-ca-bc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-BC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "British Columbia (CA-BC)",
+      "description": "122,751 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-BC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3569911
+    },
+    "data-ca-mb": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-MB/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Manitoba (CA-MB)",
+      "description": "31,676 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-MB/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1018713
+    },
+    "data-ca-nb": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NB/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Brunswick / Nouveau-Brunswick (CA-NB)",
+      "description": "35,932 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NB/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1047425
+    },
+    "data-ca-nl": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NL/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Newfoundland and Labrador (CA-NL)",
+      "description": "63,039 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NL/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1660729
+    },
+    "data-ca-ns": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NS/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nova Scotia (CA-NS)",
+      "description": "207,795 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NS/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 5304942
+    },
+    "data-ca-nt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NT/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Northwest Territories (CA-NT)",
+      "description": "1,207 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NT/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 48860
+    },
+    "data-ca-nu": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NU/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "ᓄᓇᕗᑦ Nunavut (CA-NU)",
+      "description": "218 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NU/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 14454
+    },
+    "data-ca-on": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-ON/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ontario (CA-ON)",
+      "description": "300,550 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-ON/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10035781
+    },
+    "data-ca-pe": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-PE/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Prince Edward Island (CA-PE)",
+      "description": "8,033 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-PE/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 239275
+    },
+    "data-ca-qc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-QC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Québec (CA-QC)",
+      "description": "501,926 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-QC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 12934380
+    },
+    "data-ca-sk": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-SK/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saskatchewan (CA-SK)",
+      "description": "39,375 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-SK/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1192064
+    },
+    "data-ca-yt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-YT/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yukon (CA-YT)",
+      "description": "765 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-YT/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 58131
+    },
+    "data-mx-agu": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-AGU/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Aguascalientes (MX-AGU)",
+      "description": "6,502 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-AGU/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 220202
+    },
+    "data-mx-bcn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-BCN/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Baja California (MX-BCN)",
+      "description": "10,926 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-BCN/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 387361
+    },
+    "data-mx-bcs": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-BCS/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Baja California Sur (MX-BCS)",
+      "description": "5,224 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-BCS/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 162212
+    },
+    "data-mx-cam": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CAM/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Campeche (MX-CAM)",
+      "description": "6,226 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CAM/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 184325
+    },
+    "data-mx-chh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CHH/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chihuahua (MX-CHH)",
+      "description": "30,378 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CHH/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 880979
+    },
+    "data-mx-chp": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CHP/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chiapas (MX-CHP)",
+      "description": "12,019 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CHP/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 372970
+    },
+    "data-mx-cmx": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CMX/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ciudad de México (MX-CMX)",
+      "description": "2,385 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CMX/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 83181
+    },
+    "data-mx-coa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-COA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Coahuila (MX-COA)",
+      "description": "29,002 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-COA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1109401
+    },
+    "data-mx-col": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-COL/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colima (MX-COL)",
+      "description": "3,553 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-COL/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 108459
+    },
+    "data-mx-dur": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-DUR/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Durango (MX-DUR)",
+      "description": "12,237 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-DUR/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 398997
+    },
+    "data-mx-gro": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-GRO/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guerrero (MX-GRO)",
+      "description": "10,093 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-GRO/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 316069
+    },
+    "data-mx-gua": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-GUA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guanajuato (MX-GUA)",
+      "description": "15,091 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-GUA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 461562
+    },
+    "data-mx-hid": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-HID/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hidalgo (MX-HID)",
+      "description": "16,649 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-HID/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 656958
+    },
+    "data-mx-jal": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-JAL/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jalisco (MX-JAL)",
+      "description": "20,761 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-JAL/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 630637
+    },
+    "data-mx-mex": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MEX/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Estado de México (MX-MEX)",
+      "description": "16,286 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MEX/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 571437
+    },
+    "data-mx-mic": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MIC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Michoacán (MX-MIC)",
+      "description": "14,999 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MIC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 457277
+    },
+    "data-mx-mor": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MOR/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Morelos (MX-MOR)",
+      "description": "3,515 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MOR/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 109959
+    },
+    "data-mx-nay": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-NAY/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nayarit (MX-NAY)",
+      "description": "5,627 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-NAY/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 167271
+    },
+    "data-mx-nle": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-NLE/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nuevo León (MX-NLE)",
+      "description": "21,297 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-NLE/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 677134
+    },
+    "data-mx-oax": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-OAX/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oaxaca (MX-OAX)",
+      "description": "15,611 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-OAX/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 470521
+    },
+    "data-mx-pue": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-PUE/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puebla (MX-PUE)",
+      "description": "14,855 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-PUE/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 456186
+    },
+    "data-mx-que": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-QUE/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Querétaro (MX-QUE)",
+      "description": "6,376 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-QUE/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 201836
+    },
+    "data-mx-roo": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-ROO/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Quintana Roo (MX-ROO)",
+      "description": "5,471 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-ROO/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 166208
+    },
+    "data-mx-sin": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SIN/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sinaloa (MX-SIN)",
+      "description": "12,079 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SIN/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 376612
+    },
+    "data-mx-slp": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SLP/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "San Luis Potosí (MX-SLP)",
+      "description": "11,427 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SLP/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 381661
+    },
+    "data-mx-son": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SON/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sonora (MX-SON)",
+      "description": "30,767 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SON/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1002806
+    },
+    "data-mx-tab": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TAB/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tabasco (MX-TAB)",
+      "description": "7,942 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TAB/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 244604
+    },
+    "data-mx-tam": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TAM/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tamaulipas (MX-TAM)",
+      "description": "15,651 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TAM/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 474424
+    },
+    "data-mx-tla": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TLA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tlaxcala (MX-TLA)",
+      "description": "13,293 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TLA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 598572
+    },
+    "data-mx-ver": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-VER/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Veracruz (MX-VER)",
+      "description": "30,380 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-VER/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1024629
+    },
+    "data-mx-yuc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-YUC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yucatán (MX-YUC)",
+      "description": "7,952 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-YUC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 258379
+    },
+    "data-mx-zac": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-ZAC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Zacatecas (MX-ZAC)",
+      "description": "10,510 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-ZAC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 322743
+    },
+    "data-us-ak": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AK/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alaska (US-AK)",
+      "description": "23,454 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AK/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 711562
+    },
+    "data-us-al": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AL/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alabama (US-AL)",
+      "description": "161,605 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AL/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4805003
+    },
+    "data-us-ar": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AR/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arkansas (US-AR)",
+      "description": "106,057 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AR/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3045924
+    },
+    "data-us-az": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AZ/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arizona (US-AZ)",
+      "description": "372,288 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AZ/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 13925115
+    },
+    "data-us-ca": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "California (US-CA)",
+      "description": "1,145,312 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 38546646
+    },
+    "data-us-co": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CO/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colorado (US-CO)",
+      "description": "225,838 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CO/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 8125772
+    },
+    "data-us-ct": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CT/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Connecticut (US-CT)",
+      "description": "73,585 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CT/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1933813
+    },
+    "data-us-dc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-DC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "District of Columbia (US-DC)",
+      "description": "1,980 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-DC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 114275
+    },
+    "data-us-de": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-DE/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Delaware (US-DE)",
+      "description": "18,747 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-DE/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 595751
+    },
+    "data-us-fl": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-FL/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Florida (US-FL)",
+      "description": "280,097 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-FL/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 8752035
+    },
+    "data-us-ga": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-GA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Georgia (US-GA)",
+      "description": "295,854 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-GA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 8655278
+    },
+    "data-us-hi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-HI/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hawaii (US-HI)",
+      "description": "18,088 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-HI/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 601770
+    },
+    "data-us-ia": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iowa (US-IA)",
+      "description": "125,349 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4040329
+    },
+    "data-us-id": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ID/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Idaho (US-ID)",
+      "description": "70,721 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ID/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2211963
+    },
+    "data-us-il": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IL/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Illinois (US-IL)",
+      "description": "292,494 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IL/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10019699
+    },
+    "data-us-in": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IN/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Indiana (US-IN)",
+      "description": "278,324 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IN/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 7943761
+    },
+    "data-us-ks": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-KS/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kansas (US-KS)",
+      "description": "95,357 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-KS/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2928448
+    },
+    "data-us-ky": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-KY/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kentucky (US-KY)",
+      "description": "122,819 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-KY/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3637577
+    },
+    "data-us-la": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-LA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Louisiana (US-LA)",
+      "description": "133,143 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-LA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3811146
+    },
+    "data-us-ma": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Massachusetts (US-MA)",
+      "description": "89,838 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3039498
+    },
+    "data-us-md": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MD/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maryland (US-MD)",
+      "description": "85,646 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MD/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3065712
+    },
+    "data-us-me": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ME/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maine (US-ME)",
+      "description": "54,694 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ME/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1636185
+    },
+    "data-us-mi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MI/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Michigan (US-MI)",
+      "description": "358,583 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MI/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10247537
+    },
+    "data-us-mn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MN/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Minnesota (US-MN)",
+      "description": "270,594 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MN/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 8987083
+    },
+    "data-us-mo": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MO/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Missouri (US-MO)",
+      "description": "140,534 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MO/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 5056347
+    },
+    "data-us-ms": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MS/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mississippi (US-MS)",
+      "description": "104,175 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MS/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2945677
+    },
+    "data-us-mt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MT/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Montana (US-MT)",
+      "description": "109,212 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MT/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3261451
+    },
+    "data-us-nc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Carolina (US-NC)",
+      "description": "254,625 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 8536834
+    },
+    "data-us-nd": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ND/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Dakota (US-ND)",
+      "description": "315,830 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ND/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 8049766
+    },
+    "data-us-ne": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NE/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nebraska (US-NE)",
+      "description": "379,484 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NE/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 9683994
+    },
+    "data-us-nh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NH/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Hampshire (US-NH)",
+      "description": "39,230 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NH/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1191107
+    },
+    "data-us-nj": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NJ/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Jersey (US-NJ)",
+      "description": "114,821 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NJ/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3753169
+    },
+    "data-us-nm": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NM/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Mexico (US-NM)",
+      "description": "212,053 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NM/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6593339
+    },
+    "data-us-nv": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NV/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nevada (US-NV)",
+      "description": "398,012 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NV/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 15321552
+    },
+    "data-us-ny": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NY/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New York (US-NY)",
+      "description": "198,072 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NY/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6264368
+    },
+    "data-us-oh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OH/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ohio (US-OH)",
+      "description": "228,781 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OH/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 7205430
+    },
+    "data-us-ok": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OK/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oklahoma (US-OK)",
+      "description": "136,287 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OK/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4028713
+    },
+    "data-us-or": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OR/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oregon (US-OR)",
+      "description": "170,557 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OR/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6577291
+    },
+    "data-us-pa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-PA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Pennsylvania (US-PA)",
+      "description": "148,880 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-PA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4724952
+    },
+    "data-us-pr": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-PR/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puerto Rico (US-PR)",
+      "description": "52,020 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-PR/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2260169
+    },
+    "data-us-ri": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-RI/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Rhode Island (US-RI)",
+      "description": "23,026 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-RI/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 716846
+    },
+    "data-us-sc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-SC/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Carolina (US-SC)",
+      "description": "168,476 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-SC/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4842583
+    },
+    "data-us-sd": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-SD/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Dakota (US-SD)",
+      "description": "640,204 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-SD/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 15773864
+    },
+    "data-us-tn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-TN/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tennessee (US-TN)",
+      "description": "1,343,919 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-TN/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 33321369
+    },
+    "data-us-tx": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-TX/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Texas (US-TX)",
+      "description": "934,516 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-TX/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 31510342
+    },
+    "data-us-ut": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-UT/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Utah (US-UT)",
+      "description": "86,329 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-UT/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2710171
+    },
+    "data-us-va": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Virginia (US-VA)",
+      "description": "223,425 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 7315288
+    },
+    "data-us-vi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VI/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United States Virgin Islands (US-VI)",
+      "description": "143 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VI/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 12587
+    },
+    "data-us-vt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VT/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Vermont (US-VT)",
+      "description": "41,680 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VT/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1567597
+    },
+    "data-us-wa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WA/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Washington (US-WA)",
+      "description": "153,220 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WA/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4536106
+    },
+    "data-us-wi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WI/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wisconsin (US-WI)",
+      "description": "247,970 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WI/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 7630476
+    },
+    "data-us-wv": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WV/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "West Virginia (US-WV)",
+      "description": "37,599 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WV/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1260878
+    },
+    "data-us-wy": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WY/power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wyoming (US-WY)",
+      "description": "105,179 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WY/power.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2926241
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Preview of one region, flat styling by geometry type",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 37199,
+      "file:checksum": "12202973fcc8f34d78e09682022d0752a38249868eccbe7693d90ea1aad2a8ff8d9b"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Power Infrastructure: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Power Infrastructure: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "type": "text/html",
+      "title": "Open Database License (ODbL) 1.0"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.openstreetmap.org/",
+      "type": "text/html",
+      "title": "OpenStreetMap"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/osm/latest/",
+      "type": "text/html",
+      "title": "Browse the latest files"
+    }
+  ]
+}

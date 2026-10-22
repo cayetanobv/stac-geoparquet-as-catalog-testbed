@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "seguridad/activaciones-samur-2024",
+  "stac_version": "1.1.0",
+  "description": "En este conjunto de datos, se recoge el detalle de las activaciones llevadas a cabo por SAMUR\u2013Protecci\u00f3n Civil.\n****\nLa **activaci\u00f3n** se define como encargos de asistencia sanitaria que supone la activaci\u00f3n de un recurso sanitario u otro tipo de veh\u00edculo.\n****\nEl fichero de datos proporciona de cada activaci\u00f3n: a\u00f1o, mes, hora de solicitud y de intervenci\u00f3n, c\u00f3digo de incidente, distrito y hospital p\u00fablico de traslado.\n****\n**Observaciones a tener en cuenta en el an\u00e1lisis de los datos:**\n****\n  * El **c\u00f3digo del incidente** viene determinado por la **informaci\u00f3n aportada por el demandante.**\n  * Si una ambulancia atiende a tres pacientes se registran tres activaciones. Si una ambulancia se activa y se anula su aviso en ruta o antes de comenzar la ruta es una activaci\u00f3n. Si en un aviso se activan tres ambulancias son tres activaciones.\n  * Las horas de intervenci\u00f3n que aparecen en blanco son activaciones anuladas, bien por el propio demandante o por encontrarse un recurso m\u00e1s cercano. Aquellas activaciones que no incluyen informaci\u00f3n en el campo \u2018Hospitales\u2019 corresponden asistencias sanitarias que no finalizan con traslado hospitalario.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Cat\u00e1logo de Datos Abiertos del Ayuntamiento de Madrid"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://datos.madrid.es/dataset/300178-0-samur-activaciones",
+      "type": "text/html"
+    },
+    {
+      "href": "https://datos.madrid.es/datastore/dump/300178-2-samur-activaciones-csv?format=csv",
+      "rel": "related",
+      "title": "Upstream source: activaciones-samur-2024",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "_id",
+      "type": "int64",
+      "description": "Identificador interno del registro de origen."
+    },
+    {
+      "name": "Ano",
+      "type": "int64",
+      "description": "A\u00f1o de la activaci\u00f3n."
+    },
+    {
+      "name": "Mes",
+      "type": "string",
+      "description": "Mes de la activaci\u00f3n, en texto."
+    },
+    {
+      "name": "Hora Solicitud",
+      "type": "time",
+      "description": "Hora en la que se solicit\u00f3 la asistencia sanitaria."
+    },
+    {
+      "name": "Hora Intervencion",
+      "type": "time",
+      "description": "Hora de intervenci\u00f3n del recurso sanitario, en blanco cuando la activaci\u00f3n fue anulada."
+    },
+    {
+      "name": "Codigo",
+      "type": "string",
+      "description": "C\u00f3digo del incidente, seg\u00fan la informaci\u00f3n aportada por quien solicita la asistencia."
+    },
+    {
+      "name": "Distrito",
+      "type": "string",
+      "description": "Distrito de Madrid donde se produjo la activaci\u00f3n."
+    },
+    {
+      "name": "Hospital",
+      "type": "string",
+      "description": "Hospital p\u00fablico al que fue trasladado el paciente, en blanco cuando la asistencia no finaliz\u00f3 con traslado hospitalario."
+    }
+  ],
+  "table:row_count": 151544,
+  "title": "Activaciones del SAMUR-Protecci\u00f3n Civil",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2024-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "activaciones-samur-2024": {
+      "href": "./activaciones-samur-2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1610331,
+      "file:checksum": "1220e1661ef487d40cca496d19266c1708a5725a4c22539d2f7feb2414265706eecb",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "keywords": [
+    "SAMUR",
+    "protecci\u00f3n civil",
+    "sanidad"
+  ],
+  "providers": [
+    {
+      "name": "Direcci\u00f3n General de Samur-Protecci\u00f3n Civil",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.madrid.es"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "es",
+    "name": "Espa\u00f1ol",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-01T00:00:00Z"
+}

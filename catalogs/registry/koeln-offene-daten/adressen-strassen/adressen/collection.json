@@ -1,0 +1,356 @@
+{
+  "type": "Collection",
+  "id": "adressen-strassen/adressen",
+  "stac_version": "1.1.0",
+  "description": "Eine Adresse ist Teil der Kommunalen Gebietsgliederung. Dieses hierarchische System gliedert das K\u00f6lner Stadtgebiet auf verschiedenen Ebenen in eine Stadtstruktur und Blockstruktur. Weitere Bestandteile sind eine Stra\u00dfenstruktur und Adressen. Die gesamte Kommunale Gebietsgliederung wird in dieser Ver\u00f6ffentlichung erl\u00e4utert.\nDefinition: Geb\u00e4ude werden \u00fcber Adressen verschl\u00fcsselt und lokalisiert. Der Aufbau der Geb\u00e4udeadressen basiert auf einer Empfehlung des Deutschen St\u00e4dtetages. Adressen sind die einzigen Ortsangaben, anhand derer\n   - sich jedermann leicht orientieren kann,\n   - die amtlich vergeben werden,\n   - die in der \u00d6rtlichkeit angebracht und\n   - in Kartenwerken nachgewiesen werden.\nErl\u00e4uterung der Attribute ist dem Shapefile als CSV beigef\u00fcgt.\nKoordinatensystem Shapefile: ETRS 1989 UTM Zone 32N\nDie Attribute \u201eGeb\u00e4ude ID ALKIS\u201c und \u201eNutzung (Geb\u00e4udefunktion)\u201c stammen aus dem Amtliches Liegenschaftskataster-Informationssystem (Stadt K\u00f6ln - Amt f\u00fcr Liegenschaften, Vermessung und Kataster). Die Geodaten dazu enth\u00e4lt der Datensatz Amtliches Liegenschaftskataster-Informationssystem Koeln.\nDas K\u00f6lner Stra\u00dfenverzeichnis gibt einen \u00dcberblick \u00fcber alle geltenden Stra\u00dfennamen und Adressen. Es wird etwa halbj\u00e4hrig und vor jeder Wahl aktualisiert.\nAlle Geodaten der der Kommunalen Gebietsgliederung, wahlorganisatorische Einheiten und weitere Gebietsgliederungen enth\u00e4lt der Datensatz Geopackage Raumbezugssystem K\u00f6ln.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Adresse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Adressen K\u00f6ln",
+      "pmtiles:layers": [
+        "Adresse"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/adressen-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/kgg/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "KGG Sammeldienst WFS (Kommunale Gebietsgliederung, ArcGIS Server)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/kgg_labeled/MapServer",
+      "rel": "related",
+      "title": "Kommunale Gebietsgliederung K\u00f6ln (ArcGIS REST MapServer, beschriftet)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 161541,
+  "table:row_count": 161541,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string",
+      "description": "Eindeutiger 11-stelliger Schl\u00fcssel, zusammengesetzt aus 5-stelligem Stra\u00dfenschl\u00fcssel + 4-stellige Hausnummer + 2-stelliger Schl\u00fcssel f\u00fcr Hausnummernzusatz (00 = kein Zusatz, 01 - 26 = Alphabet von a - z)."
+    },
+    {
+      "name": "adresse",
+      "type": "string",
+      "description": "Amtlicher Stra\u00dfenname ohne Detaillierung mit Hausnummer."
+    },
+    {
+      "name": "nr_str",
+      "type": "string",
+      "description": "Strassenschl\u00fcssel: Eindeutiger Stra\u00dfenschl\u00fcssel."
+    },
+    {
+      "name": "str",
+      "type": "string",
+      "description": "Stra\u00dfe: Bei mehrfach vorhandenen Stra\u00dfennamen infolge von Eingemeindungen ist eine Detaillierung zur Unterscheidung angegeben. Die Detaillierung sind die ersten drei Buchstaben des Stadtbezirks. Die urspr\u00fcnglichen K\u00f6lner Stra\u00dfen besitzen keine Detaillierung."
+    },
+    {
+      "name": "str_amtl",
+      "type": "string",
+      "description": "Amtl. Stra\u00dfenname: Stra\u00dfenname ohne Detaillierung."
+    },
+    {
+      "name": "str_stb",
+      "type": "string",
+      "description": "Stra\u00dfe (Stadtbezirk): Stra\u00dfenname mit ausgeschriebener Detaillierung."
+    },
+    {
+      "name": "hausnr",
+      "type": "string",
+      "description": "Hausnummer: Bei \u201eSammelhausnummern\u201c (z. B. Venloer Str. 227-231) wird jede Hausnummer einzeln erfasst."
+    },
+    {
+      "name": "geb_alkis",
+      "type": "string",
+      "description": "Geb\u00e4ude ID ALKIS: weltweit eindeutiger ALKIS-Objektidentifikator des Geb\u00e4udes dem die Adresse zugeordnet ist (Quelle: Stadt K\u00f6ln - Amt f\u00fcr Liegenschaften, Vermessung und Kataster)."
+    },
+    {
+      "name": "nutz_funkt",
+      "type": "string",
+      "description": "Nutzung (ALKIS Geb\u00e4udefunktion): Geb\u00e4udefunktion des \u00fcber das Attribut Geb\u00e4ude ID ALKIS zugeordneten Geb\u00e4udes entsprechend dem ALKIS-Objektartenkatalog."
+    },
+    {
+      "name": "bl_seite",
+      "type": "string",
+      "description": "Blockseite: Schl\u00fcssel der \u00fcbergeordneten Blockseite."
+    },
+    {
+      "name": "nr_stviert",
+      "type": "string",
+      "description": "Stadtviertel (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtviertels."
+    },
+    {
+      "name": "stviertel",
+      "type": "string",
+      "description": "Stadtviertel: Name des \u00fcbergeordneten Stadtviertels."
+    },
+    {
+      "name": "nr_squart",
+      "type": "string",
+      "description": "Statistisches Quartier (Nr.): Schl\u00fcssel des \u00fcbergeordneten Statistischen Quartiers."
+    },
+    {
+      "name": "stat_quart",
+      "type": "string",
+      "description": "Statistisches Quartier: Name des \u00fcbergeordneten Statistischen Quartiers."
+    },
+    {
+      "name": "nr_stteil",
+      "type": "string",
+      "description": "Stadtteil (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtteils."
+    },
+    {
+      "name": "stteil",
+      "type": "string",
+      "description": "Stadtteil: Name des \u00fcbergeordneten Stadtteils."
+    },
+    {
+      "name": "nr_stbez",
+      "type": "string",
+      "description": "Stadtbezirk (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "stbezirk",
+      "type": "string",
+      "description": "Stadtbezirk: Name des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "stimmbez",
+      "type": "string",
+      "description": "Stimmbezirk: Nummer des zugeh\u00f6rigen Stimmbezirks."
+    },
+    {
+      "name": "plz",
+      "type": "string",
+      "description": "Postleitzahlgebiet: Nummer des zugeh\u00f6rigen Postleitzahlgebiets."
+    },
+    {
+      "name": "schied_bez",
+      "type": "string",
+      "description": "Schiedsamtsbezirk: Nummer des zugeh\u00f6rigen Schiedsamtsbezirks."
+    },
+    {
+      "name": "nr_sozraum",
+      "type": "string",
+      "description": "Sozialraum (Nr.): Schl\u00fcssel des zugeh\u00f6rigen Sozialraums."
+    },
+    {
+      "name": "sozraum",
+      "type": "string",
+      "description": "Sozialraum: Name des zugeh\u00f6rigen Sozialraums."
+    },
+    {
+      "name": "x_koord",
+      "type": "double",
+      "description": "X-Koordinate im Projizierten Koordinatensystem ETRS 1989 UTM 32N."
+    },
+    {
+      "name": "y_koord",
+      "type": "double",
+      "description": "Y-Koordinate im Projizierten Koordinatensystem ETRS 1989 UTM 32N."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Adressen K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.812110026905595,
+          50.83608363975876,
+          7.130540616261947,
+          51.08363011148933
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen K\u00f6ln default style",
+      "description": "Default visualization for Adressen K\u00f6ln, drawn in #d94801.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1117,
+      "file:checksum": "1220d3789de215cd84d142d3d736eab28a7b466b9ec54ed1ebc763c27562a30fa10f"
+    },
+    "Adresse": {
+      "href": "./Adresse.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 11438726,
+      "file:checksum": "1220f6530335d8c317328b6ff684060d2105b7fbb67f11516fe53cb4ec4b5c9ef3da",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Adresse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Adressen K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 15724671,
+      "file:checksum": "1220a8d07c4647eca9030242461d2646ac5880424226a9a00471eba57bd3bef930b4"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen K\u00f6ln categorical style",
+      "description": "Categorical visualization coloring Adressen K\u00f6ln by nr_stbez, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1553,
+      "file:checksum": "12200baaef9ed44976fadc221183ac033732c3093643ad179a216fb0659e91df0f56"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen K\u00f6ln labeled style",
+      "description": "Default visualization for Adressen K\u00f6ln with nr_stbez shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1524,
+      "file:checksum": "122099a5d7df0f3607aab3e44c97616029c2570835fc71f868f9afdd09dbfa5d5f6a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Adressen K\u00f6ln by y_koord, ramped from 5633373.7661 to 5661336.6869.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1939,
+      "file:checksum": "12209cd4db0c6bb4fb20f7ba58c4a43579ed06e04fe51094f0400223f99f46fe5b43"
+    },
+    "source": {
+      "href": "https://offenedaten-koeln.de/sites/default/files/uploaded_resources/Adresse.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: adresse",
+      "pipeline:upstream": true,
+      "file:size": 138805299,
+      "file:checksum": "1220d83b301d8a5a66a68b2dc8f2b569835cfa2bf82bd528714d33d3e1025cc8aa14"
+    },
+    "thumbnail": {
+      "href": "./Adresse.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Adressen K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 219237,
+      "file:checksum": "1220ab9ad2a2f04970694fa339b82721384412784e52440de347ee6f2349e9edc4fa"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Infrastruktur",
+    "Bauen und Wohnen",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik, \u201eAdressen K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-stadtentwicklung-und-statistik",
+      "email": "statistik-rbs@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

@@ -1,0 +1,226 @@
+{
+  "type": "Collection",
+  "id": "conservation/trails",
+  "stac_version": "1.1.0",
+  "description": "Trails, dirt roads, and paths in the Town, 1,108 segments. The Town states that it collected the data from 2012 and that the data \"is thus considered DRAFT and constantly evolving\". The Town's [Trail Maps](https://www.ehamptonny.gov/532/Trail-Maps) page has the printed trail guides. Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/43",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Conservation and Recreation"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./trails.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "trails"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 1108,
+  "table:row_count": 1108,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "Trail_Name",
+      "type": "string",
+      "description": "Trail name. Null for 230 segments."
+    },
+    {
+      "name": "Trail_Loca",
+      "type": "string",
+      "description": "Trail location or area name."
+    },
+    {
+      "name": "Trail_Type",
+      "type": "string",
+      "description": "Trail type, for example Hiking Trail or Dirt Road."
+    },
+    {
+      "name": "Trail_Blaz",
+      "type": "string",
+      "description": "Blaze color and shape, as free text."
+    },
+    {
+      "name": "Trail_Stat",
+      "type": "string",
+      "description": "Status. Open, Closed, NotPublic, Proposed, Trial, or Other."
+    },
+    {
+      "name": "Miles",
+      "type": "double",
+      "description": "Segment length in miles."
+    },
+    {
+      "name": "Feet",
+      "type": "double",
+      "description": "Segment length in feet."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 15,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -72.2406005,
+    40.9923377,
+    15
+  ],
+  "pmtiles:layers": [
+    "trails"
+  ],
+  "title": "Trails",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -72.28508046945872,
+          40.9512199,
+          -71.856304647794,
+          41.082235
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "trails": {
+      "href": "./trails.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2032487,
+      "file:checksum": "12203b1837668d7c44f75bd0f52e0acf79fc54f0845b6d043ba34dedbe34fe97483f",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3335,
+      "file:checksum": "1220f6a9bf08fd48cd75fc872ebb47b964db1643793dba29836fbb9a264eb1f6ab81",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "trails-tiles": {
+      "href": "./trails.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "trails (vector tiles)",
+      "file:size": 1176605,
+      "file:checksum": "1220ea8d73b0ed53363c17d13021df7d5de0458d6e5f0be40b8f9a109b9969de4486",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trails by trail type",
+      "file:size": 1018,
+      "file:checksum": "1220edf46bb75891be9479d39becf971e82c04dc75dc40d45df00fffa0a9347d0b38",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "styles/status": {
+      "href": "./styles/status.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trails: trail status",
+      "file:size": 871,
+      "file:checksum": "1220356ae209f865e32cb0e6280d06c3298cae571a901424edc87498a47f1631d9a6",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./trails.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 61949,
+      "file:checksum": "12200043fc01cab77f4b4987b3aac2d0af1e59b39c61069fe176c814a2c37f1ad93e",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

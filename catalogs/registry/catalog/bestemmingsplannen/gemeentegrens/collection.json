@@ -1,0 +1,161 @@
+{
+  "type": "Collection",
+  "id": "bestemmingsplannen/gemeentegrens",
+  "stac_version": "1.1.0",
+  "description": "Gemeentegrens",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gemeentegrens.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "gemeentegrens"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1,
+  "table:row_count": 1,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "GEM_KODE",
+      "type": "string"
+    },
+    {
+      "name": "GEM_NAAM",
+      "type": "string"
+    },
+    {
+      "name": "DGS_BRONDD",
+      "type": "timestamp[us]"
+    },
+    {
+      "name": "OID",
+      "type": "int64"
+    },
+    {
+      "name": "GmlID",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Gemeentegrens",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.97009592885723,
+          52.0262821551492,
+          5.19515439179718,
+          52.1420509704284
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "gemeentegrens": {
+      "href": "./gemeentegrens.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 63233,
+      "file:checksum": "1220c1a76e4d8245a403f95fd01af649977904997581b1b9707574a1a9e8e0316e9c",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./gemeentegrens.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 6019,
+      "file:checksum": "12205431cafe3e07fb2f3c2a3750164aeb1a964a11fff73351badf47639570c82fbd"
+    },
+    "gemeentegrens-tiles": {
+      "href": "./gemeentegrens.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "gemeentegrens (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 14496,
+      "file:checksum": "122000bdf5c500c78c7caa2dcf6b860ef411f6d9d97b6552b885ed11dd227ebd84ab"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 750,
+      "file:checksum": "122090b872ff646c387f06f49b9279db7913928621af0bb749920b92a337facba8e2",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

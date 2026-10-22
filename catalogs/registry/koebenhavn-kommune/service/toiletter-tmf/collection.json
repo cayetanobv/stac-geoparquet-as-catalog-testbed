@@ -1,0 +1,282 @@
+{
+  "type": "Collection",
+  "id": "service/toiletter-tmf",
+  "stac_version": "1.1.0",
+  "description": "Toiletter der varetages og driftes af Teknik- og Milj\u00f8forvaltningen. Tabellen indeholder oplysninger om bl.a. toilettyper (toilet, toilet med handicap adgang, bemandet, ubemandet og pissoirs), l\u00e6ngde og breddegrads koordinater (geokoder).\n\n!OBS! Bem\u00e6rk at per den 1. februar 2023 er der foretaget v\u00e6sentlige \u00e6ndringer i strukturen for vores toiletdata. \u00c6ndringen skyldes driftsm\u00e6ssige oml\u00e6gninger.\n\nData er nu opdelt i to:\n\n1) en ressource der viser de toiletter der h\u00f8rer under TMF\n\n2) en ressource der viser toiletter der h\u00f8rer under andre forvaltninger\n\nBem\u00e6rk blandt andet at oplysning om \u00e5bningstid har skiftet format.\n\n!De nu udfasede datas\u00e6t er stadig tilg\u00e6ngelige nedenfor til reference.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_toilet_puma_agg_tmf_kk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Toiletter TMF",
+      "pmtiles:layers": [
+        "k101_toilet_puma_agg_tmf_kk"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/toiletter-tmf",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: toilet_puma_agg_tmf_kk",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 180,
+  "table:row_count": 180,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "toilet_lokalitet",
+      "type": "string"
+    },
+    {
+      "name": "vejnavn_husnummer",
+      "type": "string"
+    },
+    {
+      "name": "postnummer",
+      "type": "string"
+    },
+    {
+      "name": "toilet_betegnelse",
+      "type": "string"
+    },
+    {
+      "name": "toilettype_design",
+      "type": "string"
+    },
+    {
+      "name": "handicapadgang",
+      "type": "string"
+    },
+    {
+      "name": "aabningstid_doegn",
+      "type": "string"
+    },
+    {
+      "name": "aabningsperiode",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "grafitti_ansvarlig",
+      "type": "string"
+    },
+    {
+      "name": "driftsbydel",
+      "type": "string"
+    },
+    {
+      "name": "utm_x",
+      "type": "double"
+    },
+    {
+      "name": "utm_y",
+      "type": "double"
+    },
+    {
+      "name": "longitude",
+      "type": "double"
+    },
+    {
+      "name": "latitude",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Toiletter TMF",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.458190302400146,
+          55.62289320879428,
+          12.649344027476307,
+          55.72301253609817
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Toiletter TMF default style",
+      "description": "Default visualization for Toiletter TMF, drawn in #969696.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1252,
+      "file:checksum": "1220b2bc149196837e3b3cd2dc7fa5527a58cc5e2d1f79d3a0a2c4b610e785cd9499"
+    },
+    "k101_toilet_puma_agg_tmf_kk": {
+      "href": "./k101_toilet_puma_agg_tmf_kk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 28831,
+      "file:checksum": "1220279117f071d2dc6eda06527ea8c0078e49f357bafe858f6f6a785283f35d4d1e",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_toilet_puma_agg_tmf_kk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Toiletter TMF (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 82567,
+      "file:checksum": "122036e6e2d098352eb523bd20ba9b0e16fa4e295fb0f9ffb1343836a30f869320d9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Toiletter TMF categorical style",
+      "description": "Categorical visualization coloring Toiletter TMF by handicapadgang, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1829,
+      "file:checksum": "12209b1c72c50cbc8b161377c07d071e785a0fedb769370d96df4701718ad8d8dada"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Toiletter TMF labeled style",
+      "description": "Default visualization for Toiletter TMF with handicapadgang shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1705,
+      "file:checksum": "122057af1bab44c2826cfec8ecf0fc0d27a24cba0276aa9eb55e71e14e518a48745f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Toiletter TMF graduated style",
+      "description": "Graduated visualization coloring Toiletter TMF by utm_x, ramped from 717243.1750172661 to 729571.0233961684.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2111,
+      "file:checksum": "1220df05bb9266e97b0daf0942c13153ea1abdfce45355e99f886c8b5d2255112e35"
+    },
+    "thumbnail": {
+      "href": "./k101_toilet_puma_agg_tmf_kk.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Toiletter TMF",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 88449,
+      "file:checksum": "1220be5d63d0f6c61cb2b949413bcced02cfc4cc00ac9dc55ccd363b3cbae2e6166a"
+    }
+  },
+  "keywords": [
+    "toiletter",
+    "toiletter bemandede",
+    "toiletter ubemandede",
+    "Toiletter TMF",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Toiletter TMF, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/toiletter-tmf",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

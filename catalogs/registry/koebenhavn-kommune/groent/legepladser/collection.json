@@ -1,0 +1,274 @@
+{
+  "type": "Collection",
+  "id": "groent/legepladser",
+  "stac_version": "1.1.0",
+  "description": "Bemandede og ubemandede legepladser der varetages og driftes af Teknik- og Milj\u00f8forvaltningen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_legeplads.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Legepladser",
+      "pmtiles:layers": [
+        "k101_legeplads"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/legepladser1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: legeplads",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 134,
+  "table:row_count": 134,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "legeplads_id",
+      "type": "int64"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "adressebeskrivelse",
+      "type": "string"
+    },
+    {
+      "name": "bydel",
+      "type": "string"
+    },
+    {
+      "name": "legeplads_type",
+      "type": "string"
+    },
+    {
+      "name": "aldersgruppe",
+      "type": "string"
+    },
+    {
+      "name": "ejer",
+      "type": "string"
+    },
+    {
+      "name": "beskrivelse",
+      "type": "string"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "graffitirenhold",
+      "type": "string"
+    },
+    {
+      "name": "graffitirenhold_id",
+      "type": "int64"
+    },
+    {
+      "name": "lokaludvalgnr",
+      "type": "int64"
+    },
+    {
+      "name": "lokaludvalgnavn",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Legepladser",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.464824562849673,
+          55.64186378453936,
+          12.640449908755203,
+          55.72270069513187
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Legepladser default style",
+      "description": "Default visualization for Legepladser, drawn in #a1d99b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1159,
+      "file:checksum": "1220f552213e4a355a9dfcf4faa065b7f156a453a1903efc622ba90ecf6c1bcc9c60"
+    },
+    "k101_legeplads": {
+      "href": "./k101_legeplads.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 28669,
+      "file:checksum": "1220eeaa2f985fb0bfd1dcf802905ed33ecfa3b2453744b4c55ce04fd0d97aa66ebf",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_legeplads.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Legepladser (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 69104,
+      "file:checksum": "12209e8e53d57a79408aef232157e1e20145e56e7c673334eda2b1fc96934e6d4b55"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Legepladser categorical style",
+      "description": "Categorical visualization coloring Legepladser by legeplads_type, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1802,
+      "file:checksum": "1220068d0b4739717a816f37ecfb8b0d127cefbaa4c3120548f71b7f2645d8353233"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Legepladser labeled style",
+      "description": "Default visualization for Legepladser with legeplads_type shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1586,
+      "file:checksum": "122017e7091f851b8d83b43bcfcdcd5c137433217b94b99796ca9e0cf9da5d42c606"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Legepladser graduated style",
+      "description": "Graduated visualization coloring Legepladser by legeplads_id, ramped from 1.0 to 182.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1929,
+      "file:checksum": "12204c4556b2c3b1b34325810936f4224b2b14f30d778af55468c853389eb4d0a028"
+    },
+    "thumbnail": {
+      "href": "./k101_legeplads.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Legepladser",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 157686,
+      "file:checksum": "12200653b2f504eb400cb1cc14aee33cb4002d4eaf80cecdb92230a93dce3c33b075"
+    }
+  },
+  "keywords": [
+    "bemandede legepladser",
+    "legepladser",
+    "ubemandede legepladser",
+    "Legepladser",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Legepladser, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/legepladser1",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

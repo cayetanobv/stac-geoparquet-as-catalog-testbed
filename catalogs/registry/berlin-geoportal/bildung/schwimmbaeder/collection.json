@@ -1,0 +1,244 @@
+{
+  "type": "Collection",
+  "id": "bildung/schwimmbaeder",
+  "stac_version": "1.1.0",
+  "description": "Die Daten umfassen die in Berlin vorhandenen Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe (BBB). Angezeigt werden neben den Hallenb\u00e4dern auch die Kombi- und Sommerb\u00e4der sowie die Strandb\u00e4der. Zu jedem Bad wird der Standort, der Schwimmbadtyp sowie Hinweise zu den \u00d6ffnungszeiten angegeben. Im Datenbestand ist auch vermerkt, falls ein Bad aktuell saniert und deshalb geschlossen ist. Die BBB sind der gr\u00f6\u00dfte kommunale B\u00e4derbetrieb Europas. Zu ihnen geh\u00f6ren 67 B\u00e4der an 62 Standorten.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./schwimmbaeder_berlin_schwimmbaeder.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe",
+      "pmtiles:layers": [
+        "schwimmbaeder_berlin_schwimmbaeder"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/schwimmbader-der-berliner-bader-betriebe-wfs-2b934eb7",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/schwimmbaeder_berlin",
+      "rel": "related",
+      "title": "WFS source service: schwimmbaeder",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 64,
+  "table:row_count": 64,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "name_des_schwimmbads",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "postleitzahl",
+      "type": "int64"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "badkategorie",
+      "type": "string"
+    },
+    {
+      "name": "hinweis_zu_oeffnungszeiten",
+      "type": "string"
+    },
+    {
+      "name": "link_zum_bad",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.131183,
+          52.40887704,
+          13.630605,
+          52.62875204
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe default style",
+      "description": "Default visualization for Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe, drawn in #2b8cbe.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1338,
+      "file:checksum": "122059eabd7e44d8ae370826e882433da8b92525df6da7b39776c4895a758d68d670"
+    },
+    "schwimmbaeder_berlin_schwimmbaeder": {
+      "href": "./schwimmbaeder_berlin_schwimmbaeder.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10908,
+      "file:checksum": "1220dfc2377e2ff4755e61252b0f1bafeab878da649665084d5fc90a47c4b3367fd9",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./schwimmbaeder_berlin_schwimmbaeder.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 59801,
+      "file:checksum": "1220ee82369283370e32bc572b669aabead3900790cbe75382ccf83b1408849b241e"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe categorical style",
+      "description": "Categorical visualization coloring Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe by badkategorie, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2654,
+      "file:checksum": "1220e597547a8b34e779ecdee36d8b974144f94c44016416c5c151aa73e87a96497f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe labeled style",
+      "description": "Default visualization for Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe with name_des_schwimmbads shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1811,
+      "file:checksum": "1220fa59e82d0245782f91f3fb84c02f1b0c47d4abcc1ef93a3db6c32f3760bf80c3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe graduated style",
+      "description": "Graduated visualization coloring Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe by postleitzahl, ramped from 10115.0 to 14199.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2135,
+      "file:checksum": "1220c6e03c3e5f8b556c61c8577974fc93b7b36bc2ed73f3e96e865087b0eee2bd9a"
+    },
+    "thumbnail": {
+      "href": "./schwimmbaeder_berlin_schwimmbaeder.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 121695,
+      "file:checksum": "12200c6893cbcdf158f338f80aa5ab70d791dbe14158edba6adc0dc0bbf0c8fb9878"
+    }
+  },
+  "keywords": [
+    "BBB",
+    "Beckenb\u00e4der",
+    "Berlin",
+    "Berliner B\u00e4der-Betriebe",
+    "B\u00e4der",
+    "Freib\u00e4der",
+    "Geodaten",
+    "Hallenb\u00e4der"
+  ],
+  "providers": [
+    {
+      "name": "Berliner B\u00e4derbetriebe",
+      "description": "Datenquelle Geoportal Berlin, Schwimmb\u00e4der der Berliner B\u00e4der-Betriebe, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "kundebetreuung@berlinerbaeder.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

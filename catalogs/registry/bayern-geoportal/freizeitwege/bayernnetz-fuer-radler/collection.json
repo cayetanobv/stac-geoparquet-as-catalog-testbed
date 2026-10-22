@@ -1,0 +1,212 @@
+{
+  "type": "Collection",
+  "id": "freizeitwege/bayernnetz-fuer-radler",
+  "stac_version": "1.1.0",
+  "description": "Dieser Datensatz beinhaltet alle \u00f6rtlich beschilderten Radwege, die dem Bayernnetz f\u00fcr Radler (BfR) angeh\u00f6ren. Das Bayernnetz f\u00fcr Radler ist ein landesweites Radverkehrsnetz des Freistaats Bayern mit derzeit 123 benannten Fernradrouten mit einer L\u00e4nge von ca. 9.000 km, das in einem Gemeinschaftsprojekt zwischen dem Staatsministerium des Innern, f\u00fcr Bau und Verkehr und dem Bayerischen Staatsministerium der Finanzen und f\u00fcr Heimat gepflegt und dokumentiert wird.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Bayernnetz_fuer_Radler.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bayernnetz f\u00fcr Radler",
+      "pmtiles:layers": [
+        "Bayernnetz_fuer_Radler"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodaten.bayern.de/opengeodata/OdmInit.do?method=init",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices.bayern.de/od/wms/atkis/v1/freizeitwege?",
+      "rel": "related",
+      "title": "WMS Freizeitwege der Bayerischen Vermessungsverwaltung",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 140,
+  "table:row_count": 140,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "ID",
+      "type": "int64",
+      "description": "Laufende Nummer des Wegeabschnitts in der Abgabe des Herausgebers (dBASE-Typ Integer64). Der Herausgeber ver\u00f6ffentlicht keine Feldbeschreibung zu diesem Shapefile."
+    },
+    {
+      "name": "Name",
+      "type": "string",
+      "description": "Name des beschilderten Weges, wie vom Herausgeber gef\u00fchrt."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Bayernnetz f\u00fcr Radler",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.977693547432994,
+          47.39638114030582,
+          13.816960731821707,
+          50.524752406502955
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bayernnetz f\u00fcr Radler default style",
+      "description": "Default visualization for Bayernnetz f\u00fcr Radler, drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1230,
+      "file:checksum": "12204fc233acbdc92d363169ad2a815b94c22175523e87849eb2335a4ab34775d9ba"
+    },
+    "Bayernnetz_fuer_Radler": {
+      "href": "./Bayernnetz_fuer_Radler.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4196389,
+      "file:checksum": "12204c24bfd1cfc8d4e696adff0d5fa3d3cb216e70eee19c447a0d0e830b68f55b11",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Bayernnetz_fuer_Radler.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bayernnetz f\u00fcr Radler (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4143712,
+      "file:checksum": "12204affb9a3ffdbeb765ad7f93184d8853f9456d55c2fab0883d628787b51426ca8"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bayernnetz f\u00fcr Radler labeled style",
+      "description": "Default visualization for Bayernnetz f\u00fcr Radler with Name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1663,
+      "file:checksum": "1220778c8cdf8020705d9ee91021a49ecf4539e4e918394bcea6f13983bda5126a54"
+    },
+    "source": {
+      "href": "https://geodaten.bayern.de/odd/m/2/freizeitwege/bayernnetzradler/shape/bayernnetzradler_shape.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: freizeitwege-bayernnetz-fuer-radler",
+      "pipeline:upstream": true,
+      "file:size": 4309232,
+      "file:checksum": "12203b26c175c39c7e1d5c7dc7c221644b705a1b77b0715621656a744dc7287203c1"
+    },
+    "thumbnail": {
+      "href": "./Bayernnetz_fuer_Radler.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Bayernnetz f\u00fcr Radler",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 252383,
+      "file:checksum": "1220e54ece8d412df9aaefb96ffa35b1a72fe1a4fca77274a5579b0cdc1caa2dbf9e"
+    }
+  },
+  "keywords": [
+    "Bayernnetz f\u00fcr Radler",
+    "Radverkehrsnetz",
+    "Fernradroute",
+    "Freizeitwege",
+    "Radwege"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Digitalisierung, Breitband und Vermessung (LDBV)",
+      "description": "Datenquelle: Bayerische Vermessungsverwaltung \u2013 www.geodaten.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ldbv.bayern.de/",
+      "email": "service@ldbv.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

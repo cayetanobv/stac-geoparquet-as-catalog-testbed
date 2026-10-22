@@ -1,0 +1,302 @@
+{
+  "type": "Collection",
+  "id": "biotopkartierung/alpen",
+  "stac_version": "1.1.0",
+  "description": "Das Thema Biotopkartierung (Alpen) beinhaltet die im Rahmen der Biotopkartierung Bayern erfassten Biotope in den Alpen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bio_abk_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Biotopkartierung Alpen",
+      "pmtiles:layers": [
+        "bio_abk_epsg25832_shp"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/biotopkartierung.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 22759,
+  "table:row_count": 22759,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "biotop",
+      "type": "string",
+      "description": "Biotop-Hauptnummer: \u201eA\u201c \u201eTK-25Nr.\u201c \u2013 \u201elaufende Nr. in TK25\u201c, zum Beispiel A8432-0033."
+    },
+    {
+      "name": "id_tf",
+      "type": "string",
+      "description": "Biotop-Teilfl\u00e4chennummer: \u201eA\u201c \u201eTK-25Nr.\u201c \u2013 \u201elaufende Nr. in TK25\u201c \u2013 \u201eTeilfl\u00e4chennummer\u201c, zum Beispiel A8432-0033-005."
+    },
+    {
+      "name": "tf_genau",
+      "type": "string",
+      "description": "Angabe, ob sich die Anteile der Biotoptypen auf die jeweilige Biotop-Teilfl\u00e4che oder auf das Gesamtbiotop mit mehreren Teilfl\u00e4chen bezieht (ja/nein)."
+    },
+    {
+      "name": "datum",
+      "type": "date",
+      "description": "Datum der Erfassung im Gel\u00e4nde."
+    },
+    {
+      "name": "titel",
+      "type": "string",
+      "description": "\u00dcberschrift des Biotopkomplexes."
+    },
+    {
+      "name": "haupt_typ",
+      "type": "string",
+      "description": "Biotoptyp mit dem h\u00f6chsten Fl\u00e4chenanteil, inklusive Fl\u00e4chenanteil im Biotop."
+    },
+    {
+      "name": "neben_typ",
+      "type": "string",
+      "description": "Weitere Biotoptypen, inklusive deren Fl\u00e4chenanteile. Da maximal 254 Zeichen m\u00f6glich sind, kann der Text abgeschnitten sein; die vollst\u00e4ndige Auflistung steht in der Access-Datenbank mit den Sachdaten."
+    },
+    {
+      "name": "schutz_30",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG; bei Streuobstbest\u00e4nden wird hier nur der Unterwuchs bewertet."
+    },
+    {
+      "name": "pschutz_30",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che mit potentiellem Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "schutz_39",
+      "type": "string",
+      "description": "Hinweis, ob gesch\u00fctzte Fl\u00e4chenanteile nach \u00a7 39 BNatSchG / Art. 16 BayNatSchG vorhanden sind (ja/nein; 0 = nein, 1 = ja)."
+    },
+    {
+      "name": "s_30_streu",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Streuobstbest\u00e4nde mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "s_30_ges",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che inklusive Streuobstbest\u00e4nde mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "natschg_k",
+      "type": "string",
+      "description": "Angabe, ob die Biotopfl\u00e4che nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG gesch\u00fctzte Anteile enth\u00e4lt; A, B: mit gesch\u00fctzten Anteilen, C: m\u00f6glicherweise mit gesch\u00fctzten Anteilen, D: ohne gesch\u00fctzte Anteile. Streuobstbest\u00e4nde werden gesondert in streuo_k bewertet."
+    },
+    {
+      "name": "streuo_k",
+      "type": "string",
+      "description": "Angabe, ob das Streuobst nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG gesch\u00fctzte Anteile enth\u00e4lt; SA: mit gesch\u00fctzten Anteilen, SB: m\u00f6glicherweise mit gesch\u00fctzten Anteilen, SC: ohne gesch\u00fctzte Anteile."
+    },
+    {
+      "name": "uab",
+      "type": "string",
+      "description": "Link zu weiterf\u00fchrenden Informationen zum Biotop \u00fcber den UmweltAtlas Bayern."
+    },
+    {
+      "name": "steckbrief",
+      "type": "string",
+      "description": "Link zum Biotop-Steckbrief mit weitergehenden Informationen zum Biotop."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Biotopkartierung Alpen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.779557728522024,
+          47.270120676135974,
+          13.095815657755697,
+          47.829005300974515
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Alpen default style",
+      "description": "Default visualization for Biotopkartierung Alpen, drawn in #004529.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1219,
+      "file:checksum": "1220a3390c8da644467d6b325a1b1c941fa082d887055d1d92dffb96633ebe61d872"
+    },
+    "bio_abk_epsg25832_shp": {
+      "href": "./bio_abk_epsg25832_shp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 27947223,
+      "file:checksum": "122009a5ed8078db457f913546edd37a5f61431b8ec328fbdf892f4afc2bc103e0fc",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./bio_abk_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Biotopkartierung Alpen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 27195236,
+      "file:checksum": "1220bb83a3f34101f425fb7b0c3d1e0949738f434ef1368538c476f690ce160a89c5"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Alpen categorical style",
+      "description": "Categorical visualization coloring Biotopkartierung Alpen by tf_genau, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1658,
+      "file:checksum": "1220f30e09b46a1a24ae8ba06a4fb3f7309d515ad93171410b714b6be816bc897766"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Alpen labeled style",
+      "description": "Default visualization for Biotopkartierung Alpen with tf_genau shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1654,
+      "file:checksum": "1220968ae344afa6514d7f7d1876e0d37e90f2544a3345c9b6ad35581fc7ebf509ae"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Alpen graduated style",
+      "description": "Graduated visualization coloring Biotopkartierung Alpen by schutz_30, ramped from 0.0 to 100.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1977,
+      "file:checksum": "1220ffd7bce1c50b16b615389564cdc6fd62211826f95e161edce4689ad5ebca68aa"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/biotopkartierung/bio_abk_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: biotopkartierung-bio_abk",
+      "pipeline:upstream": true,
+      "file:size": 28805509,
+      "file:checksum": "12207e78e87e0081752395462dc98a9424b3b9152de6af28b299ba5006055c746cdd"
+    },
+    "thumbnail": {
+      "href": "./bio_abk_epsg25832_shp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Biotopkartierung Alpen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 185631,
+      "file:checksum": "1220e9b1b4c9d4718ddd2c5a516bac74b80f271edacfba0bc3bfadbec6fc56e2e8a2"
+    }
+  },
+  "keywords": [
+    "Biotopkartierung",
+    "Biotope",
+    "FIS-Natur",
+    "Naturschutz",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

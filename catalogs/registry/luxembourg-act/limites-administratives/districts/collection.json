@@ -1,0 +1,191 @@
+{
+  "type": "Collection",
+  "id": "limites-administratives/districts",
+  "stac_version": "1.1.0",
+  "description": "Le pr\u00e9sent jeu de donn\u00e9es contient les donn\u00e9es vectorielles issues de la base de donn\u00e9es du PCN (plan cadastral num\u00e9ris\u00e9), contenant les couches suivantes : les sections cadastrales, les communes administratives, les cantons, les districts administratifs \u00ab historiques \u00bb (les districts sont abolis, suivant la loi du 2 septembre 2015 portant abolition des districts), les arrondissements judiciaires, les circonscriptions \u00e9lectorales, les limites nationales du pays, ainsi qu'une version g\u00e9n\u00e9ralis\u00e9e de ces couches. Pour les communes, les codes LAU2 sont maintenant aussi inclus. Couche LIMADM_DISTRICTS.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./LIMADM_DISTRICTS.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limites administratives \u2013 Districts historiques",
+      "pmtiles:layers": [
+        "LIMADM_DISTRICTS"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/limites-administratives-du-grand-duche-de-luxembourg/",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 3,
+  "table:row_count": 3,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "DISTRICT",
+      "type": "string",
+      "description": "Nom du district historique."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Limites administratives \u2013 Districts historiques",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.735698757257097,
+          49.447858667065105,
+          6.530897855690466,
+          50.1827988624458
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limites administratives \u2013 Districts historiques default style",
+      "description": "Default visualization for Limites administratives \u2013 Districts historiques, drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1214,
+      "file:checksum": "1220a884d5eef2c4fa91015c663b7007eff71b5bf639adf4717a31a6568331610cb4"
+    },
+    "LIMADM_DISTRICTS": {
+      "href": "./LIMADM_DISTRICTS.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 253999,
+      "file:checksum": "12203a60accd3f200751e71e5f1e66d33083ee061f5bf266788688b6fb734b58a7f8",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./LIMADM_DISTRICTS.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limites administratives \u2013 Districts historiques (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 254189,
+      "file:checksum": "1220317ae2d829efd9612975165f2158c3942bbaa7e43c26d89d62b8a6a9c71b82c0"
+    },
+    "source": {
+      "href": "https://data.public.lu/fr/datasets/r/c4ca391e-0a1e-4d8e-a98a-63f78016f058",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: districts",
+      "pipeline:upstream": true,
+      "file:size": 9910788,
+      "file:checksum": "1220c9adb6c31b0010526af8b1497d0773b11499c47e73a0ca4ecee22940419a95f7"
+    },
+    "thumbnail": {
+      "href": "./LIMADM_DISTRICTS.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Limites administratives \u2013 Districts historiques",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 114135,
+      "file:checksum": "122020a66adb5441679a8a5d5704d0b66b920ae6dcd12c373f8cd36dc599a38d5541"
+    }
+  },
+  "keywords": [
+    "limites administratives",
+    "communes",
+    "cantons",
+    "sections cadastrales",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Limites administratives du Grand-Duch\u00e9 de Luxembourg, Administration du cadastre et de la topographie, data.public.lu, fichier du 5 septembre 2026, CC0 1.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

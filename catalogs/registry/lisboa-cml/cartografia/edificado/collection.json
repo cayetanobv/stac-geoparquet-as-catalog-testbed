@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "cartografia/edificado",
+  "stac_version": "1.1.0",
+  "description": "Edif\u00edcios existentes no concelho de Lisboa.Fonte da informa\u00e7\u00e3o: Cartografia digital de Lisboa \u00e0 escala 1/1000; Plantas de implanta\u00e7\u00e3o de edif\u00edcios constru\u00eddos posteriormente ao ano de 1998; Levantamentos topogr\u00e1ficos;Levantamento de campo.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./edificado.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Edificado",
+      "pmtiles:layers": [
+        "edificado"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/cd5e9081bb4e45d38554760a0ec40db2_0",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Edificado_e_Vias/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Edificado e Vias (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 61536,
+  "table:row_count": 61536,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "NPRINCIP",
+      "type": "string",
+      "description": "N\u00famero de pol\u00edcia principal do edif\u00edcio, texto do publicador."
+    },
+    {
+      "name": "MORADA",
+      "type": "string",
+      "description": "Morada do objeto, texto do publicador."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Edificado",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.23668871917985,
+          38.6642682003254,
+          -9.08052782104946,
+          38.8410993235688
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Edificado default style",
+      "description": "Default visualization for Edificado, drawn in #bdbdbd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1122,
+      "file:checksum": "122006fc96e36eaa7829f9ea630c26743c5c847a485ddbffc6c1fdbf08591673eb80"
+    },
+    "edificado": {
+      "href": "./edificado.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 11576452,
+      "file:checksum": "1220b3380b52bd1cd1243b4e34577ae3f425a4e4b1d0275008deb54e2204ce24e069",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./edificado.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Edificado (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10413025,
+      "file:checksum": "1220a5b95f231636316ac9e07d64a33e155264378c8a324922fe55d484c11def7cd9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Edificado categorical style",
+      "description": "Categorical visualization coloring Edificado by IDTIPO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1778,
+      "file:checksum": "1220d702e272f7b39c8c6475013bde835d65e10be80e7581bde89abba43b4d010a28"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Edificado labeled style",
+      "description": "Default visualization for Edificado with IDTIPO shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1531,
+      "file:checksum": "1220c1d5b24a928382d625f5f0f642d71ca2df0e71be1790a406b69e52ad036dad71"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/cd5e9081bb4e45d38554760a0ec40db2/geojson?layers=0&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: edificado",
+      "pipeline:upstream": true,
+      "file:size": 42577965,
+      "file:checksum": "1220193c5f7634b3762aed08b8ab743e52f20bfc5a4237a9ae73dbd2aa6c0f73f1cd"
+    },
+    "thumbnail": {
+      "href": "./edificado.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Edificado",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 132500,
+      "file:checksum": "1220229c09cd1407fa950f6e64453cd270cdb0f604e407fa05a075b339c1cfd24926"
+    }
+  },
+  "keywords": [
+    "OpenData",
+    "Geodados",
+    "Lisboa",
+    "Edificado",
+    "Buildings",
+    "GestaoUrbana",
+    "InformacaoBaseCartografia"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Edificado (Edificado e Vias), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

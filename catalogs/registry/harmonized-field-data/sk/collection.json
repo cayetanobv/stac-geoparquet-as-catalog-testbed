@@ -1,0 +1,335 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "sk",
+  "title": "Slovakia Agricultural Land Identification System",
+  "description": "Systém identifikácie poľnohospodárskych pozemkov (LPIS)\n\nLPIS is an agricultural land identification system. It represents the vector boundaries of agricultural land\nand carries information about the unique code, acreage, culture/land use, etc., which is used as a reference\nfor farmers' applications, for administrative and cross-checks, on-site checks and also checks using remote\nsensing methods.\n\nDataset Hranice užívania contains the use declared by applicants for direct support.\n\nThis collection holds 9 editions (2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/sk/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:5514). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/sk/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "LPIS",
+    "Slovakia",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "Pôdohospodárska platobná agentúra",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.apa.sk"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.66555530142273,
+          47.648965288899035,
+          22.584358266364326,
+          49.69908831907268
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2026-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:5514"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "municipality",
+      "type": "string",
+      "description": "Municipality (source column `LOKALITA_N`, per the fiboa data survey)"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "block_id",
+      "type": "string",
+      "description": "code KD (source column `KODKD`, per the fiboa data survey)"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop_group",
+      "type": "string",
+      "description": "Crop Group (source column `KULTURA_NA`, per the fiboa data survey)"
+    },
+    {
+      "name": "collection",
+      "type": "string",
+      "description": "The identifier of the collection. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 271807,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 9,
+  "partition:glob": "s3://ftw/harmonized-field-data/sk/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/sk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Slovakia — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/sk-2026.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 358297663,
+      "file:checksum": "122008e8aaab22b60982585c41e47e206b70ffa6b42c42c0581ea29205ebf3cce452",
+      "proj:code": "EPSG:5514"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2398,
+      "file:checksum": "12206d4009df3abb6c1b2756f1539636036ce99069a84cc84143068243579c81e1e9"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 1, 2, 10 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1211,
+      "file:checksum": "1220bf1176b1ddf30e0b68c577538228b4732d52ab0851c8d92690a8fd5d16f4f616"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 728,
+      "file:checksum": "1220c618f62936443a369471ece63dfbaa69683d7a2407449732f00490e820a8786c"
+    },
+    "visual": {
+      "href": "./year=2026/sk-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Slovakia — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 118809419,
+      "file:checksum": "12206fe0d2b5a05b804c0b0621e184db860f12e6a337caa6b9c0a70e4279ad5149a4"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 177338,
+      "file:checksum": "12201fe0b34f3ab77fc9cd923b5815b58179a08924a1ce897d8e2f1b8fe704f8cd00"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/sk-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "sk"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.apa.sk",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/SK.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/sk.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/sk-2018.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/sk-2019.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/sk-2020.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/sk-2021.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/sk-2022.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/sk-2023.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/sk-2024.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2024"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/sk-2025.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2025"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/sk-2026.json",
+      "type": "application/geo+json",
+      "title": "Slovakia — 2026"
+    }
+  ],
+  "updated": "2026-09-12T16:00:25Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "sk": [
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml"
+    ]
+  }
+}

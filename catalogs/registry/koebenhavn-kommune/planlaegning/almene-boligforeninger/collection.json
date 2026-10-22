@@ -1,0 +1,231 @@
+{
+  "type": "Collection",
+  "id": "planlaegning/almene-boligforeninger",
+  "stac_version": "1.1.0",
+  "description": "Almene boligforeninger i K\u00f8benhavns Kommune.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_almene_boliger_kk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Almene boligforeninger",
+      "pmtiles:layers": [
+        "k101_almene_boliger_kk"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/almene-boligforeninger",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: almene_boliger_kk",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 507,
+  "table:row_count": 507,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "v_id",
+      "type": "int64"
+    },
+    {
+      "name": "selskabsnavn",
+      "type": "string"
+    },
+    {
+      "name": "selskabsnummer",
+      "type": "int64"
+    },
+    {
+      "name": "afdelingsnavn",
+      "type": "string"
+    },
+    {
+      "name": "afdelingsnummer",
+      "type": "int64"
+    },
+    {
+      "name": "antal_familie_boliger",
+      "type": "int64"
+    },
+    {
+      "name": "antal_ungdomsboliger",
+      "type": "int64"
+    },
+    {
+      "name": "antal_aeldre_boliger",
+      "type": "int64"
+    },
+    {
+      "name": "antal_plejeboliger",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Almene boligforeninger",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.453488714790627,
+          55.61634082594679,
+          12.637387122393264,
+          55.72915394007937
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Almene boligforeninger default style",
+      "description": "Default visualization for Almene boligforeninger, drawn in #807dba.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1226,
+      "file:checksum": "12204da5f9d2f965782708711583b96c5cb95f5ef3170a97c700203daee4df5ffc73"
+    },
+    "k101_almene_boliger_kk": {
+      "href": "./k101_almene_boliger_kk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 182915,
+      "file:checksum": "1220fb55bc5e0b604a8e96b9ff892180ac62fbb254510366eabe1e3f739f6e39bf27",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_almene_boliger_kk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Almene boligforeninger (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 272295,
+      "file:checksum": "12206e84e4bc3f0de937ae338d5d675f13cb94e6069275c7234118cc29ba0f737185"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Almene boligforeninger graduated style",
+      "description": "Graduated visualization coloring Almene boligforeninger by selskabsnummer, ramped from 49.0 to 7101.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2016,
+      "file:checksum": "12204553e1936b2768119de7ca67b34130c3774f333966499c33c43ec0d333a80c43"
+    },
+    "thumbnail": {
+      "href": "./k101_almene_boliger_kk.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Almene boligforeninger",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 113107,
+      "file:checksum": "1220428cf140e1612c15591467b0b3e7fb5d4617cebd6f12e12136e8041600004865"
+    }
+  },
+  "keywords": [
+    "alment",
+    "boligafdelinger",
+    "Almene boligforeninger",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Almene boligforeninger, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/almene-boligforeninger",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

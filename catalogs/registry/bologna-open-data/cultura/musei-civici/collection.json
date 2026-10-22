@@ -1,0 +1,250 @@
+{
+  "type": "Collection",
+  "id": "cultura/musei-civici",
+  "stac_version": "1.1.0",
+  "description": "Il dataset contiene l\u2019elenco completo dei musei e degli spazi espositivi del Settore Musei Civici del Comune di Bologna, includendo denominazione, area tematica, quartiere territoriale di riferimento, contatti, siti ufficiali, descrizione del patrimonio conservato e geolocalizzazione. \u00c8 pensato per facilitare la consultazione pubblica del patrimonio culturale cittadino, supportare la pianificazione di visite e percorsi turistici, e favorire lo sviluppo di applicazioni basate su dati geografici e descrittivi delle istituzioni museali. Il dataset include 14 istituzioni museali suddivise in 5 aree tematiche: Archeologia, Arte antica, Arte Moderna e Contemporanea, Musica, Storia e Memoria, Patrimonio Industriale e Cultura Tecnica. Il dataset \u00e8 oggetto di aggiornamento con cadenza annuale da parte del Settore Musei Civici Bologna.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./elencomuseicivicidib.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Musei Civici di Bologna",
+      "pmtiles:layers": [
+        "elencomuseicivicidib"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/elenco-musei-civici-di-bologna/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/elenco-musei-civici-di-bologna/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: elencomuseicivicidib",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 14,
+  "table:row_count": 14,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "museo",
+      "type": "string"
+    },
+    {
+      "name": "area",
+      "type": "string"
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "indirizzo",
+      "type": "string"
+    },
+    {
+      "name": "contatti",
+      "type": "string"
+    },
+    {
+      "name": "web",
+      "type": "string"
+    },
+    {
+      "name": "descrizione",
+      "type": "string"
+    },
+    {
+      "name": "latitude",
+      "type": "double"
+    },
+    {
+      "name": "longitude",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Musei Civici di Bologna",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.310234,
+          44.4879616,
+          11.3573682,
+          44.5220999
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Musei Civici di Bologna default style",
+      "description": "Default visualization for Musei Civici di Bologna, drawn in #e6ab02.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1213,
+      "file:checksum": "1220d6384378e035b5f6bed0defb591aade567e5a9069bbb818f8f5a11596cc783a6"
+    },
+    "elencomuseicivicidib": {
+      "href": "./elencomuseicivicidib.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 12017,
+      "file:checksum": "122092b07dcfe19dab9ccfa934904c915eee05b2eb4605ef2cb92496a2b05409a65d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./elencomuseicivicidib.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Musei Civici di Bologna (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 30510,
+      "file:checksum": "1220cc58c0c39c3cde39754ae915ccf15ed0cb27dd8c75d4dcf864130307cf1bac58"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Musei Civici di Bologna categorical style",
+      "description": "Categorical visualization coloring Musei Civici di Bologna by quartiere, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2124,
+      "file:checksum": "1220d9767ee7fae51fa3a934bc31981e61286f1fe281be2571b16eb57ff58c37f1c1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Musei Civici di Bologna labeled style",
+      "description": "Default visualization for Musei Civici di Bologna with quartiere shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1647,
+      "file:checksum": "12207186b310400e49c0a62d0d9bab5d21533430ddf7742d19dc797e3893eeeb63bd"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Musei Civici di Bologna graduated style",
+      "description": "Graduated visualization coloring Musei Civici di Bologna by longitude, ramped from 11.310234 to 11.3573682.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2046,
+      "file:checksum": "1220396ae08c4fbb4b2b4e5b1f1bea8dd786ffb105de7404104ea804d4a120e24154"
+    },
+    "thumbnail": {
+      "href": "./elencomuseicivicidib.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Musei Civici di Bologna",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 154995,
+      "file:checksum": "1220dec490c0e41719120817c276fe3144573a9fc9d82b91487cb1ce4d678499afc3"
+    }
+  },
+  "keywords": [
+    "Istruzione, cultura e sport",
+    "Arte / cultura",
+    "Musei Civici"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abMusei Civici di Bologna\u00bb (elenco-musei-civici-di-bologna), pubblicato da Settore Musei Civici Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/elenco-musei-civici-di-bologna/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

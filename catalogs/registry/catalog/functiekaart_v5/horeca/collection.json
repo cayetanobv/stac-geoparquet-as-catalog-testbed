@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_v5/horeca",
+  "stac_version": "1.1.0",
+  "description": "Horeca",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./horeca.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "horeca"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1099,
+  "table:row_count": 1099,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Horeca",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.98413843402957,
+          52.0459718002839,
+          5.18332159322684,
+          52.1298795825782
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "horeca": {
+      "href": "./horeca.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 48793,
+      "file:checksum": "1220879a94825a1054554b623fa4cdb3a6a6647b97c650ae2d14387a1ff886ca3210",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./horeca.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 9812,
+      "file:checksum": "1220aeeb316c0e0de4ca2c595bdea5c2463401f48625278b37490365883ec3148651"
+    },
+    "horeca-tiles": {
+      "href": "./horeca.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "horeca (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 22850,
+      "file:checksum": "1220f9944fe8ae9b7cbff2293044fa822a4252caeab88fae6be61785a07e11419e5d"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 644,
+      "file:checksum": "1220013c2e06d871bd9c64523e73fc9215e805bd417d407baaeda72def86407adce4",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

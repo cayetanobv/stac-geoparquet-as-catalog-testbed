@@ -1,0 +1,260 @@
+{
+  "type": "Collection",
+  "id": "mobiliteit/parkeerterreinen",
+  "stac_version": "1.1.0",
+  "description": "Deze laag bevat dienstenzones (autosnelwegparkings), P&R, Hoppinpunten en carpoolparkings gelegen langs gewest- en autosnelwegen in Vlaanderen. Deze parkeerterreinen worden aangeduid door veelhoekige meetkundige figuren (polygonen) waarbinnen de (parkeer)infrastructuur, exploitatievormen en natuurelementen gelegen zijn.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./awv_parkeerterrein.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkeerterreinen",
+      "pmtiles:layers": [
+        "awv_parkeerterrein"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/00bd19ff-1f4e-4b59-b91b-bcc5516a5de1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.apps.mow.vlaanderen.be/opendata-geoserver/awv/wfs",
+      "rel": "related",
+      "title": "WFS source service: parkeerterrein",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "LineString",
+    "Polygon",
+    "MultiLineString",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 170,
+  "table:row_count": 170,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "Naam",
+      "type": "string"
+    },
+    {
+      "name": "Exploitant",
+      "type": "string"
+    },
+    {
+      "name": "Type_parkeerterrein",
+      "type": "string"
+    },
+    {
+      "name": "Aanwezige_veiligheidsuitrustingen",
+      "type": "string"
+    },
+    {
+      "name": "Aantal_autoparkeerplaatsen",
+      "type": "int64"
+    },
+    {
+      "name": "Aantal_busparkeerplaatsen",
+      "type": "int64"
+    },
+    {
+      "name": "Aantal_vrachtwagenparkeerplaatsen",
+      "type": "int64"
+    },
+    {
+      "name": "Aanwezige_dienstverlening",
+      "type": "string"
+    },
+    {
+      "name": "Wegnummer",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Parkeerterreinen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.656,
+          50.696,
+          5.726,
+          51.425
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerterreinen default style",
+      "description": "Default visualization for Parkeerterreinen, drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1192,
+      "file:checksum": "122036e82d7fda4d515a178f4e42a0eee3db2b671ab0ad341a5a4d6e4edca3b24f1e"
+    },
+    "awv_parkeerterrein": {
+      "href": "./awv_parkeerterrein.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 17637,
+      "file:checksum": "1220b09d06801d2dafd0bd51af68b55a2ca8df960671122f9f34faa175c925f2a5e5",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./awv_parkeerterrein.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkeerterreinen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 207202,
+      "file:checksum": "1220c113b1f633100bb296b46a28945d0049a2f87443b612276895fb11b581b0f249"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerterreinen categorical style",
+      "description": "Categorical visualization coloring Parkeerterreinen by Type_parkeerterrein, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1999,
+      "file:checksum": "122098e20dc98a236caa526d0034cfca1f77860687170c5317f1f2297afbec435ff3"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerterreinen labeled style",
+      "description": "Default visualization for Parkeerterreinen with Naam shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1617,
+      "file:checksum": "1220e22d369b76ed935142142d7789952f6d239b44ce4f623f59ce6fd52dd688a26a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerterreinen graduated style",
+      "description": "Graduated visualization coloring Parkeerterreinen by Aantal_autoparkeerplaatsen, ramped from 0.0 to 369.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2021,
+      "file:checksum": "122081ef044340437820d4b0c145590d4ec929e75a54f8af20e8837d31c6bc3e2fb2"
+    },
+    "thumbnail": {
+      "href": "./awv_parkeerterrein.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parkeerterreinen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 147043,
+      "file:checksum": "1220636ca94d851615e03818372e0f62e030b74ac53c4fe8066125065e78209ae678"
+    }
+  },
+  "keywords": [
+    "Wegen",
+    "Parkeren",
+    "Dienstenzones",
+    "Carpoolparkings",
+    "Vervoer",
+    "vervoer over land",
+    "wegennet",
+    "vrachtwagen",
+    "vrachtvervoer",
+    "(auto)parkeerplaats",
+    "parkeervoorziening",
+    "Parkeerterrein"
+  ],
+  "providers": [
+    {
+      "name": "Agentschap Wegen en Verkeer",
+      "description": "Bron: Agentschap Wegen en Verkeer, Parkeerterreinen, Modellicentie voor gratis hergebruik (gratis open datalicentie Vlaanderen v1.2), opgehaald op 20 september 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://wegenenverkeer.be/",
+      "email": "team.aim@mow.vlaanderen.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "nl",
+    "name": "Nederlands",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

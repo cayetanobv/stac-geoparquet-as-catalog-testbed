@@ -1,0 +1,291 @@
+{
+  "type": "Collection",
+  "id": "best-track/points",
+  "stac_version": "1.1.0",
+  "description": "NHC working best track of Hurricane Melissa (AL132025): 45 six-hourly centre positions from 2025-10-21 06 UTC to 2025-11-01 06 UTC with intensity (INTENSITY, kt), minimum pressure (MSLP, mb), Saffir-Simpson category and storm type. Post-storm smoothed positions; they differ from the real-time advisories. Derived column valid_time (UTC) from DTG.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./best-track-points.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track points (6-hourly)",
+      "pmtiles:layers": [
+        "best-track-points"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/",
+      "type": "text/html"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://www.nhc.noaa.gov/gis/best_track/al132025_best_track.zip",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 45,
+  "table:row_count": 45,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "STORMNAME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): storm name; 'INVEST' on the first (pre-genesis) row, 'MELISSA' on the other 44."
+    },
+    {
+      "name": "DTG",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The valid date and time of the data in UTC' as a number YYYYMMDDHH, e.g. 2025102812; parsed into valid_time."
+    },
+    {
+      "name": "YEAR",
+      "type": "double",
+      "description": "Year of DTG (UTC)."
+    },
+    {
+      "name": "MONTH",
+      "type": "string",
+      "description": "Month of DTG (UTC), text as shipped by NHC."
+    },
+    {
+      "name": "DAY",
+      "type": "double",
+      "description": "Day of DTG (UTC)."
+    },
+    {
+      "name": "HHMM",
+      "type": "string",
+      "description": "Hour and minute of DTG (UTC), text as shipped by NHC."
+    },
+    {
+      "name": "MSLP",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'the estimated sea level pressure at the center of a tropical cyclone (the lowest pressure in the system in Millibars)'; 892 to 1003 mb here."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The ocean where the tropical cyclone is located'; AL = Atlantic."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13)."
+    },
+    {
+      "name": "STORMTYPE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The category of the tropical cyclone': TS Tropical Storm (18 rows), HU Hurricane (23), EX Extratropical (4, from 2025-10-31 12 UTC)."
+    },
+    {
+      "name": "INTENSITY",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'the highest 1-minute average wind (at an elevation of 10 meters ...) associated with a tropical cyclone at a particular point in time (knots)'. Best-track maximum sustained wind, 40 to 165 kt."
+    },
+    {
+      "name": "SS",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The Saffir Simpson Hurricane Scale ... 1-5 rating based on the hurricane's present intensity' (0 = below hurricane strength). Rows: 0 = 22, 1 = 5, 2 = 5, 3 = 3, 4 = 4, 5 = 6."
+    },
+    {
+      "name": "LAT",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): latitude of the centre, decimal degrees (0.1 deg), 14.0 to 46.6; duplicates the geometry."
+    },
+    {
+      "name": "LON",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): longitude of the centre, decimal degrees, negative west, -78.6 to -51.3; duplicates the geometry."
+    },
+    {
+      "name": "valid_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): DTG parsed to UTC; 2025-10-21 06:00 to 2025-11-01 06:00 UTC in 6-h steps, 45 rows."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Centre position (Point, 0.1 deg) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); coordinates as shipped by NHC, not transformed."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Working best track points (6-hourly)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.6,
+          14.0,
+          -51.3,
+          46.6
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T06:00:00Z",
+          "2025-11-01T06:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track points (6-hourly) default style",
+      "description": "Default visualization for Working best track points (6-hourly), drawn in #c62828.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1205,
+      "file:checksum": "12207b9d1e612e5152fd18dfb556fee14ee1312440a50b5c7b3a5bf2d4568ea5e941"
+    },
+    "best-track-points": {
+      "href": "./best-track-points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6975,
+      "file:checksum": "12206c6c019ae3b2c1afd612053ea66348cedb4c241b67eab2b28dca315cf5c5acfc",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./best-track-points.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track points (6-hourly) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 104660,
+      "file:checksum": "1220b3d4f9bb0d520e7d98b0d52b8361020be750e58a1d10a98d7a4eaf89ec0b70db"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track points (6-hourly) labeled style",
+      "description": "Default visualization for Working best track points (6-hourly) with STORMNAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1633,
+      "file:checksum": "1220e929b1390e993eed89d191364e9408acdd4602cefe431ed8a3383cb3b59e8208"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track points (6-hourly) graduated style",
+      "description": "Graduated visualization coloring Working best track points (6-hourly) by DTG, ramped from 2025102106.0 to 2025110106.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2011,
+      "file:checksum": "12206b1ad61989b45cf0efbccb0d07fa86a607f1b757d6c2f3aab7e88fc7bd18f048"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/best-track-points/best-track-points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: best-track-points",
+      "pipeline:upstream": true,
+      "file:size": 5741,
+      "file:checksum": "12203cc7b9699fe43faf3804c6220d1ffa0cc019f2d4f2a717971ca5f6ec68a26c10"
+    },
+    "thumbnail": {
+      "href": "./best-track-points.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Working best track points (6-hourly)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 31697,
+      "file:checksum": "1220b087c9e6b4b319541facd0bffa84db1dd63d1d481d153b5aea659ce6d37c3bcf"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

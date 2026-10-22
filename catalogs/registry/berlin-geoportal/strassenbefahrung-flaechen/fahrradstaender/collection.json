@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "id": "strassenbefahrung-flaechen/fahrradstaender",
+  "stac_version": "1.1.0",
+  "description": "Geodaten des \u00f6ffentlichen Stra\u00dfenraums von Berlin. In den Jahren 2014 und 2015 wurde der gesamte \u00f6ffentliche Stra\u00dfenraum Berlins durch eine vermessungstechnische Stra\u00dfenbefahrung erfasst und digitalisiert. Das Ergebnis ist ein digitales Abbild des \u00f6ffentlichen Stra\u00dfenraums, welches das Haupt- und Nebenstra\u00dfennetz und teilweise auch Wege in \u00f6ffentlichen Parkanlagen umfasst. Bestandteil der digitalisierten Daten sind Stra\u00dfenobjekte, Verkehrszeichen und Verkehrsfl\u00e4chen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./strassenbefahrung_bq_fahrradstaender.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder",
+      "pmtiles:layers": [
+        "strassenbefahrung_bq_fahrradstaender"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/strassenbefahrung-2014-wfs-a6b235f6",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/strassenbefahrung",
+      "rel": "related",
+      "title": "WFS source service: bq-fahrradstaender",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 10204,
+  "table:row_count": 10204,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "bezeichnun",
+      "type": "string"
+    },
+    {
+      "name": "gis_id",
+      "type": "string"
+    },
+    {
+      "name": "elem_nr",
+      "type": "string"
+    },
+    {
+      "name": "flaeche",
+      "type": "double"
+    },
+    {
+      "name": "frs_anzahl",
+      "type": "string"
+    },
+    {
+      "name": "frs_n",
+      "type": "string"
+    },
+    {
+      "name": "laenge",
+      "type": "double"
+    },
+    {
+      "name": "shape_length",
+      "type": "double"
+    },
+    {
+      "name": "shape_area",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.1296996,
+          52.37504646,
+          13.70365882,
+          52.63435456
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder default style",
+      "description": "Default visualization for Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder, drawn in #006d2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1355,
+      "file:checksum": "122011d6da47324f95ba3490001f091ec175624f4dee2e94a8f1e5853e158d63bc3e"
+    },
+    "strassenbefahrung_bq_fahrradstaender": {
+      "href": "./strassenbefahrung_bq_fahrradstaender.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1768979,
+      "file:checksum": "12201b567bda54dc3b219b2cf7d2d69c68333bfb4ee9c69bc0febd1ee241b0eb14cb",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./strassenbefahrung_bq_fahrradstaender.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1175388,
+      "file:checksum": "1220fdb449e714ece382c766e5659957822b6ec0a610f9258d96ff86bfb0a2f208cb"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder categorical style",
+      "description": "Categorical visualization coloring Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder by frs_n, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1887,
+      "file:checksum": "12200b7a2c59ee3b1895ab1b1af46bcc89aead2643f8a3b05dafe8f936d1ee71b1f1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder labeled style",
+      "description": "Default visualization for Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder with frs_n shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1817,
+      "file:checksum": "1220b40f4f2dce1b861915b6e06d69b9b5a607ee856b184077900feff5a5506d3f0c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder graduated style",
+      "description": "Graduated visualization coloring Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder by flaeche, ramped from 0.0 to 272.9858673072.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2162,
+      "file:checksum": "1220ff31a2c7c708be8208351095e9df037503b27d8d47f081bfc007562cdab27f4d"
+    },
+    "thumbnail": {
+      "href": "./strassenbefahrung_bq_fahrradstaender.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stra\u00dfenbefahrung 2014 \u2013 Fahrradst\u00e4nder",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 132660,
+      "file:checksum": "12209b90ad1a683f0180678b8ecb8ab99077a718c7af55d02599bf9adb50aa33a6a2"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Geodaten",
+    "Karten",
+    "Sachdaten",
+    "Stra\u00dfenbefahrung",
+    "Stra\u00dfenobjekte",
+    "Verkehrsfl\u00e4chen",
+    "Verkehrszeichen"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Stra\u00dfenbefahrung 2014, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "VISS-Info@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:07:59Z"
+}

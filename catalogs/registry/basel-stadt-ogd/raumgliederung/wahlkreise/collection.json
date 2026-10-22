@@ -1,0 +1,231 @@
+{
+  "type": "Collection",
+  "id": "raumgliederung/wahlkreise",
+  "stac_version": "1.1.0",
+  "description": "Weist die politischen Wahlkreise des Kantons Basel-Stadt aus.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Politische Wahlkreise (data.bs.ch 100025)",
+      "pmtiles:layers": [
+        "ods-100025"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100025/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100025/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100025",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id_wahlkreis",
+      "type": "int32",
+      "description": "Eindeutiger Identifikator der politischen Wahlkreise."
+    },
+    {
+      "name": "wahlkreis",
+      "type": "string",
+      "description": "Bezeichnung des politischen Wahlkreises"
+    },
+    {
+      "name": "kuerzel",
+      "type": "string",
+      "description": "K\u00fcrzel des politischen Wahlkreises"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Polygon) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026). Beschreibung des Publizierers zum Feld geo_shape: \u00abFl\u00e4chengeometrie der politischen Wahlkreise\u00bb."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Politische Wahlkreise (data.bs.ch 100025)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.554673564626188,
+          47.519297247648765,
+          7.69380175925317,
+          47.600918123483126
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Politische Wahlkreise (data.bs.ch 100025) default style",
+      "description": "Default visualization for Politische Wahlkreise (data.bs.ch 100025), drawn in #756bb1.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1161,
+      "file:checksum": "12201d4d8be15326b74c40a3f10407d51ef34a19121222add50a1be2103292be2222"
+    },
+    "ods-100025": {
+      "href": "./ods-100025.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13243,
+      "file:checksum": "12204e29349b906de62f341c1d0b04adcfae64044214b3f6fe59115e1933a5600430",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Politische Wahlkreise (data.bs.ch 100025) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 28181,
+      "file:checksum": "12207e23bf626880abd2b554aa35b4ff242bacba969d7a69f2224e568a867392e8c0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Politische Wahlkreise (data.bs.ch 100025) categorical style",
+      "description": "Categorical visualization coloring Politische Wahlkreise (data.bs.ch 100025) by geo_point_2d, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2930,
+      "file:checksum": "1220da40684bcce07444419c898eaebb5578f777238ada57b5e0bfcbda3e0724c4ed"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Politische Wahlkreise (data.bs.ch 100025) labeled style",
+      "description": "Default visualization for Politische Wahlkreise (data.bs.ch 100025) with geo_point_2d shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1578,
+      "file:checksum": "1220479280691e84733410ce5a4d2aa3d08daae390b0b262ca3654fa6757f1559e8f"
+    },
+    "thumbnail": {
+      "href": "./ods-100025.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Politische Wahlkreise (data.bs.ch 100025)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 133545,
+      "file:checksum": "12205e953c9ec59e75e66446d6c52b7447c8f6b548d4bd993ee253ffbcfeccce7848"
+    }
+  },
+  "keywords": [
+    "Abstimmung",
+    "Kreise",
+    "Politik",
+    "Stimmberechtigt",
+    "Wahl",
+    "Geographie",
+    "opendata.swiss",
+    "POLW",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Staatskanzlei",
+      "description": "Datenquelle: Kanton Basel-Stadt, Staatskanzlei (Pr\u00e4sidialdepartement), \u00abPolitische Wahlkreise\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100025/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

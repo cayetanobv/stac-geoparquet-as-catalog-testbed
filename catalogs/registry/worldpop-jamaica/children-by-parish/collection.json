@@ -1,0 +1,180 @@
+{
+  "type": "Collection",
+  "id": "children-by-parish",
+  "stac_version": "1.1.0",
+  "description": "Zonal sums of the WorldPop 2020 children rasters over the 14 Jamaican parishes of OCHA COD-AB Jamaica v01 (admin level 1, boundaries valid from 2024-08-02). Tabular Parquet, 14 rows, join key adm1_name (or adm1_pcode JM01-JM14, the COD-AB codes) to the parishes Collection of the ocha-cod-jamaica catalog. Columns pop_0_4, pop_5_9, pop_10_14, pop_15_19, pop_0_19, pop_total, plus n_cells (100 m cells assigned) and n_cells_edge (coastal cells assigned by the touching-polygon fallback). Modelled estimates, not a census count; compare with the 2011 census counts in ocha-cod-jamaica/population-statistics.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "WorldPop Jamaica 2020: children by age band (100 m, modelled)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.worldpop.org/geodata/summary?id=50206",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "adm1_name",
+      "type": "string",
+      "description": "Parish name exactly as in OCHA COD-AB v01 (e.g. 'Saint Andrew', never 'St.'); join key to ocha-cod-jamaica/parishes.adm1_name."
+    },
+    {
+      "name": "adm1_pcode",
+      "type": "string",
+      "description": "COD-AB v01 P-code JM01-JM14 (alphabetical; Kingston = JM03). Not the COD-PS P-code."
+    },
+    {
+      "name": "n_cells",
+      "type": "int32",
+      "description": "Derived (CARTO): settled 100 m cells assigned to the parish (cell centre inside the polygon, plus edge cells); 1,756 (Hanover) to 19,822 (Saint Catherine), total 105,986."
+    },
+    {
+      "name": "n_cells_edge",
+      "type": "int32",
+      "description": "Derived (CARTO): of n_cells, coastal cells whose centre is outside every polygon and that were assigned to a touching parish (ALL_TOUCHED fallback); 943 in total."
+    },
+    {
+      "name": "pop_0_4",
+      "type": "double",
+      "description": "Modelled children aged 0-4 in 2020 (WorldPop m_0 + f_0 + m_1 + f_1), fractional persons."
+    },
+    {
+      "name": "pop_5_9",
+      "type": "double",
+      "description": "Modelled children aged 5-9 in 2020 (WorldPop m_5 + f_5), fractional persons."
+    },
+    {
+      "name": "pop_10_14",
+      "type": "double",
+      "description": "Modelled children aged 10-14 in 2020 (WorldPop m_10 + f_10), fractional persons."
+    },
+    {
+      "name": "pop_15_19",
+      "type": "double",
+      "description": "Modelled population aged 15-19 in 2020 (WorldPop m_15 + f_15); includes 18- and 19-year-olds."
+    },
+    {
+      "name": "pop_0_19",
+      "type": "double",
+      "description": "Modelled population aged 0-19 in 2020 = pop_0_4 + pop_5_9 + pop_10_14 + pop_15_19; 14 rows sum to 843,119."
+    },
+    {
+      "name": "pop_total",
+      "type": "double",
+      "description": "Modelled total population 2020, all ages (WorldPop jam_ppp_2020_constrained); 14 rows sum to 2,774,891."
+    }
+  ],
+  "table:row_count": 14,
+  "title": "Children by parish, Jamaica 2020 (WorldPop zonal sums, modelled)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "children-by-parish": {
+      "href": "./children-by-parish.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2363,
+      "file:checksum": "1220f7599667b4b7d97250bf27b280f04783159b1a579a727560119d97358ba546a0",
+      "roles": [
+        "data"
+      ]
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/worldpop-jamaica/children-by-parish/children-by-parish.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: children-by-parish",
+      "pipeline:upstream": true,
+      "file:size": 2363,
+      "file:checksum": "12201d108be288e892f53a246133ad6b8463f1688c3c70747ec3b9aee58376c767bf"
+    }
+  },
+  "keywords": [
+    "WorldPop",
+    "population",
+    "children",
+    "age structure",
+    "Jamaica",
+    "2020",
+    "modelled",
+    "demographics"
+  ],
+  "providers": [
+    {
+      "name": "WorldPop, University of Southampton",
+      "description": "Producer of the \"Jamaica 100m Age structures in 2020\" constrained dataset (id 50206, DOI 10.5258/SOTON/WP00695, released 2020-10-30) and of \"The spatial distribution of population in 2020, Jamaica\" (id 49810, DOI 10.5258/SOTON/WP00684), both retrieved from data.worldpop.org on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hub.worldpop.org/geodata/summary?id=50206",
+      "email": "info@worldpop.org"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:40:00Z"
+}

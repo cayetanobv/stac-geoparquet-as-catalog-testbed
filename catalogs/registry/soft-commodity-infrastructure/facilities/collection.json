@@ -1,0 +1,774 @@
+{
+  "type": "Collection",
+  "id": "facilities",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "title": "Brazilian soft-commodity facilities and cooperative membership",
+  "description": "Facility and membership layers for Brazilian soft-commodity supply chains: one\nunified layer plus the six component layers it is built from. All geometry is\nWGS84 (EPSG:4326).\n\n## The files\n\n- **`BR_facilities`** - the unified layer, every entity as one row across all\n  tiers (40,669 rows: 32,309 points and 8,360 polygons). This is the one to\n  start with. Columns: `entity_id, entity_kind, tier, weight, basis,\n  geom_method, source, geometry`.\n- **`BR_intake_points`** - grain silos from CONAB (18,802): cooperative, trader,\n  and official, with registered coordinates and static capacity in tonnes.\n- **`BR_sisbi_points`** - state/municipal (SISBI) slaughterhouses & dairy plants\n  (11,582), the frontier long tail, via Trase, with `inspection_level`\n  (SIE/SIM/CONSORCIO).\n- **`BR_muni`** - IBGE municipality boundaries (5,570), the geography everything\n  keys to.\n- **`BR_membership_muni`** - cooperative-member farm counts per municipio\n  (5,257), joined to municipality polygons.\n- **`BR_buyer_points`** - federal (SIF) slaughterhouses & dairy plants (1,514),\n  geocoded, tagged by commodity (beef/poultry/pork/dairy).\n- **`BR_mill_points`** - sugar/ethanol mills from ANP (417), town-centroid,\n  with production capacity in cubic metres per day.\n\nThe seven files hold 83,811 rows between them, but `BR_facilities` is a union of\nthe other six plus the modelled catchments, so the number of distinct entities\nis 40,669. Do not add the seven row counts together and call the result a\nfacility count.\n\n## Tiers (in `BR_facilities.tier`)\n\nMeasured over all 40,669 rows: `intake_point` grain silos (18,796),\n`slaughter_point` animal-product buyers, SIF plus SISBI (13,096),\n`membership_muni` cooperative-member density (5,257), `gravity_catchment`\nmodelled silo draw-areas (3,103, the only `modelled` rows), and `mill_point`\nsugar/ethanol mills (417).\n",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "brazil",
+    "soft commodities",
+    "supply chain",
+    "traceability",
+    "EUDR",
+    "deforestation",
+    "cooperatives",
+    "slaughterhouses",
+    "grain silos",
+    "sugar ethanol",
+    "agriculture",
+    "soy",
+    "beef",
+    "infrastructure"
+  ],
+  "providers": [
+    {
+      "name": "CONAB",
+      "description": "National grain warehouse registry (ArmazensCadastrados), the source of BR_intake_points.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.conab.gov.br/"
+    },
+    {
+      "name": "MAPA",
+      "description": "Federal meat and dairy inspection registry (SIF) and the SISBI system, the sources of BR_buyer_points and BR_sisbi_points.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.gov.br/agricultura/"
+    },
+    {
+      "name": "ANP",
+      "description": "Ethanol producer list, the source of BR_mill_points.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.gov.br/anp/"
+    },
+    {
+      "name": "IBGE",
+      "description": "Municipality boundaries and the Censo Agropecuario 2017, the sources of BR_muni and BR_membership_muni.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.ibge.gov.br/"
+    },
+    {
+      "name": "Trase",
+      "description": "Compiled and geocoded the SISBI facility records reused in BR_sisbi_points.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://trase.earth/"
+    },
+    {
+      "name": "World Resources Institute",
+      "description": "Compiled, geocoded, unified and published the catalog.",
+      "roles": [
+        "producer",
+        "processor",
+        "licensor",
+        "host"
+      ],
+      "url": "https://github.com/wri/rural-land",
+      "email": "tristan.grupp@gmail.com"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -73.9904,
+          -33.7508,
+          -29.299,
+          5.2718
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2026-07-23T11:09:51Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 83811,
+  "table:primary_geometry": "geometry",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Soft Commodity Infrastructure (Brazil)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Soft Commodity Infrastructure (Brazil)"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC BY 4.0"
+    }
+  ],
+  "assets": {
+    "BR_facilities": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_facilities.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "All facilities and membership, unified",
+      "description": "The unified layer: every entity as one row across all five tiers (32,309 points, 8,360 polygons). Start here.",
+      "file:size": 5176617,
+      "file:checksum": "12205a2b04d18eaa572e3757b2d347fb280e9d39d00100b58230852f922a2e85b481",
+      "table:row_count": 40669,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "entity_id",
+          "type": "string",
+          "description": "Identifier of the entity within its source registry. NOT unique: 40,669 rows carry 35,478 distinct values, and the namespace differs by tier."
+        },
+        {
+          "name": "entity_kind",
+          "type": "string",
+          "description": "cooperative | trader | official (silos) | buyer (slaughter/dairy) | mill."
+        },
+        {
+          "name": "tier",
+          "type": "string",
+          "description": "Layer this row belongs to: intake_point, slaughter_point, mill_point, membership_muni, or gravity_catchment."
+        },
+        {
+          "name": "weight",
+          "type": "double",
+          "description": "Size measure whose unit depends on tier: tonnes (silos), capacity band 1-4 (SIF), m3/day (mills), member count (membership)."
+        },
+        {
+          "name": "basis",
+          "type": "string",
+          "description": "observed (recorded by an official source) or modelled (computed by us; only gravity_catchment)."
+        },
+        {
+          "name": "geom_method",
+          "type": "string",
+          "description": "How the coordinate was set. One of registered, geocoded, municipality, derived, municipality_centroid."
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "Origin registry: CONAB, MAPA-SIF, Trase-SISBI, ANP, or IBGE-6848."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Point",
+        "Polygon",
+        "MultiPolygon"
+      ],
+      "bbox": [
+        -73.9904,
+        -33.7508,
+        -34.7932,
+        5.2718
+      ]
+    },
+    "BR_intake_points": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_intake_points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Grain silos (CONAB)",
+      "description": "Registered grain warehouses from CONAB's national registry: cooperative, trader and official, with source GPS coordinates and static capacity in tonnes.",
+      "file:size": 1355041,
+      "file:checksum": "1220d8eb5305b6f830766b6b366ad03698434542d0a1b403a2cb0e95808059cfc4c3",
+      "table:row_count": 18802,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "cda",
+          "type": "string",
+          "description": "CONAB warehouse registration code (Certificado de Armazem). Not unique: 2 codes repeat."
+        },
+        {
+          "name": "especie",
+          "type": "string",
+          "description": "CONAB warehouse product class, as recorded in the registry."
+        },
+        {
+          "name": "tipo",
+          "type": "string",
+          "description": "CONAB warehouse structure type, as recorded in the registry."
+        },
+        {
+          "name": "tipo_entidade",
+          "type": "string",
+          "description": "CONAB operator type: COOPERATIVA, PRIVADA, OFICIAL."
+        },
+        {
+          "name": "municipio_nome",
+          "type": "string",
+          "description": "Municipality name. Free text; do not join on it."
+        },
+        {
+          "name": "cod_ibge",
+          "type": "string",
+          "description": "IBGE 7-digit municipality code. Unique in BR_muni and BR_membership_muni; repeats elsewhere."
+        },
+        {
+          "name": "uf",
+          "type": "string",
+          "description": "State (UF) abbreviation."
+        },
+        {
+          "name": "capacity_t",
+          "type": "double",
+          "description": "Static storage capacity in tonnes (CONAB silos)."
+        },
+        {
+          "name": "cap_exp_t",
+          "type": "double",
+          "description": "CONAB daily shipping (expedicao) capacity in tonnes."
+        },
+        {
+          "name": "cap_rec_t",
+          "type": "double",
+          "description": "CONAB daily intake (recebimento) capacity in tonnes."
+        },
+        {
+          "name": "lat",
+          "type": "double",
+          "description": "Latitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "lon",
+          "type": "double",
+          "description": "Longitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "operator",
+          "type": "string",
+          "description": "Warehouse operator name (CONAB)."
+        },
+        {
+          "name": "endereco",
+          "type": "string",
+          "description": "Facility address."
+        },
+        {
+          "name": "is_cooperative",
+          "type": "bool",
+          "description": "True if the CONAB warehouse operator is a cooperative."
+        },
+        {
+          "name": "basis",
+          "type": "string",
+          "description": "observed (recorded by an official source) or modelled (computed by us; only gravity_catchment)."
+        },
+        {
+          "name": "geom_method",
+          "type": "string",
+          "description": "How the coordinate was set. One of registered, geocoded, municipality, derived, municipality_centroid."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Point"
+      ],
+      "bbox": [
+        -72.6468,
+        -33.598,
+        -34.8385,
+        3.13
+      ]
+    },
+    "BR_sisbi_points": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_sisbi_points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "State and municipal slaughterhouses and dairy plants (SISBI)",
+      "description": "The frontier long tail: SIE, SIM and CONSORCIO plants from MAPA's SISBI system, geocoded from registry addresses by Trase.",
+      "file:size": 708679,
+      "file:checksum": "12202740d2022c69f000ef39a05c8dbc745630054e3b84a0bd73f83eb8fd9166eac3",
+      "table:row_count": 11582,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "facility_id",
+          "type": "string",
+          "description": "Trase facility identifier. Not unique: 11,582 rows carry 9,515 distinct values."
+        },
+        {
+          "name": "cnpj",
+          "type": "string",
+          "description": "Brazilian company tax id (CNPJ). One company can operate several plants, so this repeats."
+        },
+        {
+          "name": "company",
+          "type": "string",
+          "description": "Company/operator name (Trase SISBI)."
+        },
+        {
+          "name": "municipio_nome",
+          "type": "string",
+          "description": "Municipality name. Free text; do not join on it."
+        },
+        {
+          "name": "state",
+          "type": "string",
+          "description": "State name (Trase SISBI). Full name, unlike uf."
+        },
+        {
+          "name": "inspection_level",
+          "type": "string",
+          "description": "SISBI inspection tier: SIE (state), SIM (municipal), or CONSORCIO (inter-municipal)."
+        },
+        {
+          "name": "commodity",
+          "type": "string",
+          "description": "beef, poultry, pork, dairy, sugar_ethanol, lamb, goat, or rabbit."
+        },
+        {
+          "name": "lat",
+          "type": "double",
+          "description": "Latitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "lon",
+          "type": "double",
+          "description": "Longitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "entity_kind",
+          "type": "string",
+          "description": "cooperative | trader | official (silos) | buyer (slaughter/dairy) | mill."
+        },
+        {
+          "name": "basis",
+          "type": "string",
+          "description": "observed (recorded by an official source) or modelled (computed by us; only gravity_catchment)."
+        },
+        {
+          "name": "geom_method",
+          "type": "string",
+          "description": "How the coordinate was set. One of registered, geocoded, municipality, derived, municipality_centroid."
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "Origin registry: CONAB, MAPA-SIF, Trase-SISBI, ANP, or IBGE-6848."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Point"
+      ],
+      "bbox": [
+        -72.7639,
+        -33.6867,
+        -34.8194,
+        3.0774
+      ]
+    },
+    "BR_muni": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_muni.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Municipality boundaries (IBGE)",
+      "description": "IBGE official municipality polygons, the geography every other layer keys to through cod_ibge.",
+      "file:size": 3014381,
+      "file:checksum": "1220a49fc6143b2d1b79c8f772e24113481d0aa96a3fa4f2df9c010a3b98cd87c1c7",
+      "table:row_count": 5570,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "cod_ibge",
+          "type": "string",
+          "description": "IBGE 7-digit municipality code. Unique in BR_muni and BR_membership_muni; repeats elsewhere."
+        },
+        {
+          "name": "municipio_nome",
+          "type": "string",
+          "description": "Municipality name. Free text; do not join on it."
+        },
+        {
+          "name": "uf",
+          "type": "string",
+          "description": "State (UF) abbreviation."
+        },
+        {
+          "name": "cx",
+          "type": "double",
+          "description": "Municipality centroid longitude."
+        },
+        {
+          "name": "cy",
+          "type": "double",
+          "description": "Municipality centroid latitude."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Polygon",
+        "MultiPolygon"
+      ],
+      "bbox": [
+        -73.9904,
+        -33.7508,
+        -29.299,
+        5.2718
+      ]
+    },
+    "BR_membership_muni": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_membership_muni.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Cooperative membership by municipality (IBGE 2017)",
+      "description": "Farms per municipality that belong to a cooperative, from the Censo Agropecuario 2017, joined to the municipality polygon.",
+      "file:size": 2864377,
+      "file:checksum": "1220e5c01cea41ce956091d19e63b7b806ec78739d955364dec641590b7caa4fb9e6",
+      "table:row_count": 5257,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "cod_ibge",
+          "type": "string",
+          "description": "IBGE 7-digit municipality code. Unique in BR_muni and BR_membership_muni; repeats elsewhere."
+        },
+        {
+          "name": "coop_members",
+          "type": "int32",
+          "description": "Number of farms in the municipio that belong to a cooperative (IBGE census 2017)."
+        },
+        {
+          "name": "municipio_nome",
+          "type": "string",
+          "description": "Municipality name. Free text; do not join on it."
+        },
+        {
+          "name": "uf",
+          "type": "string",
+          "description": "State (UF) abbreviation."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Polygon",
+        "MultiPolygon"
+      ],
+      "bbox": [
+        -73.9904,
+        -33.7508,
+        -34.7932,
+        5.2718
+      ]
+    },
+    "BR_buyer_points": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_buyer_points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Federal slaughterhouses and dairy plants (MAPA SIF)",
+      "description": "Federally inspected meat and dairy plants, geocoded from registry addresses, tagged beef, poultry, pork or dairy.",
+      "file:size": 140515,
+      "file:checksum": "1220df49f089319094474e3dab7404be7fd5b6a5b6480a84e5784901e7bd88f24a93",
+      "table:row_count": 1514,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "nr_sif",
+          "type": "string",
+          "description": "SIF federal inspection registration number. Not unique: 1,514 rows carry 1,495 distinct values."
+        },
+        {
+          "name": "cnpj",
+          "type": "string",
+          "description": "Brazilian company tax id (CNPJ). One company can operate several plants, so this repeats."
+        },
+        {
+          "name": "razao_social",
+          "type": "string",
+          "description": "Registered legal company name."
+        },
+        {
+          "name": "municipio_nome",
+          "type": "string",
+          "description": "Municipality name. Free text; do not join on it."
+        },
+        {
+          "name": "uf",
+          "type": "string",
+          "description": "State (UF) abbreviation."
+        },
+        {
+          "name": "logradouro",
+          "type": "string",
+          "description": "Street address."
+        },
+        {
+          "name": "cep",
+          "type": "string",
+          "description": "Postal code (CEP)."
+        },
+        {
+          "name": "capacity_band",
+          "type": "string",
+          "description": "Slaughter capacity band from SIF (gt80_h/40_80_h/20_40_h/lt20_h)."
+        },
+        {
+          "name": "entity_kind",
+          "type": "string",
+          "description": "cooperative | trader | official (silos) | buyer (slaughter/dairy) | mill."
+        },
+        {
+          "name": "commodity",
+          "type": "string",
+          "description": "beef, poultry, pork, dairy, sugar_ethanol, lamb, goat, or rabbit."
+        },
+        {
+          "name": "lat",
+          "type": "double",
+          "description": "Latitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "lon",
+          "type": "double",
+          "description": "Longitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "geom_method",
+          "type": "string",
+          "description": "How the coordinate was set. One of registered, geocoded, municipality, derived, municipality_centroid."
+        },
+        {
+          "name": "basis",
+          "type": "string",
+          "description": "observed (recorded by an official source) or modelled (computed by us; only gravity_catchment)."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Point"
+      ],
+      "bbox": [
+        -71.445,
+        -31.6907,
+        -34.8832,
+        3.118
+      ]
+    },
+    "BR_mill_points": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/BR_mill_points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Sugar and ethanol mills (ANP)",
+      "description": "ANP ethanol producers with production capacity in cubic metres per day. Each mill sits at its municipality centroid.",
+      "file:size": 33933,
+      "file:checksum": "12200e22932807057486ca993bb2580718a39c03013ed60bc1adaba74412eaaa0b0c",
+      "table:row_count": 417,
+      "table:primary_geometry": "geometry",
+      "table:columns": [
+        {
+          "name": "cnpj",
+          "type": "string",
+          "description": "Brazilian company tax id (CNPJ). One company can operate several plants, so this repeats."
+        },
+        {
+          "name": "razao_social",
+          "type": "string",
+          "description": "Registered legal company name."
+        },
+        {
+          "name": "municipio_nome",
+          "type": "string",
+          "description": "Municipality name. Free text; do not join on it."
+        },
+        {
+          "name": "uf",
+          "type": "string",
+          "description": "State (UF) abbreviation."
+        },
+        {
+          "name": "capacity_m3d",
+          "type": "double",
+          "description": "Ethanol production capacity in cubic metres per day (ANP mills)."
+        },
+        {
+          "name": "entity_kind",
+          "type": "string",
+          "description": "cooperative | trader | official (silos) | buyer (slaughter/dairy) | mill."
+        },
+        {
+          "name": "commodity",
+          "type": "string",
+          "description": "beef, poultry, pork, dairy, sugar_ethanol, lamb, goat, or rabbit."
+        },
+        {
+          "name": "lat",
+          "type": "double",
+          "description": "Latitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "lon",
+          "type": "double",
+          "description": "Longitude, WGS84. Duplicates the geometry; kept for readers with no spatial stack."
+        },
+        {
+          "name": "geom_method",
+          "type": "string",
+          "description": "How the coordinate was set. One of registered, geocoded, municipality, derived, municipality_centroid."
+        },
+        {
+          "name": "basis",
+          "type": "string",
+          "description": "observed (recorded by an official source) or modelled (computed by us; only gravity_catchment)."
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "Geometry as WKB, WGS84 (EPSG:4326). Points for facilities; polygons for municipality and catchment rows."
+        },
+        {
+          "name": "bbox",
+          "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+          "description": "GeoParquet 1.1 covering column: the per-row envelope as xmin/ymin/xmax/ymax, so a reader can prune row groups without decoding geometry."
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "geometry_types": [
+        "Point"
+      ],
+      "bbox": [
+        -67.8357,
+        -29.8441,
+        -34.9191,
+        -1.3709
+      ]
+    },
+    "thumbnail": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Facility locations over Brazil",
+      "description": "Every facility point in the unified layer, drawn at its true position over the IBGE municipality boundaries.",
+      "file:size": 536546,
+      "file:checksum": "1220c591a5ba0711c128b05084052063a4c33a5c66552917506d16a243c187a57ab7"
+    },
+    "documentation": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/README.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "Collection README",
+      "file:size": 7182,
+      "file:checksum": "1220c293e7f8b1d946d3e6ccf3aab8aac8b2df2ca944316b44a418d7b819b27993d4"
+    },
+    "agents": {
+      "href": "https://data.source.coop/tristangruppwri/soft-commodity-infrastructure/facilities/AGENTS.md",
+      "type": "text/markdown",
+      "roles": [
+        "metadata"
+      ],
+      "title": "Collection agent guide",
+      "file:size": 7336,
+      "file:checksum": "1220275e593b9fa0b87dff0d2bfbc4a3901a3e738239d7147b6350359e724f48dfae"
+    }
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "type": "Collection",
+  "id": "utilities/water/tanks",
+  "stac_version": "1.1.0",
+  "description": "Converted from line feature to polygon January 2024 from WatTank. Added new fields to show location of reservoirs; ex. 'Deer Ridge Reservoir'",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tanks.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "tanks"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 3,
+  "table:row_count": 3,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "Reservoir_Location",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 3 of 3 rows populated; values: Deer Ridge Reservoir, Hunters Hill Reservoir, Trout Creek Reservoir."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Tank - Water Utility",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.71188654994214,
+          49.5701694474048,
+          -119.65437827632456,
+          49.6250262282994
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "tanks": {
+      "href": "./tanks.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13978,
+      "file:checksum": "1220083ea76e4a8d9879812b8591d1187e44e6d0df3578187e25610de9f509ccee30",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./tanks.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 6434,
+      "file:checksum": "12209ce74dfc0d5b2db917d5eb8fe8e47930ed9be034abd0691d653990cb4bedd301"
+    },
+    "tanks-tiles": {
+      "href": "./tanks.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "tanks (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1782,
+      "file:checksum": "122001cbab045a2d289c60839ef331683adfb7991d86b20dc6ef0c97f4d873bb0ec9"
+    },
+    "styles/reservoir": {
+      "href": "./styles/reservoir.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Reservoir",
+      "file:size": 652,
+      "file:checksum": "122004d3e8b5f2750c6b32de70986d631604f2b1ec1e54e578f367cb4316ce7b341e"
+    }
+  },
+  "keywords": [
+    "Water Utility",
+    "Open"
+  ]
+}

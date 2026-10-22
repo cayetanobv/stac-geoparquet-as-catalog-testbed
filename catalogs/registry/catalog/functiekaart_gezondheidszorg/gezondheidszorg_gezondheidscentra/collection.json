@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_gezondheidszorg/gezondheidszorg_gezondheidscentra",
+  "stac_version": "1.1.0",
+  "description": "Gezondheidszorg Gezondheidscentra",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gezondheidszorg_gezondheidscentra.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "gezondheidszorg_gezondheidscentra"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 15,
+  "table:row_count": 15,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Gezondheidszorg Gezondheidscentra",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.01086612853179,
+          52.0645880720593,
+          5.1444672494964,
+          52.1218087272698
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "gezondheidszorg_gezondheidscentra": {
+      "href": "./gezondheidszorg_gezondheidscentra.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3202,
+      "file:checksum": "12201818506c2748a8a58e576359657f91c086941b8c42848af884232f808ef3b2d4",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./gezondheidszorg_gezondheidscentra.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 2463,
+      "file:checksum": "1220f0c793780efce95a5e2dd3dee41be315cae7b4149275a3f1d150ce22ef3ac838"
+    },
+    "gezondheidszorg_gezondheidscentra-tiles": {
+      "href": "./gezondheidszorg_gezondheidscentra.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "gezondheidszorg_gezondheidscentra (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1898,
+      "file:checksum": "1220c004c9562acc84481de8a83508cfa4d96f9c2151e31683dd1e8b6ce64a3ef0b5"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 742,
+      "file:checksum": "122029efe32e334c9971fb179affdae09420385efa2f1256751345f909c1d8d3aab2",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

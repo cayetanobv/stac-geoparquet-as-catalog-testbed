@@ -1,0 +1,239 @@
+{
+  "type": "Collection",
+  "id": "amtliche-vermessung/postleitzahl",
+  "stac_version": "1.1.0",
+  "description": "Die Postleitzahlen sind eine Informationsebene der amtlichen Vermessung, welche die Postleitzahlengebiete gem\u00e4ss dem amtlichen Ortschaftsverzeichnis von Swisstopo enth\u00e4lt",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100016.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Postleitzahl (data.bs.ch 100016)",
+      "pmtiles:layers": [
+        "ods-100016"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100016/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100016/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100016",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 15,
+  "table:row_count": 15,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id",
+      "type": "int32",
+      "description": "Eindeutiger Indentifikator"
+    },
+    {
+      "name": "postleitzahl",
+      "type": "string",
+      "description": "Numerischer Wert mit 4 Positionen gem\u00e4ss offiziellem PLZ-Verzeichnis der Schweizerischen Post."
+    },
+    {
+      "name": "postleitzahlenzusatz",
+      "type": "int32",
+      "description": "2 Positionen gem\u00e4ss offiziellem PLZ-Verzeichnis der schweizerischen Post. Im Kanton Basel-Stadt ist diese bisher in der Regel \u201c00\u201d."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Status de Postleitzahl"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Polygon) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026). Beschreibung des Publizierers zum Feld geo_shape: \u00abFl\u00e4che des Postleitzahlkreises\u00bb."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Postleitzahl (data.bs.ch 100016)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.55466,
+          47.519297,
+          7.693802,
+          47.600918
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Postleitzahl (data.bs.ch 100016) default style",
+      "description": "Default visualization for Postleitzahl (data.bs.ch 100016), drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1152,
+      "file:checksum": "1220b1962ae7331c1f5d6be88072b1974629682f9998627ec046c1dca69b22d67736"
+    },
+    "ods-100016": {
+      "href": "./ods-100016.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 35029,
+      "file:checksum": "12207c053d31d3c4d04de88922ae4cff4cefb3992af62d05fb071243ee69b573fec6",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100016.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Postleitzahl (data.bs.ch 100016) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 51218,
+      "file:checksum": "12203796b0c3161c778ee8ff5389cfdbacd2e2b437031059de9c1daa7c0ec23ef16f"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Postleitzahl (data.bs.ch 100016) categorical style",
+      "description": "Categorical visualization coloring Postleitzahl (data.bs.ch 100016) by postleitzahl, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3017,
+      "file:checksum": "12203333a736ddb1f0839ac53b33960e0e9bbeb910f35b4e2263af7a8a3088cdde86"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Postleitzahl (data.bs.ch 100016) labeled style",
+      "description": "Default visualization for Postleitzahl (data.bs.ch 100016) with postleitzahl shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1569,
+      "file:checksum": "1220c9de33e60acc0d6993570c9efacd0c4b7aec869c02f601c893c1a6550c99adcb"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Postleitzahl (data.bs.ch 100016) graduated style",
+      "description": "Graduated visualization coloring Postleitzahl (data.bs.ch 100016) by postleitzahlenzusatz, ramped from 0.0 to 1.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1945,
+      "file:checksum": "12203f8cd1499409648d957e749fa82670cd60fe988fd63c83d3a0e50b3b82e2e70d"
+    },
+    "thumbnail": {
+      "href": "./ods-100016.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Postleitzahl (data.bs.ch 100016)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 134711,
+      "file:checksum": "12204ee11f97ab888f021bf5ffb7470d615572076221f850a89cbe6b1236523ce8cc"
+    }
+  },
+  "keywords": [
+    "Geographie",
+    "Verwaltung",
+    "Statistische Grundlagen",
+    "opendata.swiss",
+    "AVGB",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Grundbuch- und Vermessungsamt",
+      "description": "Datenquelle: Kanton Basel-Stadt, Grundbuch- und Vermessungsamt (Bau- und Verkehrsdepartement), \u00abPostleitzahl\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100016/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

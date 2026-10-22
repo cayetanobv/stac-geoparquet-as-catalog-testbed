@@ -1,0 +1,1783 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+  ],
+  "id": "waterways",
+  "title": "Waterways",
+  "description": "OSM ways tagged waterway=* (rivers, streams, canals, ditches, drains), as lines. Cut to the admin regions (states, provinces and territories) of Canada, Mexico and the United States, one GeoParquet file per region. This collection reads the nightly build, so its contents change every night. Read every region at once with the partition glob s3://parquetry/osm/latest/country=*/state=*/waterways.parquet through the anonymous S3 endpoint s3.geomermaids.com (path-style, empty credentials), or one region over plain HTTPS. The README gives both setups.",
+  "keywords": [
+    "OpenStreetMap",
+    "OSM",
+    "GeoParquet",
+    "waterways",
+    "Canada",
+    "Mexico",
+    "United States"
+  ],
+  "license": "ODbL-1.0",
+  "version": "2026-10-22",
+  "updated": "2026-10-22T10:03:49Z",
+  "providers": [
+    {
+      "name": "OpenStreetMap contributors",
+      "description": "Created and maintain the data, published under the ODbL 1.0.",
+      "url": "https://www.openstreetmap.org/",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geofabrik GmbH",
+      "description": "Publishes the daily regional OSM extracts this catalog is built from.",
+      "url": "https://download.geofabrik.de/",
+      "roles": [
+        "processor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converts the extracts to GeoParquet nightly, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          172.4583,
+          14.53106,
+          -52.6326,
+          83.126214
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-10-20T20:23:47Z",
+          "2026-10-20T20:23:47Z"
+        ]
+      ]
+    }
+  },
+  "partition:scheme": "hive",
+  "partition:strategy": "attribute",
+  "partition:keys": [
+    {
+      "name": "country",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "description": "ISO 3166-2 code of the admin region (state, province or territory), e.g. US-NY. One file per region."
+    }
+  ],
+  "partition:file_count": 98,
+  "partition:glob": "s3://parquetry/osm/latest/country=*/state=*/waterways.parquet",
+  "table:row_count": 19097310,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "osm_id",
+      "type": "BIGINT",
+      "description": "OSM element id. Unique only together with osm_type, since nodes, ways and relations have separate id spaces. An area carries the id of the way or relation it was built from. A feature crossing a region border appears once per region it touches."
+    },
+    {
+      "name": "osm_type",
+      "type": "VARCHAR",
+      "description": "OSM element type: node, way or relation."
+    },
+    {
+      "name": "country",
+      "type": "VARCHAR",
+      "description": "ISO 3166-1 alpha-2 country code. Same value as the country= partition key."
+    },
+    {
+      "name": "state_name",
+      "type": "VARCHAR",
+      "description": "Name of the admin region (state, province or territory) the file was cut to."
+    },
+    {
+      "name": "state_iso",
+      "type": "VARCHAR",
+      "description": "ISO 3166-2 code of the admin region, e.g. US-NY or CA-ON. Same value as the state= partition key."
+    },
+    {
+      "name": "waterway",
+      "type": "VARCHAR",
+      "description": "Value of the OSM waterway tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:waterway"
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR",
+      "description": "Value of the OSM name tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:name"
+    },
+    {
+      "name": "width",
+      "type": "DOUBLE",
+      "description": "Value of the OSM width tag as a number; NULL when absent or not a valid number. See https://wiki.openstreetmap.org/wiki/Key:width"
+    },
+    {
+      "name": "intermittent",
+      "type": "VARCHAR",
+      "description": "Value of the OSM intermittent tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:intermittent"
+    },
+    {
+      "name": "tunnel",
+      "type": "VARCHAR",
+      "description": "Value of the OSM tunnel tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:tunnel"
+    },
+    {
+      "name": "tags",
+      "type": "MAP(VARCHAR, VARCHAR)",
+      "description": "Every OSM tag on the element, as a key to value map. The promoted columns are typed copies of single tags."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-feature bounding box in float32, rounded outward so it always contains the geometry (at most about 9 m of slack). Declared as the GeoParquet `covering` for the geometry column, and its Parquet min/max statistics let any engine skip row groups: filter on bbox.xmin/ymin/xmax/ymax before touching geometry."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Feature geometry, native Parquet GEOMETRY (GeoParquet 2.0), OGC:CRS84 longitude/latitude. Geometry types: LineString."
+    }
+  ],
+  "assets": {
+    "data-ca-ab": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-AB/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alberta (CA-AB)",
+      "description": "194,581 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-AB/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 54460935
+    },
+    "data-ca-bc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-BC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "British Columbia (CA-BC)",
+      "description": "3,051,786 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-BC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 714219710
+    },
+    "data-ca-mb": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-MB/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Manitoba (CA-MB)",
+      "description": "170,978 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-MB/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 32388619
+    },
+    "data-ca-nb": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NB/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Brunswick / Nouveau-Brunswick (CA-NB)",
+      "description": "73,138 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NB/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 14516259
+    },
+    "data-ca-nl": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NL/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Newfoundland and Labrador (CA-NL)",
+      "description": "581,607 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NL/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 71309840
+    },
+    "data-ca-ns": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NS/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nova Scotia (CA-NS)",
+      "description": "54,136 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NS/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10090326
+    },
+    "data-ca-nt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NT/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Northwest Territories (CA-NT)",
+      "description": "1,009,115 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NT/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 118329174
+    },
+    "data-ca-nu": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NU/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "ᓄᓇᕗᑦ Nunavut (CA-NU)",
+      "description": "4,164,375 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NU/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 446680273
+    },
+    "data-ca-on": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-ON/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ontario (CA-ON)",
+      "description": "915,982 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-ON/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 216585439
+    },
+    "data-ca-pe": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-PE/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Prince Edward Island (CA-PE)",
+      "description": "5,812 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-PE/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 953044
+    },
+    "data-ca-qc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-QC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Québec (CA-QC)",
+      "description": "2,176,396 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-QC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 235610319
+    },
+    "data-ca-sk": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-SK/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saskatchewan (CA-SK)",
+      "description": "95,045 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-SK/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 21000999
+    },
+    "data-ca-yt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-YT/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yukon (CA-YT)",
+      "description": "116,547 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-YT/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 24901275
+    },
+    "data-mx-agu": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-AGU/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Aguascalientes (MX-AGU)",
+      "description": "263 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-AGU/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 120319
+    },
+    "data-mx-bcn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-BCN/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Baja California (MX-BCN)",
+      "description": "2,047 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-BCN/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 927692
+    },
+    "data-mx-bcs": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-BCS/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Baja California Sur (MX-BCS)",
+      "description": "2,301 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-BCS/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1026061
+    },
+    "data-mx-cam": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CAM/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Campeche (MX-CAM)",
+      "description": "183 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CAM/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 257431
+    },
+    "data-mx-chh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CHH/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chihuahua (MX-CHH)",
+      "description": "38,987 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CHH/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 16865317
+    },
+    "data-mx-chp": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CHP/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chiapas (MX-CHP)",
+      "description": "2,673 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CHP/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1962189
+    },
+    "data-mx-cmx": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CMX/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ciudad de México (MX-CMX)",
+      "description": "1,260 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CMX/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 251187
+    },
+    "data-mx-coa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-COA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Coahuila (MX-COA)",
+      "description": "6,914 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-COA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3801120
+    },
+    "data-mx-col": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-COL/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colima (MX-COL)",
+      "description": "2,118 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-COL/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 788013
+    },
+    "data-mx-dur": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-DUR/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Durango (MX-DUR)",
+      "description": "5,223 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-DUR/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4081018
+    },
+    "data-mx-gro": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-GRO/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guerrero (MX-GRO)",
+      "description": "2,539 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-GRO/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1938784
+    },
+    "data-mx-gua": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-GUA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guanajuato (MX-GUA)",
+      "description": "1,289 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-GUA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 646789
+    },
+    "data-mx-hid": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-HID/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hidalgo (MX-HID)",
+      "description": "1,250 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-HID/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 799410
+    },
+    "data-mx-jal": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-JAL/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jalisco (MX-JAL)",
+      "description": "6,683 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-JAL/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2874560
+    },
+    "data-mx-mex": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MEX/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Estado de México (MX-MEX)",
+      "description": "5,656 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MEX/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1733297
+    },
+    "data-mx-mic": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MIC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Michoacán (MX-MIC)",
+      "description": "2,831 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MIC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1630263
+    },
+    "data-mx-mor": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MOR/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Morelos (MX-MOR)",
+      "description": "533 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MOR/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 393655
+    },
+    "data-mx-nay": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-NAY/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nayarit (MX-NAY)",
+      "description": "2,305 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-NAY/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1458439
+    },
+    "data-mx-nle": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-NLE/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nuevo León (MX-NLE)",
+      "description": "4,283 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-NLE/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1918129
+    },
+    "data-mx-oax": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-OAX/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oaxaca (MX-OAX)",
+      "description": "3,219 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-OAX/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2502878
+    },
+    "data-mx-pue": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-PUE/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puebla (MX-PUE)",
+      "description": "4,588 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-PUE/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1766065
+    },
+    "data-mx-que": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-QUE/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Querétaro (MX-QUE)",
+      "description": "1,343 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-QUE/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 413379
+    },
+    "data-mx-roo": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-ROO/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Quintana Roo (MX-ROO)",
+      "description": "332 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-ROO/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 99173
+    },
+    "data-mx-sin": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SIN/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sinaloa (MX-SIN)",
+      "description": "9,109 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SIN/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3760736
+    },
+    "data-mx-slp": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SLP/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "San Luis Potosí (MX-SLP)",
+      "description": "826 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SLP/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 655787
+    },
+    "data-mx-son": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SON/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sonora (MX-SON)",
+      "description": "15,666 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SON/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 5700116
+    },
+    "data-mx-tab": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TAB/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tabasco (MX-TAB)",
+      "description": "1,006 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TAB/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 792781
+    },
+    "data-mx-tam": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TAM/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tamaulipas (MX-TAM)",
+      "description": "2,051 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TAM/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 924684
+    },
+    "data-mx-tla": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TLA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tlaxcala (MX-TLA)",
+      "description": "1,343 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TLA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 302959
+    },
+    "data-mx-ver": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-VER/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Veracruz (MX-VER)",
+      "description": "15,625 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-VER/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4954714
+    },
+    "data-mx-yuc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-YUC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yucatán (MX-YUC)",
+      "description": "146 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-YUC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 19780
+    },
+    "data-mx-zac": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-ZAC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Zacatecas (MX-ZAC)",
+      "description": "1,095 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-ZAC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 800057
+    },
+    "data-us-ak": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AK/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alaska (US-AK)",
+      "description": "433,625 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AK/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 72787368
+    },
+    "data-us-al": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AL/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alabama (US-AL)",
+      "description": "94,446 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AL/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 17322036
+    },
+    "data-us-ar": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AR/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arkansas (US-AR)",
+      "description": "47,714 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AR/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10185387
+    },
+    "data-us-az": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AZ/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arizona (US-AZ)",
+      "description": "146,899 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AZ/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 44002635
+    },
+    "data-us-ca": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "California (US-CA)",
+      "description": "912,002 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 148701816
+    },
+    "data-us-co": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CO/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colorado (US-CO)",
+      "description": "476,148 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CO/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 85445071
+    },
+    "data-us-ct": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CT/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Connecticut (US-CT)",
+      "description": "36,771 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CT/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6907288
+    },
+    "data-us-dc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-DC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "District of Columbia (US-DC)",
+      "description": "325 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-DC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 79570
+    },
+    "data-us-de": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-DE/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Delaware (US-DE)",
+      "description": "5,430 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-DE/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1236095
+    },
+    "data-us-fl": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-FL/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Florida (US-FL)",
+      "description": "51,122 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-FL/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 5878392
+    },
+    "data-us-ga": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-GA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Georgia (US-GA)",
+      "description": "207,603 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-GA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 41578357
+    },
+    "data-us-hi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-HI/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hawaii (US-HI)",
+      "description": "7,334 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-HI/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 3200264
+    },
+    "data-us-ia": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iowa (US-IA)",
+      "description": "91,596 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 39746507
+    },
+    "data-us-id": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ID/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Idaho (US-ID)",
+      "description": "29,075 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ID/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10897668
+    },
+    "data-us-il": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IL/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Illinois (US-IL)",
+      "description": "138,019 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IL/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 33580203
+    },
+    "data-us-in": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IN/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Indiana (US-IN)",
+      "description": "42,765 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IN/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10091998
+    },
+    "data-us-ks": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-KS/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kansas (US-KS)",
+      "description": "20,428 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-KS/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 9373036
+    },
+    "data-us-ky": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-KY/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kentucky (US-KY)",
+      "description": "17,485 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-KY/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 5605769
+    },
+    "data-us-la": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-LA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Louisiana (US-LA)",
+      "description": "84,758 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-LA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 17486403
+    },
+    "data-us-ma": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Massachusetts (US-MA)",
+      "description": "53,276 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 7236909
+    },
+    "data-us-md": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MD/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maryland (US-MD)",
+      "description": "55,892 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MD/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 11383432
+    },
+    "data-us-me": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ME/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maine (US-ME)",
+      "description": "46,468 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ME/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 16367009
+    },
+    "data-us-mi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MI/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Michigan (US-MI)",
+      "description": "167,881 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MI/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 27582663
+    },
+    "data-us-mn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MN/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Minnesota (US-MN)",
+      "description": "239,380 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MN/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 56604855
+    },
+    "data-us-mo": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MO/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Missouri (US-MO)",
+      "description": "73,975 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MO/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 22517088
+    },
+    "data-us-ms": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MS/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mississippi (US-MS)",
+      "description": "27,019 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MS/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 12605585
+    },
+    "data-us-mt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MT/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Montana (US-MT)",
+      "description": "60,871 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MT/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 19255964
+    },
+    "data-us-nc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Carolina (US-NC)",
+      "description": "548,029 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 73595435
+    },
+    "data-us-nd": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ND/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Dakota (US-ND)",
+      "description": "50,998 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ND/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 25801234
+    },
+    "data-us-ne": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NE/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nebraska (US-NE)",
+      "description": "25,961 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NE/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10226798
+    },
+    "data-us-nh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NH/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Hampshire (US-NH)",
+      "description": "21,695 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NH/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6546888
+    },
+    "data-us-nj": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NJ/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Jersey (US-NJ)",
+      "description": "60,890 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NJ/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 10166585
+    },
+    "data-us-nm": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NM/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Mexico (US-NM)",
+      "description": "129,617 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NM/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 37638761
+    },
+    "data-us-nv": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NV/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nevada (US-NV)",
+      "description": "64,308 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NV/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 18061560
+    },
+    "data-us-ny": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NY/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New York (US-NY)",
+      "description": "69,917 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NY/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 15480675
+    },
+    "data-us-oh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OH/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ohio (US-OH)",
+      "description": "60,160 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OH/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 12960517
+    },
+    "data-us-ok": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OK/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oklahoma (US-OK)",
+      "description": "125,778 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OK/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 37248892
+    },
+    "data-us-or": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OR/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oregon (US-OR)",
+      "description": "130,350 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OR/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 29931059
+    },
+    "data-us-pa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-PA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Pennsylvania (US-PA)",
+      "description": "98,332 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-PA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 20847833
+    },
+    "data-us-pr": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-PR/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puerto Rico (US-PR)",
+      "description": "2,193 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-PR/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1139213
+    },
+    "data-us-ri": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-RI/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Rhode Island (US-RI)",
+      "description": "3,169 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-RI/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 766516
+    },
+    "data-us-sc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-SC/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Carolina (US-SC)",
+      "description": "220,622 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-SC/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 26878383
+    },
+    "data-us-sd": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-SD/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Dakota (US-SD)",
+      "description": "21,237 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-SD/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 9950728
+    },
+    "data-us-tn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-TN/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tennessee (US-TN)",
+      "description": "90,403 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-TN/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 16930786
+    },
+    "data-us-tx": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-TX/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Texas (US-TX)",
+      "description": "148,840 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-TX/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 42191649
+    },
+    "data-us-ut": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-UT/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Utah (US-UT)",
+      "description": "61,563 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-UT/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 22461234
+    },
+    "data-us-va": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Virginia (US-VA)",
+      "description": "194,442 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 34865223
+    },
+    "data-us-vi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VI/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United States Virgin Islands (US-VI)",
+      "description": "89 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VI/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 18033
+    },
+    "data-us-vt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VT/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Vermont (US-VT)",
+      "description": "20,992 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VT/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 5207535
+    },
+    "data-us-wa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WA/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Washington (US-WA)",
+      "description": "464,247 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WA/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 60399518
+    },
+    "data-us-wi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WI/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wisconsin (US-WI)",
+      "description": "109,972 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WI/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 31226953
+    },
+    "data-us-wv": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WV/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "West Virginia (US-WV)",
+      "description": "15,888 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WV/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 4637157
+    },
+    "data-us-wy": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WY/waterways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wyoming (US-WY)",
+      "description": "34,126 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WY/waterways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 15804823
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Preview of one region, flat styling by geometry type",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 46929,
+      "file:checksum": "12205d822315348be18e4e708207cebb90370eec1270421555cec8570b37c2af4242"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Waterways: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Waterways: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "type": "text/html",
+      "title": "Open Database License (ODbL) 1.0"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.openstreetmap.org/",
+      "type": "text/html",
+      "title": "OpenStreetMap"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/osm/latest/",
+      "type": "text/html",
+      "title": "Browse the latest files"
+    }
+  ]
+}

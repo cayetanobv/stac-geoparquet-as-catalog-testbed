@@ -1,0 +1,292 @@
+{
+  "type": "Collection",
+  "id": "osoitteet/helsingin-osoiteluettelo",
+  "stac_version": "1.1.0",
+  "description": "Helsingin osoitteet -aineistossa yll\u00e4pidet\u00e4\u00e4n tietoja Helsingin alueella sijaitsevien kiinteist\u00f6jen ja kaavayksik\u00f6iden osoitteista ja nimist\u00f6st\u00e4. Katunimet ja muut nimet ovat sek\u00e4 suomeksi ett\u00e4 ruotsiksi. Osoitteet perustuvat kaupunkimittauspalvelujen osoitep\u00e4\u00e4t\u00f6ksiin ja nimist\u00f6 kaavanimist\u00f6\u00f6n, josta vastaa maank\u00e4ytt\u00f6 ja kaupunkirakenne -palvelukokonaisuus. \r\n\r\nTietokannassa on my\u00f6s julkisten palvelujen, n\u00e4ht\u00e4vyyksien ja raideliikenteen asemien osoitetietoja. Osoitteisto muodostuu ko. yksik\u00f6iden osoitteista ja sijainnin koordinaattipisteist\u00e4. Osoitteita yll\u00e4pidet\u00e4\u00e4n tietokantapohjaisesti ja niit\u00e4 p\u00e4ivitet\u00e4\u00e4n jatkuvasti osoitep\u00e4\u00e4t\u00f6sten ja kaavoituksen pohjalta.\nRuotsiksi: Helsingfors adressdatabas. Englanniksi: Database of addresses of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_helsinki_osoiteluettelo.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo)",
+      "pmtiles:layers": [
+        "avoindata_helsinki_osoiteluettelo"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-osoiteluettelo",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: helsinki_osoiteluettelo",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 58317,
+  "table:row_count": 58317,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Kohteen yksil\u00f6iv\u00e4 tunniste. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "katunimi",
+      "type": "string",
+      "description": "L\u00e4hiosoitteen suomenkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "gatan",
+      "type": "string",
+      "description": "L\u00e4hiosoitteen ruotsinkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "osoitenumero",
+      "type": "int64",
+      "description": "Osoitenumero. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "osoitenumero2",
+      "type": "int64",
+      "description": "Kaksiosaisen osoitenumeron j\u00e4lkimm\u00e4inen numero. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "osoitekirjain",
+      "type": "string",
+      "description": "Osoitenumeroon liittyv\u00e4 osoitekirjain. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "n",
+      "type": "int64",
+      "description": "N-koordinaatti (ETRS-GK25, EPSG:3879). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "e",
+      "type": "int64",
+      "description": "E-koordinaatti (ETRS-GK25, EPSG:3879). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "kaupunki",
+      "type": "string",
+      "description": "Kaupungin, jossa osoite sijaitsee, suomenkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "staden",
+      "type": "string",
+      "description": "Kaupungin, jossa osoite sijaitsee, ruotsinkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tyyppi",
+      "type": "int64",
+      "description": "Nimist\u00f6n tyyppi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "postinumero",
+      "type": "double",
+      "description": "Postinumeroalueen tunnus. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "postitoimipaikka",
+      "type": "string",
+      "description": "Postitoimipaikan suomenkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "osoitenumero_teksti",
+      "type": "string",
+      "description": "Osoitenumero kasattuna. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.82220202,
+          60.03047196,
+          25.25816502,
+          60.29732219
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo) default style",
+      "description": "Default visualization for Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo), drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1348,
+      "file:checksum": "122027f9f5bc0d645f199a184c224315ca914220356cadcebf083f5a1cd49fecce76"
+    },
+    "avoindata_helsinki_osoiteluettelo": {
+      "href": "./avoindata_helsinki_osoiteluettelo.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2616862,
+      "file:checksum": "12204197790161750f303470443a0dcf1baf8cd0490ef55c1ebd2a23c153e5ba9ad7",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_helsinki_osoiteluettelo.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3374973,
+      "file:checksum": "1220e7eceeff3953637f86a12a3eb9de04a1619212436d125ef65eb0ba9cff337355"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo) labeled style",
+      "description": "Default visualization for Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1812,
+      "file:checksum": "1220001235d34d004d0e77b5e0405d39ebedf67046f69a52d8992eb5a556fa585a0e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo) graduated style",
+      "description": "Graduated visualization coloring Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo) by n, ramped from 6657477.0 to 6687221.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2119,
+      "file:checksum": "1220378fe98bc6ba03a1f91bab8eaec7468c5ded364d40b5289cbd1316f1f61c8005"
+    },
+    "thumbnail": {
+      "href": "./avoindata_helsinki_osoiteluettelo.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin osoitteet \u2013 osoiteluettelo (Helsinki_osoiteluettelo)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 124493,
+      "file:checksum": "1220c5d11b4decba46c7bdeae55aa26f21e21d5def24a6d6d4e5d11cfc27d217a609"
+    }
+  },
+  "keywords": [
+    "nimist\u00f6",
+    "osoitteet",
+    "Helsinki_osoiteluettelo",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin osoitteet\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-osoiteluettelo",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

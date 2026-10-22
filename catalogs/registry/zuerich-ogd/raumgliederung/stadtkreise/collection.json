@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "raumgliederung/stadtkreise",
+  "stac_version": "1.1.0",
+  "description": "Stadtkreise\nZweck: Die Stadtkreise dienen den Dienststellen der Stadt Z\u00fcrich als Grundlage f\u00fcr die verwaltungsinternen Aufgaben.\nGeodatenelement adm_stadtkreise_a: Stadtkreise",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./adm_stadtkreise_a.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stadtkreise (adm_stadtkreise_a)",
+      "pmtiles:layers": [
+        "adm_stadtkreise_a"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/rahmenbedingungen.html",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.stadt-zuerich.ch/dataset/geo_stadtkreise",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Stadtkreise?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=adm_stadtkreise_a",
+      "rel": "related",
+      "title": "Upstream source: adm_stadtkreise_a",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Stadtkreise?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.1.0",
+      "rel": "related",
+      "title": "WFS Stadtkreise (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wms/geoportal/Stadtkreise?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS Stadtkreise (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 12,
+  "table:row_count": 12,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Feature-Id der GeoJSON-Ausgabe des WFS (Form adm_stadtkreise_a.<n>), von der Konvertierung als Text \u00fcbernommen; nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "bezeichnung",
+      "type": "string",
+      "description": "Name des Stadtkreises, zwingend + eindeutig."
+    },
+    {
+      "name": "entstehung",
+      "type": "string",
+      "description": "Fremdschl\u00fcssel f\u00fcr Verbindung zur Tabelle StKreiseNachf. Diese Tabelle ist im Geoserver nicht sichtbar."
+    },
+    {
+      "name": "geometrie_gdo",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "double",
+      "description": "Kurzbezeichnung des Stadtkreises."
+    },
+    {
+      "name": "objectid",
+      "type": "int32",
+      "description": "ESRI System-Identifikator. Nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "objid",
+      "type": "string",
+      "description": "System-Identifikator. Nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Polygon) in WGS 84 (OGC:CRS84), vom WFS des Publizierers aus CH1903+ / LV95 (EPSG:2056) umgerechnet und auf sechs Dezimalstellen gerundet; einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 19.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Stadtkreise (adm_stadtkreise_a)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.448018,
+          47.320218,
+          8.625453,
+          47.434665
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stadtkreise (adm_stadtkreise_a) default style",
+      "description": "Default visualization for Stadtkreise (adm_stadtkreise_a), drawn in #1f78b4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1200,
+      "file:checksum": "1220e88c94d919fea90c9f51dfb2726fe03803f31e6766603d1aad03a49488bae62a"
+    },
+    "adm_stadtkreise_a": {
+      "href": "./adm_stadtkreise_a.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 164309,
+      "file:checksum": "12203121d2ba0214d6ce2b7f9d022d377fbf4130c843eac299a89553b1f4302b1ea9",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./adm_stadtkreise_a.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stadtkreise (adm_stadtkreise_a) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 76532,
+      "file:checksum": "12200ada7def13d9dbca6d31c6253586590901fb04bff05733a134b4a7d53dd1e731"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stadtkreise (adm_stadtkreise_a) categorical style",
+      "description": "Categorical visualization coloring Stadtkreise (adm_stadtkreise_a) by entstehung, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2076,
+      "file:checksum": "12204914eaa511e3a2e2feb3fafd6e0cbe676f5a15f773a8de3ae0930b7f82075698"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stadtkreise (adm_stadtkreise_a) labeled style",
+      "description": "Default visualization for Stadtkreise (adm_stadtkreise_a) with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1623,
+      "file:checksum": "1220092edbb4f1d3f4f6725485def678f55a967e28457814b829cee6ee150f99cfad"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stadtkreise (adm_stadtkreise_a) graduated style",
+      "description": "Graduated visualization coloring Stadtkreise (adm_stadtkreise_a) by name, ramped from 1.0 to 12.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1932,
+      "file:checksum": "1220a9a22f6e19a7decda09b7bcf1fd08b8a8a4349c28beffb3a0186719d446755c9"
+    },
+    "thumbnail": {
+      "href": "./adm_stadtkreise_a.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stadtkreise (adm_stadtkreise_a)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 116464,
+      "file:checksum": "122071dab6a67b885e8adffc1d285c8d31c197283605645de3a728ffb7e61a793e2e"
+    }
+  },
+  "keywords": [
+    "gebietseinteilungen",
+    "geodaten",
+    "geoportal",
+    "polygondaten",
+    "punktdaten",
+    "quartiere",
+    "stadtkreise",
+    "stzh",
+    "vektordaten",
+    "adm_stadtkreise_a",
+    "Z\u00fcrich",
+    "Stadt Z\u00fcrich"
+  ],
+  "providers": [
+    {
+      "name": "GIS-Zentrum, Geomatik + Vermessung, Tiefbau- und Entsorgungsdepartement",
+      "description": "Datenquelle: Stadt Z\u00fcrich, GIS-Zentrum, Geomatik + Vermessung, Tiefbau- und Entsorgungsdepartement, \u00abStadtkreise\u00bb, Open Data Z\u00fcrich, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.stadt-zuerich.ch/dataset/geo_stadtkreise",
+      "email": "opendata@zuerich.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

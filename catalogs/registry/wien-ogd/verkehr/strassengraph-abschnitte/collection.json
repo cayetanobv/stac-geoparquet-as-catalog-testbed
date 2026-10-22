@@ -1,0 +1,321 @@
+{
+  "type": "Collection",
+  "id": "verkehr/strassengraph-abschnitte",
+  "stac_version": "1.1.0",
+  "description": "Der Stra\u00dfengraph ist ein topologischer Graph des Abschnittsnetzes der Wiener Stra\u00dfen. Die Netzlinien verlaufen in der Regel in der Stra\u00dfenachse. Ein Stra\u00dfenabschnitt ist der Teil einer Stra\u00dfe zwischen zwei Kreuzungen. Die Stationierungsrichtung erfolgt entsprechend der aufsteigenden Orientierungsnummern. Die Stra\u00dfenabschnitte werden von Netzknoten begrenzt. Diese Netzknoten liegen im Regelfall im Kreuzungsmittelpunkt. Dieser Datensatz beihnaltet die \u00f6ffentlichen Verkehrsfl\u00e4chen (Gemeindestra\u00dfen, Hauptstra\u00dfen A und B).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_strassengraphogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at)",
+      "pmtiles:layers": [
+        "ogdwien_strassengraphogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/1039ed7e-97fb-435f-b6cc-f6a105ba5e09",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: strassengraphogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 29658,
+  "table:row_count": 29658,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Linie) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "MAINNAME_OBJECTID",
+      "type": "int64",
+      "description": "Verweis auf den Namen in der Namenstabelle."
+    },
+    {
+      "name": "FEATURENAME",
+      "type": "string",
+      "description": "Abschnittsname."
+    },
+    {
+      "name": "REG_STRNAME",
+      "type": "string",
+      "description": "Regional verwendeter Stra\u00dfenname (zum Beispiel Bundesstra\u00dfenbezeichnung)."
+    },
+    {
+      "name": "EDGECATEGORY",
+      "type": "string",
+      "description": "Stra\u00dfenkategorie des Abschnitts, Schl\u00fcssel."
+    },
+    {
+      "name": "EDGECATEGORY_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte Stra\u00dfenkategorie des Abschnitts."
+    },
+    {
+      "name": "FRC",
+      "type": "int64",
+      "description": "Funktionelle Bewertung der Stra\u00dfe, Schl\u00fcssel."
+    },
+    {
+      "name": "FRC_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte funktionelle Bewertung der Stra\u00dfe."
+    },
+    {
+      "name": "FOW",
+      "type": "int64",
+      "description": "Bauliche Form des Abschnitts, Schl\u00fcssel."
+    },
+    {
+      "name": "FOW_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte bauliche Form des Abschnitts."
+    },
+    {
+      "name": "DEDICATEDWIDTH",
+      "type": "double",
+      "description": "Trassenbreite: nutzbare Breite des Abschnitts zwischen den \u00e4u\u00dferen Kanten der Verkehrswegoberfl\u00e4che; kein vermessener Wert, -1 f\u00fcr nicht \u00fcberarbeitete Abschnitte."
+    },
+    {
+      "name": "LEVELINTERMEDIATE",
+      "type": "DECIMAL(38,0)",
+      "description": "H\u00f6he des Abschnitts \u00fcber Gel\u00e4nde in logischen Gescho\u00dfen."
+    },
+    {
+      "name": "NODEFROM_OBJECTID",
+      "type": "int64",
+      "description": "Verweis auf den Beginnknoten in der Knotentabelle."
+    },
+    {
+      "name": "NODETO_OBJECTID",
+      "type": "int64",
+      "description": "Verweis auf den Endknoten in der Knotentabelle."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "string",
+      "description": "Bezirk (linke Seite); vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "BEZIRK_RECHTS",
+      "type": "string",
+      "description": "Bezirk rechts der Stationierungsrichtung; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "SHAPELENGTH",
+      "type": "double",
+      "description": "L\u00e4nge (Meter)."
+    },
+    {
+      "name": "GIP_OBJECTID",
+      "type": "int64",
+      "description": "Eindeutige Identifizierung des Objekts in der GIP."
+    },
+    {
+      "name": "SCD",
+      "type": "double",
+      "description": "Stra\u00dfencode; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.187407078433562,
+          48.12104561596219,
+          16.550054697006125,
+          48.32140575210717
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) default style",
+      "description": "Default visualization for Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at), drawn in #252525.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1267,
+      "file:checksum": "1220cd350cb8a28b03b7ab16172f6c388db2745a4dd99ebaa6da3dc7eaa8a868a616"
+    },
+    "ogdwien_strassengraphogd": {
+      "href": "./ogdwien_strassengraphogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2272434,
+      "file:checksum": "122063f106d8f863ec6b4f487a66883a9f437fed5419766112ae277e7772a73d9666",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_strassengraphogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10886711,
+      "file:checksum": "12203722daf36c53c0e9cc8db9213b00494b45a1ebc4de0ba8c3eddcee88be6a5892"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) categorical style",
+      "description": "Categorical visualization coloring Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) by EDGECATEGORY_NAME, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2180,
+      "file:checksum": "12208a5216a9af2bd7bd1922a7b36923870e0a8c7cd52aa99aa128ae426032645a07"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) labeled style",
+      "description": "Default visualization for Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) with MAINNAME_OBJECTID shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1717,
+      "file:checksum": "12202cdb0a1034d3c99e4eb6197dd5d68f850ec80ede220d0a67ab07d25947c143d0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) graduated style",
+      "description": "Graduated visualization coloring Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at) by MAINNAME_OBJECTID, ramped from 5100147.0 to 70002600.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2108,
+      "file:checksum": "122084f32b6c42909a0cf26ce746af401cbb2fb3e3416515198b9cb643fb0f996b39"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_strassengraphogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stra\u00dfengraph Wien \u2013 Abschnitte (GIP.at)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 242761,
+      "file:checksum": "122086173c28da0fe6c45827a5bc74f3b1f915f013a7dba006f39ae836b93f4f4a8c"
+    }
+  },
+  "keywords": [
+    "Autobahnen",
+    "Gemeindestra\u00dfe",
+    "Landesstra\u00dfe",
+    "Hauptstra\u00dfe B",
+    "Stra\u00dfennamen",
+    "Hauptstra\u00dfe A",
+    "Stra\u00dfe",
+    "Netz",
+    "Schnellstra\u00dfen",
+    "RBW",
+    "Bundesstra\u00dfe",
+    "Stra\u00dfennetz",
+    "ViennaGIS",
+    "Namen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Intermodales Verkehrsreferenzsystem (GIP.at) Stra\u00dfengraph Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

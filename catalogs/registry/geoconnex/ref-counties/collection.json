@@ -1,0 +1,160 @@
+{
+  "type": "Collection",
+  "id": "ref:counties",
+  "stac_version": "1.1.0",
+  "description": "Contains county boundaries from the United States Census Bureau Cartographic Boundary files, served from the Geoconnex reference feature server.\n\nMore info can be found at https://reference.geoconnex.us/collections/counties\n\nAll features in this dataset derive from the 'ref:counties' sitemap in Geoconnex.\n\nMainstem association was enabled for this dataset so features may have an associated Geoconnex mainstem.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Geoconnex Spatial Data Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/exports/pmtiles/ref:counties.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "ref_counties"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json"
+  ],
+  "title": "U.S. Counties",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.148909,
+          -14.548699,
+          179.77847,
+          71.365162
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "Internet of Water Coalition",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Colton Loftus",
+      "description": "Processed and maintained by Colton Loftus at the Lincoln Institute of Land Policy's Center for Geospatial Solutions. For help, contact cloftus@lincolninst.edu or open an issue at https://github.com/internetofwater/geoconnex.us/issues",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://cgsearth.org/"
+    },
+    {
+      "name": "Internet of Water Coalition",
+      "roles": [
+        "host"
+      ],
+      "url": "https://geoconnex.us"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/summoned/ref:counties.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "U.S. Counties",
+      "table:columns": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "geoconnex_sitemap",
+          "type": "string"
+        },
+        {
+          "name": "feature_name",
+          "type": "string"
+        },
+        {
+          "name": "feature_description",
+          "type": "string"
+        },
+        {
+          "name": "mainstem_uri",
+          "type": "string"
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "WKB-encoded geometry"
+        }
+      ],
+      "file:size": 20573491,
+      "file:checksum": "1220966009282ceece35a9bdc6999bf8c90ac20cecb770f78eb8eac7458fa1c19335",
+      "roles": [
+        "data",
+        "external"
+      ]
+    },
+    "pmtiles": {
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/exports/pmtiles/ref:counties.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Vector tiles",
+      "description": "Features as PMTiles vector tiles for web visualization.",
+      "roles": [
+        "visual"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Default thumbnail",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 169133,
+      "file:checksum": "1220212755b719fefd59c47a82eacf9d2d2ded5d5ad6c3120269f6e866fc12979bef"
+    },
+    "style_default": {
+      "href": "./style.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Default MapLibre style",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 2634,
+      "file:checksum": "1220df3244c3dc82eac840ac8da81c58847bc489f4372f0db0a6a9395793574005d4"
+    }
+  }
+}

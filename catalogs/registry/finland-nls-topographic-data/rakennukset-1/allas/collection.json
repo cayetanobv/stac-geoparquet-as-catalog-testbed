@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "rakennukset-1/allas",
+  "stac_version": "1.1.0",
+  "description": "allas",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./allas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "allas",
+      "pmtiles:layers": [
+        "allas"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/allas/items",
+      "rel": "related",
+      "title": "OGC API source service: allas",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 59443,
+  "table:row_count": 59443,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 75, joka vastaa aluemaisia Rakennukset-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 44300, allas."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Altaan aluerajaus WGS84-koordinaatistossa. Allas on rakennettu, kaivettu tai padottu veden t\u00e4ytt\u00e4m\u00e4 rakennelma."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "allas",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.5180999,
+          59.829302,
+          31.4563029,
+          70.0850757
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "allas default style",
+      "description": "Default visualization for allas, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1090,
+      "file:checksum": "1220b5c615769e43473412b6a0aa2185bea04045099be10e063aaf332074f01b92da"
+    },
+    "allas": {
+      "href": "./allas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 49338749,
+      "file:checksum": "1220c1f25c2b1d34791e07d2c6a402877064fb80c56f55d289b205214f750c949744",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./allas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "allas (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 46005392,
+      "file:checksum": "122012764f5b7b8c870d9b3fd01b27fb2ffe1029d3a4202151f3a3d4ad9633bfb1e2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "allas graduated style",
+      "description": "Graduated visualization coloring allas by sijaintitarkkuus, ramped from 5000.0 to 7500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1894,
+      "file:checksum": "122038e1f185c78564b846acc39764090659ef9b9741b94adc2e2afb2bc1f8d6e005"
+    },
+    "thumbnail": {
+      "href": "./allas.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of allas",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 90742,
+      "file:checksum": "12204c5a4166c463f7eabd0369e553edf164cebd015596409221b53e30c20a561f99"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Rakennukset",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

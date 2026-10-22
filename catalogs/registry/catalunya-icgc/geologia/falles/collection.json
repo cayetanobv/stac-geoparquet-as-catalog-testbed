@@ -1,0 +1,286 @@
+{
+  "type": "Collection",
+  "id": "geologia/falles",
+  "stac_version": "1.1.0",
+  "description": "Falles i estructures de cisalla de Catalunya publicades com a tema INSPIRE \u00abGeology\u00bb, amb el nom de l'estructura, el tipus de falla, la descripci\u00f3 original de la llegenda i l'esdeveniment tect\u00f2nic associat. En tots els objectes observats el 21.9.2026 el camp collection_name deia \u00abBase de dades geol\u00f2giques de Catalunya 1:250.000\u00bb i versionid \u00ab2020\u00bb, de manera que la capa \u00e9s la sortida vectorial d'aquesta base de dades i no una cartografia de m\u00e9s detall.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./inspire_ge_geologicfault.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geologic Faults \u2013 falles (INSPIRE GE)",
+      "pmtiles:layers": [
+        "inspire_ge_geologicfault"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: falles",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa inspire:GE.GeologicFault, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 28,
+  "table:row_count": 28,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "localid",
+      "type": "string",
+      "description": "Identificador local de l'objecte dins de l'identificador INSPIRE (\u00abinspireId.localId\u00bb); el servei el retorna amb el patr\u00f3 ID.<tema>.<codi>."
+    },
+    {
+      "name": "collection_name",
+      "type": "string",
+      "description": "Nom de la col\u00b7lecci\u00f3 geol\u00f2gica de qu\u00e8 prov\u00e9 l'objecte; el servei retorna \u00abBase de dades geol\u00f2giques de Catalunya 1:250.000\u00bb."
+    },
+    {
+      "name": "collection_type",
+      "type": "string",
+      "description": "Tipus de col\u00b7lecci\u00f3; el servei retorna \u00abgeologicalMap\u00bb."
+    },
+    {
+      "name": "mappingframe",
+      "type": "string",
+      "description": "Marc de representaci\u00f3 cartogr\u00e0fica (element INSPIRE \u00abmappingFrame\u00bb); el servei retorna \u00absurfaceGeology\u00bb."
+    },
+    {
+      "name": "structure_name",
+      "type": "string",
+      "description": "Nom o codi de l'estructura en la llegenda del productor, per exemple \u00abF_IND\u00bb."
+    },
+    {
+      "name": "fault_type",
+      "type": "string",
+      "description": "Tipus de falla (element INSPIRE \u00abfaultType\u00bb); el servei retorna valors com \u00abfault\u00bb."
+    },
+    {
+      "name": "fault_originaldescription",
+      "type": "string",
+      "description": "Descripci\u00f3 original de l'estructura a la llegenda del productor, per exemple \u00abFalles menors indiferenciades (MGC250M)\u00bb."
+    },
+    {
+      "name": "event_name",
+      "type": "string",
+      "description": "Nom de l'esdeveniment geol\u00f2gic associat (element INSPIRE \u00abGeologicEvent.name\u00bb); el servei fa servir \u00ab-\u00bb quan no n'hi ha."
+    },
+    {
+      "name": "event_environment",
+      "type": "string",
+      "description": "Entorn de l'esdeveniment geol\u00f2gic (element INSPIRE \u00abeventEnvironment\u00bb)."
+    },
+    {
+      "name": "event_process",
+      "type": "string",
+      "description": "Proc\u00e9s de l'esdeveniment geol\u00f2gic (element INSPIRE \u00abeventProcess\u00bb)."
+    },
+    {
+      "name": "event_oldernamedage",
+      "type": "string",
+      "description": "Edat anomenada m\u00e9s antiga de l'esdeveniment (element INSPIRE \u00abolderNamedAge\u00bb)."
+    },
+    {
+      "name": "event_youngernamedage",
+      "type": "string",
+      "description": "Edat anomenada m\u00e9s moderna de l'esdeveniment (element INSPIRE \u00abyoungerNamedAge\u00bb)."
+    },
+    {
+      "name": "namespace",
+      "type": "string",
+      "description": "Espai de noms de l'identificador INSPIRE; el servei retorna \u00abCatalunya.GE\u00bb per a aquesta capa."
+    },
+    {
+      "name": "versionid",
+      "type": "int64",
+      "description": "Versi\u00f3 del conjunt de dades que el productor associa a l'objecte; el servei retorna \u00ab2020\u00bb en la lectura del 21.9.2026."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Geologic Faults \u2013 falles (INSPIRE GE)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.04045842467726267,
+          40.47912282073064,
+          3.312083353044518,
+          42.918778783234025
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Faults \u2013 falles (INSPIRE GE) default style",
+      "description": "Default visualization for Geologic Faults \u2013 falles (INSPIRE GE), drawn in #d94801.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1260,
+      "file:checksum": "1220287f7fe3f321461307a15e479055370b57dca684d8102f264ad12a8abf1e6451"
+    },
+    "inspire_ge_geologicfault": {
+      "href": "./inspire_ge_geologicfault.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1279011,
+      "file:checksum": "12202f9ea4e3a99e1d202af74bbeac79e58820e4557cf8b36e7aedae9b32858bac1a",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./inspire_ge_geologicfault.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geologic Faults \u2013 falles (INSPIRE GE) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 7305504,
+      "file:checksum": "12202afefe393e706832e3a6a5a447b7dc6eb42ea4723adc87b3b47b38d8d6358de0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Faults \u2013 falles (INSPIRE GE) categorical style",
+      "description": "Categorical visualization coloring Geologic Faults \u2013 falles (INSPIRE GE) by event_name, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2046,
+      "file:checksum": "12207cfefee7ecd663b8356dfc5eb07fa80c63eea04295f39099ad54560fb023abd6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Faults \u2013 falles (INSPIRE GE) labeled style",
+      "description": "Default visualization for Geologic Faults \u2013 falles (INSPIRE GE) with collection_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1708,
+      "file:checksum": "12201406be584f5041659fcfcb4f8b82e79a5f839149a81fd5a5b1fa3badcca1902f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Faults \u2013 falles (INSPIRE GE) graduated style",
+      "description": "Graduated visualization coloring Geologic Faults \u2013 falles (INSPIRE GE) by versionid, ramped from 2020.0 to 2020.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2036,
+      "file:checksum": "1220d6acb5527958a69d6795b940737604c4ed3e5e9521cd2d7fc66a96feef1bcc85"
+    },
+    "thumbnail": {
+      "href": "./inspire_ge_geologicfault.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Geologic Faults \u2013 falles (INSPIRE GE)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 163753,
+      "file:checksum": "12207154b7016ff1ee9a7938ce8bcd1fdae52984b7e555d688cd47e71792374f26eb"
+    }
+  },
+  "keywords": [
+    "INSPIRE",
+    "Geology",
+    "geologia",
+    "falles",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Geologic Faults \u2013 falles (INSPIRE GE) de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

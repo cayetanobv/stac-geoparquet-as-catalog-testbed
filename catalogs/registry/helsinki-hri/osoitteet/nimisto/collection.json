@@ -1,0 +1,256 @@
+{
+  "type": "Collection",
+  "id": "osoitteet/nimisto",
+  "stac_version": "1.1.0",
+  "description": "Aineisto sis\u00e4lt\u00e4\u00e4 Helsingin virallisen paikannimist\u00f6n eli asemakaavoissa vahvistetut nimet kaduille, puistoille ja muille yleisille alueille. Nimet ovat suomeksi ja ruotsiksi. Nimiin on liitetty nime\u00e4misperustelut ja muuta mahdollista lis\u00e4tietoa kuten aiempi nimi ja muutokset kirjoitusasussa. Lis\u00e4ksi aineistossa on kaupungin hallinnollisen aluejaon mukaisten alueiden nimet (kaupunginosat, osa-alueet, peruspiirit).\r\n\r\nAineistossa on my\u00f6s nimist\u00f6toimikunnan k\u00e4sittelemi\u00e4 Helsingin kaupungin yll\u00e4pit\u00e4mien julkisten paikkojen kuten liikuntapuistojen ja venesatamien nimi\u00e4, vaikka niit\u00e4 ei olisi asemakaavassa vahvistettu. Nimist\u00f6\u00e4 yll\u00e4pidet\u00e4\u00e4n osana Helsingin kuntarekisteri\u00e4 (Facta-j\u00e4rjestelm\u00e4). Aineisto p\u00e4ivittyy kerran vuorokaudessa.\r\n\r\nNimist\u00f6 suunnitellaan ja vahvistetaan osana asemakaavaprosessia. Nimist\u00f6toimikunta, joka koostuu Helsingin historian, suomen ja ruotsin kielen, kaupunkisuunnittelun sek\u00e4 kaupunkikulttuurin asiantuntijoista, valmistelee nimiesitykset.\r\n\r\nAineistoa p\u00e4ivitet\u00e4\u00e4n kaavaprosessin ja nimist\u00f6toimikunnan ty\u00f6skentelyn yhteydess\u00e4.\nRuotsiksi: Namnen i Helsingfors. Englanniksi: Street Names of the City of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_helsinki_nimisto.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin nimist\u00f6 (Helsinki_nimisto)",
+      "pmtiles:layers": [
+        "avoindata_helsinki_nimisto"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-nimisto",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: helsinki_nimisto",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 7625,
+  "table:row_count": 7625,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Aineiston juokseva id numero."
+    },
+    {
+      "name": "kunta",
+      "type": "double",
+      "description": "Kunta."
+    },
+    {
+      "name": "tyyppi",
+      "type": "int64"
+    },
+    {
+      "name": "nimi",
+      "type": "string"
+    },
+    {
+      "name": "nimi_sv",
+      "type": "string"
+    },
+    {
+      "name": "east_etrs_gk",
+      "type": "int64"
+    },
+    {
+      "name": "north_etrs_gk",
+      "type": "int64"
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Datan omistaja."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin nimist\u00f6 (Helsinki_nimisto)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.82220202,
+          59.98429879,
+          25.25816502,
+          60.29732219
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin nimist\u00f6 (Helsinki_nimisto) default style",
+      "description": "Default visualization for Helsingin nimist\u00f6 (Helsinki_nimisto), drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1273,
+      "file:checksum": "12205c50a6c373cd8d41ea3ab334a8c50e928cfa2e8306cfc02f3da3158b15700e19"
+    },
+    "avoindata_helsinki_nimisto": {
+      "href": "./avoindata_helsinki_nimisto.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 458454,
+      "file:checksum": "1220ae3ac7534827ed2d6315c4b3938d7b0a75c0931180010916a6198998a7ace5d4",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_helsinki_nimisto.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin nimist\u00f6 (Helsinki_nimisto) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 735106,
+      "file:checksum": "12204483448a5fa5e2c50c036d151becd045667d2978836ad4ac347a2a818e994ad9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin nimist\u00f6 (Helsinki_nimisto) labeled style",
+      "description": "Default visualization for Helsingin nimist\u00f6 (Helsinki_nimisto) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1723,
+      "file:checksum": "122049955cc7d58366eb29082b1d583f4930a530b2b2f20cb3f8c3f26722eeb2a90d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin nimist\u00f6 (Helsinki_nimisto) graduated style",
+      "description": "Graduated visualization coloring Helsingin nimist\u00f6 (Helsinki_nimisto) by north_etrs_gk, ramped from 6652333.0 to 6687221.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2092,
+      "file:checksum": "1220ea12e54c0a78daf6d70343904846cf1e832d80b7398ea46848d28142761dd110"
+    },
+    "thumbnail": {
+      "href": "./avoindata_helsinki_nimisto.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin nimist\u00f6 (Helsinki_nimisto)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 75118,
+      "file:checksum": "12209f4fa502f8c3c604e78c8c4627fed3d785cd80356f8ba1f748ab9f65161b8931"
+    }
+  },
+  "keywords": [
+    "nimist\u00f6",
+    "kiinteist\u00f6t",
+    "kaavanimet",
+    "osoitteet",
+    "paikannimet",
+    "aluesuunnittelu",
+    "Helsinki_nimisto",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin nimist\u00f6\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-nimisto",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

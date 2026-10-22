@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart/energie",
+  "stac_version": "1.1.0",
+  "description": "Energie",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./energie.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "energie"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 664,
+  "table:row_count": 664,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Energie",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.977504121531,
+          52.0541434528315,
+          5.18022568050222,
+          52.1313656089927
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "energie": {
+      "href": "./energie.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 30314,
+      "file:checksum": "1220585c8c912a6c77c7ff999fdc0afc8eca686fb211118cc52e3286dacc08ec393c",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./energie.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 11960,
+      "file:checksum": "1220fca6de83b4e6b5615c915dcc524715946ea2cede1cacc680ba8484d8d75a2871"
+    },
+    "energie-tiles": {
+      "href": "./energie.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "energie (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 12234,
+      "file:checksum": "12209d452e8faa3ec95442d4f9fee139857d8b871c9fb3e15aa5ad5c0be3384fff62"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 647,
+      "file:checksum": "12209745f05500838a5b258953885c3b662909f05b2f964477952012c8ff8d5fba7b",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

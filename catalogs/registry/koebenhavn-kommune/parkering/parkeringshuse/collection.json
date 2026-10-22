@@ -1,0 +1,271 @@
+{
+  "type": "Collection",
+  "id": "parkering/parkeringshuse",
+  "stac_version": "1.1.0",
+  "description": "P-huse/parkeringsanl\u00e6g driftet af K\u00f8benhavns Kommune indenfor betalingszonen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_p_hus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkeringshuse",
+      "pmtiles:layers": [
+        "k101_p_hus"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/parkeringshuse",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: p_hus",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 31,
+  "table:row_count": 31,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "vejkode",
+      "type": "double"
+    },
+    {
+      "name": "vejnavn",
+      "type": "string"
+    },
+    {
+      "name": "husnr",
+      "type": "string"
+    },
+    {
+      "name": "postdistrikt",
+      "type": "string"
+    },
+    {
+      "name": "antal_pladser",
+      "type": "int64"
+    },
+    {
+      "name": "ejer_status",
+      "type": "string"
+    },
+    {
+      "name": "p_hus_type",
+      "type": "int64"
+    },
+    {
+      "name": "type_beskrivelse",
+      "type": "string"
+    },
+    {
+      "name": "opret_dato",
+      "type": "timestamp"
+    },
+    {
+      "name": "ret_dato",
+      "type": "timestamp"
+    },
+    {
+      "name": "bemaerkning",
+      "type": "string"
+    },
+    {
+      "name": "ogc_fid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Parkeringshuse",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.536388186567288,
+          55.66316924693966,
+          12.609064458167367,
+          55.70843111212738
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeringshuse default style",
+      "description": "Default visualization for Parkeringshuse, drawn in #756bb1.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1134,
+      "file:checksum": "122030c638bdbd24ce097b154a72502775e7cff84b4b5da65741c1e3eee905964a4d"
+    },
+    "k101_p_hus": {
+      "href": "./k101_p_hus.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 12562,
+      "file:checksum": "1220a349e60772b263d10ca306ae6b09197c3e8b8681946dab4bd160dfa6643bf465",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_p_hus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkeringshuse (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18719,
+      "file:checksum": "12207cc79689da9ae94e6d11e9b00b4a4cf11e3c8e65bd8d0f319bd454e8958195f2"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeringshuse categorical style",
+      "description": "Categorical visualization coloring Parkeringshuse by ejer_status, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1723,
+      "file:checksum": "1220bfb3f56c567fb771564299e358df8af43e64924638332e372b106de9b89f71a3"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeringshuse labeled style",
+      "description": "Default visualization for Parkeringshuse with ejer_status shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1550,
+      "file:checksum": "1220e5b12348501e100395d507188a8acf554eaa59ed00bbc132acfd87489fdeedc2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeringshuse graduated style",
+      "description": "Graduated visualization coloring Parkeringshuse by vejkode, ramped from 24.0 to 7844.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1896,
+      "file:checksum": "1220692fe18d46cd7c893b07da095a59659603cc2d01cde54119cd59ecba4f48779b"
+    },
+    "thumbnail": {
+      "href": "./k101_p_hus.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parkeringshuse",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 144873,
+      "file:checksum": "1220ead5770c74f73736a3bed123e6bdb550e2863a3f892f789750d634d3d233efb9"
+    }
+  },
+  "keywords": [
+    "p-hus",
+    "parkering",
+    "parkeringshus",
+    "phus",
+    "Parkeringshuse",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Parkeringshuse, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/parkeringshuse",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

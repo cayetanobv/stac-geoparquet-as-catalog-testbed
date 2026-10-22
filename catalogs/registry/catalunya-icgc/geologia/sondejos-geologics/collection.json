@@ -1,0 +1,250 @@
+{
+  "type": "Collection",
+  "id": "geologia/sondejos-geologics",
+  "stac_version": "1.1.0",
+  "description": "Sondejos recollits a la base geol\u00f2gica de Catalunya, publicats com a tema INSPIRE \u00abGeology\u00bb, amb el nom del sondeig, la finalitat, la longitud perforada i la cota. En tots els objectes observats el 21.9.2026 el camp collection_name deia \u00abBase de dades geol\u00f2giques de Catalunya 1:250.000\u00bb i versionid \u00ab2020\u00bb, de manera que la capa \u00e9s la sortida vectorial d'aquesta base de dades i no una cartografia de m\u00e9s detall.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./inspire_ge_borehole.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Boreholes \u2013 sondejos (INSPIRE GE)",
+      "pmtiles:layers": [
+        "inspire_ge_borehole"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: sondejos-geologics",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa inspire:GE.Borehole, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 48,
+  "table:row_count": 48,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "localid",
+      "type": "string",
+      "description": "Identificador local de l'objecte dins de l'identificador INSPIRE (\u00abinspireId.localId\u00bb); el servei el retorna amb el patr\u00f3 ID.<tema>.<codi>."
+    },
+    {
+      "name": "collection_name",
+      "type": "string",
+      "description": "Nom de la col\u00b7lecci\u00f3 geol\u00f2gica de qu\u00e8 prov\u00e9 l'objecte; el servei retorna \u00abBase de dades geol\u00f2giques de Catalunya 1:250.000\u00bb."
+    },
+    {
+      "name": "collection_type",
+      "type": "string",
+      "description": "Tipus de col\u00b7lecci\u00f3; el servei retorna \u00abgeologicalMap\u00bb."
+    },
+    {
+      "name": "purpose",
+      "type": "string",
+      "description": "Finalitat del sondeig (element INSPIRE \u00abpurpose\u00bb); el servei retorna valors com \u00abhydrocarbonExploration\u00bb."
+    },
+    {
+      "name": "boreholelength",
+      "type": "double",
+      "description": "Longitud perforada del sondeig; el servei no en documenta la unitat."
+    },
+    {
+      "name": "elevation",
+      "type": "double",
+      "description": "Cota de la boca del sondeig; el servei no en documenta la unitat."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Nom del sondeig, per exemple \u00abAMPOSTA-1\u00bb. El camp arriba a la resposta GeoJSON i no consta a DescribeFeatureType."
+    },
+    {
+      "name": "namespace",
+      "type": "string",
+      "description": "Espai de noms de l'identificador INSPIRE; el servei retorna \u00abCatalunya.GE\u00bb per a aquesta capa."
+    },
+    {
+      "name": "versionid",
+      "type": "int64",
+      "description": "Versi\u00f3 del conjunt de dades que el productor associa a l'objecte; el servei retorna \u00ab2020\u00bb en la lectura del 21.9.2026."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Boreholes \u2013 sondejos (INSPIRE GE)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.5396688086137449,
+          40.45598836585462,
+          3.041515946590599,
+          42.29607505857836
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Boreholes \u2013 sondejos (INSPIRE GE) default style",
+      "description": "Default visualization for Boreholes \u2013 sondejos (INSPIRE GE), drawn in #d94801.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1221,
+      "file:checksum": "1220afc3ee82f54550c45ec85a41250bec04cfe74f519de29151db6adaa89a0bba8b"
+    },
+    "inspire_ge_borehole": {
+      "href": "./inspire_ge_borehole.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 15294,
+      "file:checksum": "1220de10a11855b73239b86baab3e2a0f5959252c103ca7fe206a9883d11838cd37f",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./inspire_ge_borehole.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Boreholes \u2013 sondejos (INSPIRE GE) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 64560,
+      "file:checksum": "1220e056cb21f83f173de79ae9c3ea37f6a999386b343ffc0aaba3508bfebd38ec24"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Boreholes \u2013 sondejos (INSPIRE GE) labeled style",
+      "description": "Default visualization for Boreholes \u2013 sondejos (INSPIRE GE) with collection_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1659,
+      "file:checksum": "1220f54e028a73fa1854df8ee519c1efa11529ac7f48443e899b324a17ac2544c059"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Boreholes \u2013 sondejos (INSPIRE GE) graduated style",
+      "description": "Graduated visualization coloring Boreholes \u2013 sondejos (INSPIRE GE) by boreholelength, ramped from 585.0 to 1646.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2014,
+      "file:checksum": "12204d301cfb9e5bb1085d0a07f4da1ef3db47e0f773977bff1f61b10a4bffd9cd28"
+    },
+    "thumbnail": {
+      "href": "./inspire_ge_borehole.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Boreholes \u2013 sondejos (INSPIRE GE)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 52987,
+      "file:checksum": "12208a506756ed25651db0c9d4d8b3dabd232595e89f9eb0a474996b1c9cf17fcbb7"
+    }
+  },
+  "keywords": [
+    "INSPIRE",
+    "Geology",
+    "sondejos",
+    "borehole",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Boreholes \u2013 sondejos (INSPIRE GE) de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

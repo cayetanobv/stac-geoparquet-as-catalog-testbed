@@ -1,0 +1,233 @@
+{
+  "type": "Collection",
+  "id": "sicherheit/polizeiabschnitte",
+  "stac_version": "1.1.0",
+  "description": "R\u00e4umlicher Zuschnitt der Direktionen, Abschnitte und Kontaktbereiche sowie Standorte Wachen der Polizei Berlin.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./polizei_c_polizei_abschnitte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Polizeiabschnitte",
+      "pmtiles:layers": [
+        "polizei_c_polizei_abschnitte"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/polizeidirektionen-und-polizeiabschnitte-wfs-1cc4e86e",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/polizei",
+      "rel": "related",
+      "title": "WFS source service: c-polizei-abschnitte",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 37,
+  "table:row_count": 37,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "dienststel",
+      "type": "string"
+    },
+    {
+      "name": "langbezeic",
+      "type": "string"
+    },
+    {
+      "name": "strasse",
+      "type": "string"
+    },
+    {
+      "name": "hausnummer",
+      "type": "string"
+    },
+    {
+      "name": "postleitza",
+      "type": "int64"
+    },
+    {
+      "name": "ortsteil",
+      "type": "string"
+    },
+    {
+      "name": "telephonev",
+      "type": "string"
+    },
+    {
+      "name": "hoursofser",
+      "type": "string"
+    },
+    {
+      "name": "website",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Polizeiabschnitte",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08835778,
+          52.33825206,
+          13.76114885,
+          52.675517
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Polizeiabschnitte default style",
+      "description": "Default visualization for Polizeiabschnitte, drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1263,
+      "file:checksum": "1220ad0d56799901d963a583bc15da3e9d463ae3a03c55a8deb1eb765b710d8e6c50"
+    },
+    "polizei_c_polizei_abschnitte": {
+      "href": "./polizei_c_polizei_abschnitte.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 329136,
+      "file:checksum": "122011f92d78824a0fd5d9097e3f9e73926e5598d953d620347b642634cc2834306a",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./polizei_c_polizei_abschnitte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Polizeiabschnitte (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 461866,
+      "file:checksum": "122026121bf62673c1c88d8620d2e772559c2e5c5a1db4c936b93f38a8084a76d6c3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Polizeiabschnitte graduated style",
+      "description": "Graduated visualization coloring Polizeiabschnitte by postleitza, ramped from 10119.0 to 14129.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2052,
+      "file:checksum": "12200cce017c5c4f7e0309a52ad7dbe45d33bebdade9637429f9b7af52e141cc0596"
+    },
+    "thumbnail": {
+      "href": "./polizei_c_polizei_abschnitte.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Polizeiabschnitte",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 133478,
+      "file:checksum": "1220d9a9b1cc180dc062d87a74e278714bcbd11c33946d626a6168f82e70fc8ff865"
+    }
+  },
+  "keywords": [
+    "Abschnitte",
+    "Berlin",
+    "Direktionen",
+    "Geodaten",
+    "Karten",
+    "Kontaktbereiche",
+    "Polizei",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Polizei Berlin",
+      "description": "Datenquelle Geoportal Berlin, Polizeidirektionen und Polizeiabschnitte, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "DirZSIKTC1GIS@polizei.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

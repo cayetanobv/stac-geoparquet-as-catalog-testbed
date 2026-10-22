@@ -1,0 +1,237 @@
+{
+  "type": "Collection",
+  "id": "stationnement/acces-carrossables",
+  "stac_version": "1.1.0",
+  "description": "Ce jeu de donn\u00e9es correspond aux acc\u00e8s carrossables stationnables ou non sur l'ensemble des voiries de la R\u00e9gion de Bruxelles-Capitale, cat\u00e9goris\u00e9e selon le type de r\u00e9glement, l'orientation et la situation.\n\nTitre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab inrij van eigendommen \u00bb ; titre anglais : \u00ab Access roads \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./parkingbrussels_on_street_acar.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Acc\u00e8s carrossables",
+      "pmtiles:layers": [
+        "parkingbrussels_on_street_acar"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/ff993303-4f15-11ef-8010-f020ff9afd75",
+      "type": "text/html"
+    },
+    {
+      "href": "https://ows.parking.brussels/ws/ParkingBrussels/ows",
+      "rel": "related",
+      "title": "WFS source service: on-street-acar",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 95805,
+  "table:row_count": 95805,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "building_type",
+      "type": "int64"
+    },
+    {
+      "name": "setback_zone",
+      "type": "int64"
+    },
+    {
+      "name": "typacar",
+      "type": "int64"
+    },
+    {
+      "name": "evp",
+      "type": "int64"
+    },
+    {
+      "name": "typreg",
+      "type": "int64"
+    },
+    {
+      "name": "code_metier",
+      "type": "string"
+    },
+    {
+      "name": "si_id",
+      "type": "int64"
+    },
+    {
+      "name": "muniscode",
+      "type": "int64"
+    },
+    {
+      "name": "sd_niscode",
+      "type": "string"
+    },
+    {
+      "name": "md_id",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Acc\u00e8s carrossables",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.251347246874715,
+          50.768621823277975,
+          4.480690078428788,
+          50.91114673523085
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Acc\u00e8s carrossables default style",
+      "description": "Default visualization for Acc\u00e8s carrossables, drawn in #66a61e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1283,
+      "file:checksum": "1220c8b46c682a48d5da7be23bd738cf4285c43c72cc1477ae99393fa5c91ce2f285"
+    },
+    "parkingbrussels_on_street_acar": {
+      "href": "./parkingbrussels_on_street_acar.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3746443,
+      "file:checksum": "1220fc1c64b72d11935d4a40ba8a61039fbeb190febf9f3d3542cafeeec7ec5f021b",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./parkingbrussels_on_street_acar.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Acc\u00e8s carrossables (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2411437,
+      "file:checksum": "1220d891b19158423851933a851d8b17b46c410deafdc51f8a93adeb628157a7ca2d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Acc\u00e8s carrossables graduated style",
+      "description": "Graduated visualization coloring Acc\u00e8s carrossables by si_id, ramped from 1.0 to 99000004810.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2076,
+      "file:checksum": "1220aaa244eb9d80d7ed5d7f6594214d8e8029b64efd837ca9df015212a01b3ce9a4"
+    },
+    "thumbnail": {
+      "href": "./parkingbrussels_on_street_acar.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Acc\u00e8s carrossables",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 217354,
+      "file:checksum": "12200442adafc740ac05af2e8dbaa3045b8ca556c1723fbf91816e1a647b596a4260"
+    }
+  },
+  "keywords": [
+    "aire de stationnement",
+    "autorit\u00e9 r\u00e9gionale",
+    "place de stationnement",
+    "R\u00e9gions et villes",
+    "Transports",
+    "R\u00e9seaux de transport",
+    "R\u00e9gional",
+    "Type de service routier",
+    "parking,auto",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "parking.brussels",
+      "description": "Source : parking.brussels, \u00ab Acc\u00e8s carrossables \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://parking.brussels/",
+      "email": "data@parking.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

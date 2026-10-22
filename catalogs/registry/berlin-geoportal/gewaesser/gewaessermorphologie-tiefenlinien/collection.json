@@ -1,0 +1,203 @@
+{
+  "type": "Collection",
+  "id": "gewaesser/gewaessermorphologie-tiefenlinien",
+  "stac_version": "1.1.0",
+  "description": "\u00dcbersicht der Gew\u00e4sser f\u00fcr die eine detaillierte Gew\u00e4ssermorphologie (Tiefenlinienkarte und Profil) vorhanden ist.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./morphologie_gewaesser_morphologie_gewaesser_li.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien",
+      "pmtiles:layers": [
+        "morphologie_gewaesser_morphologie_gewaesser_li"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/morphologie-berliner-gewasser-tiefenlinienkarte-gesamtbestand-wfs-c5807b0c",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/morphologie_gewaesser",
+      "rel": "related",
+      "title": "WFS source service: morphologie-gewaesser-li",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "LineString"
+  ],
+  "geoparquet:feature_count": 49783,
+  "table:row_count": 49783,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "elemid",
+      "type": "int64"
+    },
+    {
+      "name": "stift",
+      "type": "int64"
+    },
+    {
+      "name": "tiefe",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.07814237,
+          52.37482502,
+          13.75076573,
+          52.63883031
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien default style",
+      "description": "Default visualization for Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien, drawn in #08306b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1426,
+      "file:checksum": "1220793e85fedbf5631a7a4adf9772329f9e46748c8fd9c53df255320dc7e203a025"
+    },
+    "morphologie_gewaesser_morphologie_gewaesser_li": {
+      "href": "./morphologie_gewaesser_morphologie_gewaesser_li.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 26551795,
+      "file:checksum": "12204d15634f1522eb5d0f0d2ac4c90eaeebda2aa2ddef374344ee723faf203d269a",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./morphologie_gewaesser_morphologie_gewaesser_li.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6597847,
+      "file:checksum": "12202373de501e064b1555ca0c785fd6202a5abe7cd58257536892ff62c09b7856d6"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien graduated style",
+      "description": "Graduated visualization coloring Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien by elemid, ramped from 237.0 to 106705.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2196,
+      "file:checksum": "1220a162355e20bbfa5884d7c0d841fff92f8dbf27a6f035c41c627ac0b84ddd03e0"
+    },
+    "thumbnail": {
+      "href": "./morphologie_gewaesser_morphologie_gewaesser_li.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Morphologie Berliner Gew\u00e4sser \u2013 Tiefenlinien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 157147,
+      "file:checksum": "1220f87fbadbdd993b9c99a53f54b5e652c5d2cd5d0388edffcd3d7cb306b99805de"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Geodaten",
+    "Gew\u00e4ssermorphologie",
+    "Karten",
+    "Sachdaten",
+    "infoFeatureAccessService"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Morphologie Berliner Gew\u00e4sser (Tiefenlinienkarte-Gesamtbestand), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "matthias.rehfeld-klein@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

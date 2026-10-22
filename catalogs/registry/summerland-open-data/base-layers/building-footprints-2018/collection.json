@@ -1,0 +1,174 @@
+{
+  "type": "Collection",
+  "id": "base-layers/building-footprints-2018",
+  "stac_version": "1.1.0",
+  "description": "Building footprints 10 meters square or greater within the District of Summerland Boundary generated using available 2018 Okanagan Basin Waterboard orthophotography. At least 95% of buildings visible in the imagery are captured with at least 95% geometric accuracy.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./building-footprints-2018.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "building-footprints-2018"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 8900,
+  "table:row_count": 8900,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "area_m2",
+      "type": "double",
+      "description": "Footprint area in square metres, derived here with ST_Area over the EPSG:26911 geometry. Replaces the upstream Shape.STArea() field, whose name does not survive SQL or vector tiles. The default style bands this column."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Building Footprints 2018",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.78480920549401,
+          49.553981830650265,
+          -119.61986219314872,
+          49.69220296115139
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "building-footprints-2018": {
+      "href": "./building-footprints-2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1342407,
+      "file:checksum": "1220502a4eb4f21d698fd4aeef9767a4aa2799179b1461b3ecc1b1f417b476ff3d58",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./building-footprints-2018.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 148604,
+      "file:checksum": "1220e6b4b7780a5adbbf111d73d4dac6949286c698899ce1605073584922368de39d"
+    },
+    "building-footprints-2018-tiles": {
+      "href": "./building-footprints-2018.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "building-footprints-2018 (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 715010,
+      "file:checksum": "1220e34e9180fa5d6079df5612ad75e997a9f778ee65d8bf9b552982d9951cc9e9ea"
+    },
+    "styles/footprint-size": {
+      "href": "./styles/footprint-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Footprint size",
+      "file:size": 680,
+      "file:checksum": "12208fecefd16766dba8c0919fdd553ae86e9dbb73b4481f183400cdc1a6b2590291"
+    }
+  },
+  "keywords": [
+    "Base Layers"
+  ]
+}

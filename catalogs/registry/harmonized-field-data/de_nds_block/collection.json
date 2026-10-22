@@ -1,0 +1,258 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "de_nds_block",
+  "title": "Field blocks for Lower Saxony / Bremen / Hamburg, Germany",
+  "description": "A field block (German: \"Feldblock\") is a contiguous agricultural area surrounded by permanent boundaries, which is cultivated by one or more farmers with one or more crops, is fully or partially set aside or is fully or partially taken out of production.\n\nThis collection holds 1 edition (2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/de_nds_block/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:25832). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/de_nds_block/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Bremen",
+    "Feldblöcke",
+    "Germany",
+    "Hamburg",
+    "Lower Saxony",
+    "agriculture",
+    "fiboa",
+    "field blocks",
+    "field boundaries"
+  ],
+  "license": "DL-DE-BY-2.0",
+  "providers": [
+    {
+      "name": "ML/SLA Niedersachsen",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://sla.niedersachsen.de/landentwicklung/LEA/"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.6071263849957536,
+          51.279793575394315,
+          11.651879546500899,
+          53.90893481983809
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:25832"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "collection",
+      "type": "string",
+      "description": "The identifier of the collection. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bnk",
+      "type": "string",
+      "description": "Carried over from the source column `BNK`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "flik",
+      "type": "string",
+      "description": "The area identifier (FLIK code) is a 16-character string. ([spec](https://github.com/fiboa/flik-extension/blob/main/README.md))"
+    },
+    {
+      "name": "bnk_txt",
+      "type": "string",
+      "description": "Carried over from the source column `BNK_TXT`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:perimeter",
+      "type": "float",
+      "description": "Perimeter of the field, in meters (m). Must be > 0 and <= 125,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 539834,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 1,
+  "partition:glob": "s3://ftw/harmonized-field-data/de_nds_block/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/de_nds_block.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany, Lower Saxony/Bremen/Hamburg (blocks) — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/de_nds_block.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 176550313,
+      "file:checksum": "1220c09b1c752c70a40c75e4ec6f30c255f70223275ffcf52a1c0cc027dde63b2c55",
+      "proj:code": "EPSG:25832"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 1, 2, 5 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1230,
+      "file:checksum": "12207df91f9b5d02b53f68121ddbda2ab12fd6d04a7caa237b18dacbb5656c819df9"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 790,
+      "file:checksum": "1220dc18edbd7fc5cde6a1aa33dabe8ec85d91cce4ac647eec6522450acddf45a0b7"
+    },
+    "visual": {
+      "href": "./year=2026/de_nds_block.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Germany, Lower Saxony/Bremen/Hamburg (blocks) — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 67926711,
+      "file:checksum": "122039bdb33f6a0cb0a17f213e79d501af4e37cac27b0353f756312bdd7892c62574"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the collection's default style.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 285811,
+      "file:checksum": "1220e41bc8d7b221e627a63ab33f9bb2509995eec3c5244af4f9b81aaedbe92ca66b"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/de_nds_block.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "de_nds_block"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://sla.niedersachsen.de/landentwicklung/LEA/",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/de_nds_block.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/de_nds_block-2026.json",
+      "type": "application/geo+json",
+      "title": "Germany, Lower Saxony/Bremen/Hamburg (blocks) — 2026"
+    }
+  ],
+  "updated": "2026-09-03T22:14:12Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "de_nds_block": [
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/flik-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml"
+    ]
+  },
+  "attribution": "© ML/SLA Niedersachsen (2024), DL-DE-BY-2.0 (www.govdata.de/DL-DE-BY-2.0), Daten bearbeitet"
+}

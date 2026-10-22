@@ -1,0 +1,255 @@
+{
+  "type": "Collection",
+  "id": "ciclavel/zonas-acesso-automovel-condicionado",
+  "stac_version": "1.1.0",
+  "description": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) do concelho de Lisboa, \u00e1reas onde a circula\u00e7\u00e3o autom\u00f3vel est\u00e1 condicionada, com o nome da zona, a situa\u00e7\u00e3o, o per\u00edmetro e a \u00e1rea, na camada Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) do servi\u00e7o Ciclovias da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zaac.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC)",
+      "pmtiles:layers": [
+        "zaac"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/440b7424a6284e0b9bf11179b95bf8d1_3",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Ciclovias/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Ciclovias (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "NOME",
+      "type": "string",
+      "description": "Nome da ZAAC, texto do publicador (por exemplo \u00abBairro Alto\u00bb)."
+    },
+    {
+      "name": "SITUACAO",
+      "type": "string",
+      "description": "Situa\u00e7\u00e3o da zona (por exemplo Existente), texto do publicador."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "PERIMETRO",
+      "type": "double",
+      "description": "Per\u00edmetro da geometria em metros, calculado pelo publicador (alias \u00abPer\u00edmetro\u00bb)."
+    },
+    {
+      "name": "AREA_M2",
+      "type": "double",
+      "description": "\u00c1rea da geometria em metros quadrados, calculada pelo publicador no sistema de proje\u00e7\u00e3o de origem (alias \u00ab\u00c1rea (m2)\u00bb)."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.15949605185893,
+          38.7068286933407,
+          -9.12495115268429,
+          38.7167288061512
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) default style",
+      "description": "Default visualization for Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC), drawn in #ec7014.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1128,
+      "file:checksum": "122083e1ae6e8056325d4938eee1ac08358cb619b29bf15eea50e66daf91d577ebbd"
+    },
+    "zaac": {
+      "href": "./zaac.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 9975,
+      "file:checksum": "12207b58012985037f460108dbf051ba029ab83ebf3808f951fea725406f3616f8af",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./zaac.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 12002,
+      "file:checksum": "122083174843f71285f2a2eb6a5f28501c9faee6ef2bd9282a4a339886e6dd4053dd"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) categorical style",
+      "description": "Categorical visualization coloring Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) by COD_SIG, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2022,
+      "file:checksum": "1220513c029ade8f90fca414ca472d2c883c20f5ea54c844848e775f52532dd1c1df"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) labeled style",
+      "description": "Default visualization for Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) with NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1525,
+      "file:checksum": "122060a3f604fdb187199417e15d9645aa54bbc04331bc15238e430db25534ce783d"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/440b7424a6284e0b9bf11179b95bf8d1/geojson?layers=3&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: zaac",
+      "pipeline:upstream": true,
+      "file:size": 17262,
+      "file:checksum": "12205579c6501bc5fdeeebc98e348dc021c777110ee4443ecd9ed82d78de344aad0e"
+    },
+    "thumbnail": {
+      "href": "./zaac.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 148920,
+      "file:checksum": "1220eb2d6dbd237b0d85b4d0ca4b1173e27fb0c6e7f220d884885c01b2cef97f14a5"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "ZAAC",
+    "Zones with Restricted Vehicle Access (ZAAC).",
+    "Mobilidade"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Zonas de Acesso Autom\u00f3vel Condicionado (ZAAC) (Ciclovias), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "verde/parchi-e-giardini",
+  "stac_version": "1.1.0",
+  "description": "Elenco parchi e giardini del comune di Bologna",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cartatecnicacomunale.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Elenco parchi e giardini",
+      "pmtiles:layers": [
+        "cartatecnicacomunale"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/carta-tecnica-comunale-toponimi-parchi-e-giardini/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/carta-tecnica-comunale-toponimi-parchi-e-giardini/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: cartatecnicacomunale",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 260,
+  "table:row_count": 260,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "codvia",
+      "type": "int32",
+      "description": "CODICE VIA."
+    },
+    {
+      "name": "nomevia",
+      "type": "string",
+      "description": "DENOMINAZIONE."
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "tipo",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Elenco parchi e giardini",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.256426705911162,
+          44.42225756718419,
+          11.401296032172084,
+          44.54747429643948
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco parchi e giardini default style",
+      "description": "Default visualization for Elenco parchi e giardini, drawn in #00441b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1214,
+      "file:checksum": "12208a0b64e9520d29b7135b2e0c11c29a5535670c67cbf014bbf8e5adc2c65a8f46"
+    },
+    "cartatecnicacomunale": {
+      "href": "./cartatecnicacomunale.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 23127,
+      "file:checksum": "1220fe898526af3c8392cac54129500a7602112fcdfda65dc5b935b99e53d060f804",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./cartatecnicacomunale.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Elenco parchi e giardini (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 48776,
+      "file:checksum": "1220c6a83514bc7cb9131252f28e921530ca0db8855c32bc8ef8a436dc1009edb1cf"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco parchi e giardini categorical style",
+      "description": "Categorical visualization coloring Elenco parchi e giardini by tipo, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1904,
+      "file:checksum": "12207cf840d19b8f6410104ce1b16a19fbcfd1b6815423119a4713c66b07ed0f7bf6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco parchi e giardini labeled style",
+      "description": "Default visualization for Elenco parchi e giardini with nomevia shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1646,
+      "file:checksum": "1220f7a6c72ccd287c459843a61def35dd5512d20d5241fb8b177fac87b3ab58cab4"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco parchi e giardini graduated style",
+      "description": "Graduated visualization coloring Elenco parchi e giardini by codvia, ramped from 120.0 to 63460.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1981,
+      "file:checksum": "122042f80a8c48181ccca1a6d20dbbc7e561431d90e5590f4a5fbe55d01d7fa5be97"
+    },
+    "thumbnail": {
+      "href": "./cartatecnicacomunale.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Elenco parchi e giardini",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 115446,
+      "file:checksum": "12200877e0a499218106358f9a439fef1bf5eef3f968d60708e48657d54b3a95ffec"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abElenco parchi e giardini\u00bb (carta-tecnica-comunale-toponimi-parchi-e-giardini), pubblicato da Comune di Bologna - Sistema Informativo Territoriale (SIT) sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/carta-tecnica-comunale-toponimi-parchi-e-giardini/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

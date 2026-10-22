@@ -1,0 +1,215 @@
+{
+  "type": "Collection",
+  "id": "mobilitat/ronda-verda",
+  "stac_version": "1.1.0",
+  "description": "Circuit senyalitzat Ronda Verda de la ciutat de Barcelona. Aquesta Collection recull els 10 trams del circuit senyalitzat que el visor municipal publica en GeoJSON.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ronda-verda.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Ronda Verda de la ciutat de Barcelona",
+      "pmtiles:layers": [
+        "ronda-verda"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata-ajuntament.barcelona.cat/data/ca/dataset/ronda-verda",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata-ajuntament.barcelona.cat/data/dataset/18990935-6b67-49d4-9e92-2171d439ee59/resource/79de8234-7302-41c1-bc47-f9d392cd5b30/download",
+      "rel": "related",
+      "title": "Upstream source: ronda-verda",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 10,
+  "table:row_count": 10,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "CODI_CAPA",
+      "type": "string"
+    },
+    {
+      "name": "CODI_SUBCAPA",
+      "type": "string"
+    },
+    {
+      "name": "ID",
+      "type": "string"
+    },
+    {
+      "name": "TOOLTIP",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Ronda Verda de la ciutat de Barcelona",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.091166266112411,
+          41.35055253605455,
+          2.231406932752932,
+          41.48298070329426
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ronda Verda de la ciutat de Barcelona default style",
+      "description": "Default visualization for Ronda Verda de la ciutat de Barcelona, drawn in #6a3d9a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1164,
+      "file:checksum": "1220e550a120a65d179befd862018186843ef6c3cb247c0caa7658f3e0769f6a9f46"
+    },
+    "ronda-verda": {
+      "href": "./ronda-verda.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21657,
+      "file:checksum": "122041d0c32544cfd4abad6e35100063b1151c407e684638b276734f7bf8f65f8b65",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ronda-verda.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Ronda Verda de la ciutat de Barcelona (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 32794,
+      "file:checksum": "1220a3b6bbf4ad307865b86f60b96e2eb6523aafcba43ab198f8cf19234f55e89c99"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ronda Verda de la ciutat de Barcelona categorical style",
+      "description": "Categorical visualization coloring Ronda Verda de la ciutat de Barcelona by TOOLTIP, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3981,
+      "file:checksum": "1220a1d8d9138ecdaa41b44607f88ea8a9ae49344e9a7963ef9c69c09025ddcb2e18"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ronda Verda de la ciutat de Barcelona labeled style",
+      "description": "Default visualization for Ronda Verda de la ciutat de Barcelona with TOOLTIP shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1578,
+      "file:checksum": "1220e0d24911415965af7839d40e4aa8c5c8718387039a2f180b540b84ba2a98699d"
+    },
+    "thumbnail": {
+      "href": "./ronda-verda.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Ronda Verda de la ciutat de Barcelona",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 134505,
+      "file:checksum": "12207c5e0e90fdd1bbb0c40e1ca540de48f5077247cbeb3a9d1e849afeb6cef9b0ef"
+    }
+  },
+  "keywords": [
+    "Ronda Verda",
+    "bicicleta",
+    "itinerari",
+    "lleure",
+    "Barcelona"
+  ],
+  "providers": [
+    {
+      "name": "Ajuntament de Barcelona",
+      "description": "Font de les dades: Ajuntament de Barcelona",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata-ajuntament.barcelona.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:00:00Z"
+}

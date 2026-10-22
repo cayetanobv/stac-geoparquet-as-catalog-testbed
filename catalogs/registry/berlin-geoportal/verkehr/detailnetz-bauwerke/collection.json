@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "verkehr/detailnetz-bauwerke",
+  "stac_version": "1.1.0",
+  "description": "Detailliertes Stra\u00dfennetz von Berlin zu verkehrlichen Zwecken. Es enth\u00e4lt \u00fcber das klassifizierte Stra\u00dfennetz hinaus weitere Stra\u00dfen und Wege. Neben den Stra\u00dfenabschnitten geh\u00f6ren zu den Netzelementen die Verbindungspunkte. Zu ihnen werden erg\u00e4nzende Informationen wie Art, Lage, Verkehrsebene, Erhebungsmethode / Herkunft und ein G\u00fcltigkeitszeitraum gespeichert. Zus\u00e4tzlich enth\u00e4lt das Detailnetz die Ingenieursbauwerke (Br\u00fccken und Tunnel) mit ihren Bez\u00fcgen zu den Netzabschnitten. \u00dcber diese Bez\u00fcge ist es m\u00f6glich, ein Bauwerk auf und \u00fcber dem Stra\u00dfenabschnitt zu identifizieren.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./detailnetz_b_bauwerke.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Detailnetz Berlin \u2013 Bauwerke",
+      "pmtiles:layers": [
+        "detailnetz_b_bauwerke"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/detailnetz-berlin-wfs-4f2045ef",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/detailnetz",
+      "rel": "related",
+      "title": "WFS source service: b-bauwerke",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 1005,
+  "table:row_count": 1005,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "dnbr__sdatenid",
+      "type": "int64"
+    },
+    {
+      "name": "bauwerksart",
+      "type": "string"
+    },
+    {
+      "name": "bauwerksname",
+      "type": "string"
+    },
+    {
+      "name": "okstra_id",
+      "type": "string"
+    },
+    {
+      "name": "bauwerksnummer",
+      "type": "string"
+    },
+    {
+      "name": "sib_bauwerksnummer",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Detailnetz Berlin \u2013 Bauwerke",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.0886329,
+          52.37467246,
+          13.72210311,
+          52.64383623
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Detailnetz Berlin \u2013 Bauwerke default style",
+      "description": "Default visualization for Detailnetz Berlin \u2013 Bauwerke, drawn in #7a0177.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1230,
+      "file:checksum": "12200df7814d786cb5f9f563989ec0bd587630d06e8eeb4a5dcca33e4851bbf410c5"
+    },
+    "detailnetz_b_bauwerke": {
+      "href": "./detailnetz_b_bauwerke.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 101680,
+      "file:checksum": "1220b208e571b5f64ae6da577c4780da2a6d123db15885b3df379c8750aad8ab4b83",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./detailnetz_b_bauwerke.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Detailnetz Berlin \u2013 Bauwerke (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 763811,
+      "file:checksum": "12204ef3da71fed0ab5d9bb29e35aac86676280af3f3a1b66c746c5e909bd6d874bf"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Detailnetz Berlin \u2013 Bauwerke categorical style",
+      "description": "Categorical visualization coloring Detailnetz Berlin \u2013 Bauwerke by bauwerksart, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2251,
+      "file:checksum": "122017ed39f4e6e17fb5d6182fd98042332d96fb77699b715aa343ec8d84fc5ddca5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Detailnetz Berlin \u2013 Bauwerke labeled style",
+      "description": "Default visualization for Detailnetz Berlin \u2013 Bauwerke with bauwerksname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1669,
+      "file:checksum": "1220ef5b62a5f6370de36d297fc67189b58a1cdc99c16869b162f85888e0ab781426"
+    },
+    "thumbnail": {
+      "href": "./detailnetz_b_bauwerke.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Detailnetz Berlin \u2013 Bauwerke",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 148821,
+      "file:checksum": "122010b4cdc8b516b64747b16ceff061f6f8a0f07da1305b98062ce1593bfabf610a"
+    }
+  },
+  "keywords": [
+    "Bauwerk",
+    "Bauwerke",
+    "Berlin",
+    "Br\u00fccken",
+    "Detailnetz",
+    "Geodaten",
+    "Ingenieurbauwerke",
+    "Karten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Detailnetz Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "nelida.rostock@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

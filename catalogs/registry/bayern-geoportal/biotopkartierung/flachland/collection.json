@@ -1,0 +1,302 @@
+{
+  "type": "Collection",
+  "id": "biotopkartierung/flachland",
+  "stac_version": "1.1.0",
+  "description": "Die Biotopkartierung (Flachland) beinhaltet die im Rahmen der Biotopkartierung Bayern erfassten Biotope ausserhalb der Alpen, kreisfreien St\u00e4dte und der Milit\u00e4rgebiete. Ausgenommen sind die seit 2006 nachrichtlich \u00fcbernommenen Waldbiotope (siehe hierzu Thema Biotopkartierung (Nachrichtlich \u00fcbernommene Waldbiotope)).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bio_fbk_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Biotopkartierung Flachland",
+      "pmtiles:layers": [
+        "bio_fbk_epsg25832_shp"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/biotopkartierung.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 469832,
+  "table:row_count": 469832,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "biotop",
+      "type": "string",
+      "description": "Biotop-Hauptnummer: \u201eTK25-Nr.\u201c \u2013 \u201elaufende Nr. in TK25\u201c, zum Beispiel 7839-1100."
+    },
+    {
+      "name": "id_tf",
+      "type": "string",
+      "description": "Biotop-Teilfl\u00e4chennummer: \u201eTK25-Nr.\u201c \u2013 \u201elaufende Nr. in TK25\u201c \u2013 \u201eTeilfl\u00e4chennummer\u201c, zum Beispiel 7839-1100-001."
+    },
+    {
+      "name": "tf_genau",
+      "type": "string",
+      "description": "Angabe, ob sich die Anteile der Biotoptypen auf die jeweilige Biotop-Teilfl\u00e4che oder auf das Gesamtbiotop mit mehreren Teilfl\u00e4chen bezieht (ja/nein)."
+    },
+    {
+      "name": "datum",
+      "type": "date",
+      "description": "Datum der Erfassung im Gel\u00e4nde."
+    },
+    {
+      "name": "titel",
+      "type": "string",
+      "description": "\u00dcberschrift des Biotopkomplexes."
+    },
+    {
+      "name": "haupt_typ",
+      "type": "string",
+      "description": "Biotoptyp mit dem h\u00f6chsten Fl\u00e4chenanteil, inklusive Fl\u00e4chenanteil im Biotop."
+    },
+    {
+      "name": "neben_typ",
+      "type": "string",
+      "description": "Weitere Biotoptypen, inklusive deren Fl\u00e4chenanteile. Da maximal 254 Zeichen m\u00f6glich sind, kann der Text abgeschnitten sein; die vollst\u00e4ndige Auflistung steht in der Access-Datenbank mit den Sachdaten."
+    },
+    {
+      "name": "schutz_30",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG; bei Streuobstbest\u00e4nden wird hier nur der Unterwuchs bewertet."
+    },
+    {
+      "name": "pschutz_30",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che mit potentiellem Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "schutz_39",
+      "type": "string",
+      "description": "Hinweis, ob gesch\u00fctzte Fl\u00e4chenanteile nach \u00a7 39 BNatSchG / Art. 16 BayNatSchG vorhanden sind (ja/nein; 0 = nein, 1 = ja)."
+    },
+    {
+      "name": "s_30_streu",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Streuobstbest\u00e4nde mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "s_30_ges",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che inklusive Streuobstbest\u00e4nde mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "natschg_k",
+      "type": "string",
+      "description": "Angabe, ob die Biotopfl\u00e4che nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG gesch\u00fctzte Anteile enth\u00e4lt; A, B: mit gesch\u00fctzten Anteilen, C: m\u00f6glicherweise mit gesch\u00fctzten Anteilen, D: ohne gesch\u00fctzte Anteile. Streuobstbest\u00e4nde werden gesondert in streuo_k bewertet."
+    },
+    {
+      "name": "streuo_k",
+      "type": "string",
+      "description": "Angabe, ob das Streuobst nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG gesch\u00fctzte Anteile enth\u00e4lt; SA: mit gesch\u00fctzten Anteilen, SB: m\u00f6glicherweise mit gesch\u00fctzten Anteilen, SC: ohne gesch\u00fctzte Anteile."
+    },
+    {
+      "name": "uab",
+      "type": "string",
+      "description": "Link zu weiterf\u00fchrenden Informationen zum Biotop \u00fcber den UmweltAtlas Bayern."
+    },
+    {
+      "name": "steckbrief",
+      "type": "string",
+      "description": "Link zum Biotop-Steckbrief mit weitergehenden Informationen zum Biotop."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Biotopkartierung Flachland",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.976961988356472,
+          47.53409290382217,
+          13.83729411260531,
+          50.55447337144368
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Flachland default style",
+      "description": "Default visualization for Biotopkartierung Flachland, drawn in #31a354.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1223,
+      "file:checksum": "12200d1aadf3044426a4afb78a223b9129aa2760938309dd7fd59c5b34290955f7fe"
+    },
+    "bio_fbk_epsg25832_shp": {
+      "href": "./bio_fbk_epsg25832_shp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 223062607,
+      "file:checksum": "1220235865138a096aa19a01379dfff2dfd49e70f5722a2300f5cde72e0c884fa418",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./bio_fbk_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Biotopkartierung Flachland (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 249094315,
+      "file:checksum": "12205cae79c0b4175fdaffccccf379666fdda9f1fdc775cd912ae41976286db253fc"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Flachland categorical style",
+      "description": "Categorical visualization coloring Biotopkartierung Flachland by tf_genau, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1779,
+      "file:checksum": "1220597b283ab13157bb19d343af5a1daccdb31066984cb87a1e4c31f00b451745ef"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Flachland labeled style",
+      "description": "Default visualization for Biotopkartierung Flachland with tf_genau shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1658,
+      "file:checksum": "12205739c27bcf257e780188d4b278a3f13708fb83798dc35c4076d8be4db6ab50ea"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Flachland graduated style",
+      "description": "Graduated visualization coloring Biotopkartierung Flachland by pschutz_30, ramped from 0.0 to 140.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1985,
+      "file:checksum": "1220690b908464a750e14eb32482a85490f4df74cfda490dabd81c5339492c4e112a"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/biotopkartierung/bio_fbk_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: biotopkartierung-bio_fbk",
+      "pipeline:upstream": true,
+      "file:size": 227793483,
+      "file:checksum": "12205b39089f8d9ba23da539f725ce30d36842cebb46c7771043a7bcb5e639177ad1"
+    },
+    "thumbnail": {
+      "href": "./bio_fbk_epsg25832_shp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Biotopkartierung Flachland",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 257971,
+      "file:checksum": "12208fe75a1f6e74144c075ee338e266a502d3c1f569efee1d2351893a16a33a39da"
+    }
+  },
+  "keywords": [
+    "Biotopkartierung",
+    "Biotope",
+    "FIS-Natur",
+    "Naturschutz",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

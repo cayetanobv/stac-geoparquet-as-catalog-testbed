@@ -1,0 +1,263 @@
+{
+  "type": "Collection",
+  "id": "ambiente/hortas-urbanas",
+  "stac_version": "1.1.0",
+  "description": "Hortas urbanas do concelho de Lisboa em pol\u00edgono, com o nome, a situa\u00e7\u00e3o e a \u00e1rea, na camada Hortas Urbanas do servi\u00e7o Ambiente DMEVAE da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./hortas_urbanas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hortas Urbanas",
+      "pmtiles:layers": [
+        "hortas_urbanas"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/d2eb1eb1cfae400496bec1aeec4e25b2_3",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Ambiente_DMEVAE/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Ambiente DMEVAE (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 34,
+  "table:row_count": 34,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "NOME",
+      "type": "string",
+      "description": "Nome da horta urbana, texto do publicador."
+    },
+    {
+      "name": "SITUACAO",
+      "type": "string",
+      "description": "Situa\u00e7\u00e3o da horta (alias \u00abSitua\u00e7\u00e3o\u00bb), texto do publicador."
+    },
+    {
+      "name": "ID_TIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "AREA",
+      "type": "double",
+      "description": "\u00c1rea da horta em metros quadrados, calculada pelo publicador; no servi\u00e7o mant\u00e9m o alias herdado da geodatabase \u00abAMB_URB.L2EV_JARDI_PARQUESHORT_PL.AREA\u00bb."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Hortas Urbanas",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.20659677204856,
+          38.7051542641391,
+          -9.10282427268744,
+          38.7940344369352
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hortas Urbanas default style",
+      "description": "Default visualization for Hortas Urbanas, drawn in #addd8e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1162,
+      "file:checksum": "1220bc070375a61299837d7dc2ddc38aa59e8db1b1eda9942217a7ab90ddba84193f"
+    },
+    "hortas_urbanas": {
+      "href": "./hortas_urbanas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 32108,
+      "file:checksum": "122029f42588b176361c625a62db54869c6c98897a2b489e7c7f82180abdd72db498",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./hortas_urbanas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hortas Urbanas (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 42549,
+      "file:checksum": "1220e7a5362c7f3e30ecd1a304882de38caaa61d9dcd7e79094bc570a1b6180439ed"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hortas Urbanas categorical style",
+      "description": "Categorical visualization coloring Hortas Urbanas by SITUACAO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1886,
+      "file:checksum": "1220056baaaecf2ec6444547e263d5fedd39997306d43b415d5d1cb5e1ecf493b2b4"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hortas Urbanas labeled style",
+      "description": "Default visualization for Hortas Urbanas with NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1579,
+      "file:checksum": "1220a0069fc3c002b5b064ed1c758d8d693a13431d729576435811ff5fc300eb010c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hortas Urbanas graduated style",
+      "description": "Graduated visualization coloring Hortas Urbanas by AREA, ramped from 1177.65607258 to 141505.36102494.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1990,
+      "file:checksum": "1220720cfe85f0d21bdec890dd28cafd29971006ee550716a67f2c3889194fac57da"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/d2eb1eb1cfae400496bec1aeec4e25b2/geojson?layers=3&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: hortas_urbanas",
+      "pipeline:upstream": true,
+      "file:size": 77129,
+      "file:checksum": "122083ce0e298c004eec9e06985485d839b86f35dfbfbe6524c434334c070937e95a"
+    },
+    "thumbnail": {
+      "href": "./hortas_urbanas.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Hortas Urbanas",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 153425,
+      "file:checksum": "1220f46d9fdb421ad160cba17c5939f09c5b8bf9918352d1e9a964b8d87a6e952286"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Hortas",
+    "Ambiente"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Hortas Urbanas (Ambiente DMEVAE), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

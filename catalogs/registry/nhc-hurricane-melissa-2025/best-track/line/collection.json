@@ -1,0 +1,231 @@
+{
+  "type": "Collection",
+  "id": "best-track/line",
+  "stac_version": "1.1.0",
+  "description": "NHC working best track of Hurricane Melissa (AL132025) as 12 line segments, each carrying the storm type and Saffir-Simpson category (SS) along that stretch of the track. No time column: NHC's line file carries none; use best-track/points for times and intensities.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./best-track-line.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track line by intensity segment",
+      "pmtiles:layers": [
+        "best-track-line"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/",
+      "type": "text/html"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://www.nhc.noaa.gov/gis/best_track/al132025_best_track.zip",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 12,
+  "table:row_count": 12,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13)."
+    },
+    {
+      "name": "STORMTYPE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): storm type along the segment: TS (1 segment), HU (11)."
+    },
+    {
+      "name": "SS",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): Saffir-Simpson category along the segment: 0 (1 segment), 1 (4), 2 (3), 3 (2), 4 (1), 5 (1)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Track segment (LineString, all valid) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); extent -78.6, 14.0, -51.3, 46.6."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Working best track line by intensity segment",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.6,
+          14.0,
+          -51.3,
+          46.6
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T06:00:00Z",
+          "2025-11-01T06:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track line by intensity segment default style",
+      "description": "Default visualization for Working best track line by intensity segment, drawn in #6a1b9a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1199,
+      "file:checksum": "1220d65c8a6798c371766d7029f07719f4447307f064b75a6d8e82ddc62fc20a6cf3"
+    },
+    "best-track-line": {
+      "href": "./best-track-line.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3604,
+      "file:checksum": "12203b8dac1cde416c6224b9348ee92ffca777d3cecb126523ffe165c7487ffca32d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./best-track-line.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track line by intensity segment (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 708539,
+      "file:checksum": "1220a58b78c0ffa738c0dd3789226ce02b1ef7985cc2a2b4f36b549be100f8419911"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track line by intensity segment labeled style",
+      "description": "Default visualization for Working best track line by intensity segment with SS shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1616,
+      "file:checksum": "12208611a958bb6785f364632e6abbebbb0dda40c490455f49e865dd506512d99dac"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track line by intensity segment graduated style",
+      "description": "Graduated visualization coloring Working best track line by intensity segment by SS, ramped from 0.0 to 5.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1920,
+      "file:checksum": "1220d11e79fb7caae0c15b0d3b15d925df349145202bc76ba03ef64d1756cbfc17c0"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/best-track-line/best-track-line.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: best-track-line",
+      "pipeline:upstream": true,
+      "file:size": 2839,
+      "file:checksum": "12207ec4c2eeac3acfadbb10eb9001d5c2f0d879a44feb7bab4ebbc43b9a7ccbcdee"
+    },
+    "thumbnail": {
+      "href": "./best-track-line.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Working best track line by intensity segment",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 38695,
+      "file:checksum": "1220a120bc62b44963e9aeb7c80f7e92d2eab7608ce80738575af32745e1e75a94c2"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

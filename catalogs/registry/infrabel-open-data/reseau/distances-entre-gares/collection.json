@@ -1,0 +1,236 @@
+{
+  "type": "Collection",
+  "id": "reseau/distances-entre-gares",
+  "stac_version": "1.1.0",
+  "description": "Segmentation du r\u00e9seau ferroviaire Infrabel par parcours le plus court entre deux gares voyageurs adjacentes sur les lignes voyageurs. Cette liste donne aussi une estimation de la distance.\n\nNotes importantes :\n\n- Si deux parcours sont possibles entre les deux gares, le parcours le plus court a \u00e9t\u00e9 choisi\n\n- Il revient \u00e0 l\u2019utilisateurs d\u2019assembler les fragments pour obtenir le cheminement entre deux gares distantes. Vous trouverez par exemple dans ce jeu de donn\u00e9es le trac\u00e9 entre \u00ab Bruxelles-Midi \u00bb et \u00ab Bruxelles-Chapelle \u00bb mais pas le chemin complet entre \u00ab Bruxelles-Midi \u00bb et \u00ab Arlon \u00bb\n\n- Ces donn\u00e9es ont pour but de permettre des repr\u00e9sentations sch\u00e9matiques du r\u00e9seau ferr\u00e9 belge (c\u2019est-\u00e0-dire pour une \u00e9chelle max. d\u20191/25 000). Pour une g\u00e9olocalisation plus pr\u00e9cise des voies principales, nous vous recommandons le dataset suivant Liste et position g\u00e9ographique des voies principales (https://infrabel.opendatasoft.com/explore/dataset/geosporen/)\n\n- De m\u00eame, une gare est loin d\u2019\u00eatre positionn\u00e9e sur un point pr\u00e9cis puisque les quais sont souvent longs de plusieurs centaines de m\u00e8tres. Aussi, les distances sont plus fiables \u00e0 mesure qu\u2019on additionne les fragments pour \u00e9tudier un trajet plus long.\n\n- Enfin, ces donn\u00e9es ne donnent pas d\u2019indications sur les horaires pr\u00e9vus ou r\u00e9els, g\u00e9r\u00e9s quant \u00e0 eux par les op\u00e9rateurs ferroviaires. Les donn\u00e9es historiques d\u2019arriv\u00e9es et d\u00e9parts des trains en gare sont disponibles via nos donn\u00e9es brutes de ponctualit\u00e9. (https://infrabel.opendatasoft.com/explore/dataset/stiptheid-gegevens-maandelijksebestanden/information/)\n\nTitre n\u00e9erlandais du publicateur : \u00ab Voorstelling van de afstanden tussen aangrenzende stations op het spoorwegnet \u00bb ; titre anglais : \u00ab Geographical layout of the distances between two adjacent stations on the rail network \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./station_to_station.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9",
+      "pmtiles:layers": [
+        "station_to_station"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://opendata.infrabel.be/pages/license/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.infrabel.be/explore/dataset/station_to_station/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.infrabel.be/api/explore/v2.1/catalog/datasets/station_to_station/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: station_to_station",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 1385,
+  "table:row_count": 1385,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Num\u00e9ro d'ordre du lecteur GeoJSON de GDAL/OGR, ajout\u00e9 par la conversion ; non stable d'une ex\u00e9cution \u00e0 l'autre."
+    },
+    {
+      "name": "stationfrom_id",
+      "type": "string",
+      "description": "Gare de d\u00e9part (id). m\u00eame id que dans le dataset \"points op\u00e9rationnels du r\u00e9seau\""
+    },
+    {
+      "name": "stationfrom_name",
+      "type": "string",
+      "description": "Gare de d\u00e9part."
+    },
+    {
+      "name": "stationto_id",
+      "type": "string",
+      "description": "Gare d'arriv\u00e9e (id). m\u00eame id que dans le dataset \"points op\u00e9rationnels du r\u00e9seau\""
+    },
+    {
+      "name": "stationto_name",
+      "type": "string",
+      "description": "Gare d'arriv\u00e9e."
+    },
+    {
+      "name": "length",
+      "type": "double",
+      "description": "Distance. Longueur de la distance repr\u00e9sent\u00e9e"
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Centro\u00efde du portail Opendatasoft (champ geo_point_2d), livr\u00e9 par l'export GeoJSON comme objet imbriqu\u00e9 {lon, lat} et conserv\u00e9 par la conversion sous forme de texte JSON ; redondant avec geom."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "G\u00e9om\u00e9trie (LineString) en WGS 84 (OGC:CRS84) telle que servie par l'export GeoJSON du portail ; le publicateur g\u00e8re les donn\u00e9es en Lambert 72 (EPSG:31370) et les reprojette lui-m\u00eame. Seule colonne d\u00e9clar\u00e9e comme g\u00e9om\u00e9trie (nom geom selon la conversion du 20.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie (structure xmin, ymin, xmax, ymax), ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.602401090227277,
+          49.54679207005837,
+          6.051787128880354,
+          51.462736996681265
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 default style",
+      "description": "Default visualization for Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9, drawn in #41ab5d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1259,
+      "file:checksum": "1220ee975d901d8af0c4046d48dededcdfa3904be7551f6c768f8ceea13ae98ee482"
+    },
+    "station_to_station": {
+      "href": "./station_to_station.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 589396,
+      "file:checksum": "12208dad20808a63abc477c1644f98aeea2f84fdd40c40102496791d6e22e3c0c797",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./station_to_station.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2452361,
+      "file:checksum": "1220615dec4cc967cff4e8b2077fc54623bd7caf66de44c25826e1ffab5f8b81c26a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 labeled style",
+      "description": "Default visualization for Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 with stationfrom_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1696,
+      "file:checksum": "122017217b4d9591874590dc74ddecad531117f3705a827dbeebc3b24fcc819f725b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 graduated style",
+      "description": "Graduated visualization coloring Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 by length, ramped from 0.676257719003781 to 66.2199129490686.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2119,
+      "file:checksum": "122063d1dc5cc7b3d282ae2e09f526dfb3c16ad16255cd309e97056d56c974eabec5"
+    },
+    "thumbnail": {
+      "href": "./station_to_station.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 177320,
+      "file:checksum": "12203b66d00cd91322663748e2f5dd782ad553152403c9a9a4ed4ad3d85ed5c5ba99"
+    }
+  },
+  "keywords": [
+    "Lignes",
+    "Infrastructure",
+    "G\u00e9olocalisation",
+    "Infrabel",
+    "Belgique",
+    "Chemin de fer"
+  ],
+  "providers": [
+    {
+      "name": "Infrabel",
+      "description": "Source : Infrabel, Infrabel Open Data (opendata.infrabel.be), \u00ab Trac\u00e9s des distances entre deux gares adjacentes sur le r\u00e9seau ferr\u00e9 \u00bb, direction publiante \u00ab Assets Management \u00bb, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://infrabel.be",
+      "email": "contact@infrabel.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T14:00:00Z"
+}

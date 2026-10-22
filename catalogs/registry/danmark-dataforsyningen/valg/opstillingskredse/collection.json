@@ -1,0 +1,283 @@
+{
+  "type": "Collection",
+  "id": "valg/opstillingskredse",
+  "stac_version": "1.1.0",
+  "description": "Danmarks 92 opstillingskredse fra DAGI med nummer, navn, kredskommune, storkreds og valglandsdel.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./opstillingskredse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Opstillingskredse",
+      "pmtiles:layers": [
+        "opstillingskredse"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/opstillingskreds",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/opstillingskredse?format=geojson",
+      "rel": "related",
+      "title": "Upstream source: opstillingskredse",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 92,
+  "table:row_count": 92,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "dagi_id",
+      "type": "string"
+    },
+    {
+      "name": "nummer",
+      "type": "string"
+    },
+    {
+      "name": "kode",
+      "type": "string"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "regionskode",
+      "type": "string"
+    },
+    {
+      "name": "regionsnavn",
+      "type": "string"
+    },
+    {
+      "name": "kredskommunekode",
+      "type": "string"
+    },
+    {
+      "name": "kredskommunenavn",
+      "type": "string"
+    },
+    {
+      "name": "storkredsnummer",
+      "type": "string"
+    },
+    {
+      "name": "storkredsnavn",
+      "type": "string"
+    },
+    {
+      "name": "valglandsdelsbogstav",
+      "type": "string"
+    },
+    {
+      "name": "valglandsdelsnavn",
+      "type": "string"
+    },
+    {
+      "name": "valgkredsnummer",
+      "type": "string"
+    },
+    {
+      "name": "\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_version",
+      "type": "int32"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Opstillingskredse",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.07250975,
+          54.55907837,
+          15.19740034,
+          57.75257255
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Opstillingskredse default style",
+      "description": "Default visualization for Opstillingskredse, drawn in #756bb1.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1186,
+      "file:checksum": "1220dcdb921dfefbeb28525216388d8bb2176d2c0f3e18bcef7dd6797db3ab08d782"
+    },
+    "opstillingskredse": {
+      "href": "./opstillingskredse.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 22168261,
+      "file:checksum": "12208809bc385d71e9232784a439a20b9e0b13106c01993cd0f2690663875c807e19",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./opstillingskredse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Opstillingskredse (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 13605892,
+      "file:checksum": "122078a056713cdfc41ace00d41245d5ae598082fff3f1c961a39270f6db5f0724ee"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Opstillingskredse categorical style",
+      "description": "Categorical visualization coloring Opstillingskredse by valglandsdelsbogstav, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1886,
+      "file:checksum": "1220b9eb2d243c94f08a84f28b33130b8de5b486506ba5c1fbd889838a87b9bed0f8"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Opstillingskredse labeled style",
+      "description": "Default visualization for Opstillingskredse with valglandsdelsbogstav shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1625,
+      "file:checksum": "12208512c4b5acb471851d11cecf1cec356287aff1580612fabbb77435ea55adee91"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Opstillingskredse graduated style",
+      "description": "Graduated visualization coloring Opstillingskredse by geo_version, ramped from 4.0 to 25.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1949,
+      "file:checksum": "1220c8a9aefd160c0368999f3260bd70c4d55b066b541f58c62e8cd77b24af70047e"
+    },
+    "thumbnail": {
+      "href": "./opstillingskredse.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Opstillingskredse",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 97368,
+      "file:checksum": "12206dfcbc8e662afac0a787d122f426250178e6519d3c4499dd71799fc4c53156ce"
+    }
+  },
+  "keywords": [
+    "opstillingskredse",
+    "valg",
+    "folketingsvalg",
+    "DAGI"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen opstillingskredse, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/opstillingskreds",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

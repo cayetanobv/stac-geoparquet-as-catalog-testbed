@@ -1,0 +1,650 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/parcels-history",
+  "stac_version": "1.1.0",
+  "description": "Current and historic parcel data",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=82",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./parcels-history.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "parcels-history"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=82",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 3106506,
+  "table:row_count": 3106506,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "HANDLE",
+      "type": "string",
+      "description": "Zero-padded handle identifier for parcels (official portal field definition for this dataset) \u2014 the join key across city parcel data."
+    },
+    {
+      "name": "COUNT_",
+      "type": "decimal128(18, 11)"
+    },
+    {
+      "name": "SHAPE_Leng",
+      "type": "decimal128(18, 11)"
+    },
+    {
+      "name": "SHAPE_Area",
+      "type": "decimal128(18, 11)"
+    },
+    {
+      "name": "HANDLE_1",
+      "type": "string"
+    },
+    {
+      "name": "UPDATED",
+      "type": "date32[day]",
+      "description": "Date the source snapshot record was updated (portal label 'UPDATED')."
+    },
+    {
+      "name": "SITEADDR",
+      "type": "string",
+      "description": "Site address of the parcel (portal label)."
+    },
+    {
+      "name": "OWNERNAME",
+      "type": "string",
+      "description": "Owner name of record (OWNERNAME2 is the overflow line)."
+    },
+    {
+      "name": "OWNERNAME2",
+      "type": "string"
+    },
+    {
+      "name": "OWNERADDR",
+      "type": "string",
+      "description": "Owner's house number and street name mailing address (portal field definition); OWNERCITY/OWNERSTATE/OWNERZIP/OWNERCNTRY are the rest of the registered mailing address."
+    },
+    {
+      "name": "OWNERCITY",
+      "type": "string"
+    },
+    {
+      "name": "OWNERSTATE",
+      "type": "string"
+    },
+    {
+      "name": "OWNERCNTRY",
+      "type": "string"
+    },
+    {
+      "name": "OWNERZIP",
+      "type": "string"
+    },
+    {
+      "name": "OWNERGROUP",
+      "type": "string",
+      "description": "Owner grouping assigned in the source extract (portal label only; no decode published)."
+    },
+    {
+      "name": "NUMUNITS",
+      "type": "int64",
+      "description": "Number of units on the parcel (portal label)."
+    },
+    {
+      "name": "ZONING1",
+      "type": "string",
+      "description": "Zoning district code decoded by the city's 'Zoning Code' vocabulary (ZONING2-3 are additional districts where the parcel spans zones)."
+    },
+    {
+      "name": "ZONING2",
+      "type": "string"
+    },
+    {
+      "name": "ZONING3",
+      "type": "string"
+    },
+    {
+      "name": "VACANTLAND",
+      "type": "string",
+      "description": "Vacant-land flag, 'Y' or 'N' (portal field definition)."
+    },
+    {
+      "name": "ASMTLAND",
+      "type": "decimal128(18, 11)",
+      "description": "Assessment (assessed value) of land in dollars (portal label 'Assessment Land')."
+    },
+    {
+      "name": "ASMTIMPROV",
+      "type": "decimal128(18, 11)",
+      "description": "Assessment of improvements in dollars (portal label 'Assessment Improvements')."
+    },
+    {
+      "name": "ASMTTOTAL",
+      "type": "decimal128(18, 11)",
+      "description": "Total assessed value in dollars (portal label 'Assessment Total')."
+    },
+    {
+      "name": "LANDUSE1",
+      "type": "int32",
+      "description": "Land-use code decoded by the city's official 'Assessor Land Use' vocabulary, e.g. 1110 Single Family Units, 1010 Vacant Residential Lot (LANDUSE2-4 are additional codes; the portal maps these columns to that vocabulary)."
+    },
+    {
+      "name": "LANDUSE2",
+      "type": "int32"
+    },
+    {
+      "name": "LANDUSE3",
+      "type": "int32"
+    },
+    {
+      "name": "LANDUSE4",
+      "type": "int32"
+    },
+    {
+      "name": "ASRUSE1",
+      "type": "int32",
+      "description": "Assessor use code (portal label 'Assessor Use Code'); the portal publishes no decode vocabulary for this column (ASRUSE2-4 likewise)."
+    },
+    {
+      "name": "ASRUSE2",
+      "type": "int32"
+    },
+    {
+      "name": "ASRUSE3",
+      "type": "int32"
+    },
+    {
+      "name": "ASRUSE4",
+      "type": "int32"
+    },
+    {
+      "name": "ASRCLASS1",
+      "type": "int32",
+      "description": "Assessor class code \u2014 owner-type classification, decoded by the city's 'Assessor Class Code' vocabulary (ASRCLASS2-4 are additional codes)."
+    },
+    {
+      "name": "ASRCLASS2",
+      "type": "int32"
+    },
+    {
+      "name": "ASRCLASS3",
+      "type": "int32"
+    },
+    {
+      "name": "ASRCLASS4",
+      "type": "int32"
+    },
+    {
+      "name": "LEGAL1",
+      "type": "string",
+      "description": "First line of the legal description (LEGAL2-5 continue it; portal labels 'Legal Description')."
+    },
+    {
+      "name": "LEGAL2",
+      "type": "string"
+    },
+    {
+      "name": "LEGAL3",
+      "type": "string"
+    },
+    {
+      "name": "LEGAL4",
+      "type": "string"
+    },
+    {
+      "name": "LEGAL5",
+      "type": "string"
+    },
+    {
+      "name": "NUMBLDGS",
+      "type": "int32",
+      "description": "Number of buildings on the parcel (portal label)."
+    },
+    {
+      "name": "LANDAREA",
+      "type": "decimal128(30, 11)",
+      "description": "Lot area in square feet (portal label 'Land Area'; units per the current parcels extract where values match polygon areas in feet)."
+    },
+    {
+      "name": "FRONTAGE",
+      "type": "decimal128(18, 11)",
+      "description": "Street frontage in feet (portal label 'Frontage')."
+    },
+    {
+      "name": "DAILYDATE",
+      "type": "date32[day]",
+      "description": "Recorder of Deeds daily-record date of the latest recorded instrument (portal label 'Daily Date'); DAILYNUM, BOOKNUM and BOOKPAGE are the daily number and deed book/page references."
+    },
+    {
+      "name": "DAILYNUM",
+      "type": "string"
+    },
+    {
+      "name": "BOOKNUM",
+      "type": "string"
+    },
+    {
+      "name": "BOOKPAGE",
+      "type": "string"
+    },
+    {
+      "name": "BDG1YEAR",
+      "type": "int32",
+      "description": "Year built of building 1 (portal label 'Building 1 Year'); BDG1AREA is its area and BDG1EXWALL its exterior-wall code."
+    },
+    {
+      "name": "BDG1AREA",
+      "type": "decimal128(30, 11)"
+    },
+    {
+      "name": "BDG1EXWALL",
+      "type": "int32"
+    },
+    {
+      "name": "BDG1STRYCD",
+      "type": "int32"
+    },
+    {
+      "name": "BDG1OCCCD",
+      "type": "int32"
+    },
+    {
+      "name": "CITYBLOCK",
+      "type": "decimal128(18, 11)",
+      "description": "City block number of the parcel key; PARCEL is the parcel number within the block."
+    },
+    {
+      "name": "PARCEL",
+      "type": "int32"
+    },
+    {
+      "name": "PARITY",
+      "type": "string"
+    },
+    {
+      "name": "ADDRNUM",
+      "type": "decimal128(30, 11)"
+    },
+    {
+      "name": "ADDRSUF",
+      "type": "string"
+    },
+    {
+      "name": "STREETPRE",
+      "type": "string"
+    },
+    {
+      "name": "STREETNAME",
+      "type": "string"
+    },
+    {
+      "name": "STREETSUF",
+      "type": "string"
+    },
+    {
+      "name": "STRSUFDIR",
+      "type": "string"
+    },
+    {
+      "name": "UNITNUM",
+      "type": "string"
+    },
+    {
+      "name": "CDADIST",
+      "type": "int32"
+    },
+    {
+      "name": "CDASUBDIST",
+      "type": "int32"
+    },
+    {
+      "name": "WARD",
+      "type": "int32"
+    },
+    {
+      "name": "PRECINCT",
+      "type": "int32"
+    },
+    {
+      "name": "NBRHD",
+      "type": "int32",
+      "description": "City neighborhood number (city 'Neighborhood' vocabulary)."
+    },
+    {
+      "name": "CENSBLOCK",
+      "type": "string"
+    },
+    {
+      "name": "POLICEDIST",
+      "type": "int32"
+    },
+    {
+      "name": "ZIP",
+      "type": "decimal128(30, 11)"
+    },
+    {
+      "name": "IMPACTAREA",
+      "type": "int32"
+    },
+    {
+      "name": "HSCONSERV",
+      "type": "int32"
+    },
+    {
+      "name": "PARCEL10",
+      "type": "string",
+      "description": "Ten-digit parcel identifier (CityBlock+Parcel+OwnerCode form; see the legacy BBBBbbPPPO schema); PARCEL9 is the nine-digit CityBlock+Parcel root."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float, ymin: float, xmax: float, ymax: float>"
+    },
+    {
+      "name": "era",
+      "type": "string",
+      "description": "Snapshot vintage added by this mirror: which yearly source extract (1997-2015 single years, plus a combined 2016-2020 file) the row came from."
+    },
+    {
+      "name": "OWNEROCC",
+      "type": "string",
+      "description": "Owner-occupancy dwelling-type code: 1 Single Family, 2 Two-Family, 4 Three-or-Four Family, 5 Five-plus Family, C Condo, X Other (city PrclCode.mdb CdOwnerOccCode)."
+    },
+    {
+      "name": "VACBLDGYR",
+      "type": "int32",
+      "description": "Year the property entered the vacant building registry (name-based)."
+    },
+    {
+      "name": "ASRNBRHD",
+      "type": "int32",
+      "description": "Assessor's assessment-neighborhood number."
+    },
+    {
+      "name": "PRECINCT02",
+      "type": "int32"
+    },
+    {
+      "name": "PRECINCT04",
+      "type": "int32"
+    },
+    {
+      "name": "UPDATED_1",
+      "type": "date32[day]"
+    },
+    {
+      "name": "PARCEL9",
+      "type": "int64"
+    },
+    {
+      "name": "PRECINCT10",
+      "type": "int32"
+    },
+    {
+      "name": "INSPAREA10",
+      "type": "int32"
+    },
+    {
+      "name": "Shape_len",
+      "type": "decimal128(18, 11)"
+    }
+  ],
+  "portolan:total_size_bytes": 148440237,
+  "portolan:asset_count": 1,
+  "title": "Parcels (Historical, 1997-2020)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32057687721576,
+          38.532670087845,
+          -90.17512199644693,
+          38.77435160356174
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "parcels-history": {
+      "href": "./parcels-history.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 148864025,
+      "file:checksum": "12200fff4bfbbab9d7065c9f3cfc36e257db194b7a06bbaf147737effc8d02ff1a62",
+      "roles": [
+        "data"
+      ],
+      "title": "Parcels (Historical, 1997-2020) (GeoParquet)"
+    },
+    "parcels-history-tiles": {
+      "href": "./parcels-history.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Parcels (Historical, 1997-2020) (PMTiles)",
+      "file:size": 34762579,
+      "file:checksum": "1220f9b01b0c250c7d19dfc74045b5fcd83a412353fffc0ed2a89f5ce47eb2c50784"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Parcels by era",
+      "description": "Five-year snapshots of the city's parcel boundaries (the map shows 1997, 2000, 2005, 2010, 2015, and 2016-2020; the full Parquet holds every yearly snapshot, 3.1M rows).",
+      "file:size": 1532,
+      "file:checksum": "1220689b28baa67dd5cb79fa3d47d2a66ec248ab7cbb4a8d6187b08a14215a0e574d"
+    },
+    "styles/style-1997": {
+      "href": "./styles/style-1997.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Parcels in 1997",
+      "description": "The oldest snapshot alone \u2014 compare against the current parcels collection to see consolidation and demolition.",
+      "file:size": 1084,
+      "file:checksum": "122005ebd500476c0a8bd2eaf77a71157588c145c623892f9d8fcc51798893a88694"
+    },
+    "styles/style-2020": {
+      "href": "./styles/style-2020.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Parcels in 2016-2020",
+      "description": "The newest snapshot in the archive (published as a single 2016-2020 era file).",
+      "file:size": 1061,
+      "file:checksum": "1220cdd8fb560d6db971ea5370df053dab1141c3f69cf0f4c9108a85f29b6abe8ffa"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Parcels (Historical, 1997-2020) rendered with the default style",
+      "file:size": 613201,
+      "file:checksum": "12205e8080d7277c6c39f49d2bb06d9689c623c542e85251d9067aa3c7d40c6383bd"
+    },
+    "styles/style-zoning-1997": {
+      "href": "./styles/style-zoning-1997.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Zoning in 1997",
+      "description": "Each 1997 parcel filled by its zoning letter \u2014 compare with the current parcels collection's zoning view to see three decades of rezoning.",
+      "file:size": 2174,
+      "file:checksum": "122034b4142c75246d0e6a06ef066f51f1a8b67dd36b40dbb55cb16443bc11ef1da9"
+    },
+    "source-1997-2000": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/stl_parcels_1997-2000.zip",
+      "type": "application/zip",
+      "title": "Historical parcels 1997\u20132000 (zipped Shapefiles)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 94809214,
+      "file:checksum": "122077ed89fa07f2b0f3ed8c19dd62469ac6f9f8aaa37efa38bf00ec98639247b2c4",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2001-2005": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/stl_parcels_2001-2005.zip",
+      "type": "application/zip",
+      "title": "Historical parcels 2001\u20132005 (zipped Shapefiles)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 120326328,
+      "file:checksum": "122099d283df1b7458505f6c87485f8b86a371297c43199029490d5f9ea06d6b0653",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2006-2010": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/stl_parcels_2006-2010.zip",
+      "type": "application/zip",
+      "title": "Historical parcels 2006\u20132010 (zipped Shapefiles)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 120276545,
+      "file:checksum": "1220d4d45521c4073e63e9ccaa294899481d735f5f15153771d7e040d8e4105dd39c",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2011-2015": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/stl_parcels_2011-2015.zip",
+      "type": "application/zip",
+      "title": "Historical parcels 2011\u20132015 (zipped Shapefiles)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 126829173,
+      "file:checksum": "1220cff039903b1506869374a55d0913b75ad62d3a4a7b901dcf2b344369512bbbb0",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2016-2020": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/stl_parcels_2016-2020.zip",
+      "type": "application/zip",
+      "title": "Historical parcels 2016\u20132020 (zipped Shapefiles)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 54584255,
+      "file:checksum": "12204fd896e9d4275332b011d1a4937fa4ec6f27fb2330c8c928fb4e05eb5d449f38",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-csv-2017-2025": {
+      "href": "https://static.stlouis-mo.gov/open-data/assessor/Parcels-CSV-2017-2025.zip",
+      "type": "application/zip",
+      "title": "Parcel attributes 2017\u20132025 (zipped CSVs)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 87630456,
+      "file:checksum": "1220f58dd5fa42892c5a8ea41f08606ac976b58c1b365c78d367949144cb75087077",
+      "description": "The later, CSV-only continuation of the series; not merged into this collection, which stops at 2020. The city's own alternate distribution of this layer. Served upstream by static.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "assessor-s-office",
+          "title": "Assessor's Office"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "parcels",
+    "asset-parcel",
+    "Assessor's Office"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Assessor's Office",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=82"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

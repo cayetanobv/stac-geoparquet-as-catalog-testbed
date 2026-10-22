@@ -1,0 +1,249 @@
+{
+  "type": "Collection",
+  "id": "servizi/strutture-sanitarie",
+  "stac_version": "1.1.0",
+  "description": "Elenco delle strutture sanitarie pubbliche e private nel territorio comunale di Bologna",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./strutturesanitarie.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strutture sanitarie pubbliche e ospedali privati",
+      "pmtiles:layers": [
+        "strutturesanitarie"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/strutture-sanitarie/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/strutture-sanitarie/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: strutturesanitarie",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 253,
+  "table:row_count": 253,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "tipologia",
+      "type": "string"
+    },
+    {
+      "name": "titolarita",
+      "type": "string"
+    },
+    {
+      "name": "denominazione_struttura",
+      "type": "string"
+    },
+    {
+      "name": "indirizzo",
+      "type": "string"
+    },
+    {
+      "name": "civkey",
+      "type": "string",
+      "description": "CIVKEY. Id comunale del civico."
+    },
+    {
+      "name": "area_stati",
+      "type": "string"
+    },
+    {
+      "name": "denominazi",
+      "type": "string",
+      "description": "Indirizzo della struttura."
+    },
+    {
+      "name": "ncivsub",
+      "type": "string",
+      "description": "Numero civico della struttura."
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "zona_pross",
+      "type": "string",
+      "description": "zona di prossimit\u00e0."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Strutture sanitarie pubbliche e ospedali privati",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.247167600601983,
+          44.44744607799514,
+          11.419439760340811,
+          44.543993888310126
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strutture sanitarie pubbliche e ospedali privati default style",
+      "description": "Default visualization for Strutture sanitarie pubbliche e ospedali privati, drawn in #67000d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1224,
+      "file:checksum": "122024aa6de26a4bdc79aa9b7f7da7f776bbeb5023b8f14b539e068f6cd86808ace4"
+    },
+    "strutturesanitarie": {
+      "href": "./strutturesanitarie.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 23898,
+      "file:checksum": "12204a8f72eb0d1c91dd9191459f4fef3e207a031b1c6f579eb9208be51963a0ab50",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./strutturesanitarie.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strutture sanitarie pubbliche e ospedali privati (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 63756,
+      "file:checksum": "1220612681f1dd625aac67c9ffaca8569d5f48ec62be29f0531f472d35245d66b9d4"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strutture sanitarie pubbliche e ospedali privati categorical style",
+      "description": "Categorical visualization coloring Strutture sanitarie pubbliche e ospedali privati by quartiere, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2444,
+      "file:checksum": "1220655e1c10dd481fccc8ca6b331edc05ba3d996c2d932174793fd9101eeb29a08a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strutture sanitarie pubbliche e ospedali privati labeled style",
+      "description": "Default visualization for Strutture sanitarie pubbliche e ospedali privati with denominazione_struttura shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1668,
+      "file:checksum": "1220688d8bd041576539e6ccd8ad5faf8297ebd89ec1dac85907a9d22cf8f19cd9f8"
+    },
+    "thumbnail": {
+      "href": "./strutturesanitarie.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Strutture sanitarie pubbliche e ospedali privati",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 151703,
+      "file:checksum": "1220afb6bd1e451d58a9c932e5bbbb985f84922de6df5f418b0033e813e8fc9f6cd3"
+    }
+  },
+  "keywords": [
+    "Salute",
+    "infrastrutture",
+    "Individui e Famiglie",
+    "Citt\u00e0 in 15 minuti",
+    "piano dei quartieri"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abStrutture sanitarie pubbliche e ospedali privati\u00bb (strutture-sanitarie), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/strutture-sanitarie/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

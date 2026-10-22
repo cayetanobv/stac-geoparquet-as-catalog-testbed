@@ -1,0 +1,280 @@
+{
+  "type": "Collection",
+  "id": "transportation-infrastructure-and-utilities/parking-meters",
+  "stac_version": "1.1.0",
+  "description": "Parking meters from the Streets Division parking services map.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Transportation, Infrastructure, and Utilities"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STREETS/ParkingServices/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./parking-meters.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "parking-meters"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STREETS/ParkingServices/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 981,
+  "table:row_count": 981,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Shape",
+      "type": "binary"
+    },
+    {
+      "name": "Zone",
+      "type": "int32"
+    },
+    {
+      "name": "SpaceNumbers",
+      "type": "string"
+    },
+    {
+      "name": "SpaceCount",
+      "type": "int32"
+    },
+    {
+      "name": "Street",
+      "type": "string"
+    },
+    {
+      "name": "FromStreet",
+      "type": "string"
+    },
+    {
+      "name": "ToStreet",
+      "type": "string"
+    },
+    {
+      "name": "Side",
+      "type": "string"
+    },
+    {
+      "name": "STL_Zone",
+      "type": "string"
+    },
+    {
+      "name": "NumberOfMachines",
+      "type": "int32"
+    },
+    {
+      "name": "NumberOfMultispace",
+      "type": "string"
+    },
+    {
+      "name": "CollectionMethod",
+      "type": "string"
+    },
+    {
+      "name": "Latitude",
+      "type": "double"
+    },
+    {
+      "name": "Longitude",
+      "type": "double"
+    },
+    {
+      "name": "GUID",
+      "type": "string"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 95325,
+  "portolan:asset_count": 1,
+  "title": "Parking Meters",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.30092499999995,
+          38.58927600000004,
+          -90.18351699999994,
+          38.66198300000008
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "parking-meters": {
+      "href": "./parking-meters.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 95325,
+      "file:checksum": "1220749b719a06b1e9cd055c6b36a5baa3112cff1f2109d8571ef0340b6fe3ffef5a",
+      "roles": [
+        "data"
+      ],
+      "title": "Parking Meters (GeoParquet)"
+    },
+    "parking-meters-tiles": {
+      "href": "./parking-meters.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Parking Meters (PMTiles)",
+      "file:size": 161155,
+      "file:checksum": "122027fdddb1d929ec0bcf34739f6d5589ac48b830af89797be89bed7f5730417b79"
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 532,
+      "file:checksum": "122001a524405e2364f34b333f8ec72fef6a783cdf27c240f708e6ccf0429d462b5d"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Parking meters",
+      "description": "981 parking meters.",
+      "file:size": 789,
+      "file:checksum": "12207c87d484c3909ec69724591e83dfb20c6b8643f05b23aa73650e10d357847719"
+    },
+    "styles/style-bold": {
+      "href": "./styles/style-bold.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "High-visibility",
+      "description": "Larger orange markers.",
+      "file:size": 775,
+      "file:checksum": "12206a632116a8ee56ac1e9f455e3d31513eb755a616820bea05faec2a3972990eb0"
+    },
+    "styles/style-plain": {
+      "href": "./styles/style-plain.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Locations only",
+      "description": "Neutral points.",
+      "file:size": 693,
+      "file:checksum": "12202e92b415994d776429b66a18271217acd844d8a3415f77ce38f3713770d54c34"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Parking Meters rendered with the default style",
+      "file:size": 339906,
+      "file:checksum": "12208b009efec802da2dbfac267a87499be75b1d47516e3e1de2399fd7f4f4fe9fa6"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "transportation-infrastructure-and-utilities",
+          "title": "Transportation, Infrastructure, and Utilities"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "streets--director-s-office",
+          "title": "Streets - Director's Office"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "parking",
+    "streets",
+    "Streets - Director's Office"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Streets - Director's Office",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STREETS/ParkingServices/MapServer"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

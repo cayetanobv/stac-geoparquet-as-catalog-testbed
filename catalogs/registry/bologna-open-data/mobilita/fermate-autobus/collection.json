@@ -1,0 +1,254 @@
+{
+  "type": "Collection",
+  "id": "mobilita/fermate-autobus",
+  "stac_version": "1.1.0",
+  "description": "Dati sulle fermate T-Per nel territorio del Comune di Bologna e extra-urbane\nRielaborazione dal Sito dei Servizi Web di TPer SPA (vedi reference)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tperfermateautobus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "TPER - Fermate autobus",
+      "pmtiles:layers": [
+        "tperfermateautobus"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/tper-fermate-autobus/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/tper-fermate-autobus/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: tperfermateautobus",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 21176,
+  "table:row_count": 21176,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "codice",
+      "type": "int32"
+    },
+    {
+      "name": "codice_linea",
+      "type": "string",
+      "description": "Linea bus."
+    },
+    {
+      "name": "denominazione",
+      "type": "string",
+      "description": "Nome fermata."
+    },
+    {
+      "name": "ubicazione",
+      "type": "string"
+    },
+    {
+      "name": "comune",
+      "type": "string"
+    },
+    {
+      "name": "codice_zona",
+      "type": "int32"
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "zona_prossimita",
+      "type": "string"
+    },
+    {
+      "name": "area_statistica",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "TPER - Fermate autobus",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          10.79512,
+          44.091667,
+          12.349589,
+          45.061384
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "TPER - Fermate autobus default style",
+      "description": "Default visualization for TPER - Fermate autobus, drawn in #084594.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1198,
+      "file:checksum": "122053b503b2eb1c33d27973b6356ea73a0b9dba0d99b111cba529d62fe01a71b462"
+    },
+    "tperfermateautobus": {
+      "href": "./tperfermateautobus.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 653494,
+      "file:checksum": "122018ab5cfe1999839fac9560135bb646f7419ddc3b0f891b686f369a055ee2de73",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./tperfermateautobus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "TPER - Fermate autobus (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1650386,
+      "file:checksum": "12204161b03d24fdcfd505dd199856ba5de428c5f65ab419318cb852c07cac2e95a1"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "TPER - Fermate autobus categorical style",
+      "description": "Categorical visualization coloring TPER - Fermate autobus by quartiere, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1644,
+      "file:checksum": "122039246dd2d479f7e0076e07b41ca62c0477afc5b271b1f88aa2c4f8f34903c70c"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "TPER - Fermate autobus labeled style",
+      "description": "Default visualization for TPER - Fermate autobus with denominazione shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1632,
+      "file:checksum": "122003df51b093e088c4602fa9b96b65a0e35e67202eccf834f6c571e74bd6044e9f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "TPER - Fermate autobus graduated style",
+      "description": "Graduated visualization coloring TPER - Fermate autobus by codice, ramped from 1.0 to 952001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1965,
+      "file:checksum": "1220d873bb1fa60f2d69189b4614328d2a55a8d3d696f0fac1aa0c24f1e2e91f871a"
+    },
+    "thumbnail": {
+      "href": "./tperfermateautobus.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of TPER - Fermate autobus",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 114402,
+      "file:checksum": "1220793c1cd2f9de1cf109f30756dcd339dd69dd5efae8ad6014dbc361214922301b"
+    }
+  },
+  "keywords": [
+    "Trasporti",
+    "infrastrutture",
+    "Mobilit\u00e0 persone e merci",
+    "TPER",
+    "Citt\u00e0 in 15 minuti"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abTPER - Fermate autobus\u00bb (tper-fermate-autobus), pubblicato da Comune di Bologna - Settore mobilit\u00e0 sostenibile e Infrastrutture sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/tper-fermate-autobus/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

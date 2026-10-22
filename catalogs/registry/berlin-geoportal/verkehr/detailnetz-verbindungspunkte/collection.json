@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "id": "verkehr/detailnetz-verbindungspunkte",
+  "stac_version": "1.1.0",
+  "description": "Detailliertes Stra\u00dfennetz von Berlin zu verkehrlichen Zwecken. Es enth\u00e4lt \u00fcber das klassifizierte Stra\u00dfennetz hinaus weitere Stra\u00dfen und Wege. Neben den Stra\u00dfenabschnitten geh\u00f6ren zu den Netzelementen die Verbindungspunkte. Zu ihnen werden erg\u00e4nzende Informationen wie Art, Lage, Verkehrsebene, Erhebungsmethode / Herkunft und ein G\u00fcltigkeitszeitraum gespeichert. Zus\u00e4tzlich enth\u00e4lt das Detailnetz die Ingenieursbauwerke (Br\u00fccken und Tunnel) mit ihren Bez\u00fcgen zu den Netzabschnitten. \u00dcber diese Bez\u00fcge ist es m\u00f6glich, ein Bauwerk auf und \u00fcber dem Stra\u00dfenabschnitt zu identifizieren.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./detailnetz_a_verbindungspunkte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Detailnetz Berlin \u2013 Verbindungspunkte",
+      "pmtiles:layers": [
+        "detailnetz_a_verbindungspunkte"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/detailnetz-berlin-wfs-4f2045ef",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/detailnetz",
+      "rel": "related",
+      "title": "WFS source service: a-verbindungspunkte",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 31165,
+  "table:row_count": 31165,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "dnkn__sdatenid",
+      "type": "int64"
+    },
+    {
+      "name": "verkehrsebene",
+      "type": "DECIMAL(38,0)"
+    },
+    {
+      "name": "okstra_id",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Detailnetz Berlin \u2013 Verbindungspunkte",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09024654,
+          52.34204508,
+          13.75692499,
+          52.65993235
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Detailnetz Berlin \u2013 Verbindungspunkte default style",
+      "description": "Default visualization for Detailnetz Berlin \u2013 Verbindungspunkte, drawn in #252525.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1302,
+      "file:checksum": "1220e183cf3b1afde1028e07b1888697e9c2137efac077c261609debc8bcd4b6c4d6"
+    },
+    "detailnetz_a_verbindungspunkte": {
+      "href": "./detailnetz_a_verbindungspunkte.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1789843,
+      "file:checksum": "12207766c4911e663e68d6917b72333e7794ef3d8d2517c61417f975271623e7b6bd",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./detailnetz_a_verbindungspunkte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Detailnetz Berlin \u2013 Verbindungspunkte (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2087010,
+      "file:checksum": "1220f40bf3f2e31334d16e84bcf6ee43fe3ec65490cdb86f07496192083d0ca62d6e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Detailnetz Berlin \u2013 Verbindungspunkte graduated style",
+      "description": "Graduated visualization coloring Detailnetz Berlin \u2013 Verbindungspunkte by dnkn__sdatenid, ramped from 61.0 to 234707.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2104,
+      "file:checksum": "122076b62ad0ef6405a6b956541ef6eebac0b26e3ace21e54772e13604c26a067394"
+    },
+    "thumbnail": {
+      "href": "./detailnetz_a_verbindungspunkte.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Detailnetz Berlin \u2013 Verbindungspunkte",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 159067,
+      "file:checksum": "1220efdea568ca08c5b0074b2b2f3ec5c67aa602d0330e59216e2366f2ef858141bc"
+    }
+  },
+  "keywords": [
+    "Bauwerk",
+    "Bauwerke",
+    "Berlin",
+    "Br\u00fccken",
+    "Detailnetz",
+    "Geodaten",
+    "Ingenieurbauwerke",
+    "Karten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Detailnetz Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "nelida.rostock@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

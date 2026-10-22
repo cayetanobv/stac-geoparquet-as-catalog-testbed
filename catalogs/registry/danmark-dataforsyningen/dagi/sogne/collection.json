@@ -1,0 +1,221 @@
+{
+  "type": "Collection",
+  "id": "dagi/sogne",
+  "stac_version": "1.1.0",
+  "description": "Danmarks sogne fra DAGI med firecifret sognekode og sognenavn. Sognene er den folkekirkelige inddeling, der ogs\u00e5 bruges som statistisk inddeling.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sogne.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sogne",
+      "pmtiles:layers": [
+        "sogne"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/sogn",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/sogne?format=geojson",
+      "rel": "related",
+      "title": "Upstream source: sogne",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 2097,
+  "table:row_count": 2097,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "dagi_id",
+      "type": "string"
+    },
+    {
+      "name": "kode",
+      "type": "string"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_version",
+      "type": "int32"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Sogne",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.07250975,
+          54.55907837,
+          15.19740034,
+          57.75257255
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sogne default style",
+      "description": "Default visualization for Sogne, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1090,
+      "file:checksum": "12206d13e6105708c2977c3fb8bfaa1898026471aa05c29073e9a3c56102855c2b28"
+    },
+    "sogne": {
+      "href": "./sogne.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 37507294,
+      "file:checksum": "1220b3b501651d800993f86473e021aa84e2aa0b8cb6aaf89650dab31020bf714bf8",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./sogne.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sogne (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 27965147,
+      "file:checksum": "1220dde773f035376d2e7e4143422a827de0e220a691120c80a4d6bb53110008cc53"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sogne graduated style",
+      "description": "Graduated visualization coloring Sogne by geo_version, ramped from 1.0 to 18.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1850,
+      "file:checksum": "12201710e33fa7af0dd9b136f70d1854c7b8bfb981e3c1083250c046d7efa1327970"
+    },
+    "thumbnail": {
+      "href": "./sogne.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Sogne",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 130953,
+      "file:checksum": "1220affacfa563481ad18a49cd4cc9d2c170311e1eb60e0fce44a9e1ef891d6ec866"
+    }
+  },
+  "keywords": [
+    "sogne",
+    "sognekode",
+    "DAGI",
+    "administrative inddelinger"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen sogne, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/sogn",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

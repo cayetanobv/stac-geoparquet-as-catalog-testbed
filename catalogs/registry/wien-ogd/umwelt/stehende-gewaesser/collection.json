@@ -1,0 +1,222 @@
+{
+  "type": "Collection",
+  "id": "umwelt/stehende-gewaesser",
+  "stac_version": "1.1.0",
+  "description": "Stehende Gew\u00e4sser Wiens",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_stehendegewogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stehende Gew\u00e4sser Wien",
+      "pmtiles:layers": [
+        "ogdwien_stehendegewogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/ac478f32-3e3b-4c04-bc7d-aa75069b6367",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: stehendegewogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 317,
+  "table:row_count": 317,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "NAME",
+      "type": "string",
+      "description": "Gew\u00e4ssername."
+    },
+    {
+      "name": "WASSERF",
+      "type": "int64",
+      "description": "Wasserfl\u00e4chenkennzeichen; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Stehende Gew\u00e4sser Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.110578490596044,
+          48.10514833427985,
+          16.621142423003135,
+          48.31343935137493
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stehende Gew\u00e4sser Wien default style",
+      "description": "Default visualization for Stehende Gew\u00e4sser Wien, drawn in #4292c6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1231,
+      "file:checksum": "122074afb5206e27832c169df770b6591925d330418e7986f690809922d073867022"
+    },
+    "ogdwien_stehendegewogd": {
+      "href": "./ogdwien_stehendegewogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1168179,
+      "file:checksum": "122009ced02e64c1187d4c78ff9aed20f0054a7020deaa49f40efc4996f6c513db91",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_stehendegewogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stehende Gew\u00e4sser Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 300296,
+      "file:checksum": "1220ca6f55ec941a7767028a4f5f89d71e79e473ce2ab96bcf2a24dc894c142de734"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stehende Gew\u00e4sser Wien labeled style",
+      "description": "Default visualization for Stehende Gew\u00e4sser Wien with NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1664,
+      "file:checksum": "1220fda598a4164b1fa800106080c9d4a730cb7e441b91298fca54ce611eb933c2ef"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stehende Gew\u00e4sser Wien graduated style",
+      "description": "Graduated visualization coloring Stehende Gew\u00e4sser Wien by WASSERF, ramped from 0.0 to 3.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1972,
+      "file:checksum": "122060284f4b339d855be958036a4018803c3cb3ee1cc5a761097a72f3128cf03705"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_stehendegewogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stehende Gew\u00e4sser Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 134527,
+      "file:checksum": "122008f4cc926a8c44c5e72270f0187f44310c891d9e2817efc7adf1a4320acf0400"
+    }
+  },
+  "keywords": [
+    "Gew\u00e4sser",
+    "HighValueDataset",
+    "ViennaGIS",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Stehende Gew\u00e4sser Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

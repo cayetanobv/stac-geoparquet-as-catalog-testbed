@@ -1,0 +1,242 @@
+{
+  "type": "Collection",
+  "id": "friluftsliv/statliga-leder",
+  "stac_version": "1.1.0",
+  "description": "Data f\u00f6r leder och anordningar inom skyddade omr\u00e5den samt statliga leder i fj\u00e4llen finns tillg\u00e4ngliga enligt principen f\u00f6r \u00f6ppen data. Data som publiceras registreras och underh\u00e5lls av l\u00e4nsstyrelser och utsedda f\u00f6rvaltare f\u00f6r de skyddade omr\u00e5dena och de statliga lederna i fj\u00e4llen. Som st\u00f6d i anv\u00e4ndningen finns en produktbeskrivning och f\u00f6rslag till legender tillg\u00e4ngliga f\u00f6r nedladdning.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./statliga_leder.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Friluftsliv: statliga leder i fj\u00e4llen",
+      "pmtiles:layers": [
+        "statliga_leder"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodatakatalogen.naturvardsverket.se/geonetwork/srv/swe/catalog.search#/metadata/af2e37d3-45b0-4623-bcf2-0765c8ca7ab5",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/anordningar_friluftsliv/wms",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets visningstj\u00e4nst f\u00f6r friluftsanordningar (WMS, levande tj\u00e4nst)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/leder_friluftsliv/wms",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets visningstj\u00e4nst f\u00f6r leder (WMS, levande tj\u00e4nst)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/leder_friluftsliv/wfs",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets nedladdningstj\u00e4nst f\u00f6r leder (WFS, lagren LED och STATLIG_LED)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/anordningar_friluftsliv/wfs",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets nedladdningstj\u00e4nst f\u00f6r anordningar (WFS, lagret ANORDNINGAR)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 2004,
+  "table:row_count": 2004,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "\u00abID-nummer f\u00f6r objektet i den h\u00e4r filen.\u00bb"
+    },
+    {
+      "name": "STATLIGLED",
+      "type": "string",
+      "description": "Producentens attribut Statlig_led: \u00abDen statliga ledens ID.\u00bb Produktbeskrivningen h\u00e4nvisar till Naturv\u00e5rdsverkets nul\u00e4gesbeskrivning av det statliga ledsystemet i fj\u00e4llen f\u00f6r en f\u00f6rteckning \u00f6ver samtliga leder."
+    },
+    {
+      "name": "STATLIGLEDNAMN",
+      "type": "string",
+      "description": "Producentens attribut Statlig_led_namn: \u00abDen statliga ledens namn.\u00bb"
+    },
+    {
+      "name": "SHAPE.LEN",
+      "type": "double",
+      "description": "Geodatabasens egen l\u00e4ngdber\u00e4kning, levererad som ett vanligt attribut. Producentens attributtabell dokumenterar i st\u00e4llet L\u00e4ngd_p\u00e5_delstr\u00e4cka_m och varnar f\u00f6r att det \u00e4r ett statiskt framr\u00e4knat v\u00e4rde; eftersom f\u00e4ltnamnet SHAPE.LEN inte \u00e4r dokumenterat g\u00f6rs ingen tolkning h\u00e4r."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:3006')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrins omskrivna rektangel som strukturen xmin, ymin, xmax, ymax, tillagd av konverteringen."
+    }
+  ],
+  "title": "Friluftsliv: statliga leder i fj\u00e4llen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.090654606136708,
+          61.09187832062619,
+          21.079617098268372,
+          69.05919634230995
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friluftsliv: statliga leder i fj\u00e4llen default style",
+      "description": "Default visualization for Friluftsliv: statliga leder i fj\u00e4llen, drawn in #d95f0e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1190,
+      "file:checksum": "1220cb5eeadc8eed82f9304a3a4d772f561ec8d4d22279d180846334ed4a3abcaa82"
+    },
+    "statliga_leder": {
+      "href": "./statliga_leder.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4344185,
+      "file:checksum": "1220e591747e11c9be166535bd0be37b1278262d491911f4d629e2c6845370088b1b",
+      "proj:code": "EPSG:3006",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./statliga_leder.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Friluftsliv: statliga leder i fj\u00e4llen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6422056,
+      "file:checksum": "1220c68fd971c46066346320a6764cccee99ba38256edcb0a3da37c52d210d860ed0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friluftsliv: statliga leder i fj\u00e4llen graduated style",
+      "description": "Graduated visualization coloring Friluftsliv: statliga leder i fj\u00e4llen by SHAPE.LEN, ramped from 0.0001 to 76790.3515053867.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2029,
+      "file:checksum": "1220eb6859e92f9be944b9682212c90dbf31c87ec1a023f344a27e5addfbcbb3248e"
+    },
+    "source": {
+      "href": "https://geodata.naturvardsverket.se/nedladdning/friluftsliv/Statliga_Leder.geojson",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: statliga_leder",
+      "pipeline:upstream": true,
+      "file:size": 21719408,
+      "file:checksum": "1220c54acf233151d06cc09a6be154c936f4bdee5c5c3d581f66fbe861be68c44794"
+    },
+    "thumbnail": {
+      "href": "./statliga_leder.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Friluftsliv: statliga leder i fj\u00e4llen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 73090,
+      "file:checksum": "12208f75bf2623aa66ead0bb07b27aaad477db9fc07ce3aa001223ce45dcb776452d"
+    }
+  },
+  "keywords": [
+    "Friluftsliv",
+    "Leder",
+    "Anordningar",
+    "Skyddad natur",
+    "\u00d6ppna data",
+    "Sverige"
+  ],
+  "providers": [
+    {
+      "name": "Naturv\u00e5rdsverket",
+      "description": "K\u00e4lla: Naturv\u00e5rdsverket, \u00f6ppna data h\u00e4mtade 21.9.2026, CC0 1.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.naturvardsverket.se/",
+      "email": "data@naturvardsverket.se"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "sv",
+    "name": "Svenska",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

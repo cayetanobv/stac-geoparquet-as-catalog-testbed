@@ -1,0 +1,196 @@
+{
+  "type": "Collection",
+  "id": "referentiel-topographique/courbes-de-niveau",
+  "stac_version": "1.1.0",
+  "description": "Le produit \"UrbIS \u2013 Courbes de niveau\" repr\u00e9sente l'\u00e9l\u00e9vation de la r\u00e9gion bruxelloise au moyen de courbes de niveau avec des intervales de 0,5 m\u00e8tres.\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable, sous forme de fichier zipp\u00e9.\n\nType WFS urbisvector:ContourLines (Contour lines : \u00ab The \"UrbIS - Contour lines\" product represents the elevation of the Brussels region by means of contour lines with intervals of 1 m. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Hoogtelijnen \u00bb ; titre anglais : \u00ab UrbIS - Contour lines \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_contourlines.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "UrbIS \u2013 Courbes de niveau",
+      "pmtiles:layers": [
+        "urbisvector_contourlines"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/ffa97bae-6a62-11ed-bb24-010101010000",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: contourlines",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString Z",
+  "geoparquet:feature_count": 233362,
+  "table:row_count": 233362,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "Z",
+      "type": "double",
+      "description": "Altitude de la courbe de niveau (m)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "UrbIS \u2013 Courbes de niveau",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.241645,
+          50.761259,
+          4.487168,
+          50.916263
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "UrbIS \u2013 Courbes de niveau default style",
+      "description": "Default visualization for UrbIS \u2013 Courbes de niveau, drawn in #a6761d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1248,
+      "file:checksum": "1220eeba66d55de1a97b93486294546ad9cde5d54c60e125e395ea9db71f9d19e5c1"
+    },
+    "urbisvector_contourlines": {
+      "href": "./urbisvector_contourlines.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 589737481,
+      "file:checksum": "1220a5a389baad20587821f515da2a34103db3c32f496c279e38c8cfc8cd907a0a0a",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_contourlines.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "UrbIS \u2013 Courbes de niveau (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 28247239,
+      "file:checksum": "1220787105463ec6e9b908816046cc1fca0b5bc29fd2dc89df069ddb3077d66f299d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "UrbIS \u2013 Courbes de niveau graduated style",
+      "description": "Graduated visualization coloring UrbIS \u2013 Courbes de niveau by Z, ramped from 7.0 to 129.5.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1977,
+      "file:checksum": "12207061b3928d317f709f2631440b3da19a8d3c2f928f5167be27d15eed6b737c5c"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_contourlines.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of UrbIS \u2013 Courbes de niveau",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 182546,
+      "file:checksum": "1220baf4117043a47ccf1006504b9e1da3a10723a37c0c56e333cb6dfd0aa0f324c6"
+    }
+  },
+  "keywords": [
+    "g\u00e9ographie",
+    "altitude",
+    "autorit\u00e9 r\u00e9gionale",
+    "Environnement",
+    "Altitude",
+    "R\u00e9gional",
+    "Objet vectoriel altim\u00e9trique",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 Courbes de niveau \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

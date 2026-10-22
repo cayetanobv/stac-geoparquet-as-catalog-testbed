@@ -1,0 +1,214 @@
+{
+  "type": "Collection",
+  "id": "transport/rail-network-250k",
+  "stac_version": "1.1.0",
+  "description": "Railway routes used for regular transportation of goods and passengers. Railway yards, siding railways are allowed if they are landmarks and are classified as branch lines. They are usually generalized (not all the tracks have to be portrayed). Specific lines reaching harbour or industrial zone can be portrayed and are also classified as branch lines. The length selection is min. 1600 meters. Metro lines (= underground urban railways), tramlines or streetcar lines inside city areas are excluded. Railways are portrayed by one line regardless the number of tracks. This dataset is provided by Tailte \u00c9ireann",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rail_network_250k_map_of_ireland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Rail Network - National 250k Map Of Ireland",
+      "pmtiles:layers": [
+        "rail_network_250k_map_of_ireland"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.arcgis.com/home/item.html?id=cef400fb8edb496886e3dab535ef1344",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/FH5XCsx8rYXqnjF5/arcgis/rest/services/Rail_Network___OSi_National_250k_Map_Of_Ireland/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS source service: rail_network_250k_map_of_ireland",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/FH5XCsx8rYXqnjF5/arcgis/rest/services/Rail_Network___OSi_National_250k_Map_Of_Ireland/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Rail Network - 250k Map Of Ireland (live Tailte \u00c9ireann service)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 479,
+  "table:row_count": 479,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:2157')",
+      "description": "Feature geometry in WGS 84 (OGC:CRS84) after conversion; the service stores it in Irish Transverse Mercator (EPSG:2157). The only column declared as geometry."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Internal row number of the ArcGIS service; not stable across data versions."
+    },
+    {
+      "name": "FCsubtype",
+      "type": "int32",
+      "description": "Feature-class subtype code of the 250k product, distinguishing the classes of the feature (for example road or railway class)."
+    },
+    {
+      "name": "LEN",
+      "type": "double",
+      "description": "Length of the line as computed by the publisher, in metres."
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double",
+      "description": "Perimeter or line length computed by the ArcGIS service in the units of its spatial reference (Irish Transverse Mercator metres); not derived from the converted WGS 84 geometry."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Bounding box of the geometry as a struct of xmin, ymin, xmax, ymax, added by the GeoParquet conversion."
+    }
+  ],
+  "title": "Rail Network - National 250k Map Of Ireland",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.865931500000215,
+          51.84712999999985,
+          -6.038589000000229,
+          54.27123249999983
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Rail Network - National 250k Map Of Ireland default style",
+      "description": "Default visualization for Rail Network - National 250k Map Of Ireland, drawn in #737373.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1317,
+      "file:checksum": "12201cfdbf50e110d20374517815a639d05dc4db131d8fbe0946275ba38b4ab96e36"
+    },
+    "rail_network_250k_map_of_ireland": {
+      "href": "./rail_network_250k_map_of_ireland.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 53541,
+      "file:checksum": "1220c03d1e884c0b9694099dc3bfab0fe6b3dc0dbe5535040ed468a2df6180d72aee",
+      "proj:code": "EPSG:2157",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./rail_network_250k_map_of_ireland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Rail Network - National 250k Map Of Ireland (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 830183,
+      "file:checksum": "1220caef6ea933e535bbce6bdab0506d34934d3a3cb0dc7421a099386326e887cf26"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Rail Network - National 250k Map Of Ireland graduated style",
+      "description": "Graduated visualization coloring Rail Network - National 250k Map Of Ireland by Shape__Length, ramped from 51.83248951369186 to 28788.913399656594.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2214,
+      "file:checksum": "12208939af0ef098fb67d08b44f68b3cdfc6d8f942603e1dcd42e1889a5b1a9c5d9d"
+    },
+    "thumbnail": {
+      "href": "./rail_network_250k_map_of_ireland.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Rail Network - National 250k Map Of Ireland",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 95042,
+      "file:checksum": "122044daefc8dd2cb29d7451785e6404b12f9d136d47848797eed44ee355106f4cd1"
+    }
+  },
+  "keywords": [
+    "250K Map of Ireland",
+    "Ireland",
+    "Tailte \u00c9ireann",
+    "open data"
+  ],
+  "providers": [
+    {
+      "name": "Tailte \u00c9ireann",
+      "description": "Tailte \u00c9ireann, the State agency for national mapping, land registration and property valuation established under the Tailte \u00c9ireann Act 2022 and successor to Ordnance Survey Ireland (OSi). Publisher of the National Statutory Boundaries, the national placenames gazetteer and the 250k mapping series as open data. Source read 2026-09-20.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.tailte.ie/",
+      "email": "custserv@tailte.ie"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T16:00:00Z"
+}

@@ -1,0 +1,283 @@
+{
+  "type": "Collection",
+  "id": "government/zip-codes",
+  "stac_version": "1.1.0",
+  "description": "ZIP code areas from the city's boundaries map service.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Government"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STLOUIS/BOUNDARIES/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zip-codes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "zip-codes"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STLOUIS/BOUNDARIES/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 30,
+  "table:row_count": 30,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID_1",
+      "type": "int64"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32"
+    },
+    {
+      "name": "AREA_",
+      "type": "double"
+    },
+    {
+      "name": "PERIMETER",
+      "type": "double"
+    },
+    {
+      "name": "ZT17_D00_",
+      "type": "double"
+    },
+    {
+      "name": "ZT17_D00_I",
+      "type": "double"
+    },
+    {
+      "name": "ZCTA",
+      "type": "string"
+    },
+    {
+      "name": "NAME",
+      "type": "string"
+    },
+    {
+      "name": "LSAD",
+      "type": "string"
+    },
+    {
+      "name": "LSAD_TRANS",
+      "type": "string"
+    },
+    {
+      "name": "SHAPE_LENG",
+      "type": "double"
+    },
+    {
+      "name": "Shape",
+      "type": "binary"
+    },
+    {
+      "name": "Shape_Length",
+      "type": "double"
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 29096,
+  "portolan:asset_count": 1,
+  "title": "ZIP Codes",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.38039722371613,
+          38.4878291195225,
+          -90.123492169699,
+          38.84116017875543
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "zip-codes": {
+      "href": "./zip-codes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 29096,
+      "file:checksum": "1220939b241d81e54894134c9482307f6036b2ab6a97101e3bea3a81cf948d2a3454",
+      "roles": [
+        "data"
+      ],
+      "title": "ZIP Codes (GeoParquet)"
+    },
+    "zip-codes-tiles": {
+      "href": "./zip-codes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "ZIP Codes (PMTiles)",
+      "file:size": 130376,
+      "file:checksum": "1220b947413bc3d34b33211e3c49ae84d002b575aaaa77b4c84c1628e9e140240749"
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 741,
+      "file:checksum": "12203fe270bda2d2e8a6327dd9abd643afeb6fcb5cb79cb07162c502f7666aa06520"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "ZIP codes labeled",
+      "description": "The 30 ZIP code areas touching the city, each labeled with its code.",
+      "file:size": 1339,
+      "file:checksum": "1220cbf4bc51756f92f06eeb9bc91d206d4e22839c8ab54cefbc304560ea78aabd83"
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "ZIP boundaries",
+      "description": "Outlines only.",
+      "file:size": 459,
+      "file:checksum": "1220dc4a979f58fc784b773338b4387277596ca907efad2056692abef504d3908999"
+    },
+    "styles/style-subtle": {
+      "href": "./styles/style-subtle.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Subtle tint",
+      "description": "Pale fill for underlaying other data, with the codes still readable.",
+      "file:size": 1084,
+      "file:checksum": "1220695b255f99fc91046e23e9cc48ecde55348957c254d3da3159cae4ff89a4a91b"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "ZIP Codes rendered with the default style",
+      "file:size": 341185,
+      "file:checksum": "12208c2fe76e7ceee0c33c180d14ca4200d17057cc82c7f6e6f7acf65f0d1fd70e29"
+    },
+    "styles/style-mosaic": {
+      "href": "./styles/style-mosaic.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "ZIP mosaic",
+      "description": "Repeating colors so adjacent ZIP areas are easy to tell apart, labeled.",
+      "file:size": 1907,
+      "file:checksum": "1220eaae8bdbed4d986b5005542f3584e51a7c44678c8dfc80409991c7ffacde8048"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "government",
+          "title": "Government"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "information-technology-services-agency",
+          "title": "Information Technology Services Agency"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "boundaries",
+    "zip codes",
+    "Information Technology Services Agency"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Information Technology Services Agency",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STLOUIS/BOUNDARIES/MapServer"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

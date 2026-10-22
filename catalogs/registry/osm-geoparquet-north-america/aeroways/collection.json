@@ -1,0 +1,1788 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+  ],
+  "id": "aeroways",
+  "title": "Aeroways",
+  "description": "OSM nodes, ways and relations tagged aeroway=*: aerodromes, runways, taxiways, aprons, helipads and gates. Cut to the admin regions (states, provinces and territories) of Canada, Mexico and the United States, one GeoParquet file per region. This collection reads the nightly build, so its contents change every night. Read every region at once with the partition glob s3://parquetry/osm/latest/country=*/state=*/aeroways.parquet through the anonymous S3 endpoint s3.geomermaids.com (path-style, empty credentials), or one region over plain HTTPS. The README gives both setups.",
+  "keywords": [
+    "OpenStreetMap",
+    "OSM",
+    "GeoParquet",
+    "aeroways",
+    "Canada",
+    "Mexico",
+    "United States"
+  ],
+  "license": "ODbL-1.0",
+  "version": "2026-10-22",
+  "updated": "2026-10-22T10:03:49Z",
+  "providers": [
+    {
+      "name": "OpenStreetMap contributors",
+      "description": "Created and maintain the data, published under the ODbL 1.0.",
+      "url": "https://www.openstreetmap.org/",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geofabrik GmbH",
+      "description": "Publishes the daily regional OSM extracts this catalog is built from.",
+      "url": "https://download.geofabrik.de/",
+      "roles": [
+        "processor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converts the extracts to GeoParquet nightly, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          173.1489,
+          14.635703,
+          -52.6879,
+          83.092454
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-10-20T20:23:47Z",
+          "2026-10-20T20:23:47Z"
+        ]
+      ]
+    }
+  },
+  "partition:scheme": "hive",
+  "partition:strategy": "attribute",
+  "partition:keys": [
+    {
+      "name": "country",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code."
+    },
+    {
+      "name": "state",
+      "type": "string",
+      "description": "ISO 3166-2 code of the admin region (state, province or territory), e.g. US-NY. One file per region."
+    }
+  ],
+  "partition:file_count": 98,
+  "partition:glob": "s3://parquetry/osm/latest/country=*/state=*/aeroways.parquet",
+  "table:row_count": 347285,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "osm_id",
+      "type": "BIGINT",
+      "description": "OSM element id. Unique only together with osm_type, since nodes, ways and relations have separate id spaces. An area carries the id of the way or relation it was built from. A feature crossing a region border appears once per region it touches."
+    },
+    {
+      "name": "osm_type",
+      "type": "VARCHAR",
+      "description": "OSM element type: node, way or relation."
+    },
+    {
+      "name": "country",
+      "type": "VARCHAR",
+      "description": "ISO 3166-1 alpha-2 country code. Same value as the country= partition key."
+    },
+    {
+      "name": "state_name",
+      "type": "VARCHAR",
+      "description": "Name of the admin region (state, province or territory) the file was cut to."
+    },
+    {
+      "name": "state_iso",
+      "type": "VARCHAR",
+      "description": "ISO 3166-2 code of the admin region, e.g. US-NY or CA-ON. Same value as the state= partition key."
+    },
+    {
+      "name": "aeroway",
+      "type": "VARCHAR",
+      "description": "Value of the OSM aeroway tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:aeroway"
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR",
+      "description": "Value of the OSM name tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:name"
+    },
+    {
+      "name": "iata",
+      "type": "VARCHAR",
+      "description": "Value of the OSM iata tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:iata"
+    },
+    {
+      "name": "icao",
+      "type": "VARCHAR",
+      "description": "Value of the OSM icao tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:icao"
+    },
+    {
+      "name": "ref",
+      "type": "VARCHAR",
+      "description": "Value of the OSM ref tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:ref"
+    },
+    {
+      "name": "surface",
+      "type": "VARCHAR",
+      "description": "Value of the OSM surface tag as text; NULL when absent. See https://wiki.openstreetmap.org/wiki/Key:surface"
+    },
+    {
+      "name": "tags",
+      "type": "MAP(VARCHAR, VARCHAR)",
+      "description": "Every OSM tag on the element, as a key to value map. The promoted columns are typed copies of single tags."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-feature bounding box in float32, rounded outward so it always contains the geometry (at most about 9 m of slack). Declared as the GeoParquet `covering` for the geometry column, and its Parquet min/max statistics let any engine skip row groups: filter on bbox.xmin/ymin/xmax/ymax before touching geometry."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Feature geometry, native Parquet GEOMETRY (GeoParquet 2.0), OGC:CRS84 longitude/latitude. Geometry types: Point, LineString, MultiPolygon."
+    }
+  ],
+  "assets": {
+    "data-ca-ab": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-AB/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alberta (CA-AB)",
+      "description": "4,019 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-AB/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 429036
+    },
+    "data-ca-bc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-BC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "British Columbia (CA-BC)",
+      "description": "4,504 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-BC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 558784
+    },
+    "data-ca-mb": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-MB/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Manitoba (CA-MB)",
+      "description": "1,164 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-MB/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 118802
+    },
+    "data-ca-nb": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NB/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Brunswick / Nouveau-Brunswick (CA-NB)",
+      "description": "426 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NB/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 52609
+    },
+    "data-ca-nl": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NL/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Newfoundland and Labrador (CA-NL)",
+      "description": "759 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NL/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 90045
+    },
+    "data-ca-ns": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NS/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nova Scotia (CA-NS)",
+      "description": "625 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NS/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 65286
+    },
+    "data-ca-nt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NT/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Northwest Territories (CA-NT)",
+      "description": "380 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NT/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 45085
+    },
+    "data-ca-nu": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-NU/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "ᓄᓇᕗᑦ Nunavut (CA-NU)",
+      "description": "353 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-NU/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 39955
+    },
+    "data-ca-on": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-ON/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ontario (CA-ON)",
+      "description": "5,560 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-ON/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 603629
+    },
+    "data-ca-pe": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-PE/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Prince Edward Island (CA-PE)",
+      "description": "56 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-PE/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 14070
+    },
+    "data-ca-qc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-QC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Québec (CA-QC)",
+      "description": "3,989 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-QC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 503437
+    },
+    "data-ca-sk": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-SK/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saskatchewan (CA-SK)",
+      "description": "860 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-SK/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 84882
+    },
+    "data-ca-yt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=CA/state=CA-YT/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yukon (CA-YT)",
+      "description": "253 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=CA/state=CA-YT/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 34847
+    },
+    "data-mx-agu": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-AGU/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Aguascalientes (MX-AGU)",
+      "description": "92 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-AGU/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 13708
+    },
+    "data-mx-bcn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-BCN/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Baja California (MX-BCN)",
+      "description": "1,636 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-BCN/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 77127
+    },
+    "data-mx-bcs": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-BCS/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Baja California Sur (MX-BCS)",
+      "description": "1,189 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-BCS/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 71188
+    },
+    "data-mx-cam": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CAM/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Campeche (MX-CAM)",
+      "description": "106 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CAM/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 19587
+    },
+    "data-mx-chh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CHH/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chihuahua (MX-CHH)",
+      "description": "912 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CHH/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 63416
+    },
+    "data-mx-chp": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CHP/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chiapas (MX-CHP)",
+      "description": "302 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CHP/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 39173
+    },
+    "data-mx-cmx": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-CMX/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ciudad de México (MX-CMX)",
+      "description": "1,945 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-CMX/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 154693
+    },
+    "data-mx-coa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-COA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Coahuila (MX-COA)",
+      "description": "378 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-COA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 43119
+    },
+    "data-mx-col": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-COL/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colima (MX-COL)",
+      "description": "166 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-COL/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 20981
+    },
+    "data-mx-dur": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-DUR/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Durango (MX-DUR)",
+      "description": "508 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-DUR/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 29862
+    },
+    "data-mx-gro": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-GRO/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guerrero (MX-GRO)",
+      "description": "1,256 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-GRO/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 49148
+    },
+    "data-mx-gua": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-GUA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guanajuato (MX-GUA)",
+      "description": "83 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-GUA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 15380
+    },
+    "data-mx-hid": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-HID/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hidalgo (MX-HID)",
+      "description": "47 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-HID/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 9670
+    },
+    "data-mx-jal": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-JAL/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jalisco (MX-JAL)",
+      "description": "1,490 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-JAL/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 90989
+    },
+    "data-mx-mex": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MEX/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Estado de México (MX-MEX)",
+      "description": "2,684 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MEX/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 149769
+    },
+    "data-mx-mic": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MIC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Michoacán (MX-MIC)",
+      "description": "549 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MIC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 37197
+    },
+    "data-mx-mor": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-MOR/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Morelos (MX-MOR)",
+      "description": "107 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-MOR/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 13556
+    },
+    "data-mx-nay": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-NAY/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nayarit (MX-NAY)",
+      "description": "111 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-NAY/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 15306
+    },
+    "data-mx-nle": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-NLE/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nuevo León (MX-NLE)",
+      "description": "501 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-NLE/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 51086
+    },
+    "data-mx-oax": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-OAX/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oaxaca (MX-OAX)",
+      "description": "416 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-OAX/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 37451
+    },
+    "data-mx-pue": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-PUE/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puebla (MX-PUE)",
+      "description": "143 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-PUE/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 19927
+    },
+    "data-mx-que": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-QUE/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Querétaro (MX-QUE)",
+      "description": "163 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-QUE/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 22500
+    },
+    "data-mx-roo": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-ROO/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Quintana Roo (MX-ROO)",
+      "description": "1,335 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-ROO/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 83232
+    },
+    "data-mx-sin": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SIN/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sinaloa (MX-SIN)",
+      "description": "1,408 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SIN/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 70645
+    },
+    "data-mx-slp": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SLP/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "San Luis Potosí (MX-SLP)",
+      "description": "128 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SLP/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 19313
+    },
+    "data-mx-son": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-SON/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sonora (MX-SON)",
+      "description": "991 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-SON/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 69667
+    },
+    "data-mx-tab": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TAB/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tabasco (MX-TAB)",
+      "description": "101 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TAB/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 17415
+    },
+    "data-mx-tam": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TAM/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tamaulipas (MX-TAM)",
+      "description": "737 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TAM/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 51104
+    },
+    "data-mx-tla": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-TLA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tlaxcala (MX-TLA)",
+      "description": "34 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-TLA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 6156
+    },
+    "data-mx-ver": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-VER/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Veracruz (MX-VER)",
+      "description": "676 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-VER/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 55160
+    },
+    "data-mx-yuc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-YUC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yucatán (MX-YUC)",
+      "description": "344 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-YUC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 32621
+    },
+    "data-mx-zac": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=MX/state=MX-ZAC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Zacatecas (MX-ZAC)",
+      "description": "61 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=MX/state=MX-ZAC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 11197
+    },
+    "data-us-ak": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AK/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alaska (US-AK)",
+      "description": "8,493 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AK/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 991290
+    },
+    "data-us-al": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AL/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Alabama (US-AL)",
+      "description": "4,695 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AL/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 499506
+    },
+    "data-us-ar": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AR/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arkansas (US-AR)",
+      "description": "3,666 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AR/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 405300
+    },
+    "data-us-az": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-AZ/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arizona (US-AZ)",
+      "description": "10,448 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-AZ/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 983785
+    },
+    "data-us-ca": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "California (US-CA)",
+      "description": "24,264 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2374398
+    },
+    "data-us-co": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CO/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colorado (US-CO)",
+      "description": "6,877 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CO/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 698569
+    },
+    "data-us-ct": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-CT/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Connecticut (US-CT)",
+      "description": "2,111 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-CT/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 250640
+    },
+    "data-us-dc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-DC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "District of Columbia (US-DC)",
+      "description": "55 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-DC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 12661
+    },
+    "data-us-de": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-DE/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Delaware (US-DE)",
+      "description": "577 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-DE/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 85124
+    },
+    "data-us-fl": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-FL/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Florida (US-FL)",
+      "description": "30,649 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-FL/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 2303093
+    },
+    "data-us-ga": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-GA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Georgia (US-GA)",
+      "description": "6,856 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-GA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 691398
+    },
+    "data-us-hi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-HI/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hawaii (US-HI)",
+      "description": "2,808 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-HI/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 325116
+    },
+    "data-us-ia": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iowa (US-IA)",
+      "description": "2,888 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 337188
+    },
+    "data-us-id": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ID/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Idaho (US-ID)",
+      "description": "4,525 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ID/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 385021
+    },
+    "data-us-il": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IL/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Illinois (US-IL)",
+      "description": "10,118 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IL/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 911215
+    },
+    "data-us-in": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-IN/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Indiana (US-IN)",
+      "description": "4,283 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-IN/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 491856
+    },
+    "data-us-ks": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-KS/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kansas (US-KS)",
+      "description": "3,503 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-KS/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 376647
+    },
+    "data-us-ky": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-KY/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kentucky (US-KY)",
+      "description": "7,152 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-KY/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 454868
+    },
+    "data-us-la": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-LA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Louisiana (US-LA)",
+      "description": "3,228 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-LA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 377377
+    },
+    "data-us-ma": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Massachusetts (US-MA)",
+      "description": "4,578 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 452655
+    },
+    "data-us-md": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MD/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maryland (US-MD)",
+      "description": "2,946 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MD/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 370333
+    },
+    "data-us-me": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ME/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maine (US-ME)",
+      "description": "2,671 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ME/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 298317
+    },
+    "data-us-mi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MI/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Michigan (US-MI)",
+      "description": "7,162 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MI/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 697248
+    },
+    "data-us-mn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MN/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Minnesota (US-MN)",
+      "description": "5,440 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MN/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 532692
+    },
+    "data-us-mo": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MO/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Missouri (US-MO)",
+      "description": "7,188 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MO/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 570771
+    },
+    "data-us-ms": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MS/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mississippi (US-MS)",
+      "description": "2,335 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MS/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 258587
+    },
+    "data-us-mt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-MT/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Montana (US-MT)",
+      "description": "4,998 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-MT/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 437986
+    },
+    "data-us-nc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Carolina (US-NC)",
+      "description": "6,574 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 690906
+    },
+    "data-us-nd": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-ND/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Dakota (US-ND)",
+      "description": "3,097 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-ND/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 267096
+    },
+    "data-us-ne": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NE/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nebraska (US-NE)",
+      "description": "2,804 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NE/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 319331
+    },
+    "data-us-nh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NH/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Hampshire (US-NH)",
+      "description": "1,868 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NH/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 154413
+    },
+    "data-us-nj": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NJ/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Jersey (US-NJ)",
+      "description": "3,040 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NJ/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 316929
+    },
+    "data-us-nm": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NM/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Mexico (US-NM)",
+      "description": "4,112 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NM/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 387679
+    },
+    "data-us-nv": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NV/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nevada (US-NV)",
+      "description": "6,359 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NV/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 611202
+    },
+    "data-us-ny": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-NY/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New York (US-NY)",
+      "description": "10,828 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-NY/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 802609
+    },
+    "data-us-oh": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OH/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ohio (US-OH)",
+      "description": "8,184 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OH/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 804219
+    },
+    "data-us-ok": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OK/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oklahoma (US-OK)",
+      "description": "6,000 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OK/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 531574
+    },
+    "data-us-or": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-OR/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oregon (US-OR)",
+      "description": "5,479 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-OR/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 547429
+    },
+    "data-us-pa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-PA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Pennsylvania (US-PA)",
+      "description": "6,031 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-PA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 685699
+    },
+    "data-us-pr": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-PR/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puerto Rico (US-PR)",
+      "description": "668 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-PR/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 76440
+    },
+    "data-us-ri": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-RI/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Rhode Island (US-RI)",
+      "description": "654 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-RI/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 66839
+    },
+    "data-us-sc": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-SC/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Carolina (US-SC)",
+      "description": "3,044 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-SC/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 333642
+    },
+    "data-us-sd": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-SD/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Dakota (US-SD)",
+      "description": "2,112 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-SD/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 247385
+    },
+    "data-us-tn": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-TN/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tennessee (US-TN)",
+      "description": "7,156 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-TN/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 540145
+    },
+    "data-us-tx": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-TX/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Texas (US-TX)",
+      "description": "20,388 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-TX/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 1883072
+    },
+    "data-us-ut": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-UT/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Utah (US-UT)",
+      "description": "4,051 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-UT/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 484757
+    },
+    "data-us-va": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Virginia (US-VA)",
+      "description": "6,237 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 853370
+    },
+    "data-us-vi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VI/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United States Virgin Islands (US-VI)",
+      "description": "94 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VI/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 14420
+    },
+    "data-us-vt": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-VT/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Vermont (US-VT)",
+      "description": "960 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-VT/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 88984
+    },
+    "data-us-wa": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WA/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Washington (US-WA)",
+      "description": "8,901 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WA/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 776371
+    },
+    "data-us-wi": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WI/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wisconsin (US-WI)",
+      "description": "7,561 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WI/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 737827
+    },
+    "data-us-wv": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WV/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "West Virginia (US-WV)",
+      "description": "869 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WV/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 97799
+    },
+    "data-us-wy": {
+      "href": "https://parquetry.geomermaids.com/osm/latest/country=US/state=US-WY/aeroways.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wyoming (US-WY)",
+      "description": "2,153 features",
+      "roles": [
+        "data"
+      ],
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/osm/latest/country=US/state=US-WY/aeroways.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      },
+      "file:size": 226859
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Preview of one region, flat styling by geometry type",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 13526,
+      "file:checksum": "1220044d95bd5471dea4b25789b1de630caf740803f6b384a63f005e495f7f4957cc"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Aeroways: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Aeroways: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "type": "text/html",
+      "title": "Open Database License (ODbL) 1.0"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.openstreetmap.org/",
+      "type": "text/html",
+      "title": "OpenStreetMap"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/osm/latest/",
+      "type": "text/html",
+      "title": "Browse the latest files"
+    }
+  ]
+}

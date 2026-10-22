@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "transportation-infrastructure-and-utilities/street-sweeping",
+  "stac_version": "1.1.0",
+  "description": "Street sweeping area schedules from the Streets Division.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Transportation, Infrastructure, and Utilities"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STREETS/Street_Sweeping/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./street-sweeping.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "street-sweeping"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STREETS/Street_Sweeping/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 84,
+  "table:row_count": 84,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID_1",
+      "type": "int64"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32"
+    },
+    {
+      "name": "SHAPE_Leng",
+      "type": "double"
+    },
+    {
+      "name": "Route",
+      "type": "string"
+    },
+    {
+      "name": "Day_Wk",
+      "type": "string"
+    },
+    {
+      "name": "Time_of_Da",
+      "type": "string"
+    },
+    {
+      "name": "Start_Time",
+      "type": "string"
+    },
+    {
+      "name": "End_Time",
+      "type": "string"
+    },
+    {
+      "name": "Day_Abbr",
+      "type": "string"
+    },
+    {
+      "name": "Addl_Notes",
+      "type": "string"
+    },
+    {
+      "name": "Chars",
+      "type": "string"
+    },
+    {
+      "name": "Shape",
+      "type": "binary"
+    },
+    {
+      "name": "Shape.STArea()",
+      "type": "double"
+    },
+    {
+      "name": "Shape.STLength()",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 54921,
+  "portolan:asset_count": 1,
+  "title": "Street Sweeping Schedule",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32056825117571,
+          38.53273588531812,
+          -90.17512646186385,
+          38.774346718795464
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "street-sweeping": {
+      "href": "./street-sweeping.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 54921,
+      "file:checksum": "122012134753887a1a7fa881d796a4ad284191d30777d2530e5a3ea3c18c2654df72",
+      "roles": [
+        "data"
+      ],
+      "title": "Street Sweeping Schedule (GeoParquet)"
+    },
+    "street-sweeping-tiles": {
+      "href": "./street-sweeping.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Street Sweeping Schedule (PMTiles)",
+      "file:size": 202011,
+      "file:checksum": "12204ffc9a29a7021ac6da52738ec4efc73c103303652d22621a4906b58f1d2d9b97"
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 1863,
+      "file:checksum": "12208d749788fc263ae9f5d62e867d5049b2aeab5deb2cb0e33c023dbc8b35a49209"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Sweeping day",
+      "description": "Street sweeping areas colored by their scheduled weekday.",
+      "file:size": 1616,
+      "file:checksum": "1220336ae297a0e687ee899d5d6d1283735d456313a6157e54d9909d81cb3774a4ce"
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Area boundaries",
+      "description": "Outlines only.",
+      "file:size": 472,
+      "file:checksum": "1220b4d41bacc33b2067559a6b50e11e43d3fb9a99c2f4e002a17589155fb06d8e43"
+    },
+    "styles/style-labeled": {
+      "href": "./styles/style-labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Routes labeled",
+      "description": "Areas with route labels.",
+      "file:size": 1062,
+      "file:checksum": "1220eeca29ca4c16cb162d6ffd8759f98e1c701f098be6fbe593547d2796237b2a85"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Street Sweeping Schedule rendered with the default style",
+      "file:size": 380539,
+      "file:checksum": "12207f7535d473a35a75f8ce41dca4bb5dca5a48438437b90a6a0b5bacc7000b4a0c"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "transportation-infrastructure-and-utilities",
+          "title": "Transportation, Infrastructure, and Utilities"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "streets--street-division",
+          "title": "Streets - Street Division"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "streets",
+    "sweeping",
+    "Streets - Street Division"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Streets - Street Division",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STREETS/Street_Sweeping/MapServer"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

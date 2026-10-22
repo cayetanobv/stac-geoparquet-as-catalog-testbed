@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "infrastruktur/zierbrunnen",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beinhaltet f\u00fcr alle Bezirke des Landes Berlin die Standorte der Zierbrunnen im Eigentum des Landes Berlin. Zu den Zierbrunnen geh\u00f6ren Zierbrunnen, Planschen, Font\u00e4nen und weitere Wasseranlagen. Nicht dazu geh\u00f6ren Trinkwasserbrunnen und Trinkwassernotbrunnen. Ebenfalls sind in dem Datensatz die Tiefbrunnen des Bezirks Friedrichshain-Kreuzberg aufgef\u00fchrt. Tiefbrunnen sind f\u00fcr die Allgemeinheit nicht zug\u00e4nglich und versorgen naheliegende Zierbrunnen mit Wasser.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zierbrunnen_bez_zierbrunnen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zierbrunnen",
+      "pmtiles:layers": [
+        "zierbrunnen_bez_zierbrunnen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/zierbrunnen-wfs-30f65b64",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/zierbrunnen",
+      "rel": "related",
+      "title": "WFS source service: bez-zierbrunnen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 281,
+  "table:row_count": 281,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "kategorie",
+      "type": "string"
+    },
+    {
+      "name": "brunnenbezeichnung",
+      "type": "string"
+    },
+    {
+      "name": "standort",
+      "type": "string"
+    },
+    {
+      "name": "betreut_durch",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Zierbrunnen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.19956341,
+          52.40252104,
+          13.676863,
+          52.63367475
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zierbrunnen default style",
+      "description": "Default visualization for Zierbrunnen, drawn in #a6cee3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1250,
+      "file:checksum": "122031726772ac123279c4e7fcbbf0b1cb93bb54c3506a78dd46ca9531bf5a73d94a"
+    },
+    "zierbrunnen_bez_zierbrunnen": {
+      "href": "./zierbrunnen_bez_zierbrunnen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 23467,
+      "file:checksum": "1220fe1a0811e55409ff94d6e846eddd0a90f9421bac07526fa5f7f9fe27e7f08ac6",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./zierbrunnen_bez_zierbrunnen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zierbrunnen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 74162,
+      "file:checksum": "12204ecb883fc15a88c39cc82dd077b73167d45b0ee6fbd1b96f5971691091dd9273"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zierbrunnen categorical style",
+      "description": "Categorical visualization coloring Zierbrunnen by kategorie, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2128,
+      "file:checksum": "1220be594fda0bfd59b1917922ff8e125677e370717a2e2dc2d57c80f4b66e60da3b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zierbrunnen labeled style",
+      "description": "Default visualization for Zierbrunnen with kategorie shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1698,
+      "file:checksum": "1220764ce30451ef0d92382813bf33a3bda94e845ee25ed4546436c64139fd31ecc3"
+    },
+    "thumbnail": {
+      "href": "./zierbrunnen_bez_zierbrunnen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Zierbrunnen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 124364,
+      "file:checksum": "12203065714e6e199dd0213cd65f406206f1b840503196a9434f767766a3b51fb127"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Brunnen",
+    "Charlottenburg-Wilmersdorf",
+    "Font\u00e4ne",
+    "Friedrichshain-Kreuzberg",
+    "Geodaten",
+    "Karten",
+    "Lichtenberg"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Zierbrunnen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "zierbrunnen@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

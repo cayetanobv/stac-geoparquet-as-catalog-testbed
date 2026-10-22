@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_sport/sport_manege",
+  "stac_version": "1.1.0",
+  "description": "Sport Manege",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sport_manege.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "sport_manege"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 4,
+  "table:row_count": 4,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Sport Manege",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.0034455634159,
+          52.0736790239327,
+          5.15284759074687,
+          52.1017271146109
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "sport_manege": {
+      "href": "./sport_manege.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2067,
+      "file:checksum": "122022dc03e8360d445609585d7056f047ea11f717485b807439903177804d4c40ac",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./sport_manege.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 1810,
+      "file:checksum": "12204c2f25f4fcfb35b5127a73a2a8e034f48a48f85d6161251d9fe965c4e1385eb9"
+    },
+    "sport_manege-tiles": {
+      "href": "./sport_manege.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "sport_manege (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1502,
+      "file:checksum": "1220177f317de306477e78f3e4a173e6deec9a96626fb8c7d758f48169040f3e271b"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 655,
+      "file:checksum": "12200b355f6f73ff2409c66e00d038bab4f193c59cfea14edb25812716a6c05bd9f5",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

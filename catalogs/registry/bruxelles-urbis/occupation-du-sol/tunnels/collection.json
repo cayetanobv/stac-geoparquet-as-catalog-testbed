@@ -1,0 +1,232 @@
+{
+  "type": "Collection",
+  "id": "occupation-du-sol/tunnels",
+  "stac_version": "1.1.0",
+  "description": "Le produit UrbIS \u2013 Occupation du sol correspond au jeu de donn\u00e9es des surfaces physiques et biologiques  dans la R\u00e9gion bruxelloise. Ce jeu de donn\u00e9es est compos\u00e9 de quatre classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond aux ponts. La deuxi\u00e8me correspond aux tunnels, la troisi\u00e8me correspond aux surfaces de rue (certains objets situ\u00e9s en Flandre ont \u00e9t\u00e9 int\u00e9gr\u00e9s \u00e0 des fins de continuit\u00e9 visuelle), et la quatri\u00e8me correspond aux blocs comprenant notamment les for\u00eats, parcs, et plans d'eau.\n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable sous forme de fichier zipp\u00e9 et via le WFS ad hoc.\n\nCette collection reprend la classe \u00ab Tunnels \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:Tunnels (Tunnels : \u00ab Tunnels located in the Brussels Region. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Landbedekking \u00bb ; titre anglais : \u00ab UrbIS - Land cover \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_tunnels.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Tunnels (UrbIS \u2013 Occupation du sol)",
+      "pmtiles:layers": [
+        "urbisvector_tunnels"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/b718705d-f70f-11ee-8282-00090ffe0001",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: tunnels",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 203,
+  "table:row_count": 203,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable du tunnel, fix\u00e9 et maintenu par Paradigm."
+    },
+    {
+      "name": "TYPE",
+      "type": "string",
+      "description": "Type de tunnel (code du catalogue d'objets : MT, MS, ROT, RAT)."
+    },
+    {
+      "name": "LVL",
+      "type": "DECIMAL(38,0)",
+      "description": "Niveau relatif de la surface de tunnel par rapport \u00e0 un autre objet surfacique."
+    },
+    {
+      "name": "AREA",
+      "type": "int64",
+      "description": "Superficie au sol du tunnel (m\u00b2)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Tunnels (UrbIS \u2013 Occupation du sol)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.2657100982874425,
+          50.77967484599996,
+          4.465588400068604,
+          50.90214458382513
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tunnels (UrbIS \u2013 Occupation du sol) default style",
+      "description": "Default visualization for Tunnels (UrbIS \u2013 Occupation du sol), drawn in #737373.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1223,
+      "file:checksum": "1220ca9f209626f646b817e9cec8d0d4eea1288a9c3b2f8bd5c4795a41d61898f742"
+    },
+    "urbisvector_tunnels": {
+      "href": "./urbisvector_tunnels.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 119863,
+      "file:checksum": "1220ea1209ca677e85bb8e8c268eb479d208bebbfa4bbc527ff3c79ce070ef18eecd",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_tunnels.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Tunnels (UrbIS \u2013 Occupation du sol) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 91105,
+      "file:checksum": "12201883235f148f1a42f69f6eed1c00e023833f483ddf7de22b1d907ae2023a405a"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tunnels (UrbIS \u2013 Occupation du sol) categorical style",
+      "description": "Categorical visualization coloring Tunnels (UrbIS \u2013 Occupation du sol) by TYPE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1985,
+      "file:checksum": "1220e99d0ed486f8331a60067c332c8bddf73699367ccfb16d4e6581ee3407abbe59"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tunnels (UrbIS \u2013 Occupation du sol) labeled style",
+      "description": "Default visualization for Tunnels (UrbIS \u2013 Occupation du sol) with TYPE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1650,
+      "file:checksum": "12206e3bb4d911698f05b3d3d96f0a0c0ca9b298d7e92e998b469f3d21357661ebd9"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tunnels (UrbIS \u2013 Occupation du sol) graduated style",
+      "description": "Graduated visualization coloring Tunnels (UrbIS \u2013 Occupation du sol) by AREA, ramped from 192.0 to 77822.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1982,
+      "file:checksum": "122066d36093fd61a8ac1a1359c96027a3ab3030eee5b6097b6433eb85d873426d3e"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_tunnels.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Tunnels (UrbIS \u2013 Occupation du sol)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 135073,
+      "file:checksum": "1220949dfd2fa9927f7481267400b6be632c668169c2c1c0da8384bd95700cf8599c"
+    }
+  },
+  "keywords": [
+    "g\u00e9ographie",
+    "couverture spatiale (SIG)",
+    "Environnement",
+    "Occupation des terres",
+    "R\u00e9gional",
+    "S\u00e9rie de donn\u00e9es de couverture du sol",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 Occupation du sol \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

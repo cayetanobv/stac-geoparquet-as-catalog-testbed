@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "soroll/capacitat-acustica-2022",
+  "stac_version": "1.1.0",
+  "description": "El mapa de capacitat ac\u00fastica classifica la ciutat en zones de diferent sensibilitat ac\u00fastica, determinant els l\u00edmits m\u00e0xims de soroll permesos normativament. La descripci\u00f3 de cada zonificaci\u00f3 i els seus valors l\u00edmit es poden consultar a l'Ordenan\u00e7a de Medi Ambient de Barcelona. Aquesta Collection recull la capa de pol\u00edgons de l'edici\u00f3 de 2022: 25 recintes amb el codi de pol\u00edgon i la classe de capacitat ac\u00fastica assignada.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./capacitat-poligons-2022.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022)",
+      "pmtiles:layers": [
+        "capacitat-poligons-2022"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata-ajuntament.barcelona.cat/data/ca/dataset/capacitat-mapa-estrategic-soroll",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata-ajuntament.barcelona.cat/data/dataset/ee4c2a18-92a6-4513-8d41-f5ae7d28a4ae/resource/82da9eca-1fb6-45f8-9a4e-f816958525da/download",
+      "rel": "related",
+      "title": "Upstream source: capacitat-poligons-2022",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 25,
+  "table:row_count": 25,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "POLIGON",
+      "type": "int64",
+      "description": "Identificador del pol\u00edgon de zonificaci\u00f3 ac\u00fastica."
+    },
+    {
+      "name": "CAPACITAT",
+      "type": "string",
+      "description": "Classe de capacitat ac\u00fastica assignada al pol\u00edgon."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:25831')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.107334643913646,
+          41.317017239047146,
+          2.2272698893767364,
+          41.44839332915407
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) default style",
+      "description": "Default visualization for Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022), drawn in #7570b3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1290,
+      "file:checksum": "1220a7087f72755e6cfe3127924ed121f729a74708689ca32c893401d39032f98367"
+    },
+    "capacitat-poligons-2022": {
+      "href": "./capacitat-poligons-2022.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 90434,
+      "file:checksum": "1220b20f46a6220de1ad138322f4eab09d03522938f577b11c6deb5431bf668db39b",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./capacitat-poligons-2022.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 36248,
+      "file:checksum": "1220554499fb4e2c82366e236710a243586b134b8861ef8995895e70579e4d84d4c1"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) categorical style",
+      "description": "Categorical visualization coloring Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) by CAPACITAT, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2180,
+      "file:checksum": "12209d6676bc54c11adc60af69adfc0f42064511891fdd773b1d8655c31c8a848f31"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) labeled style",
+      "description": "Default visualization for Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) with CAPACITAT shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1730,
+      "file:checksum": "12204c2abc77d5054dddcf9288bfb8ab0df73600e78d76178b822dfe20987534d1a3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) graduated style",
+      "description": "Graduated visualization coloring Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022) by POLIGON, ramped from 1.0 to 25.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2037,
+      "file:checksum": "1220bc49ed6f8817d8aac809c382b59a99713afe51c2e813481962c245383968caf2"
+    },
+    "thumbnail": {
+      "href": "./capacitat-poligons-2022.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Mapa de capacitat ac\u00fastica de la ciutat de Barcelona (pol\u00edgons, 2022)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 114258,
+      "file:checksum": "12208db473f435c502a2272de2a27444c9964289d460631cfca77257c61872b913b5"
+    }
+  },
+  "keywords": [
+    "capacitat ac\u00fastica",
+    "zonificaci\u00f3 ac\u00fastica",
+    "soroll",
+    "ordenan\u00e7a de medi ambient",
+    "any 2022",
+    "Barcelona"
+  ],
+  "providers": [
+    {
+      "name": "Ajuntament de Barcelona",
+      "description": "Font de les dades: Ajuntament de Barcelona",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata-ajuntament.barcelona.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:00:00Z"
+}

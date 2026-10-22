@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "johtoverkosto/muuntoasema",
+  "stac_version": "1.1.0",
+  "description": "muuntoasema",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./muuntoasema.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "muuntoasema",
+      "pmtiles:layers": [
+        "muuntoasema"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/muuntoasema/items",
+      "rel": "related",
+      "title": "OGC API source service: muuntoasema",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 1397,
+  "table:row_count": 1397,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "korkeustarkkuus",
+      "type": "int32",
+      "description": "Kohteen korkeustarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4. Arvo 1 tarkoittaa m\u00e4\u00e4rittelem\u00e4t\u00f6nt\u00e4. Korkeusmallista interpoloitua korkeutta merkit\u00e4\u00e4n omilla koodeillaan, 201 kahden metrin mallille, 100001 kymmenen metrin mallille ja 250001 kahdenkymmenenviiden metrin mallille."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kulkutapa",
+      "type": "int32",
+      "description": "Viivan kulkutavan koodi. Arvot ovat 1 murtoviiva, 2 k\u00e4yr\u00e4viiva ja 4 tihent\u00e4m\u00e4t\u00f6n k\u00e4yr\u00e4viiva. Murtoviiva kulkee kontrollipisteest\u00e4 kontrollipisteeseen, kun taas k\u00e4yr\u00e4viivaan on interpoloitu tihennyspisteit\u00e4 kuvaamaan muotoa tarkemmin."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 28, joka vastaa viivamaisia Johtoverkosto-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 22200, muuntoasema."
+    },
+    {
+      "name": "aidatviittaus",
+      "type": "string",
+      "description": "Viittaus aitakohteisiin, jotka on tallennettu t\u00e4m\u00e4n muuntoaseman reunaviivan kanssa p\u00e4\u00e4llekk\u00e4in. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Muuntoaseman sulkeutuva viiva WGS84-koordinaatistossa, tallennettuna ymp\u00e4r\u00f6iv\u00e4n aidan kohdalle. Muuntoasema on s\u00e4hk\u00f6n muuntamiseen ja jakeluun k\u00e4ytett\u00e4vi\u00e4 laitteita sis\u00e4lt\u00e4v\u00e4 aidattu kentt\u00e4."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "muuntoasema",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.5895487,
+          59.8366338,
+          31.2530483,
+          69.9094389
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "muuntoasema default style",
+      "description": "Default visualization for muuntoasema, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1138,
+      "file:checksum": "1220e55481d7fa8d19626788dc818efff6724f6e8684f492cd9b3ed416fa0aaafe80"
+    },
+    "muuntoasema": {
+      "href": "./muuntoasema.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 245229,
+      "file:checksum": "1220656f616547ba29726f41ae6dd59afd1831dbdc0a36e40cb71d308ded6a9e4482",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./muuntoasema.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "muuntoasema (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1593419,
+      "file:checksum": "1220447810383ce651ba7ceeeb20e98b45e86bf778bb5c063c932ca170885f86f2e3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "muuntoasema graduated style",
+      "description": "Graduated visualization coloring muuntoasema by sijaintitarkkuus, ramped from 3000.0 to 5000.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1942,
+      "file:checksum": "1220858e43eac2bf670fe454ddc619b92a69b5f6133a88df1c45156bce697eb79f81"
+    },
+    "thumbnail": {
+      "href": "./muuntoasema.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of muuntoasema",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 85363,
+      "file:checksum": "1220ef19fec74e5923bbf717b79e814bf040add23c0335749c4f51d7f8893d8891b9"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Johtoverkosto",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

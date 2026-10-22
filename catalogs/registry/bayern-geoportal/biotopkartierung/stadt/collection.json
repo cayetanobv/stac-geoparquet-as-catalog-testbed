@@ -1,0 +1,302 @@
+{
+  "type": "Collection",
+  "id": "biotopkartierung/stadt",
+  "stac_version": "1.1.0",
+  "description": "Das Thema Biotopkartierung (Stadt) beinhaltet die im Rahmen der Biotopkartierung Bayern erfassten Biotope innerhalb der kreisfreien St\u00e4dte. Ausgenommen sind die seit 2006 nachrichtlich \u00fcbernommenen Waldbiotope (siehe hierzu Thema Biotopkartierung (Nachrichtlich \u00fcbernommene Waldbiotope)).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bio_sbk_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Biotopkartierung Stadt",
+      "pmtiles:layers": [
+        "bio_sbk_epsg25832_shp"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/biotopkartierung.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 35501,
+  "table:row_count": 35501,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "biotop",
+      "type": "string",
+      "description": "Biotop-Hauptnummer: \u201eKFZ\u201c \u2013 \u201elaufende Nr. im Stadtgebiet\u201c, zum Beispiel RO-0023."
+    },
+    {
+      "name": "id_tf",
+      "type": "string",
+      "description": "Biotop-Teilfl\u00e4chennummer: \u201eKFZ\u201c \u2013 \u201elaufende Nr. im Stadtgebiet\u201c \u2013 \u201eTeilfl\u00e4chennummer\u201c, zum Beispiel RO-0023-001."
+    },
+    {
+      "name": "tf_genau",
+      "type": "string",
+      "description": "Angabe, ob sich die Anteile der Biotoptypen auf die jeweilige Biotop-Teilfl\u00e4che oder auf das Gesamtbiotop mit mehreren Teilfl\u00e4chen bezieht (ja/nein)."
+    },
+    {
+      "name": "datum",
+      "type": "date",
+      "description": "Datum der Erfassung im Gel\u00e4nde."
+    },
+    {
+      "name": "titel",
+      "type": "string",
+      "description": "\u00dcberschrift des Biotopkomplexes."
+    },
+    {
+      "name": "haupt_typ",
+      "type": "string",
+      "description": "Biotoptyp mit dem h\u00f6chsten Fl\u00e4chenanteil, inklusive Fl\u00e4chenanteil im Biotop."
+    },
+    {
+      "name": "neben_typ",
+      "type": "string",
+      "description": "Weitere Biotoptypen, inklusive deren Fl\u00e4chenanteile. Da maximal 254 Zeichen m\u00f6glich sind, kann der Text abgeschnitten sein; die vollst\u00e4ndige Auflistung steht in der Access-Datenbank mit den Sachdaten."
+    },
+    {
+      "name": "schutz_30",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG; bei Streuobstbest\u00e4nden wird hier nur der Unterwuchs bewertet."
+    },
+    {
+      "name": "pschutz_30",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che mit potentiellem Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "schutz_39",
+      "type": "string",
+      "description": "Hinweis, ob gesch\u00fctzte Fl\u00e4chenanteile nach \u00a7 39 BNatSchG / Art. 16 BayNatSchG vorhanden sind (ja/nein; 0 = nein, 1 = ja)."
+    },
+    {
+      "name": "s_30_streu",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Streuobstbest\u00e4nde mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "s_30_ges",
+      "type": "int64",
+      "description": "Gesch\u00e4tzter Prozentanteil der Fl\u00e4che inklusive Streuobstbest\u00e4nde mit Schutz nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG."
+    },
+    {
+      "name": "natschg_k",
+      "type": "string",
+      "description": "Angabe, ob die Biotopfl\u00e4che nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG gesch\u00fctzte Anteile enth\u00e4lt; A, B: mit gesch\u00fctzten Anteilen, C: m\u00f6glicherweise mit gesch\u00fctzten Anteilen, D: ohne gesch\u00fctzte Anteile. Streuobstbest\u00e4nde werden gesondert in streuo_k bewertet."
+    },
+    {
+      "name": "streuo_k",
+      "type": "string",
+      "description": "Angabe, ob das Streuobst nach \u00a7 30 BNatSchG / Art. 23 BayNatSchG gesch\u00fctzte Anteile enth\u00e4lt; SA: mit gesch\u00fctzten Anteilen, SB: m\u00f6glicherweise mit gesch\u00fctzten Anteilen, SC: ohne gesch\u00fctzte Anteile."
+    },
+    {
+      "name": "uab",
+      "type": "string",
+      "description": "Link zu weiterf\u00fchrenden Informationen zum Biotop \u00fcber den UmweltAtlas Bayern."
+    },
+    {
+      "name": "steckbrief",
+      "type": "string",
+      "description": "Link zum Biotop-Steckbrief mit weitergehenden Informationen zum Biotop."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Biotopkartierung Stadt",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.084175754623962,
+          47.69483725474205,
+          13.513269502677225,
+          50.354507479149206
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Stadt default style",
+      "description": "Default visualization for Biotopkartierung Stadt, drawn in #78c679.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1219,
+      "file:checksum": "122041c30273bad7096688f8e4030dce754152abf963b7fdab1cb135a5068e322f17"
+    },
+    "bio_sbk_epsg25832_shp": {
+      "href": "./bio_sbk_epsg25832_shp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 14620923,
+      "file:checksum": "1220f8877458445ab7455825e8a53d29e61afc69383025398dab52756c54b94c114d",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./bio_sbk_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Biotopkartierung Stadt (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18791375,
+      "file:checksum": "122063fecb99a6dd556b0d8bb7740dfb0119d60c6adbcba018bd506ce5e986197dcc"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Stadt categorical style",
+      "description": "Categorical visualization coloring Biotopkartierung Stadt by tf_genau, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1775,
+      "file:checksum": "1220ab068d086863ba2eca17b9f5c8dbcab2750a57969805d9a88678e3858ed02e96"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Stadt labeled style",
+      "description": "Default visualization for Biotopkartierung Stadt with tf_genau shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1654,
+      "file:checksum": "122007ac9c08974cfb3b4cbba6020c6e307d1b9a92ce43f4f551c6ae923ca557e2c8"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Biotopkartierung Stadt graduated style",
+      "description": "Graduated visualization coloring Biotopkartierung Stadt by schutz_30, ramped from 0.0 to 100.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1977,
+      "file:checksum": "12206d50df31c19ebc6cf6fde1cbcbe2720cfb529c4ba736a39bd9c0b7033091ba2f"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/biotopkartierung/bio_sbk_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: biotopkartierung-bio_sbk",
+      "pipeline:upstream": true,
+      "file:size": 15617649,
+      "file:checksum": "1220eab52ef36d96f3521dc44ea10b0cfcf2baff3d6703b65ed11d83d23b481fb687"
+    },
+    "thumbnail": {
+      "href": "./bio_sbk_epsg25832_shp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Biotopkartierung Stadt",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 182334,
+      "file:checksum": "12202e421dc6ea1a7069798b9d3cb6d66b1d0c0df2850fa2528f79f8d239bc122861"
+    }
+  },
+  "keywords": [
+    "Biotopkartierung",
+    "Biotope",
+    "FIS-Natur",
+    "Naturschutz",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

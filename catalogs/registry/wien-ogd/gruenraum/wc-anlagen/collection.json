@@ -1,0 +1,305 @@
+{
+  "type": "Collection",
+  "id": "gruenraum/wc-anlagen",
+  "stac_version": "1.1.0",
+  "description": "WC Anlagen in Wien die \u00f6ffentlich zug\u00e4ngig sind",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_wcanlage2ogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliche WC Anlagen Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_wcanlage2ogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/146384fc-3f64-4482-a78a-2f082411a27d",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: wcanlage2ogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 275,
+  "table:row_count": 275,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "WC_ID",
+      "type": "string",
+      "description": "Identifikation des Standortes."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirksnummer."
+    },
+    {
+      "name": "STRASSE",
+      "type": "string",
+      "description": "Stra\u00dfenname."
+    },
+    {
+      "name": "ORTSANGABE",
+      "type": "string",
+      "description": "N\u00e4here Beschreibung des Ortes (im Park usw.)."
+    },
+    {
+      "name": "AKTIV",
+      "type": "int64",
+      "description": "Ob das WC ge\u00f6ffnet ist, numerisch (-1 = ja in den Stichproben)."
+    },
+    {
+      "name": "AKTIV_TXT",
+      "type": "string",
+      "description": "Ob das WC ge\u00f6ffnet ist, textlich (JA/NEIN)."
+    },
+    {
+      "name": "OEFFNUNGSZEIT",
+      "type": "string",
+      "description": "Uhrzeiten, wann das WC ge\u00f6ffnet ist."
+    },
+    {
+      "name": "EINSCHRAENKUNGEN",
+      "type": "string",
+      "description": "Einschr\u00e4nkungen bei den \u00d6ffnungszeiten."
+    },
+    {
+      "name": "PERSONALBETREUUNG",
+      "type": "string",
+      "description": "Zeiten, wann Personal vor Ort ist."
+    },
+    {
+      "name": "KATEGORIE",
+      "type": "string",
+      "description": "Typen und Anzahl der Anlagen."
+    },
+    {
+      "name": "AUSSTATTUNG",
+      "type": "string",
+      "description": "Zus\u00e4tzliche Ausstattung."
+    },
+    {
+      "name": "ICON",
+      "type": "string",
+      "description": "Kennbuchstabe des Symbols."
+    },
+    {
+      "name": "ICON_TXT",
+      "type": "string",
+      "description": "Textliche Angabe zum Symbol."
+    },
+    {
+      "name": "KONTAKT",
+      "type": "string",
+      "description": "Telefonnummer f\u00fcr Kontakte."
+    },
+    {
+      "name": "ABTEILUNG",
+      "type": "string",
+      "description": "F\u00fcr die WC-Anlage zust\u00e4ndige Dienststelle."
+    },
+    {
+      "name": "INFORMATION",
+      "type": "string",
+      "description": "Hyperlink zu WC-Anlagen in Wien."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "\u00d6ffentliche WC Anlagen Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.22482336256775,
+          48.13232855999942,
+          16.50857767099431,
+          48.29787690762489
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche WC Anlagen Standorte Wien default style",
+      "description": "Default visualization for \u00d6ffentliche WC Anlagen Standorte Wien, drawn in #9e9ac8.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1232,
+      "file:checksum": "12207e2beeb3c7cf9885a280def8399b2ea5539354dd00269771c440a1f48b4d7f33"
+    },
+    "ogdwien_wcanlage2ogd": {
+      "href": "./ogdwien_wcanlage2ogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 29903,
+      "file:checksum": "122020baeeefda467cc76a1236d3d6029d563feee4b093fa98ba4191f4a208609659",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_wcanlage2ogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliche WC Anlagen Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 110782,
+      "file:checksum": "1220527f74c11a03f921cb12764f1c42829cca4b55790b71b7f194b81516348aa509"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche WC Anlagen Standorte Wien categorical style",
+      "description": "Categorical visualization coloring \u00d6ffentliche WC Anlagen Standorte Wien by ICON, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1868,
+      "file:checksum": "12202ccfe1da0a216278ecb08a2deed1c81b81b32bd6e186acd2474743a6e1942705"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche WC Anlagen Standorte Wien labeled style",
+      "description": "Default visualization for \u00d6ffentliche WC Anlagen Standorte Wien with ICON shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1661,
+      "file:checksum": "122094e991f2625f7c72599958e0f9021884b2fd2331b7b045e3ca4001baaae84a3f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliche WC Anlagen Standorte Wien graduated style",
+      "description": "Graduated visualization coloring \u00d6ffentliche WC Anlagen Standorte Wien by BEZIRK, ramped from 1.0 to 23.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1975,
+      "file:checksum": "12207928d1cf5e0b0eacf9b7e890c476a07a6256b4ab10a64400e79b3dcd199356c1"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_wcanlage2ogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of \u00d6ffentliche WC Anlagen Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 112571,
+      "file:checksum": "1220358fae4a61f9f89b3e1224ca1e3c69037a5eb485521194ac91de2ab3e3bf39bf"
+    }
+  },
+  "keywords": [
+    "Toilettenanlage",
+    "Toiletten",
+    "Euroschl\u00fcssel",
+    "Klo",
+    "WC",
+    "ViennaGIS",
+    "Entsorgung",
+    "Magistratsabteilung MA 48",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien \u2013 Magistratsabteilung 48 (Abfallwirtschaft, Stra\u00dfenreinigung und Fuhrpark)",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, \u00d6ffentliche WC Anlagen Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.wien.gv.at/umwelt/ma48/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

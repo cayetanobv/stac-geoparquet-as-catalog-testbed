@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "forecast/cone",
+  "stac_version": "1.1.0",
+  "description": "NHC 5-day forecast cone of uncertainty for Hurricane Melissa (AL132025), one polygon per advisory, all 80 advisories stacked (21-31 October 2025). Rows carry the NHC attributes plus derived advisory_number, advisory_seq and issue_time (UTC). The cone is the probable track of the storm centre, not the extent of hazardous winds.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./forecast-cone.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast cone (all 80 advisories)",
+      "pmtiles:layers": [
+        "forecast-cone"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2025&name=Hurricane%20MELISSA",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 80,
+  "table:row_count": 80,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "advisory_number",
+      "type": "string",
+      "description": "Derived (CARTO): zero-padded advisory id from the NHC package name, e.g. '003A'; sorts in issue order as text. Join key across forecast/cone, forecast/track, forecast/points, forecast/watches-warnings and forecast/wind-radii."
+    },
+    {
+      "name": "advisory_seq",
+      "type": "int32",
+      "description": "Derived (CARTO): 1-based issue order of the advisory (001 = 1, 001A = 2, ..., 041 = 80)."
+    },
+    {
+      "name": "STORMNAME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories'. 'Melissa' in this file."
+    },
+    {
+      "name": "STORMTYPE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The category of the tropical cyclone according to the initial intensity'. TS Tropical Storm (33 rows), HU Hurricane (46), PTC Post-tropical Cyclone (1, advisory 041; a code absent from NHC's list, meaning taken from the TCDVLP text of forecast/points)."
+    },
+    {
+      "name": "ADVDATE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The date in which an advisory is issued'. Free text in the advisory's local time zone, e.g. '1100 AM EDT Tue Oct 21 2025'. Parsed into issue_time; do not string-compare."
+    },
+    {
+      "name": "ADVISNUM",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The sequential numbering of forecast advisories for each tropical cyclone'. Not zero-padded ('1', '1A', ..., '41'); sort/join on advisory_number instead."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The sequential numbering of tropical cyclones for a specific forecast basin according to when the first advisory is issued' (13 = Melissa, AL132025)."
+    },
+    {
+      "name": "FCSTPRD",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The time interval for which the forecast of a tropical cyclone is provided in graphical format' (hours); always 120 here."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The ocean where the tropical cyclone is located'; AL = Atlantic."
+    },
+    {
+      "name": "issue_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): advisory issue time in UTC parsed from ADVDATE; local zone abbreviations mapped to fixed offsets (EDT and AST = UTC-4). 2025-10-21 15:00 to 2025-10-31 15:00 UTC, strictly increasing with advisory_seq. Use for 'latest advisory known at time T'."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Cone polygon (1,360 to 2,334 vertices, all valid) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file). NHC ships the shapefiles with an authalic-sphere GCS in the .prj; coordinates were not transformed."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Forecast cone (all 80 advisories)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -82.25176,
+          12.46167,
+          -3.97894,
+          66.1575
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T15:00:00Z",
+          "2025-10-31T15:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast cone (all 80 advisories) default style",
+      "description": "Default visualization for Forecast cone (all 80 advisories), drawn in #00838f.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1174,
+      "file:checksum": "12204e6b841539b04b9f28867057dd0699168298a4ec6127dd192ed5d5177915c2aa"
+    },
+    "forecast-cone": {
+      "href": "./forecast-cone.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1280711,
+      "file:checksum": "1220f7942c6da405e3a8804ffdfdfa83c57e3614160317370428e93bd18791d7e8ac",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./forecast-cone.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast cone (all 80 advisories) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 331648514,
+      "file:checksum": "1220fc7505d119c7d254220888d5cd28533d3f26c795ff4906beb8a60e973f80bff5"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast cone (all 80 advisories) categorical style",
+      "description": "Categorical visualization coloring Forecast cone (all 80 advisories) by STORMTYPE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1842,
+      "file:checksum": "12200c53a675a4d6ca0118b46a35639de3100ee13ca1bdf181c82f3a62021916fabf"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast cone (all 80 advisories) labeled style",
+      "description": "Default visualization for Forecast cone (all 80 advisories) with STORMNAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1594,
+      "file:checksum": "1220468f422653e5f1749f4480eb46bb43733246d6909f8e5fe75b55550cba65a730"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast cone (all 80 advisories) graduated style",
+      "description": "Graduated visualization coloring Forecast cone (all 80 advisories) by advisory_seq, ramped from 1.0 to 80.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1941,
+      "file:checksum": "122079a6b1a4d6d6dd19ca55f32c17539ee5ed0a9a0b197de58fa46916b741c8f379"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/forecast-cone/forecast-cone.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: forecast-cone",
+      "pipeline:upstream": true,
+      "file:size": 1282493,
+      "file:checksum": "12204c58071df588fe2db6f6451910c5c8019715b673be12e099b0f5570eae7c4a72"
+    },
+    "thumbnail": {
+      "href": "./forecast-cone.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Forecast cone (all 80 advisories)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 68148,
+      "file:checksum": "1220839639c82b6b1d0c970bc74401c647e0e3f257b7abd80b8e3e467dc998245422"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

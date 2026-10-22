@@ -1,0 +1,277 @@
+{
+  "type": "Collection",
+  "id": "einrichtungen/bibliotheken",
+  "stac_version": "1.1.0",
+  "description": "Georeferenzierte Auflistung der Bibliotheken in K\u00f6ln. Eine kartebasierte Darstellung ist hier zu finden: http://www.stadt-koeln.de/leben-in-koeln/stadtbibliothek/unsere-standorte\n\nWeitere Informationen zum Datensatz gibt es hier",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bibliotheken.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bibliotheken in K\u00f6ln",
+      "pmtiles:layers": [
+        "bibliotheken"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/bibliotheken-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/bildung_und_schule/bibliotheken/MapServer",
+      "rel": "related",
+      "title": "ArcGIS source service: bibliotheken",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/bildung_und_schule/bibliotheken/MapServer",
+      "rel": "related",
+      "title": "Bibliotheken K\u00f6ln (ArcGIS REST MapServer)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/bildung_und_schule/bibliotheken/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "Bibliotheken K\u00f6ln (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 31,
+  "table:row_count": 31,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "shape",
+      "type": "BLOB"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "stadtbezirk",
+      "type": "string"
+    },
+    {
+      "name": "stadtteil",
+      "type": "string"
+    },
+    {
+      "name": "stadtviertel",
+      "type": "string"
+    },
+    {
+      "name": "postleitzahl",
+      "type": "int32"
+    },
+    {
+      "name": "name_lang",
+      "type": "string"
+    },
+    {
+      "name": "beschreibung",
+      "type": "string"
+    },
+    {
+      "name": "typ",
+      "type": "int32"
+    },
+    {
+      "name": "hyperlink",
+      "type": "string"
+    },
+    {
+      "name": "artikellink",
+      "type": "string"
+    },
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "fahrplanzeiten",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Bibliotheken in K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.82987584969156,
+          50.85731774146271,
+          7.100357422244402,
+          51.06516902829248
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bibliotheken in K\u00f6ln default style",
+      "description": "Default visualization for Bibliotheken in K\u00f6ln, drawn in #54278f.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1159,
+      "file:checksum": "122097b6ad5b2bba2d36a0f2c52ff082a26f5f7cf97a1694d8376b3a6f55a7829c06"
+    },
+    "bibliotheken": {
+      "href": "./bibliotheken.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 14253,
+      "file:checksum": "1220f2b9695beae85caea2594f664dcbe6426339d20234b6723da99652c3dda2e6cb",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./bibliotheken.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bibliotheken in K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 39150,
+      "file:checksum": "12207533b02c7ef880b9033269692bab0c2493675d6fe9e4d8c7c204474a36d20b7c"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bibliotheken in K\u00f6ln categorical style",
+      "description": "Categorical visualization coloring Bibliotheken in K\u00f6ln by stadtbezirk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2675,
+      "file:checksum": "1220d311ff7445f8ba774b6ce65b703e3b8fcc16d2f37ff8117139a36bff798ec5ea"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bibliotheken in K\u00f6ln labeled style",
+      "description": "Default visualization for Bibliotheken in K\u00f6ln with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1572,
+      "file:checksum": "1220d50e4039c5870c568af4780020c6d4c6c95f6d565c5083027d3748e430297cbf"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bibliotheken in K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Bibliotheken in K\u00f6ln by postleitzahl, ramped from 50667.0 to 51149.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1956,
+      "file:checksum": "1220894f5303d375fccc5acf63cb3e1b98013f2e1d48afd164724171932bfa2eb969"
+    },
+    "thumbnail": {
+      "href": "./bibliotheken.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Bibliotheken in K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 123647,
+      "file:checksum": "1220ec4b982ac9b2d766ef3dea2274f4c3cf014325840c8957e0cc65a747df9e693c"
+    }
+  },
+  "keywords": [
+    "Bildung und Wissenschaft",
+    "Geo",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Geoportal Stadt K\u00f6ln",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Geoportal Stadt K\u00f6ln, \u201eBibliotheken in K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/politik-und-verwaltung/geoportal",
+      "email": "e-government@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

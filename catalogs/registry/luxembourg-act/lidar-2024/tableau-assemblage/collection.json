@@ -1,0 +1,198 @@
+{
+  "type": "Collection",
+  "id": "lidar-2024/tableau-assemblage",
+  "stac_version": "1.1.0",
+  "description": "Le jeu de donn\u00e9es BD-L-Lidar2024 inclut un nuage de points \u00e0 tr\u00e8s haute r\u00e9solution (> 30 pts/m\u00b2 \u00e9mis) ainsi que les mod\u00e8les num\u00e9riques de terrain (MNT) et de surface (MNS) d\u00e9riv\u00e9s. Chaque fichier contient 9 tuiles LAZ de 500 m (cloud optimized \u2013 COPC). Le tableau d'assemblage est disponible en format geopackage. Le syst\u00e8me de coordonn\u00e9es de tous les fichiers est LUREF-LTM.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tableau-assemblage.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Lidar 2024 \u2013 Tableau d'assemblage",
+      "pmtiles:layers": [
+        "tableau-assemblage"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/lidar-2024-releve-3d-du-territoire-luxembourgeois/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://download.data.public.lu/resources/lidar-2024-releve-3d-du-territoire-luxembourgeois/20250117-095958/lidar2024-ta.gpkg",
+      "rel": "related",
+      "title": "Upstream source: tableau-assemblage",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 10905,
+  "table:row_count": 10905,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "fid",
+      "type": "int64",
+      "description": "Identifiant de ligne du GeoPackage."
+    },
+    {
+      "name": "Fichier",
+      "type": "string",
+      "description": "Nom de la dalle de 500 m, form\u00e9 des coordonn\u00e9es LUREF de son coin, par exemple 79000_79500."
+    },
+    {
+      "name": "Dossier",
+      "type": "string",
+      "description": "Nom du bloc de neuf dalles auquel appartient la dalle, par exemple Lidar2024_C021_R016."
+    },
+    {
+      "name": "DownloadLink",
+      "type": "string",
+      "description": "Lien stable data.public.lu de l'archive ZIP du bloc."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Lidar 2024 \u2013 Tableau d'assemblage",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.729673660967722,
+          49.44320409051188,
+          6.53630297871831,
+          50.18494160895071
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2024-02-28T00:00:00Z",
+          "2024-04-30T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Lidar 2024 \u2013 Tableau d'assemblage default style",
+      "description": "Default visualization for Lidar 2024 \u2013 Tableau d'assemblage, drawn in #1a9850.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1214,
+      "file:checksum": "12203e1534216984d0ceb6b372ab71f538e8ddef9be940ee480d6c9796d3c4741f38"
+    },
+    "tableau-assemblage": {
+      "href": "./tableau-assemblage.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 190344,
+      "file:checksum": "1220677c75f3afecec851e13a0bf8b458f4a2caf3d10b71f6661061e74162839e5d2",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./tableau-assemblage.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Lidar 2024 \u2013 Tableau d'assemblage (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3425745,
+      "file:checksum": "122040954da9fa7ec12a0ae742e3549df06313c11d16c21a62f083947339f1a45d6e"
+    },
+    "thumbnail": {
+      "href": "./tableau-assemblage.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Lidar 2024 \u2013 Tableau d'assemblage",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 153865,
+      "file:checksum": "122038dbb959f7d5a3b26826bfb6bdfd4316e057235f316f59cada2a992be7a77a52"
+    }
+  },
+  "keywords": [
+    "lidar",
+    "lidar-3d",
+    "nuage de points",
+    "tableau d'assemblage",
+    "2024",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Lidar 2024 \u2013 Relev\u00e9 3D du territoire luxembourgeois, Administration du cadastre et de la topographie, data.public.lu, CC0 1.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

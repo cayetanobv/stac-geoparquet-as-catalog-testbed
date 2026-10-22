@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "maasto-2/maatuvavesialue",
+  "stac_version": "1.1.0",
+  "description": "maatuvavesialue",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./maatuvavesialue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "maatuvavesialue",
+      "pmtiles:layers": [
+        "maatuvavesialue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/maatuvavesialue/items",
+      "rel": "related",
+      "title": "OGC API source service: maatuvavesialue",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 11776,
+  "table:row_count": 11776,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 70, joka vastaa aluemaisia Maasto/2-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 38300, maatuva vesialue."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Maatuvan vesialueen aluerajaus WGS84-koordinaatistossa. Maatuva vesialue on pohjamy\u00f6t\u00e4isen kasvillisuuden tai maankohoamisen vuoksi maatumassa oleva vesialue."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "maatuvavesialue",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.5844645,
+          59.8124796,
+          31.4450371,
+          69.9087626
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "maatuvavesialue default style",
+      "description": "Default visualization for maatuvavesialue, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1170,
+      "file:checksum": "12205e58f2fc44a012045fce268db7fa772cc614bbedaad7e1818cc949b559a45159"
+    },
+    "maatuvavesialue": {
+      "href": "./maatuvavesialue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 56372846,
+      "file:checksum": "12208553708f980a478b0dd16e63a4bff57395a29ea16fea613103fa5016b37b9bc6",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./maatuvavesialue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "maatuvavesialue (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 22795515,
+      "file:checksum": "122016322bd47b876fcac7082ff0ac0778deb4e9ac8b2391c82741802dbc39857d9c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "maatuvavesialue graduated style",
+      "description": "Graduated visualization coloring maatuvavesialue by sijaintitarkkuus, ramped from 10000.0 to 12500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1983,
+      "file:checksum": "1220f3041a48c6ff01bda36bbe505119eea4fcaecb9e820c5679e3ed4f9da0b76ab9"
+    },
+    "thumbnail": {
+      "href": "./maatuvavesialue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of maatuvavesialue",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 93268,
+      "file:checksum": "122077832e78016fa43e42b5c5ba8394645f5605548fedd114b40cf867c6bb71ada0"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/2",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

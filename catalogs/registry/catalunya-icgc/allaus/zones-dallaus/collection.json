@@ -1,0 +1,236 @@
+{
+  "type": "Collection",
+  "id": "allaus/zones-dallaus",
+  "stac_version": "1.1.0",
+  "description": "Zones del Pirineu de Catalunya on s'han produ\u00eft desencadenaments d'allaus. El productor descriu la capa aix\u00ed: \u00abZones on s'han produ\u00eft desencadenaments d'allaus\u00bb. Cada zona porta el seu codi, el tipus de fotografia associada i el codi de metadades del productor.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nivoallaus_zonesallaus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zones d'allaus",
+      "pmtiles:layers": [
+        "nivoallaus_zonesallaus"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: zones-dallaus",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa nivoallaus:zonesallaus, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 17812,
+  "table:row_count": 17812,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "tipufoto",
+      "type": "int64",
+      "description": "Codi num\u00e8ric del tipus de fotografia associada a la zona. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "codizallau",
+      "type": "string",
+      "description": "Codi de la zona d'allaus, per exemple \u00abPAL232\u00bb."
+    },
+    {
+      "name": "metadata",
+      "type": "int64",
+      "description": "Codi num\u00e8ric de metadades que el productor associa a l'objecte. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "type",
+      "type": "string",
+      "description": "Camp de text del productor que en tots els objectes observats el 21.9.2026 val \u00abPolygon\u00bb, \u00e9s a dir descriu el tipus de geometria."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Zones d'allaus",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.640066989983053,
+          42.12905412729693,
+          2.3828032308303952,
+          42.86575672632064
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones d'allaus default style",
+      "description": "Default visualization for Zones d'allaus, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1218,
+      "file:checksum": "122065b669ab4209f23701ffedfbc0733f903bfa7191dbbf3a867a3ec5e8e3aad07c"
+    },
+    "nivoallaus_zonesallaus": {
+      "href": "./nivoallaus_zonesallaus.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 28211666,
+      "file:checksum": "1220b7f2d690c5ae326b6f936c77d8cf8e43a63a372458794cbb2b8fb62229ad9b17",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nivoallaus_zonesallaus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zones d'allaus (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 11566310,
+      "file:checksum": "122072f2f19d3c4470cbb0aa567f2157715f5232684cab1c2f91dd7b07281dae9b32"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones d'allaus categorical style",
+      "description": "Categorical visualization coloring Zones d'allaus by type, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1656,
+      "file:checksum": "122058ba963c8e3a559157001c62f394b8f314b80a760aff12cb5456ba584c8da895"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones d'allaus labeled style",
+      "description": "Default visualization for Zones d'allaus with type shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1651,
+      "file:checksum": "1220d49b96996b751976661625c465eec089726054116cd3e73a0537ca1eef638797"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones d'allaus graduated style",
+      "description": "Graduated visualization coloring Zones d'allaus by tipufoto, ramped from 1.0 to 3.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1963,
+      "file:checksum": "1220ad0af1e74cf978c2b289780cee3bd16f185bd11371cfaaa24e6837e886e84cb0"
+    },
+    "thumbnail": {
+      "href": "./nivoallaus_zonesallaus.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Zones d'allaus",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 154934,
+      "file:checksum": "1220822f6ff544e1dd58bca1c60a2f181185fbe925737421e514a32150e1ecb83bf8"
+    }
+  },
+  "keywords": [
+    "allaus",
+    "nivologia",
+    "Pirineu",
+    "risc",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Zones d'allaus de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

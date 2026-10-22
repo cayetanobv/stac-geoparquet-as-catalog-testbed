@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "children-grid-1km",
+  "stac_version": "1.1.0",
+  "description": "WorldPop 2020 children estimates aggregated from 100 m to a 1 km grid (30 arc-second, 10 x 10 native cells) as GeoParquet polygons, EPSG:4326. Columns pop_0_4, pop_5_9, pop_10_14, pop_15_19, pop_0_19 (children) and pop_total (all ages, from WorldPop jam_ppp_2020_constrained, dataset 49810); n_cells counts the settled 100 m cells summed. 6,062 cells with at least one settled 100 m cell. This is the layer to join spatially with a hurricane cone or any polygon in DuckDB; sums over the whole grid reproduce the raster totals (845,823 children aged 0-19; 2,783,567 people). Modelled estimates, not a census count: WorldPop disaggregates census/projection totals to 100 m cells with a Random-Forest dasymetric model constrained to built settlements. Values are fractional people per cell.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./children-grid-1km.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled)",
+      "pmtiles:layers": [
+        "children-grid-1km"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.worldpop.org/geodata/summary?id=50206",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 6062,
+  "table:row_count": 6062,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "cell_id",
+      "type": "string",
+      "description": "Derived (CARTO): grid cell id 'r{row}c{col}' (3-digit zero-padded row and column of the 181 x 288 aggregation grid); unique."
+    },
+    {
+      "name": "grid_row",
+      "type": "int32",
+      "description": "Derived (CARTO): row index 0-180 of the 1 km grid, north to south (block of native rows 10*grid_row .. 10*grid_row+9)."
+    },
+    {
+      "name": "grid_col",
+      "type": "int32",
+      "description": "Derived (CARTO): column index 0-287 of the 1 km grid, west to east."
+    },
+    {
+      "name": "n_cells",
+      "type": "int32",
+      "description": "Derived (CARTO): number of settled (non-nodata) 100 m WorldPop cells summed into this cell, 1-100."
+    },
+    {
+      "name": "pop_0_4",
+      "type": "double",
+      "description": "Modelled children aged 0-4 in 2020 (WorldPop m_0 + f_0 + m_1 + f_1), fractional persons; national sum 217,527."
+    },
+    {
+      "name": "pop_5_9",
+      "type": "double",
+      "description": "Modelled children aged 5-9 in 2020 (WorldPop m_5 + f_5), fractional persons; national sum 194,590."
+    },
+    {
+      "name": "pop_10_14",
+      "type": "double",
+      "description": "Modelled children aged 10-14 in 2020 (WorldPop m_10 + f_10), fractional persons; national sum 211,678."
+    },
+    {
+      "name": "pop_15_19",
+      "type": "double",
+      "description": "Modelled population aged 15-19 in 2020 (WorldPop m_15 + f_15); includes 18- and 19-year-olds; national sum 222,027."
+    },
+    {
+      "name": "pop_0_19",
+      "type": "double",
+      "description": "Modelled population aged 0-19 in 2020 = pop_0_4 + pop_5_9 + pop_10_14 + pop_15_19; 2.7 to 2,226.7 per cell, national sum 845,823."
+    },
+    {
+      "name": "pop_total",
+      "type": "double",
+      "description": "Modelled total population 2020, all ages (WorldPop jam_ppp_2020_constrained, dataset 49810); national sum 2,783,567."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Cell polygon, the envelope of the 10 x 10 block of native 3 arc-second cells, in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); about 884 m x 927 m."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; derived."
+    }
+  ],
+  "title": "Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.369583005,
+          17.708750131,
+          -76.177916347,
+          18.525416794
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled) default style",
+      "description": "Default visualization for Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled), drawn in #6a1b9a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1230,
+      "file:checksum": "12202e1332f0edb04194c4a3378c9e135ef5a909d0c4a6c22220a787eadbb17e59cd"
+    },
+    "children-grid-1km": {
+      "href": "./children-grid-1km.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 263097,
+      "file:checksum": "122089d361cb6cb0e7aacbac9bc23cc9ef8051d8f70bde9824fc6b561b8b9c326412",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./children-grid-1km.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5399090,
+      "file:checksum": "1220e3fee2f2f3959867ffeb327d32b0c7b90160eeb762d4c404e43d3e0195b555bc"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled) graduated style",
+      "description": "Graduated visualization coloring Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled) by pop_0_19, ramped from 2.7486 to 2226.714.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2017,
+      "file:checksum": "1220895bc9f50c6b509ee2a3db038fe26484237f467a93090c0d9b48e5b65f322e5e"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/worldpop-jamaica/children-grid-1km/children-grid-1km.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: children-grid-1km",
+      "pipeline:upstream": true,
+      "file:size": 276779,
+      "file:checksum": "1220c128d488dd8bb098e6892773d34980f2460c0bf09468d4bb04827761c44df146"
+    },
+    "thumbnail": {
+      "href": "./children-grid-1km.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Children by 1 km grid cell, Jamaica 2020 (WorldPop, modelled)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 118721,
+      "file:checksum": "1220d882ddd2ffea37e899630d873975ddb8819d0d19810d421b5f15ae0d9527e3b9"
+    }
+  },
+  "keywords": [
+    "WorldPop",
+    "population",
+    "children",
+    "age structure",
+    "Jamaica",
+    "2020",
+    "modelled",
+    "demographics"
+  ],
+  "providers": [
+    {
+      "name": "WorldPop, University of Southampton",
+      "description": "Producer of the \"Jamaica 100m Age structures in 2020\" constrained dataset (id 50206, DOI 10.5258/SOTON/WP00695, released 2020-10-30) and of \"The spatial distribution of population in 2020, Jamaica\" (id 49810, DOI 10.5258/SOTON/WP00684), both retrieved from data.worldpop.org on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hub.worldpop.org/geodata/summary?id=50206",
+      "email": "info@worldpop.org"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:40:00Z"
+}

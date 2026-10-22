@@ -1,0 +1,258 @@
+{
+  "type": "Collection",
+  "id": "natuur/natuurbeheerplannen",
+  "stac_version": "1.1.0",
+  "description": "Deze laag omvat alle geldige natuurbeheerplannen (type 1, 2, 3 of 4) voor bossen en natuurgebieden in Vlaanderen, erkende natuurreservaten (tijdelijk) zonder beheerplan en domeinen waarvoor een protocol voor natuurgericht beheer is afgesloten.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ps_ps_nbhp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Natuurbeheerplannen",
+      "pmtiles:layers": [
+        "ps_ps_nbhp"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/8166b0db-b231-486d-91b3-24505796256a",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.mercator.vlaanderen.be/raadpleegdienstenmercatorpubliek/wfs",
+      "rel": "related",
+      "title": "WFS source service: ps-nbhp",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 2187,
+  "table:row_count": 2187,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "naamdossier",
+      "type": "string"
+    },
+    {
+      "name": "registratienummer",
+      "type": "string"
+    },
+    {
+      "name": "natuurbeheerplantype",
+      "type": "string"
+    },
+    {
+      "name": "goedkeuringsdatum",
+      "type": "date"
+    },
+    {
+      "name": "einddatumnatuurbeheerplan",
+      "type": "date"
+    },
+    {
+      "name": "eigendomtype",
+      "type": "string"
+    },
+    {
+      "name": "einddatumerkenningreservaat",
+      "type": "date"
+    },
+    {
+      "name": "opp_ha",
+      "type": "double"
+    },
+    {
+      "name": "inspireid",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Natuurbeheerplannen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.54502829,
+          50.69307564,
+          5.88887534,
+          51.4979263
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natuurbeheerplannen default style",
+      "description": "Default visualization for Natuurbeheerplannen, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1139,
+      "file:checksum": "12202aa1adb82071602d9587e6886aef3c64b8cb851cc2f051d20f7c7a2a7ea287fe"
+    },
+    "ps_ps_nbhp": {
+      "href": "./ps_ps_nbhp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 41642617,
+      "file:checksum": "1220c0dcc766b53de817f36fe75b777a92153796bc693a936d74b71ee4da5e8bda17",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ps_ps_nbhp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Natuurbeheerplannen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10090360,
+      "file:checksum": "1220dc869be6a5eebf6955c1e1ba351066f82b182279fc0ebd3b93b1a7f20a6a4f82"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natuurbeheerplannen categorical style",
+      "description": "Categorical visualization coloring Natuurbeheerplannen by eigendomtype, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2461,
+      "file:checksum": "1220739d9d4df7e511d358a733524e6acea870623c521cc8c99d76d16e191da00d4d"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natuurbeheerplannen labeled style",
+      "description": "Default visualization for Natuurbeheerplannen with naamdossier shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1555,
+      "file:checksum": "122077554b74e068197a2e6f07c89a71d25a9d458865c8dfca8cac60f2313e02b79b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natuurbeheerplannen graduated style",
+      "description": "Graduated visualization coloring Natuurbeheerplannen by opp_ha, ramped from 0.0011 to 4935.8377.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1921,
+      "file:checksum": "12206e96124148d89934fd0ca64dfb0f32fce954ec6f69c38a612412d6ea028df7af"
+    },
+    "thumbnail": {
+      "href": "./ps_ps_nbhp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Natuurbeheerplannen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 216393,
+      "file:checksum": "1220326e19681d76c752728742867517276bd376b0ba238700d76c4deb88353f785e"
+    }
+  },
+  "keywords": [
+    "natuur",
+    "milieu",
+    "bos",
+    "heide",
+    "grasland",
+    "natuurdecreet",
+    "instandhoudingsdoelstelling",
+    "natuurbeheerplannen",
+    "Beschermde gebieden",
+    "Aardobservatie en milieu"
+  ],
+  "providers": [
+    {
+      "name": "Agentschap voor Natuur en Bos",
+      "description": "Bron: Agentschap voor Natuur en Bos, Natuurbeheerplannen, Modellicentie voor gratis hergebruik (gratis open datalicentie Vlaanderen v1.2), opgehaald op 20 september 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.natuurenbos.be/",
+      "email": "anb@vlaanderen.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "nl",
+    "name": "Nederlands",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

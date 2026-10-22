@@ -1,0 +1,171 @@
+{
+  "type": "Collection",
+  "id": "utilities/storm/culverts",
+  "stac_version": "1.1.0",
+  "description": "Culverts in the District of Summerland's storm drainage network, from the District's Storm_ext service. 137 line features totalling 2.6 km.\nThe District publishes no description for this dataset on its open data portal. The summary above states only what the dataset's title, its source service and the published data itself support.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./culverts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "culverts"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 137,
+  "table:row_count": 137,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Culverts - Storm",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.71291017316837,
+          49.56589681185784,
+          -119.63756594109132,
+          49.62858768439589
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "culverts": {
+      "href": "./culverts.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21471,
+      "file:checksum": "1220b4c3ab6bac91887181343c5f42e051276d384acd4493cc4fafabbf6c15479a12",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./culverts.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 8394,
+      "file:checksum": "1220d56e52d5bcbf6e968daf71783b841072535705866541560d25539ad435e1e4fb"
+    },
+    "culverts-tiles": {
+      "href": "./culverts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "culverts (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 16192,
+      "file:checksum": "1220f4221b02cbe02024689445b592750a44a4985fd6e37fdf5351bd6e2d7ef5b94e"
+    },
+    "styles/culverts": {
+      "href": "./styles/culverts.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Culvert",
+      "file:size": 322,
+      "file:checksum": "1220908ba297daa1b8cfcafb243089c3d0e4c7f1c5871c0f52731074f461f879c3df"
+    }
+  },
+  "keywords": [
+    "Wastewater",
+    "Utilities",
+    "Storm"
+  ]
+}

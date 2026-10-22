@@ -1,0 +1,264 @@
+{
+  "type": "Collection",
+  "id": "stationnement/regles-et-zones",
+  "stac_version": "1.1.0",
+  "description": "Ce jeu de donn\u00e9es expose la r\u00e9glementation tarifaire s\u2019appliquant au stationnement en voirie sur les communes de la R\u00e9gion de Bruxelles-Capitale. Elles reprennent tant les informations relatives \u00e0 l\u2019emprise spatiale et \u00e0 l\u2019application temporelle qu\u2019au montant des p\u00e9riodes de stationnement et des redevances.\n\nTitre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab Parkeerregels en -zones op de openbare weg \u00bb ; titre anglais : \u00ab On-street parking rules and zones \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./parkingbrussels_regulation_zones.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "R\u00e8gles et zones de stationnement en voirie",
+      "pmtiles:layers": [
+        "parkingbrussels_regulation_zones"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/3a549366-4a95-11ef-9cb4-f020ff9afd75",
+      "type": "text/html"
+    },
+    {
+      "href": "https://ows.parking.brussels/ws/ParkingBrussels/ows",
+      "rel": "related",
+      "title": "WFS source service: regulation-zones",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 31906,
+  "table:row_count": 31906,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "pn_name_fr",
+      "type": "string"
+    },
+    {
+      "name": "pn_name_du",
+      "type": "string"
+    },
+    {
+      "name": "mu_name_fr",
+      "type": "string"
+    },
+    {
+      "name": "mu_name_du",
+      "type": "string"
+    },
+    {
+      "name": "typreg",
+      "type": "int64"
+    },
+    {
+      "name": "ZoneId1",
+      "type": "string"
+    },
+    {
+      "name": "ZoneId2",
+      "type": "string"
+    },
+    {
+      "name": "ZoneId3",
+      "type": "string"
+    },
+    {
+      "name": "last_user",
+      "type": "string"
+    },
+    {
+      "name": "last_date",
+      "type": "string"
+    },
+    {
+      "name": "active_from",
+      "type": "string"
+    },
+    {
+      "name": "disabled_on",
+      "type": "string"
+    },
+    {
+      "name": "log_id",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "R\u00e8gles et zones de stationnement en voirie",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.244942355186859,
+          50.76367053210393,
+          4.482172620675503,
+          50.91182845847364
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "R\u00e8gles et zones de stationnement en voirie default style",
+      "description": "Default visualization for R\u00e8gles et zones de stationnement en voirie, drawn in #d95f02.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1321,
+      "file:checksum": "122021d3c88ff5925a6a58b3abd3be042ad5ac5bc1ce697868bfb98cc203dd2afdb7"
+    },
+    "parkingbrussels_regulation_zones": {
+      "href": "./parkingbrussels_regulation_zones.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4926683,
+      "file:checksum": "1220026eab343b5fdb004dd1ef8915e75f8ccc6c6c7c35ca5024678654056b8a1e4a",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./parkingbrussels_regulation_zones.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "R\u00e8gles et zones de stationnement en voirie (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6861586,
+      "file:checksum": "12205175c1c71c71bd625438188e9e497233252a8e24c47d9ab735a699e73cc0a6e5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "R\u00e8gles et zones de stationnement en voirie labeled style",
+      "description": "Default visualization for R\u00e8gles et zones de stationnement en voirie with pn_name_fr shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1780,
+      "file:checksum": "1220fcb8a69d3c758b08e26274a90e0b21d95d5e2ffb5f433fd04963bfd204dcaa6c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "R\u00e8gles et zones de stationnement en voirie graduated style",
+      "description": "Graduated visualization coloring R\u00e8gles et zones de stationnement en voirie by log_id, ramped from 1.0 to 31909.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2082,
+      "file:checksum": "1220fd6abec16d024a788a513e101156a6a10b9cd043fc4d04a6c402b96e0f73e9e6"
+    },
+    "thumbnail": {
+      "href": "./parkingbrussels_regulation_zones.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of R\u00e8gles et zones de stationnement en voirie",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 250121,
+      "file:checksum": "122010027f80b9f3754d03b629af8a8852ba3b2a4f56f9f84e9f47969f98fc2423ac"
+    }
+  },
+  "keywords": [
+    "aire de stationnement",
+    "prix de stationnement",
+    "autorit\u00e9 r\u00e9gionale",
+    "place de stationnement",
+    "R\u00e9gions et villes",
+    "Transports",
+    "R\u00e9seaux de transport",
+    "R\u00e9gional",
+    "Aire de trafic",
+    "Type de service routier",
+    "auto",
+    "parking",
+    "tarieven",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "parking.brussels",
+      "description": "Source : parking.brussels, \u00ab R\u00e8gles et zones de stationnement en voirie \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://parking.brussels/",
+      "email": "data@parking.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

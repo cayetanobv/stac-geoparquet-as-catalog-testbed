@@ -1,0 +1,296 @@
+{
+  "type": "Collection",
+  "id": "verwaltung/bezirksgrenzen",
+  "stac_version": "1.1.0",
+  "description": "Bezirksgrenzen, Wien Politische Landesgrenze und Bezirksgrenzen von Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_bezirksgrenzeogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bezirksgrenzen Wien",
+      "pmtiles:layers": [
+        "ogdwien_bezirksgrenzeogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/2ee6b8bf-6292-413c-bb8b-bd22dbb2ad4b",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: bezirksgrenzeogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 23,
+  "table:row_count": 23,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "NAMEK",
+      "type": "string",
+      "description": "Bezirksname (Wiener Gemeindebezirksname)."
+    },
+    {
+      "name": "BEZNR",
+      "type": "int64",
+      "description": "Bezirksnummer, numerisch."
+    },
+    {
+      "name": "BEZ_RZ",
+      "type": "string",
+      "description": "Bezirksnummer in r\u00f6mischen Zahlen."
+    },
+    {
+      "name": "NAMEK_NUM",
+      "type": "string",
+      "description": "Bezirksnummer und Bezirksname, zum Beispiel \u201e1., Innere Stadt\u201c; vom Publizierer nicht einzeln beschrieben, Bedeutung aus den Werten ersichtlich."
+    },
+    {
+      "name": "NAMEK_RZ",
+      "type": "string",
+      "description": "R\u00f6mische Bezirksnummer und Bezirksname, zum Beispiel \u201eI. Innere Stadt\u201c; vom Publizierer nicht einzeln beschrieben."
+    },
+    {
+      "name": "NAMEG",
+      "type": "string",
+      "description": "Bezirksname in Gro\u00dfbuchstaben."
+    },
+    {
+      "name": "LABEL",
+      "type": "string",
+      "description": "Bezirksnummer in r\u00f6mischen Zahlen mit Punkt, als Beschriftung."
+    },
+    {
+      "name": "BEZ",
+      "type": "double",
+      "description": "Bezirksnummer, zweistellig als Zeichenkette."
+    },
+    {
+      "name": "DISTRICT_CODE",
+      "type": "int64",
+      "description": "Bezirkscode, vierstellig (Bezirksnummer mal 100 plus 10, zum Beispiel 1010)."
+    },
+    {
+      "name": "STATAUSTRIA_BEZ_CODE",
+      "type": "int64",
+      "description": "Bezirkscode gem\u00e4\u00df Spezifikation der Statistik Austria."
+    },
+    {
+      "name": "STATAUSTRIA_GEM_CODE",
+      "type": "int64",
+      "description": "Gemeindecode gem\u00e4\u00df Spezifikation der Statistik Austria."
+    },
+    {
+      "name": "FLAECHE",
+      "type": "double",
+      "description": "Fl\u00e4che in Quadratmetern."
+    },
+    {
+      "name": "UMFANG",
+      "type": "double",
+      "description": "Umfang in Metern."
+    },
+    {
+      "name": "AKT_TIMESTAMP",
+      "type": "string",
+      "description": "Aktualisierungsdatum."
+    },
+    {
+      "name": "SE_SDO_ROWID",
+      "type": "int64",
+      "description": "Interne Zeilenkennung der Datenhaltung, nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte der Datenhaltung, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Bezirksgrenzen Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.181830379117955,
+          48.117903301153454,
+          16.577514130310036,
+          48.32266661161856
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bezirksgrenzen Wien default style",
+      "description": "Default visualization for Bezirksgrenzen Wien, drawn in #08519c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1237,
+      "file:checksum": "1220e6afe9e5808b1b78af002ced80b83b771411895f26edb2a0b14f7bcf1417afc4"
+    },
+    "ogdwien_bezirksgrenzeogd": {
+      "href": "./ogdwien_bezirksgrenzeogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 998897,
+      "file:checksum": "122066f5bd6ad81bd6e13c5371455f9c1148598371284c5473a71bfff0ad64bf19c6",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_bezirksgrenzeogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bezirksgrenzen Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 266192,
+      "file:checksum": "1220d210fbcd50683ef85d5e9eef32b1e0131745973feefc79877fdb5349a3538bad"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bezirksgrenzen Wien categorical style",
+      "description": "Categorical visualization coloring Bezirksgrenzen Wien by SE_ANNO_CAD_DATA, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2287,
+      "file:checksum": "122023faffd2b8e95fd4d02d88b1e97efc08a615aa0d51b9fd1fe9403ff00aca9e84"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bezirksgrenzen Wien labeled style",
+      "description": "Default visualization for Bezirksgrenzen Wien with NAMEK shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1675,
+      "file:checksum": "1220ad6a860a319ec9bc8693f3c32651ae6b5ee116718f9165eb2a66547ecc6b207d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bezirksgrenzen Wien graduated style",
+      "description": "Graduated visualization coloring Bezirksgrenzen Wien by FLAECHE, ramped from 1089945.7161 to 102299479.716.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2077,
+      "file:checksum": "122072cb4305cf3241fb05d77c431c333e83597a82acb01f2892da79b0c7047407dd"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_bezirksgrenzeogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Bezirksgrenzen Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 115956,
+      "file:checksum": "12206f64e2414493a535e7a8dd5e3f7237fa66affbe525d5f78159d7a4a91df7127c"
+    }
+  },
+  "keywords": [
+    "MA41",
+    "MA 41",
+    "Stadtvermessung",
+    "Grenzen",
+    "Bezirksgrenzen",
+    "ViennaGIS",
+    "Verwaltungseinheit",
+    "HighValueDataset",
+    "Landesgrenze",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien \u2013 Magistratsabteilung 41 (Stadtvermessung)",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Bezirksgrenzen Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.wien.gv.at/stadtentwicklung/stadtvermessung/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

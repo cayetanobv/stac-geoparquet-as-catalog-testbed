@@ -1,0 +1,647 @@
+{
+  "type": "Collection",
+  "id": "kontur/global-fires-h3res8",
+  "stac_version": "1.1.0",
+  "description": "Fire hotspot detections from NASA FIRMS (MODIS and VIIRS), aggregated by Kontur onto H3 resolution 8 hexagons (~0.74 km²). One row per hexagon and detection datetime, 29,687,749 rows over 13,172,526 cells, covering 2020-08-12 to 2021-09-12 (the 13 months before the 2021-09-01 snapshot). Mirror of the CARTO Data Observatory dataset `environmental_globalfires_glo_h3res8_v1_weekly_v1`, republished as GeoParquet with the hexagon polygons derived from the H3 index, hive-partitioned by quadkey level 2 (`quadkey_prefix=*/*.parquet`).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "https://carto.com/spatial-data-catalog/browser/?dataset=kont_globalfires_cb03a085",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=01/quadkey_prefix=01.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=01"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=00/quadkey_prefix=00.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=00"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=10/quadkey_prefix=10.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=10"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=11/quadkey_prefix=11.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=11"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=02/quadkey_prefix=02.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=02"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=20/quadkey_prefix=20.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=20"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=13/quadkey_prefix=13.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=13"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=22/quadkey_prefix=22.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=22"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=23/quadkey_prefix=23.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=23"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=03/quadkey_prefix=03.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=03"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=31/quadkey_prefix=31.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=31"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=32/quadkey_prefix=32.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=32"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=33/quadkey_prefix=33.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=33"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=21/quadkey_prefix=21.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=21"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=12/quadkey_prefix=12.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=12"
+    },
+    {
+      "rel": "item",
+      "href": "./quadkey_prefix=30/quadkey_prefix=30.json",
+      "type": "application/geo+json",
+      "title": "Quadkey Prefix=30"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./global-fires-h3res8.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "global-fires-h3res8"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/vector/v0.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-08-29T22:10:40Z",
+  "partition:scheme": "hive",
+  "partition:keys": [
+    {
+      "name": "quadkey_prefix",
+      "type": "string"
+    }
+  ],
+  "partition:file_count": 16,
+  "title": "Kontur Global Fires — Global (H3 resolution 8)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.95518,
+          -88.480537,
+          179.897306,
+          81.930424
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-08-12T00:00:00Z",
+          "2021-09-12T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "providers": [
+    {
+      "name": "Kontur",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.kontur.io/geospatial-datasets-catalog/"
+    },
+    {
+      "name": "NASA FIRMS",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://firms.modaps.eosdis.nasa.gov"
+    },
+    {
+      "name": "CARTO Data Observatory",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://carto.com/data-observatory"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "host"
+      ],
+      "url": "https://carto.com",
+      "email": "cayetano@cartodb.com"
+    }
+  ],
+  "summaries": {
+    "geoparquet:geometry_type": [
+      "Polygon"
+    ],
+    "geoparquet:feature_count": [
+      41,
+      7357,
+      49674,
+      29627,
+      1703527,
+      918,
+      3988674,
+      15,
+      17,
+      2468207,
+      1058456,
+      28,
+      1041,
+      3371412,
+      8742186,
+      8266569
+    ],
+    "table:column_statistics": [
+      {
+        "geoid": {
+          "minimum": "88025ca0ebfffff",
+          "maximum": "880f020641fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-10-08T13:36:00",
+          "maximum": "2021-08-23T15:41:00"
+        },
+        "quadkey": {
+          "minimum": "01",
+          "maximum": "01"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "8802d0da07fffff",
+          "maximum": "8813748cb1fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-15T12:18:00",
+          "maximum": "2021-09-12T14:29:00"
+        },
+        "quadkey": {
+          "minimum": "00",
+          "maximum": "00"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "8801201aa3fffff",
+          "maximum": "88116e896dfffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T20:00:00",
+          "maximum": "2021-09-12T10:09:00"
+        },
+        "quadkey": {
+          "minimum": "10",
+          "maximum": "10"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "8804134b6dfffff",
+          "maximum": "88156db9edfffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-16T18:42:00",
+          "maximum": "2021-09-12T17:56:00"
+        },
+        "quadkey": {
+          "minimum": "11",
+          "maximum": "11"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "880c008685fffff",
+          "maximum": "8888c84f2bfffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T18:40:00",
+          "maximum": "2021-09-12T11:17:00"
+        },
+        "quadkey": {
+          "minimum": "02",
+          "maximum": "02"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "886c586595fffff",
+          "maximum": "88eb012867fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-15T01:30:00",
+          "maximum": "2021-09-11T23:31:00"
+        },
+        "quadkey": {
+          "minimum": "20",
+          "maximum": "20"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88048220c9fffff",
+          "maximum": "888cdad999fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T18:30:00",
+          "maximum": "2021-09-12T18:13:00"
+        },
+        "quadkey": {
+          "minimum": "13",
+          "maximum": "13"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88e9958e35fffff",
+          "maximum": "88f39ba095fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-13T23:48:00",
+          "maximum": "2021-09-05T05:38:00"
+        },
+        "quadkey": {
+          "minimum": "22",
+          "maximum": "22"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88e8922c91fffff",
+          "maximum": "88f2cba2b9fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2021-02-01T03:48:00",
+          "maximum": "2021-08-25T14:18:00"
+        },
+        "quadkey": {
+          "minimum": "23",
+          "maximum": "23"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88064c8715fffff",
+          "maximum": "888f2cdabbfffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T18:30:00",
+          "maximum": "2021-09-12T18:24:00"
+        },
+        "quadkey": {
+          "minimum": "03",
+          "maximum": "03"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "886524b5c7fffff",
+          "maximum": "88dab37a5bfffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T18:36:00",
+          "maximum": "2021-09-12T18:21:00"
+        },
+        "quadkey": {
+          "minimum": "31",
+          "maximum": "31"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88e7019847fffff",
+          "maximum": "88f1728c63fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-09-12T12:36:00",
+          "maximum": "2021-09-07T23:35:00"
+        },
+        "quadkey": {
+          "minimum": "32",
+          "maximum": "32"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88e5404423fffff",
+          "maximum": "88f393a147fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-14T09:54:00",
+          "maximum": "2021-09-12T14:25:00"
+        },
+        "quadkey": {
+          "minimum": "33",
+          "maximum": "33"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "885f24d60dfffff",
+          "maximum": "88df6d69cdfffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T18:25:00",
+          "maximum": "2021-09-12T18:15:00"
+        },
+        "quadkey": {
+          "minimum": "21",
+          "maximum": "21"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "88080064c3fffff",
+          "maximum": "8886daca47fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T19:50:00",
+          "maximum": "2021-09-12T14:03:00"
+        },
+        "quadkey": {
+          "minimum": "12",
+          "maximum": "12"
+        }
+      },
+      {
+        "geoid": {
+          "minimum": "886a822901fffff",
+          "maximum": "88e0b6b315fffff"
+        },
+        "do_date": {
+          "minimum": "2021-09-01",
+          "maximum": "2021-09-01"
+        },
+        "datetime": {
+          "minimum": "2020-08-12T19:35:00",
+          "maximum": "2021-09-12T13:10:00"
+        },
+        "quadkey": {
+          "minimum": "30",
+          "maximum": "30"
+        }
+      }
+    ],
+    "vector:geometry_types": [
+      "Polygon"
+    ]
+  },
+  "assets": {
+    "geoparquet-items": {
+      "href": "./items.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "STAC items as GeoParquet",
+      "roles": [
+        "collection-mirror"
+      ],
+      "file:size": 60903,
+      "file:checksum": "12203d87f12ea320e51b8e9e46bbc535c4df9f118987a8b70b18c27e8c96a06516e0"
+    },
+    "global-fires-h3res8-tiles": {
+      "href": "./global-fires-h3res8.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "global-fires-h3res8 (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1349774233,
+      "file:checksum": "1220babbc882a5a4cc2a8e013f67622e90f06445669f8bccc244200720fa9c5d000b"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Presence",
+      "description": "Cells with data in a single colour (#d7301f).",
+      "file:size": 621,
+      "file:checksum": "1220fb927088cb976c979a4e684acd864888368fc4721e418b012b3bd2ade890d16c"
+    },
+    "styles/flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Flat fill",
+      "description": "Single-colour outline map.",
+      "file:size": 487,
+      "file:checksum": "122075a085179d895ef4454e4ebeb0fffabdfcfde9ded377c19bc8087071bf34737c"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Population per cell (thumbnail)",
+      "file:size": 21765,
+      "file:checksum": "1220ed64bd58dab0562c74c3c1f7751e886f3921722d91828e811126eb56853902cb"
+    }
+  },
+  "table:columns": [
+    {
+      "name": "type",
+      "type": "string"
+    },
+    {
+      "name": "stac_version",
+      "type": "string"
+    },
+    {
+      "name": "stac_extensions",
+      "type": "list<element: string>"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "links",
+      "type": "list<element: struct<rel: string, href: string, type: string, title: string>>"
+    },
+    {
+      "name": "assets",
+      "type": "struct<data: struct<href: string, type: string, file:size: int64, file:checksum: string, roles: list<element: string>>>"
+    },
+    {
+      "name": "collection",
+      "type": "string"
+    },
+    {
+      "name": "geoparquet:geometry_type",
+      "type": "string"
+    },
+    {
+      "name": "geoparquet:feature_count",
+      "type": "int64"
+    },
+    {
+      "name": "table:column_statistics",
+      "type": "struct<geoid: struct<minimum: string, maximum: string>, do_date: struct<minimum: string, maximum: string>, datetime: struct<minimum: string, maximum: string>, quadkey: struct<minimum: string, maximum: string>>"
+    },
+    {
+      "name": "title",
+      "type": "string"
+    },
+    {
+      "name": "vector:geometry_types",
+      "type": "list<element: string>"
+    },
+    {
+      "name": "datetime",
+      "type": "timestamp[us, tz=UTC]"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 29687749,
+  "partition:glob": "gs://carto-do-portolan-catalog-us/kontur/global-fires-h3res8/quadkey_prefix=*/*.parquet"
+}

@@ -1,0 +1,186 @@
+{
+  "type": "Collection",
+  "id": "zoning/zoning-districts",
+  "stac_version": "1.1.0",
+  "description": "Use districts of the Town, 458 polygons. The Town states: \"It was created by combining the parcel boundaries within a region demarcated by the zoning lines ... This is not the official zoning for the Town ... The Towns legal zoning is represented on the official published maps, as it is directed in the Town Code.\" The district codes come from [§ 255-2-10](https://ecode360.com/10414303) of the Town Code. Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/82",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Zoning and Overlay Districts"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zoning-districts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "zoning-districts"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 458,
+  "table:row_count": 458,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "Zoning",
+      "type": "string",
+      "description": "Use district code from Town Code § 255-2-10. PC is Park and Conservation. A10, A5, A3, A2, A, and B are single-family Residence districts. MF is Multifamily. CB is Central Business. NB is Neighborhood Business. CI is Commercial-Industrial. RS is Resort. WF is Waterfront. CS is Commercial-Service."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 13,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -72.1362304,
+    41.0296413,
+    13
+  ],
+  "pmtiles:layers": [
+    "zoning-districts"
+  ],
+  "title": "Zoning Districts",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -72.28516501631462,
+          40.92377652983305,
+          -71.85611857821041,
+          41.124776123352916
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "zoning-districts": {
+      "href": "./zoning-districts.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 809760,
+      "file:checksum": "1220cfaf850317e608c61c2788f93676293d70d3ce4e578720e59258a42a72337069",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3445,
+      "file:checksum": "1220dae506c32f98b81441c86e7ce60a42e4b2129b9d7c68ecfa09de5b899c32ebba",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "zoning-districts-tiles": {
+      "href": "./zoning-districts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "zoning-districts (vector tiles)",
+      "file:size": 338129,
+      "file:checksum": "12202464f825644137f513459bad8633537df60a8f51f355f0468e04818bdb7697c3",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zoning Districts by use district",
+      "file:size": 1385,
+      "file:checksum": "1220ad1cff44ef4e3dc865bccf8237162d71b3aa093e1ae1e73c455eea68022b5beb",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./zoning-districts.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 72839,
+      "file:checksum": "12207fcf95dffaf1850c2782f4c4a996b6ca7268584392ecac66189d8828a49eacde",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

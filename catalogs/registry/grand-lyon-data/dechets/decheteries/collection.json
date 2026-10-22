@@ -1,0 +1,275 @@
+{
+  "type": "Collection",
+  "id": "dechets/decheteries",
+  "stac_version": "1.1.0",
+  "description": "La d\u00e9ch\u00e8terie accueille les d\u00e9chets non pris en charge par la collecte des ordures m\u00e9nag\u00e8res en raison de leur volume ou de leur nature. Les donneries sont install\u00e9es, dans les d\u00e9ch\u00e8teries du territoire, pour d\u00e9poser des anciens meubles encore en bon \u00e9tat, des jouets, etc. Ces objets sont remis \u00e0 des associations partenaires qui les redistribuent.\nCe jeu de donn\u00e9es contient des donn\u00e9es ponctuelles repr\u00e9sentant l'emplacement des d\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon enrichi des horaires, des types de d\u00e9chets et des v\u00e9hicules autoris\u00e9s.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./metropole_de_lyon_gip_proprete_gipdecheterie_3_0_0.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3)",
+      "pmtiles:layers": [
+        "metropole_de_lyon_gip_proprete_gipdecheterie_3_0_0"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/decheteries-metropole-lyon-v3/info",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows",
+      "rel": "related",
+      "title": "WFS source service: gipdecheterie",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) (WFS)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 31,
+  "table:row_count": 31,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "identifiant",
+      "type": "int64"
+    },
+    {
+      "name": "nom",
+      "type": "string"
+    },
+    {
+      "name": "type_decheterie",
+      "type": "string"
+    },
+    {
+      "name": "code_insee",
+      "type": "int64"
+    },
+    {
+      "name": "address",
+      "type": "STRUCT(postalCode VARCHAR, streetAddress VARCHAR, addressCountry VARCHAR, addressLocality VARCHAR)"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "telephone",
+      "type": "double"
+    },
+    {
+      "name": "allowed_waste",
+      "type": "STRUCT(\"schema:category\" VARCHAR, allowedWeight STRUCT(\"schema:maxValue\" BIGINT, \"schema:unitCode\" VARCHAR), allowedVolume STRUCT(\"schema:maxValue\" BIGINT, \"schema:unitCode\" VARCHAR), allowedQuantity STRUCT(\"schema:maxValue\" BIGINT))[]"
+    },
+    {
+      "name": "allowed_vehicles",
+      "type": "STRUCT(pricePerDropoff STRUCT(\"schema:value\" BIGINT, \"schema:currency\" VARCHAR), \"schema:category\" VARCHAR, \"schema:weight\" STRUCT(\"schema:maxValue\" BIGINT, \"schema:unitCode\" VARCHAR, \"schema:minValue\" BIGINT), monthlyAllowedDropoffs STRUCT(\"schema:maxValue\" BIGINT), \"schema:height\" STRUCT(\"schema:maxValue\" DOUBLE, \"schema:unitCode\" VARCHAR), \"schema:length\" STRUCT(\"schema:maxValue\" BIGINT, \"schema:unitCode\" VARCHAR))[]"
+    },
+    {
+      "name": "allowed_donation",
+      "type": "STRUCT(\"schema:category\" VARCHAR)[]"
+    },
+    {
+      "name": "datemaj",
+      "type": "date"
+    },
+    {
+      "name": "horaires",
+      "type": "string"
+    },
+    {
+      "name": "openinghoursspecification",
+      "type": "STRUCT(opens TIME, closes TIME, dayOfWeek VARCHAR, validFrom DATE, validThrough DATE)[]"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          45.607863,
+          4.742631,
+          45.885218,
+          5.008202
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "etalab-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) default style",
+      "description": "Default visualization for D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3), drawn in #8c6d31.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1455,
+      "file:checksum": "1220d92ec46f710c20f7f493ca1a6c6c2d1c388f0a11549e513bd8011100f5134fd2"
+    },
+    "metropole_de_lyon_gip_proprete_gipdecheterie_3_0_0": {
+      "href": "./metropole_de_lyon_gip_proprete_gipdecheterie_3_0_0.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 25871,
+      "file:checksum": "122074a28a6870dab5839cbd1e0ee8f9cb0275bdf87fe00d79e0177ea62c00d9ccff",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./metropole_de_lyon_gip_proprete_gipdecheterie_3_0_0.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 171414,
+      "file:checksum": "12200191d12088ee73ea30996341788dc54a29e86a9e2a3a0ff915e60d8a7cd1ed02"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) categorical style",
+      "description": "Categorical visualization coloring D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) by type_decheterie, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2201,
+      "file:checksum": "12208898c4b0d1c41663cf3ab06aa7558bb24359a4ce6210396238933be43d3a1941"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) labeled style",
+      "description": "Default visualization for D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) with nom shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1943,
+      "file:checksum": "12204fc71ec6bd203bcd628c041b19532109ff297a3de140ba4505732d702d84ba98"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) graduated style",
+      "description": "Graduated visualization coloring D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3) by telephone, ramped from 33437229539.0 to 33478971030.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2294,
+      "file:checksum": "12204459dbfbd9f37e7ebd7691825aa4606a624b05379013cecadc1b42e2ab9f6911"
+    },
+    "thumbnail": {
+      "href": "./metropole_de_lyon_gip_proprete_gipdecheterie_3_0_0.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 7463,
+      "file:checksum": "1220c702f196bb21fed5782db34738e5f079170f3a84be5c4c75b6169635efc922d0"
+    }
+  },
+  "keywords": [
+    "Environnement",
+    "Services d'utilit\u00e9 publique et services publics",
+    "M\u00e9tropole de Lyon"
+  ],
+  "providers": [
+    {
+      "name": "M\u00e9tropole de Lyon \u2013 Direction Am\u00e9lioration du cadre de vie",
+      "description": "Source : M\u00e9tropole de Lyon, data.grandlyon.com, D\u00e9ch\u00e8teries de la M\u00e9tropole de Lyon (v3), consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.grandlyon.com/",
+      "email": "data@grandlyon.com"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:30:00Z"
+}

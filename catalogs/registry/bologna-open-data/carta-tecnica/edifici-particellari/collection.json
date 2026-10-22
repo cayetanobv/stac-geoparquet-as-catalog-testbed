@@ -1,0 +1,243 @@
+{
+  "type": "Collection",
+  "id": "carta-tecnica/edifici-particellari",
+  "stac_version": "1.1.0",
+  "description": "Elenco degli edifici con gli estremi particellari estratti dalla Carta Tecnica Comunale e\u00a0aggregati ed integrati con le informazioni\npubbliche catastali Foglio/Mappale del catasto disponibili sul\u00a0servizio WMS di Ag. Entrate per la consultazione della cartografia catastale\nIl dataset si aggiorna mensilmente ogni 22 del mese alle ore 06:00",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rifteredifpl.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Edifici particellari",
+      "pmtiles:layers": [
+        "rifteredifpl"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/rifter_edif_pl/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rifter_edif_pl/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: rifteredifpl",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 40616,
+  "table:row_count": 40616,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "partkey",
+      "type": "string",
+      "description": "PARTKEY. Identificativo univoco paticellare."
+    },
+    {
+      "name": "codfab",
+      "type": "double",
+      "description": "CODFAB. Codice univoco fabbricato."
+    },
+    {
+      "name": "foglio",
+      "type": "double",
+      "description": "Foglio catastale."
+    },
+    {
+      "name": "mappale",
+      "type": "string",
+      "description": "Mappale catastale (Particella)."
+    },
+    {
+      "name": "perimetro",
+      "type": "double",
+      "description": "Lunghezza del perimetro."
+    },
+    {
+      "name": "area_ogg",
+      "type": "double",
+      "description": "AREA_OGG. Area."
+    },
+    {
+      "name": "tipologia",
+      "type": "string"
+    },
+    {
+      "name": "data_istit",
+      "type": "date",
+      "description": "Data istituzione nel catasto."
+    },
+    {
+      "name": "data_varia",
+      "type": "date",
+      "description": "DATA_VARIA. Data ultima variazione."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Edifici particellari",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.2301531467634,
+          44.42150495861321,
+          11.431957844579287,
+          44.55534251574046
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Edifici particellari default style",
+      "description": "Default visualization for Edifici particellari, drawn in #bf812d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1154,
+      "file:checksum": "1220e0c1dbf069b17faab08a570ad6712dbe51905fb6b44dd5550ce315580c701280"
+    },
+    "rifteredifpl": {
+      "href": "./rifteredifpl.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 7251442,
+      "file:checksum": "12203bd139ebdc058dde00378f7a9a6cc374087cb07cec564bdd5fbf101928dfdcf3",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./rifteredifpl.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Edifici particellari (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 7634353,
+      "file:checksum": "1220de3796cc80b33bb45f2891830a808f95ffaf5edef2aabd4b3bcaa34074d6d26f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Edifici particellari graduated style",
+      "description": "Graduated visualization coloring Edifici particellari by codfab, ramped from 4.0 to 96532.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1915,
+      "file:checksum": "12205bf92e60176ae9fdafa19592bcfbfabb1be9e89de99463c8cf35b7f4763da862"
+    },
+    "thumbnail": {
+      "href": "./rifteredifpl.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Edifici particellari",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 182504,
+      "file:checksum": "12201a3e3f73526bca8bb855db9fa967147eabe6a5f430892014a51813314889a8cc"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0",
+    "infrastrutture",
+    "PA alleata di cittadini e imprese",
+    "Individui e Famiglie",
+    "Imprese"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abEdifici particellari\u00bb (rifter_edif_pl), pubblicato da Comune di Bologna - Innovazione Digitale e Dati, Sistemi Informativi Territoriali (SIT) sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/rifter_edif_pl/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

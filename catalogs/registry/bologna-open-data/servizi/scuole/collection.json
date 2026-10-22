@@ -1,0 +1,264 @@
+{
+  "type": "Collection",
+  "id": "servizi/scuole",
+  "stac_version": "1.1.0",
+  "description": "Il dataset contiene l'elenco georeferenziato delle diverse tipologie di strutture educative e scolastiche presenti a Bologna",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./elencodellescuole.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Elenco delle scuole",
+      "pmtiles:layers": [
+        "elencodellescuole"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/elenco-delle-scuole/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/elenco-delle-scuole/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: elencodellescuole",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 361,
+  "table:row_count": 361,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "civkey",
+      "type": "string"
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "denominazi",
+      "type": "string",
+      "description": "Indirizzo scuola."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "nome",
+      "type": "string"
+    },
+    {
+      "name": "gestione",
+      "type": "string"
+    },
+    {
+      "name": "servizio",
+      "type": "string"
+    },
+    {
+      "name": "istituzione_scolastica",
+      "type": "string"
+    },
+    {
+      "name": "civico",
+      "type": "string"
+    },
+    {
+      "name": "subciv",
+      "type": "string"
+    },
+    {
+      "name": "codvia",
+      "type": "string"
+    },
+    {
+      "name": "anno_scolast",
+      "type": "string"
+    },
+    {
+      "name": "geo_id",
+      "type": "string"
+    },
+    {
+      "name": "area_stati",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Elenco delle scuole",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.257036131453324,
+          44.4512061292773,
+          11.39873404085534,
+          44.54867934667923
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco delle scuole default style",
+      "description": "Default visualization for Elenco delle scuole, drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1188,
+      "file:checksum": "1220695c07d15271ff1352af4f19566bdc2393c7b2046db3da1e81d6791fc568442c"
+    },
+    "elencodellescuole": {
+      "href": "./elencodellescuole.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 35158,
+      "file:checksum": "12205dc9ab071464c185c96b3bffd946900bf2d0c82170237a31f6bc36fcb3c0701b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./elencodellescuole.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Elenco delle scuole (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 89765,
+      "file:checksum": "1220398af4b74ddc0a22feedc5853713c93167c8e468ff42c125a5dbb33f8cd43e92"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco delle scuole categorical style",
+      "description": "Categorical visualization coloring Elenco delle scuole by servizio, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2389,
+      "file:checksum": "122000318bd86cf5ba55b1515dccb4ae7a3ad468c82d352f1036f55a8d7126d315b0"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco delle scuole labeled style",
+      "description": "Default visualization for Elenco delle scuole with denominazi shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1617,
+      "file:checksum": "1220a1e11d6c7dc555d33263c19102032f09e24dd024ef1096cc4c3c93a180b4e4b5"
+    },
+    "thumbnail": {
+      "href": "./elencodellescuole.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Elenco delle scuole",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 152268,
+      "file:checksum": "12209a0e8a8c160c18a5f050e5b6bef83e5b3c823f6d5b6ad8c846419e39eeb52cff"
+    }
+  },
+  "keywords": [
+    "Istruzione, cultura e sport",
+    "Individui e Famiglie",
+    "Citt\u00e0 in 15 minuti",
+    "piano dei quartieri",
+    "Adolescenti Giovani",
+    "Arte Cultura"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abElenco delle scuole\u00bb (elenco-delle-scuole), pubblicato da Comune di Bologna - Area Educazione e Formazione sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/elenco-delle-scuole/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

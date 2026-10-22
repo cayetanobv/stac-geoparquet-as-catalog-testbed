@@ -1,0 +1,553 @@
+{
+  "type": "Collection",
+  "id": "gebaeude/gwr-gebaeude",
+  "stac_version": "1.1.0",
+  "description": "Der vorliegende Datensatz enth\u00e4lt tagesaktuelle, georeferenzierte Informationen zu allen Geb\u00e4uden, Wohnungen und Geb\u00e4udeeing\u00e4ngen in der Stadt Z\u00fcrich, gem\u00e4ss des GWR-Datenmodells.\nZweck: Das von Statistik Stadt Z\u00fcrich gef\u00fchrte Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ), bildet die Datenbasis f\u00fcr die gesetzlich vorgesehenen Datenlieferungen zuhanden des Bundesamtes f\u00fcr Statistik (BFS), welches das eidgen\u00f6ssische Geb\u00e4ude- und Wohnungsregister (GWR) f\u00fchrt.\nDas GWR enth\u00e4lt die wichtigsten Grunddaten zu Geb\u00e4uden und Wohnungen in der Schweiz. Es wird f\u00fcr Statistik-, Forschungs- und Planungszwecke genutzt und dient den Kantonen und Gemeinden f\u00fcr den Vollzug gesetzlicher Aufgaben.\nGeodatenelement gwr_stzh_gebaeude: Tagesaktueller Geb\u00e4udebestand der Stadt Z\u00fcrich.\nDie hier verf\u00fcgbaren Datens\u00e4tze beinhalten die t\u00e4glich aktualisierten Bestandesdaten aus dem Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ). \nDie Aktualisierung beinhaltet jeweils die Daten des vollendeten Vortages (z.B. am 16.08.2023 werden die Daten des vollendeten 15.08.2023 geliefert). Bis sp\u00e4testens 12:00 Uhr sind die neuesten Daten verf\u00fcgbar.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gwr_stzh_gebaeude.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude)",
+      "pmtiles:layers": [
+        "gwr_stzh_gebaeude"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/rahmenbedingungen.html",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.stadt-zuerich.ch/dataset/geo_gebaeude__und_wohnungsregister_der_stadt_zuerich__gwz__gemaess_gwr_datenmodell",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gebaeude__und_Wohnungsregister_der_Stadt_Zuerich__GWZ__gemaess_GWR_Datenmodell?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=gwr_stzh_gebaeude",
+      "rel": "related",
+      "title": "Upstream source: gwr_stzh_gebaeude",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gebaeude__und_Wohnungsregister_der_Stadt_Zuerich__GWZ__gemaess_GWR_Datenmodell?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.1.0",
+      "rel": "related",
+      "title": "WFS Gebaeude__und_Wohnungsregister_der_Stadt_Zuerich__GWZ__gemaess_GWR_Datenmodell (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wms/geoportal/Gebaeude__und_Wohnungsregister_der_Stadt_Zuerich__GWZ__gemaess_GWR_Datenmodell?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS Gebaeude__und_Wohnungsregister_der_Stadt_Zuerich__GWZ__gemaess_GWR_Datenmodell (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 61889,
+  "table:row_count": 61889,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Feature-Id der GeoJSON-Ausgabe des WFS (Form gwr_stzh_gebaeude.<n>), von der Konvertierung als Text \u00fcbernommen; nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "egid",
+      "type": "int32",
+      "description": "Eidgen\u00f6ssischer Geb\u00e4udeidentifikator; Der EGID ist eine gesamtschweizerisch eindeutige Identifikationsnummer f\u00fcr alle Geb\u00e4ude.; Er wird pro Geb\u00e4ude unabh\u00e4ngig der Gemeindezugeh\u00f6rigkeit vergeben und bleibt bei allen Ver\u00e4nderungen wie Gemeindefusionen, Eigent\u00fcmerwechseln, Umbauten usw. unver\u00e4ndert."
+    },
+    {
+      "name": "egrid",
+      "type": "string",
+      "description": "Eidgen\u00f6ssischer Grundst\u00fccksidentifikator; Identifikationsnummer des elektronischen Grundst\u00fcckinformationssystems (eGRIS). Der eidgen\u00f6ssische Grundst\u00fccksidentifikator ist in der ganzen Schweiz einheitlich und dient dem Informationsaustausch zwischen dem Grundbuch, der amtlichen Vermessung und den anderen Nutzerinnen und Nutzern."
+    },
+    {
+      "name": "gabbj",
+      "type": "int32",
+      "description": "Abbruchjahr des Geb\u00e4udes."
+    },
+    {
+      "name": "ganzwhg",
+      "type": "int32",
+      "description": "Anzahl Wohnungen im Geb\u00e4ude."
+    },
+    {
+      "name": "garea",
+      "type": "int32",
+      "description": "Geb\u00e4udefl\u00e4che in m2; Unter Geb\u00e4udefl\u00e4che ist die Grundrissfl\u00e4che des Geb\u00e4udes zu verstehen, nicht die gesamte Fl\u00e4che aller Wohnungen eines Geb\u00e4udes."
+    },
+    {
+      "name": "gastw",
+      "type": "int32",
+      "description": "Anzahl Geschosse; Das Merkmal informiert \u00fcber die Anzahl Geschosse und Untergeschosse eines Geb\u00e4udes, einschliesslich Erdgeschoss. Dach- und Untergeschosse werden nur mitgez\u00e4hlt, sofern sie zumindest teilweise f\u00fcr Wohnzwecke dienen oder geheizt sind."
+    },
+    {
+      "name": "gazzi",
+      "type": "int32",
+      "description": "Anzahl separate Wohnr\u00e4ume; Als separate Wohnr\u00e4ume werden die Zimmer f\u00fcr Bewohnerinnen und Bewohner von Geb\u00e4uden f\u00fcr Kollektivhaushalte bzw. f\u00fcr gemeinschaftliches Wohnen wie Kliniken, Heime, Internate, Strafanstalten oder Geb\u00e4ude f\u00fcr touristische Zwecke (GKAT 1040), bezeichnet. Geb\u00e4ude, die der Beherbergung von Touristen dienen, geh\u00f6ren zur selben Geb\u00e4udekategorie (GKAT 1040). Nicht als separate Wohnr\u00e4ume gelten Zimmer innerhalb einer Wohnung, noch anderweitig als bewohnbares Einzelzimmer, die einer Drittperson untervermietet sind."
+    },
+    {
+      "name": "gbauj",
+      "type": "int32",
+      "description": "Baujahr des Geb\u00e4udes."
+    },
+    {
+      "name": "gbaum",
+      "type": "int32",
+      "description": "Baumonat des Geb\u00e4udes."
+    },
+    {
+      "name": "gbaup",
+      "type": "int32",
+      "description": "Bauperiode Code."
+    },
+    {
+      "name": "gbauplang",
+      "type": "string",
+      "description": "Bauperiode Bezeichnung."
+    },
+    {
+      "name": "gbez",
+      "type": "string",
+      "description": "Name des Geb\u00e4udes; Der Name des Geb\u00e4udes enth\u00e4lt Angaben wie z.B. Seebad Utoquai, Schulhaus Balgrist, Savoy Hotel Baur en Ville, usw., die der Identifikation des Geb\u00e4udes dienen. Verwendet werden nur Bezeichnungen von dauerndem Charakter, die sich auf das ganze Geb\u00e4ude beziehen, also keine Firmennamen, Eigent\u00fcmer, Adressen u. dgl."
+    },
+    {
+      "name": "gdekt",
+      "type": "string",
+      "description": "Kanton."
+    },
+    {
+      "name": "gebf",
+      "type": "int32",
+      "description": "Energiebezugsfl\u00e4che; Die Energiebezugsfl\u00e4che (EBF) ist gem\u00e4ss Definition der SIA-Norm 416/1:2007 die Summe aller ober- und unterirdischen Geschossfl\u00e4chen, die innerhalb der thermischen Geb\u00e4udeh\u00fclle liegen und f\u00fcr deren Nutzung ein Beheizen oder Klimatisieren notwendig ist."
+    },
+    {
+      "name": "gebnr",
+      "type": "string",
+      "description": "Amtliche Geb\u00e4udenummer; Die amtliche Geb\u00e4udenummer wird von der Geb\u00e4udeversicherung des Kantons Z\u00fcrich (GVZ) vergeben."
+    },
+    {
+      "name": "genh1",
+      "type": "double",
+      "description": "Prim\u00e4re Energiequelle der Heizung Code; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an."
+    },
+    {
+      "name": "genh1lang",
+      "type": "string",
+      "description": "Prim\u00e4re Energiequelle der Heizung Bezeichnung; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an."
+    },
+    {
+      "name": "genh2",
+      "type": "double",
+      "description": "Sekund\u00e4re Energiequelle der Heizung Code; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Heizung registriert werden."
+    },
+    {
+      "name": "genh2lang",
+      "type": "string",
+      "description": "Sekund\u00e4re Energiequelle der Heizung Bezeichnung; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Heizung registriert werden."
+    },
+    {
+      "name": "genw1",
+      "type": "double",
+      "description": "Prim\u00e4re Energiequelle Warmwasser Code; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an."
+    },
+    {
+      "name": "genw1lang",
+      "type": "string",
+      "description": "Prim\u00e4re Energiequelle Warmwasser Bezeichnung; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an."
+    },
+    {
+      "name": "genw2",
+      "type": "double",
+      "description": "Sekund\u00e4re Energiequelle Warmwasser Code; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Aufbereitung von Brauchwarmwasser erfasst werden."
+    },
+    {
+      "name": "genw2lang",
+      "type": "string",
+      "description": "Sekund\u00e4re Energiequelle Warmwasser Bezeichnung; Gibt die vom W\u00e4rmeerzeuger genutzte Hauptenergiequelle an. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Aufbereitung von Brauchwarmwasser erfasst werden."
+    },
+    {
+      "name": "geometrie_gdo",
+      "type": "string"
+    },
+    {
+      "name": "gexpdat",
+      "type": "timestamp",
+      "description": "Aktualisierungsdatum sekund\u00e4re Warmwasseraufbereitung."
+    },
+    {
+      "name": "ggdename",
+      "type": "string",
+      "description": "Gemeindename."
+    },
+    {
+      "name": "ggdenr",
+      "type": "int32",
+      "description": "BFS-Gemeindenummer."
+    },
+    {
+      "name": "gkat",
+      "type": "int32",
+      "description": "Geb\u00e4udekategorie Code; Die im GWR erfassten Geb\u00e4ude werden nach ihrer vorwiegenden Nutzungsart unterteilt."
+    },
+    {
+      "name": "gkatlang",
+      "type": "string",
+      "description": "Geb\u00e4udekategorie Bezeichnung; Die im GWR erfassten Geb\u00e4ude werden nach ihrer vorwiegenden Nutzungsart unterteilt."
+    },
+    {
+      "name": "gklas",
+      "type": "int32",
+      "description": "Geb\u00e4udeklasse Code; Die vollst\u00e4ndige, im GWR verwendete EUROSTAT-Klassifikation umfasst 26 Geb\u00e4udeklassen."
+    },
+    {
+      "name": "gklaslang",
+      "type": "string",
+      "description": "Geb\u00e4udeklasse Bezeichnung; Die vollst\u00e4ndige, im GWR verwendete EUROSTAT-Klassifikation umfasst 26 Geb\u00e4udeklassen."
+    },
+    {
+      "name": "gkode",
+      "type": "double",
+      "description": "E-Geb\u00e4udekoordinate; Als geografischer Referenzpunkt gilt im Prinzip die Grundrissmitte des Geb\u00e4udes. Bei besonderen Grundrissformen (Winkel, U-Form usw.) wird jedoch darauf geachtet, dass der Referenzpunkt in jedem Fall innerhalb der Grundrissfl\u00e4che liegt.; Die Geb\u00e4udekoordinaten dienen der numerischen Lokalisierung des Geb\u00e4udes."
+    },
+    {
+      "name": "gkodn",
+      "type": "double",
+      "description": "N-Geb\u00e4udekoordinate; Als geografischer Referenzpunkt gilt im Prinzip die Grundrissmitte des Geb\u00e4udes. Bei besonderen Grundrissformen (Winkel, U-Form usw.) wird jedoch darauf geachtet, dass der Referenzpunkt in jedem Fall innerhalb der Grundrissfl\u00e4che liegt.; Die Geb\u00e4udekoordinaten dienen der numerischen Lokalisierung des Geb\u00e4udes."
+    },
+    {
+      "name": "gksce",
+      "type": "int32",
+      "description": "Koordinatenherkunft Code."
+    },
+    {
+      "name": "gkscelang",
+      "type": "string",
+      "description": "Koordinatenherkunft Bezeichnung."
+    },
+    {
+      "name": "gschutzr",
+      "type": "int32",
+      "description": "Zivilschutzraum Code."
+    },
+    {
+      "name": "gschutzrlang",
+      "type": "string",
+      "description": "Zivilschutzraum Bezeichnung."
+    },
+    {
+      "name": "gstat",
+      "type": "int32",
+      "description": "Geb\u00e4udestatus Code; Neben den bestehenden Geb\u00e4uden beinhaltet das GWR auch die projektierten, die bewilligten, die im Bau stehenden, die nicht realisierten, die nicht nutzbaren Geb\u00e4ude und die abgebrochenen."
+    },
+    {
+      "name": "gstatlang",
+      "type": "string",
+      "description": "Geb\u00e4udestatus Bezeichnung; Neben den bestehenden Geb\u00e4uden beinhaltet das GWR auch die projektierten, die bewilligten, die im Bau stehenden, die nicht realisierten, die nicht nutzbaren Geb\u00e4ude und die abgebrochenen."
+    },
+    {
+      "name": "gvol",
+      "type": "int32",
+      "description": "Geb\u00e4udevolumen; Volumen des Geb\u00e4udes in Kubikmetern, gem\u00e4ss Norm SIA 416."
+    },
+    {
+      "name": "gwaerdath1",
+      "type": "timestamp",
+      "description": "Aktualisierungsdatum prim\u00e4re Heizung."
+    },
+    {
+      "name": "gwaerdath2",
+      "type": "timestamp",
+      "description": "Aktualisierungsdatum sekund\u00e4re Heizung."
+    },
+    {
+      "name": "gwaerdatw1",
+      "type": "timestamp",
+      "description": "Aktualisierungsdatum prim\u00e4re Warmwasseraufbereitung."
+    },
+    {
+      "name": "gwaerdatw2",
+      "type": "timestamp",
+      "description": "Informationsquelle sekund\u00e4re Warmwasseraufbereitung Code."
+    },
+    {
+      "name": "gwaersceh1",
+      "type": "int32",
+      "description": "Informationsquelle prim\u00e4re Heizung Code."
+    },
+    {
+      "name": "gwaersceh1lang",
+      "type": "string",
+      "description": "Informationsquelle prim\u00e4re Heizung Bezeichnung."
+    },
+    {
+      "name": "gwaersceh2",
+      "type": "int32",
+      "description": "Informationsquelle sekund\u00e4re Heizung Code."
+    },
+    {
+      "name": "gwaersceh2lang",
+      "type": "string",
+      "description": "Informationsquelle sekund\u00e4re Heizung Bezeichnung."
+    },
+    {
+      "name": "gwaerscew1",
+      "type": "int32",
+      "description": "Informationsquelle prim\u00e4re Wasseraufbereitung Code."
+    },
+    {
+      "name": "gwaerscew1lang",
+      "type": "string",
+      "description": "Informationsquelle prim\u00e4re Wasseraufbereitung Bezeichnung."
+    },
+    {
+      "name": "gwaerscew2",
+      "type": "int32",
+      "description": "Informationsquelle sekund\u00e4re Warmwasseraufbereitung Code."
+    },
+    {
+      "name": "gwaerscew2lang",
+      "type": "string",
+      "description": "Informationsquelle sekund\u00e4re Warmwasseraufbereitung Bezeichnung."
+    },
+    {
+      "name": "gwaerzh1",
+      "type": "double",
+      "description": "Prim\u00e4rer W\u00e4rmeerzeuger der Heizung Code; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr die Heizung der R\u00e4ume genutzt wird."
+    },
+    {
+      "name": "gwaerzh1lang",
+      "type": "string",
+      "description": "Prim\u00e4rer W\u00e4rmeerzeuger der Heizung Bezeichnung; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr die Heizung der R\u00e4ume genutzt wird."
+    },
+    {
+      "name": "gwaerzh2",
+      "type": "double",
+      "description": "Sekund\u00e4rer W\u00e4rmeerzeuger der Heizung Code; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr die Heizung der R\u00e4ume genutzt wird. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Heizung registriert werden."
+    },
+    {
+      "name": "gwaerzh2lang",
+      "type": "string",
+      "description": "Sekund\u00e4rer W\u00e4rmeerzeuger der Heizung Bezeichnung; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr die Heizung der R\u00e4ume genutzt wird. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Heizung registriert werden."
+    },
+    {
+      "name": "gwaerzw1",
+      "type": "double",
+      "description": "Prim\u00e4rer W\u00e4rmeerzeuger Warmwasser Code; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr das Aufbereiten von Brauchwarmwasser genutzt wird."
+    },
+    {
+      "name": "gwaerzw1lang",
+      "type": "string",
+      "description": "Prim\u00e4rer W\u00e4rmeerzeuger Warmwasser Bezeichnung; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr das Aufbereiten von Brauchwarmwasser genutzt wird."
+    },
+    {
+      "name": "gwaerzw2",
+      "type": "double",
+      "description": "Sekund\u00e4rer W\u00e4rmeerzeuger Warmwasser Code; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr das Aufbereiten von Brauchwarmwasser genutzt wird. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Aufbereitung von Brauchwarmwasser erfasst werden."
+    },
+    {
+      "name": "gwaerzw2lang",
+      "type": "string",
+      "description": "Sekund\u00e4rer W\u00e4rmeerzeuger Warmwasser Bezeichnung; Der W\u00e4rmeerzeuger entspricht der Art der technischen Installation, die im Geb\u00e4ude f\u00fcr das Aufbereiten von Brauchwarmwasser genutzt wird. Dank den verschiedenen Merkmalen k\u00f6nnen zwei W\u00e4rmeerzeuger f\u00fcr die Aufbereitung von Brauchwarmwasser erfasst werden."
+    },
+    {
+      "name": "lparz",
+      "type": "string",
+      "description": "Grundst\u00fccksnummer."
+    },
+    {
+      "name": "objectid",
+      "type": "int32"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Point) in WGS 84 (OGC:CRS84), vom WFS des Publizierers aus CH1903+ / LV95 (EPSG:2056) umgerechnet und auf sechs Dezimalstellen gerundet; einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 19.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.459943,
+          47.322448,
+          8.621733,
+          47.43221
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) default style",
+      "description": "Default visualization for Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude), drawn in #d73027.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1271,
+      "file:checksum": "12205758d2f60680ed0f0f6a9850db0d94c881640d2536a0e8964e87f26cf315fb95"
+    },
+    "gwr_stzh_gebaeude": {
+      "href": "./gwr_stzh_gebaeude.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 5048397,
+      "file:checksum": "1220c42de30280a1cef138236b7562600d79b4cae5f7b733ea0889883cabe4327359",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./gwr_stzh_gebaeude.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9738911,
+      "file:checksum": "1220ad41e7b4f6c60112783c7311f5f74b1392b664106e1af14ff01c46938894eba7"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) categorical style",
+      "description": "Categorical visualization coloring Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) by gkscelang, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2002,
+      "file:checksum": "12202844444fef65a8a1213e1c014e65147e8d27e05376de9117e4218db2a1f3921e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) labeled style",
+      "description": "Default visualization for Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) with ggdename shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1698,
+      "file:checksum": "1220a2dec19cc2c19daee0b96482d740f49fef689e09304b2f05fafeae03af1c8fc2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) graduated style",
+      "description": "Graduated visualization coloring Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude) by egid, ramped from 140002.0 to 302069033.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2063,
+      "file:checksum": "122070490d9577b4619e23f637f191b1c908233c830b28731603834a88fcc2266bd2"
+    },
+    "thumbnail": {
+      "href": "./gwr_stzh_gebaeude.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Geb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) \u2013 Geb\u00e4ude (gwr_stzh_gebaeude)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 219797,
+      "file:checksum": "1220419a4ee0fa6b871966bce6af778217df1445a2f98fe66712165316c27a5bbc7d"
+    }
+  },
+  "keywords": [
+    "gebaude",
+    "gebaudealter",
+    "gebaudeart",
+    "gebaudeeingange",
+    "geodaten",
+    "geoportal",
+    "heizungsart",
+    "punktdaten",
+    "sasa",
+    "stzh",
+    "vektordaten",
+    "wohnungen",
+    "wohnungsflache",
+    "zimmerzahl",
+    "gwr_stzh_gebaeude",
+    "Z\u00fcrich",
+    "Stadt Z\u00fcrich"
+  ],
+  "providers": [
+    {
+      "name": "Angebot, Statistik Stadt Z\u00fcrich, Pr\u00e4sidialdepartement",
+      "description": "Datenquelle: Stadt Z\u00fcrich, Angebot, Statistik Stadt Z\u00fcrich, Pr\u00e4sidialdepartement, \u00abGeb\u00e4ude- und Wohnungsregister der Stadt Z\u00fcrich (GWZ) gem\u00e4ss GWR-Datenmodell\u00bb, Open Data Z\u00fcrich, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.stadt-zuerich.ch/dataset/geo_gebaeude__und_wohnungsregister_der_stadt_zuerich__gwz__gemaess_gwr_datenmodell",
+      "email": "opendata@zuerich.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

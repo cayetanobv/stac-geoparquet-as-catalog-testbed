@@ -5,7 +5,8 @@ ROOT, QX, QY, GROUP = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), sys.a
 def fetch(url):
     for a in range(5):
         try:
-            with urllib.request.urlopen(url, timeout=60) as r: return json.load(r)
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (compatible; stac-geoparquet-as-catalog-testbed/0.1)"})
+            with urllib.request.urlopen(req, timeout=60) as r: return json.load(r)
         except Exception:
             if a == 4: raise
             time.sleep(0.5 * 2 ** a)
@@ -23,7 +24,8 @@ def run(workers, group):
                 for l in d["links"]:
                     if l["rel"] != "child": continue
                     # when a group is requested, prune at the root to that group's subtree only
-                    if group and url == ROOT and l["href"].strip("./").split("/")[0] != group: continue
+                    if group and url == ROOT and l["href"].strip("./").split("/")[0] != group \
+                            and l.get("portolan_registry:id") != group: continue
                     frontier.append(urllib.parse.urljoin(url, l["href"]))
     return time.perf_counter() - t0, reqs, hits
 for label, w, g in [(f"one group ({GROUP}), sequential", 1, GROUP), (f"one group ({GROUP}), 16 threads", 16, GROUP),

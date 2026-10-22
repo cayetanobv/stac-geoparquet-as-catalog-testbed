@@ -1,0 +1,264 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/overture-land-use",
+  "stac_version": "1.1.0",
+  "description": "Land use features from the Overture base theme: the predominant human use of an area of land \u2014 commercial activity, recreation, farming, housing, education, or military use. Overture's land use data is a translation of the `landuse` tag from OpenStreetMap, classified by `subtype` and `class`. Overture documents this data well: the [base theme guide](https://docs.overturemaps.org/guides/base/) covers what the theme models, how Overture builds it, and how to query it, and the schema reference gives every field of its feature type \u2014 [`land_use`](https://docs.overturemaps.org/schema/reference/base/land_use/).\n\nUnlike everything else in this catalog, this is **not** City of St. Louis data: it comes from the [Overture Maps Foundation](https://overturemaps.org/), a collaborative project building open, interoperable map data for the world. This collection is a St. Louis extract of that global dataset \u2014 everything inside the city's bounding box, which also takes in the Illinois shore of the Mississippi (East St. Louis, Cahokia Heights) \u2014 included here to demonstrate how a city's open-data catalog can blend in other St. Louis-relevant open data alongside the city's own. The GeoParquet was extracted from Overture release 2026-07-22.0; the map tiles reference Overture's own global PMTiles for the same release, the tiles behind [explore.overturemaps.org](https://explore.overturemaps.org/).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licensing"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/guides/base/",
+      "type": "text/html",
+      "title": "Overture base theme guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/base/land_use/",
+      "type": "text/html",
+      "title": "Overture schema reference: land_use"
+    },
+    {
+      "rel": "via",
+      "href": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=base/",
+      "type": "text/html",
+      "title": "Overture release 2026-07-22.0 GeoParquet (theme=base) on S3"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "land_use"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 22067,
+  "table:row_count": 22067,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Overture feature ID \u2014 per the schema, 'a feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS.' GERS IDs are intended to be stable across Overture's monthly releases, which makes this the key for attaching your own data to an Overture feature and for joining to any other GERS-enabled dataset. See the [GERS overview](https://docs.overturemaps.org/gers/)."
+    },
+    {
+      "name": "sources",
+      "type": "list<element: struct<property: string, dataset: string, license: string, record_id: string, update_time: string, confidence: double, between: list<element: double>>>",
+      "description": "Per-property provenance. An array of source records, each naming the `property` it covers in JSON Pointer notation plus the source `dataset`, its `license` (an SPDX identifier where one is available; null means contact the data provider for terms), the `record_id` used, an `update_time`, and for ML-derived data a `confidence`. Every feature carries a root-level entry that is the default source for any property without a more specific one. Schema reference: [sources](https://docs.overturemaps.org/schema/reference/common/sources/)."
+    },
+    {
+      "name": "names",
+      "type": "struct<primary: string, common: map<string, string ('common')>, rules: list<element: struct<variant: string, language: string, perspectives: struct<mode: string, countries: list<element: string>>, value: string, between: list<element: double>, side: string>>>",
+      "description": "Names of the feature. `primary` is the most commonly used name; `common` holds translations keyed by IETF BCP-47 language tag; `rules` carries the variants that cannot be expressed as a simple common name (official, alternate, short), each optionally scoped to a `between` range along the geometry or to one `side` of a road. Schema reference: [names](https://docs.overturemaps.org/schema/reference/common/names/)."
+    },
+    {
+      "name": "level",
+      "type": "int32",
+      "description": "Z-order of the feature, where 0 is visual level \u2014 a stacking hint for rendering overlapping features. Not an above-or-below-ground flag: negative values may still be above ground. Schema reference: [level](https://docs.overturemaps.org/schema/reference/common/level/)."
+    },
+    {
+      "name": "wikidata",
+      "type": "string",
+      "description": "Wikidata item ID for the feature if available, as found on [wikidata.org](https://www.wikidata.org/) \u2014 the OpenStreetMap `wikidata` tag lifted to a top-level Overture property."
+    },
+    {
+      "name": "source_tags",
+      "type": "map<string, string ('source_tags')>",
+      "description": "Attributes from the original OpenStreetMap feature passed straight through as a string-to-string map. The base theme lifts the tags it models into typed columns (`height`, `surface`, `wikidata` and the rest); whatever is left but still relevant stays here. Schema reference: [source_tags](https://docs.overturemaps.org/schema/reference/base/types/source_tags/)."
+    },
+    {
+      "name": "subtype",
+      "type": "string",
+      "description": "Broad type of land use: agriculture, aquaculture, campground, cemetery, construction, developed, education, entertainment, golf, grass, horticulture, landfill, managed, medical, military, park, pedestrian, protected, recreation, religious, residential, resource_extraction, transportation or winter_sports. Schema reference: [land_use_subtype](https://docs.overturemaps.org/schema/reference/base/types/land_use_subtype/)."
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "description": "Further classification of the land use, a long list of values including residential, commercial, retail, industrial, institutional, school, university, hospital, cemetery, park, playground, pitch, golf_course, recreation_ground, farmland, orchard, meadow, quarry, brownfield, greenfield, construction and military \u2014 a translation of the OpenStreetMap `landuse` tag. Schema reference: [land_use_class](https://docs.overturemaps.org/schema/reference/base/types/land_use_class/)."
+    },
+    {
+      "name": "elevation",
+      "type": "int32",
+      "description": "Elevation above sea level of the feature, in meters, parsed and normalized from the OpenStreetMap `ele` tag. Schema reference: [elevation](https://docs.overturemaps.org/schema/reference/base/types/elevation/)."
+    },
+    {
+      "name": "surface",
+      "type": "string",
+      "description": "Surface material of the feature, mostly from the OpenStreetMap `surface` tag with some normalization \u2014 asphalt, cobblestone, compacted, concrete, dirt, earth, grass, gravel, ground, paved, paving_stones, sand, sett, unpaved, wood and similar values. Schema reference: [surface_material](https://docs.overturemaps.org/schema/reference/base/types/surface_material/)."
+    },
+    {
+      "name": "version",
+      "type": "int32",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed. Schema reference: [feature_version](https://docs.overturemaps.org/schema/reference/common/feature_version/)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "WKB geometry in EPSG:4326, almost always a polygon covering the area put to the given use. Areas crossing the edge of the St. Louis bounding box were clipped to it."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Covering bounding box (xmin, ymin, xmax, ymax) for the row's geometry. Not an Overture schema column: Overture's own bbox was dropped and this one rebuilt by gpio during conversion, with row-group statistics, so a spatial filter can skip most of the file over the network."
+    }
+  ],
+  "portolan:total_size_bytes": 6216139,
+  "portolan:asset_count": 1,
+  "title": "Overture Land Use",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051856117901,
+          38.53199630293254,
+          -90.16630892212817,
+          38.77434671879855
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-07-22T00:00:00Z",
+          "2026-07-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "ODbL-1.0",
+  "assets": {
+    "overture-land-use": {
+      "href": "./overture-land-use.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6216139,
+      "file:checksum": "12206a8e7a994d91d05504373be9c790b0daae2ba1516d0e06357943d8c6fef6380e",
+      "roles": [
+        "data"
+      ],
+      "title": "Overture Land Use (GeoParquet)"
+    },
+    "overture-land-use-tiles": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture base theme (PMTiles, global)",
+      "description": "Overture's own release-pinned global vector tiles for the base theme, served from the Overture Maps Foundation's public bucket \u2014 not from this mirror, and not clipped to St. Louis. The styles select this collection's layers (land_use) from them.",
+      "file:size": 195353612308
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Land use by subtype",
+      "description": "OSM landuse translated to Overture subtypes \u2014 parks and protected land in greens, residential warm tan, education orange, industrial and transportation grays.",
+      "file:size": 2931,
+      "file:checksum": "1220a37aca94bb6997900bab928156d278ed6810e2c725907b64f0748fe2dd7bab74"
+    },
+    "styles/style-greenspace": {
+      "href": "./styles/style-greenspace.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Green space",
+      "description": "Parks, protected areas, recreation grounds, golf courses, and cemeteries in greens; every other use fades to pale gray.",
+      "file:size": 1511,
+      "file:checksum": "122019f3d858185b5bdd8e4dc3d45d3449cbb74bb39d965390cc7ca7ebeb6edfbd45"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Overture Land Use rendered with the default style",
+      "file:size": 462216,
+      "file:checksum": "1220c8ae4d80e56c97e3cba80173b8d2cdb5694a44566b369bdbd1cc67c1f9c0b0fc"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://docs.overturemaps.org/guides/",
+      "concepts": [
+        {
+          "id": "base",
+          "title": "Overture base theme"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "overture",
+    "Overture Maps Foundation",
+    "base",
+    "land use"
+  ],
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

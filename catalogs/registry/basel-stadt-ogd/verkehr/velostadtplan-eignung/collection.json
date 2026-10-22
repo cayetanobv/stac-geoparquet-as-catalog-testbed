@@ -1,0 +1,221 @@
+{
+  "type": "Collection",
+  "id": "verkehr/velostadtplan-eignung",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beschreibt, wie gut sich einzelne Strassenabschnitte zum Velofahren eignen. Die Eignung kann je nach Infrastruktur auf demselben Strassenabschnitt zwischen den beiden Fahrtrichtungen variieren.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100426.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Velostadtplan: Eignung (data.bs.ch 100426)",
+      "pmtiles:layers": [
+        "ods-100426"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100426/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100426/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100426",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 5354,
+  "table:row_count": 5354,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "klassifikation",
+      "type": "string",
+      "description": "Einordnung des Eignungsgrades eines Strassenabschnitts f\u00fcr Velofahrende."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (LineString) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026). Beschreibung des Publizierers zum Feld geo_shape: \u00ab2D-Liniengeometrie. Es handelt sich hierbei um Linien, welche mit einem Versatz nach links und rechts von den Strassenachsen der Mobilit\u00e4t abgeleitet wurden. Dies erm\u00f6glicht eine unterschiedliche Darstellung auf demselben Segment in beide Fahrtrichtungen.\u00bb"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Velostadtplan: Eignung (data.bs.ch 100426)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.481763,
+          47.507895,
+          7.716498,
+          47.607656
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Velostadtplan: Eignung (data.bs.ch 100426) default style",
+      "description": "Default visualization for Velostadtplan: Eignung (data.bs.ch 100426), drawn in #41ab5d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1162,
+      "file:checksum": "1220371581dabc1c61bc5e5181164e020d23edd247d305c15d93b99bb9aa2dfc6ef8"
+    },
+    "ods-100426": {
+      "href": "./ods-100426.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1905160,
+      "file:checksum": "12205b976e2148cb123b6b0310805cff9405a57ac7f516794690a42e1990b6f3a9ab",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100426.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Velostadtplan: Eignung (data.bs.ch 100426) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2147534,
+      "file:checksum": "1220f47a7bf3103177dc57c2a08c76d9cb9e18f7951a6798abd607b8586005af9e8c"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Velostadtplan: Eignung (data.bs.ch 100426) categorical style",
+      "description": "Categorical visualization coloring Velostadtplan: Eignung (data.bs.ch 100426) by klassifikation, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2069,
+      "file:checksum": "1220b1ee24d07fa5d59af1900ed4b10433e8cf9bcb11a84284ad2b0eaeec95fd1fb5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Velostadtplan: Eignung (data.bs.ch 100426) labeled style",
+      "description": "Default visualization for Velostadtplan: Eignung (data.bs.ch 100426) with klassifikation shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1581,
+      "file:checksum": "122096204c64a0ffbddcfa032514ec8e3184b71c145a1c30242a98b12ee8c84119be"
+    },
+    "thumbnail": {
+      "href": "./ods-100426.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Velostadtplan: Eignung (data.bs.ch 100426)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 193975,
+      "file:checksum": "122092a402f25f7a831f7d2a209796f44f0be6ca5f67e6ea324365c3cf3fb3076406"
+    }
+  },
+  "keywords": [
+    "Fahrrad",
+    "Velo",
+    "Veloroutennetz",
+    "Mobilit\u00e4t und Verkehr",
+    "Geographie",
+    "Tourismus",
+    "opendata.swiss",
+    "VESP",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Amt f\u00fcr Mobilit\u00e4t",
+      "description": "Datenquelle: Kanton Basel-Stadt, Amt f\u00fcr Mobilit\u00e4t (Bau- und Verkehrsdepartement), \u00abVelostadtplan: Eignung\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100426/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,198 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "id": "forest-cover-2020-v3",
+  "title": "JRC Global Map of Forest Cover 2020, version 3 (deprecated)",
+  "description": "Forest presence or absence in 2020 at 1/12000 degree (about 10 m), following the FAO forest definition that the EU Deforestation Regulation also uses. Produced by the European Commission Joint Research Centre (JRC), version 3, and mirrored unchanged from the JRC JEODPP server by Epoch as one global COG. The JRC has deprecated version 3 and removed it from JEODPP; Epoch keeps this copy because its URL is in use. New work must use version 4 (collection `forest-cover-2020-v4`). See [AGENTS.md](AGENTS.md) for a tested access recipe.",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "forest cover",
+    "forest",
+    "EUDR",
+    "deforestation-free",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "European Commission, Joint Research Centre (JRC)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://joint-research-centre.ec.europa.eu"
+    },
+    {
+      "name": "Epoch",
+      "description": "Hosts this mirror on Source Cooperative.",
+      "roles": [
+        "host"
+      ],
+      "url": "https://epoch.blue"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -60.0,
+          180.0,
+          80.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "updated": "2026-07-13T12:15:11Z",
+  "version": "3",
+  "deprecated": true,
+  "sci:doi": "10.2905/JRC.354CG88",
+  "sci:citation": "Bourgoin, Clement; Verhegghen, Astrid; Ameztoy, Iban; Carboni, Silvia; Achard, Frederic; Colditz, Rene (2024): Global map of forest cover 2020 - version 3. European Commission, Joint Research Centre (JRC) [Dataset]. PID: http://data.europa.eu/89h/8c561543-31df-4e1b-9994-e529afecaf54",
+  "renders": {
+    "forest-cover": {
+      "title": "Forest cover 2020",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap": {
+        "1": [
+          77,
+          146,
+          33,
+          255
+        ]
+      },
+      "resampling": "nearest"
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "https://data.source.coop/epoch/jrc-global-forest-cover-2020/v3/JRC_GFC2020_V3_COG.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Forest cover 2020, version 3 (COG)",
+      "roles": [
+        "data"
+      ],
+      "file:size": 41258879418,
+      "bands": [
+        {
+          "name": "forest_cover",
+          "description": "Forest presence in 2020: 1 = forest, 0 = non-forest. No NoData is declared; 0 is real data.",
+          "data_type": "uint8",
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 9.27,
+          "classification:classes": [
+            {
+              "value": 0,
+              "name": "non-forest",
+              "title": "Non-forest"
+            },
+            {
+              "value": 1,
+              "name": "forest",
+              "title": "Forest",
+              "color_hint": "4D9221"
+            }
+          ]
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "proj:shape": [
+        1680000,
+        4320000
+      ],
+      "proj:transform": [
+        8.333333333333333e-05,
+        0.0,
+        -180.0,
+        0.0,
+        -8.333333333333333e-05,
+        80.0
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Forest cover 2020, version 3, forest in the JRC WMS colour",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 14177,
+      "file:checksum": "12205bec4c624c181ac43030d93f6155f71e427584397a0ebac545c80c1ccb40a48d"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "http://data.europa.eu/89h/8c561543-31df-4e1b-9994-e529afecaf54",
+      "type": "text/html",
+      "title": "JRC Data Catalogue record (version 3)"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.2905/JRC.354CG88",
+      "type": "text/html",
+      "title": "JRC dataset DOI (version 3)"
+    },
+    {
+      "rel": "license",
+      "href": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/FOREST/GFC2020/copyright.txt",
+      "type": "text/plain",
+      "title": "JRC copyright notice (CC BY 4.0)"
+    },
+    {
+      "rel": "latest-version",
+      "href": "../forest-cover-2020-v4/collection.json",
+      "type": "application/json",
+      "title": "JRC Global Map of Forest Cover 2020, version 4"
+    },
+    {
+      "rel": "successor-version",
+      "href": "../forest-cover-2020-v4/collection.json",
+      "type": "application/json",
+      "title": "JRC Global Map of Forest Cover 2020, version 4"
+    }
+  ]
+}

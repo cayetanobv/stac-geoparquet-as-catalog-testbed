@@ -1,0 +1,287 @@
+{
+  "type": "Collection",
+  "id": "nutzungsplanung/zonenplan-basel-ueberlagernd",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beinhaltet die rechtskr\u00e4ftigen \u00fcberlagernden Festlegungen gem\u00e4ss dem Zonenplan. Diese Festlegungen k\u00f6nnen die Grundnutzung erg\u00e4nzen, aber auch \u00fcberstimmen (z.B. Bebauungspl\u00e4ne, Schutzzwecke von Natur- und Landschaftsschutzzonen).\n\nWeitere Daten zum Thema Nutzungsplanung: https://data.bs.ch/explore/?refine.tags=Nutzungsplanung",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100234.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234)",
+      "pmtiles:layers": [
+        "ods-100234"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100234/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100234/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100234",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 455,
+  "table:row_count": 455,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id_ueberlagernde_festlegung",
+      "type": "string",
+      "description": "Eindeutiger Identifikator der Nutzungszone."
+    },
+    {
+      "name": "festlegung_ueberlagernd",
+      "type": "string",
+      "description": "Das Bau- und Planungsgesetz bestimmt die Art der zul\u00e4ssigen Bebauung bzw. Nutzung anhand von verschiedenen Klassen, wobei die Zuordnung zu Grundnutzung (Fl\u00e4chen) oder \u00fcberlagernden Festlegungen (Fl\u00e4chen, Linien, Punkte) eindeutig ist."
+    },
+    {
+      "name": "festlegung_ueberlagernd_text",
+      "type": "string",
+      "description": "Das Bau- und Planungsgesetz bestimmt die Art der zul\u00e4ssigen Bebauung bzw. Nutzung anhand von verschiedenen Klassen, wobei die Zuordnung zu Grundnutzung (Fl\u00e4chen) oder \u00fcberlagernden Festlegungen (Fl\u00e4chen, Linien, Punkte) eindeutig ist."
+    },
+    {
+      "name": "schutzzweck",
+      "type": "string",
+      "description": "Der Schutzzweck ist i.d.R. ein allgemeiner Text aus einem Planungsbeschluss oder auch nur dessen laufende Nummer."
+    },
+    {
+      "name": "bezeichnung",
+      "type": "string",
+      "description": "Ein rechtskr\u00e4ftiger Bebauungsplan (BP) erh\u00e4lt eine Nummer wenn er in die Gesetzessammlung aufgenommen wird (z.B. BP 044 , siehe SG 730.150 - Spezielle Bauvorschriften und Bebauungspl\u00e4ne). Zwischen \"BP\" und der dreistelligen Nummer und einem allf\u00e4lligen Freitext m\u00fcssen Leerzeichen gesetzt werden (z.B. \"BP 044 Steinentorstrasse\") In MapBS wird der Freitext nicht angezeigt. Wenn mehrere Bebauungspl\u00e4ne gelten, wird die Bezeichnung entsprechend erg\u00e4nzt (BP 214+108)."
+    },
+    {
+      "name": "verbindlichkeit",
+      "type": "string",
+      "description": "Die Verbindlichkeit von Planungsobjekten die in einer Planungskarte (z.B. in einem Zonenplan) dargestellt werden, kann sich unterscheiden. Manche Inhalte werden nicht in einem Nutzungsplanungsverfahren festgelegt, sondern stammen aus anderen Feststellungsverfahren anderer Beh\u00f6rden oder haben nur informativen Charakter. Das Minimale Geodatenmodell (MGDM) 73 des Bundes zur Nutzungsplanung gibt verschiedene Auspr\u00e4gungen f\u00fcr die Verbindlichkeit und ihre Wirkung auf Eigent\u00fcmer vor. Im Kanton Basel-Stadt werden die Verbindlichkeiten die nicht im Vefahren der Nutzungsplanung festgelegt wurden, allgemein als \"orientierender Planinhalt\" klassifiziert."
+    },
+    {
+      "name": "rekurs_haengig",
+      "type": "boolean",
+      "description": "Das Attribut beschreibt, ob f\u00fcr eine in Kraft getretene Zone Rechtsmittel in Anspruch genommen wurden und eine gerichtliche Entscheidung noch aussteht. Verwendet wird dieses Attribut beim Gew\u00e4sserraum und in der Nutzungsplanung und genau f\u00fcr die Gebiete/Zonen, ggf. Zonenteile f\u00fcr die der Einspruch gilt (diese werden dann mit einer speziellen Darstellung versehen). Obwohl der Rekurs bzw. die Einsprache also das politische Gesch\u00e4ft betrifft, k\u00f6nnen nur einzelne Inhalte (z.B. Parzellen/Zonen) davon betroffen sein."
+    },
+    {
+      "name": "geschaeftsbezeichnung",
+      "type": "string",
+      "description": "Die Gesch\u00e4ftsbezeichung kann sich je nach \u00d6REB-Thema unterscheiden. Z.T. wird eine systematische Nummern/Buchstabenkombinationen (z.B. Bau- und Strassenlinien der Stadt Basel) benutzt, meist haben die Gesch\u00e4ftsbezeichnungen aber eine Ortspezifische Bezieichnung. Abk\u00fcrzungen am Anfang der Bezeichnung weisen auf die Verbunden \u00d6REB Themen. Die Abk\u00fcrzung TA steht f\u00fcr Technische Aenderung."
+    },
+    {
+      "name": "geschaeftsstatus",
+      "type": "string",
+      "description": "Der Gesch\u00e4ftsstatus unterscheidet ob das politische Gesch\u00e4ft bereits in Kraft ist, oder ob es sich noch um eine laufende \u00c4nderung handelt. Bei laufende \u00c4nderungen wird zwischen Auflage- und Beschlussphase differenziert. Letztere werden durch unterschiedliche Rekurs- bzw. Referendumfristen vorgegeben."
+    },
+    {
+      "name": "datum_status",
+      "type": "date",
+      "description": "Das Attribut bezeichnet den Start des aktuellen Gesch\u00e4ftsstatus."
+    },
+    {
+      "name": "geolink",
+      "type": "string",
+      "description": "Enth\u00e4lt den Link zu allen Rechtsdokumenten auf \u00d6REBlex https://oereblex.bs.ch/, die das jeweilige Gesch\u00e4ft betreffen. Die Links werden als XML gespeichert und werden durch Austausch der Endung (\".html\") besser lesbar."
+    },
+    {
+      "name": "bemerkung_geschaeft",
+      "type": "string",
+      "description": "Bemerkungen zum Gesch\u00e4ft"
+    },
+    {
+      "name": "id_geschaeft",
+      "type": "string",
+      "description": "Eindeutiger Identifikator des Gesch\u00e4fts."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (MultiPolygon, Polygon) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026). Beschreibung des Publizierers zum Feld geo_shape: \u00abDie 2D Polygongeometrie kann aus Geraden oder Kreisb\u00f6gen bestehen. Multigeometrien werden nicht unterst\u00fctzt.\u00bb"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.554653,
+          47.519297,
+          7.633008,
+          47.583408
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234) default style",
+      "description": "Default visualization for Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234), drawn in #dd3497.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1208,
+      "file:checksum": "12208874676c1688daf27d5950c0459e29750a0d2f35a5bbe71cf1980e3571b9f6cc"
+    },
+    "ods-100234": {
+      "href": "./ods-100234.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 506389,
+      "file:checksum": "12208506dbf11ad684109c41eac5cf6e8a6ecf5a22ab9378e3eb2f581a358d41ed09",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100234.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 396736,
+      "file:checksum": "12204eceaba7bf54f3d6368310927c80fdab5a868b86ec1fb8708e120d5e35ba8bed"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234) categorical style",
+      "description": "Categorical visualization coloring Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234) by festlegung_ueberlagernd, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2595,
+      "file:checksum": "1220e611cb4280e4026dd4d04a783f54ef8e8529dba4c1d0dbc866612560231411aa"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234) labeled style",
+      "description": "Default visualization for Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234) with festlegung_ueberlagernd shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1636,
+      "file:checksum": "1220afaac6bf9aa11c7006f0599fc45e363689d7b3f65a362eb09f77cce70e60fea2"
+    },
+    "thumbnail": {
+      "href": "./ods-100234.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Nutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen (data.bs.ch 100234)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 176152,
+      "file:checksum": "1220e61ee2c180944819758b068d9eaedc9f95a15dc2f75cb2feede2f158e5c93d18"
+    }
+  },
+  "keywords": [
+    "kantonaler Nutzungsplan",
+    "Landnutzung",
+    "Nutzungsplan",
+    "Nutzungsplanung",
+    "Fl\u00e4chennutzungsplan",
+    "Naturschutzzonen",
+    "Babauungsplan",
+    "Geographie",
+    "Raum und Umwelt",
+    "opendata.swiss",
+    "NPBA",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 St\u00e4dtebau & Architektur",
+      "description": "Datenquelle: Kanton Basel-Stadt, St\u00e4dtebau & Architektur (Bau- und Verkehrsdepartement), \u00abNutzungsplan - Zonenplan Stadt Basel: \u00dcberlagernde Festlegungen\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100234/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,215 @@
+{
+  "type": "Collection",
+  "id": "amenagement-du-territoire/densite-batie",
+  "stac_version": "1.1.0",
+  "description": "Ce jeu de donn\u00e9es repr\u00e9sente la densit\u00e9 b\u00e2tie des \u00eelots urbains sur le territoire de la R\u00e9gion de Bruxelles-Capitale. Il fournit quatre indicateurs : le rapport plancher/sol (P/S), le taux d\u2019emprise au sol (E/S), le nombre moyen de niveaux et la hauteur maximale du b\u00e2ti.\n\nTitre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab Bouwdichtheid \u00bb ; titre anglais : \u00ab Built density \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./perspective_a10_sitex_built_density_fsi.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Densit\u00e9 b\u00e2tie",
+      "pmtiles:layers": [
+        "perspective_a10_sitex_built_density_fsi"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/276835e4-7945-11f1-a14e-b07d64b384b7",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gis.urban.brussels/geoserver/ows",
+      "rel": "related",
+      "title": "WFS source service: a10-sitex-built-density-fsi",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 4782,
+  "table:row_count": 4782,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "FID",
+      "type": "int64"
+    },
+    {
+      "name": "FSI",
+      "type": "double",
+      "description": "Rapport plancher/sol (P/S) : somme des surfaces de plancher des b\u00e2timents rapport\u00e9e \u00e0 la superficie de l'\u00eelot."
+    },
+    {
+      "name": "GSI",
+      "type": "double",
+      "description": "Taux d'emprise au sol (E/S) : part (%) de la superficie de l'\u00eelot occup\u00e9e par l'emprise des b\u00e2timents."
+    },
+    {
+      "name": "LEVEL_MEAN",
+      "type": "double",
+      "description": "Nombre moyen de niveaux des b\u00e2timents de l'\u00eelot."
+    },
+    {
+      "name": "HEIGHT_MAX",
+      "type": "double",
+      "description": "Hauteur maximale du b\u00e2ti de l'\u00eelot (m)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Densit\u00e9 b\u00e2tie",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.24376421,
+          50.76858499,
+          4.48214805,
+          50.9139034
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Densit\u00e9 b\u00e2tie default style",
+      "description": "Default visualization for Densit\u00e9 b\u00e2tie, drawn in #e7298a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1346,
+      "file:checksum": "12209517401a5219cfc3d5a5e435a099e019fb5deab623f55fbf72d4fec049943035"
+    },
+    "perspective_a10_sitex_built_density_fsi": {
+      "href": "./perspective_a10_sitex_built_density_fsi.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8527963,
+      "file:checksum": "122003a482d4fef237c1de1b3195e2b9b0b27499d4477f8ccf724da0f9ea21fd58c9",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./perspective_a10_sitex_built_density_fsi.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Densit\u00e9 b\u00e2tie (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2914084,
+      "file:checksum": "1220eb78974dd2a9b84d7ae233213e19c6ccce315b998ddfb493e4fc303e104a7241"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Densit\u00e9 b\u00e2tie graduated style",
+      "description": "Graduated visualization coloring Densit\u00e9 b\u00e2tie by HEIGHT_MAX, ramped from 2.97 to 153.69.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2117,
+      "file:checksum": "1220388bbdf91588cd89ddb2cce9ab4ab10d1c99d44a849e052785ead13c1156bce4"
+    },
+    "thumbnail": {
+      "href": "./perspective_a10_sitex_built_density_fsi.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Densit\u00e9 b\u00e2tie",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 200229,
+      "file:checksum": "122049dc8b39e16025f0e6ac71b687f24a39a0be2e70a12fe818d38393c04d010018"
+    }
+  },
+  "keywords": [
+    "urbanisation",
+    "urbanisme",
+    "utilisation des terres",
+    "R\u00e9gions et villes",
+    "B\u00e2timents",
+    "R\u00e9gional",
+    "AgriBuilding",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "perspective.brussels",
+      "description": "Source : perspective.brussels, \u00ab Densit\u00e9 b\u00e2tie \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://perspective.brussels/fr",
+      "email": "sitex@perspective.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

@@ -1,0 +1,271 @@
+{
+  "type": "Collection",
+  "id": "protected-areas/proposed-natural-heritage-areas",
+  "stac_version": "1.1.0",
+  "description": "Proposed Natural Heritage Areas (pNHA) were published on a non-statutory basis in 1995. They have not since been statutorily proposed or designated. These sites are of significance for wildlife and habitats. A process is underway to resurvey and formally designate some pNHA and NHAs.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./proposed_natural_heritage_areas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Proposed Natural Heritage Areas (pNHA)",
+      "pmtiles:layers": [
+        "proposed_natural_heritage_areas"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.npws.ie/maps-and-data",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS source service: proposed_natural_heritage_areas",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer NPWSDesignatedAreas (live NPWS service)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://dservices-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/services/NPWSDesignatedAreasWFS/WFSServer",
+      "rel": "related",
+      "title": "WFS NPWSDesignatedAreasWFS (live NPWS service)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 1180,
+  "table:row_count": 1180,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:2157')",
+      "description": "Feature geometry in WGS 84 (OGC:CRS84) after conversion; the service stores it in Irish Transverse Mercator (EPSG:2157). The only column declared as geometry."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Internal row number of the ArcGIS service; not stable across data versions."
+    },
+    {
+      "name": "SITECODE",
+      "type": "string",
+      "description": "NPWS site code of the designated area, the key used across NPWS publications and at www.npws.ie/protected-sites."
+    },
+    {
+      "name": "SITE_NAME",
+      "type": "string",
+      "description": "Name of the designated site."
+    },
+    {
+      "name": "COUNTY",
+      "type": "string",
+      "description": "County or counties the site lies in, as recorded by NPWS."
+    },
+    {
+      "name": "VERSION",
+      "type": "double",
+      "description": "Version number of the site boundary as released by NPWS."
+    },
+    {
+      "name": "HA",
+      "type": "double",
+      "description": "Area of the site in hectares as computed by NPWS."
+    },
+    {
+      "name": "Source_CRS",
+      "type": "string",
+      "description": "Coordinate reference system the site boundary was originally mapped in; NPWS notes that this varies per site between the Irish Grid, Irish Transverse Mercator and, for offshore marine sites, WGS 84."
+    },
+    {
+      "name": "SourcScale",
+      "type": "string",
+      "description": "Scale of the source mapping the boundary was digitised from."
+    },
+    {
+      "name": "URL",
+      "type": "string",
+      "description": "Link to the NPWS page for the site."
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double",
+      "description": "Area computed by the ArcGIS service in the units of its spatial reference (Irish Transverse Mercator square metres); not derived from the converted WGS 84 geometry. Use the HA column or compute from geom."
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double",
+      "description": "Perimeter computed by the ArcGIS service in the units of its spatial reference (Irish Transverse Mercator metres); not derived from the converted WGS 84 geometry."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Bounding box of the geometry as a struct of xmin, ymin, xmax, ymax, added by the GeoParquet conversion."
+    }
+  ],
+  "title": "Proposed Natural Heritage Areas (pNHA)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -10.549752238800863,
+          51.41802239337501,
+          -5.99049598127084,
+          55.44921387533099
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proposed Natural Heritage Areas (pNHA) default style",
+      "description": "Default visualization for Proposed Natural Heritage Areas (pNHA), drawn in #74c476.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1305,
+      "file:checksum": "12206ea0357e8b2c89e4d793de5a674a974b30cc49326a7016fe5495eeb7c058e53a"
+    },
+    "proposed_natural_heritage_areas": {
+      "href": "./proposed_natural_heritage_areas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 18351080,
+      "file:checksum": "12205381fde8b29dc46a8e1498ae185aae6dec42eb0abf88b4d4060a26eda08b6ccc",
+      "proj:code": "EPSG:2157",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./proposed_natural_heritage_areas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Proposed Natural Heritage Areas (pNHA) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 14615579,
+      "file:checksum": "12202dc481851e18d934c578696d1490cec7ee5e4430e396f7678f309118c2ced52f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proposed Natural Heritage Areas (pNHA) labeled style",
+      "description": "Default visualization for Proposed Natural Heritage Areas (pNHA) with SITE_NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1761,
+      "file:checksum": "12200d03ed9d356f267eab21398786d0e8fd20f75ac625a9d1d4370d6f588d8722b3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proposed Natural Heritage Areas (pNHA) graduated style",
+      "description": "Graduated visualization coloring Proposed Natural Heritage Areas (pNHA) by Shape__Area, ramped from 21.331390380859375 to 733862683.3504639.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2191,
+      "file:checksum": "1220979e8e48de610635489e94c397e59713cea738b97e9d4eb506c0f0862a68c221"
+    },
+    "thumbnail": {
+      "href": "./proposed_natural_heritage_areas.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Proposed Natural Heritage Areas (pNHA)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 91675,
+      "file:checksum": "1220337fa86b2c3d4c7c900a6d3cb178128df42f3770efb9b480c82c8224938a966b"
+    }
+  },
+  "keywords": [
+    "Ireland",
+    "NPWS",
+    "protected areas",
+    "nature conservation",
+    "designated sites",
+    "open data"
+  ],
+  "providers": [
+    {
+      "name": "National Parks and Wildlife Service (NPWS), Department of Housing, Local Government and Heritage",
+      "description": "The National Parks and Wildlife Service of the Department of Housing, Local Government and Heritage designates and manages Ireland's protected sites and publishes their statutory boundaries. Source read 2026-09-20.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.npws.ie/",
+      "email": "natureconservation@npws.gov.ie"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T16:00:00Z"
+}

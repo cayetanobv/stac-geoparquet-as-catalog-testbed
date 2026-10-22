@@ -1,0 +1,219 @@
+{
+  "type": "Collection",
+  "id": "mobilidade/vias-ruas",
+  "stac_version": "1.1.0",
+  "description": "Eixos das vias e ruas de Lisboa com o respetivo c\u00f3digo de via e designa\u00e7\u00e3o, mantidos em perman\u00eancia a partir das aplica\u00e7\u00f5es de gest\u00e3o municipal e usados na atualiza\u00e7\u00e3o do roteiro de moradas da cidade, na camada Vias e Ruas do servi\u00e7o Edificado e Vias da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./vias_ruas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Vias e Ruas",
+      "pmtiles:layers": [
+        "vias_ruas"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/cd5e9081bb4e45d38554760a0ec40db2_1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Edificado_e_Vias/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Edificado e Vias (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 4921,
+  "table:row_count": 4921,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "COD_VIA",
+      "type": "string",
+      "description": "C\u00f3digo de via no roteiro de moradas da C\u00e2mara Municipal de Lisboa; \u00e9 a chave de jun\u00e7\u00e3o usada noutras camadas municipais."
+    },
+    {
+      "name": "DESIGNACAO",
+      "type": "string",
+      "description": "Designa\u00e7\u00e3o do objeto, texto do publicador (alias \u00abDesigna\u00e7\u00e3o\u00bb)."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Vias e Ruas",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.23699133712899,
+          38.6639205942669,
+          -9.08052651001679,
+          38.8416811044979
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Vias e Ruas default style",
+      "description": "Default visualization for Vias e Ruas, drawn in #737373.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1124,
+      "file:checksum": "12201ec88e394bb312d81ee06d48e797fa7ded14d2ca9fb1f84f3c99501119952a8d"
+    },
+    "vias_ruas": {
+      "href": "./vias_ruas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1381062,
+      "file:checksum": "1220673d75fdb474e7c99e078102d086bc120e00ca5f935259371bcbe22bf2370922",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./vias_ruas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Vias e Ruas (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3900694,
+      "file:checksum": "1220d04110ea0edc91bc9fee03ccc8c170929e3964a5f80932337fb3eb747ba2ec4b"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/cd5e9081bb4e45d38554760a0ec40db2/geojson?layers=1&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: vias_ruas",
+      "pipeline:upstream": true,
+      "file:size": 4239247,
+      "file:checksum": "1220588e700022925b133fdcf142264faffda0ddb417a8ec3ffb6b056b5305904c0c"
+    },
+    "thumbnail": {
+      "href": "./vias_ruas.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Vias e Ruas",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 145585,
+      "file:checksum": "122090639a2ed01a2662866fb9e7bfee36c846015e1d0605e0006fbd2c03e1fc1436"
+    }
+  },
+  "keywords": [
+    "OpenData",
+    "Geodados",
+    "Lisboa",
+    "Vias e Ruas",
+    "Roads and Streets",
+    "Mobilidade",
+    "InformacaoBaseCartografia"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Vias e Ruas (Edificado e Vias), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

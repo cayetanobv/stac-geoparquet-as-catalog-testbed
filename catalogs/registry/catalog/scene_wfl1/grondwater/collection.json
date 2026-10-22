@@ -1,0 +1,145 @@
+{
+  "type": "Collection",
+  "id": "scene_wfl1/grondwater",
+  "stac_version": "1.1.0",
+  "description": "Grondwater",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./grondwater.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "grondwater"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 7,
+  "table:row_count": 7,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "F_profielId",
+      "type": "int32"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Grondwater",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.09135960332272,
+          52.1217532699778,
+          5.09192966270433,
+          52.122096961316
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "grondwater": {
+      "href": "./grondwater.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 12054,
+      "file:checksum": "1220be27dc8f0ebad53946e2fb2b8450324a8802153fe122aa2215423c93e6596282",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./grondwater.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 9078,
+      "file:checksum": "122055fd89c54deddc8c4e01ddba3254e6a3371673f69c823edbe003fe2d76299a72"
+    },
+    "grondwater-tiles": {
+      "href": "./grondwater.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "grondwater (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4864,
+      "file:checksum": "1220171c45954cfc85f1fadd8ad44deecef1b41fd351dd67737212d621b745bfe81f"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 537,
+      "file:checksum": "122009341d45d6d8dd041993b1c23c4fd799756d70f2deb97a70fa969fa5eca0cb3d",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

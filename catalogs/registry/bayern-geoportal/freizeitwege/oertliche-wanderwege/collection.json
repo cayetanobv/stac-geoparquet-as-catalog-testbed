@@ -1,0 +1,217 @@
+{
+  "type": "Collection",
+  "id": "freizeitwege/oertliche-wanderwege",
+  "stac_version": "1.1.0",
+  "description": "Zu den Wanderwegen z\u00e4hlen alle \u00f6rtlich beschilderten Wanderwege in Bayern. Die Bereitstellung erfolgt f\u00fcr die Landesfl\u00e4che Bayerns, d. h. \u00fcberregionale Wanderwege enden an der Bayerischen Landesgrenze.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Oertliche_Wanderwege.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6rtliche Wanderwege",
+      "pmtiles:layers": [
+        "Oertliche_Wanderwege"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodaten.bayern.de/opengeodata/OdmInit.do?method=init",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices.bayern.de/od/wms/atkis/v1/freizeitwege?",
+      "rel": "related",
+      "title": "WMS Freizeitwege der Bayerischen Vermessungsverwaltung",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 31042,
+  "table:row_count": 31042,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "ID",
+      "type": "int64",
+      "description": "Laufende Nummer des Wegeabschnitts in der Abgabe des Herausgebers (dBASE-Typ Integer64). Der Herausgeber ver\u00f6ffentlicht keine Feldbeschreibung zu diesem Shapefile."
+    },
+    {
+      "name": "Region",
+      "type": "string",
+      "description": "Regionsangabe des Herausgebers zum Weg."
+    },
+    {
+      "name": "Name",
+      "type": "string",
+      "description": "Name des beschilderten Weges, wie vom Herausgeber gef\u00fchrt."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "\u00d6rtliche Wanderwege",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.84081876796185,
+          47.28965076970825,
+          13.841041377642965,
+          50.551601464932546
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6rtliche Wanderwege default style",
+      "description": "Default visualization for \u00d6rtliche Wanderwege, drawn in #74c476.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1214,
+      "file:checksum": "122077bcfcf15a6c379ff05798e1cfe8dc725878c1b02e07cb5fc5d27c705675ba3a"
+    },
+    "Oertliche_Wanderwege": {
+      "href": "./Oertliche_Wanderwege.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 36165499,
+      "file:checksum": "12202eb359221d39c18f40b566c080581025372a5149c9d4805e5d25b947da7c8c01",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Oertliche_Wanderwege.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6rtliche Wanderwege (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 41723668,
+      "file:checksum": "1220e5db4776e06a70b145771e2c139200b066d64bf5d2fc43a138014267f67c53fa"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6rtliche Wanderwege labeled style",
+      "description": "Default visualization for \u00d6rtliche Wanderwege with Name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1643,
+      "file:checksum": "12204f9352e2b753ca0d1eadb684343c603f477a7e679cb3166024618d1b531f811f"
+    },
+    "source": {
+      "href": "https://geodaten.bayern.de/odd/m/2/freizeitwege/wanderwege/shape/wanderwege_shape.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: freizeitwege-oertliche-wanderwege",
+      "pipeline:upstream": true,
+      "file:size": 78505913,
+      "file:checksum": "122008190ca1a468f7828b749f22258f818c3fb4d6f5ed0e221c35d9c687a7221f2f"
+    },
+    "thumbnail": {
+      "href": "./Oertliche_Wanderwege.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of \u00d6rtliche Wanderwege",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 199488,
+      "file:checksum": "1220cf591ace810930534599891575eb8bdb014f9671819b02c3a0b09fa1ec69af42"
+    }
+  },
+  "keywords": [
+    "\u00d6rtliche Wanderwege",
+    "Wanderwege",
+    "Wandern",
+    "Freizeitwege",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Digitalisierung, Breitband und Vermessung (LDBV)",
+      "description": "Datenquelle: Bayerische Vermessungsverwaltung \u2013 www.geodaten.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ldbv.bayern.de/",
+      "email": "service@ldbv.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

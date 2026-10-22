@@ -1,0 +1,239 @@
+{
+  "type": "Collection",
+  "id": "ambiente/corredor-verde",
+  "stac_version": "1.1.0",
+  "description": "Corredores verdes do concelho de Lisboa em pol\u00edgono, com o nome e a \u00e1rea, na camada Corredor Verde do servi\u00e7o Ambiente DMEVAE da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./corredor_verde.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Corredor Verde",
+      "pmtiles:layers": [
+        "corredor_verde"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/d2eb1eb1cfae400496bec1aeec4e25b2_2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Ambiente_DMEVAE/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Ambiente DMEVAE (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 9,
+  "table:row_count": 9,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "NOME",
+      "type": "string",
+      "description": "Nome do corredor verde, texto do publicador."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "AREA_M2",
+      "type": "double",
+      "description": "\u00c1rea da geometria em metros quadrados, calculada pelo publicador no sistema de proje\u00e7\u00e3o de origem (alias \u00ab\u00c1rea (m2)\u00bb)."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Corredor Verde",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.22983154963812,
+          38.6913975076647,
+          -9.08963562838625,
+          38.7968373452443
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Corredor Verde default style",
+      "description": "Default visualization for Corredor Verde, drawn in #005824.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1162,
+      "file:checksum": "1220ce5ef6e81402b7083331c1979f9f6e736db498a54e823fc0b57be12358485828"
+    },
+    "corredor_verde": {
+      "href": "./corredor_verde.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 121003,
+      "file:checksum": "1220b0f9dc45bc85a9cf44a3bf1d8c8a8f4e368160aa68a6dbe45215b94d5d702317",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./corredor_verde.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Corredor Verde (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 85412,
+      "file:checksum": "12200592d2affe0adfee9e9268e8add4ef6d63c55ce9d4a6ec75db527a656ea264a5"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Corredor Verde categorical style",
+      "description": "Categorical visualization coloring Corredor Verde by GlobalID, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3407,
+      "file:checksum": "122078c24d8c36723953044351e2934b9e11aa8236ae2cee2c8e9b2b68a9b75f8e01"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Corredor Verde labeled style",
+      "description": "Default visualization for Corredor Verde with NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1579,
+      "file:checksum": "1220a7af954e71fc974670f3bd6934369ab438d2a9fdcaec21a6923e053dd13d2b71"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/d2eb1eb1cfae400496bec1aeec4e25b2/geojson?layers=2&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: corredor_verde",
+      "pipeline:upstream": true,
+      "file:size": 300024,
+      "file:checksum": "12201b8d5dec3d5f507f74dfb2e47cba43929e4ca1b639dc335560e1c29c8ab7ee2c"
+    },
+    "thumbnail": {
+      "href": "./corredor_verde.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Corredor Verde",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 168271,
+      "file:checksum": "12201cd222e8eeb26dcb3a8e014df5cab128d741864175e981f82584916e98e30ab2"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Corredor Verde",
+    "Ambiente"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Corredor Verde (Ambiente DMEVAE), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

@@ -1,0 +1,261 @@
+{
+  "type": "Collection",
+  "id": "trafik/pullerter",
+  "stac_version": "1.1.0",
+  "description": "Pullerter (borner)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_pullert.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Trafik, pullert",
+      "pmtiles:layers": [
+        "k101_pullert"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/pullert",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: pullert",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 6277,
+  "table:row_count": 6277,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "vejkode",
+      "type": "double"
+    },
+    {
+      "name": "vejnavn",
+      "type": "string"
+    },
+    {
+      "name": "pullert_type",
+      "type": "string"
+    },
+    {
+      "name": "pullert_placering",
+      "type": "string"
+    },
+    {
+      "name": "pullert_overflade",
+      "type": "string"
+    },
+    {
+      "name": "pullert_montage",
+      "type": "string"
+    },
+    {
+      "name": "bemaerkning",
+      "type": "string"
+    },
+    {
+      "name": "reg_metode",
+      "type": "string"
+    },
+    {
+      "name": "reg_dato",
+      "type": "string"
+    },
+    {
+      "name": "rettet_dato",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Trafik, pullert",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.464203845524203,
+          55.631322205667296,
+          12.648272881285145,
+          55.72734508706889
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trafik, pullert default style",
+      "description": "Default visualization for Trafik, pullert, drawn in #fdae6b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1149,
+      "file:checksum": "122045f6d4692b104242a00286ae5c4bda5992ef857f2cdf84017558607bd12fe42a"
+    },
+    "k101_pullert": {
+      "href": "./k101_pullert.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 228921,
+      "file:checksum": "1220fecc13c1a948c3c308754947f3fad7896e2d60c81a539942e02b056c57e220f4",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_pullert.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Trafik, pullert (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 177924,
+      "file:checksum": "122067404e63767816e9b68e110afc6630d20e24647b4e8f3ef0526a006ec93db3b4"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trafik, pullert categorical style",
+      "description": "Categorical visualization coloring Trafik, pullert by pullert_montage, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1937,
+      "file:checksum": "12204c3536dbd5d422d444af27f5b99892af4a87128542800bea89fb2b0e16e676d1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trafik, pullert labeled style",
+      "description": "Default visualization for Trafik, pullert with pullert_montage shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1573,
+      "file:checksum": "12201fdfb76fe6ab90719259661d1601ce60182cb7f2cfb96c70ecb7600f46fd6da0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trafik, pullert graduated style",
+      "description": "Graduated visualization coloring Trafik, pullert by vejkode, ramped from 0.0 to 8696.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1908,
+      "file:checksum": "12204dadb276f42c6337bdfc25ede65d23e5a94e0be2e24efe2be750e4a7b6ce17e6"
+    },
+    "thumbnail": {
+      "href": "./k101_pullert.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Trafik, pullert",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 102356,
+      "file:checksum": "12208a3f034892d0ef09e8aa4386ce4226657cab1bb92b870cb1ca1f7d4aafe754a0"
+    }
+  },
+  "keywords": [
+    "borner",
+    "pullert",
+    "Trafik, pullert",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Trafik, pullert, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/pullert",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

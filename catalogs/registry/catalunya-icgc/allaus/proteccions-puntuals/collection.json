@@ -1,0 +1,236 @@
+{
+  "type": "Collection",
+  "id": "allaus/proteccions-puntuals",
+  "stac_version": "1.1.0",
+  "description": "Inventari de proteccions puntuals contra allaus al Pirineu de Catalunya. El productor descriu la capa aix\u00ed: \u00abInventari de proteccions puntuals empla\u00e7ats per a minimitzar el risc d'allaus. Es classifiquen en diferents tipus de proteccions puntuals: tasc\u00f3 de desviament, desencadenament artificials i barrera a carretera\u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nivoallaus_proteccions_puntuals.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Proteccions puntuals",
+      "pmtiles:layers": [
+        "nivoallaus_proteccions_puntuals"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: proteccions-puntuals",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa nivoallaus:proteccions_puntuals, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 39,
+  "table:row_count": 39,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "TIPOLOGIA",
+      "type": "string",
+      "description": "Tipologia de la protecci\u00f3 puntual en text."
+    },
+    {
+      "name": "SUBTIPUS",
+      "type": "string",
+      "description": "Subtipus de la protecci\u00f3. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "SUBTIPOLOG",
+      "type": "string",
+      "description": "Codi de subtipus del productor. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "TIPUS",
+      "type": "int64",
+      "description": "Codi num\u00e8ric de la tipologia. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Proteccions puntuals",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.826523387585174,
+          42.29411210782463,
+          2.279088097456268,
+          42.70026192375667
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions puntuals default style",
+      "description": "Default visualization for Proteccions puntuals, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1287,
+      "file:checksum": "1220e6ea5374388ef592049fd56c0d4fb661945fb8cb7db326d4603c2340c8e6678f"
+    },
+    "nivoallaus_proteccions_puntuals": {
+      "href": "./nivoallaus_proteccions_puntuals.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13201,
+      "file:checksum": "12202ba3844ea320b521932f8d13fb974bc4ee49ed972fee8e7c7392e026726c73ea",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nivoallaus_proteccions_puntuals.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Proteccions puntuals (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 15952,
+      "file:checksum": "12206f475407a20041510f49e7373bf0224d8fd1ef8441f08840cfdf2a4c12661b38"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions puntuals categorical style",
+      "description": "Categorical visualization coloring Proteccions puntuals by TIPOLOGIA, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2141,
+      "file:checksum": "1220a60526c62efd0255252de2942b7fa581400667364eff37470de94e5324273522"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions puntuals labeled style",
+      "description": "Default visualization for Proteccions puntuals with TIPOLOGIA shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1743,
+      "file:checksum": "122086a6c3bf9878ccd7fce1c4dd661fc102a6032162789e2a315145708fbbd736a9"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions puntuals graduated style",
+      "description": "Graduated visualization coloring Proteccions puntuals by TIPUS, ramped from 37.0 to 42.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2029,
+      "file:checksum": "122018183bfbf569fc756987b2d84a9d1c4900afe927468c602d23ea600455fa30e1"
+    },
+    "thumbnail": {
+      "href": "./nivoallaus_proteccions_puntuals.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Proteccions puntuals",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 92853,
+      "file:checksum": "1220c2d1f5d5c0bdc00a8a126d6b7d0ac337f9593d907b90675f1e181c9e793bc20f"
+    }
+  },
+  "keywords": [
+    "allaus",
+    "nivologia",
+    "proteccions",
+    "Pirineu",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Proteccions puntuals de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "einrichtungen/kindertagesstaetten",
+  "stac_version": "1.1.0",
+  "description": "Georeferenzierte Auflistung der st\u00e4dtischen Kindertagesst\u00e4tten in K\u00f6ln. Eine kartenbasierte Darstellung kann hier aufgerufen werden: http://www.stadt-koeln.de/leben-in-koeln/familie-kinder/betreuung/suche-nach-kindertageseinrichtungen-koeln\nNeben den oben angegebenen X,Y Koordinaten mit dem Bezugssystem WGS_1984_UTM_Zone_32N, gibt es ein weiteres Feld \"geometry\", welches die X/Y Koordinaten im Bezugssystem WGS84 (EPSG:4326) ausgibt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./kindertageseinrichtung.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kindertagesstaetten in K\u00f6ln",
+      "pmtiles:layers": [
+        "kindertageseinrichtung"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/kindertagesstaetten-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/stadtplanthemen/MapServer",
+      "rel": "related",
+      "title": "ArcGIS source service: kindertagesstaetten",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/stadtplanthemen/MapServer",
+      "rel": "related",
+      "title": "Stadtplanthemen K\u00f6ln (ArcGIS REST MapServer)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/stadtplanthemen/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "Stadtplanthemen K\u00f6ln (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 702,
+  "table:row_count": 702,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "objectid",
+      "type": "int64"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "postzustellbezirk",
+      "type": "string"
+    },
+    {
+      "name": "traeger_typ",
+      "type": "string"
+    },
+    {
+      "name": "stadtteil",
+      "type": "string"
+    },
+    {
+      "name": "nr_stadtteil",
+      "type": "string"
+    },
+    {
+      "name": "stadtbezirk",
+      "type": "string"
+    },
+    {
+      "name": "nr_stadtbezirk",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "BLOB"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Kindertagesstaetten in K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.824355999784816,
+          50.83705190456467,
+          7.119147541068559,
+          51.06492984714208
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kindertagesstaetten in K\u00f6ln default style",
+      "description": "Default visualization for Kindertagesstaetten in K\u00f6ln, drawn in #9e9ac8.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1236,
+      "file:checksum": "1220b176743062129cad9ebfd2209f2d72e557acb3f341f5f423faa68f6f85f0d876"
+    },
+    "kindertageseinrichtung": {
+      "href": "./kindertageseinrichtung.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 53429,
+      "file:checksum": "1220714720be1b40f8be261ee04080e1174a23bddd37c2720ff70b080fe6040afdde",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./kindertageseinrichtung.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kindertagesstaetten in K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 117179,
+      "file:checksum": "12204bbf15bd6d9f2b29ba34d58524d90c87dc9cf1041d0f43385202bc94f0096296"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kindertagesstaetten in K\u00f6ln categorical style",
+      "description": "Categorical visualization coloring Kindertagesstaetten in K\u00f6ln by traeger_typ, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1930,
+      "file:checksum": "122040eb57bc16ba6066f266770a9e3eeaaae964c24b578af2d50e14e8e41c81bd5c"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kindertagesstaetten in K\u00f6ln labeled style",
+      "description": "Default visualization for Kindertagesstaetten in K\u00f6ln with traeger_typ shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1676,
+      "file:checksum": "1220f6876befb42fa44bee1701fbff49bbcb2005a1b817e13b8b62169a312821222f"
+    },
+    "thumbnail": {
+      "href": "./kindertageseinrichtung.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kindertagesstaetten in K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 131518,
+      "file:checksum": "122011e602e7a021164c16bb069cb582e498e7c1d66b01d6587fee71cf58afeede2e"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Geoportal Stadt K\u00f6ln",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Geoportal Stadt K\u00f6ln, \u201eKindertagesstaetten in K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/politik-und-verwaltung/geoportal",
+      "email": "e-government@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

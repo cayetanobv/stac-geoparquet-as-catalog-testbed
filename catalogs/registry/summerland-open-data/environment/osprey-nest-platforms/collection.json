@@ -1,0 +1,185 @@
+{
+  "type": "Collection",
+  "id": "environment/osprey-nest-platforms",
+  "stac_version": "1.1.0",
+  "description": "Data history: The Osprey Nest Platform locations were collected using the District's GPS unit on 2021-05-14 for the Osprey Permit Program. As the location was taken at the base of the platform pole, the elevation attribute is for ground level and not the nest itself. The data was initially added into the system by the GIS& Database Administrator on 2021-06-10.\nAccuracy/ spatial tolerance: \u00b15cm \nOriginal Spatial Reference of the GPS points: UTM with NAD83 datum, Zone 11, Meter; Central Meridian 117d W\nUpdate frequency: Periodically, as needed",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./osprey-nest-platforms.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "osprey-nest-platforms"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 6,
+  "table:row_count": 6,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "ID",
+      "type": "double",
+      "description": "GPS PointID."
+    },
+    {
+      "name": "Elevation_Z_",
+      "type": "double",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 3 of 6 rows populated; values: 345.634, 348.104, 444.879."
+    },
+    {
+      "name": "Comment",
+      "type": "large_string",
+      "description": "GPSComment."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Osprey Nest Platforms",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.68112479802697,
+          49.57188737161401,
+          -119.62969178917069,
+          49.629164622912036
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "osprey-nest-platforms": {
+      "href": "./osprey-nest-platforms.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 14796,
+      "file:checksum": "122066ff60a4ac0f41325f1e48e0c604e7fcc70435c5cac943d102c141d600aa4c46",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./osprey-nest-platforms.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 6769,
+      "file:checksum": "1220d52fbf5215c3d2c7e8c05df260ff5267ea7dd0f47687790a6c5db9ca0ccc9628"
+    },
+    "osprey-nest-platforms-tiles": {
+      "href": "./osprey-nest-platforms.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "osprey-nest-platforms (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6540,
+      "file:checksum": "12204fab01f062ecead421e25e209b07d4eb76be6732868c61263d8016a88e80af7d"
+    },
+    "styles/osprey-platform": {
+      "href": "./styles/osprey-platform.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Osprey nest platform",
+      "file:size": 436,
+      "file:checksum": "12205f0b7d822f125287c1a2a299788880ab4ba428f22c9fbcc148a3d0676e3592ba"
+    }
+  },
+  "keywords": [
+    "Environment",
+    "Habitat"
+  ]
+}

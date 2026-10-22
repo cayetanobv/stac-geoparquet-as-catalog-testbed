@@ -1,0 +1,252 @@
+{
+  "type": "Collection",
+  "id": "infrastruktur/wegweisung",
+  "stac_version": "1.1.0",
+  "description": "Lage der Wegweiser auf Bundesautobahnen, Bundesstra\u00dfen und Stadtstra\u00dfen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./wegweisung_wegweiser.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wegweisung",
+      "pmtiles:layers": [
+        "wegweisung_wegweiser"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/wegweisung-wfs-55832af9",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/wegweisung",
+      "rel": "related",
+      "title": "WFS source service: wegweiser",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 4325,
+  "table:row_count": 4325,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "sdatenid",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string"
+    },
+    {
+      "name": "segm_bez",
+      "type": "string"
+    },
+    {
+      "name": "stst_str",
+      "type": "string"
+    },
+    {
+      "name": "ort",
+      "type": "string"
+    },
+    {
+      "name": "ortstl",
+      "type": "string"
+    },
+    {
+      "name": "stvonr",
+      "type": "string"
+    },
+    {
+      "name": "material",
+      "type": "string"
+    },
+    {
+      "name": "fundament",
+      "type": "string"
+    },
+    {
+      "name": "ausfuerung",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Wegweisung",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09165312,
+          52.37143405,
+          13.74141494,
+          52.65999964
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wegweisung default style",
+      "description": "Default visualization for Wegweisung, drawn in #33a02c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1200,
+      "file:checksum": "1220f473b59cc0d01df635ca02ba5a2c70f84173c1bfd191dfb7727d0e04670f12c5"
+    },
+    "wegweisung_wegweiser": {
+      "href": "./wegweisung_wegweiser.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 238007,
+      "file:checksum": "1220b4bbf5a7b5152cf23673f5646c98f4f23ec2d9ad4dbe24f64e2c814375e7794f",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./wegweisung_wegweiser.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wegweisung (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 402998,
+      "file:checksum": "122064e89f890a624846299160ac6d2241d0618505a8ce2fb7e3081499df736f71f1"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wegweisung categorical style",
+      "description": "Categorical visualization coloring Wegweisung by fundament, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2084,
+      "file:checksum": "12200ad2ea09117b4b0ff5b2d0017e949003e51e7101c6a65fd5d5769c0e9a65b530"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wegweisung labeled style",
+      "description": "Default visualization for Wegweisung with fundament shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1634,
+      "file:checksum": "1220da79997e3ee74ccb4260a8dd1e3bb445802ade91b4a85a4390e08e60634c7e21"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wegweisung graduated style",
+      "description": "Graduated visualization coloring Wegweisung by sdatenid, ramped from 2.0 to 10019.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1966,
+      "file:checksum": "1220c2c0ff18b0970ae12081650d274469749cd65ec38e29bdcce3a16e253add781d"
+    },
+    "thumbnail": {
+      "href": "./wegweisung_wegweiser.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Wegweisung",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 135612,
+      "file:checksum": "12205216a47259f99228d57ec308d3711cc93c7a5fc82ecb7f6f207fbd8c75b43952"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Geodaten",
+    "Karten",
+    "Sachdaten",
+    "Schilder",
+    "Wegschilder",
+    "Wegweiser",
+    "Wegweisung"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Wegweisung, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "sabine.kroeger@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "vesi/muut-vesialueet",
+  "stac_version": "1.1.0",
+  "description": "Aineisto sis\u00e4lt\u00e4\u00e4 Helsingin maa- ja vesialueet aluemuotoisina paikkatietokohteina. Maa-alueista on poistettu sillat ja pienet laiturit merialueelta ja lis\u00e4tty ne vesimaskiin. Isot laiturit on luokiteltu maa-alueeksi: laituri lasketaan maa-alueeksi, kun sen ymp\u00e4rill\u00e4 kulkee tukimuuri. Silloin my\u00f6s rantaviiva kiert\u00e4\u00e4 laiturin ymp\u00e4ri. Pienempi\u00e4 vesist\u00f6kohteita ei ole toistaiseksi k\u00e4sitelty, ja niiden osalta vesimaski ei ole yhtenev\u00e4inen.\r\n\r\nAineisto muodostuu automaattisesti kiinteist\u00f6- ja kantakartan aineistoista. Aineisto on kokeellinen, joten pienet muodostusvirheet ovat mahdollisia.\r\n\r\nTarjolla on my\u00f6s virallisilla aluejaoilla (kaupunginosat, piirijako pl. pienalueet) leikattu vastaava aineisto, jota voi k\u00e4ytt\u00e4\u00e4 mm. tilastojen esitt\u00e4miseen. Leikkauksessa on k\u00e4ytetty yleistetty\u00e4 maa-aineistoa (pienet saaret ja vedet on poistettu aineistosta). Lis\u00e4ksi rajapintapalvelussa on saatavissa tasot pelkist\u00e4 maa-alueista per aluejako (kannattaa k\u00e4ytt\u00e4\u00e4 maa- ja vesialueperusaineiston yksinkertaistetun vesimaskin kanssa).\r\n\r\nAineisto jakaantuu seuraaviin tasoihin:\r\n\r\n- manneralue (sis. kaikki vesialueet)\r\n- maa-alue yleistetty (vain suurimmat vesialueet ja alle 500m^2 saaret poistettu)\r\n- merialue\r\n- saaret\r\n- muu_vesisto\r\n- vesialue yleistetty (merialue ja suurimmat muut vesialueet; sis\u00e4lt\u00e4\u00e4 saaret, jotka yli 500m^2)\nRuotsiksi: Land- och vattenomr\u00e5det av Helsingfors. Englanniksi: Land and water areas of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_maavesi_muut_vesialueet.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet)",
+      "pmtiles:layers": [
+        "avoindata_maavesi_muut_vesialueet"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-maa-ja-vesialueet",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: maavesi_muut_vesialueet",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1643,
+  "table:row_count": 1643,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "tietopalvelu_id",
+      "type": "int64",
+      "description": "Aineiston id. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tyyppi",
+      "type": "string",
+      "description": "Perusaineistossa: alueen tyyppi, esim. merialue, manneralue. Aluejaoilla: maa-alue tai vesialue."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Datan omistaja."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.83281202,
+          60.09782891,
+          25.24710429,
+          60.29575592
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet) default style",
+      "description": "Default visualization for Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet), drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1358,
+      "file:checksum": "1220352917d747f958f9fbacf2968b28a6a00989cdb0ea5cba4bd611fc9295acdf05"
+    },
+    "avoindata_maavesi_muut_vesialueet": {
+      "href": "./avoindata_maavesi_muut_vesialueet.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1269739,
+      "file:checksum": "1220a4d69f3fefc07d01231420d74db741afdb3ed001985d8c5477606d22898b62d7",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_maavesi_muut_vesialueet.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 447481,
+      "file:checksum": "12202adf322e280218dd57ea79ef0a6ec8fc4b860f7667144d4ce1cf6dc1c39ff125"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet) labeled style",
+      "description": "Default visualization for Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1822,
+      "file:checksum": "122036a1fe1b0164ba6fec662a8d7b45f06c5cf5dc6bc852984b34d27a009df1c24e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet) graduated style",
+      "description": "Graduated visualization coloring Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet) by tietopalvelu_id, ramped from 1.0 to 1643.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2146,
+      "file:checksum": "122033d51cfec31f4727da54ce37c4e9e7e9f4ceb31476ce0ae5b22cfc79208cbdc5"
+    },
+    "thumbnail": {
+      "href": "./avoindata_maavesi_muut_vesialueet.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin maa- ja vesialueet \u2013 muut vesialueet (Maavesi_muut_vesialueet)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 120157,
+      "file:checksum": "1220dac734662af782673b070b2cbe55d6ce17592b6fb72d402435927cd54761b8d5"
+    }
+  },
+  "keywords": [
+    "aluesuunnittelu",
+    "maanpeite",
+    "kartat",
+    "alueet",
+    "maa-alueet",
+    "vesialueet",
+    "vesist\u00f6",
+    "saaret",
+    "aluejaot",
+    "pinta-ala",
+    "Maavesi_muut_vesialueet",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin maa- ja vesialueet\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-maa-ja-vesialueet",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

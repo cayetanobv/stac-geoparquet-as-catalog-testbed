@@ -1,0 +1,772 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "utm-06s",
+  "title": "ForTy 2020, UTM zone 6 south (EPSG:32706)",
+  "description": "Nature Trace Forest Typology 2020 (v1) tiles in UTM zone 6 south (EPSG:32706): per-class probabilities of five forest types at 10 m, one COG per tile, mirrored unchanged from Figshare+ by Epoch. See [AGENTS.md](AGENTS.md) for the encoding and quirks.",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "forest typology",
+    "primary forest",
+    "planted forest",
+    "2020"
+  ],
+  "providers": [
+    {
+      "name": "Nature Trace",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Epoch",
+      "description": "Hosts this mirror on Source Cooperative.",
+      "roles": [
+        "host"
+      ],
+      "url": "https://epoch.blue"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -150.076611,
+          -27.98633,
+          -143.95211,
+          -14.028882
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "updated": "2026-06-30T12:55:15Z",
+  "version": "v1",
+  "sci:doi": "10.25452/figshare.plus.32288616.v1",
+  "sci:publications": [
+    {
+      "doi": "10.31223/X58R27",
+      "citation": "Neumann, M., et al. (2026). Global forest typology at 10-meter resolution for forest and land-use monitoring. EarthArXiv preprint."
+    }
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Per-class probabilities, 5 x uint8 (COG)",
+      "roles": [
+        "data"
+      ],
+      "bands": [
+        {
+          "name": "primary_forest",
+          "description": "Probability of class 0 \"Primary forest\", 0 to 250. Multiply by 1/250 for a probability in [0, 1].",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 10,
+          "raster:scale": 0.004
+        },
+        {
+          "name": "naturally_regenerating_forest",
+          "description": "Probability of class 1 \"Naturally regenerating forest\", 0 to 250. Multiply by 1/250 for a probability in [0, 1].",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 10,
+          "raster:scale": 0.004
+        },
+        {
+          "name": "planted_forest",
+          "description": "Probability of class 2 \"Planted forest\", 0 to 250. Multiply by 1/250 for a probability in [0, 1].",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 10,
+          "raster:scale": 0.004
+        },
+        {
+          "name": "plantation_forest",
+          "description": "Probability of class 3 \"Plantation forest\", 0 to 250. Multiply by 1/250 for a probability in [0, 1].",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 10,
+          "raster:scale": 0.004
+        },
+        {
+          "name": "tree_crops_and_agroforestry",
+          "description": "Probability of class 4 \"Tree crops and agroforestry\", 0 to 250. Multiply by 1/250 for a probability in [0, 1].",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 10,
+          "raster:scale": 0.004
+        }
+      ],
+      "classification:classes": [
+        {
+          "value": 0,
+          "name": "primary_forest",
+          "title": "Primary forest",
+          "color_hint": "1B7837"
+        },
+        {
+          "value": 1,
+          "name": "naturally_regenerating_forest",
+          "title": "Naturally regenerating forest",
+          "color_hint": "7FBF7B"
+        },
+        {
+          "value": 2,
+          "name": "planted_forest",
+          "title": "Planted forest",
+          "color_hint": "1D91C0"
+        },
+        {
+          "value": 3,
+          "name": "plantation_forest",
+          "title": "Plantation forest",
+          "color_hint": "E65FA9"
+        },
+        {
+          "value": 4,
+          "name": "tree_crops_and_agroforestry",
+          "title": "Tree crops and agroforestry",
+          "color_hint": "E6AB02"
+        },
+        {
+          "value": 5,
+          "name": "other_land",
+          "title": "Other land",
+          "description": "Implicit: 250 minus the sum of the five bands; no band in the file.",
+          "color_hint": "FDE278"
+        }
+      ]
+    }
+  },
+  "renders": {
+    "primary-forest": {
+      "title": "Probability: primary forest",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap_name": "greens",
+      "rescale": [
+        [
+          0,
+          250
+        ]
+      ],
+      "nodata": 255
+    },
+    "naturally-regenerating-forest": {
+      "title": "Probability: naturally regenerating forest",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        2
+      ],
+      "colormap_name": "ylgn",
+      "rescale": [
+        [
+          0,
+          250
+        ]
+      ],
+      "nodata": 255
+    },
+    "planted-forest": {
+      "title": "Probability: planted forest",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        3
+      ],
+      "colormap_name": "blues",
+      "rescale": [
+        [
+          0,
+          250
+        ]
+      ],
+      "nodata": 255
+    },
+    "plantation-forest": {
+      "title": "Probability: plantation forest",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        4
+      ],
+      "colormap_name": "rdpu",
+      "rescale": [
+        [
+          0,
+          250
+        ]
+      ],
+      "nodata": 255
+    },
+    "tree-crops-and-agroforestry": {
+      "title": "Probability: tree crops and agroforestry",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        5
+      ],
+      "colormap_name": "oranges",
+      "rescale": [
+        [
+          0,
+          250
+        ]
+      ],
+      "nodata": 255
+    }
+  },
+  "assets": {
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Dominant class, ForTy palette",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 3737,
+      "file:checksum": "12200dc2f382e99838e4a5d5007c69297ec443ce2f05e237944a403c35ff35bc8c67"
+    },
+    "geoparquet-items": {
+      "href": "./items.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "STAC items as GeoParquet",
+      "roles": [
+        "collection-mirror"
+      ],
+      "file:size": 26962,
+      "file:checksum": "1220ce811a57e02ceadf0da17e9e81037b72e3394cb5c58515ccb31255c653535dc4"
+    },
+    "footprints": {
+      "href": "./footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ForTy 2020, UTM zone 6 south (EPSG:32706) item footprints (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 26095,
+      "file:checksum": "1220e374ab55c6cca1e84bce7ec584ee96f71d2fab6565db69c2403f556ea1020611"
+    },
+    "style-default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Item footprints",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 675,
+      "file:checksum": "1220f661a44bb8da30dbcca64507378638418bc007291c6a0873781de6f554ad13d6"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "https://doi.org/10.25452/figshare.plus.32288616.v1",
+      "type": "text/html",
+      "title": "Figshare+ article 32288616 (v1)"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.25452/figshare.plus.32288616.v1",
+      "type": "text/html",
+      "title": "Figshare+ version DOI"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6J_20_11_18/raster_6J_20_11_18.json",
+      "type": "application/geo+json",
+      "title": "raster_6J_20_11_18"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6J_20_10_18/raster_6J_20_10_18.json",
+      "type": "application/geo+json",
+      "title": "raster_6J_20_10_18"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_0_7/raster_6K_20_0_7.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_0_7"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_0_8/raster_6K_20_0_8.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_0_8"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_1_2/raster_6K_20_1_2.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_1_2"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_16_0/raster_6K_20_16_0.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_16_0"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_17_1/raster_6K_20_17_1.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_17_1"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_16_2/raster_6K_20_16_2.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_16_2"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_16_1/raster_6K_20_16_1.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_16_1"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_15_2/raster_6K_20_15_2.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_15_2"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_15_1/raster_6K_20_15_1.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_15_1"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_15_0/raster_6K_20_15_0.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_15_0"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_15_6/raster_6K_20_15_6.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_15_6"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_15_3/raster_6K_20_15_3.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_15_3"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_10_16/raster_6K_20_10_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_10_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_16_18/raster_6K_20_16_18.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_16_18"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_17_19/raster_6K_20_17_19.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_17_19"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_17_18/raster_6K_20_17_18.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_17_18"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_17_17/raster_6K_20_17_17.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_17_17"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_17_16/raster_6K_20_17_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_17_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_17_15/raster_6K_20_17_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_17_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_16_15/raster_6K_20_16_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_16_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_16_14/raster_6K_20_16_14.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_16_14"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_18_14/raster_6K_20_18_14.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_18_14"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_18_16/raster_6K_20_18_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_18_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_18_15/raster_6K_20_18_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_18_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_18_18/raster_6K_20_18_18.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_18_18"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_18_19/raster_6K_20_18_19.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_18_19"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_17/raster_6K_20_19_17.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_17"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_17/raster_6L_20_0_17.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_17"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_16/raster_6L_20_0_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_16/raster_6K_20_19_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_15/raster_6K_20_19_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_15/raster_6L_20_0_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_13/raster_6L_20_0_13.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_13"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_14/raster_6K_20_19_14.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_14"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_13/raster_6K_20_19_13.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_13"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_12/raster_6K_20_19_12.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_12"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_12/raster_6L_20_0_12.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_12"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_12/raster_6L_20_1_12.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_12"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_14/raster_6L_20_1_14.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_14"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_15/raster_6L_20_1_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_3_12/raster_6L_20_3_12.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_3_12"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_3_13/raster_6L_20_3_13.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_3_13"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_4_13/raster_6L_20_4_13.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_4_13"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_4_12/raster_6L_20_4_12.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_4_12"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_4_16/raster_6L_20_4_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_4_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_3_15/raster_6L_20_3_15.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_3_15"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_3_16/raster_6L_20_3_16.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_3_16"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_17/raster_6L_20_2_17.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_17"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_18/raster_6L_20_2_18.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_18"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_4_11/raster_6L_20_4_11.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_4_11"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_3_11/raster_6L_20_3_11.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_3_11"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_3_4/raster_6L_20_3_4.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_3_4"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_7/raster_6L_20_2_7.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_7"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_6/raster_6L_20_2_6.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_6"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_4/raster_6L_20_2_4.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_4"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_5/raster_6L_20_2_5.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_5"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_7/raster_6L_20_1_7.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_7"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_8/raster_6L_20_1_8.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_8"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_9/raster_6L_20_1_9.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_9"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_8/raster_6L_20_2_8.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_8"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_9/raster_6L_20_2_9.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_9"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_10/raster_6L_20_2_10.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_10"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_2_11/raster_6L_20_2_11.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_2_11"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_10/raster_6L_20_1_10.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_10"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_1_11/raster_6L_20_1_11.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_1_11"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_10/raster_6L_20_0_10.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_10"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_11/raster_6L_20_0_11.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_11"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6K_20_19_11/raster_6K_20_19_11.json",
+      "type": "application/geo+json",
+      "title": "raster_6K_20_19_11"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_5/raster_6L_20_0_5.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_5"
+    },
+    {
+      "rel": "item",
+      "href": "./raster_6L_20_0_6/raster_6L_20_0_6.json",
+      "type": "application/geo+json",
+      "title": "raster_6L_20_0_6"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Item footprints (vector tiles)",
+      "pmtiles:layers": [
+        "footprints"
+      ]
+    }
+  ]
+}

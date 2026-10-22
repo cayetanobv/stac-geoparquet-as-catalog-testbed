@@ -1,0 +1,255 @@
+{
+  "type": "Collection",
+  "id": "parken/parkpickerl-geltungsbereiche",
+  "stac_version": "1.1.0",
+  "description": "Der Geltungsbereich gibt an, wo das Parkpickerl beziehungsweise die Parkkarte gilt. Der Geltungsbereich ist nicht auf den eigenen Bezirk beschr\u00e4nkt, sondern reicht einige Stra\u00dfenz\u00fcge in einen oder mehrere Nachbarbezirke hinein (\u00dcberlappungszonen). Zum Beispiel gilt das Parkpickerl bzw. die Parkkarte f\u00fcr den 16. Bezirk auch in genau definierten Bezirksteilen im 14., 15. und 17. Bezirk.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_parkengeltungogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkpickerl Geltungsbereiche Wien",
+      "pmtiles:layers": [
+        "ogdwien_parkengeltungogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/71a6ca86-228a-4b57-b1bc-c3b887dd009e",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: parkengeltungogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 232,
+  "table:row_count": 232,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirksnummer."
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "string",
+      "description": "Angabe, f\u00fcr welchen Bezirk beziehungsweise welche Bezirke das Parkpickerl gilt."
+    },
+    {
+      "name": "ANMERKUNG",
+      "type": "string",
+      "description": "Anmerkung, zum Beispiel Erweiterung 2022; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "WEBLINK_1",
+      "type": "string",
+      "description": "Hyperlink."
+    },
+    {
+      "name": "TEXT_RECHT",
+      "type": "string",
+      "description": "Rechtshinweis des Publizierers; nicht in der Feldliste beschrieben."
+    },
+    {
+      "name": "PRB_ID",
+      "type": "int64",
+      "description": "Eindeutiger Schl\u00fcssel (Bezug) zum Datensatz \u201eKurzparkzonen\u201c."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Parkpickerl Geltungsbereiche Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.19993908336571,
+          48.12102528236146,
+          16.55274500546429,
+          48.30542894579668
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Geltungsbereiche Wien default style",
+      "description": "Default visualization for Parkpickerl Geltungsbereiche Wien, drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1251,
+      "file:checksum": "122020b2488fe426bca3d80afe225b027c0ebfa7c60a24e9cbf58eb2133964182a52"
+    },
+    "ogdwien_parkengeltungogd": {
+      "href": "./ogdwien_parkengeltungogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4300466,
+      "file:checksum": "1220eb32f712cdbef01840f6350ccfd509bb87b2910068e8721ed4b14b9260a90db7",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_parkengeltungogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkpickerl Geltungsbereiche Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 553958,
+      "file:checksum": "1220ecd2ad8d9183c7ad0ab1d7ed1503518c68f5c7a44daa5e988481485e233e39dd"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Geltungsbereiche Wien categorical style",
+      "description": "Categorical visualization coloring Parkpickerl Geltungsbereiche Wien by SE_ANNO_CAD_DATA, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2160,
+      "file:checksum": "1220426af996ca19d80a8f2b607f14c00adf5bc263b24fcd62d34f34867e67065502"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Geltungsbereiche Wien labeled style",
+      "description": "Default visualization for Parkpickerl Geltungsbereiche Wien with SE_ANNO_CAD_DATA shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1700,
+      "file:checksum": "122005531c738fd22bb6b1f40cbba561e9cedd756a69fa182b78056dc53e76d9ecab"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Geltungsbereiche Wien graduated style",
+      "description": "Graduated visualization coloring Parkpickerl Geltungsbereiche Wien by PRB_ID, ramped from 1.0 to 3292.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2006,
+      "file:checksum": "1220c229bd1fe2768dde097a4661079f8f80c8914dd7c50c845044c559798f5d3e24"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_parkengeltungogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parkpickerl Geltungsbereiche Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 130701,
+      "file:checksum": "1220f372bd7898d76071faa9567df4b93927140e4084ac24b3aef21188b1d3154596"
+    }
+  },
+  "keywords": [
+    "Parkpickerl",
+    "ViennaGIS",
+    "Parken",
+    "Geltungsbereich",
+    "Kurzparkzonen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Parkpickerl Geltungsbereiche Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

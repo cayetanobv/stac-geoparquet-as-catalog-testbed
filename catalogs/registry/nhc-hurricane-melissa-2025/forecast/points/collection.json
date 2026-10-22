@@ -1,0 +1,351 @@
+{
+  "type": "Collection",
+  "id": "forecast/points",
+  "stac_version": "1.1.0",
+  "description": "NHC official forecast centre positions for Hurricane Melissa (AL132025) at TAU 0, 12, 24, 36, 48, 60, 72, 96 and 120 h, with forecast maximum sustained wind (MAXWIND, kt), gusts, Saffir-Simpson category, development label and valid time, all 80 advisories stacked (718 points). Derived columns advisory_number, advisory_seq, issue_time, synoptic_time and valid_time (UTC).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./forecast-points.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast points with intensity (all 80 advisories)",
+      "pmtiles:layers": [
+        "forecast-points"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2025&name=Hurricane%20MELISSA",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 718,
+  "table:row_count": 718,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "advisory_number",
+      "type": "string",
+      "description": "Derived (CARTO): zero-padded advisory id, e.g. '003A'; join key across the forecast/* Collections."
+    },
+    {
+      "name": "advisory_seq",
+      "type": "int32",
+      "description": "Derived (CARTO): 1-based issue order of the advisory (1..80)."
+    },
+    {
+      "name": "ADVDATE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The date in which an advisory is issued'. Local-time text; parsed into issue_time."
+    },
+    {
+      "name": "ADVISNUM",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The sequential numbering of forecast advisories for each tropical cyclone'. Not zero-padded; use advisory_number."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The ocean where the tropical cyclone is located'; AL = Atlantic."
+    },
+    {
+      "name": "DATELBL",
+      "type": "string",
+      "description": "Short local-time label for the forecast point (e.g. '5:00 AM Fri'); undocumented in NHC metadata, meaning inferred from values. Use valid_time."
+    },
+    {
+      "name": "DVLBL",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Development Label ... according to the forecast intensity': M Major Hurricane (> 111 mph, 223 rows), H Hurricane (74-111 mph, 252), S Tropical Storm (39-73 mph, 241), D Tropical Depression (2)."
+    },
+    {
+      "name": "FCSTPRD",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): forecast period in hours; always 120."
+    },
+    {
+      "name": "FLDATELBL",
+      "type": "string",
+      "description": "Full local-time label for the forecast point (e.g. '2025-10-31 2:00 AM Fri AST'); undocumented in NHC metadata. Use valid_time."
+    },
+    {
+      "name": "GUST",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): gust wind speed in knots at the forecast point (40 to 190 kt here)."
+    },
+    {
+      "name": "LAT",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): latitude of the centre of the tropical cyclone, decimal degrees (0.1 deg precision); duplicates the geometry."
+    },
+    {
+      "name": "LON",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): longitude of the centre of the tropical cyclone, decimal degrees, negative west; duplicates the geometry."
+    },
+    {
+      "name": "MAXWIND",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'the highest 1-minute average wind (at an elevation of 10 meters ...) associated with a tropical cyclone at a particular point in time (knots)'. Forecast intensity at the point, 30 to 160 kt here."
+    },
+    {
+      "name": "MSLP",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'the estimated sea level pressure at the center of a tropical cyclone (the lowest pressure in the system in Millibars)'. 9999 = not forecast (every TAU > 0 row); a real value (892 to 1003 mb) only at TAU 0."
+    },
+    {
+      "name": "SSNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The Saffir-Simpson Hurricane Wind Scale is a 1 to 5 categorization based on the hurricane's intensity at the indicated time' (0 = below hurricane strength). Rows: 0 = 243, 1 = 131, 2 = 121, 3 = 61, 4 = 116, 5 = 46."
+    },
+    {
+      "name": "STORMNAME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): storm name with prefix varying by type ('Tropical Storm Melissa', 'Hurricane Melissa', 'Post-Tropical Cyclone Melissa')."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13 = Melissa, AL132025)."
+    },
+    {
+      "name": "STORMSRC",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Indicates the type of tropical cyclone: Extratropical or Tropical'. Values 'Tropical Cyclone' (595 rows), 'Post-Tropical Cyclone' (123)."
+    },
+    {
+      "name": "STORMTYPE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The category of the tropical cyclone' at the forecast hour. TS 141 rows, HU 231, MH 223, STS 100, STD 2, PTC 21; MH, STS, STD and PTC are not in NHC's code list, meaning taken from TCDVLP."
+    },
+    {
+      "name": "TCDVLP",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Tropical Cyclone Development Label ... according to both the initial and the forecast intensity'. Text: Tropical Storm, Hurricane, Major Hurricane, Subtropical Storm, Subtropical Depression, Post-tropical Cyclone Remnants Of."
+    },
+    {
+      "name": "TAU",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Number of hours from the forecast valid time for which a forecast is made' (0, 12, 24, 36, 48, 60, 72, 96, 120). Counted from synoptic_time; in intermediate ('A') advisories the TAU 0 row is 3 h after synoptic_time."
+    },
+    {
+      "name": "TCDIR",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'the best estimate of the direction that the center of a tropical cyclone is moving towards (degrees)'. 9999 = not available (every TAU > 0 row)."
+    },
+    {
+      "name": "TCSPD",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'the best estimate of the speed in which the center of a tropical cyclone is moving (knots)'. 9999 = not available (every TAU > 0 row)."
+    },
+    {
+      "name": "TIMEZONE",
+      "type": "string",
+      "description": "NHC (undocumented field): time zone abbreviation of the labels and ADVDATE (EDT or AST)."
+    },
+    {
+      "name": "VALIDTIME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The time in which a forecast or warning is in effect', as 'dd/hhmm' UTC without month. Use valid_time."
+    },
+    {
+      "name": "issue_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): advisory issue time in UTC parsed from ADVDATE (EDT and AST = UTC-4)."
+    },
+    {
+      "name": "valid_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): UTC time the forecast point is valid for, from VALIDTIME resolved to the month nearest issue_time; 2025-10-21 12:00 to 2025-11-05 00:00 UTC. Equals synoptic_time + TAU h for TAU > 0."
+    },
+    {
+      "name": "synoptic_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): the 00/06/12/18 UTC forecast-cycle time the TAU hours count from (issue_time minus 3 h for regular advisories, minus 6 h for intermediate ones); also the cycle_time of the matching wind-speed-probabilities Collection."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Forecast centre position (Point, 0.1 deg) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); coordinates as shipped by NHC, not transformed."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Forecast points with intensity (all 80 advisories)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.8,
+          14.2,
+          -11.7,
+          62.6
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T12:00:00Z",
+          "2025-11-05T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast points with intensity (all 80 advisories) default style",
+      "description": "Default visualization for Forecast points with intensity (all 80 advisories), drawn in #2e7d32.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1205,
+      "file:checksum": "1220a1f251b0cc62318ab68e863983e6826805dfd90e7f5fc30f5ed8d6cf1e26d478"
+    },
+    "forecast-points": {
+      "href": "./forecast-points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 30372,
+      "file:checksum": "12203a1d1a532f346d889d3df9904ec490fe4e59fbaec5bb3e019cbd634ea1cf0c0d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./forecast-points.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast points with intensity (all 80 advisories) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1190284,
+      "file:checksum": "1220095fa3ffc2486396ec128cf39fbb2afa2beb1a10bb7c20e6c05d69f6c1fb5d50"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast points with intensity (all 80 advisories) labeled style",
+      "description": "Default visualization for Forecast points with intensity (all 80 advisories) with STORMNAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1629,
+      "file:checksum": "1220e1ea28c5082f68074b26996ee641ea999d3dec2a072841b445620da2001b5c7a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast points with intensity (all 80 advisories) graduated style",
+      "description": "Graduated visualization coloring Forecast points with intensity (all 80 advisories) by TCSPD, ramped from 0.0 to 9999.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1956,
+      "file:checksum": "1220ea3145b0a56200c37511865d26b9fb19271a39fa1292c0fefb8ea904b4377048"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/forecast-points/forecast-points.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: forecast-points",
+      "pipeline:upstream": true,
+      "file:size": 29676,
+      "file:checksum": "1220f5aaedf3e8e8cdf8abced91fd2dd1df1856e6249db372738d6f36328f4f6a4f7"
+    },
+    "thumbnail": {
+      "href": "./forecast-points.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Forecast points with intensity (all 80 advisories)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 46971,
+      "file:checksum": "12200540ae7341e21aae9cb6dd2882604a41e197499f9f6ee11ec3f03e183e9cbc13"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

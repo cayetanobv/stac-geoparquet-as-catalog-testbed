@@ -1,0 +1,283 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "tract",
+  "title": "Census tracts, 2026",
+  "description": "The 'Census Tract' layer of the 2026 TIGER/Line Sub-State Geography National GeoPackage: 85,529 rows, of which 85,529 areas in 56 states and territories. Columns and values unchanged; 2D geometry in NAD83 (EPSG:4269) with a bbox covering, Hilbert-sorted, as one GeoParquet 2.0 file read in place over HTTPS or the anonymous S3 endpoint s3.geomermaids.com, and a PMTiles archive for web maps. The Census Bureau makes no warranty on the accuracy of TIGER/Line, and its boundaries are for statistical data collection and tabulation only: not a determination of jurisdictional authority, ownership or entitlement, and not legal land descriptions. Credit: U.S. Census Bureau, TIGER/Line 2026.",
+  "keywords": [
+    "TIGER/Line",
+    "US Census Bureau",
+    "boundaries",
+    "counties",
+    "places",
+    "census tracts",
+    "block groups",
+    "tract",
+    "GeoParquet",
+    "PMTiles"
+  ],
+  "license": "other",
+  "attribution": "U.S. Census Bureau, TIGER/Line 2026",
+  "version": "2026",
+  "updated": "2026-10-22T13:57:21Z",
+  "providers": [
+    {
+      "name": "U.S. Census Bureau, Geography Division",
+      "description": "Produces TIGER/Line from its MAF/TIGER system and publishes it as national GeoPackages. A US government work, not subject to copyright in the United States.",
+      "url": "https://www.census.gov/geographies/mapping-files.html",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted the GeoPackage layers to GeoParquet, tiled them, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          144.5632,
+          -14.601828,
+          -64.5126,
+          71.439857
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 85529,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "STATEFP",
+      "type": "VARCHAR",
+      "description": "State FIPS code."
+    },
+    {
+      "name": "COUNTYFP",
+      "type": "VARCHAR",
+      "description": "County FIPS code."
+    },
+    {
+      "name": "TRACTCE",
+      "type": "VARCHAR",
+      "description": "Census tract code."
+    },
+    {
+      "name": "GEOID",
+      "type": "VARCHAR",
+      "description": "Area identifier: the codes of the areas it nests in, then its own code (e.g. state + county + tract for a tract)."
+    },
+    {
+      "name": "GEOIDFQ",
+      "type": "VARCHAR",
+      "description": "Fully qualified GEOID, used to join data tables from data.census.gov."
+    },
+    {
+      "name": "NAME",
+      "type": "VARCHAR",
+      "description": "Name."
+    },
+    {
+      "name": "NAMELSAD",
+      "type": "VARCHAR",
+      "description": "Name and translated legal/statistical area description."
+    },
+    {
+      "name": "MTFCC",
+      "type": "VARCHAR",
+      "description": "MAF/TIGER feature class code, the kind of area (e.g. G5200 congressional district, G4020 county, G5020 census tract)."
+    },
+    {
+      "name": "FUNCSTAT",
+      "type": "VARCHAR",
+      "description": "Functional status."
+    },
+    {
+      "name": "ALAND",
+      "type": "DOUBLE",
+      "description": "Land area, square metres."
+    },
+    {
+      "name": "AWATER",
+      "type": "DOUBLE",
+      "description": "Water area, square metres."
+    },
+    {
+      "name": "INTPTLAT",
+      "type": "VARCHAR",
+      "description": "Latitude of the internal point (text, as published)."
+    },
+    {
+      "name": "INTPTLON",
+      "type": "VARCHAR",
+      "description": "Longitude of the internal point (text, as published)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Area outline as native Parquet GEOMETRY (WKB), NAD83 (EPSG:4269), longitude and latitude, 2D."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/tract.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Census tracts, 2026",
+      "description": "85,529 rows in 164 row groups of at most 4 MiB of geometry.",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:4269",
+      "file:size": 199080299,
+      "file:checksum": "1220c18c6df07eb260922b35b07ed51f0c6b005b029d54cb6025bbd28543902ca3c2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/substategeo/tract.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/tract.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Census tracts, vector tiles",
+      "description": "PMTiles, layer `tract`, zoom 7 to 12, 327,119 tiles; properties GEOID, NAMELSAD, ALAND, color_index (color_index: a colour per area such that neighbours differ). Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 176303429,
+      "file:checksum": "1220899a3eee1ce2de30836c734375d19505d9153e92088250a9b104665d45e68140",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/substategeo/tract.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Areas, coloured so neighbours differ",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1711,
+      "file:checksum": "1220566d890542d1078ebb690a176d97075c9923d8bf445521d60c70dcafadc1f890"
+    },
+    "style-outlines": {
+      "href": "./styles/outlines.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Outlines only, to lay over other data",
+      "roles": [
+        "style"
+      ],
+      "file:size": 677,
+      "file:checksum": "122008228c171bf5d9cc43d5b6dcf0d9ae4f3435281dfef7181a78a626fcf459400d"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Census tracts, overview map",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 252556,
+      "file:checksum": "122097a3f545d57909dce534206a956978fa81caee8d71cba1142d8993874f83d0d7"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Census tracts: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Census tracts: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.usa.gov/government-copyright",
+      "type": "text/html",
+      "title": "Works of the US federal government are not subject to copyright in the United States (17 U.S.C. 105)"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-geopackage-file.html",
+      "type": "text/html",
+      "title": "TIGER/Line GeoPackages on census.gov, where they are published"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2026/2026_TIGERLINE_GPKG_Record_Layouts.pdf",
+      "type": "application/pdf",
+      "title": "2026 TIGER/Line GeoPackage record layouts"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/",
+      "type": "text/html",
+      "title": "Browse the files"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://census.geomermaids.com/",
+      "type": "text/html",
+      "title": "census.geomermaids.com"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/tract.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Census tracts, vector tiles",
+      "pmtiles:layers": [
+        "tract"
+      ]
+    }
+  ]
+}

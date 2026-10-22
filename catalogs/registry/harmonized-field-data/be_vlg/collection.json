@@ -1,0 +1,408 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "be_vlg",
+  "title": "Field boundaries for Flanders, Belgium",
+  "description": "Since 2020, the Department of Agriculture and Fisheries has been publishing a more extensive set of data related to agricultural use plots (from the 2008 campaign).\nFrom 2023, the downloadable dataset of agricultural use plots will also include the specialization given by the company (= company typology) and that is given to the plots of the company. Based on the typology, the companies are divided into 4 major specializations: arable farming, horticulture, livestock farming and mixed farms. The specialization of each company is calculated annually according to a European method and is based on the standard output of the various agricultural productions on the company. It is therefore an economic specialization and not a reflection of all agricultural production on the company.\n\nThis collection holds 19 editions (2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/be_vlg/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:31370). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/be_vlg/AGENTS.md).\n\nThe 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016 and 2017 editions, which the source above does not offer, come from Field boundaries for Flanders, Belgium — EuroCrops V2 (Joint Research Centre, European Commission, converter `ec_be_vlg`), under CC-BY-4.0; attribution: European Commission, Joint Research Centre — EuroCropsV2; their items carry those terms.\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Belgium",
+    "Flanders",
+    "IACS",
+    "Landbouwgebruikspercelen",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "other",
+  "providers": [
+    {
+      "name": "Agentschap Landbouw & Zeevisserij (Government)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://landbouwcijfers.vlaanderen.be/open-geodata-landbouwgebruikspercelen"
+    },
+    {
+      "name": "Joint Research Centre, European Commission",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.jrc.ec.europa.eu/dataset/b9fb9e67-78a9-4327-9d59-39a928d812d3"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.5310279130730597,
+          50.67421014655563,
+          5.932738352491098,
+          51.5049283624672
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2008-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3035",
+      "EPSG:31370"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "block_id",
+      "type": "string",
+      "description": "Unique identification number for the field. (source column `REF_ID`, per the fiboa data survey)"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "typology",
+      "type": "string",
+      "description": "Business type (economic specialization) (source column `BT_OMSCH`, per the fiboa data survey)"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 597088,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 19,
+  "partition:glob": "s3://ftw/harmonized-field-data/be_vlg/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/be_vlg.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Belgium, Flanders — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/be_vlg-2026.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 99447811,
+      "file:checksum": "122034fe0b790de292a3e017560166a8af7d7f38afecefa9a25b586d14d63179ba51",
+      "proj:code": "EPSG:31370"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2309,
+      "file:checksum": "1220a62051684115211e9db0e119dc23f00bf73fd9d9e612cd9a65aad264de2e6ae2"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.1, 0.5, 1, 2 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1234,
+      "file:checksum": "12200408cc59d1f280be8dd689b25cfd774230bc3281efc92267d317f732af52b47b"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 749,
+      "file:checksum": "122086111fb6ce1c058196ca573b3bd42c1d0aabb7eb612ee7b041e2944d5f5b4077"
+    },
+    "visual": {
+      "href": "./year=2026/be_vlg-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Belgium, Flanders — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 70902489,
+      "file:checksum": "122021e371b8c15b5f7867344ef3aa296dc878ea636915a7ed89ce55232a73b60634"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 385954,
+      "file:checksum": "1220fdfbdd8f50dfc412190bfe055f2b93a01c4c508a0d02586f6e58d6215990f2d0"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "href": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+      "title": "Licentie modellicentie-gratis-hergebruik/v1.0",
+      "rel": "license",
+      "type": "text/html"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/be_vlg-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "be_vlg"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://landbouwcijfers.vlaanderen.be/open-geodata-landbouwgebruikspercelen",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/BE-VLG.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/be_vlg.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2008/be_vlg-2008.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2008"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2009/be_vlg-2009.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2009"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2010/be_vlg-2010.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2010"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2011/be_vlg-2011.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2011"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2012/be_vlg-2012.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2012"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2013/be_vlg-2013.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2013"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2014/be_vlg-2014.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2014"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2015/be_vlg-2015.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2015"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/be_vlg-2016.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/be_vlg-2017.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/be_vlg-2018.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/be_vlg-2019.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/be_vlg-2020.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/be_vlg-2021.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/be_vlg-2022.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/be_vlg-2023.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/be_vlg-2024.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2024"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/be_vlg-2025.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2025"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/be_vlg-2026.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Flanders — 2026"
+    }
+  ],
+  "updated": "2026-09-17T23:31:26Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "be_vlg": [
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml"
+    ]
+  },
+  "attribution": "Bron: Dept. LV"
+}

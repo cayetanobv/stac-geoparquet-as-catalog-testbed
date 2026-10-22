@@ -1,0 +1,298 @@
+{
+  "type": "Collection",
+  "id": "amtliche-vermessung/gebaeudeadressen",
+  "stac_version": "1.1.0",
+  "description": "Geb\u00e4udeadressen aller im kantonalen Datenmarkt gef\u00fchrten Geb\u00e4ude (siehe https://www.gesetzessammlung.bs.ch/app/de/texts_of_law/153.310).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100259.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259)",
+      "pmtiles:layers": [
+        "ods-100259"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100259/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100259/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100259",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 33310,
+  "table:row_count": 33310,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "objid",
+      "type": "string",
+      "description": "Feld \u00abObjekt-ID\u00bb des Publizierers; der Publizierer liefert keine Beschreibung dazu."
+    },
+    {
+      "name": "gebadrlauf",
+      "type": "string",
+      "description": "Geb\u00e4udeadresselaufnummer"
+    },
+    {
+      "name": "geblaufnr",
+      "type": "string",
+      "description": "Geb\u00e4udelaufnummer"
+    },
+    {
+      "name": "str_code",
+      "type": "string",
+      "description": "Strassenkennzahl"
+    },
+    {
+      "name": "str_id",
+      "type": "string",
+      "description": "Strassenidentifikator"
+    },
+    {
+      "name": "str_name",
+      "type": "string",
+      "description": "Feld \u00abStrassenname\u00bb des Publizierers; der Publizierer liefert keine Beschreibung dazu."
+    },
+    {
+      "name": "hausnr",
+      "type": "string",
+      "description": "Feld \u00abHausnummer\u00bb des Publizierers; der Publizierer liefert keine Beschreibung dazu."
+    },
+    {
+      "name": "hausnr_zus",
+      "type": "string",
+      "description": "Kleinbuchstaben (a-z) werden als Zusatz zur Hausnummer verwendet (z.B. 18a, 18b)."
+    },
+    {
+      "name": "hausnr_idx",
+      "type": "string",
+      "description": "Die zu einem Hauptgeb\u00e4ude geh\u00f6renden Nebengeb\u00e4ude werden mit der Hausnummer des Hauptgeb\u00e4udes, einem Punkt und einem fortlaufenden Index nummeriert (z.B. 19.1, 19.2)."
+    },
+    {
+      "name": "plz",
+      "type": "string",
+      "description": "Postleitzahl"
+    },
+    {
+      "name": "ort",
+      "type": "string",
+      "description": "Feld \u00abOrt\u00bb des Publizierers; der Publizierer liefert keine Beschreibung dazu."
+    },
+    {
+      "name": "eidgident",
+      "type": "int32",
+      "description": "Eidgen\u00f6ssischer Adressidentifikator, siehe auch https://www.housing-stat.ch/de/help/faq/id.html"
+    },
+    {
+      "name": "abfuhrzone",
+      "type": "string",
+      "description": "Der Adresse zugewiesene Abfuhrzonen (siehe auch Datensatz https://data.bs.ch/explore/dataset/100095)"
+    },
+    {
+      "name": "gebstatus",
+      "type": "string",
+      "description": "Bestehende (1004), abgebrochene (1007), projektierte (1001) bzw. sich im Bau befindende (1003) Geb\u00e4ude sind verschiedene Geb\u00e4udestati."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Point) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.532090979887943,
+          47.52289110943746,
+          7.687109057872126,
+          47.5996715167447
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) default style",
+      "description": "Default visualization for Geb\u00e4udeadressen und -informationen (data.bs.ch 100259), drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1179,
+      "file:checksum": "122082ffb120d9d9c2d562194ceba61096111e3b92a913426a04f1afe3fa561a1eca"
+    },
+    "ods-100259": {
+      "href": "./ods-100259.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2318731,
+      "file:checksum": "1220e3da1d366a13fed40cc2b37b287896ce3f92e68f82037ba1a1bcd233dce39e3f",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100259.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3063910,
+      "file:checksum": "1220df5704082774636765e0853c47b4991779998370ede472acc1a40eab7c5b6f07"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) categorical style",
+      "description": "Categorical visualization coloring Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) by ort, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1763,
+      "file:checksum": "1220e1adcc73a7eb67d3a53b8737734bc3111403cf61308c3cb6aa8796e7f7b9282d"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) labeled style",
+      "description": "Default visualization for Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) with str_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1592,
+      "file:checksum": "1220e2d02d504a0e06aa36a625ad99229bd37f2ae9018ca0e42fce9666c560d50e68"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) graduated style",
+      "description": "Graduated visualization coloring Geb\u00e4udeadressen und -informationen (data.bs.ch 100259) by eidgident, ramped from 1.0 to 31.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1934,
+      "file:checksum": "122032f6cb6920fc16d90c15096e63c6b5c37ecb69616a3b7e06314ed0fad77a9aa2"
+    },
+    "thumbnail": {
+      "href": "./ods-100259.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Geb\u00e4udeadressen und -informationen (data.bs.ch 100259)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 221454,
+      "file:checksum": "1220faeb7212722a82208e4d2192f99fea97863f716f2ec69571ef81389936ffc545"
+    }
+  },
+  "keywords": [
+    "Adresse",
+    "Wohnung",
+    "Geb\u00e4ude",
+    "Wohnen",
+    "Abfuhrzone",
+    "Bau- und Wohnungswesen",
+    "Geographie",
+    "Raum und Umwelt",
+    "opendata.swiss",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Grundbuch- und Vermessungsamt",
+      "description": "Datenquelle: Kanton Basel-Stadt, Grundbuch- und Vermessungsamt (Bau- und Verkehrsdepartement), \u00abGeb\u00e4udeadressen und -informationen\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100259/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

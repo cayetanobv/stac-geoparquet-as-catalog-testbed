@@ -1,0 +1,276 @@
+{
+  "type": "Collection",
+  "id": "best-track/wind-radii",
+  "stac_version": "1.1.0",
+  "description": "Best track 34-, 50- and 64-kt wind radii polygons for Hurricane Melissa (AL132025) at each 6-hourly synoptic time (103 polygons), with quadrant extents NE/SE/SW/NW in nautical miles. Derived column synoptic_time (UTC). NHC: \"The working best track wind radii will generally not exactly match the radii contained in the tropical cyclone advisories.\"",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./best-track-wind-radii.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track wind radii (6-hourly)",
+      "pmtiles:layers": [
+        "best-track-wind-radii"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/",
+      "type": "text/html"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://www.nhc.noaa.gov/gis/best_track/al132025_best_track.zip",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 103,
+  "table:row_count": 103,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "RADII",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The wind speed in knots associated with the bounding polygon': 34 (45 rows), 50 (31), 64 (27)."
+    },
+    {
+      "name": "STORMID",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'A unique character string ... BBNNYYYY' -> al132025."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): basin code, lower-case 'al' in the radii files."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13)."
+    },
+    {
+      "name": "ADVNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): advisory number; 0 on every best-track row (not tied to one advisory)."
+    },
+    {
+      "name": "SYNOPTIME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Initial time in the forecast cycle in which a tropical cyclones intensity and size are analyzed, occurring at 0000, 0600, 1200, or 1800 UTC' (YYYYMMDDHH). Parsed into synoptic_time."
+    },
+    {
+      "name": "TIMEZONE",
+      "type": "string",
+      "description": "NHC (undocumented field): time zone of SYNOPTIME; 'UTC'."
+    },
+    {
+      "name": "NE",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the NE (0 - 90 degree) quadrant.'"
+    },
+    {
+      "name": "SE",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the SE (90 - 180 degree) quadrant.'"
+    },
+    {
+      "name": "SW",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the SW (180 - 270 degree) quadrant.'"
+    },
+    {
+      "name": "NW",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the NW (270 - 360 degree) quadrant.'"
+    },
+    {
+      "name": "synoptic_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): SYNOPTIME parsed to UTC; 2025-10-21 06:00 to 2025-11-01 06:00 UTC."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Quadrant-wise wind-extent polygon (all valid) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); extent -79.99, 12.60, -40.72, 51.09."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Working best track wind radii (6-hourly)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -79.988121,
+          12.6027355,
+          -40.7225609,
+          51.0917816
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T06:00:00Z",
+          "2025-11-01T06:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track wind radii (6-hourly) default style",
+      "description": "Default visualization for Working best track wind radii (6-hourly), drawn in #1565c0.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1237,
+      "file:checksum": "1220fe4fbb9da72636cf22483811291a55f3a4a46aa848703bf3a61e04abd045f01b"
+    },
+    "best-track-wind-radii": {
+      "href": "./best-track-wind-radii.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 307547,
+      "file:checksum": "12203135adcd770cf5f04e13ce06550dfa6db623b5740850b63fa716d556db4cb9e5",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./best-track-wind-radii.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track wind radii (6-hourly) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 41424856,
+      "file:checksum": "12206d5b8b92c162d4e12eca4bf506491f6e958c4f8b6a8f85547f53d55ad18fbbdb"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track wind radii (6-hourly) labeled style",
+      "description": "Default visualization for Working best track wind radii (6-hourly) with RADII shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1669,
+      "file:checksum": "122006e840be3052b80bf5b8e167dee1c6676b0721c1fbbdd0e157d15aa1e0fafaaf"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track wind radii (6-hourly) graduated style",
+      "description": "Graduated visualization coloring Working best track wind radii (6-hourly) by SE, ramped from 0.0 to 440.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1970,
+      "file:checksum": "122061f8681566348b9b951cd1984548c528e402230e304459bae1e0bf375e0fc86e"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/best-track-wind-radii/best-track-wind-radii.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: best-track-wind-radii",
+      "pipeline:upstream": true,
+      "file:size": 310816,
+      "file:checksum": "122047bc8ac62441319b36438baec0ecee050b7c78b44bcb95d1cfcc778d33979e0f"
+    },
+    "thumbnail": {
+      "href": "./best-track-wind-radii.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Working best track wind radii (6-hourly)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 51915,
+      "file:checksum": "12208733fa2509f1f46e022566dea83b1109ae9de7322503b32e08a3979500461fb4"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

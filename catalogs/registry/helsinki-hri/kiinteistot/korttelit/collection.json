@@ -1,0 +1,294 @@
+{
+  "type": "Collection",
+  "id": "kiinteistot/korttelit",
+  "stac_version": "1.1.0",
+  "description": "Helsingin korttelit -aineisto on muodostettu Kaupunkimittauspalveluiden yll\u00e4pit\u00e4mist\u00e4 kaavayksik\u00f6ist\u00e4, joiden olotila on \"Voimassa\", sek\u00e4 kuntarekisterin ominaisuustiedoista. Korttelit muodostetaan yhdist\u00e4m\u00e4ll\u00e4 geometriat, jotka ovat samalla korttelitunnuksella. Kaavayksikk\u00f6 on asemakaavan pienin tiettyyn k\u00e4ytt\u00f6tarkoitukseen varattu yksikk\u00f6. \r\n\r\nAineistosta on k\u00e4ytt\u00f6tarkoitus uudelleenluokiteltu tietosuojasyist\u00e4.\nRuotsiksi: Helsingfors kvarter. Englanniksi: Quarters of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_helsingin_korttelit.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin korttelit (Helsingin_korttelit)",
+      "pmtiles:layers": [
+        "avoindata_helsingin_korttelit"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-korttelit",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: helsingin_korttelit",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 5970,
+  "table:row_count": 5970,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Aineiston id. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "korttelitunnus",
+      "type": "double",
+      "description": "Korttelin tunnus. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "kunta",
+      "type": "double",
+      "description": "Kunta. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "sijaintialue",
+      "type": "double",
+      "description": "Sijaintialue. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "ryhma",
+      "type": "double",
+      "description": "Ryhm\u00e4. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "pintaala_kvyks",
+      "type": "int64",
+      "description": "Korttelin yhteenlaskettu rekisteripinta-ala. T\u00e4m\u00e4 voi erota paikkatietokohteen lasketusta pinta-alasta. Luotettava, kattavasti voimassa oleva tieto."
+    },
+    {
+      "name": "rakennusoikeus",
+      "type": "int64",
+      "description": "Korttelin yhteen summattu rakennusoikeus."
+    },
+    {
+      "name": "kayttotarkoitusluokat",
+      "type": "string",
+      "description": "Korttelissa esiintyv\u00e4t k\u00e4ytt\u00f6tarkoitukset listana yleistetyn luokituksen mukaan. Luokittelu perustuu samaan luokitteluun kuin HSY:n SeutuRamava. K\u00e4ytt\u00f6tarkoitukset eiv\u00e4t ole kaavassa esitettyj\u00e4 k\u00e4ytt\u00f6tarkoituksia, vaan niist\u00e4 yleistettyj\u00e4 tietoja."
+    },
+    {
+      "name": "kaavayks_lkm",
+      "type": "int64",
+      "description": "Korttelin muodostavien kaavayksik\u00f6iden lukum\u00e4\u00e4r\u00e4. Luotettava, kattavasti voimassa oleva tieto."
+    },
+    {
+      "name": "nimi_suomi",
+      "type": "string",
+      "description": "Korttelin nimi suomeksi."
+    },
+    {
+      "name": "nimi_ruotsi",
+      "type": "string",
+      "description": "Korttelin nimi ruotsiksi."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin korttelit (Helsingin_korttelit)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.83310553,
+          60.14608992,
+          25.23609698,
+          60.28838071
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin korttelit (Helsingin_korttelit) default style",
+      "description": "Default visualization for Helsingin korttelit (Helsingin_korttelit), drawn in #bf812d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1294,
+      "file:checksum": "12202dfd9f1eb1b92c2afc6efbd90d291ddacc8f19bf19916b787083e63a32cb8aaf"
+    },
+    "avoindata_helsingin_korttelit": {
+      "href": "./avoindata_helsingin_korttelit.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2640913,
+      "file:checksum": "122079c556c5e8339712279023a57130b8d070ce8c752f54a5e2a295255094f3cb1d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_helsingin_korttelit.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin korttelit (Helsingin_korttelit) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3226884,
+      "file:checksum": "1220c37cd124d88e1bafb7b02c58cedded993de78f45326eeaa1603080c0d46f9b2d"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin korttelit (Helsingin_korttelit) labeled style",
+      "description": "Default visualization for Helsingin korttelit (Helsingin_korttelit) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1750,
+      "file:checksum": "12204ecb8cb972f9c02b8a197dfaad1d939da47ec467a9d12b2d9b93a203fa1ed3c2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin korttelit (Helsingin_korttelit) graduated style",
+      "description": "Graduated visualization coloring Helsingin korttelit (Helsingin_korttelit) by korttelitunnus, ramped from 910010001.0 to 910590353.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2135,
+      "file:checksum": "1220fe8d4473af740740db5b2a2023fac65fed84993c2f48f732a8151cf41a2c6739"
+    },
+    "thumbnail": {
+      "href": "./avoindata_helsingin_korttelit.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin korttelit (Helsingin_korttelit)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 207098,
+      "file:checksum": "1220c624ddeb13637c7fde05695b59c4ba2a443324b3c1841358f265decaeceb10d7"
+    }
+  },
+  "keywords": [
+    "korttelit",
+    "aluesuunnittelu",
+    "kiinteist\u00f6t",
+    "asemakaavat",
+    "k\u00e4ytt\u00f6oikeusalueet",
+    "kaavayksik\u00f6t",
+    "rakennusoikeus",
+    "aluerakenne",
+    "rakentaminen",
+    "talot",
+    "tontit",
+    "kaavasuunnittelu",
+    "maank\u00e4ytt\u00f6",
+    "maank\u00e4yt\u00f6n ohjaus",
+    "maank\u00e4yt\u00f6n suunnittelu",
+    "ajantasa-asemakaava",
+    "kaavahakemisto",
+    "kaavayksikk\u00f6",
+    "kaupunkisuunnittelu",
+    "Helsingin_korttelit",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin korttelit\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-korttelit",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

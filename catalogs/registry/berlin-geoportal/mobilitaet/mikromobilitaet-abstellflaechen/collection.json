@@ -1,0 +1,236 @@
+{
+  "type": "Collection",
+  "id": "mobilitaet/mikromobilitaet-abstellflaechen",
+  "stac_version": "1.1.0",
+  "description": "Der Datenbestand umfasst die bisher eingerichteten Abstellfl\u00e4chen im \u00f6ffentlichen und \u00f6ffentlich-zug\u00e4nglichen Raum f\u00fcr Mietfahrzeuge der Mikromobilit\u00e4t. Nutzende der Mietfahrzeuge sollen die Fahrzeuge bevorzugt auf diesen Fl\u00e4chen abstellen, um die Ordnung im \u00f6ffentlichen Raum als auch die Auffindbarkeit der Fahrzeuge zu verbessern. Hierbei wird die genaue Lage der Abstellfl\u00e4chen, dargestellt durch jeweils eine einzelne Punktkoordinate und die ungef\u00e4hre r\u00e4umliche Auspr\u00e4gung der Abstellfl\u00e4chen abgebildet. Die ungef\u00e4hre r\u00e4umliche Auspr\u00e4gung, ein Kreis mit Radius 10 Meter um die Punktkoordinaten, soll einerseits die ungef\u00e4hre Gr\u00f6\u00dfe der Abstellfl\u00e4che darstellen, als auch den Anbietern der Mietfahrzeuge einen Anhaltspunkt f\u00fcr die korrekte Ortung der Fahrzeuge innerhalb der Abstellfl\u00e4chen via GPS geben. Deshalb sind diese als Ortungszone betitelt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./abstell_mikromob_abstell_mikromob.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote",
+      "pmtiles:layers": [
+        "abstell_mikromob_abstell_mikromob"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/abstellflachen-fur-mikromobilitatsangebote-wfs-6185b5fb",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/abstell_mikromob",
+      "rel": "related",
+      "title": "WFS source service: abstell-mikromob",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 637,
+  "table:row_count": 637,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "typ",
+      "type": "string"
+    },
+    {
+      "name": "beschreibung",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "gem",
+      "type": "double"
+    },
+    {
+      "name": "namgem",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.1736503,
+          52.41093904,
+          13.60832,
+          52.63634004
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote default style",
+      "description": "Default visualization for Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote, drawn in #41ab5d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1338,
+      "file:checksum": "1220ade88b8ba98b7c97dec66ec949d5471dba5fac384c667ac31eac3ed3be599a4a"
+    },
+    "abstell_mikromob_abstell_mikromob": {
+      "href": "./abstell_mikromob_abstell_mikromob.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 37484,
+      "file:checksum": "1220738180a60af58a5e8052af69963ff399571a1379c07de91ed93207e6d7197fcb",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./abstell_mikromob_abstell_mikromob.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 74343,
+      "file:checksum": "1220f9877eb01589ec3dc5f1c13521771c7675782f7b82a307c51a36dccaa002bc19"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote categorical style",
+      "description": "Categorical visualization coloring Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote by beschreibung, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1919,
+      "file:checksum": "1220728a6d7f3a4d8940daf4b07cc0898acb131f789dce2dca1d7c63927f7cd3719b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote labeled style",
+      "description": "Default visualization for Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1793,
+      "file:checksum": "12202280f90535da810da069440db9956e46a2d96ad4e929d6f29a618b9bb7385e0b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote graduated style",
+      "description": "Graduated visualization coloring Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote by gisid, ramped from 1.0 to 999.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2083,
+      "file:checksum": "12200087703f1f243c40b69cecb2e3d8c1e7b2ce7403041fc9d57c8c4fcadeb7dba4"
+    },
+    "thumbnail": {
+      "href": "./abstell_mikromob_abstell_mikromob.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 123096,
+      "file:checksum": "12205542e0270cbe6ba8c34b82b0e69ff375c01a55c535670115c375544b1c12aeee"
+    }
+  },
+  "keywords": [
+    "Abstellfl\u00e4chen",
+    "Berlin",
+    "E-Scooter",
+    "Geodaten",
+    "Karten",
+    "Mikromobilit\u00e4t",
+    "Sachdaten",
+    "Sharing"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Abstellfl\u00e4chen f\u00fcr Mikromobilit\u00e4tsangebote, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "sharing-strategie@senmvuk.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

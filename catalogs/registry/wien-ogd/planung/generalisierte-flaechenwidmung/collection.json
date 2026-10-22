@@ -1,0 +1,310 @@
+{
+  "type": "Collection",
+  "id": "planung/generalisierte-flaechenwidmung",
+  "stac_version": "1.1.0",
+  "description": "Die Fl\u00e4chenwidmungs- und Bebauungspl\u00e4ne werden in generalisierter Form dargestellt. Die Widmungskategorien und Bauklassen sind ablesbar. Nicht erkennbar sind die Bauweise, die g\u00e4rtnerische Ausgestaltung und die (Flucht)linientypen. Zus\u00e4tzlich gibt es einen Beschriftungsbestand f\u00fcr die Darstellung der Kurzbezeichnung der Widmungen. Weiters besteht unter \u201eDaten und Ressourcen\u201c die M\u00f6glichkeit, sich die geoland.at (Geodatenverbund der L\u00e4nder) Version der Generalisierten Fl\u00e4chenwidmung herunterzuladen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_genflwidmungogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Generalisierte Fl\u00e4chenwidmung Wien",
+      "pmtiles:layers": [
+        "ogdwien_genflwidmungogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/a73c5b74-a9c9-4caa-a796-e4c832645614",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: genflwidmungogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 26431,
+  "table:row_count": 26431,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung der Datenhaltung."
+    },
+    {
+      "name": "WIDMUNGSKLASSE",
+      "type": "string",
+      "description": "Widmungsklasse als Schl\u00fcssel; die geoland.at-Klassen lauten laut Publizierer 1 \u00fcberwiegende Wohnnutzung, 2 \u00fcberwiegend gemischte Nutzung, 3 \u00fcberwiegend betriebliche Nutzung, 4 sonstige Nutzung, in den Stichproben stehen Buchstabenschl\u00fcssel wie L."
+    },
+    {
+      "name": "WIDMUNGSKLASSE_TXT",
+      "type": "string",
+      "description": "Widmungsklasse als Klartext."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "string",
+      "description": "Bezirksnummer, zweistellig."
+    },
+    {
+      "name": "UMFANG",
+      "type": "double",
+      "description": "Umfang in Metern (Einheit vom Publizierer nicht genannt, Werte passen zu Metern)."
+    },
+    {
+      "name": "FLAECHE",
+      "type": "double",
+      "description": "Fl\u00e4che in Quadratmetern (Einheit vom Publizierer nicht genannt, Werte passen zu Quadratmetern)."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "WIDMUNG",
+      "type": "string",
+      "description": "Widmung als Schl\u00fcssel."
+    },
+    {
+      "name": "WIDMUNG_TXT",
+      "type": "string",
+      "description": "Widmung als Klartext."
+    },
+    {
+      "name": "EKZ",
+      "type": "string",
+      "description": "Einkaufszentrum."
+    },
+    {
+      "name": "OEZ",
+      "type": "string",
+      "description": "Grundfl\u00e4che f\u00fcr \u00f6ffentliche Zwecke."
+    },
+    {
+      "name": "STR",
+      "type": "string",
+      "description": "Struktur."
+    },
+    {
+      "name": "STRE",
+      "type": "string",
+      "description": "Struktureinheit."
+    },
+    {
+      "name": "STRG",
+      "type": "string",
+      "description": "Strukturgebiet."
+    },
+    {
+      "name": "WIDMUNG_DETAIL",
+      "type": "string",
+      "description": "Zusammenfassung der Detailangaben zur Widmung."
+    },
+    {
+      "name": "BEFRISTUNG_DATUM",
+      "type": "string",
+      "description": "Datum der Befristung einer befristeten Widmung."
+    },
+    {
+      "name": "BEFRISTUNG_PD",
+      "type": "int64",
+      "description": "Nummer des Plandokuments, wenn die Fl\u00e4che mit einer befristeten Widmung ausgewiesen ist."
+    },
+    {
+      "name": "SO_BAULICH_NUTZ",
+      "type": "string",
+      "description": "Sondergebiete, die laut Einsch\u00e4tzung der Stadtplanungsabteilungen \u00fcberwiegend baulich genutzt sind (geoland.at)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Generalisierte Fl\u00e4chenwidmung Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.181830379117955,
+          48.117903301153454,
+          16.577514130310036,
+          48.32266661161856
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Generalisierte Fl\u00e4chenwidmung Wien default style",
+      "description": "Default visualization for Generalisierte Fl\u00e4chenwidmung Wien, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1250,
+      "file:checksum": "122003d3ec0dec613badddf5eb989b1a6a3cabe7fbb65c6e05f5c6d92508ec820155"
+    },
+    "ogdwien_genflwidmungogd": {
+      "href": "./ogdwien_genflwidmungogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 9367867,
+      "file:checksum": "1220d0b127ca0f4e6f1283cb9e5567d620fe64136a65eaa6edd344b6c0cb5d0765f1",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_genflwidmungogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Generalisierte Fl\u00e4chenwidmung Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8682039,
+      "file:checksum": "12201745f22746fd92b9b65bdc489b3e4ec2e3ef6e3d498b21dc5ddd6b6514607a6c"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Generalisierte Fl\u00e4chenwidmung Wien categorical style",
+      "description": "Categorical visualization coloring Generalisierte Fl\u00e4chenwidmung Wien by WIDMUNG_DETAIL, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2076,
+      "file:checksum": "1220f07fbab62558141733d1c35585e008a540041612d0cc9643822e0a390d04944e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Generalisierte Fl\u00e4chenwidmung Wien labeled style",
+      "description": "Default visualization for Generalisierte Fl\u00e4chenwidmung Wien with WIDMUNG_DETAIL shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1695,
+      "file:checksum": "12203465047b9d50b4e367fe42881851ef2fc16a662c08284752fc0da2dd6e1afdb2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Generalisierte Fl\u00e4chenwidmung Wien graduated style",
+      "description": "Graduated visualization coloring Generalisierte Fl\u00e4chenwidmung Wien by FLAECHE, ramped from 0.0 to 37395782.1.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2036,
+      "file:checksum": "1220394ab3631a5bdbc327ce57c50015c868ee7f3a7460b70007f5b4787f9aea179a"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_genflwidmungogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Generalisierte Fl\u00e4chenwidmung Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 205996,
+      "file:checksum": "12209e9eee1297716c053add910d6239f1c70bfc920b8cbbbb3236cf9f432ba672bd"
+    }
+  },
+  "keywords": [
+    "HighValueDataset",
+    "ViennaGIS",
+    "Geodatenverbund",
+    "Fl\u00e4chenwidmung",
+    "Bebauungsplan",
+    "geoland.at",
+    "\u00d6ROK",
+    "Fl\u00e4chenwidmungsplan",
+    "Widmung",
+    "Plandokument",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien \u2013 Magistratsabteilung 21 A (Stadtteilplanung und Fl\u00e4chenwidmung Innen-S\u00fcdwest)",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Generalisierte Fl\u00e4chenwidmung Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.wien.gv.at/kontakte/ma21a/index.html",
+      "email": "post@ma21a.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

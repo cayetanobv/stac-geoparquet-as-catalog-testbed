@@ -1,0 +1,243 @@
+{
+  "type": "Collection",
+  "id": "umwelt/hochwasser-ueberflutungsflaechen",
+  "stac_version": "1.1.0",
+  "description": "\u00dcbersicht der bei Hochwasserereignissen \u00fcberfluteten Gebieten. Es werden die Gebiete ausgewiesen, die statistisch alle 30, 100 und 300 Jahre von Hochwasserereignissen \u00fcberflutet werden. Basis f\u00fcr diese Ausweisungen sind Niederschlags-, Abflussuntersuchungen f\u00fcr das jeweilige Einzugsgebiet des Flie\u00dfgew\u00e4ssers. Die Darstellung erfolgt in Form von \u00dcberflutungsfl\u00e4chen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_hwasserflutogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien",
+      "pmtiles:layers": [
+        "ogdwien_hwasserflutogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/98efb700-353d-49fb-bdca-0f7081b36140",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: hwasserflutogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 59,
+  "table:row_count": 59,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che (MultiPolygon)) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "HW_TEXT",
+      "type": "int64",
+      "description": "Ereignisklasse als Schl\u00fcssel (in den Stichproben 3 f\u00fcr HQ300)."
+    },
+    {
+      "name": "HQ_FLAECHEN",
+      "type": "string",
+      "description": "Bezeichnung der ausgewiesenen Hochwasser\u00fcberflutungsfl\u00e4che, zum Beispiel HQ300 (300-j\u00e4hrliches Hochwasser)."
+    },
+    {
+      "name": "GEWAESSER",
+      "type": "string",
+      "description": "Bezeichnung des projektierten Gew\u00e4ssers."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.19839331064654,
+          48.090673167438354,
+          16.680743079881122,
+          48.31085810666533
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien default style",
+      "description": "Default visualization for Hochwasser-\u00dcberflutungsfl\u00e4chen Wien, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1249,
+      "file:checksum": "1220cf5fffb69b131eeaf2f910c1c4bf25a65958a1384ef4420c3315b5089ad8c3c5"
+    },
+    "ogdwien_hwasserflutogd": {
+      "href": "./ogdwien_hwasserflutogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6884975,
+      "file:checksum": "12208ac559e749e4b138b19affbcf93afe04c99798c725060f6b90cc0866a5071374",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_hwasserflutogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1162346,
+      "file:checksum": "1220748e7d4652d56227d38cdb7ca92cfc755d1834f62cb9f4d13da00743c74e0a23"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien categorical style",
+      "description": "Categorical visualization coloring Hochwasser-\u00dcberflutungsfl\u00e4chen Wien by HQ_FLAECHEN, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2204,
+      "file:checksum": "12209f8936a593d1e2cde262574dfc1ddd1259d73044ddbdbf3f15e95da2ac2a7c83"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien labeled style",
+      "description": "Default visualization for Hochwasser-\u00dcberflutungsfl\u00e4chen Wien with HQ_FLAECHEN shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1689,
+      "file:checksum": "12209ec643475f3e2ae34c031b0b558049c67e3cc973b7a6f404b68de816e30bade5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hochwasser-\u00dcberflutungsfl\u00e4chen Wien graduated style",
+      "description": "Graduated visualization coloring Hochwasser-\u00dcberflutungsfl\u00e4chen Wien by HW_TEXT, ramped from 1.0 to 3.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1990,
+      "file:checksum": "12205530dcaaf06ff7961ef58094293dc9bdcdfd94f86090aff21f52b55e084dcbc0"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_hwasserflutogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Hochwasser-\u00dcberflutungsfl\u00e4chen Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 133070,
+      "file:checksum": "122045cf5e93fa161b18b4acfaf58ddf1e092206cbc7f81f4669cc25a6d9e0cf7172"
+    }
+  },
+  "keywords": [
+    "Gefahrenzonen",
+    "ViennaGIS",
+    "\u00dcberflutungsfl\u00e4chen",
+    "Gefahrenzonenplan",
+    "HighValueDataset",
+    "Hochwasser",
+    "Abflussuntersuchung",
+    "Hochwasser\u00fcberflutungsfl\u00e4chen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Hochwasser-\u00dcberflutungsfl\u00e4chen Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

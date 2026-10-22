@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "geologie-forst/geologische-bohrdaten",
+  "stac_version": "1.1.0",
+  "description": "Verortungen der zentral erfassten Bohrungen der Geologischen Datenbank Berlin. \u00dcber einen Link sind die Schichtenverzeichnisse als Profildarstellungen abrufbar.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bohrdaten_bohrpunkte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geologische Bohrdaten",
+      "pmtiles:layers": [
+        "bohrdaten_bohrpunkte"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/geologische-bohrdaten-wfs-e246e572",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/bohrdaten",
+      "rel": "related",
+      "title": "WFS source service: bohrpunkte",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 162172,
+  "table:row_count": 162172,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "schluessel",
+      "type": "string"
+    },
+    {
+      "name": "xcoord",
+      "type": "double"
+    },
+    {
+      "name": "ycoord",
+      "type": "double"
+    },
+    {
+      "name": "endteufe",
+      "type": "double"
+    },
+    {
+      "name": "ansatzhoehe",
+      "type": "string"
+    },
+    {
+      "name": "bohrbeginn",
+      "type": "date"
+    },
+    {
+      "name": "bohrende",
+      "type": "date"
+    },
+    {
+      "name": "bohrverfahren",
+      "type": "string"
+    },
+    {
+      "name": "langname",
+      "type": "string"
+    },
+    {
+      "name": "profil",
+      "type": "string"
+    },
+    {
+      "name": "profil_lang",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Geologische Bohrdaten",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09118921,
+          52.34101103,
+          13.75522931,
+          52.66933983
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologische Bohrdaten default style",
+      "description": "Default visualization for Geologische Bohrdaten, drawn in #8c510a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1211,
+      "file:checksum": "12205ca2c1e48043c600c9c680b2c63051b39055355e97bc4051ae5cf583d2040d49"
+    },
+    "bohrdaten_bohrpunkte": {
+      "href": "./bohrdaten_bohrpunkte.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10820551,
+      "file:checksum": "12207c2a897076f52b5301248712ce9633f5813ace45e132228c46c955161dcdb562",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./bohrdaten_bohrpunkte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geologische Bohrdaten (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 15117608,
+      "file:checksum": "12205f7fbd9e11abba9899a6ab3fe8a1ad7ef5b6065c6b73ebb8059f37e81ebcfa79"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologische Bohrdaten labeled style",
+      "description": "Default visualization for Geologische Bohrdaten with langname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1644,
+      "file:checksum": "122047c0db5d20af2a786f62deae9ef30ea15d561aa504dd41d6165058c31494ccc9"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologische Bohrdaten graduated style",
+      "description": "Graduated visualization coloring Geologische Bohrdaten by xcoord, ramped from 370175.4 to 415397.82.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1999,
+      "file:checksum": "122037f7fd11b204c517e9968eed7463c757def374cc63bce5823eca44377edcbaaa"
+    },
+    "thumbnail": {
+      "href": "./bohrdaten_bohrpunkte.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Geologische Bohrdaten",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 227713,
+      "file:checksum": "122094e0db9833cdee3010e3bdd0fb5de9df7e6d0c3705b626053c0c9d2442ec195d"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bohrarchiv",
+    "Bohraufschluss",
+    "Bohrdatenbank",
+    "Bohrprofil",
+    "Bohrpunkte",
+    "Bohrung",
+    "Erkundung"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Geologische Bohrdaten, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "ulrike.hoermann@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

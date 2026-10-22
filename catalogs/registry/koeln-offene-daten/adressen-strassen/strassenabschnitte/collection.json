@@ -1,0 +1,256 @@
+{
+  "type": "Collection",
+  "id": "adressen-strassen/strassenabschnitte",
+  "stac_version": "1.1.0",
+  "description": "Ein Stra\u00dfenabschnitt ist Teil der Kommunalen Gebietsgliederung. Dieses hierarchische System gliedert das K\u00f6lner Stadtgebiet auf verschiedenen Ebenen in eine Stadtstruktur und Blockstruktur. Weitere Bestandteile sind eine Stra\u00dfenstruktur und Adressen. Die gesamte Kommunale Gebietsgliederung wird in dieser Ver\u00f6ffentlichung erl\u00e4utert.\nDefinition: Ein Stra\u00dfenabschnitt definiert ein Teilst\u00fcck einer Stra\u00dfe von einer Kreuzung oder Einm\u00fcndung zur n\u00e4chsten. Stra\u00dfenabschnitte beginnen und enden an Stra\u00dfenknoten und werden in der Regel fortlaufend in Zehnerschritten nummeriert. Die Nummerierung startet an dem Teil der Stra\u00dfe, an der die Hausnummerierung beginnt. Bei Stra\u00dfen die keine Hausnummern haben, verl\u00e4uft die Nummerierung in der Regel vom Stadtzentrum in Richtung Stadtgrenze.\nErl\u00e4uterung der Attribute ist dem Shapefile als CSV beigef\u00fcgt.\nKoordinatensystem Shapefile: ETRS 1989 UTM Zone 32N\nDas K\u00f6lner Stra\u00dfenverzeichnis gibt einen \u00dcberblick \u00fcber alle geltenden Stra\u00dfennamen und Adressen. Es wird etwa halbj\u00e4hrig und vor jeder Wahl aktualisiert.\nAlle Geodaten der der Kommunalen Gebietsgliederung, wahlorganisatorische Einheiten und weitere Gebietsgliederungen enth\u00e4lt der Datensatz Raumbezugssystem Geopackage.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Strassenabschnitt.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strassenabschnitte K\u00f6ln",
+      "pmtiles:layers": [
+        "Strassenabschnitt"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/strassenabschnitte-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/kgg/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "KGG Sammeldienst WFS (Kommunale Gebietsgliederung, ArcGIS Server)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/kgg_labeled/MapServer",
+      "rel": "related",
+      "title": "Kommunale Gebietsgliederung K\u00f6ln (ArcGIS REST MapServer, beschriftet)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 16082,
+  "table:row_count": 16082,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string",
+      "description": "Eindeutiger 8-stelliger Schl\u00fcssel, zusammengesetzt aus 5-stelligem Stra\u00dfenschl\u00fcssel + 3-stelliger fortlaufende Nummerierung."
+    },
+    {
+      "name": "nr_str",
+      "type": "string",
+      "description": "Strassenschl\u00fcssel: Eindeutiger Stra\u00dfenschl\u00fcssel."
+    },
+    {
+      "name": "str",
+      "type": "string",
+      "description": "Stra\u00dfe: Bei mehrfach vorhandenen Stra\u00dfennamen infolge von Eingemeindungen ist eine Detaillierung zur Unterscheidung angegeben. Die Detaillierung sind die ersten drei Buchstaben des Stadtbezirks. Die urspr\u00fcnglichen K\u00f6lner Stra\u00dfen besitzen keine Detaillierung."
+    },
+    {
+      "name": "hsnr_vo_li",
+      "type": "string",
+      "description": "Hausnummer von links: Niedrigste Hausnummer auf der linken Stra\u00dfenseite."
+    },
+    {
+      "name": "hsnr_bi_li",
+      "type": "string",
+      "description": "Hausnummer bis links: H\u00f6chste Hausnummer auf der linken Stra\u00dfenseite."
+    },
+    {
+      "name": "hsnr_vo_re",
+      "type": "string",
+      "description": "Hausnummer von rechts: Niedrigste Hausnummer auf der rechten Stra\u00dfenseite."
+    },
+    {
+      "name": "hsnr_bi_re",
+      "type": "string",
+      "description": "Hausnummer bis rechts: H\u00f6chste Hausnummer auf der rechten Stra\u00dfenseite."
+    },
+    {
+      "name": "laenge",
+      "type": "double",
+      "description": "L\u00e4nge (m): L\u00e4nge, berechnet im Geographischen Koordinatensystem WGS 1984 (Angabe des Publizierers)."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechneter Umfang beziehungsweise L\u00e4nge der Geometrie in Metern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Strassenabschnitte K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.811364428237306,
+          50.8308251398576,
+          7.161888701511741,
+          51.084662148426965
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassenabschnitte K\u00f6ln default style",
+      "description": "Default visualization for Strassenabschnitte K\u00f6ln, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1197,
+      "file:checksum": "12202f519f850eaac2c58a2f99b73e0179f475885ff91f7117c679b46d1a785c4178"
+    },
+    "Strassenabschnitt": {
+      "href": "./Strassenabschnitt.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1620212,
+      "file:checksum": "122048ad61e4f34687fe10909219d33b6a9f7bbaf3c3a0a72963a8b2f8bef283d1a9",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Strassenabschnitt.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strassenabschnitte K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8499143,
+      "file:checksum": "122092022293cb820f152c4015fa55873be5efa0654328071d8f8f9d2312bde8a629"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassenabschnitte K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Strassenabschnitte K\u00f6ln by laenge, ramped from 5.84341263 to 5599.86134342.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2018,
+      "file:checksum": "122042251c335e19f56e15542dbdaa493968bcd76aa7662317c7c1eb216e4ad99c57"
+    },
+    "source": {
+      "href": "https://offenedaten-koeln.de/sites/default/files/uploaded_resources/Strassenabschnitt.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: strassenabschnitt",
+      "pipeline:upstream": true,
+      "file:size": 8450453,
+      "file:checksum": "1220d156c3e53b6be47cfaeae42e814fd67d6cf5a937c946a5588942f411bc538c7f"
+    },
+    "thumbnail": {
+      "href": "./Strassenabschnitt.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Strassenabschnitte K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 231897,
+      "file:checksum": "1220832b921aea30de8dcf98455e5932234e199fd7cda768184052e64dbc89f85363"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Transport und Verkehr",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik, \u201eStrassenabschnitte K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-stadtentwicklung-und-statistik",
+      "email": "statistik-rbs@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

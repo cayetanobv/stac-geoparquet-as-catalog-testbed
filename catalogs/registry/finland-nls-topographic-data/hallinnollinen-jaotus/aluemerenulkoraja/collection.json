@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "hallinnollinen-jaotus/aluemerenulkoraja",
+  "stac_version": "1.1.0",
+  "description": "aluemerenulkoraja",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./aluemerenulkoraja.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "aluemerenulkoraja",
+      "pmtiles:layers": [
+        "aluemerenulkoraja"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/aluemerenulkoraja/items",
+      "rel": "related",
+      "title": "OGC API source service: aluemerenulkoraja",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 6,
+  "table:row_count": 6,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "korkeustarkkuus",
+      "type": "string",
+      "description": "Kohteen korkeustarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4. Arvo 1 tarkoittaa m\u00e4\u00e4rittelem\u00e4t\u00f6nt\u00e4. Korkeusmallista interpoloitua korkeutta merkit\u00e4\u00e4n omilla koodeillaan, 201 kahden metrin mallille, 100001 kymmenen metrin mallille ja 250001 kahdenkymmenenviiden metrin mallille. T\u00e4ss\u00e4 kokoelmassa sarake on kauttaaltaan tyhj\u00e4, mink\u00e4 vuoksi se on tallentunut merkkijonotyyppisen\u00e4."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kulkutapa",
+      "type": "int32",
+      "description": "Viivan kulkutavan koodi. Arvot ovat 1 murtoviiva, 2 k\u00e4yr\u00e4viiva ja 4 tihent\u00e4m\u00e4t\u00f6n k\u00e4yr\u00e4viiva. Murtoviiva kulkee kontrollipisteest\u00e4 kontrollipisteeseen, kun taas k\u00e4yr\u00e4viivaan on interpoloitu tihennyspisteit\u00e4 kuvaamaan muotoa tarkemmin."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 23, joka vastaa viivamaisia Hallinnollinen jaotus -kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 82100, aluemeren ulkoraja."
+    },
+    {
+      "name": "aluejakoonosallistuminen",
+      "type": "int32",
+      "description": "Viivan aluejakoon osallistumisen koodi, jossa 0 tarkoittaa viivan osallistuvan aluejakoon ja 1 tarkoittaa, ettei se osallistu. Aluemeren ulkoraja voi muodostaa kunta-aluekohteen reunaviivan."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Suomen aluemeren ulkorajan viiva WGS84-koordinaatistossa. Raja erottaa Suomen aluemeren kansainv\u00e4lisest\u00e4 vesialueesta ja kulkee p\u00e4\u00e4s\u00e4\u00e4nt\u00f6isesti kahdentoista meripeninkulman et\u00e4isyydell\u00e4 sis\u00e4isten aluevesien ulkorajasta."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "aluemerenulkoraja",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.0832089,
+          59.4541774,
+          27.2930437,
+          65.5153667
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "aluemerenulkoraja default style",
+      "description": "Default visualization for aluemerenulkoraja, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1186,
+      "file:checksum": "1220e87e394754ba2ff261f1fe7833be83f262d91d14065c2668157e19bf07e01704"
+    },
+    "aluemerenulkoraja": {
+      "href": "./aluemerenulkoraja.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8417,
+      "file:checksum": "1220c88bcfd234dcc8b774a231a31c92f45095c4ecd143e124651d1fda9ded378c79",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./aluemerenulkoraja.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "aluemerenulkoraja (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 668813,
+      "file:checksum": "1220178cddb8cd86f0749e7f8ed63f5884076ff2bb1621fd776a8d5c75e2e78fdfc3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "aluemerenulkoraja graduated style",
+      "description": "Graduated visualization coloring aluemerenulkoraja by sijaintitarkkuus, ramped from 0.0 to 0.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1963,
+      "file:checksum": "12202208fe3d0fe99c2d434b7f36d00947e5ead5dabccadc5f22e511b6e3f0c77398"
+    },
+    "thumbnail": {
+      "href": "./aluemerenulkoraja.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of aluemerenulkoraja",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 98444,
+      "file:checksum": "122021cc483b45f94822e56d09c4a960008671cd59d09f7eb0adc76de3a234461589"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Hallinnollinen jaotus",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

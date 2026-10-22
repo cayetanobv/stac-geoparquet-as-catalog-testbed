@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "residuos/ecopontos",
+  "stac_version": "1.1.0",
+  "description": "Ecopontos de superf\u00edcie para recolha seletiva de res\u00edduos no concelho de Lisboa, com a descri\u00e7\u00e3o do tipo de equipamento, a freguesia, a morada derivada da topon\u00edmia municipal e o local de instala\u00e7\u00e3o, na camada Ecopontos do servi\u00e7o Amb_Reciclagem da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ecopontos.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Ecopontos",
+      "pmtiles:layers": [
+        "ecopontos"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/e4af86f9aabe44a1a036a2c677f2755b_2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Amb_Reciclagem/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Amb_Reciclagem (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 115,
+  "table:row_count": 115,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "int32",
+      "description": "C\u00f3digo SIG do equipamento no armaz\u00e9m de dados da CML, mantido como inteiro nesta camada (alias \u00abC\u00f3digo SIG\u00bb)."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "TPRS_DESC",
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o do tipo de equipamento de deposi\u00e7\u00e3o (alias \u00abDescri\u00e7\u00e3o\u00bb)."
+    },
+    {
+      "name": "FRE_AB",
+      "type": "string",
+      "description": "Abreviatura da freguesia onde o equipamento se situa (alias \u00abFreguesia\u00bb)."
+    },
+    {
+      "name": "TOP_MOD_1",
+      "type": "string",
+      "description": "Morada do equipamento derivada da topon\u00edmia municipal (alias \u00abMorada\u00bb)."
+    },
+    {
+      "name": "PRSL_LOCAL",
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o do local exato de instala\u00e7\u00e3o do equipamento (alias \u00abLocal\u00bb)."
+    },
+    {
+      "name": "TPRS_AB",
+      "type": "string",
+      "description": "Abreviatura do tipo de equipamento de deposi\u00e7\u00e3o, texto do publicador."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Ecopontos",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.23027705386681,
+          38.6922724711255,
+          -9.0910614346435,
+          38.7830710065273
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ecopontos default style",
+      "description": "Default visualization for Ecopontos, drawn in #3690c0.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1122,
+      "file:checksum": "1220b3e60735872ae1c8f8ed507b8598bf5cd5e72db0cf9c3008511deb797851ab32"
+    },
+    "ecopontos": {
+      "href": "./ecopontos.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 15245,
+      "file:checksum": "122054b354c1ef6c176ae9485614949f585cd803d57d63d9fbc34cc448a75b55b8a4",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ecopontos.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Ecopontos (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 36753,
+      "file:checksum": "1220b2d28e3b1f7680825241a53e90b7f3b87e2c4628f63f4a2f01c106abb8fdb1e6"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ecopontos categorical style",
+      "description": "Categorical visualization coloring Ecopontos by IDTIPO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1676,
+      "file:checksum": "122024d12a93dfb4525a4822be421e9d32ae29dfa952f6820f207258e4e3e10677e6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ecopontos labeled style",
+      "description": "Default visualization for Ecopontos with IDTIPO shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1531,
+      "file:checksum": "1220e935cfdf31542c9ca400c4049e4c50c7cb06a36c6ee556723d52beab59fec42d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ecopontos graduated style",
+      "description": "Graduated visualization coloring Ecopontos by COD_SIG, ramped from 95.0 to 21879.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1890,
+      "file:checksum": "1220ba0415c429d165ff9f3724e5f555afde815b673734ce51e7f0d9560bd203e62f"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/e4af86f9aabe44a1a036a2c677f2755b/geojson?layers=2&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: ecopontos",
+      "pipeline:upstream": true,
+      "file:size": 41764,
+      "file:checksum": "12207605f3b2d5b1a48bf203b04af3ddb2144bc32f1ac4ff825813e472c0f4345305"
+    },
+    "thumbnail": {
+      "href": "./ecopontos.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Ecopontos",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 141665,
+      "file:checksum": "1220041a178a5ce8c1acae845b0ac77215cec2109e1ac3e9ed6f01980b95b7f44aca"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Ambiente",
+    "Reciclagem",
+    "Recolha Selectiva",
+    "Ecoponto"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Ecopontos (Amb_Reciclagem), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

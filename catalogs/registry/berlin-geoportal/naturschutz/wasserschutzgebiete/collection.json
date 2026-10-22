@@ -1,0 +1,255 @@
+{
+  "type": "Collection",
+  "id": "naturschutz/wasserschutzgebiete",
+  "stac_version": "1.1.0",
+  "description": "Wasserschutzgebiete von Berlin im \u00dcberblick - detaillierte Informationen sind den jeweiligen Verordnungen (s. u.) zu entnehmen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./wsg_wsg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wasserschutzgebiete",
+      "pmtiles:layers": [
+        "wsg_wsg"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/wasserschutzgebiete-wfs-ba6769e8",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/wsg",
+      "rel": "related",
+      "title": "WFS source service: wsg",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 46,
+  "table:row_count": 46,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "schluessel",
+      "type": "string"
+    },
+    {
+      "name": "wasserwerk",
+      "type": "string"
+    },
+    {
+      "name": "gebietsnr",
+      "type": "double"
+    },
+    {
+      "name": "zone",
+      "type": "string"
+    },
+    {
+      "name": "verordnung",
+      "type": "string"
+    },
+    {
+      "name": "datum",
+      "type": "string"
+    },
+    {
+      "name": "gvbl",
+      "type": "string"
+    },
+    {
+      "name": "veror_link",
+      "type": "string"
+    },
+    {
+      "name": "ae_datum",
+      "type": "string"
+    },
+    {
+      "name": "ae_gvbl",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Wasserschutzgebiete",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.1183916,
+          52.37046879,
+          13.74664404,
+          52.6022441
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wasserschutzgebiete default style",
+      "description": "Default visualization for Wasserschutzgebiete, drawn in #2b8cbe.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1118,
+      "file:checksum": "12201a337ff04be60af629fcf889e59de23b871bbbbd2ed0f6500e83ef4bea75a265"
+    },
+    "wsg_wsg": {
+      "href": "./wsg_wsg.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 350466,
+      "file:checksum": "12205933a53e18081222162d2629a794ac19a8c9d8ac1d12480fd57238f44a548ce5",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./wsg_wsg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wasserschutzgebiete (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 388063,
+      "file:checksum": "122078a1438ee6db5accdc37d173cb1c3304ef0062018f974e04116c97b3eb98780d"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wasserschutzgebiete categorical style",
+      "description": "Categorical visualization coloring Wasserschutzgebiete by zone, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2003,
+      "file:checksum": "1220c3c136b138056a6339342babd1d64ec039a331ee70cf79901d4007df933488e1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wasserschutzgebiete labeled style",
+      "description": "Default visualization for Wasserschutzgebiete with zone shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1521,
+      "file:checksum": "1220551e0535605d2928271b5e1cdad20f8f00bf7b8a12f028b1154b484631dc988a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wasserschutzgebiete graduated style",
+      "description": "Graduated visualization coloring Wasserschutzgebiete by gebietsnr, ramped from 580001.0 to 3548400011.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1936,
+      "file:checksum": "12200cae63f08cb6af19775fee5c072adc8a6190cbd295b28e62a070146a82dfff98"
+    },
+    "thumbnail": {
+      "href": "./wsg_wsg.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Wasserschutzgebiete",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 153614,
+      "file:checksum": "1220fa31c1bd5760d923e9952d256bf84443e52c282cb6849d803628bfda3b023c41"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bewirtschaftungsgebiete/Schutzgebiete/geregelte Gebiete und Berichterstattungseinheiten",
+    "Geodaten",
+    "Karten",
+    "Protected sites",
+    "Sachdaten",
+    "Schutzgebiet",
+    "Wasser"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Wasserschutzgebiete, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "kerstin.kernbach@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

@@ -1,0 +1,230 @@
+{
+  "type": "Collection",
+  "id": "maasto-1-2/virtavesialue",
+  "stac_version": "1.1.0",
+  "description": "virtavesialue",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./virtavesialue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "virtavesialue",
+      "pmtiles:layers": [
+        "virtavesialue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/virtavesialue/items",
+      "rel": "related",
+      "title": "OGC API source service: virtavesialue",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 20775,
+  "table:row_count": 20775,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 64, joka vastaa aluemaisia Maasto/1-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 36313, virtavesialue."
+    },
+    {
+      "name": "virtausnuoletviittaus",
+      "type": "string",
+      "description": "Viittaus virtavesikohteeseen yhdistettyihin juoksusuuntanuoliin. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Virtavesialueen aluerajaus WGS84-koordinaatistossa. Virtavesialue on luonnollisen vedenkierron osana oleva veden peitt\u00e4m\u00e4 alue, jossa on virtaama, ja siihen kuuluvat yli viisi metri\u00e4 leve\u00e4t joet ja purot."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "virtavesialue",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.6613379,
+          59.9193909,
+          31.5763729,
+          70.0937606
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "virtavesialue default style",
+      "description": "Default visualization for virtavesialue, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1154,
+      "file:checksum": "122084fa48776aee8645e8ef47e2b50d234816ce015e49c4bd5d38df12b7652b54b5"
+    },
+    "virtavesialue": {
+      "href": "./virtavesialue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 377453952,
+      "file:checksum": "122088e70c29698e5bdae41137da1543c4b50364a601bdb2b73531123afe85333b1f",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./virtavesialue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "virtavesialue (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 107742000,
+      "file:checksum": "1220bf7aa6c7f47b31904f3b0087111d897bb52ec109b7399ad733e0dd387f318f05"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "virtavesialue graduated style",
+      "description": "Graduated visualization coloring virtavesialue by sijaintitarkkuus, ramped from 5000.0 to 7500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1958,
+      "file:checksum": "122086e63c420ebf4991dc2a68f6a1994e489bac4f6b852b8dc858f3547d5ed167ff"
+    },
+    "thumbnail": {
+      "href": "./virtavesialue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of virtavesialue",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 110032,
+      "file:checksum": "122064447127a42ea0422fdb7abb2ac0b07b897f18dccd78ae13098d2d642c09c0a1"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/1",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

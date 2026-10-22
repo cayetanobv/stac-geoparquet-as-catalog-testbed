@@ -1,0 +1,242 @@
+{
+  "type": "Collection",
+  "id": "mobilita/stalli-carico-scarico",
+  "stac_version": "1.1.0",
+  "description": "Parcheggi per carico-scarico nel comune di Bologna.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./stallicaricoscarico.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parcheggi carico-scarico",
+      "pmtiles:layers": [
+        "stallicaricoscarico"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/stalli-carico-scarico/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/stalli-carico-scarico/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: stallicaricoscarico",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 264,
+  "table:row_count": 264,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "subcat",
+      "type": "string",
+      "description": "Tipologia tariffa."
+    },
+    {
+      "name": "numero",
+      "type": "int32"
+    },
+    {
+      "name": "disposti",
+      "type": "string",
+      "description": "Disposizione."
+    },
+    {
+      "name": "via",
+      "type": "string",
+      "description": "Localizzazione."
+    },
+    {
+      "name": "civico",
+      "type": "string"
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Parcheggi carico-scarico",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.304567388328,
+          44.4754976922261,
+          11.3840433636847,
+          44.548332205371
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcheggi carico-scarico default style",
+      "description": "Default visualization for Parcheggi carico-scarico, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1207,
+      "file:checksum": "1220719d928dd15494510705e2d71fd70613500907693202559da2d8668f498a3d8b"
+    },
+    "stallicaricoscarico": {
+      "href": "./stallicaricoscarico.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21591,
+      "file:checksum": "12201372631c166e0b003367b564205b82c8457f3c5abe96333e106e33a70865dc48",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./stallicaricoscarico.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parcheggi carico-scarico (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 35388,
+      "file:checksum": "122035320bf470b7e2d7c3a44e75d534bbf865d8c5f3a897ec7e2151fc01857873d2"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcheggi carico-scarico categorical style",
+      "description": "Categorical visualization coloring Parcheggi carico-scarico by subcat, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1935,
+      "file:checksum": "12208a84a0d0662f7da2f0d0a2f81345139de5f72af28d29929ba2b100ad7af220d1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcheggi carico-scarico labeled style",
+      "description": "Default visualization for Parcheggi carico-scarico with subcat shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1636,
+      "file:checksum": "12201e80dac7fe59f4738cc5952ec76719eb52f32604f657dde1961d26e60fa42094"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcheggi carico-scarico graduated style",
+      "description": "Graduated visualization coloring Parcheggi carico-scarico by numero, ramped from 1.0 to 15.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1947,
+      "file:checksum": "1220d877694123f4475df51164881b3165e5f273e1b26143242c56d1f60c3a41b4f7"
+    },
+    "thumbnail": {
+      "href": "./stallicaricoscarico.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parcheggi carico-scarico",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 153222,
+      "file:checksum": "122093e1dd5c878aea072eff9843e02296ec7e870c70b083b400c170a52adcc64797"
+    }
+  },
+  "keywords": [
+    "Trasporti",
+    "Mobilit\u00e0 persone e merci",
+    "infrastrutture"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abParcheggi carico-scarico\u00bb (stalli-carico-scarico), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/stalli-carico-scarico/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

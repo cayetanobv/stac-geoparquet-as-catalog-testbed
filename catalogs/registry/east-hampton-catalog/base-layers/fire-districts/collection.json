@@ -1,0 +1,201 @@
+{
+  "type": "Collection",
+  "id": "base-layers/fire-districts",
+  "stac_version": "1.1.0",
+  "description": "Fire districts and fire protection districts in the Town. Nine districts appear in 11 polygons. Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/9",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Boundaries and Districts"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./fire-districts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "fire-districts"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 11,
+  "table:row_count": 11,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "ID",
+      "type": "string",
+      "description": "District number, 10 to 18, as the source records it."
+    },
+    {
+      "name": "Fire_Dist_Name",
+      "type": "string",
+      "description": "District name."
+    },
+    {
+      "name": "Area_Sq_Ft",
+      "type": "double",
+      "description": "Area in square feet, as the Town computed it."
+    },
+    {
+      "name": "Acres",
+      "type": "double",
+      "description": "Area in acres, as the Town computed it."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -72.1142578,
+    41.0130574,
+    12
+  ],
+  "pmtiles:layers": [
+    "fire-districts"
+  ],
+  "title": "Fire Districts",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -72.28516390791891,
+          40.923766,
+          -71.85610661518452,
+          41.124776
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "fire-districts": {
+      "href": "./fire-districts.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 164734,
+      "file:checksum": "122031172db7e6757dc25835e3eeb5f65636f313e0d9250580f8e52f92647b782bba",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 2959,
+      "file:checksum": "1220b77455b919d640054b5797320e030f53b87512e0b39ce493670f7c9d37cabb85",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "fire-districts-tiles": {
+      "href": "./fire-districts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "fire-districts (vector tiles)",
+      "file:size": 57390,
+      "file:checksum": "122071985e60ee434530dddf77209ac38a82fe80ab096dc173800467b25b1971d18d",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fire Districts by fire district",
+      "file:size": 1382,
+      "file:checksum": "1220e85f2fca9a892088b2520f869fbd6162d2ef372cb2671bbc58676311a6ab521a",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./fire-districts.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 38222,
+      "file:checksum": "12202f2f300c94fdcdff4955ea884c728a836c389f98517be217b9d5411407d504fb",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

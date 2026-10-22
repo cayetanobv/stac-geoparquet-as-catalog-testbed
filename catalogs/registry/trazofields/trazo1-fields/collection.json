@@ -1,0 +1,196 @@
+{
+  "type": "Collection",
+  "id": "trazo1-fields",
+  "stac_version": "1.1.0",
+  "description": "Agricultural field boundaries for Mato Grosso do Sul and Paraná, Brazil, delineated from Sentinel-2 imagery by the Trazo1 model for the 2023–2024 planting season. Trazo1 uses heavy boundary weighting (0.88/0.04/0.08), the most sensitive model to soft boundaries and a good choice for large, uniform row-crop systems; it posts the highest SA Soy pixel IoU (77.09%) but is weaker outside soy. Files are named {model}_{country}_{region}_{year}; read them all with the glob trazo1-fields/*.parquet. Full-attribute GeoPackages for desktop GIS are in geopackages/.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Trazo Field Boundaries of South America"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Trazo Field Boundaries of South America"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/plain",
+      "title": "LLM-oriented collection summary"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 2939006,
+  "table:row_count": 2939006,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Id",
+      "type": "int32"
+    },
+    {
+      "name": "mbmode24",
+      "type": "double"
+    },
+    {
+      "name": "mbcov_area_2024",
+      "type": "double"
+    },
+    {
+      "name": "mbvalid_area_2024",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "proj:epsg": 4326,
+  "title": "Trazo1 Field Boundaries — Brazil (2023–2024)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -57.945727433991976,
+          -27.20507186738115,
+          -48.882768560452064,
+          -18.081309522931576
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2023-07-01T00:00:00Z",
+          "2024-05-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "field boundaries",
+    "agriculture",
+    "Trazo1",
+    "soy",
+    "Brazil",
+    "South America",
+    "Sentinel-2",
+    "EUDR",
+    "supply chain traceability"
+  ],
+  "providers": [
+    {
+      "name": "Arizona State University",
+      "description": "Co-produced the Trazo models and the Fields of The World baseline.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.asu.edu"
+    },
+    {
+      "name": "World Resources Institute",
+      "description": "Produces the Trazo field boundaries and publishes them. Storage and delivery run on Source Cooperative under the wri-data-lab account.",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.wri.org"
+    }
+  ],
+  "assets": {
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "Collection README",
+      "file:size": 5254,
+      "file:checksum": "1220f8aaacf079b308d5760b14dcf6a91eeb53fa5b255b34f2535a21c3fd23f41d9c"
+    },
+    "trazo1_brazil_mato_grosso_do_sul_2024": {
+      "href": "./trazo1_brazil_mato_grosso_do_sul_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Mato Grosso do Sul (2024)",
+      "file:size": 276069433,
+      "file:checksum": "12208ffd63619f1835fba06ec579b72dce963bedc828490701bd24798f395fe21243"
+    },
+    "llms": {
+      "href": "./llms.txt",
+      "type": "text/plain",
+      "roles": [
+        "documentation"
+      ],
+      "file:size": 2545,
+      "file:checksum": "122095b89a603260bdb7e7c479ee23c08573319c93dd5a8eb17430c23de28e2cb684"
+    },
+    "trazo1_brazil_parana_2024": {
+      "href": "./trazo1_brazil_parana_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Paraná (2024)",
+      "file:size": 290142569,
+      "file:checksum": "1220b12b2a83392f72cbef9a23558d27adf4cdc9f9bd55d8eaddacfb2cf584d3687f"
+    },
+    "geopackages/trazo1_brazil_mato_grosso_do_sul_2024": {
+      "href": "./geopackages/trazo1_brazil_mato_grosso_do_sul_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Mato Grosso do Sul (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1726701568,
+      "file:checksum": "1220938d74ad0367ef41947f0ffd725459c64a86ab1088c1d44a59601878b8fc86f9"
+    },
+    "geopackages/trazo1_brazil_parana_2024": {
+      "href": "./geopackages/trazo1_brazil_parana_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Paraná (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1811021824,
+      "file:checksum": "122062fe4e6e1bf39d4365c261cfefd910fbed8ea8a4c0b6ee9be90bc583df73d96d"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Coverage thumbnail",
+      "description": "Field-boundary density, rendered read-only from the collection's GeoParquet at 0.02-degree resolution. Palette from trazo3-fields/styles/default.json.",
+      "file:size": 178158,
+      "file:checksum": "1220af64602d6fdf289846c354f485fba52361381c4ac5a83d7f6c8e6694cee91f2f"
+    }
+  }
+}

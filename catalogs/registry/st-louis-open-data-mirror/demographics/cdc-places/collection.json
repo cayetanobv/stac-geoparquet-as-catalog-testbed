@@ -1,0 +1,827 @@
+{
+  "type": "Collection",
+  "id": "demographics/cdc-places",
+  "stac_version": "1.1.0",
+  "description": "Forty model-based health measures for all 104 census tracts in the City of St. Louis, from the CDC's PLACES project. CDC describes PLACES as providing \"health and health-related data using small area estimation for counties, incorporated and census designated places, census tracts, and ZIP Code Tabulation Areas (ZCTAs) across the United States,\" with \"model-based estimates based on data from the Behavioral Risk Factor Surveillance System (BRFSS), Census decennial population counts and annual county population estimates, and the American Community Survey (ACS) 5-year estimates.\" Measures span health outcomes (asthma, diabetes, obesity, depression), prevention (checkups, screenings, insurance), health risk behaviors (smoking, binge drinking), disabilities, and health-related social needs (food insecurity, housing insecurity, transportation barriers, utility shut-off risk). Each measure is a crude-prevalence percentage of adults with 95% confidence limits in `*_lo`/`*_hi` columns; column descriptions carry each measure's full name and data year (2022 or 2023 depending on the measure, per the PLACES 2025 release).\n\nThese are **modeled estimates, not direct survey measurements of St. Louis residents** \u2014 CDC's small-area models combine national survey responses with local population characteristics, so tract values are best used for ranking and pattern-finding, not as precise local measurements. Unlike the city's own datasets in this catalog, this is **not** City of St. Louis data: it is published by the Centers for Disease Control and Prevention, extracted for St. Louis city (FIPS 29510) from the PLACES tract-level release and joined to the Census Bureau's 2024 cartographic boundary geometries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Demographics"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cdc-places.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "cdc-places"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.cdc.gov/other/agencymaterials.html",
+      "type": "text/html",
+      "title": "Centers for Disease Control and Prevention \u2014 data license and terms"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.cdc.gov/places/",
+      "type": "text/html",
+      "title": "CDC PLACES documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.cdc.gov/resource/cwsq-ngmh",
+      "type": "text/html",
+      "title": "CDC PLACES source data"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 104,
+  "table:row_count": 104,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geoid",
+      "type": "string",
+      "description": "11-digit census tract GEOID. Joins acs-tracts.geoid and the tract prefix of acs-block-groups."
+    },
+    {
+      "name": "total_population",
+      "type": "int64",
+      "description": "Tract total population as carried in the PLACES release."
+    },
+    {
+      "name": "access2",
+      "type": "double",
+      "description": "Current lack of health insurance among adults aged 18-64 years \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "access2_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for access2."
+    },
+    {
+      "name": "access2_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for access2."
+    },
+    {
+      "name": "arthritis",
+      "type": "double",
+      "description": "Arthritis among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "arthritis_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for arthritis."
+    },
+    {
+      "name": "arthritis_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for arthritis."
+    },
+    {
+      "name": "binge",
+      "type": "double",
+      "description": "Binge drinking among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "binge_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for binge."
+    },
+    {
+      "name": "binge_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for binge."
+    },
+    {
+      "name": "bphigh",
+      "type": "double",
+      "description": "High blood pressure among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "bphigh_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for bphigh."
+    },
+    {
+      "name": "bphigh_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for bphigh."
+    },
+    {
+      "name": "bpmed",
+      "type": "double",
+      "description": "Taking medicine to control high blood pressure among adults with high blood pressure \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "bpmed_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for bpmed."
+    },
+    {
+      "name": "bpmed_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for bpmed."
+    },
+    {
+      "name": "cancer",
+      "type": "double",
+      "description": "Cancer (non-skin) or melanoma among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "cancer_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for cancer."
+    },
+    {
+      "name": "cancer_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for cancer."
+    },
+    {
+      "name": "casthma",
+      "type": "double",
+      "description": "Current asthma among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "casthma_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for casthma."
+    },
+    {
+      "name": "casthma_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for casthma."
+    },
+    {
+      "name": "chd",
+      "type": "double",
+      "description": "Coronary heart disease among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "chd_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for chd."
+    },
+    {
+      "name": "chd_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for chd."
+    },
+    {
+      "name": "checkup",
+      "type": "double",
+      "description": "Visits to doctor for routine checkup within the past year among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "checkup_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for checkup."
+    },
+    {
+      "name": "checkup_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for checkup."
+    },
+    {
+      "name": "cholscreen",
+      "type": "double",
+      "description": "Cholesterol screening among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "cholscreen_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for cholscreen."
+    },
+    {
+      "name": "cholscreen_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for cholscreen."
+    },
+    {
+      "name": "cognition",
+      "type": "double",
+      "description": "Cognitive disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "cognition_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for cognition."
+    },
+    {
+      "name": "cognition_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for cognition."
+    },
+    {
+      "name": "colon_screen",
+      "type": "double",
+      "description": "Colorectal cancer screening among adults aged 45\u201375 years \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2022)."
+    },
+    {
+      "name": "colon_screen_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for colon_screen."
+    },
+    {
+      "name": "colon_screen_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for colon_screen."
+    },
+    {
+      "name": "copd",
+      "type": "double",
+      "description": "Chronic obstructive pulmonary disease among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "copd_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for copd."
+    },
+    {
+      "name": "copd_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for copd."
+    },
+    {
+      "name": "csmoking",
+      "type": "double",
+      "description": "Current cigarette smoking among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "csmoking_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for csmoking."
+    },
+    {
+      "name": "csmoking_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for csmoking."
+    },
+    {
+      "name": "dental",
+      "type": "double",
+      "description": "Visited dentist or dental clinic in the past year among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2022)."
+    },
+    {
+      "name": "dental_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for dental."
+    },
+    {
+      "name": "dental_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for dental."
+    },
+    {
+      "name": "depression",
+      "type": "double",
+      "description": "Depression among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "depression_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for depression."
+    },
+    {
+      "name": "depression_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for depression."
+    },
+    {
+      "name": "diabetes",
+      "type": "double",
+      "description": "Diagnosed diabetes among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "diabetes_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for diabetes."
+    },
+    {
+      "name": "diabetes_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for diabetes."
+    },
+    {
+      "name": "disability",
+      "type": "double",
+      "description": "Any disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "disability_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for disability."
+    },
+    {
+      "name": "disability_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for disability."
+    },
+    {
+      "name": "emotionspt",
+      "type": "double",
+      "description": "Lack of social and emotional support among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "emotionspt_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for emotionspt."
+    },
+    {
+      "name": "emotionspt_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for emotionspt."
+    },
+    {
+      "name": "foodinsecu",
+      "type": "double",
+      "description": "Food insecurity in the past 12 months among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "foodinsecu_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for foodinsecu."
+    },
+    {
+      "name": "foodinsecu_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for foodinsecu."
+    },
+    {
+      "name": "foodstamp",
+      "type": "double",
+      "description": "Received food stamps in the past 12 months among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "foodstamp_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for foodstamp."
+    },
+    {
+      "name": "foodstamp_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for foodstamp."
+    },
+    {
+      "name": "ghlth",
+      "type": "double",
+      "description": "Fair or poor self-rated health status among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "ghlth_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for ghlth."
+    },
+    {
+      "name": "ghlth_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for ghlth."
+    },
+    {
+      "name": "hearing",
+      "type": "double",
+      "description": "Hearing disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "hearing_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for hearing."
+    },
+    {
+      "name": "hearing_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for hearing."
+    },
+    {
+      "name": "highchol",
+      "type": "double",
+      "description": "High cholesterol among adults who have ever been screened \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "highchol_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for highchol."
+    },
+    {
+      "name": "highchol_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for highchol."
+    },
+    {
+      "name": "housinsecu",
+      "type": "double",
+      "description": "Housing insecurity in the past 12 months among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "housinsecu_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for housinsecu."
+    },
+    {
+      "name": "housinsecu_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for housinsecu."
+    },
+    {
+      "name": "indeplive",
+      "type": "double",
+      "description": "Independent living disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "indeplive_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for indeplive."
+    },
+    {
+      "name": "indeplive_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for indeplive."
+    },
+    {
+      "name": "lacktrpt",
+      "type": "double",
+      "description": "Lack of reliable transportation in the past 12 months among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "lacktrpt_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for lacktrpt."
+    },
+    {
+      "name": "lacktrpt_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for lacktrpt."
+    },
+    {
+      "name": "loneliness",
+      "type": "double",
+      "description": "Loneliness among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "loneliness_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for loneliness."
+    },
+    {
+      "name": "loneliness_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for loneliness."
+    },
+    {
+      "name": "lpa",
+      "type": "double",
+      "description": "No leisure-time physical activity among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "lpa_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for lpa."
+    },
+    {
+      "name": "lpa_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for lpa."
+    },
+    {
+      "name": "mammouse",
+      "type": "double",
+      "description": "Mammography use among women aged 50-74 years \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2022)."
+    },
+    {
+      "name": "mammouse_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for mammouse."
+    },
+    {
+      "name": "mammouse_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for mammouse."
+    },
+    {
+      "name": "mhlth",
+      "type": "double",
+      "description": "Frequent mental distress among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "mhlth_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for mhlth."
+    },
+    {
+      "name": "mhlth_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for mhlth."
+    },
+    {
+      "name": "mobility",
+      "type": "double",
+      "description": "Mobility disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "mobility_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for mobility."
+    },
+    {
+      "name": "mobility_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for mobility."
+    },
+    {
+      "name": "obesity",
+      "type": "double",
+      "description": "Obesity among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "obesity_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for obesity."
+    },
+    {
+      "name": "obesity_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for obesity."
+    },
+    {
+      "name": "phlth",
+      "type": "double",
+      "description": "Frequent physical distress among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "phlth_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for phlth."
+    },
+    {
+      "name": "phlth_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for phlth."
+    },
+    {
+      "name": "selfcare",
+      "type": "double",
+      "description": "Self-care disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "selfcare_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for selfcare."
+    },
+    {
+      "name": "selfcare_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for selfcare."
+    },
+    {
+      "name": "shututility",
+      "type": "double",
+      "description": "Utility services shut-off threat in the past 12 months among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "shututility_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for shututility."
+    },
+    {
+      "name": "shututility_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for shututility."
+    },
+    {
+      "name": "sleep",
+      "type": "double",
+      "description": "Short sleep duration among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2022)."
+    },
+    {
+      "name": "sleep_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for sleep."
+    },
+    {
+      "name": "sleep_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for sleep."
+    },
+    {
+      "name": "stroke",
+      "type": "double",
+      "description": "Stroke among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "stroke_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for stroke."
+    },
+    {
+      "name": "stroke_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for stroke."
+    },
+    {
+      "name": "teethlost",
+      "type": "double",
+      "description": "All teeth lost among adults aged >=65 years \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2022)."
+    },
+    {
+      "name": "teethlost_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for teethlost."
+    },
+    {
+      "name": "teethlost_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for teethlost."
+    },
+    {
+      "name": "vision",
+      "type": "double",
+      "description": "Vision disability among adults \u2014 model-based crude prevalence, percent of adults (CDC PLACES, BRFSS 2023)."
+    },
+    {
+      "name": "vision_lo",
+      "type": "double",
+      "description": "Lower 95% confidence limit for vision."
+    },
+    {
+      "name": "vision_hi",
+      "type": "double",
+      "description": "Upper 95% confidence limit for vision."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 930176,
+  "portolan:asset_count": 6,
+  "portolan:styles": [
+    "styles/default"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "demographics",
+          "title": "Demographics"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.cdc.gov/places/",
+      "concepts": [
+        {
+          "id": "places",
+          "title": "CDC PLACES"
+        }
+      ]
+    }
+  ],
+  "proj:epsg": 3857,
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -90.2197265,
+    38.6511901,
+    12
+  ],
+  "pmtiles:layers": [
+    "cdc-places"
+  ],
+  "title": "CDC PLACES Health Measures",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051589533225,
+          38.532001591520135,
+          -90.16671561256314,
+          38.77428387126793
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2022-01-01T00:00:00Z",
+          "2023-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "CDC",
+    "PLACES",
+    "health",
+    "small-area estimation"
+  ],
+  "providers": [
+    {
+      "name": "Centers for Disease Control and Prevention",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.cdc.gov/places/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "cdc-places": {
+      "href": "./cdc-places.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "CDC PLACES Health Measures (GeoParquet)",
+      "file:size": 101749,
+      "file:checksum": "122037c3cad48e856eda6c43fe6cd7670777ec4ba84f49c98f1e9bf3b441d0164e65",
+      "roles": [
+        "data"
+      ]
+    },
+    "cdc-places-tiles": {
+      "href": "./cdc-places.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "cdc-places (vector tiles)",
+      "file:size": 484632,
+      "file:checksum": "1220405aa15d04b239693039a49ffa84556060b4a704de74d9ded5477a6acb575d69",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Food insecurity",
+      "description": "Share of adults reporting food insecurity in the past 12 months \u2014 a CDC PLACES model-based estimate, so read it as a ranking of need, not a per-tract measurement.",
+      "file:size": 1631,
+      "file:checksum": "12200db3f5a1a0625c48ec2dd758f630908c9a11955110b80714cf82d10e5309b987",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/asthma": {
+      "href": "./styles/asthma.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adult asthma",
+      "description": "Share of adults with current asthma (CDC PLACES modeled estimate). The citywide band is narrow, so the breaks are tight \u2014 pair with vacancy and demolition layers for the housing-condition story.",
+      "file:size": 1651,
+      "file:checksum": "12204d3da7a343310324cbd0549e0d5cff87a04e244b8eb4ffd12a38372b2167e0db",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "CDC PLACES Health Measures rendered with the default style",
+      "file:size": 325029,
+      "file:checksum": "1220f79b7db1f60e040402f82a97d42d0203c39427b0f707270dd893fc6effd2ef3c",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

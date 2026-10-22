@@ -1,0 +1,241 @@
+{
+  "type": "Collection",
+  "id": "oepnv/oev-linien",
+  "stac_version": "1.1.0",
+  "description": "Liniennetz des \u00f6ffentlichen Verkehrs",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_oefflinienogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliches Verkehrsnetz Linien Wien",
+      "pmtiles:layers": [
+        "ogdwien_oefflinienogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/36a8b9e9-909e-4605-a7ba-686ee3e1b8bf",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: oefflinienogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 4918,
+  "table:row_count": 4918,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Linie) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "LBEZEICHNUNG",
+      "type": "string",
+      "description": "Liste der auf dieser Strecke verkehrenden Verkehrslinien."
+    },
+    {
+      "name": "LTYP",
+      "type": "int64",
+      "description": "Typ des Verkehrsmittels, Schl\u00fcssel (1 Stra\u00dfenbahn, 2 Autobus, 3 Regionalbus, 4 U-Bahn, 5 S- und Regionalbahn, 6 Badner Bahn, 9 bis 13 Astax und Nachtautobus)."
+    },
+    {
+      "name": "LTYPTXT",
+      "type": "string",
+      "description": "Typ des Verkehrsmittels, textlich."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "\u00d6ffentliches Verkehrsnetz Linien Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.1000000113934,
+          47.99999101052992,
+          16.65001357246609,
+          48.40000904000486
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliches Verkehrsnetz Linien Wien default style",
+      "description": "Default visualization for \u00d6ffentliches Verkehrsnetz Linien Wien, drawn in #7a0177.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1239,
+      "file:checksum": "12209c780a0f067856f6705d9ee5ae1298a2bfa706fd960a655e01e556299ab715f8"
+    },
+    "ogdwien_oefflinienogd": {
+      "href": "./ogdwien_oefflinienogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1693951,
+      "file:checksum": "1220dea10de4e889a57adee50eb2cd1b5ad677b9296743ba2ae745a941753eedb4a0",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_oefflinienogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00d6ffentliches Verkehrsnetz Linien Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1858078,
+      "file:checksum": "122009443194d8c5eb37d409562c0950d04763a021636290e016c0494e7837a43141"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliches Verkehrsnetz Linien Wien categorical style",
+      "description": "Categorical visualization coloring \u00d6ffentliches Verkehrsnetz Linien Wien by LTYPTXT, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2901,
+      "file:checksum": "1220111346423f810cbaed2bdcf762f03b2672c9f97fa73544397b31cedf0f8b3556"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliches Verkehrsnetz Linien Wien labeled style",
+      "description": "Default visualization for \u00d6ffentliches Verkehrsnetz Linien Wien with LTYPTXT shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1673,
+      "file:checksum": "1220e074e098da823473e50dbda0e22c8f352a2af9ae1ff7db14d44281f175b038ec"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00d6ffentliches Verkehrsnetz Linien Wien graduated style",
+      "description": "Graduated visualization coloring \u00d6ffentliches Verkehrsnetz Linien Wien by LTYP, ramped from 1.0 to 13.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1971,
+      "file:checksum": "1220d3e8c82a23e2204427f67a8b5abe07fb03bd685e1de704eec17b2f14325fbd4b"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_oefflinienogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of \u00d6ffentliches Verkehrsnetz Linien Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 246043,
+      "file:checksum": "1220c492f1994efb3ac6473f24c1c02985bd349a1d31c367e0f76e17cf3451526851"
+    }
+  },
+  "keywords": [
+    "ViennaGIS",
+    "U-bahn",
+    "Badner Bahn",
+    "Liniennetz",
+    "Autobus",
+    "Schnellbahn",
+    "Regionalbus",
+    "\u00d6ffentlicher Verkehr",
+    "Stra\u00dfenbahn",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, \u00d6ffentliches Verkehrsnetz Linien Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

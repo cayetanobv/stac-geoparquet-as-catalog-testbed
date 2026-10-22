@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "id": "allaus/allaus-cartografiades",
+  "stac_version": "1.1.0",
+  "description": "Allaus cartografiades del Pirineu de Catalunya, amb el codi d'allau, si correspon a una \u00e0rea controlada, el centroide i el rectangle envolupant que en calcula el productor, i l'\u00e0rea i el per\u00edmetre.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./allaus_allau_geom.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Allaus cartografiades",
+      "pmtiles:layers": [
+        "allaus_allau_geom"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: allaus-cartografiades",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa allaus:allau_geom, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 6468,
+  "table:row_count": 6468,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "codiallau",
+      "type": "string",
+      "description": "Codi de l'allau."
+    },
+    {
+      "name": "a_contro",
+      "type": "int64",
+      "description": "Indicador num\u00e8ric del productor sobre si l'allau correspon a una \u00e0rea controlada. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "centre_x",
+      "type": "double",
+      "description": "Coordenada X del centroide de l'allau, en les unitats del sistema d'origen EPSG:25831."
+    },
+    {
+      "name": "centre_y",
+      "type": "double",
+      "description": "Coordenada Y del centroide de l'allau, en les unitats del sistema d'origen EPSG:25831."
+    },
+    {
+      "name": "min_x",
+      "type": "double",
+      "description": "Coordenada X m\u00ednima del rectangle envolupant, en EPSG:25831."
+    },
+    {
+      "name": "min_y",
+      "type": "double",
+      "description": "Coordenada Y m\u00ednima del rectangle envolupant, en EPSG:25831."
+    },
+    {
+      "name": "max_x",
+      "type": "double",
+      "description": "Coordenada X m\u00e0xima del rectangle envolupant, en EPSG:25831."
+    },
+    {
+      "name": "max_y",
+      "type": "double",
+      "description": "Coordenada Y m\u00e0xima del rectangle envolupant, en EPSG:25831."
+    },
+    {
+      "name": "area",
+      "type": "double",
+      "description": "\u00c0rea de l'allau calculada pel productor, en les unitats del sistema d'origen EPSG:25831."
+    },
+    {
+      "name": "perimeter",
+      "type": "double",
+      "description": "Per\u00edmetre de l'allau calculat pel productor, en les unitats del sistema d'origen EPSG:25831."
+    },
+    {
+      "name": "metadata",
+      "type": "int64",
+      "description": "Codi num\u00e8ric de metadades que el productor associa a l'objecte. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Allaus cartografiades",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.6517139074154156,
+          42.16211639449638,
+          2.3421676552102957,
+          42.846695298155254
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Allaus cartografiades default style",
+      "description": "Default visualization for Allaus cartografiades, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1190,
+      "file:checksum": "1220311d9daa4e3d5db536005e710533f8675547dd1c79c5af5ded9907c2a7481c54"
+    },
+    "allaus_allau_geom": {
+      "href": "./allaus_allau_geom.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6833299,
+      "file:checksum": "1220e9f96aaa7fcf448a10ff01d81b30355e1e98b110f066ec3c11ad3f29ac2facec",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./allaus_allau_geom.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Allaus cartografiades (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 7294210,
+      "file:checksum": "1220fd70b231016f8338cc694d14961029e19b74229d50f88ab1707b565eda942fd0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Allaus cartografiades graduated style",
+      "description": "Graduated visualization coloring Allaus cartografiades by area, ramped from 31.5654288791 to 706213.372866.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2021,
+      "file:checksum": "122088d973d9e9ca663b7a49bed035caee69b23a02d31461879289c532409024d487"
+    },
+    "thumbnail": {
+      "href": "./allaus_allau_geom.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Allaus cartografiades",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 129914,
+      "file:checksum": "1220f8bf29333ccaeaea08310ab3fa7829be34ed1b09336ea33193c0fa4897759992"
+    }
+  },
+  "keywords": [
+    "allaus",
+    "nivologia",
+    "Pirineu",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Allaus cartografiades de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

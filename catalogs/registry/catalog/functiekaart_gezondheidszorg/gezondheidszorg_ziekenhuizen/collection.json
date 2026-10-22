@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_gezondheidszorg/gezondheidszorg_ziekenhuizen",
+  "stac_version": "1.1.0",
+  "description": "Gezondheidszorg Ziekenhuizen",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gezondheidszorg_ziekenhuizen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "gezondheidszorg_ziekenhuizen"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 7,
+  "table:row_count": 7,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Gezondheidszorg Ziekenhuizen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.05721632543432,
+          52.0815607611341,
+          5.18332304824655,
+          52.11477808498
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "gezondheidszorg_ziekenhuizen": {
+      "href": "./gezondheidszorg_ziekenhuizen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2775,
+      "file:checksum": "1220a3ef64091272bc10f70c3c1da6ea34b43e5cb6e878f28e8776f8bebf1b52ee92",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./gezondheidszorg_ziekenhuizen.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 1988,
+      "file:checksum": "12206ac38a7be2f29a0fc006ed94d6f76ee33d254f076a63bb7c0b35d3e4daba6c0b"
+    },
+    "gezondheidszorg_ziekenhuizen-tiles": {
+      "href": "./gezondheidszorg_ziekenhuizen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "gezondheidszorg_ziekenhuizen (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2266,
+      "file:checksum": "12208dbc4533defc5418bedac5801e5e2d0a721465f42215393cdf859827a256747d"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 722,
+      "file:checksum": "12204c8fb639ba205185ec5427f065aa46c97778d5f14f646772ba426b312011bda9",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

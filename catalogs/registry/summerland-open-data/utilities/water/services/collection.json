@@ -1,0 +1,177 @@
+{
+  "type": "Collection",
+  "id": "utilities/water/services",
+  "stac_version": "1.1.0",
+  "description": "Shows the locations of all the water services within the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./services.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "services"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 5656,
+  "table:row_count": 5656,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "ElevationB",
+      "type": "double",
+      "description": "Elevation."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Services - Water Utility",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.74880570918877,
+          49.56255035798634,
+          -119.62061966155275,
+          49.66776282085907
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "services": {
+      "href": "./services.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 437711,
+      "file:checksum": "1220023409b959d2ccfabd0f9f0b9c52fe7cf6a9a2d20e3a77d22b6a45850c1197b6",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./services.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 56198,
+      "file:checksum": "1220037337a9caf1c39bebde51e4fac87a30a6fda586a489eb730a90dfe8d32f43d5"
+    },
+    "services-tiles": {
+      "href": "./services.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "services (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 241354,
+      "file:checksum": "122028b9fbb4815db2ff7d11f923362f8afde5d4be9aacbc542f1b2e2cd0fe5968b5"
+    },
+    "styles/water-service": {
+      "href": "./styles/water-service.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Water service",
+      "file:size": 333,
+      "file:checksum": "12203259f2fb16d8285e49964012e72f3381f80861b3246d3fd5e5ff561481b05e5e"
+    }
+  },
+  "keywords": [
+    "Utilities",
+    "Water",
+    "Works",
+    "Infrastructure"
+  ]
+}

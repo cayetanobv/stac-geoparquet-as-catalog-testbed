@@ -1,0 +1,260 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/overture-addresses",
+  "stac_version": "1.1.0",
+  "description": "Address points from the Overture addresses theme (currently in Alpha). An address represents a physical place through a series of attributes \u2014 street number, street name, unit, address levels, postal code, and/or country \u2014 together with a point geometry giving the approximate location most commonly associated with it. The theme aggregates open government address datasets, each carrying its own permissive open license, recorded per feature in the `sources` column. Useful for geocoding, validation, and conflation with buildings and places. Overture documents this data well: the [addresses theme guide](https://docs.overturemaps.org/guides/addresses/) covers what the theme models, how Overture builds it, and how to query it, and the schema reference gives every field of its feature type \u2014 [`address`](https://docs.overturemaps.org/schema/reference/addresses/address/).\n\nUnlike everything else in this catalog, this is **not** City of St. Louis data: it comes from the [Overture Maps Foundation](https://overturemaps.org/), a collaborative project building open, interoperable map data for the world. This collection is a St. Louis extract of that global dataset \u2014 everything inside the city's bounding box, which also takes in the Illinois shore of the Mississippi (East St. Louis, Cahokia Heights) \u2014 included here to demonstrate how a city's open-data catalog can blend in other St. Louis-relevant open data alongside the city's own. The GeoParquet was extracted from Overture release 2026-07-22.0. **Coverage caveat:** the theme's aggregated government datasets do not yet include the City of St. Louis itself \u2014 the ~99,000 points here are the St. Louis County and Illinois fringe that falls inside the bounding box (Wellston, Ferguson, Jennings, Cahokia, and neighbors), with almost nothing between the city limits. Uniquely among the Overture collections here, the map tiles are built locally from this extract: Overture's own global address tiles are just as empty for St. Louis, and only exist at z14.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licensing"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/guides/addresses/",
+      "type": "text/html",
+      "title": "Overture addresses theme guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/addresses/address/",
+      "type": "text/html",
+      "title": "Overture schema reference: address"
+    },
+    {
+      "rel": "via",
+      "href": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=addresses/",
+      "type": "text/html",
+      "title": "Overture release 2026-07-22.0 GeoParquet (theme=addresses) on S3"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./overture-addresses.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "overture-addresses"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 99070,
+  "table:row_count": 99070,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Overture feature ID \u2014 per the schema, 'a feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS.' GERS IDs are intended to be stable across Overture's monthly releases, which makes this the key for attaching your own data to an Overture feature and for joining to any other GERS-enabled dataset. See the [GERS overview](https://docs.overturemaps.org/gers/)."
+    },
+    {
+      "name": "street",
+      "type": "string",
+      "description": "The street name for this address, which can include the street type or suffix, as in Main Street. Ideally fully spelled out, though many source datasets abbreviate it."
+    },
+    {
+      "name": "number",
+      "type": "string",
+      "description": "The house number for this address. Not strictly a number: values such as 74B, 189 1/2 and 208.5 are common as the number part of an address, and they are not part of the `unit`."
+    },
+    {
+      "name": "unit",
+      "type": "string",
+      "description": "The suite, unit, apartment or floor number."
+    },
+    {
+      "name": "postcode",
+      "type": "string",
+      "description": "The postcode for the address."
+    },
+    {
+      "name": "postal_city",
+      "type": "string",
+      "description": "The alternate city name a mailing address needs when it differs from the city that actually contains the address coordinates \u2014 for example 716 East County Road, Winchester, Indiana takes 'Ridgeville' as its postal city in the US National Address Database."
+    },
+    {
+      "name": "address_levels",
+      "type": "list<element: struct<value: string>>",
+      "description": "The administrative levels present in the address, ordered highest first, with up to 5 entries. How many there are and what they mean is country-dependent: in the United States two are expected, the state and the municipality. A level the data provider did not supply is present as an entry with no `value`. Schema reference: [address_level](https://docs.overturemaps.org/schema/reference/addresses/types/address_level/)."
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code for the address. Schema reference: [country_code_alpha2](https://docs.overturemaps.org/schema/reference/system/country_code_alpha2/)."
+    },
+    {
+      "name": "sources",
+      "type": "list<element: struct<property: string, dataset: string, license: string, record_id: string, update_time: string, confidence: double, between: list<element: double>>>",
+      "description": "Per-property provenance, and the place to look for this collection's licensing: the addresses theme aggregates over 175 independent open datasets, each keeping its own license, so the applicable terms are the `license` recorded here per feature rather than one license for the collection. Each record also names the `property` it covers in JSON Pointer notation, the source `dataset`, the `record_id` used and an `update_time`."
+    },
+    {
+      "name": "version",
+      "type": "int32",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed. Schema reference: [feature_version](https://docs.overturemaps.org/schema/reference/common/feature_version/)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "The address's location as a WKB Point in EPSG:4326 \u2014 the approximate location most commonly associated with the address."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Covering bounding box (xmin, ymin, xmax, ymax) for the row's geometry. Not an Overture schema column: Overture's own bbox was dropped and this one rebuilt by gpio during conversion, with row-group statistics, so a spatial filter can skip most of the file over the network."
+    }
+  ],
+  "portolan:total_size_bytes": 7293315,
+  "portolan:asset_count": 1,
+  "title": "Overture Addresses",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3205182695672,
+          38.53199954005468,
+          -90.16631356713408,
+          38.774346652337805
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-07-22T00:00:00Z",
+          "2026-07-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "overture-addresses": {
+      "href": "./overture-addresses.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 7293315,
+      "file:checksum": "1220cd113806a4f54ecec5f8f4f4f19dc3fdfd3fbf9f110631c54a0b963b185bdba2",
+      "roles": [
+        "data"
+      ],
+      "title": "Overture Addresses (GeoParquet)"
+    },
+    "overture-addresses-tiles": {
+      "href": "./overture-addresses.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture Addresses (PMTiles)",
+      "description": "Vector tiles built from this collection's own clipped GeoParquet \u2014 Overture's global addresses tileset has no St. Louis coverage, so this mirror tiles the theme locally.",
+      "file:size": 1747627,
+      "file:checksum": "1220ffdb0c489244ed8e21fbebbba68c09ae2b012e8b5f242d40b447c4f6ba52bb74"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Address points",
+      "description": "Every address point in the box, in the catalog blue. Overture has no address data for the city proper yet, so the points ring it \u2014 the county and Illinois fringe. Thinned at overview zooms, complete from z14.",
+      "file:size": 990,
+      "file:checksum": "12205e647e079790d664bde6e874f5ed310090b189563f8158afc533ec226f1bb5af"
+    },
+    "styles/style-postcode": {
+      "href": "./styles/style-postcode.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Postcode mosaic",
+      "description": "Repeating colors keyed on ZIP code, so postal boundaries emerge from the address points themselves. Colors are arbitrary.",
+      "file:size": 2223,
+      "file:checksum": "12205232b85108e1c9e582faba05786399f8b93f21a118ca9c69cd70041d72fea526"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Overture Addresses rendered with the default style",
+      "file:size": 332756,
+      "file:checksum": "1220eba27dfaf6416e1b376b55365cb3a9ac8d5a100fd9fd9f6b6ab44267257b65de"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://docs.overturemaps.org/guides/",
+      "concepts": [
+        {
+          "id": "addresses",
+          "title": "Overture addresses theme"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "overture",
+    "Overture Maps Foundation",
+    "addresses",
+    "address"
+  ],
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "type": "Collection",
+  "id": "gewaesser/grundwassermessstellen",
+  "stac_version": "1.1.0",
+  "description": "Lage der Grundwassermessstellen, die sich im Eigentum der Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt und der Berliner Wasserbetriebe befinden.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gwm_grundwassermessstellen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Grundwassermessstellen",
+      "pmtiles:layers": [
+        "gwm_grundwassermessstellen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/grundwassermessstellen-wfs-2b515158",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/gwm",
+      "rel": "related",
+      "title": "WFS source service: grundwassermessstellen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 5529,
+  "table:row_count": 5529,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "invid",
+      "type": "string"
+    },
+    {
+      "name": "invhyas",
+      "type": "int64"
+    },
+    {
+      "name": "invname",
+      "type": "string"
+    },
+    {
+      "name": "eigentuemer",
+      "type": "string"
+    },
+    {
+      "name": "messnetz_klartext",
+      "type": "string"
+    },
+    {
+      "name": "zcoordb",
+      "type": "double"
+    },
+    {
+      "name": "invmbeg",
+      "type": "double"
+    },
+    {
+      "name": "invzbeg",
+      "type": "double"
+    },
+    {
+      "name": "invzend",
+      "type": "double"
+    },
+    {
+      "name": "xcoord",
+      "type": "double"
+    },
+    {
+      "name": "ycoord",
+      "type": "double"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Grundwassermessstellen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09290576,
+          52.34301316,
+          13.75514136,
+          52.66925018
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Grundwassermessstellen default style",
+      "description": "Default visualization for Grundwassermessstellen, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1254,
+      "file:checksum": "1220103d20318e99f4bf9e01248694c7cc40ec1444773742d6b16e634b4c66faf02b"
+    },
+    "gwm_grundwassermessstellen": {
+      "href": "./gwm_grundwassermessstellen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 331578,
+      "file:checksum": "1220692c40af34b674e1a6cac7b0e118b4b09f83d595dd6e9cbb27f0b12d23a44619",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./gwm_grundwassermessstellen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Grundwassermessstellen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 760253,
+      "file:checksum": "12200f7e29664911a114383168c2e79027d9cefb2edbbd2175f41a426660d1db49e1"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Grundwassermessstellen categorical style",
+      "description": "Categorical visualization coloring Grundwassermessstellen by eigentuemer, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1906,
+      "file:checksum": "1220f0713db77b28e040cab9f94053dc84849ca9aca5ae3e3a8c2d0452fdabf59044"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Grundwassermessstellen labeled style",
+      "description": "Default visualization for Grundwassermessstellen with invname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1698,
+      "file:checksum": "1220342aed4887570c87ac3970d73d61f7811fdea14115a80817898451716d288f3a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Grundwassermessstellen graduated style",
+      "description": "Graduated visualization coloring Grundwassermessstellen by invhyas, ramped from 1.0 to 99868.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2019,
+      "file:checksum": "1220b10dadb70da3ae3f8205cf633e0d909b3a48629aa87258357e6da22b8c84d5d3"
+    },
+    "thumbnail": {
+      "href": "./gwm_grundwassermessstellen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Grundwassermessstellen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 140109,
+      "file:checksum": "12204e9a703b116c420411467bf1f71c5d426088e8db537702135a9e23bcef741c33"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Geodaten",
+    "Grundwasser",
+    "Grundwassermessstellen",
+    "Karten",
+    "Landesmessnetz",
+    "Messnetz",
+    "Messstellen"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Grundwassermessstellen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "sarah.zeilfelder@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

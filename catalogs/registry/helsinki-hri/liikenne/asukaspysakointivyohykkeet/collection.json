@@ -1,0 +1,233 @@
+{
+  "type": "Collection",
+  "id": "liikenne/asukaspysakointivyohykkeet",
+  "stac_version": "1.1.0",
+  "description": "Aineisto sis\u00e4lt\u00e4\u00e4 p\u00e4\u00e4tetyt asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet Helsingin kantakaupungin alueelta. Asukaspys\u00e4k\u00f6intiin sallivat pys\u00e4k\u00f6intipaikat tulee tarkistaa liikennemerkeist\u00e4.\nRuotsiksi: Boende och f\u00f6retag parkering zoner i Helsingfors. Englanniksi: Residential and corporate parking zones in Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_asukas_ja_yrityspysakointivyohykkeet_alue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue)",
+      "pmtiles:layers": [
+        "avoindata_asukas_ja_yrityspysakointivyohykkeet_alue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-asukas-ja-yrityspysakointivyohykkeet",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: asukas_ja_yrityspysakointivyohykkeet_alue",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 16,
+  "table:row_count": 16,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Kohteen yksil\u00f6iv\u00e4 tunniste."
+    },
+    {
+      "name": "linkki",
+      "type": "string",
+      "description": "Linkki alueen tarkempaan pys\u00e4k\u00f6intikarttaan kaupungin verkkosivuilla."
+    },
+    {
+      "name": "asukaspysakointitunnus",
+      "type": "string",
+      "description": "Alueen asukaspys\u00e4k\u00f6intitunnus, joka oikeuttaa pys\u00e4k\u00f6intiin asukaspys\u00e4k\u00f6intipaikoilla."
+    },
+    {
+      "name": "alueen_nimi",
+      "type": "string",
+      "description": "Kaupunginosan nimi, jolla vy\u00f6hyke p\u00e4\u00e4asiassa sijaitsee. Rajat eiv\u00e4t noudata tarkkoja kaupunginosarajoja."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.84583732,
+          60.13610052,
+          24.99539383,
+          60.22463192
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue) default style",
+      "description": "Default visualization for Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue), drawn in #4daf4a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1513,
+      "file:checksum": "12206b2ec2508d5c5cf915d31da842052d50474f0648be866085cfd901a3ca4ecc7c"
+    },
+    "avoindata_asukas_ja_yrityspysakointivyohykkeet_alue": {
+      "href": "./avoindata_asukas_ja_yrityspysakointivyohykkeet_alue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 9053,
+      "file:checksum": "1220bb3f8a88fd85beb46de6d1b6c36e60fd43dd41252ac71e1f4354d35a51f82a93",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_asukas_ja_yrityspysakointivyohykkeet_alue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 45452,
+      "file:checksum": "1220afa7510a004cded68fe60ce4681a1421305a31b4ba9a74407e53401b41b5d064"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue) labeled style",
+      "description": "Default visualization for Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2013,
+      "file:checksum": "12200203e618e16b1bc30d79bc7eba019b4965a790d3893dfa8cdc7547dee3180dd0"
+    },
+    "thumbnail": {
+      "href": "./avoindata_asukas_ja_yrityspysakointivyohykkeet_alue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet (Asukas_ja_yrityspysakointivyohykkeet_alue)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 97758,
+      "file:checksum": "1220bb415b9d1bedb92f2b574a9bd8347f7b065e399780d2d6c793c86890309bb770"
+    }
+  },
+  "keywords": [
+    "pys\u00e4k\u00f6inti",
+    "pys\u00e4k\u00f6intivy\u00f6hykkeet",
+    "liikenne",
+    "asukaspys\u00e4k\u00f6inti",
+    "Asukas_ja_yrityspysakointivyohykkeet_alue",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin asukas- ja yrityspys\u00e4k\u00f6intivy\u00f6hykkeet\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-asukas-ja-yrityspysakointivyohykkeet",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

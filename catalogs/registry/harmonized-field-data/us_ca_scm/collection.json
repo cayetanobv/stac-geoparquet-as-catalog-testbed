@@ -1,0 +1,330 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "us_ca_scm",
+  "title": "California (US) Statewide Crop Mapping",
+  "description": "For many years, the California Department of Water Resources (DWR) has collected land use data throughout the state\nand used this information to develop water use estimates for statewide and regional planning efforts, including water\nuse projections, water use efficiency evaluation, groundwater model development, and water transfers. The statewide\ncrop maps are made from remote sensing by Land IQ under contract to DWR. 2024 is provisional.\n\nThis collection holds 9 editions (2014, 2016, 2018, 2019, 2020, 2021, 2022, 2023, 2024), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/us_ca_scm/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2024). Geometries are kept in the source CRS (EPSG:4269). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/us_ca_scm/AGENTS.md).\n\nBoundaries are mapped: an authority delineated them from imagery or survey, with no farmer's declaration behind them.",
+  "boundaries": "mapped",
+  "keywords": [
+    "California",
+    "DWR",
+    "Land IQ",
+    "Statewide Crop Mapping",
+    "United States",
+    "agriculture",
+    "fiboa",
+    "field boundaries",
+    "land use"
+  ],
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "California Department of Water Resources",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.cnra.ca.gov/dataset/statewide-crop-mapping"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -124.37525109966278,
+          32.544734690864864,
+          -114.49164743233551,
+          42.00558141331374
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-07-01T00:00:00Z",
+          "2024-07-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3857",
+      "EPSG:4269"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "admin_level_2",
+      "type": "string",
+      "description": "County (source column `COUNTY`, per the fiboa data survey)"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 447944,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 9,
+  "partition:glob": "s3://ftw/harmonized-field-data/us_ca_scm/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/us_ca_scm.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "US, California (SCM) — latest edition (2024) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2024/us_ca_scm-2024.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 148392250,
+      "file:checksum": "12201a809d972351fd85c1e82b815421c821b0501089e05415c686a2f7ba00885be3",
+      "proj:code": "EPSG:4269"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2345,
+      "file:checksum": "1220dd5db55952c573a03ceb609690f8ea6f0a089d006a46a510e6153bdf948f27a2"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 2, 5, 10 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1244,
+      "file:checksum": "12209f24c5120b277bbf295b79e531c14d62d7c6f6c2844c2a5128e8c1b9b8a7fecd"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 761,
+      "file:checksum": "122060ec62f123217228df0d91501f6f6ac303fc449a329ab891402390a215f0a72a"
+    },
+    "visual": {
+      "href": "./year=2024/us_ca_scm-2024.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "US, California (SCM) — latest edition (2024) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 77739039,
+      "file:checksum": "12209a23e39d9ae74504788a28ec47455c77ed5188929bd6f720401014b93b29cfcc"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 115777,
+      "file:checksum": "1220d5b40fb2bf931429aad484c180180e78a6172f510cf65a41def37e068d543558"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2024/us_ca_scm-2024.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "us_ca_scm"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.cnra.ca.gov/dataset/statewide-crop-mapping",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/US-CA-SCM.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/us_ca_scm.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2014/us_ca_scm-2014.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2014"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/us_ca_scm-2016.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/us_ca_scm-2018.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/us_ca_scm-2019.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/us_ca_scm-2020.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/us_ca_scm-2021.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/us_ca_scm-2022.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/us_ca_scm-2023.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/us_ca_scm-2024.json",
+      "type": "application/geo+json",
+      "title": "US, California (SCM) — 2024"
+    }
+  ],
+  "updated": "2026-10-07T03:32:55Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "us_ca_scm": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml"
+    ]
+  },
+  "attribution": "California Department of Water Resources, Statewide Crop Mapping"
+}

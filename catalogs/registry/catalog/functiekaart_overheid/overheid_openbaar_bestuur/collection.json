@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_overheid/overheid_openbaar_bestuur",
+  "stac_version": "1.1.0",
+  "description": "Overheid Openbaar Bestuur",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./overheid_openbaar_bestuur.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "overheid_openbaar_bestuur"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 28,
+  "table:row_count": 28,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Overheid Openbaar Bestuur",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.01117650444026,
+          52.0517974252005,
+          5.15320436614393,
+          52.1233227283901
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "overheid_openbaar_bestuur": {
+      "href": "./overheid_openbaar_bestuur.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3682,
+      "file:checksum": "1220fcca7ce7c28715f796ab527722c50c84e14153730b59a095797669be8a6fb461",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./overheid_openbaar_bestuur.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 3177,
+      "file:checksum": "12204c59312ad5cb3ccdcdf5164f64349cda78dcbcc2e2811af2aa9d1cbb186ef0cf"
+    },
+    "overheid_openbaar_bestuur-tiles": {
+      "href": "./overheid_openbaar_bestuur.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "overheid_openbaar_bestuur (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2659,
+      "file:checksum": "1220f4e524e9f8ab4f330eb238e2378edfa013af25298d1bac9f6ff55b710ddf1786"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 707,
+      "file:checksum": "12201deacb082904ebd531c95507a93aec99cce8f3adf54ab511c5dcd948834ea39b",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

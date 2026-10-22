@@ -1,0 +1,668 @@
+{
+  "type": "Collection",
+  "id": "law-safety-and-justice/crime",
+  "stac_version": "1.1.0",
+  "description": "Downloadable NIBRS crime data published by the St. Louis Metropolitan Police Department.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Law, Safety, and Justice"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=69",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./crime.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "crime"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=69",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.slmpd.org/crime_stats.shtml",
+      "type": "text/html",
+      "title": "SLMPD crime statistics \u2014 the monthly NIBRS CSV index"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 367449,
+  "table:row_count": 367449,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "IncidentDate",
+      "type": "date32[day]",
+      "description": "Date the incident was reported/recorded by SLMPD."
+    },
+    {
+      "name": "OccurredFromTime",
+      "type": "string",
+      "description": "Date/time the offense began (NIBRS incidents record an occurred-from time)."
+    },
+    {
+      "name": "IncidentNum",
+      "type": "string",
+      "description": "SLMPD incident (complaint) number; multiple offense rows can share one incident."
+    },
+    {
+      "name": "Offense",
+      "type": "string",
+      "description": "SLMPD's Missouri statutory offense description for the charge (e.g. 'MURDER 1ST DEGREE', 'STEALING - MOTOR VEHICLE')."
+    },
+    {
+      "name": "NIBRS",
+      "type": "string",
+      "description": "FBI NIBRS offense code for the offense, e.g. 09A Murder/Nonnegligent Manslaughter, 13A Aggravated Assault, 23G Theft of Motor Vehicle Parts, 240 Motor Vehicle Theft, 290 Destruction/Damage/Vandalism (FBI NIBRS offense code list)."
+    },
+    {
+      "name": "NIBRSCategory",
+      "type": "string",
+      "description": "FBI NIBRS offense category name corresponding to the NIBRS code (e.g. 'Motor Vehicle Theft', 'Aggravated Assault')."
+    },
+    {
+      "name": "SRS_UCR",
+      "type": "string",
+      "description": "Legacy FBI Summary Reporting System (SRS/UCR) Part I offense class for the offense: 01 Criminal Homicide, 02 Rape, 03 Robbery, 04 Aggravated Assault, 05 Burglary, 06 Larceny-Theft, 07 Motor Vehicle Theft, 08 Arson (null for non-Part-I offenses)."
+    },
+    {
+      "name": "CrimeAgainst",
+      "type": "string",
+      "description": "NIBRS 'Crimes Against' classification of the offense: Person, Property, or Society (FBI NIBRS groups every offense this way); 'Unspecified' appears for some records."
+    },
+    {
+      "name": "FelMisdCit",
+      "type": "string",
+      "description": "Charge-severity flag: F felony, M misdemeanor, with C and I also present (per the column name 'Fel/Misd/Cit' C is presumably citation and I infraction; SLMPD publishes no decode)."
+    },
+    {
+      "name": "IncidentTopSRS_UCR",
+      "type": "string",
+      "description": "SRS/UCR class of the most serious offense in the incident (the SRS hierarchy rule reports only the highest offense; inferred from the field name and the SRS hierarchy convention)."
+    },
+    {
+      "name": "IncidentLocation",
+      "type": "string",
+      "description": "Street address or block-level location of the incident."
+    },
+    {
+      "name": "IntersectionOtherLoc",
+      "type": "string",
+      "description": "Intersection or other non-address location description for the incident."
+    },
+    {
+      "name": "District",
+      "type": "string",
+      "description": "SLMPD police district number where the incident occurred."
+    },
+    {
+      "name": "Neighborhood",
+      "type": "string",
+      "description": "City neighborhood name of the incident location; NbhdNum is the corresponding neighborhood number (1-79 per the city 'Neighborhood' vocabulary)."
+    },
+    {
+      "name": "NbhdNum",
+      "type": "string"
+    },
+    {
+      "name": "IncidentSupplemented",
+      "type": "string",
+      "description": "Yes/No \u2014 whether the incident record has been supplemented (updated) since the original report."
+    },
+    {
+      "name": "LastSuppDate",
+      "type": "string",
+      "description": "Date of the most recent supplement to the incident record."
+    },
+    {
+      "name": "VictimNum",
+      "type": "string",
+      "description": "Victim record identifier assigned by SLMPD (an ID shared by rows describing the same victim, not a count of victims \u2014 verified against the data)."
+    },
+    {
+      "name": "FirearmUsed",
+      "type": "string",
+      "description": "Whether a firearm was used in the offense."
+    },
+    {
+      "name": "IncidentNature",
+      "type": "string",
+      "description": "Nature-of-incident text as recorded by SLMPD."
+    },
+    {
+      "name": "keep",
+      "type": "bool",
+      "description": "Flag added by this mirror's pipeline: true when the record had valid coordinates falling inside the city boundary (geometry is null when false)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:total_size_bytes": 10866606,
+  "portolan:asset_count": 1,
+  "title": "Crime (NIBRS)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.325252,
+          38.530218,
+          -90.17843,
+          38.777615
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "crime": {
+      "href": "./crime.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10866606,
+      "file:checksum": "122030b8ecad7d300f0c016c2cf8dcbacc62fda0560299d0aa5455df4dc17dca6086",
+      "roles": [
+        "data"
+      ],
+      "title": "Crime (NIBRS) (GeoParquet)"
+    },
+    "crime-tiles": {
+      "href": "./crime.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Crime (NIBRS) (PMTiles)",
+      "file:size": 5552980,
+      "file:checksum": "122085d2f7232105baed01b9a81ab5cd1e449505652bcf7e5d3f06d7089d5fe97684"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Crime against person / property / society",
+      "description": "367k NIBRS incidents since 2021, colored by the crime-against classification: person red, property orange, society purple.",
+      "file:size": 1732,
+      "file:checksum": "122064c26483100c0f613d223fc7e209913d5c5472361f0f673652034f8b7cf52e7a"
+    },
+    "styles/style-category": {
+      "href": "./styles/style-category.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Offense category",
+      "description": "The eight largest NIBRS categories; everything else light gray.",
+      "file:size": 2054,
+      "file:checksum": "122069865461f7ea3b22e495ed5df9d22fa5f064c704cbcaea2e8dbbb9494006d16c"
+    },
+    "styles/style-firearm": {
+      "href": "./styles/style-firearm.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Firearm involved",
+      "description": "Incidents where a firearm was used, in red.",
+      "file:size": 1275,
+      "file:checksum": "12203d45cd2a16d1b03f60564f16d04c90343d993d2a59cc597c62d0ffea241e85d4"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Crime (NIBRS) rendered with the default style",
+      "file:size": 440749,
+      "file:checksum": "122073d5e0b2247dc5912431ba13173642674bb3afddc77753b26f54170fdf5a550e"
+    },
+    "source-2021-2023": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/03/2021-2023.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 2021\u20132023",
+      "roles": [
+        "source"
+      ],
+      "file:size": 43387307,
+      "file:checksum": "122064ea4355d77e0410874380daab0371466111233e5b2367048a104d7b69226ad1",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-01": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/03/January2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 January 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1444027,
+      "file:checksum": "1220dc14e9c399a87351c57ed8a72efe5fae4fe0706b2e7e1c66a5f29104116ad053",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-02": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/03/February2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 February 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1287136,
+      "file:checksum": "1220a826a72c6496b601e87d5f5b4ff856dca4a371da3d19f7259522f78d0ef5dba7",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-03": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/05/Downloadable-NIBRS-Crime-File-March-2024-CSV.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 March 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1598355,
+      "file:checksum": "122059dce0c5d983e6b23d33f7670156bbabb3869f8bb20de37979c06bce4eb98cb7",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-04": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/05/Downloadable-NIBRS-Crime-File-April-2024-CSV.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 April 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1741047,
+      "file:checksum": "1220ed5b261da204dbc60299981981cb03a62ac0e66477b23da43ddc2eafc619bc62",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-05": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/06/May2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 May 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1850124,
+      "file:checksum": "1220408b5ae54fbf385a310681ab79be426ecf836af946959771bc5136b0249344b7",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-06": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/07/June2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 June 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1918132,
+      "file:checksum": "12201bee7fbdb26f43cff4f0757db25c911835edbecd4eb0275f2be9ccfad68d2759",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-07": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/08/July2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 July 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1920856,
+      "file:checksum": "1220987e6ff92635a99114697b524c9e1c86b1f1b2fa9ba80440cb16b3b4a298289c",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-08": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/09/August2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 August 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1890399,
+      "file:checksum": "122059c3370275fa8921d1761b89bb5d085018aa901ef007a917624c58ae69dd1422",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-09": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/10/September2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 September 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1826976,
+      "file:checksum": "12200e5725153767ed0ecfac9b0a6fbb2fb95c428b76a001a43fb2bfab7b34a9c037",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-10": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/11/October2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 October 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1817615,
+      "file:checksum": "1220ef80bd790178dc8e68f909299f161185fe2f011ed9b7b5ae8d310009e8034768",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-11": {
+      "href": "https://slmpd.org/wp-content/uploads/2024/12/November2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 November 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1628387,
+      "file:checksum": "1220a871b16606434d3023c2cff2345c82a61ef47c6affb4a1db79b13e6206d8dd7e",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2024-12": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/01/December2024.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 December 2024",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1566213,
+      "file:checksum": "122013d6498ebacecc1e8a94c59dcd7b042c67f729f870d0a5ea3cdeffb3e5cf17d8",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-01": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/02/January2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 January 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1565926,
+      "file:checksum": "12200ebf3af9dfb70e52b1dd3b33b48fc6a25646a13bb724b92b52af510160e30084",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-02": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/03/February2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 February 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1431411,
+      "file:checksum": "1220136811299ae8a03eb3f56bf28247129dedead9480764aa5ae7c9035b9b2d544c",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-03": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/04/March2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 March 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1548857,
+      "file:checksum": "1220b12b07cf60a442ab5858dd687e9b0ce81fa2f86ca139a86cf7d200532dd40c7b",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-04": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/05/April2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 April 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1716028,
+      "file:checksum": "1220fe9662e6a537c26b9b7eff62743458141af191cc4be5ea4ac5223da75fffeabd",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-05": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/06/May2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 May 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1769824,
+      "file:checksum": "12207864d40f9a82ef620d40f60f2d5ab706cbac8c8350395e4fe2cc344957dcab12",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-06": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/07/June2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 June 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1843591,
+      "file:checksum": "12202a85e89fcfb3fb98c47c6711c4f4e3e78ed3ab5e90f71a4f2f47e349af30097e",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-07": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/08/July2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 July 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1840860,
+      "file:checksum": "12208e8701304d8023a12a0f4b7164c42d7b34edd77a081a73b0991a61db45dba7bb",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-08": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/09/August2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 August 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1922040,
+      "file:checksum": "1220fe5548bf66bf095a27801bbdfb106c5fbe4b2b704bcb645d42f094793e1a20e4",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-09": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/10/September2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 September 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1810606,
+      "file:checksum": "1220cbbe9363da949ebb28ca85bbeb188bd8b875853ba353473db6e23bf94763e7d4",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-10": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/11/October2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 October 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1755251,
+      "file:checksum": "122078ea24ea86125697a6a3bea205d5d16f704635b97b600fd53f97f063fd3a6d2e",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-11": {
+      "href": "https://slmpd.org/wp-content/uploads/2025/12/November2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 November 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1628373,
+      "file:checksum": "1220dad2d2926f669aab4ae788167d859dccf1560ac88970a659ef240ecb56337cc9",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2025-12": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/01/December2025.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 December 2025",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1568236,
+      "file:checksum": "122062e115e60adcecee870e583014105b38f489cae3a1d38471fec46a19c213474c",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-01": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/02/January2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 January 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1689648,
+      "file:checksum": "122043f70b3c166b80fa379ee1516821f1346f9d7ffb476a0128f32f0cc0c8deccaa",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-02": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/03/February2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 February 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1438285,
+      "file:checksum": "122014f8f59c275fd212dc562e31a07fb99cf29f835dcb380b377616f1bec531a74e",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-03": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/04/March2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 March 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1604394,
+      "file:checksum": "1220a335ae5f60d591dc767bd235a226fda65389f9bcabec1653efe54aad4d4bcf57",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-04": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/05/April2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 April 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1693330,
+      "file:checksum": "122069151ea954339bcf0d7ce6f8de5a4c2159ddbdabea4cfdd9630f0ed8a3788434",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-05": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/06/May2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 May 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1649723,
+      "file:checksum": "12201b982a62f66ea27e6802820f67f3006c1dbf13fdaf1313e810e4918936ccb05c",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-06": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/07/June2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 June 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1609215,
+      "file:checksum": "122087b1db93f5d78b19b011b380ef5f832ac6ab495facc7c9c21bfecd37a4d4a2df",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    },
+    "source-2026-07": {
+      "href": "https://slmpd.org/wp-content/uploads/2026/08/July2026.csv",
+      "type": "text/csv",
+      "title": "SLMPD NIBRS crime incidents \u2014 July 2026",
+      "roles": [
+        "source"
+      ],
+      "file:size": 1663809,
+      "file:checksum": "1220928070fb436a7a9a10d954aea3ef228f12c819d813434d44a3adb639cd23f74e",
+      "description": "The file this collection was built from. Served upstream by slmpd.org, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "law-safety-and-justice",
+          "title": "Law, Safety, and Justice"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "metropolitan-police-department",
+          "title": "Metropolitan Police Department"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "crime",
+    "police",
+    "nibrs",
+    "Metropolitan Police Department"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Metropolitan Police Department",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=69"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

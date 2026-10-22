@@ -1,0 +1,253 @@
+{
+  "type": "Collection",
+  "id": "kultur/monumenter",
+  "stac_version": "1.1.0",
+  "description": "Monumenter der varetages og driftes af Teknik- og Milj\u00f8forvaltningen. Omfatter ikke gravstedsmonumenter, men andre monumenter p\u00e5 kirkeg\u00e5rde. Indeholder oplysning om hvorvidt et monument er omfattet af graffitirenhold.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_monumenter.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Monumenter",
+      "pmtiles:layers": [
+        "k101_monumenter"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/monumenter",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: monumenter",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 424,
+  "table:row_count": 424,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "loebenummer",
+      "type": "int64"
+    },
+    {
+      "name": "web_id",
+      "type": "int64"
+    },
+    {
+      "name": "x",
+      "type": "double"
+    },
+    {
+      "name": "y",
+      "type": "double"
+    },
+    {
+      "name": "longitude",
+      "type": "double"
+    },
+    {
+      "name": "latitude",
+      "type": "double"
+    },
+    {
+      "name": "graffitirenhold",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Monumenter",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.476029371384588,
+          55.61718266632733,
+          12.620192091814895,
+          55.72700806447509
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumenter default style",
+      "description": "Default visualization for Monumenter, drawn in #993404.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1165,
+      "file:checksum": "1220fc7265daf0dfcb1fc29b512e0e6cefb4a1fa7267123f14ba588f6cb022b3339e"
+    },
+    "k101_monumenter": {
+      "href": "./k101_monumenter.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 43836,
+      "file:checksum": "1220023d5fa41997812f50b462b4b2192030d3b2abe0fb091d991f83e4c7de4521d6",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_monumenter.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Monumenter (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 76108,
+      "file:checksum": "12206dc7d5ec77bdabff88250fce790313de31b86ae3953840785651c2f73a7f75c4"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumenter categorical style",
+      "description": "Categorical visualization coloring Monumenter by graffitirenhold, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1851,
+      "file:checksum": "122041d4eac094452814119ea2136c6e8b5707e2a02b4be4d720f6ff46e37fc1e999"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumenter labeled style",
+      "description": "Default visualization for Monumenter with graffitirenhold shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1595,
+      "file:checksum": "1220e919ac6692a8b7b66ee13f1f8e6bfae052236e8095ea87d44107e44c99b45908"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumenter graduated style",
+      "description": "Graduated visualization coloring Monumenter by y, ramped from 6169271.342023 to 6181489.64037.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1981,
+      "file:checksum": "1220dbf8ef0a1eea9e406b619c64ecf8e4fedc0aa0802218601422740b99695228ce"
+    },
+    "thumbnail": {
+      "href": "./k101_monumenter.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Monumenter",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 93114,
+      "file:checksum": "1220eced5efe29f33d830082470a58d807286750eefaac87f66de5569aac8215ae30"
+    }
+  },
+  "keywords": [
+    "Monumenter",
+    "Monumentnavne",
+    "statue",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Monumenter, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/monumenter",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

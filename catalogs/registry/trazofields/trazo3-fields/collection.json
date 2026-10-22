@@ -1,0 +1,529 @@
+{
+  "type": "Collection",
+  "id": "trazo3-fields",
+  "stac_version": "1.1.0",
+  "description": "Agricultural field boundaries across South America — Argentina (Chaco, Córdoba), Bolivia, nine Brazilian states, and Paraguay (Chaco and non-Chaco) — delineated from Sentinel-2 imagery by the Trazo3 model for the 2023–2024 planting season. **This is the recommended collection for most use cases**: broadest coverage and strongest overall performance (79.17% pixel IoU on the Mato Grosso test set). Includes Hansen forest-loss attributes per field. Files are named {model}_{country}_{region}_{year}; read them all with the glob trazo3-fields/*.parquet. A PMTiles tileset, default style and thumbnail are provided; full-attribute GeoPackages for desktop GIS are in geopackages/.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Trazo Field Boundaries of South America"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Trazo Field Boundaries of South America"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/plain",
+      "title": "LLM-oriented collection summary"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./trazo3.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PMTiles tileset",
+      "pmtiles:layers": [
+        "trazo"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "proj:epsg": 4326,
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -65.8740229,
+    -14.221785,
+    12
+  ],
+  "pmtiles:layers": [
+    "trazo"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 6684250,
+  "table:row_count": 6684250,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Id",
+      "type": "int32"
+    },
+    {
+      "name": "hansen_covered_area",
+      "type": "double"
+    },
+    {
+      "name": "hansen_loss_area",
+      "type": "double"
+    },
+    {
+      "name": "mode_year",
+      "type": "double"
+    },
+    {
+      "name": "firstyear",
+      "type": "double"
+    },
+    {
+      "name": "firstyearmajority",
+      "type": "double"
+    },
+    {
+      "name": "deforestarea0104",
+      "type": "double"
+    },
+    {
+      "name": "deforestarea0509",
+      "type": "double"
+    },
+    {
+      "name": "deforestarea1014",
+      "type": "double"
+    },
+    {
+      "name": "deforestarea1520",
+      "type": "double"
+    },
+    {
+      "name": "deforestarea2124",
+      "type": "double"
+    },
+    {
+      "name": "mbmode24",
+      "type": "double"
+    },
+    {
+      "name": "mbcov_area_2024",
+      "type": "double"
+    },
+    {
+      "name": "mbvalid_area_2024",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "portolan:styles": [
+    {
+      "name": "default",
+      "asset": "styles/default",
+      "title": "Default",
+      "description": "Amber field polygons with clustered centroids at low zoom."
+    }
+  ],
+  "title": "Trazo3 Field Boundaries — South America (2023–2024)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -68.994184,
+          -35.321848,
+          -41.264648,
+          0.878872
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2023-07-01T00:00:00Z",
+          "2024-07-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "field boundaries",
+    "agriculture",
+    "Trazo3",
+    "soy",
+    "Brazil",
+    "Argentina",
+    "Bolivia",
+    "Paraguay",
+    "South America",
+    "Sentinel-2",
+    "EUDR",
+    "supply chain traceability",
+    "deforestation"
+  ],
+  "providers": [
+    {
+      "name": "Arizona State University",
+      "description": "Co-produced the Trazo models and the Fields of The World baseline.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.asu.edu"
+    },
+    {
+      "name": "World Resources Institute",
+      "description": "Produces the Trazo field boundaries and publishes them. Storage and delivery run on Source Cooperative under the wri-data-lab account.",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.wri.org"
+    }
+  ],
+  "assets": {
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "Collection README",
+      "file:size": 7435,
+      "file:checksum": "1220bb7a4a6057307ebe8c6558175d24993dbe5091c3e7e17294bf73b911d7dedea2"
+    },
+    "trazo3_bolivia_2024": {
+      "href": "./trazo3_bolivia_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Bolivia (2024)",
+      "file:size": 339081887,
+      "file:checksum": "1220a772ce3222294280f43d64e57bdb8ec7c7babdcb4eeca60b64a7d2b17b97a7f6"
+    },
+    "trazo3_brazil_mato_grosso_do_sul_2024": {
+      "href": "./trazo3_brazil_mato_grosso_do_sul_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Mato Grosso do Sul (2024)",
+      "file:size": 319551382,
+      "file:checksum": "1220caf9cf327deade0fb1c3b9e5df1f3706355fe41717dbeb1e91c57ccefbdc9b4e"
+    },
+    "trazo3_brazil_mato_grosso_2024": {
+      "href": "./trazo3_brazil_mato_grosso_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Mato Grosso (2024)",
+      "file:size": 916097780,
+      "file:checksum": "1220285f9bb4e1e5e9ae3fce98ca7b2bb1c4640dbd6f3ab30d5ceebc7e37701632ba"
+    },
+    "trazo3_brazil_rio_grande_do_sul_2024": {
+      "href": "./trazo3_brazil_rio_grande_do_sul_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Rio Grande do Sul (2024)",
+      "file:size": 419317206,
+      "file:checksum": "12209d0ea55ce1342118f1f8a69fa596be4e0a2295f84b9e591302de9289ec9603ca"
+    },
+    "trazo3_paraguay_non_chaco_2024": {
+      "href": "./trazo3_paraguay_non_chaco_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Paraguay — non-Chaco (2024)",
+      "file:size": 288833953,
+      "file:checksum": "1220fe1ed05a2a94ae4027500da8e5993eee022dfebab5d2f409c008ca32208fd223"
+    },
+    "trazo3": {
+      "href": "./trazo3.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "PMTiles tileset (web map)",
+      "file:size": 1662582674,
+      "file:checksum": "1220fc3ab16b134101b95177f8732a4a0680ec1e71576cbd2413c7a02b856d6aa540"
+    },
+    "llms": {
+      "href": "./llms.txt",
+      "type": "text/plain",
+      "roles": [
+        "documentation"
+      ],
+      "file:size": 4181,
+      "file:checksum": "12201241d6568f143fea17065813605f859154ad843b4dbc5233d395d0c7d46579b1"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Coverage thumbnail",
+      "description": "Rendered from styles/default.json over the collection PMTiles.",
+      "file:size": 509922,
+      "file:checksum": "1220e9439d4736fe02a0fe411020ba5af30701eaeb593f00a34ba6cfa56761b4a438"
+    },
+    "trazo3_argentina_chaco_2024": {
+      "href": "./trazo3_argentina_chaco_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Argentina — Chaco (2024)",
+      "file:size": 234845632,
+      "file:checksum": "1220f168fdaae0adaefde3e835478ac884d49490166df958540b6b0e9a5e81dfd678"
+    },
+    "trazo3_argentina_cordoba_2024": {
+      "href": "./trazo3_argentina_cordoba_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Argentina — Córdoba (2024)",
+      "file:size": 194153984,
+      "file:checksum": "1220fe0bda3270be5d1f97f8f7c05148aa1d24e7ccb0d1f50cd402def4fa8882ef7b"
+    },
+    "trazo3_brazil_goias_2024": {
+      "href": "./trazo3_brazil_goias_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Goiás (2024)",
+      "file:size": 706915221,
+      "file:checksum": "1220a403054fc14c69b01ef4978260f3de469f6372984c4f7d7236fb9252086ea38a"
+    },
+    "trazo3_brazil_para_2024": {
+      "href": "./trazo3_brazil_para_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Pará (2024)",
+      "file:size": 835553470,
+      "file:checksum": "122006bf2d627e93aafd3b4a839c52490ff7f119aba68dbaef1e8e3cace04c65bf57"
+    },
+    "trazo3_brazil_parana_2024": {
+      "href": "./trazo3_brazil_parana_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Paraná (2024)",
+      "file:size": 377981341,
+      "file:checksum": "122023667d78d4b373feb49138fac521f5d86bdb13a249311e4e98b7a878f47070fa"
+    },
+    "trazo3_brazil_piaui_2024": {
+      "href": "./trazo3_brazil_piaui_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Piauí (2024)",
+      "file:size": 50782377,
+      "file:checksum": "1220e3073ceee6a2415b6a14fab20450b919814407e0c2cf25d1b1be6de2e9c9fd71"
+    },
+    "trazo3_brazil_sao_paulo_2024": {
+      "href": "./trazo3_brazil_sao_paulo_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — São Paulo (2024)",
+      "file:size": 561645391,
+      "file:checksum": "1220751c6da447b7814f8d73599cd3beab1ea28535179894f2fa0fadaf7f7f14a95d"
+    },
+    "trazo3_brazil_tocantins_2024": {
+      "href": "./trazo3_brazil_tocantins_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Tocantins (2024)",
+      "file:size": 210971830,
+      "file:checksum": "1220b4b76a91dab00522f48693087fae92bc16dc198fb3cd26d5348b516436c294d1"
+    },
+    "trazo3_paraguay_chaco_2024": {
+      "href": "./trazo3_paraguay_chaco_2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Paraguay — Chaco (2024)",
+      "file:size": 93001460,
+      "file:checksum": "12207397842e234651141cab31f0f0dce7f8078cfae2870e2566702dbcb92862ce00"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Default map style",
+      "description": "Mapbox GL v8 style: clustered centroids to zoom 8, field polygons from zoom 9.",
+      "file:size": 1950,
+      "file:checksum": "122030bf19c9ed695487e7a2c784f7bd762a5622395b2a1be95ee1d690936f6a6221"
+    },
+    "geopackages/trazo3_bolivia_2024": {
+      "href": "./geopackages/trazo3_bolivia_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Bolivia (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1563107328
+    },
+    "geopackages/trazo3_brazil_mato_grosso_do_sul_2024": {
+      "href": "./geopackages/trazo3_brazil_mato_grosso_do_sul_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Mato Grosso do Sul (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1426751488
+    },
+    "geopackages/trazo3_brazil_mato_grosso_2024": {
+      "href": "./geopackages/trazo3_brazil_mato_grosso_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Mato Grosso (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 3896741888
+    },
+    "geopackages/trazo3_brazil_rio_grande_do_sul_2024": {
+      "href": "./geopackages/trazo3_brazil_rio_grande_do_sul_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Rio Grande do Sul (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 2006982656
+    },
+    "geopackages/trazo3_paraguay_non_chaco_2024": {
+      "href": "./geopackages/trazo3_paraguay_non_chaco_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Paraguay — non-Chaco (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1320329216
+    },
+    "geopackages/trazo3_argentina_chaco_2024": {
+      "href": "./geopackages/trazo3_argentina_chaco_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Argentina — Chaco (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1075982336
+    },
+    "geopackages/trazo3_argentina_cordoba_2024": {
+      "href": "./geopackages/trazo3_argentina_cordoba_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Argentina — Córdoba (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 929411072
+    },
+    "geopackages/trazo3_brazil_goias_2024": {
+      "href": "./geopackages/trazo3_brazil_goias_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Goiás (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 3217092608
+    },
+    "geopackages/trazo3_brazil_para_2024": {
+      "href": "./geopackages/trazo3_brazil_para_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Pará (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 3205668864
+    },
+    "geopackages/trazo3_brazil_parana_2024": {
+      "href": "./geopackages/trazo3_brazil_parana_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Paraná (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 1793388544
+    },
+    "geopackages/trazo3_brazil_piaui_2024": {
+      "href": "./geopackages/trazo3_brazil_piaui_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Piauí (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 191758336
+    },
+    "geopackages/trazo3_brazil_sao_paulo_2024": {
+      "href": "./geopackages/trazo3_brazil_sao_paulo_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — São Paulo (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 2735263744
+    },
+    "geopackages/trazo3_brazil_tocantins_2024": {
+      "href": "./geopackages/trazo3_brazil_tocantins_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Brazil — Tocantins (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 849993728
+    },
+    "geopackages/trazo3_paraguay_chaco_2024": {
+      "href": "./geopackages/trazo3_paraguay_chaco_2024.gpkg",
+      "type": "application/geopackage+sqlite3",
+      "roles": [
+        "data"
+      ],
+      "title": "Paraguay — Chaco (2024) — GeoPackage",
+      "description": "Full-attribute GeoPackage (all source columns) for desktop GIS.",
+      "file:size": 415453184
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "verkehr/uebergeordnetes-strassennetz",
+  "stac_version": "1.1.0",
+  "description": "Informationen zum bestehenden \u00fcbergeordneten Stra\u00dfennetz von Berlin",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./strnetz_uebergeordnetes_strnetz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand",
+      "pmtiles:layers": [
+        "strnetz_uebergeordnetes_strnetz"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/ubergeordnetes-strassennetz-bestand-wfs-bd47aaa2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/strnetz",
+      "rel": "related",
+      "title": "WFS source service: uebergeordnetes-strnetz",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 9363,
+  "table:row_count": 9363,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "okstra_id",
+      "type": "string"
+    },
+    {
+      "name": "element_nr",
+      "type": "double"
+    },
+    {
+      "name": "strassenname",
+      "type": "string"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "stadtteil",
+      "type": "string"
+    },
+    {
+      "name": "strassenklasse1",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09024654,
+          52.37047166,
+          13.75692499,
+          52.65993235
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand default style",
+      "description": "Default visualization for \u00dcbergeordnetes Stra\u00dfennetz Bestand, drawn in #b30000.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1311,
+      "file:checksum": "12204341821f01eca2eeabe5f0c842b9e9c1765466fdfcdaa7c9beb1c382c6bb7565"
+    },
+    "strnetz_uebergeordnetes_strnetz": {
+      "href": "./strnetz_uebergeordnetes_strnetz.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1121525,
+      "file:checksum": "1220f07df0894a1f28c510749577b77c4dbfe13389e9e82f4472d4788b5563f449a3",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./strnetz_uebergeordnetes_strnetz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6214407,
+      "file:checksum": "12207d7a4f0b9a6d855970d9609b96b822d06daf89802dc60d6914c9092c3cce626b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand categorical style",
+      "description": "Categorical visualization coloring \u00dcbergeordnetes Stra\u00dfennetz Bestand by strassenklasse1, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2111,
+      "file:checksum": "12203c2ce29c8be93553bf1e2a63a8033369364679a53a60b9553036fb0f3506e7e4"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand labeled style",
+      "description": "Default visualization for \u00dcbergeordnetes Stra\u00dfennetz Bestand with strassenname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1770,
+      "file:checksum": "122011d49ab150c29c0a637eca0a9011acabab8bfc07a7fe5202c5fdd24c71232f70"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "\u00dcbergeordnetes Stra\u00dfennetz Bestand graduated style",
+      "description": "Graduated visualization coloring \u00dcbergeordnetes Stra\u00dfennetz Bestand by element_nr, ramped from 2543000125430004.0 to 7045000170460001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2199,
+      "file:checksum": "12200e68b17cec3a2e4d35c900df9e5aa92df7e28bb3b0fc1b848bee52f2b36cabfe"
+    },
+    "thumbnail": {
+      "href": "./strnetz_uebergeordnetes_strnetz.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of \u00dcbergeordnetes Stra\u00dfennetz Bestand",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 250293,
+      "file:checksum": "12203b349b2cb076e00b8e2507bb9dc2f1ed87cfc7a35c348f54e681ef9ccde05178"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bestand",
+    "Geodaten",
+    "Hauptstra\u00dfennetz",
+    "Karten",
+    "STEP-Netz",
+    "Sachdaten",
+    "Stadtentwicklungsplan Verkehr"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, \u00dcbergeordnetes Stra\u00dfennetz Bestand, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "marcel.bauermeister@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

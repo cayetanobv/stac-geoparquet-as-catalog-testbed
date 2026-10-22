@@ -1,0 +1,188 @@
+{
+  "type": "Collection",
+  "id": "allaus/zones-nivoclimatiques",
+  "stac_version": "1.1.0",
+  "description": "Zones nivoclim\u00e0tiques del Pirineu de Catalunya. El productor descriu la capa aix\u00ed: \u00abL\u00edmits de les zones nivoclim\u00e0tiques en que s'ha dividit el Pirineu de Catalunya. Cadascuna d'aquestes zones t\u00e9 un comportament nivol\u00f2gic i clim\u00e0tic similar\u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nivoallaus_zonesnivoclima.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zones nivoclim\u00e0tiques",
+      "pmtiles:layers": [
+        "nivoallaus_zonesnivoclima"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: zones-nivoclimatiques",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa nivoallaus:zonesnivoclima, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 7,
+  "table:row_count": 7,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "ZONA",
+      "type": "string",
+      "description": "Nom de la zona nivoclim\u00e0tica; \u00e9s la clau amb qu\u00e8 els punts d'observaci\u00f3 nivol\u00f2gica s'hi relacionen."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Zones nivoclim\u00e0tiques",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.639003470004421,
+          42.11577016279558,
+          2.407717141755184,
+          42.86240990071689
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones nivoclim\u00e0tiques default style",
+      "description": "Default visualization for Zones nivoclim\u00e0tiques, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1251,
+      "file:checksum": "1220af2fdb30655303b098d26812ff04f09cb3d2ebde0595331fce3f1e7ccdae3a5e"
+    },
+    "nivoallaus_zonesnivoclima": {
+      "href": "./nivoallaus_zonesnivoclima.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 30564,
+      "file:checksum": "12209151ba7c05a9eb968807ff21c6f432e6d743dfdd988b28f6bc254e5913ee32fe",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nivoallaus_zonesnivoclima.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zones nivoclim\u00e0tiques (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 158944,
+      "file:checksum": "12207b812f67ffec7e232751e02749ed60bad8d393d047803f42bb95941c064fc3d2"
+    },
+    "thumbnail": {
+      "href": "./nivoallaus_zonesnivoclima.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Zones nivoclim\u00e0tiques",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 105264,
+      "file:checksum": "1220da3f73e78f794160ae5e3e4c97cfa9dd4ee0d452df39bf111c3c8ed9e3dbeb6d"
+    }
+  },
+  "keywords": [
+    "allaus",
+    "nivologia",
+    "zones nivoclim\u00e0tiques",
+    "Pirineu",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Zones nivoclim\u00e0tiques de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

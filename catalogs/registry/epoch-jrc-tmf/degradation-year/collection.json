@@ -1,0 +1,719 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "degradation-year",
+  "title": "TMF Degradation Year",
+  "description": "JRC Tropical Moist Forests (TMF) v1.2025: the calendar year in which each 30 m cell was first degraded (0 = never), one COG per tile. Produced by the European Commission Joint Research Centre; mirrored by Epoch as north-up ZSTD COGs with pixel values unchanged. 86 tiles of about 10 by 10 degrees in EPSG:4326 at 0.00026949 degrees (about 30 m). Pixel values are calendar years (1984 to 2025), not classes; 0 means the event never happened. The files declare no NoData value. See [AGENTS.md](AGENTS.md) for tested access recipes.",
+  "license": "other",
+  "keywords": [
+    "tropical moist forest",
+    "deforestation",
+    "forest degradation",
+    "JRC",
+    "Landsat"
+  ],
+  "providers": [
+    {
+      "name": "European Commission, Joint Research Centre (JRC)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://forobs.jrc.ec.europa.eu/TMF"
+    },
+    {
+      "name": "Epoch",
+      "description": "Re-encoded the JRC tiles as north-up ZSTD COGs, pixel values unchanged, and hosts them on Source Cooperative.",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://epoch.blue"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -110.000144,
+          -40.107801,
+          180.0,
+          30.09473
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1984-01-01T00:00:00Z",
+          "2025-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "updated": "2026-06-24T20:04:20Z",
+  "version": "1.2025",
+  "sci:publications": [
+    {
+      "doi": "10.1126/sciadv.abe1603",
+      "citation": "Vancutsem, C., Achard, F., Pekel, J.-F., et al. (2021). Long-term (1990-2019) monitoring of forest cover changes in the humid tropics. Science Advances."
+    }
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "title": "TMF Degradation Year (COG)",
+      "bands": [
+        {
+          "name": "DegradationYear",
+          "description": "Calendar year of first degradation, 1984 to 2025; 0 = never degraded.",
+          "data_type": "uint16",
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 30.0
+        }
+      ]
+    }
+  },
+  "renders": {
+    "years": {
+      "title": "TMF Degradation Year (1984 to 2025)",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap_name": "ylorrd",
+      "rescale": [
+        [
+          1984,
+          2025
+        ]
+      ],
+      "nodata": 0,
+      "resampling": "nearest"
+    }
+  },
+  "assets": {
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Years 1984 (pale yellow) to 2025 (dark red); 0 left transparent",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 30423,
+      "file:checksum": "12203aa5e51a5cdac9555a7606b92837cc3b346a122590d8e6c576437c1973b8fc9f"
+    },
+    "geoparquet-items": {
+      "href": "./items.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "STAC items as GeoParquet",
+      "roles": [
+        "collection-mirror"
+      ],
+      "file:size": 24724,
+      "file:checksum": "1220e73fbc5f67d8b46a427a3621641b0805438bc066b826978ad7f22bb4436e28a0"
+    },
+    "footprints": {
+      "href": "./footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "TMF Degradation Year item footprints (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 722274,
+      "file:checksum": "1220380bcb6ec7a94675f969afd6ec049b11def17185e951d2cc652aa08d17c103d1"
+    },
+    "style-default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Item footprints",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 654,
+      "file:checksum": "1220421287e43599fb0d5fc3070842b1efd4e738915edc020a2b4dccf29ca33d757d"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "https://forobs.jrc.ec.europa.eu/TMF/data",
+      "type": "text/html",
+      "title": "JRC TMF data download page"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://forobs.jrc.ec.europa.eu/TMF/data",
+      "type": "text/html",
+      "title": "JRC TMF data page: terms of use"
+    },
+    {
+      "rel": "license",
+      "href": "http://data.europa.eu/eli/reg_del/2013/1159/oj",
+      "type": "text/html",
+      "title": "Copernicus Regulation: Commission Delegated Regulation (EU) No 1159/2013"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_W70/S20_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_W60/S20_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./S30_W60/S30_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile S30_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_W50/S20_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W50/S10_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W40/S10_W40.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W40"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W50/N0_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W40/N0_W40.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W40"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W60/N0_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W70/N0_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W60/S10_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W70/S10_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W80/S10_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W80/N0_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W90/N0_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W110/N20_W110.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W110"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W100/N20_W100.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W100"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W110/N30_W110.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W110"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W100/N30_W100.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W100"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W90/N30_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W80/N30_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W60/N20_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W70/N20_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W90/N20_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W80/N20_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W90/N10_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W80/N10_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W70/N10_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W60/N10_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W50/N10_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W20/N20_W20.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W20"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W20/N10_W20.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W20"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W10/N10_W10.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W10"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E0/N10_E0.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E0"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E10/N10_E10.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E10"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E20/N10_E20.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E20"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E30/N10_E30.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E30"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E40/N10_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E70/N10_E70.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E70"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E80/N10_E80.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E80"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E70/N20_E70.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E70"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E80/N20_E80.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E80"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E70/N30_E70.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E70"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E80/N30_E80.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E80"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E90/N30_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E100/N30_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E110/N30_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E120/N20_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E110/N20_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E90/N20_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E100/N20_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E90/N10_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E100/N10_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E110/N10_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E120/N10_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E160/N0_E160.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E160"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E150/N0_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E140/N0_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E150/S10_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E140/S10_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E160/S10_E160.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E160"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E170/S10_E170.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E170"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E160/S20_E160.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E160"
+    },
+    {
+      "rel": "item",
+      "href": "./S30_E150/S30_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile S30_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./S30_E140/S30_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile S30_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E150/S20_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E140/S20_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E120/S10_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E130/S10_E130.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E130"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E120/N0_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E130/N0_E130.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E130"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E110/N0_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E100/N0_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E90/N0_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E50/S10_E50.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E50"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E30/N0_E30.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E30"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E40/N0_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E20/N0_E20.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E20"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E10/N0_E10.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E10"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E0/N0_E0.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E0"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E10/S10_E10.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E10"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E20/S10_E20.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E20"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E30/S10_E30.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E30"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E40/S10_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E40/S20_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E50/S20_E50.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E50"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Item footprints (vector tiles)",
+      "pmtiles:layers": [
+        "footprints"
+      ]
+    }
+  ]
+}

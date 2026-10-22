@@ -1,0 +1,199 @@
+{
+  "type": "Collection",
+  "id": "planung/schutzzonen",
+  "stac_version": "1.1.0",
+  "description": "Mit der im Jahr 1972 beschlossenen Altstadterhaltungsnovelle kann die Stadt Wien unabh\u00e4ngig vom Denkmalschutz Schutzzonen festlegen und damit charakteristische Ensembles vor Abbruch oder \u00dcberformung sch\u00fctzen. Schutzzonen werden im Fl\u00e4chenwidmungs- und Bebauungsplan dargestellt. Es handelt sich um jene Bereiche, in welchen die Erhaltung des charakteristischen Stadtbildes zu gew\u00e4hrleisten ist. Dies betrifft: - seine nat\u00fcrlichen Gegebenheiten, - seine historischen Strukturen, - seine pr\u00e4gende Bausubstanz und - die Vielfalt der Funktionen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_schutzzoneogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schutzzonen Wien",
+      "pmtiles:layers": [
+        "ogdwien_schutzzoneogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/2a9980f9-7c04-4fd7-a58e-119d35e613b4",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: schutzzoneogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 621,
+  "table:row_count": 621,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung der Datenhaltung."
+    },
+    {
+      "name": "SLANG",
+      "type": "string",
+      "description": "Bezeichnung der Schutzzone (Bezirk und Name)."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Schutzzonen Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.19900464557111,
+          48.1269072937431,
+          16.523120183672784,
+          48.313134059524195
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schutzzonen Wien default style",
+      "description": "Default visualization for Schutzzonen Wien, drawn in #a63603.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1213,
+      "file:checksum": "122076745dc810c8add23cf30513631678677273972359e1bcc5496d2f04b6cc06be"
+    },
+    "ogdwien_schutzzoneogd": {
+      "href": "./ogdwien_schutzzoneogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 285211,
+      "file:checksum": "1220ff72d960e9b91a6108717dc0933d420c29121a62f81ee42f5f97fa7ac93dcde6",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_schutzzoneogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schutzzonen Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 298334,
+      "file:checksum": "12200e46616ef946755b7e41d38d1ce1f8d0869c29cc2f82e1b0ec1210c65c145a0b"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_schutzzoneogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Schutzzonen Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 147143,
+      "file:checksum": "1220924cf160db7d1ac29b89e616929039e48daf8e5ffc97edd0824eda25a8e30f19"
+    }
+  },
+  "keywords": [
+    "Schutzzonenmodell",
+    "Fl\u00e4chenwidmungs- und Bebauungsplan",
+    "Stadtbild",
+    "Schutzzonen",
+    "Schutzbereiche",
+    "Architektur",
+    "ViennaGIS",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Schutzzonen Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

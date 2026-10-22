@@ -1,0 +1,269 @@
+{
+  "type": "Collection",
+  "id": "gebietsgliederung/bloecke",
+  "stac_version": "1.1.0",
+  "description": "Ein Block ist Teil der Kommunalen Gebietsgliederung. Dieses hierarchische System gliedert das K\u00f6lner Stadtgebiet auf verschiedenen Ebenen in eine Stadtstruktur und Blockstruktur. Weitere Bestandteile sind eine Stra\u00dfenstruktur und Adressen. Die gesamte Kommunale Gebietsgliederung wird in dieser Ver\u00f6ffentlichung erl\u00e4utert.\nDefinition: Ein Block ist ein Gebiet innerhalb eines Stadtteils, das von Stra\u00dfen oder nat\u00fcrlichen bzw. baulichen Grenzen (Wasserl\u00e4ufe, Bahnlinien) von allen Seiten umschlossen wird. Die Beschreibung der Bl\u00f6cke erfolgt \u00fcber die umgrenzenden Stra\u00dfen. Ein Block hat mindestens eine Blockseite. Wenn ein Block von einer Stadtteilgrenze geschnitten wird, werden zwei separate Bl\u00f6cke gebildet.\nErl\u00e4uterung der Attribute ist dem Shapefile als CSV beigef\u00fcgt.\nKoordinatensystem Shapefile: ETRS 1989 UTM Zone 32N\nAlle Geodaten der der Kommunalen Gebietsgliederung, wahlorganisatorische Einheiten und weitere Gebietsgliederungen enth\u00e4lt der Datensatz Raumbezugssystem Geopackage.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Block.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bl\u00f6cke K\u00f6ln",
+      "pmtiles:layers": [
+        "Block"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/bloecke-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/kgg/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "KGG Sammeldienst WFS (Kommunale Gebietsgliederung, ArcGIS Server)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/kgg_labeled/MapServer",
+      "rel": "related",
+      "title": "Kommunale Gebietsgliederung K\u00f6ln (ArcGIS REST MapServer, beschriftet)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 5903,
+  "table:row_count": 5903,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string",
+      "description": "Eindeutiger 6-stelliger Schl\u00fcssel, zusammengesetzt aus 3-stelligem Stadtteilschl\u00fcssel + 3-stelliger fortlaufende Nummerierung."
+    },
+    {
+      "name": "nr_stteil",
+      "type": "string",
+      "description": "Stadtteil (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtteils."
+    },
+    {
+      "name": "stteil",
+      "type": "string",
+      "description": "Stadtteil: Name des \u00fcbergeordneten Stadtteils."
+    },
+    {
+      "name": "nr_stbez",
+      "type": "string",
+      "description": "Stadtbezirk (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "stbez",
+      "type": "string",
+      "description": "Stadtbezirk: Name des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechneter Umfang beziehungsweise L\u00e4nge der Geometrie in Metern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechnete Fl\u00e4che der Geometrie in Quadratmetern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Bl\u00f6cke K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.772530289962422,
+          50.830440162951355,
+          7.1620280236619625,
+          51.08497432222056
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bl\u00f6cke K\u00f6ln default style",
+      "description": "Default visualization for Bl\u00f6cke K\u00f6ln, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1106,
+      "file:checksum": "1220d6fa3c326851943f32776afe7b943db74d5eab54535e31f36bae43811ab9df1e"
+    },
+    "Block": {
+      "href": "./Block.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 15168726,
+      "file:checksum": "12201a0981f45b8619414f956c868aa8fedcb97089e6bbda204c193270bea8408d84",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Block.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bl\u00f6cke K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 7977535,
+      "file:checksum": "1220cadd00bb3f8792b9d24e42301bfd56c743503dbdb9e86b765a8940c2292b870e"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bl\u00f6cke K\u00f6ln categorical style",
+      "description": "Categorical visualization coloring Bl\u00f6cke K\u00f6ln by nr_stbez, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1650,
+      "file:checksum": "1220076ec1434cbe7d69e1d9b132be136023998b54f8e028c7ef28e7f39caf1cf053"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bl\u00f6cke K\u00f6ln labeled style",
+      "description": "Default visualization for Bl\u00f6cke K\u00f6ln with nr_stbez shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1509,
+      "file:checksum": "1220452dddaa6135cee145745040d5c9e916b43c63d1394a24177ba51155795f7a26"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Bl\u00f6cke K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Bl\u00f6cke K\u00f6ln by Shape_Area, ramped from 101.686073195 to 8261548.12983.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1964,
+      "file:checksum": "122061bfe44f6aaf312b8d282cce6ebf08eb0353f21709f118c3dcfb9093d72d671e"
+    },
+    "source": {
+      "href": "https://offenedaten-koeln.de/sites/default/files/uploaded_resources/Block.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: block",
+      "pipeline:upstream": true,
+      "file:size": 31270047,
+      "file:checksum": "1220e5f5dd44c79f432d75e93c5e719eadf4c78beace3ffd0f7273174172b344f5b2"
+    },
+    "thumbnail": {
+      "href": "./Block.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Bl\u00f6cke K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 189573,
+      "file:checksum": "12209fb1dae6ad50490ac709649a43b950362915c97f13a8f49e8c2c039366e263e0"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Infrastruktur",
+    "Bauen und Wohnen",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik, \u201eBl\u00f6cke K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-stadtentwicklung-und-statistik",
+      "email": "statistik-rbs@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

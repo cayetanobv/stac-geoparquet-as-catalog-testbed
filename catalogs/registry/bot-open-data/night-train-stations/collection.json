@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "night-train-stations",
+  "stac_version": "1.1.0",
+  "description": "All 706 stations served by Europe's night trains — every station referenced by at least one service in the Open Night Train Database, snapshot **2026-08**, curated by [Back-on-Track Europe](https://back-on-track.eu/).\n\nEach point carries the station name (which is also the join key used across the ONTD), its country, and `n_services` — the number of night-train services calling there (derived; see the [agent guide](AGENTS.md)). The biggest hubs by this measure are Lviv (85), Kyiv (82) and — first outside Ukraine — München Ost (31).\n\nCoordinates were drafted from [OpenStreetMap](https://www.openstreetmap.org/)/Nominatim and human-verified by ONTD volunteers; `coord_backfilled` marks positions recovered by the mirror's retroactive backfill (the \"Coordinate provenance\" style shows this). Coordinates are therefore published under ODbL with OSM attribution.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Back-on-Track Open Night Train Database"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Back-on-Track Open Night Train Database"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./stations.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Night-train stations of Europe — vector tiles",
+      "pmtiles:layers": [
+        "stations"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 706,
+  "table:row_count": 706,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "station",
+      "type": "string"
+    },
+    {
+      "name": "country",
+      "type": "string"
+    },
+    {
+      "name": "n_services",
+      "type": "int32"
+    },
+    {
+      "name": "coord_backfilled",
+      "type": "bool"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default"
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -5.531908,
+          37.068907,
+          43.106386,
+          67.3489608987037
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "ODbL-1.0",
+  "assets": {
+    "stations": {
+      "href": "./stations.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "file:size": 39971,
+      "file:checksum": "1220f2485241c24ab3ff0b670ccebbca9b8c9ad232f2e954c18a1696bc5e20e4f357",
+      "table:columns": [
+        {
+          "name": "station",
+          "type": "varchar",
+          "description": "Station name = the ONTD-wide identifier (no UIC codes)"
+        },
+        {
+          "name": "country",
+          "type": "varchar",
+          "description": "ISO-2 country"
+        },
+        {
+          "name": "n_services",
+          "type": "integer",
+          "description": "Derived: distinct services calling here"
+        },
+        {
+          "name": "coord_backfilled",
+          "type": "boolean",
+          "description": "Position recovered by mirror backfill (not from live sheet)"
+        },
+        {
+          "name": "geometry",
+          "type": "geometry('ogc:crs84')",
+          "description": "Point, WGS84 (OSM-derived)"
+        },
+        {
+          "name": "bbox",
+          "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+          "description": "Covering bbox struct"
+        }
+      ]
+    },
+    "stations-tiles": {
+      "href": "./stations.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "stations (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 338522,
+      "file:checksum": "1220cf0a93d4688524fcb3bc2c754f5be797f8b8fc354c09b1058e4f5c49ff7d9a0b"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Default",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 738,
+      "file:checksum": "1220ef2aec008914c2d929dc665e0d96c4294fdcfe2928310f19a9e832efdbc0eedd"
+    },
+    "styles/provenance": {
+      "href": "./styles/provenance.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Coordinate provenance",
+      "file:size": 700,
+      "file:checksum": "1220189cd1705b635f2e255d5d641adcf5fe6b4a90797355c1c9f73f4b913c499cd0"
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "README",
+      "file:size": 3713,
+      "file:checksum": "122052cb89e438e8e33c5e848aee17b79c31e92708af0c4b0a9f2ac8070c1e4dfb12"
+    },
+    "AGENTS": {
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "Agent guide",
+      "file:size": 1755,
+      "file:checksum": "1220a94a0d7bacffec5e5a9446288faf020bf73f111609368a2c2e482a1d67b0ceda"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail",
+      "file:size": 232601,
+      "file:checksum": "1220f0a607062fbf362557f0327e6a52d20b8e8ba84f2a02989105cc2bfa1e03b03e"
+    }
+  },
+  "title": "Night-train stations of Europe",
+  "providers": [
+    {
+      "name": "OpenStreetMap contributors",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://www.openstreetmap.org/copyright"
+    },
+    {
+      "name": "Back-on-Track Europe AISBL",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://back-on-track.eu"
+    }
+  ]
+}

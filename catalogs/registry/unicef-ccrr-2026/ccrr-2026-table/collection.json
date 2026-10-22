@@ -1,0 +1,933 @@
+{
+  "type": "Collection",
+  "id": "ccrr-2026-table",
+  "stac_version": "1.1.0",
+  "description": "The same 161-column national table as ccrr-2026-countries, without geometry and with all 261 rows of the UNICEF Children's Climate Risk Report 2026 (Single Hazard Exposure, Multihazard Exposure and Vulnerability sheets of ccrr_2026.xlsx joined on iso3), including the 13 x-coded disputed or unsettled territories that have no country polygon. Join to any boundary layer on iso3 (ISO 3166-1 alpha-3, unique). Exposure counts are children under 18 (WorldPop 2024) living where a hazard exceeds the documented threshold; modelled estimates. Source: Children's Climate Risk on HDX, retrieved 2026-09-23.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "UNICEF Children's Climate Risk Report 2026 (CCRR 2026) - mirror"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.humdata.org/dataset/children-climate-risk",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "iso3",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-3 code, unique; 248 real codes plus 13 UNICEF pseudo-codes starting with x for disputed or unsettled areas (xAB Abyei, xUK Akrotiri, xAC Aksai Chin, xAP Arunachal Pradesh, xxx China/India, xJK Jammu and Kashmir, xRI Kuril Islands, xPI Paracel Islands, xSR Scarborough Reef, xSK Senkaku Islands, xJL Sovereignty unsettled, xSI Spratly Islands, xFR Tromelin Island). The join key to the other two Collections (ISO3 in the overlapping-hazards table)."
+    },
+    {
+      "name": "ucode",
+      "type": "string",
+      "description": "UNICEF unit code, <iso3>_V1 (e.g. JAM_V1; xUK1_V1, PYF1_V1)."
+    },
+    {
+      "name": "Country/Territory",
+      "type": "string",
+      "description": "Publisher's name of the country or territory, e.g. Jamaica, Viet Nam, Clipperton Island."
+    },
+    {
+      "name": "Children (Under 18) Population",
+      "type": "int64",
+      "description": "Children under 18, WorldPop 2024 constrained 100 m estimate summarised to the country (\"Total number of children per 100mx100m pixel summarized to country level\", Metadata sheet). 0 to 426,365,931 (India); NULL for 14 rows; sum 2,393,137,783."
+    },
+    {
+      "name": "UNICEF Regional Office",
+      "type": "string",
+      "description": "UNICEF regional office: East Asia and Pacific (27 rows), Europe and Central Asia (21), East and Southern Africa (21), Latin America and Carribean (36, publisher spelling), Middle East and North Africa (20), South Asia (8), West and Central Africa (24); NULL for 104 rows (high-income countries and territories with no UNICEF programme)."
+    },
+    {
+      "name": "OECD Fragility",
+      "type": "string",
+      "description": "OECD States of Fragility classification: fragile (61 rows) or NULL."
+    },
+    {
+      "name": "World Bank Income Group",
+      "type": "string",
+      "description": "World Bank income group: High Income 86, Upper Middle Income 53, Lower Middle Income 50, Low Income 25, NULL 47."
+    },
+    {
+      "name": "UN Country Groupings - LLDCs",
+      "type": "string",
+      "description": "UN landlocked developing country: LLDC (32 rows) or NULL."
+    },
+    {
+      "name": "UN Country Groupings - SIDS",
+      "type": "string",
+      "description": "UN small island developing state: SIDS (39 rows) or NULL."
+    },
+    {
+      "name": "Hazard Exposure Score",
+      "type": "double",
+      "description": "Overall multi-hazard exposure score, 0-10, the geometric mean over the hazard scores; \"multi-hazard score is calculated only when all hazards are available\", so non-NULL for 198 of 261 rows. Ranking by it drops 63 territories."
+    },
+    {
+      "name": "Number of Children Exposed to Riverine Floods",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to riverine floods (JRC Global Flood Hazard, 100-year return period, 90 m; threshold depth > 1 cm); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Riverine Floods",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to riverine floods (JRC Global Flood Hazard, 100-year return period, 90 m; threshold depth > 1 cm)."
+    },
+    {
+      "name": "Riverine Flood Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for riverine floods, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Absolute Riverine Flood Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to riverine floods. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Riverine Flood Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to riverine floods. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Coastal Floods",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to coastal floods (JRC coastal flood, 100-year return period, 90 m, binary; all flooded pixels); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Coastal Floods",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to coastal floods (JRC coastal flood, 100-year return period, 90 m, binary; all flooded pixels)."
+    },
+    {
+      "name": "Coastal Flood Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for coastal floods, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Absolute Coastal Flood Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to coastal floods. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Coastal Flood Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to coastal floods. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Tropical Storms",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to tropical storms (UNEP GIRI wind speed, 100-year return period, about 10 km; threshold > 17.5 m/s, 63 km/h); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Tropical Storms",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to tropical storms (UNEP GIRI wind speed, 100-year return period, about 10 km; threshold > 17.5 m/s, 63 km/h)."
+    },
+    {
+      "name": "Tropical Storm Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for tropical storms, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Absolute Tropical Storm Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to tropical storms. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Tropical Storm Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to tropical storms. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Droughts",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to droughts, the combination of the agricultural and meteorological drought indicators; integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Droughts",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to droughts, the combination of the agricultural and meteorological drought indicators."
+    },
+    {
+      "name": "Drought Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for droughts, the combination of the agricultural and meteorological drought indicators, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Number of Children Exposed to Agricultural Droughts",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to agricultural droughts (FAO Agricultural Stress Index, 1 km, 1984-2023; threshold > 30% of cropland affected); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Agricultural Droughts",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to agricultural droughts (FAO Agricultural Stress Index, 1 km, 1984-2023; threshold > 30% of cropland affected)."
+    },
+    {
+      "name": "Absolute Agricultural Drought Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to agricultural droughts. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Agricultural Drought Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to agricultural droughts. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Meteorological Droughts (spei)",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to meteorological droughts by SPEI (TerraClimate, 5 km, 1958-2025; probability of SPEI < -1.5 above the global mean 0.06); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Meteorological Droughts (spei)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to meteorological droughts by SPEI (TerraClimate, 5 km, 1958-2025; probability of SPEI < -1.5 above the global mean 0.06)."
+    },
+    {
+      "name": "Absolute Meteorological Drought (SPEI) Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to meteorological droughts by SPEI. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Meteorological Drought (SPEI) Drought Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to meteorological droughts by SPEI. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Meteorological Droughts (spi)",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to meteorological droughts by SPI (TerraClimate, 5 km, 1958-2025; probability of SPI < -1.5 above the global mean 0.09); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Meteorological Droughts (spi)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to meteorological droughts by SPI (TerraClimate, 5 km, 1958-2025; probability of SPI < -1.5 above the global mean 0.09)."
+    },
+    {
+      "name": "Absolute Meteorological Drought (SPI) Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to meteorological droughts by SPI. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Meteorological Drought (SPI) Drought Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to meteorological droughts by SPI. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Heatwaves",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to heatwaves, the combination of the frequency, duration and severity indicators; integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Heatwaves",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to heatwaves, the combination of the frequency, duration and severity indicators."
+    },
+    {
+      "name": "Heatwave Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for heatwaves, the combination of the frequency, duration and severity indicators, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Number of Children Exposed to Heatwave Frequency",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to heatwave frequency (ECMWF, 10 km, 25 km for SIDS, 2014-2024; above the global mean); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Heatwave Frequency",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to heatwave frequency (ECMWF, 10 km, 25 km for SIDS, 2014-2024; above the global mean)."
+    },
+    {
+      "name": "Absolute Heatwave Frequency Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to heatwave frequency. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Heatwave Frequency Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to heatwave frequency. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Heatwave Duration",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to heatwave duration (ECMWF, 10 km, 25 km for SIDS, 2014-2024; above the global mean); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Heatwave Duration",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to heatwave duration (ECMWF, 10 km, 25 km for SIDS, 2014-2024; above the global mean)."
+    },
+    {
+      "name": "Absolute Heatwave Duration Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to heatwave duration. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Heatwave Duration Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to heatwave duration. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Heatwave Severity",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to heatwave severity (ECMWF, 10 km, 25 km for SIDS, 2014-2024; above the global mean); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Heatwave Severity",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to heatwave severity (ECMWF, 10 km, 25 km for SIDS, 2014-2024; above the global mean)."
+    },
+    {
+      "name": "Absolute Heatwave Severity Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to heatwave severity. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Heatwave Severity Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to heatwave severity. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Extreme Heat",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to extreme heat (ECMWF extreme hot days, 2014-2024; threshold > 35 C); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Extreme Heat",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to extreme heat (ECMWF extreme hot days, 2014-2024; threshold > 35 C)."
+    },
+    {
+      "name": "Extreme Heat Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for extreme heat, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Absolute Extreme Heat Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to extreme heat. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Extreme Heat Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to extreme heat. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Fires",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to fires, the combination of the frequency and intensity indicators; integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Fires",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to fires, the combination of the frequency and intensity indicators."
+    },
+    {
+      "name": "Fire Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for fires, the combination of the frequency and intensity indicators, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Number of Children Exposed to Fire Frequency",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to fire frequency (NASA FIRMS, 250 m, 2001-2023; above the global mean, the Metadata sheet says 90th percentile); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Fire Frequency",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to fire frequency (NASA FIRMS, 250 m, 2001-2023; above the global mean, the Metadata sheet says 90th percentile)."
+    },
+    {
+      "name": "Absolute Fire Frequency Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to fire frequency. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Fire Frequency Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to fire frequency. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Fire Intensity",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to fire intensity (NASA FIRMS, 250 m, 2001-2023; above the global mean, the Metadata sheet says 90th percentile); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Fire Intensity",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to fire intensity (NASA FIRMS, 250 m, 2001-2023; above the global mean, the Metadata sheet says 90th percentile)."
+    },
+    {
+      "name": "Absolute Fire Intensity Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to fire intensity. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Fire Intensity Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to fire intensity. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Sand and Dust Storm",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to sand and dust storms (UNCCD SDS susceptibility, 1 km; all susceptible pixels); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Sand and Dust Storm",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to sand and dust storms (UNCCD SDS susceptibility, 1 km; all susceptible pixels)."
+    },
+    {
+      "name": "Sand And Dust Storm Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for sand and dust storms, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Absolute Sand and Dust Storm Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to sand and dust storms. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Sand and Dust Storm Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to sand and dust storms. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Air Pollution (PM2.5)",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to air pollution (ACAG PM2.5, 1 km, 2012-2022, coverage 68 N to 55 S; threshold > 5 ug/m3 annual mean, WHO AQG); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Air Pollution (PM2.5)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to air pollution (ACAG PM2.5, 1 km, 2012-2022, coverage 68 N to 55 S; threshold > 5 ug/m3 annual mean, WHO AQG)."
+    },
+    {
+      "name": "Air Pollution Score (0-10)",
+      "type": "double",
+      "description": "Publisher's combined 0-10 exposure score for air pollution, bringing the absolute and relative scores onto one comparable scale (highest exposure = 10). Do not recompute it: a plain geometric mean of the two components does not reproduce it (Jamaica tropical storm: sqrt(6.36 x 10) = 7.97, published 8.32)."
+    },
+    {
+      "name": "Absolute Air Pollution Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to air pollution. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Air Pollution Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to air pollution. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Vector Borne Disease Score (0-10)",
+      "type": "double",
+      "description": "Combined 0-10 score for the vector-borne disease hazard (malaria Pv and Pf). Do not recompute from the components."
+    },
+    {
+      "name": "Number of Children Exposed to Malaria (Pv)",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to Plasmodium vivax malaria (Malaria Atlas Project, 5 km, 2012-2022; threshold > 1 case per 1,000 people); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Malaria (Pv)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to Plasmodium vivax malaria (Malaria Atlas Project, 5 km, 2012-2022; threshold > 1 case per 1,000 people)."
+    },
+    {
+      "name": "Absolute Malaria (Pv) Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to Plasmodium vivax malaria. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Malaria (Pv) Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to Plasmodium vivax malaria. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to Malaria (Pf)",
+      "type": "int64",
+      "description": "Children under 18 (WorldPop 2024) living in pixels exposed to Plasmodium falciparum malaria (Malaria Atlas Project, 5 km, 2012-2022; threshold > 1 case per 1,000 people); integer count, NULL where the source says Not applicable, Insufficient data or blank."
+    },
+    {
+      "name": "Percentage of Children Exposed to Malaria (Pf)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children under 18 exposed to Plasmodium falciparum malaria (Malaria Atlas Project, 5 km, 2012-2022; threshold > 1 case per 1,000 people)."
+    },
+    {
+      "name": "Absolute Malaria (Pf) Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the absolute number of children exposed to Plasmodium falciparum malaria. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Relative Malaria (Pf) Score (0-10)",
+      "type": "double",
+      "description": "Min-max normalised 0-10 score of the percentage of children exposed to Plasmodium falciparum malaria. Normalisation (technical documentation): 10 - (baseline maximum - raw value) / (baseline maximum - baseline minimum) x 10, with the baseline taken after iteratively removing outliers."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 1 hazard",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 1 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 1 hazard",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 1 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 2 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 2 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 2 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 2 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 3 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 3 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 3 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 3 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 4 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 4 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 4 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 4 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 5 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 5 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 5 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 5 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 6 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 6 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 6 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 6 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 7 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 7 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 7 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 7 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to at-least 8 hazards",
+      "type": "int64",
+      "description": "Children under 18 living in pixels where at least 8 of the eight core climate hazards (river flood, coastal flood, drought, tropical storm, heatwave, extreme heat, fire, sand and dust storm) exceed their thresholds; the climate-sensitive hazards (air pollution, malaria) are not counted."
+    },
+    {
+      "name": "Percentage of Children Exposed to at-least 8 hazards",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where at least 8 of the eight core climate hazards overlap."
+    },
+    {
+      "name": "Number of Children Exposed to Multi-Hazard Intensity (75th Percentile)",
+      "type": "int64",
+      "description": "Children under 18 living in pixels whose PCA-based composite multi-hazard intensity score (10 km grid, six principal components, min-max scaled 0-10) is above the global 75th percentile."
+    },
+    {
+      "name": "Percentage of Children Exposed to Multi-Hazard Intensity (75th Percentile)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where the composite multi-hazard intensity is above the global 75th percentile."
+    },
+    {
+      "name": "Number of Children Exposed to Multi-Hazard Intensity (80th Percentile)",
+      "type": "int64",
+      "description": "Children under 18 living in pixels whose PCA-based composite multi-hazard intensity score (10 km grid, six principal components, min-max scaled 0-10) is above the global 80th percentile."
+    },
+    {
+      "name": "Percentage of Children Exposed to Multi-Hazard Intensity (80th Percentile)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where the composite multi-hazard intensity is above the global 80th percentile."
+    },
+    {
+      "name": "Number of Children Exposed to Multi-Hazard Intensity (85th Percentile)",
+      "type": "int64",
+      "description": "Children under 18 living in pixels whose PCA-based composite multi-hazard intensity score (10 km grid, six principal components, min-max scaled 0-10) is above the global 85th percentile."
+    },
+    {
+      "name": "Percentage of Children Exposed to Multi-Hazard Intensity (85th Percentile)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where the composite multi-hazard intensity is above the global 85th percentile."
+    },
+    {
+      "name": "Number of Children Exposed to Multi-Hazard Intensity (90th Percentile)",
+      "type": "int64",
+      "description": "Children under 18 living in pixels whose PCA-based composite multi-hazard intensity score (10 km grid, six principal components, min-max scaled 0-10) is above the global 90th percentile."
+    },
+    {
+      "name": "Percentage of Children Exposed to Multi-Hazard Intensity (90th Percentile)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where the composite multi-hazard intensity is above the global 90th percentile."
+    },
+    {
+      "name": "Number of Children Exposed to Multi-Hazard Intensity (95th Percentile)",
+      "type": "int64",
+      "description": "Children under 18 living in pixels whose PCA-based composite multi-hazard intensity score (10 km grid, six principal components, min-max scaled 0-10) is above the global 95th percentile."
+    },
+    {
+      "name": "Percentage of Children Exposed to Multi-Hazard Intensity (95th Percentile)",
+      "type": "double",
+      "description": "Share (0-100) of the row's children living where the composite multi-hazard intensity is above the global 95th percentile."
+    },
+    {
+      "name": "Child Vulnerability Score",
+      "type": "double",
+      "description": "Overall child vulnerability, 0-10 (10 = most vulnerable), the arithmetic mean of the seven component scores (health, nutrition, WASH, education, child protection, child poverty, child mortality); non-NULL for 186 rows. Raw indicators are from the UNICEF data warehouse as of April 2026."
+    },
+    {
+      "name": "Health Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from DTP1 and DTP3 immunisation coverage, skilled birth attendance and access to electricity; positive indicators reversed so 10 is worst."
+    },
+    {
+      "name": "Percentage of children with DTP 1 immunization coverage",
+      "type": "double",
+      "description": "Raw vulnerability indicator: share of children with one dose of DTP vaccine, percent."
+    },
+    {
+      "name": "DTP1 Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the DTP1 coverage indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Percentage of children with DTP 3 immunization coverage",
+      "type": "double",
+      "description": "Raw vulnerability indicator: share of children with three doses of DTP vaccine, percent."
+    },
+    {
+      "name": "DTP3 Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the DTP3 coverage indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Percentage of mothers with skilled attendant",
+      "type": "double",
+      "description": "Raw vulnerability indicator: births attended by skilled health personnel, percent."
+    },
+    {
+      "name": "Skilled Attendance Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the skilled attendance indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Percentage of population with access to electricity",
+      "type": "double",
+      "description": "Raw vulnerability indicator: population with access to electricity, percent."
+    },
+    {
+      "name": "Electricity Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the electricity access indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Nutrition Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from stunting and severe child food poverty."
+    },
+    {
+      "name": "Children under five with a stunting z-score less than -2 SD",
+      "type": "double",
+      "description": "Raw vulnerability indicator: children under five with height-for-age below -2 SD, percent."
+    },
+    {
+      "name": "Stunting Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the stunting indicator."
+    },
+    {
+      "name": "Percentage of children living in severe child food poverty",
+      "type": "double",
+      "description": "Raw vulnerability indicator: children in severe child food poverty, percent."
+    },
+    {
+      "name": "Food Poverty Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the severe child food poverty indicator."
+    },
+    {
+      "name": "WASH Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from at-least-basic water, sanitation and hygiene access."
+    },
+    {
+      "name": "Proportion of population with access to at least basic water",
+      "type": "double",
+      "description": "Raw vulnerability indicator: population using at least basic drinking-water services, percent."
+    },
+    {
+      "name": "At-least basic water Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the basic water indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Proportion of population with access to at least basic sanitation",
+      "type": "double",
+      "description": "Raw vulnerability indicator: population using at least basic sanitation services, percent."
+    },
+    {
+      "name": "At-least basic sanitation Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the basic sanitation indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Proportion of population with access to basic hygiene",
+      "type": "double",
+      "description": "Raw vulnerability indicator: population with a handwashing facility with soap and water at home, percent."
+    },
+    {
+      "name": "Basic hygiene Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the basic hygiene indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Education Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from lower-secondary out-of-school and completion rates and learning poverty."
+    },
+    {
+      "name": "Percentage of children out of lower secondary education",
+      "type": "double",
+      "description": "Raw vulnerability indicator: lower-secondary-age children out of school, percent."
+    },
+    {
+      "name": "Lower Secondary Out of School Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the lower-secondary out-of-school indicator."
+    },
+    {
+      "name": "Percentage of children completing lower secondary education",
+      "type": "double",
+      "description": "Raw vulnerability indicator: lower-secondary completion rate, percent."
+    },
+    {
+      "name": "Lower Secondary Completion Rate Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the lower-secondary completion indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Percentage of childre with learning poverty",
+      "type": "double",
+      "description": "Raw vulnerability indicator: children in learning poverty (unable to read a simple text by age 10), percent. Publisher header kept verbatim, including the typo \"childre\"."
+    },
+    {
+      "name": "Learning Poverty Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the learning poverty indicator."
+    },
+    {
+      "name": "Child Protection Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from child labour and child marriage."
+    },
+    {
+      "name": "Percentage of children 5\u201317 years old involved in child labour",
+      "type": "double",
+      "description": "Raw vulnerability indicator: children aged 5-17 in child labour, percent."
+    },
+    {
+      "name": "Child Labor Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the child labour indicator."
+    },
+    {
+      "name": "Percentage of women aged 20-24 years who were first married or in union before age 18",
+      "type": "double",
+      "description": "Raw vulnerability indicator: women 20-24 first married or in union before 18, percent."
+    },
+    {
+      "name": "Child Marriage Score Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the child marriage indicator. Publisher header kept verbatim, including the doubled \"Score\"."
+    },
+    {
+      "name": "Child Poverty Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from multidimensional child poverty and social protection coverage."
+    },
+    {
+      "name": "Percentage children suffering at least one deprivation. Homogeneous severe standards",
+      "type": "double",
+      "description": "Raw vulnerability indicator: children suffering at least one severe deprivation (multidimensional poverty, homogeneous severe standards), percent."
+    },
+    {
+      "name": "Multidimensional Poverty Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the multidimensional child poverty indicator."
+    },
+    {
+      "name": "Percentage of under 15 children covered by social protection",
+      "type": "double",
+      "description": "Raw vulnerability indicator: children under 15 covered by social protection benefits, percent."
+    },
+    {
+      "name": "Social Protection Score (0-10)",
+      "type": "double",
+      "description": "Normalised 0-10 score of the social protection coverage indicator, reversed so 10 is worst."
+    },
+    {
+      "name": "Child Moratlity Score (0-10)",
+      "type": "double",
+      "description": "Component score, 0-10, from under-five mortality. Publisher header kept verbatim, including the typo \"Moratlity\"."
+    },
+    {
+      "name": "Under 5 Mortality (per 1000 live births)",
+      "type": "double",
+      "description": "Raw vulnerability indicator: under-five mortality rate per 1,000 live births."
+    },
+    {
+      "name": "Vulnerability Missing Value",
+      "type": "double",
+      "description": "Share of the 17 vulnerability indicators missing for the row, percent (5.88 = 1 of 17); rows with too many missing indicators have no overall vulnerability score."
+    },
+    {
+      "name": "n_cells_not_applicable",
+      "type": "int64",
+      "description": "Derived by CARTO: number of indicator cells that read \"Not applicable\" in the source row (12 rows, max 152: the x-coded areas and Holy See). The token became NULL in the numeric columns; this counter tells it apart from the other two."
+    },
+    {
+      "name": "n_cells_insufficient_data",
+      "type": "int64",
+      "description": "Derived by CARTO: cells that read \"Insufficient data\" (17 rows; Nicaragua and State of Palestine 152 each, Nauru 48, Maldives 43, Tuvalu 43, Liechtenstein 39, Marshall Islands 38, Monaco 33, Cabo Verde, Mauritius, Samoa and Seychelles 32 each)."
+    },
+    {
+      "name": "n_cells_blank",
+      "type": "int64",
+      "description": "Derived by CARTO: cells that were empty strings (18 rows, mostly small territories such as Anguilla, Bermuda, Gibraltar, Greenland, Guam, Tokelau, Western Sahara)."
+    }
+  ],
+  "table:row_count": 261,
+  "title": "CCRR 2026 - national indicators (tabular, all 261 rows)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-01-01T00:00:00Z",
+          "2025-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "data": {
+      "href": "./data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 134275,
+      "file:checksum": "12202d16c502095e1c16edc2aed17d71d003db26dcd46f659f37e69997903ca4c4e5",
+      "roles": [
+        "data"
+      ]
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/unicef-ccrr-2026/ccrr-2026-table/data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: data",
+      "pipeline:upstream": true,
+      "file:size": 273614,
+      "file:checksum": "12207df83483874ae685ac629767771bed0ce5a4995797da9ac2b5d996d3b2ad3a71"
+    }
+  },
+  "keywords": [
+    "UNICEF",
+    "children",
+    "climate risk",
+    "CCRR 2026",
+    "hazard exposure",
+    "vulnerability",
+    "tabular"
+  ],
+  "providers": [
+    {
+      "name": "UNICEF Data and Analytics (HQ)",
+      "description": "Indicator values: Children's Climate Risk Report 2026 (Global Child Hazard Database), HDX dataset children-climate-risk, resources dated 2026-06-22, retrieved 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.unicef.org/resources/childrens-climate-risk-report-2026/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T00:00:00Z"
+}

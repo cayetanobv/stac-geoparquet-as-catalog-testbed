@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "maasto-1-2/taytemaa",
+  "stac_version": "1.1.0",
+  "description": "taytemaa",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./taytemaa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "taytemaa",
+      "pmtiles:layers": [
+        "taytemaa"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/taytemaa/items",
+      "rel": "related",
+      "title": "OGC API source service: taytemaa",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1530,
+  "table:row_count": 1530,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 64, joka vastaa aluemaisia Maasto/1-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 33000, t\u00e4ytemaa."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "T\u00e4ytemaan aluerajaus WGS84-koordinaatistossa. T\u00e4ytemaa on alue, jolle tuodaan irtomaata kohteen tasoittamiseksi tai korottamiseksi tai vesist\u00f6n osan t\u00e4ytt\u00e4miseksi."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "taytemaa",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.5529745,
+          59.8337638,
+          31.2637772,
+          68.770876
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "taytemaa default style",
+      "description": "Default visualization for taytemaa, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1114,
+      "file:checksum": "12206d42543de90084d26f909b96901b63202b325e8e2298177945593b0df3191372"
+    },
+    "taytemaa": {
+      "href": "./taytemaa.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2920943,
+      "file:checksum": "1220cb7a6b1e03402946fc3654408365fa3fb29c0c4b914ee77811391cc623377a9c",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./taytemaa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "taytemaa (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2790091,
+      "file:checksum": "1220a289135207c33c3d90628cbaf39f21afb193222b127a4966b1b28ab52167f353"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "taytemaa graduated style",
+      "description": "Graduated visualization coloring taytemaa by sijaintitarkkuus, ramped from 5000.0 to 7500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1918,
+      "file:checksum": "1220a78143e9741ce397bc08d45727d8d1420be6fcb1969e22a8f6f9ef95adfcfc55"
+    },
+    "thumbnail": {
+      "href": "./taytemaa.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of taytemaa",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 87516,
+      "file:checksum": "1220b765040b950ef4f44753e7ae6ff45ce9d29b8d41194159495ae94bf90764387a"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/1",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

@@ -1,0 +1,244 @@
+{
+  "type": "Collection",
+  "id": "reseaux-transport/noeuds-de-voirie",
+  "stac_version": "1.1.0",
+  "description": "UrbIS \u2013 R\u00e9seaux de transport correspond au jeu de donn\u00e9es des r\u00e9seaux routiers et de tram et de train en R\u00e9gion bruxelloise. Ce jeu de donn\u00e9es est compos\u00e9 de trois classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond aux axes de rues (certains objets situ\u00e9s en Flandre ont \u00e9t\u00e9 int\u00e9gr\u00e9s \u00e0 des fins de continuit\u00e9 visuelle). La deuxi\u00e8me correspond aux noeuds de rues, et la troisi\u00e8me correspond au r\u00e9seau ferroviaire.\n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable, sous forme de shapefiles zipp\u00e9s. Le jeu de donn\u00e9es est notamment produit par int\u00e9gration des informations attributaires fournies par Bruxelles Mobilit\u00e9.\n\nCette collection reprend la classe \u00ab N\u0153uds de voirie \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:StreetNodes (Street nodes : \u00ab Street nodes in the Brussels-Capital Region. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Vervoersnetwerken \u00bb ; titre anglais : \u00ab UrbIS - Transport networks \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_streetnodes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport)",
+      "pmtiles:layers": [
+        "urbisvector_streetnodes"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/af847c40-848b-11ee-9a1f-00090ffe0001",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: streetnodes",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 15224,
+  "table:row_count": 15224,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable du n\u0153ud de voirie, fix\u00e9 et maintenu par Paradigm."
+    },
+    {
+      "name": "TYPE",
+      "type": "string",
+      "description": "Type du n\u0153ud de voirie (code du catalogue d'objets)."
+    },
+    {
+      "name": "LVL",
+      "type": "DECIMAL(38,0)",
+      "description": "Niveau relatif du n\u0153ud par rapport \u00e0 un autre n\u0153ud."
+    },
+    {
+      "name": "XL72",
+      "type": "double",
+      "description": "Longitude du n\u0153ud dans le syst\u00e8me de projection Lambert 1972."
+    },
+    {
+      "name": "YL72",
+      "type": "double",
+      "description": "Latitude du n\u0153ud dans le syst\u00e8me de projection Lambert 1972."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.2449320999337115,
+          50.758578997851515,
+          4.482234110333142,
+          50.91310349752421
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) default style",
+      "description": "Default visualization for N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport), drawn in #252525.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1272,
+      "file:checksum": "1220650d85f070742a57f3327a0d6a130ea50bdb29ceaf324b3bb554ab2e0e590835"
+    },
+    "urbisvector_streetnodes": {
+      "href": "./urbisvector_streetnodes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 826511,
+      "file:checksum": "12208b7119381636a21a3e88dbfce09b9634abcbe33123d1da626ddc7aaf4e0f93bb",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_streetnodes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 868867,
+      "file:checksum": "1220958d3855af952827fb826bf4165e8815859c4852dc5d687e5a2468d4cb7650f0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) categorical style",
+      "description": "Categorical visualization coloring N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) by TYPE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2022,
+      "file:checksum": "1220b273b58d163108dff2595e681a8c2c6e890c560c33f17770a667deed63d12205"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) labeled style",
+      "description": "Default visualization for N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) with TYPE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1707,
+      "file:checksum": "12205e7aaa460ed111180ad9f5069823c58ed3a62e336279784f0b64e68e25ea1411"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) graduated style",
+      "description": "Graduated visualization coloring N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport) by YL72, ramped from 160897.165 to 178087.0968126.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2088,
+      "file:checksum": "12202dd8b14289f151cf623f871e63f3d31729961f97f7f5738c55318409912bba77"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_streetnodes.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of N\u0153uds de voirie (UrbIS \u2013 R\u00e9seaux de transport)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 160919,
+      "file:checksum": "1220825c42626660beed7dee7718caa965f90b6ca5dafbafc1fd3d70d1ab0f10c0ee"
+    }
+  },
+  "keywords": [
+    "r\u00e9seau ferroviaire",
+    "transport routier",
+    "R\u00e9gions et villes",
+    "Transports",
+    "R\u00e9seaux de transport",
+    "R\u00e9gional",
+    "D\u00e9nomination de route",
+    "Ligne de voie ferr\u00e9e",
+    "N\u0153ud de route",
+    "N\u0153ud de transport",
+    "N\u0153ud de voie ferr\u00e9e",
+    "R\u00e9seau de transport",
+    "transport ferroviaire",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 R\u00e9seaux de transport \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

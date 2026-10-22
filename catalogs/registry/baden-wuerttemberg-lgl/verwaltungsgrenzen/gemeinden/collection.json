@@ -1,0 +1,254 @@
+{
+  "type": "Collection",
+  "id": "verwaltungsgrenzen/gemeinden",
+  "stac_version": "1.1.0",
+  "description": "aktuell g\u00fcltige ALKIS-Gemeinden (Datenstand tagesaktuell) vollst\u00e4ndig topologisch korrekt \u2014 Der WFS-Dienst liefert aktuelle, vektorbasierte ALKIS Daten zu Verwaltungsgrenzen in der NOrA Datenstruktur. Der WFS-Dienst stellt keinen amtlichen Nachweis dar. Der Dienst liefert Flurgrenzen, Gemarkungsgrenzen, Gemeindegrenzen, Kreisgrenzen, Regierungsbezirksgrenzen, Regionsgrenzen sowie Landesgrenze jeweils als FeatureType.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nora_v_al_gemeinde.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS-Gemeinden",
+      "pmtiles:layers": [
+        "nora_v_al_gemeinde"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://owsproxy.lgl-bw.de/owsproxy/wfs/WFS_LGL-BW_ALKIS_VGr_KatGr_E?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://owsproxy.lgl-bw.de/owsproxy/wfs/WFS_LGL-BW_ALKIS_VGr_KatGr_E",
+      "rel": "related",
+      "title": "WFS source service: alkis-vgr-gemeinden",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 1103,
+  "table:row_count": 1103,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gml_id",
+      "type": "string"
+    },
+    {
+      "name": "gemeinde_id",
+      "type": "int64"
+    },
+    {
+      "name": "gemeinde_name",
+      "type": "string"
+    },
+    {
+      "name": "kreis_id",
+      "type": "int64"
+    },
+    {
+      "name": "kreis_name",
+      "type": "string"
+    },
+    {
+      "name": "region_id",
+      "type": "int64"
+    },
+    {
+      "name": "region_name",
+      "type": "string"
+    },
+    {
+      "name": "regierungsbezirk_id",
+      "type": "int64"
+    },
+    {
+      "name": "regierungsbezirk_name",
+      "type": "string"
+    },
+    {
+      "name": "beginn",
+      "type": "timestamp"
+    },
+    {
+      "name": "ende",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "ALKIS-Gemeinden",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.5117697,
+          47.5324009,
+          10.4956269,
+          49.7912963
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Gemeinden default style",
+      "description": "Default visualization for ALKIS-Gemeinden, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1191,
+      "file:checksum": "12205fb2fcad2f7314f82595f9a3baf5892500cc162ca102ec53222aaf4216e8c40b"
+    },
+    "nora_v_al_gemeinde": {
+      "href": "./nora_v_al_gemeinde.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 15570027,
+      "file:checksum": "12201dc10ccf1538f326d06c623ae80a991a61ebf3780eb8ff7c5046cf0361eef627",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./nora_v_al_gemeinde.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS-Gemeinden (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 15498332,
+      "file:checksum": "12202ad61055aebe4f378ec62841564b722724fee2e00f0bcfe163b32edef23a63b0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Gemeinden categorical style",
+      "description": "Categorical visualization coloring ALKIS-Gemeinden by regierungsbezirk_name, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2108,
+      "file:checksum": "122007c5995fe4cebf7cbe0ffa9dc561d640ee206aaae8abd3185af65eb8590b278d"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Gemeinden labeled style",
+      "description": "Default visualization for ALKIS-Gemeinden with gemeinde_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1625,
+      "file:checksum": "12207c1b7e77723ce4ba7f3d4516ef648fc8573016662ed3cfa485890e35c83141e0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Gemeinden graduated style",
+      "description": "Graduated visualization coloring ALKIS-Gemeinden by gemeinde_id, ramped from 8111000.0 to 8437124.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2002,
+      "file:checksum": "1220cf1ef3176c4dfe0e5dc355c89ed2d2a3d5185262d5f4ae9b734470b8a9a43234"
+    },
+    "thumbnail": {
+      "href": "./nora_v_al_gemeinde.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of ALKIS-Gemeinden",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 211671,
+      "file:checksum": "12202a9cd2635b1333a3b1ba231fabd52aad9e3e2e4c61fe665f20f95f4420ef7bbc"
+    }
+  },
+  "keywords": [
+    "Verwaltungsgrenzen",
+    "Katasterbezirke",
+    "ALKIS",
+    "NOrA",
+    "LGL",
+    "Baden-W\u00fcrttemberg"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Geoinformation und Landentwicklung Baden-W\u00fcrttemberg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lgl-bw.de",
+      "email": "benutzerservice@lgl.bwl.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

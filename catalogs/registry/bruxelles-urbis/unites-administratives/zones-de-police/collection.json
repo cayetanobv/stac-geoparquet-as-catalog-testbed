@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "unites-administratives/zones-de-police",
+  "stac_version": "1.1.0",
+  "description": "UrbIS \u2013 Unit\u00e9s administratives  correspond au jeu de donn\u00e9es des unit\u00e9s administratives et statistiques en R\u00e9gion bruxelloise. Ce jeu de donn\u00e9es est compos\u00e9 de six classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond \u00e0 au territoire de la R\u00e9gion bruxelloise. La deuxi\u00e8me correspond au territoire des dix-neuf communes qui composent la R\u00e9gion, la troisi\u00e8me correspond aux six zones de polices comprises dans la R\u00e9gion, la quatri\u00e8me correspond aux quartiers du monitoring, la cinqui\u00e8me correspond aux secteurs statistiques. \n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable, sous forme de shapefiles zipp\u00e9s. Le jeu de donn\u00e9es est notamment produit par int\u00e9gration des donn\u00e9es du SPF Finances et du SPF Economie. Leurs licences respectives sont d'application en ce qui concerne les classes qui en proviennent.\n\nCette collection reprend la classe \u00ab Zones de police \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:PoliceZones (Police zones : \u00ab Brussels police zones as established by the King. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Administratieve eenheden \u00bb ; titre anglais : \u00ab UrbIS - Administrative units \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://finances.belgium.be/sites/default/files/Licence_plan_opendata_FR.PDF",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_policezones.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives)",
+      "pmtiles:layers": [
+        "urbisvector_policezones"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/f6b83500-6a62-11ed-be6d-010101010000",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: policezones",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 6,
+  "table:row_count": 6,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "POLICEZONE",
+      "type": "int64",
+      "description": "Identifiant unique de la zone de police tel que d\u00e9fini par l'administration comp\u00e9tente."
+    },
+    {
+      "name": "NAMEFRE",
+      "type": "string",
+      "description": "Nom fran\u00e7ais de la zone de police (Arr\u00eat\u00e9 royal du 28 avril 2000)."
+    },
+    {
+      "name": "NAMEDUT",
+      "type": "string",
+      "description": "Nom n\u00e9erlandais de la zone de police."
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable de la zone de police, fix\u00e9 et maintenu par l'AGDP."
+    },
+    {
+      "name": "AREA",
+      "type": "double",
+      "description": "Superficie au sol de la zone de police (m\u00b2)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.24376513895666,
+          50.76368007545884,
+          4.482271136369961,
+          50.913901316446776
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives) default style",
+      "description": "Default visualization for Zones de police (UrbIS \u2013 Unit\u00e9s administratives), drawn in #2c7fb8.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1269,
+      "file:checksum": "122079e59ba1ad85a5e7be9e7a9dc9bcfbc67ea39a4ae4b696ac880c32c4dfaea574"
+    },
+    "urbisvector_policezones": {
+      "href": "./urbisvector_policezones.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 128828,
+      "file:checksum": "1220c6faa626b3234af178933e42d8a6ac0d3a057c2d703a0e27c3ba3c11bfe8e6e9",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_policezones.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 92366,
+      "file:checksum": "1220f5bb29bd9438cbdddcc068fbe3c3fa9a5ddfab54ecaac2307d33e705c48e2d5e"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives) categorical style",
+      "description": "Categorical visualization coloring Zones de police (UrbIS \u2013 Unit\u00e9s administratives) by INSPIRE_ID, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2973,
+      "file:checksum": "122082e66928490bdd8cc3826022c75860058c2ac93d79e70988327ae590612cb10f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives) labeled style",
+      "description": "Default visualization for Zones de police (UrbIS \u2013 Unit\u00e9s administratives) with NAMEFRE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1707,
+      "file:checksum": "1220ed2fc0b8c0c7b486ff80fe1eceac7b282c3234a0ed6e5303b19317fb3128ee84"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zones de police (UrbIS \u2013 Unit\u00e9s administratives) graduated style",
+      "description": "Graduated visualization coloring Zones de police (UrbIS \u2013 Unit\u00e9s administratives) by AREA, ramped from 14186924.9675866 to 44809347.8815316.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2115,
+      "file:checksum": "1220e60517378eabf9a73c350fc7ef2f7c1a83dd6cfc76ed88e2500efbfc73de7ecf"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_policezones.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Zones de police (UrbIS \u2013 Unit\u00e9s administratives)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 122863,
+      "file:checksum": "12206cf6d7e0d77a2803a91fa58cb60b546f88e8b279c178c6a6f9109702f730d338"
+    }
+  },
+  "keywords": [
+    "administration r\u00e9gionale",
+    "autorit\u00e9 r\u00e9gionale",
+    "limite administrative",
+    "R\u00e9gions et villes",
+    "Unit\u00e9s administratives",
+    "Unit\u00e9s statistiques",
+    "R\u00e9gional",
+    "D\u00e9nomination d'unit\u00e9 administrative",
+    "Limite administrative",
+    "Unit\u00e9 administrative",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 Unit\u00e9s administratives \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "SPF Finances \u2013 Administration G\u00e9n\u00e9rale de la Documentation Patrimoniale (AGDP)",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://finances.belgium.be",
+      "email": "datadelivery@minfin.fed.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

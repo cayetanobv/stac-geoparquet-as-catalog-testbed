@@ -1,0 +1,228 @@
+{
+  "type": "Collection",
+  "id": "miljoe/kysttyper",
+  "stac_version": "1.1.0",
+  "description": "Afgr\u00e6nsning mod vand som fx bef\u00e6stet kant, sten, naturkyst mv.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_kbh_kysttyper.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kysttyper",
+      "pmtiles:layers": [
+        "k101_kbh_kysttyper"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/kysttyper",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: kbh_kysttyper",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 957,
+  "table:row_count": 957,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "kategori",
+      "type": "string"
+    },
+    {
+      "name": "note",
+      "type": "string"
+    },
+    {
+      "name": "ogc_fid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Kysttyper",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.35397028905823,
+          55.55477668429301,
+          12.89168977505633,
+          55.88720446429593
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kysttyper default style",
+      "description": "Default visualization for Kysttyper, drawn in #2c7fb8.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1185,
+      "file:checksum": "12205aeee2680099bf43f06a68ccb2c79fa9298344fe41d9b8829397cb69d494b480"
+    },
+    "k101_kbh_kysttyper": {
+      "href": "./k101_kbh_kysttyper.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 423518,
+      "file:checksum": "1220d88ead4471e9d735ba75cf13da1b5c4f13ac2f2c4a518026dc3df60b1bad9a23",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_kbh_kysttyper.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kysttyper (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 357148,
+      "file:checksum": "1220f10d23ce74b3351e99df8e202d4170c776329638c0c35a8dbc48572d34205b05"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kysttyper categorical style",
+      "description": "Categorical visualization coloring Kysttyper by kategori, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2638,
+      "file:checksum": "1220ed4879883cbf1e2dad58d89dd94ad6cd2dd73d26ba0299a420a525a0d17ca638"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kysttyper labeled style",
+      "description": "Default visualization for Kysttyper with kategori shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1614,
+      "file:checksum": "1220240b871886f1555e36d0ac2a07839e41705dcc9232a0c18a35f3515e35388e51"
+    },
+    "thumbnail": {
+      "href": "./k101_kbh_kysttyper.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kysttyper",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 111339,
+      "file:checksum": "1220786242d4a223dfff8a0f6437317a84a26df892f0a3ad7a8defc55ca6e28ebc45"
+    }
+  },
+  "keywords": [
+    "bef\u00e6stet",
+    "broer",
+    "h\u00f8j kant",
+    "lav kant",
+    "naturkyst",
+    "rekreativ",
+    "sandstrand",
+    "stenkyst",
+    "strandeng",
+    "Kysttyper",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Kysttyper, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/kysttyper",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

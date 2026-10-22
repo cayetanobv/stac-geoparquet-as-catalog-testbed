@@ -1,0 +1,205 @@
+{
+  "type": "Collection",
+  "id": "matrikel/ejerlav",
+  "stac_version": "1.1.0",
+  "description": "Matriklens ejerlav med ejerlavets unikke kode og navn. Ejerlavet er den geografiske inddeling, matrikelnumre er unikke inden for.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ejerlav.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Ejerlav",
+      "pmtiles:layers": [
+        "ejerlav"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/ejerlav",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/ejerlav?format=geojson",
+      "rel": "related",
+      "title": "Upstream source: ejerlav",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 9033,
+  "table:row_count": 9033,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "kode",
+      "type": "int32"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Ejerlav",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.07360992,
+          54.55908692,
+          15.15593439,
+          57.75254562
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ejerlav default style",
+      "description": "Default visualization for Ejerlav, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1106,
+      "file:checksum": "1220a009520a6ca6a0d4e36046d6a876fbaf3d2574a266254b8e2799d7314299f412"
+    },
+    "ejerlav": {
+      "href": "./ejerlav.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 34072783,
+      "file:checksum": "12203e394656ecd3f353f84d6277cc2c59b13468e9ac4cac68a1a70b13454fcd0260",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ejerlav.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Ejerlav (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 42059447,
+      "file:checksum": "1220b4657a04fabb0cf3a02f133fa357f93df7ba359f27a0f2b3d2010809b9596b7c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Ejerlav graduated style",
+      "description": "Graduated visualization coloring Ejerlav by kode, ramped from 10051.0 to 2008762.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1883,
+      "file:checksum": "122078c9ad4201e0aa22163e6669a2eae6878b40836eb23314fe903fe7495d91c4df"
+    },
+    "thumbnail": {
+      "href": "./ejerlav.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Ejerlav",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 141973,
+      "file:checksum": "1220247ea741044632269e4539de56edc9b0f39ffe46cf44194b7934541cd7eaa7bb"
+    }
+  },
+  "keywords": [
+    "ejerlav",
+    "matrikel",
+    "matrikelnummer",
+    "ejendomsdata"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen ejerlav, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/ejerlav",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

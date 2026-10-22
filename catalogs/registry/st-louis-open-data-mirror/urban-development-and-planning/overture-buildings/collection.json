@@ -1,0 +1,348 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/overture-buildings",
+  "stac_version": "1.1.0",
+  "description": "Building footprints and building parts from the Overture Maps buildings theme, which describes human-made structures with roofs or interior spaces that are permanently or semi-permanently in one place. Overture's goal is to provide the world's most comprehensive set of building structures compiled from the best available open data sources. Where known, buildings carry height, number of floors, and facade and roof attributes, supporting 2D and 3D visualization, data enrichment via GERS IDs, and spatial analysis. Both feature types are merged here, with an `overture_type` column telling buildings from building parts. Overture documents this data well: the [buildings theme guide](https://docs.overturemaps.org/guides/buildings/) covers what the theme models, how Overture builds it, and how to query it, and the schema reference gives every field of the feature types merged here \u2014 [`building`](https://docs.overturemaps.org/schema/reference/buildings/building/), [`building_part`](https://docs.overturemaps.org/schema/reference/buildings/building_part/).\n\nUnlike everything else in this catalog, this is **not** City of St. Louis data: it comes from the [Overture Maps Foundation](https://overturemaps.org/), a collaborative project building open, interoperable map data for the world. This collection is a St. Louis extract of that global dataset \u2014 everything inside the city's bounding box, which also takes in the Illinois shore of the Mississippi (East St. Louis, Cahokia Heights) \u2014 included here to demonstrate how a city's open-data catalog can blend in other St. Louis-relevant open data alongside the city's own. The GeoParquet was extracted from Overture release 2026-07-22.0; the map tiles reference Overture's own global PMTiles for the same release, the tiles behind [explore.overturemaps.org](https://explore.overturemaps.org/).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licensing"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/guides/buildings/",
+      "type": "text/html",
+      "title": "Overture buildings theme guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/buildings/building/",
+      "type": "text/html",
+      "title": "Overture schema reference: building"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/buildings/building_part/",
+      "type": "text/html",
+      "title": "Overture schema reference: building_part"
+    },
+    {
+      "rel": "via",
+      "href": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=buildings/",
+      "type": "text/html",
+      "title": "Overture release 2026-07-22.0 GeoParquet (theme=buildings) on S3"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/buildings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "building",
+        "building_part"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 194132,
+  "table:row_count": 194132,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Overture feature ID \u2014 per the schema, 'a feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS.' GERS IDs are intended to be stable across Overture's monthly releases, which makes this the key for attaching your own data to an Overture feature and for joining to any other GERS-enabled dataset. See the [GERS overview](https://docs.overturemaps.org/gers/)."
+    },
+    {
+      "name": "names",
+      "type": "struct<primary: string, common: map<string, string ('common')>, rules: list<element: struct<variant: string, language: string, perspectives: struct<mode: string, countries: list<element: string>>, value: string, between: list<element: double>, side: string>>>",
+      "description": "Names of the feature. `primary` is the most commonly used name; `common` holds translations keyed by IETF BCP-47 language tag; `rules` carries the variants that cannot be expressed as a simple common name (official, alternate, short), each optionally scoped to a `between` range along the geometry or to one `side` of a road. Schema reference: [names](https://docs.overturemaps.org/schema/reference/common/names/)."
+    },
+    {
+      "name": "sources",
+      "type": "list<element: struct<property: string, dataset: string, license: string, record_id: string, update_time: string, confidence: double, between: list<element: double>>>",
+      "description": "Per-property provenance. An array of source records, each naming the `property` it covers in JSON Pointer notation plus the source `dataset`, its `license` (an SPDX identifier where one is available; null means contact the data provider for terms), the `record_id` used, an `update_time`, and for ML-derived data a `confidence`. Every feature carries a root-level entry that is the default source for any property without a more specific one. Schema reference: [sources](https://docs.overturemaps.org/schema/reference/common/sources/)."
+    },
+    {
+      "name": "level",
+      "type": "int32",
+      "description": "Z-order of the feature, where 0 is visual level \u2014 a stacking hint for rendering overlapping features. Not an above-or-below-ground flag: negative values may still be above ground. Schema reference: [level](https://docs.overturemaps.org/schema/reference/common/level/)."
+    },
+    {
+      "name": "height",
+      "type": "double",
+      "description": "Height of the building or part in meters \u2014 the distance from its lowest point to its highest point."
+    },
+    {
+      "name": "min_height",
+      "type": "double",
+      "description": "The height of the bottom of the building or part in meters, used when it starts above ground level."
+    },
+    {
+      "name": "is_underground",
+      "type": "bool",
+      "description": "Whether the entire building or part is completely below ground. Useful for rendering, which typically omits these or styles them differently because they are not visible above ground. Distinct from `level`, which is a z-ordering hint whose negative values may still be above ground."
+    },
+    {
+      "name": "num_floors",
+      "type": "int32",
+      "description": "Number of above-ground floors of the building or part."
+    },
+    {
+      "name": "num_floors_underground",
+      "type": "int32",
+      "description": "Number of below-ground floors of the building or part."
+    },
+    {
+      "name": "min_floor",
+      "type": "int32",
+      "description": "The 'start' floor of the building or part, indicating that it floats with its bottom-most floor above ground level \u2014 usually because it is part of a larger building where other parts do reach the ground, such as a wing bridging over an entry road into a courtyard. Sometimes populated when `min_height` is missing, in which case it can stand in for it."
+    },
+    {
+      "name": "subtype",
+      "type": "string",
+      "description": "A broad category of the building type or purpose; where the current use of the building does not match the built purpose, the subtype represents the current use. One of agricultural, civic, commercial, education, entertainment, industrial, medical, military, outbuilding, religious, residential, service, transportation. Schema reference: [building_subtype](https://docs.overturemaps.org/schema/reference/buildings/types/building_subtype/)."
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "description": "Further delineation of the building's built purpose \u2014 the finer of the two classification levels, a long list of values including house, detached, apartments, terrace, garage, shed, retail, office, warehouse, factory, church, school, university, hospital, hotel, stadium, parking and hangar. Schema reference: [building_class](https://docs.overturemaps.org/schema/reference/buildings/types/building_class/)."
+    },
+    {
+      "name": "facade_color",
+      "type": "string",
+      "description": "The color of the facade of the building or part, as a name or a hexadecimal color triplet."
+    },
+    {
+      "name": "facade_material",
+      "type": "string",
+      "description": "The outer surface material of the building facade: brick, cement_block, clay, concrete, glass, metal, plaster, plastic, stone, timber_framing or wood. Schema reference: [facade_material](https://docs.overturemaps.org/schema/reference/buildings/types/facade_material/)."
+    },
+    {
+      "name": "roof_material",
+      "type": "string",
+      "description": "The outermost material of the roof: concrete, copper, eternit, glass, grass, gravel, metal, plastic, roof_tiles, slate, solar_panels, thatch, tar_paper or wood. Schema reference: [roof_material](https://docs.overturemaps.org/schema/reference/buildings/types/roof_material/)."
+    },
+    {
+      "name": "roof_shape",
+      "type": "string",
+      "description": "The shape of the roof: dome, flat, gabled, gambrel, half_hipped, hipped, mansard, onion, pyramidal, round, saltbox, sawtooth, skillion or spherical. Schema reference: [roof_shape](https://docs.overturemaps.org/schema/reference/buildings/types/roof_shape/)."
+    },
+    {
+      "name": "roof_direction",
+      "type": "double",
+      "description": "Bearing of the roof ridge line, in degrees from 0 up to 360."
+    },
+    {
+      "name": "roof_orientation",
+      "type": "string",
+      "description": "Orientation of the roof shape relative to the footprint shape \u2014 `along` or `across`. Schema reference: [roof_orientation](https://docs.overturemaps.org/schema/reference/buildings/types/roof_orientation/)."
+    },
+    {
+      "name": "roof_color",
+      "type": "string",
+      "description": "The color of the roof of the building or part, as a name or a hexadecimal color triplet."
+    },
+    {
+      "name": "roof_height",
+      "type": "double",
+      "description": "Height of the roof in meters \u2014 the distance from the base of the roof to its highest point."
+    },
+    {
+      "name": "has_parts",
+      "type": "bool",
+      "description": "Flag indicating whether the building has parts. Where true, the matching part rows in this collection (`overture_type` = 'building_part') carry this building's id in `building_id`."
+    },
+    {
+      "name": "version",
+      "type": "int32",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed. Schema reference: [feature_version](https://docs.overturemaps.org/schema/reference/common/feature_version/)."
+    },
+    {
+      "name": "overture_type",
+      "type": "string",
+      "description": "Which of the buildings theme's two feature types this row is \u2014 `building` (a whole structure) or `building_part` (a distinct section of one, carrying its own height, materials or roof shape). Not an Overture schema column: this mirror merges the theme's feature types into one collection and records the type here. Schema reference: [building](https://docs.overturemaps.org/schema/reference/buildings/building/), [building_part](https://docs.overturemaps.org/schema/reference/buildings/building_part/)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Building geometry as WKB in EPSG:4326: a building's footprint, or its roofprint where the outline was traced from aerial or satellite imagery. A building part's geometry is the polygon of that part. Polygons crossing the edge of the St. Louis bounding box were clipped to it."
+    },
+    {
+      "name": "building_id",
+      "type": "string",
+      "description": "On a building part, the id of the building the part belongs to; null on whole-building rows. Join it back to `id` to assemble a building and its parts. Schema reference: [building_part](https://docs.overturemaps.org/schema/reference/buildings/building_part/)."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Covering bounding box (xmin, ymin, xmax, ymax) for the row's geometry. Not an Overture schema column: Overture's own bbox was dropped and this one rebuilt by gpio during conversion, with row-group statistics, so a spatial filter can skip most of the file over the network."
+    }
+  ],
+  "portolan:total_size_bytes": 27246275,
+  "portolan:asset_count": 1,
+  "title": "Overture Buildings",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051856117901,
+          38.53199630293254,
+          -90.16630892212817,
+          38.77434671879855
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-07-22T00:00:00Z",
+          "2026-07-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "ODbL-1.0",
+  "assets": {
+    "overture-buildings": {
+      "href": "./overture-buildings.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 27246275,
+      "file:checksum": "12204eb40c6d4f94476761a1ad5286e5dada46fe6e893e6d53601c38c9227454419e",
+      "roles": [
+        "data"
+      ],
+      "title": "Overture Buildings (GeoParquet)"
+    },
+    "overture-buildings-tiles": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/buildings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture buildings theme (PMTiles, global)",
+      "description": "Overture's own release-pinned global vector tiles for the buildings theme, served from the Overture Maps Foundation's public bucket \u2014 not from this mirror, and not clipped to St. Louis. The styles select this collection's layers (building, building_part) from them.",
+      "file:size": 179413355586
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Building heights",
+      "description": "Every footprint stepped by measured height in meters \u2014 light blue low-rise through dark blue mid-rise, with the 60m+ downtown towers in red. About nine in ten St. Louis buildings carry a height; the rest read as gray. Building parts draw on top with the same ramp.",
+      "file:size": 2617,
+      "file:checksum": "12201668641d0ee76f3150c4aeb955f232f221f52c2ace0a3acb0e96e7b6ee6adf39"
+    },
+    "styles/style-explorer": {
+      "href": "./styles/style-explorer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Explorer footprints",
+      "description": "The quiet warm-gray building fill of Overture's own Explorer site \u2014 footprints as basemap texture.",
+      "file:size": 1332,
+      "file:checksum": "1220d426966549f7b08e9e6b2c03d09d40334995fb084793da464feb2fb2d4a1e847"
+    },
+    "styles/style-subtype": {
+      "href": "./styles/style-subtype.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Building use",
+      "description": "Footprints colored by Overture's building subtype where one is known \u2014 residential blues, commercial red, education orange. Most St. Louis buildings have no recorded subtype and stay light gray.",
+      "file:size": 2359,
+      "file:checksum": "1220798fa302fc71187aaf5d5c163dde1e6eb80eb978d2054557dd8a1f063b065da9"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Overture Buildings rendered with the default style",
+      "file:size": 411023,
+      "file:checksum": "1220248a700118b581d301bc8a5890701fc447116892ba8c0ea690c4a8e522852037"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://docs.overturemaps.org/guides/",
+      "concepts": [
+        {
+          "id": "buildings",
+          "title": "Overture buildings theme"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "overture",
+    "Overture Maps Foundation",
+    "buildings",
+    "building",
+    "building part"
+  ],
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "type": "Collection",
+  "id": "parken/parkpickerl-berechtigungszonen",
+  "stac_version": "1.1.0",
+  "description": "Hierbei handelt es sich um jene Bereiche, deren BewohnerInnen oder Betriebe berechtigt sind, ein Parkpickerl bzw. eine Parkkarte f\u00fcr den Nachbarbezirk zu erwerben. Zum Beispiel kann das Parkpickerl bzw. die Parkkarte f\u00fcr den 14. und 15. Bezirk inklusive Stadthallenzone auch von BewohnerInnen und Betrieben in genau definierten Bezirksteilen des 14. und 16. Bezirks erworben werden. F\u00fcr diese BewohnerInnen und Betriebe besteht daher ein Wahlrecht, ob sie das Parkpickerl bzw. die Parkkarte f\u00fcr den Bezirk des Wohnortes oder des Betriebsstandortes oder des Nachbarbezirkes erwerben wollen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_parkenberechtogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkpickerl Berechtigungszone Wien",
+      "pmtiles:layers": [
+        "ogdwien_parkenberechtogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/5983a1bb-62b6-4e26-afd0-dc234b34cf4b",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: parkenberechtogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 24,
+  "table:row_count": 24,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirksnummer."
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "string",
+      "description": "Angabe, f\u00fcr welchen Bezirk beziehungsweise welche Bezirke die Antragstellerin oder der Antragsteller berechtigt ist, ein Parkpickerl anzusuchen."
+    },
+    {
+      "name": "ANMERKUNG",
+      "type": "string",
+      "description": "Anmerkung; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "WEBLINK_1",
+      "type": "string",
+      "description": "Hyperlink."
+    },
+    {
+      "name": "TEXT_RECHT",
+      "type": "string",
+      "description": "Rechtshinweis des Publizierers; nicht in der Feldliste beschrieben."
+    },
+    {
+      "name": "FK_PRB",
+      "type": "int64",
+      "description": "Eindeutiger Schl\u00fcssel (Bezug) zum Datensatz \u201eKurzparkzonen\u201c."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Parkpickerl Berechtigungszone Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.181830379117955,
+          48.117903301153454,
+          16.577514130310036,
+          48.32266661161856
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Berechtigungszone Wien default style",
+      "description": "Default visualization for Parkpickerl Berechtigungszone Wien, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1252,
+      "file:checksum": "122066e608e3677e0fcdd81f81fee4c4a0702a2c97bca3b14c41bcef926855b5b238"
+    },
+    "ogdwien_parkenberechtogd": {
+      "href": "./ogdwien_parkenberechtogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 816446,
+      "file:checksum": "12205511f23f35e9ad2b21e42ffcf012338fb0d57a13cc0862e3e73fec8fe224e0ee",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_parkenberechtogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkpickerl Berechtigungszone Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 238163,
+      "file:checksum": "12208c3aecf007c53e92a3dbc3055918b98a8e229935273ec7b6eed6a7ad05e9294c"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Berechtigungszone Wien categorical style",
+      "description": "Categorical visualization coloring Parkpickerl Berechtigungszone Wien by ANMERKUNG, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2382,
+      "file:checksum": "122085eb73d4f1dd003c26ae245d60d05088f32dc830d9e91ab452abf1a0cf51ad68"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Berechtigungszone Wien labeled style",
+      "description": "Default visualization for Parkpickerl Berechtigungszone Wien with ANMERKUNG shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1694,
+      "file:checksum": "1220745099b6d6b551f5a94ada35164aa849e88def69454a162fd7e3fc239f646ca9"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkpickerl Berechtigungszone Wien graduated style",
+      "description": "Graduated visualization coloring Parkpickerl Berechtigungszone Wien by BEZIRK, ramped from 1.0 to 23.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1995,
+      "file:checksum": "1220c822b3a6ef0e5e6b93a0ff587e4bd87105de0a113fc139c56943f464a23bf1f7"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_parkenberechtogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parkpickerl Berechtigungszone Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 105462,
+      "file:checksum": "12207f2f6647b85c97fc99fbc1db49fcf18eaa687a496a78d24b03621e0689571e16"
+    }
+  },
+  "keywords": [
+    "Parkpickerl",
+    "ViennaGIS",
+    "Berechtigungszone",
+    "Parken",
+    "Kurzparkzonen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Parkpickerl Berechtigungszone Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

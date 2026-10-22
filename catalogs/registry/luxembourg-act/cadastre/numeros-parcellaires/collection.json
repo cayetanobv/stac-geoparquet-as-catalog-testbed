@@ -1,0 +1,212 @@
+{
+  "type": "Collection",
+  "id": "cadastre/numeros-parcellaires",
+  "stac_version": "1.1.0",
+  "description": "Le plan cadastral g\u00e9r\u00e9 par l\u2019ACT est le seul document repr\u00e9sentant les parcelles et couvrant tout le territoire du Grand-Duch\u00e9 de Luxembourg. De part sa nature, il repr\u00e9sente un \u00e9tat de droit et ne correspond pas n\u00e9cessairement \u00e0 l\u2019\u00e9tat de fait ou de r\u00e9alit\u00e9 sur le terrain. Le plan cadastral num\u00e9ris\u00e9 est un document h\u00e9t\u00e9rog\u00e8ne qui trouve son origine dans les plans historiques de 1824 et qui depuis, est constamment mis \u00e0 jour sur base des modifications parcellaires identifi\u00e9es. Il int\u00e8gre donc aussi bien des parties anciennes et num\u00e9ris\u00e9es, d'une pr\u00e9cision n'exc\u00e9dant pas celle d'origine (\u00e9chelle 1:2500), que des parties am\u00e9lior\u00e9es par des mensurations officielles r\u00e9centes et plus pr\u00e9cises. Couche NUMEROS PARCELLAIRES : les num\u00e9ros parcellaires plac\u00e9s sur le plan.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./NUMEROS_PARCELLAIRES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PCN \u2013 Num\u00e9ros parcellaires",
+      "pmtiles:layers": [
+        "NUMEROS_PARCELLAIRES"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/plan-cadastral-numerise-pcn/",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 717512,
+  "table:row_count": 717512,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "NUMERO",
+      "type": "string",
+      "description": "Num\u00e9ro parcellaire tel qu'affich\u00e9 sur le plan."
+    },
+    {
+      "name": "CODE_COMMU",
+      "type": "string",
+      "description": "Code commune cadastrale, nom complet CODE_COMMUNE."
+    },
+    {
+      "name": "ROTATION",
+      "type": "double",
+      "description": "Angle de rotation de l'\u00e9tiquette sur le plan ; unit\u00e9 non document\u00e9e par l'\u00e9diteur, les valeurs correspondent \u00e0 des degr\u00e9s."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "PCN \u2013 Num\u00e9ros parcellaires",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.738354615629442,
+          49.449199971627834,
+          6.530290843685874,
+          50.18245206919225
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Num\u00e9ros parcellaires default style",
+      "description": "Default visualization for PCN \u2013 Num\u00e9ros parcellaires, drawn in #bdbdbd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1226,
+      "file:checksum": "12209117207c1f09d63499e2dd56152886590680b33cebb050b2d891be72fc94c861"
+    },
+    "NUMEROS_PARCELLAIRES": {
+      "href": "./NUMEROS_PARCELLAIRES.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 29727754,
+      "file:checksum": "1220a8dd0f436ec2b75a5745b2a20436f1aeadccbba77f62c70aabbe3820a8dc357f",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./NUMEROS_PARCELLAIRES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PCN \u2013 Num\u00e9ros parcellaires (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 31451054,
+      "file:checksum": "1220e9b3911733b13da088deeede22f3992f1f4becc7ba8e1088e4dcd5b6fa6c72ff"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Num\u00e9ros parcellaires graduated style",
+      "description": "Graduated visualization coloring PCN \u2013 Num\u00e9ros parcellaires by ROTATION, ramped from 0.0 to 359.998624188.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2031,
+      "file:checksum": "1220d62ef14cb397d7bc4bd757f49512a514705e3daa34859273c2b115d2ed343bdf"
+    },
+    "source": {
+      "href": "https://data.public.lu/fr/datasets/r/a43f88ba-c97b-4141-9fef-df7cb0c0f1ce",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: numeros-parcellaires",
+      "pipeline:upstream": true,
+      "file:size": 189132290,
+      "file:checksum": "1220bf6d7c8c468c2460c2211436e23429d91678ef1282503832b8fb067856714f2f"
+    },
+    "thumbnail": {
+      "href": "./NUMEROS_PARCELLAIRES.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of PCN \u2013 Num\u00e9ros parcellaires",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 164790,
+      "file:checksum": "12208de9ce0d2c9f8c05fb21e7b8889b440ec5475806c4b4efdee9b458c05b4626a6"
+    }
+  },
+  "keywords": [
+    "cadastre",
+    "num\u00e9ros parcellaires",
+    "plan cadastral num\u00e9ris\u00e9",
+    "PCN",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Plan cadastral num\u00e9ris\u00e9 (PCN), Administration du cadastre et de la topographie, data.public.lu, fichier du 14 septembre 2026, CC BY 4.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "maasto-1-1/autoliikennealue",
+  "stac_version": "1.1.0",
+  "description": "autoliikennealue",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./autoliikennealue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "autoliikennealue",
+      "pmtiles:layers": [
+        "autoliikennealue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/autoliikennealue/items",
+      "rel": "related",
+      "title": "OGC API source service: autoliikennealue",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 11838,
+  "table:row_count": 11838,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 64, joka vastaa aluemaisia Maasto/1-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 32421, autoliikennealue."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Autoliikennealueen aluerajaus WGS84-koordinaatistossa. Autoliikennealue on autoliikenteen k\u00e4ytt\u00e4m\u00e4 erityisalue, kuten pys\u00e4k\u00f6inti-, lev\u00e4hdys- tai lastauspaikka."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "autoliikennealue",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.5381081,
+          59.8190678,
+          31.2799342,
+          70.081752
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "autoliikennealue default style",
+      "description": "Default visualization for autoliikennealue, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1178,
+      "file:checksum": "1220b9a266dc58837c2d1d0d8beef23d2a2186b64518de849569aa55830e59431fc6"
+    },
+    "autoliikennealue": {
+      "href": "./autoliikennealue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3340537,
+      "file:checksum": "12203d5fd8e29302b51ecf2dd9c56a172962daef7f59546aab3611da2275532ec756",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./autoliikennealue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "autoliikennealue (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10210595,
+      "file:checksum": "122098b4068a0c90ac17e9f64c240b32ac56b4a64d095760e0074c5e31f9f897e064"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "autoliikennealue graduated style",
+      "description": "Graduated visualization coloring autoliikennealue by sijaintitarkkuus, ramped from 5000.0 to 7500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1982,
+      "file:checksum": "1220d1e41363c4a949be21ec12d82ba6ded7d17d51aad031a281b57e09552028fb72"
+    },
+    "thumbnail": {
+      "href": "./autoliikennealue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of autoliikennealue",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 86028,
+      "file:checksum": "12206a56cee8c7d69036c0a32f07c491f59c59df24976f6b19b975536093a960be1b"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/1",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

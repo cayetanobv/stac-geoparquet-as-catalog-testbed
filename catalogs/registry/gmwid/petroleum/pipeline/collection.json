@@ -1,0 +1,355 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+  ],
+  "id": "pipeline",
+  "title": "Pipelines",
+  "description": "Pipelines, with the substance they carry, a category (oil, gas, water...) and their length. Completed with the pipelines BOEM (US offshore) and OGIM (worldwide) report and OpenStreetMap lacks. From OpenStreetMap, worldwide, following Open Infrastructure Map's data model: 1,511,598 rows in one GeoParquet file (309 MB), Hilbert-sorted in row groups of 32,000, so a bbox filter or one on country or state reads only the groups it touches. Read in place over HTTPS or through the anonymous S3 endpoint s3.geomermaids.com. This collection reads latest/, which each build replaces.",
+  "keywords": [
+    "OpenStreetMap",
+    "OSM",
+    "infrastructure",
+    "GeoParquet",
+    "worldwide",
+    "petroleum",
+    "pipeline"
+  ],
+  "license": "ODbL-1.0",
+  "version": "2026-10-09",
+  "updated": "2026-10-11T15:08:27Z",
+  "providers": [
+    {
+      "name": "OpenStreetMap contributors",
+      "description": "Created and maintain the data, published under the ODbL 1.0.",
+      "url": "https://www.openstreetmap.org/",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geofabrik GmbH",
+      "description": "Publishes the continental OSM extracts this catalog is built from.",
+      "url": "https://download.geofabrik.de/",
+      "roles": [
+        "processor"
+      ]
+    },
+    {
+      "name": "U.S. Energy Information Administration (EIA)",
+      "description": "Publishes EIA-860M, the monthly inventory of US generators; the operating plants OpenStreetMap lacks are added from it (public domain).",
+      "url": "https://www.eia.gov/electricity/data/eia860m/",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "U.S. Geological Survey and Lawrence Berkeley National Laboratory",
+      "description": "Publish the US Large-Scale Solar Photovoltaic Database (USPVDB), whose outlines replace EIA's points for the solar plants added (public domain).",
+      "url": "https://energy.usgs.gov/uspvdb/",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "U.S. Geological Survey, American Clean Power Association and Lawrence Berkeley National Laboratory",
+      "description": "Publish the United States Wind Turbine Database (USWTDB); the turbines OpenStreetMap lacks are added from it (public domain).",
+      "url": "https://energy.usgs.gov/uswtdb/",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Federal Communications Commission (FCC)",
+      "description": "Publishes the Antenna Structure Registration; the constructed communication towers OpenStreetMap lacks are added from it (public domain).",
+      "url": "https://www.fcc.gov/uls/transactions/daily-weekly",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Bureau of Safety and Environmental Enforcement and Bureau of Ocean Energy Management",
+      "description": "Publish the US Outer Continental Shelf's boreholes, platform structures and pipeline segments; those OpenStreetMap lacks are added from them (public domain).",
+      "url": "https://www.data.bsee.gov/",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Agence ORE",
+      "description": "Publishes the HTA/BT substations of every French distribution operator; those OpenStreetMap lacks are added from it (Licence Ouverte 2.0).",
+      "url": "https://opendata.agenceore.fr/",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Environmental Defense Fund and MethaneSAT, LLC",
+      "description": "Publish the Oil and Gas Infrastructure Mapping (OGIM) database v3.0; the wells, sites, platforms and pipelines OpenStreetMap lacks are added, except from the sources in it whose terms restrict reuse (CC BY 4.0).",
+      "url": "https://doi.org/10.5281/zenodo.22835235",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Extracts the infrastructure, derives the typed columns following Open Infrastructure Map's data model, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -179.564774,
+          -77.851135,
+          179.308472,
+          82.512787
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-10-09T20:21:04Z",
+          "2026-10-09T20:21:04Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 1511598,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "osm_id",
+      "type": "BIGINT",
+      "description": "OSM element id. With osm_type, the key back to openstreetmap.org."
+    },
+    {
+      "name": "osm_type",
+      "type": "VARCHAR",
+      "description": "OSM element type: node, way or relation. NULL on rows from another source (origin)."
+    },
+    {
+      "name": "origin",
+      "type": "VARCHAR",
+      "description": "Where the row comes from: osm, or the authoritative source that reports a feature OpenStreetMap does not have (no osm_id and no tags; see _coverage.json): eia (US power plants, EIA-860M; solar farms with their USPVDB outline), uswtdb (US wind turbines), fcc (US communication towers, FCC Antenna Structure Registration), ore (French HTA/BT substations, Agence ORE), boem (US offshore wells, platforms and pipelines, BSEE and BOEM), ogim (oil and gas worldwide, OGIM v3.0). NSTA's UK wells, platforms and pipelines OSM lacks are not in these files: their licence is non-commercial, so they are published apart, with the same schema and origin nsta, in nsta/."
+    },
+    {
+      "name": "source_id",
+      "type": "VARCHAR",
+      "description": "On a row from another source, its ID there: EIA plant ID, USWTDB case_id, FCC registration number, API well number or BSEE complex/structure or BOEM segment number, OGIM_ID. NULL on OSM rows and on ORE's, which publishes no code."
+    },
+    {
+      "name": "country",
+      "type": "VARCHAR",
+      "description": "ISO 3166-1 alpha-2 code of the country the feature is in (FAO GAUL codes for disputed areas), or _intl on the high seas. Rows are Hilbert-sorted, so a filter on it skips most row groups."
+    },
+    {
+      "name": "state",
+      "type": "VARCHAR",
+      "description": "Slug of the FAO GAUL 2024 first-level unit the feature is in (texas, bayern), _offshore in a country's EEZ, _intl on the high seas. Filter with country: the same slug can exist in two countries."
+    },
+    {
+      "name": "type",
+      "type": "VARCHAR",
+      "description": "The feature's kind within the layer: the value of the layer's main tag (line, minor_line, cable for power_line), whatever its lifecycle."
+    },
+    {
+      "name": "lifecycle",
+      "type": "VARCHAR",
+      "description": "active, construction, proposed or disused, read from the lifecycle prefixes and values of the layer's main tag. Abandoned features are not in this file: they are in abandoned/, the same layers and schema."
+    },
+    {
+      "name": "name",
+      "type": "VARCHAR",
+      "description": "The name tag; where there is none, the first of its lifecycle form (disused:name...), official_name, name:en, short_name, alt_name, loc_name, seamark:name, substation:name, site_name, or the only name:<lang>. The tags keep every original."
+    },
+    {
+      "name": "names",
+      "type": "MAP(VARCHAR, VARCHAR)",
+      "description": "Every name and name:<lang> tag, keyed by tag."
+    },
+    {
+      "name": "operator",
+      "type": "VARCHAR",
+      "description": "The operator tag."
+    },
+    {
+      "name": "operator_wikidata",
+      "type": "VARCHAR",
+      "description": "The operator:wikidata tag."
+    },
+    {
+      "name": "ref",
+      "type": "VARCHAR",
+      "description": "The ref tag."
+    },
+    {
+      "name": "wikidata",
+      "type": "VARCHAR",
+      "description": "The wikidata tag."
+    },
+    {
+      "name": "wikipedia",
+      "type": "VARCHAR",
+      "description": "The wikipedia tag."
+    },
+    {
+      "name": "start_date",
+      "type": "VARCHAR",
+      "description": "The start_date tag, as tagged."
+    },
+    {
+      "name": "website",
+      "type": "VARCHAR",
+      "description": "The website tag."
+    },
+    {
+      "name": "substance",
+      "type": "VARCHAR",
+      "description": "The substance tag."
+    },
+    {
+      "name": "category",
+      "type": "VARCHAR",
+      "description": "Pipeline category from the substance (oil, gas, water, heat, ...), Open Infrastructure Map's grouping."
+    },
+    {
+      "name": "pipeline_type",
+      "type": "VARCHAR",
+      "description": "The type tag."
+    },
+    {
+      "name": "usage",
+      "type": "VARCHAR",
+      "description": "The usage tag."
+    },
+    {
+      "name": "diameter",
+      "type": "VARCHAR",
+      "description": "The diameter tag."
+    },
+    {
+      "name": "pressure",
+      "type": "VARCHAR",
+      "description": "The pressure tag."
+    },
+    {
+      "name": "material",
+      "type": "VARCHAR",
+      "description": "The material tag."
+    },
+    {
+      "name": "location",
+      "type": "VARCHAR",
+      "description": "The location tag."
+    },
+    {
+      "name": "field_name",
+      "type": "VARCHAR",
+      "description": "The field_name tag: the oil or gas field, not the feature's own name."
+    },
+    {
+      "name": "length_km",
+      "type": "DOUBLE",
+      "description": "Geodesic length, in km."
+    },
+    {
+      "name": "tags",
+      "type": "MAP(VARCHAR, VARCHAR)",
+      "description": "Every OSM tag of the element. Anything not promoted to a column is a tags['key'] lookup away. NULL on rows from another source."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax, float32 rounded outward), declared as the GeoParquet covering. Filter on it to prune row groups."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Native Parquet GEOMETRY (WKB), OGC:CRS84 lon/lat. Closed ways are lines or polygons as the layer's features are, never both."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/gmwid/latest/pipeline.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "The whole world",
+      "description": "1,511,598 features in 48 row groups of 32,000, Hilbert-sorted: a bbox filter reads only the groups it touches, and one on country and state skips most of the others.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 308799166,
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gmwid/latest/pipeline.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "World density of the layer",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 36670,
+      "file:checksum": "1220ff0a61e0830bccb7bca6c12fcefb0f5a7a132f5cb0a53e0a03f5b66b78f06b4d"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Pipelines: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Pipelines: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "type": "text/html",
+      "title": "Open Database License (ODbL) 1.0"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.openstreetmap.org/",
+      "type": "text/html",
+      "title": "OpenStreetMap"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/gmwid/latest/",
+      "type": "text/html",
+      "title": "Browse the latest files"
+    }
+  ]
+}

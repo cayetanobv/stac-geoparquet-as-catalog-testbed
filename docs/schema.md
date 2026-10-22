@@ -17,7 +17,7 @@ One file, `collections.parquet`, at the catalog root. One row per collection in 
 | `title` | string | SHOULD | The collection `title` |
 | `keywords` | list of string | SHOULD | The collection `keywords` |
 
-`scripts/build_index.sql` writes this schema. The file it produces is GeoParquet 1.1 with the `bbox` covering declared, ZSTD compression, rows in Hilbert order on the geometry, and the DuckDB writer's statistics and bloom filters.
+`scripts/build_index.sql` writes this schema. A bbox with west greater than east crosses the antimeridian, and the builder splits it into a multipolygon of two boxes. The Portolan registry holds 30 such collections, and without the split they match every point on Earth. The file it produces is GeoParquet 1.1 with the `bbox` covering declared, ZSTD compression, rows in Hilbert order on the geometry, and the DuckDB writer's statistics and bloom filters.
 
 ## Why `parents` is a list
 

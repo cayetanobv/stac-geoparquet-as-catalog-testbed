@@ -1,0 +1,285 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "bg",
+  "title": "Field blocks for Bulgaria",
+  "description": "The agricultural part of the Bulgarian physical block register (физически блокове): a physical block is a\ncontiguous area of land bounded by permanent features, identified as <EKATTE settlement code>-<block number>\nand classified by its use. The register has been produced from field checks and orthophoto mapping.\n\nThese layers hold the blocks used agriculturally — arable land, greenhouses, rice fields and courtyards —\nwhere the Physical_Blocks layers of the same service also carry forest, urban and transport land.\n\nThis collection holds 5 editions (2021, 2022, 2023, 2024, 2025), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/bg/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2025). Geometries are kept in the source CRS (EPSG:32635). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/bg/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Bulgaria",
+    "INSPIRE",
+    "agriculture",
+    "fiboa",
+    "field blocks",
+    "field boundaries",
+    "физически блокове"
+  ],
+  "license": "CC-BY-4.0",
+  "providers": [
+    {
+      "name": "Ministry of Agriculture and Food",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.mzh.government.bg"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          22.228457975719593,
+          41.18912545573329,
+          28.623322801359432,
+          44.28023084652323
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-01-01T00:00:00Z",
+          "2025-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:32635"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "collection",
+      "type": "string",
+      "description": "The identifier of the collection. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:name_en",
+      "type": "string",
+      "description": "Crop name in English. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "block_id",
+      "type": "string",
+      "description": "Field identifier (source column `PHBIDENT`, per the fiboa data survey)"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 226592,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 5,
+  "partition:glob": "s3://ftw/harmonized-field-data/bg/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/bg.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bulgaria — latest edition (2025) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2025/bg-2025.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 183251006,
+      "file:checksum": "1220a8eecf1750d0a3dcc594505cd071d603213b2d47d2d9737d3190aa2e96a12d3f",
+      "proj:code": "EPSG:32635"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 2, 5, 20 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1211,
+      "file:checksum": "12206dbacda2f6703762e6101cc99c5490e16efd4d4b2736453ab23f8551664fca5d"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 728,
+      "file:checksum": "12201e2150b66e011b0df26fccd227fb85307929e4e9e040bf18fc7c4ddae3261c7b"
+    },
+    "visual": {
+      "href": "./year=2025/bg-2025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Bulgaria — latest edition (2025) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 69357274,
+      "file:checksum": "122050f112a8ea4896dbdf346136bb476201eb87823a116d27277c3ea4a4a5a8f3d9"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 199869,
+      "file:checksum": "12203063b1c71243cbbb13edca0f77fbf988807be6454136ebc7932dbb9863e51ea7"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2025/bg-2025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "bg"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.mzh.government.bg",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/BG.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/bg.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/bg-2021.json",
+      "type": "application/geo+json",
+      "title": "Bulgaria — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/bg-2022.json",
+      "type": "application/geo+json",
+      "title": "Bulgaria — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/bg-2023.json",
+      "type": "application/geo+json",
+      "title": "Bulgaria — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/bg-2024.json",
+      "type": "application/geo+json",
+      "title": "Bulgaria — 2024"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/bg-2025.json",
+      "type": "application/geo+json",
+      "title": "Bulgaria — 2025"
+    }
+  ],
+  "updated": "2026-09-13T10:15:47Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "bg": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml"
+    ]
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "id": "limites-administratives/circonscriptions-electorales",
+  "stac_version": "1.1.0",
+  "description": "Le pr\u00e9sent jeu de donn\u00e9es contient les donn\u00e9es vectorielles issues de la base de donn\u00e9es du PCN (plan cadastral num\u00e9ris\u00e9), contenant les couches suivantes : les sections cadastrales, les communes administratives, les cantons, les districts administratifs \u00ab historiques \u00bb (les districts sont abolis, suivant la loi du 2 septembre 2015 portant abolition des districts), les arrondissements judiciaires, les circonscriptions \u00e9lectorales, les limites nationales du pays, ainsi qu'une version g\u00e9n\u00e9ralis\u00e9e de ces couches. Pour les communes, les codes LAU2 sont maintenant aussi inclus. Couche LIMADM_LEGISLATIVE.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./LIMADM_LEGISLATIVE.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limites administratives \u2013 Circonscriptions \u00e9lectorales",
+      "pmtiles:layers": [
+        "LIMADM_LEGISLATIVE"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/limites-administratives-du-grand-duche-de-luxembourg/",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 4,
+  "table:row_count": 4,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "NAME",
+      "type": "string",
+      "description": "Nom de la circonscription \u00e9lectorale."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Limites administratives \u2013 Circonscriptions \u00e9lectorales",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.735698757257097,
+          49.447858667065105,
+          6.530897855690466,
+          50.1827988624458
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limites administratives \u2013 Circonscriptions \u00e9lectorales default style",
+      "description": "Default visualization for Limites administratives \u2013 Circonscriptions \u00e9lectorales, drawn in #9e9ac8.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1240,
+      "file:checksum": "12206298701da473e52c0b70c66b42e359aa644dce1db2c989984a89c08708074100"
+    },
+    "LIMADM_LEGISLATIVE": {
+      "href": "./LIMADM_LEGISLATIVE.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 312234,
+      "file:checksum": "122075943ba6ef6a4bf7b7eb3c7b3ce732ba301a673c3a6ac6aedc5264a8e3eb87eb",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./LIMADM_LEGISLATIVE.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limites administratives \u2013 Circonscriptions \u00e9lectorales (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 306377,
+      "file:checksum": "1220c8c74cd482907028dd1f5232879f1e8ac5a3163b8bf10f37817bdd6c9e4e3ff9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limites administratives \u2013 Circonscriptions \u00e9lectorales labeled style",
+      "description": "Default visualization for Limites administratives \u2013 Circonscriptions \u00e9lectorales with NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1665,
+      "file:checksum": "1220f4fd1c113f524fe8596299a7bf5b33d2a1cde6ab0739e0f58c408fac2f35d2b4"
+    },
+    "source": {
+      "href": "https://data.public.lu/fr/datasets/r/c4ca391e-0a1e-4d8e-a98a-63f78016f058",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: circonscriptions-electorales",
+      "pipeline:upstream": true,
+      "file:size": 9910788,
+      "file:checksum": "1220c9adb6c31b0010526af8b1497d0773b11499c47e73a0ca4ecee22940419a95f7"
+    },
+    "thumbnail": {
+      "href": "./LIMADM_LEGISLATIVE.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Limites administratives \u2013 Circonscriptions \u00e9lectorales",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 112059,
+      "file:checksum": "1220b723bdec56754ed7bf20b6d7d4276860df85bb6334bfacf1468b20110ed17134"
+    }
+  },
+  "keywords": [
+    "limites administratives",
+    "communes",
+    "cantons",
+    "sections cadastrales",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Limites administratives du Grand-Duch\u00e9 de Luxembourg, Administration du cadastre et de la topographie, data.public.lu, fichier du 5 septembre 2026, CC0 1.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

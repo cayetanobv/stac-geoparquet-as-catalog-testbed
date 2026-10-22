@@ -1,0 +1,259 @@
+{
+  "type": "Collection",
+  "id": "servizi/scuole-infanzia",
+  "stac_version": "1.1.0",
+  "description": "Elenco scuole dell'infanzia comunali, statali e bacino di utenza di appartenenza.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./elencoscuoleinfanzia.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Elenco scuole infanzia e bacini utenza",
+      "pmtiles:layers": [
+        "elencoscuoleinfanzia"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/elenco-scuole-infanzia-e-bacini-utenza/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/elenco-scuole-infanzia-e-bacini-utenza/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: elencoscuoleinfanzia",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 528,
+  "table:row_count": 528,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "int32"
+    },
+    {
+      "name": "anno",
+      "type": "string",
+      "description": "Anno di riferimento."
+    },
+    {
+      "name": "servizio",
+      "type": "string",
+      "description": "Tipo servizio."
+    },
+    {
+      "name": "struttura",
+      "type": "string",
+      "description": "Nome struttura."
+    },
+    {
+      "name": "tipo_struttura",
+      "type": "string"
+    },
+    {
+      "name": "istituzione_scolastica",
+      "type": "string"
+    },
+    {
+      "name": "indirizzo",
+      "type": "string"
+    },
+    {
+      "name": "comune",
+      "type": "string"
+    },
+    {
+      "name": "provincia",
+      "type": "string"
+    },
+    {
+      "name": "bacino_utenza",
+      "type": "string"
+    },
+    {
+      "name": "lon",
+      "type": "double"
+    },
+    {
+      "name": "lat",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Elenco scuole infanzia e bacini utenza",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.2656613,
+          44.4593768,
+          11.4616714,
+          44.5449338
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco scuole infanzia e bacini utenza default style",
+      "description": "Default visualization for Elenco scuole infanzia e bacini utenza, drawn in #ef3b2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1228,
+      "file:checksum": "1220767a8dabd6f5b6314ef6fcecb93f105cc5e15f9fbf364534a95ecd009f2afd13"
+    },
+    "elencoscuoleinfanzia": {
+      "href": "./elencoscuoleinfanzia.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 24024,
+      "file:checksum": "1220e57706284e1f2c4d1c0d6d09d57f7708884905a4bc11e4145cc65538ab5344da",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./elencoscuoleinfanzia.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Elenco scuole infanzia e bacini utenza (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 67095,
+      "file:checksum": "1220ea242c632ed71c62a563ade7be7545323fa43660757a6a65f94261af2e50cdf5"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco scuole infanzia e bacini utenza categorical style",
+      "description": "Categorical visualization coloring Elenco scuole infanzia e bacini utenza by tipo_struttura, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1994,
+      "file:checksum": "122028aa71ada320249b395f34cf3ead31acaec972d6f090703236f6c747e24f3ed6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco scuole infanzia e bacini utenza labeled style",
+      "description": "Default visualization for Elenco scuole infanzia e bacini utenza with provincia shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1662,
+      "file:checksum": "1220c1392af39bf5e076b056d2bbab0937c597da029e6f41b0d29a01b8bb8cd77ed3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Elenco scuole infanzia e bacini utenza graduated style",
+      "description": "Graduated visualization coloring Elenco scuole infanzia e bacini utenza by lon, ramped from 11.2656613 to 11.4616714.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2040,
+      "file:checksum": "12207c3d0928b90a594b04e0acb25e0c00795326b8a974c9544b258a72c33def5283"
+    },
+    "thumbnail": {
+      "href": "./elencoscuoleinfanzia.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Elenco scuole infanzia e bacini utenza",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 152296,
+      "file:checksum": "1220b72505a891f5295446c4bade22409f03541c033db2b906fe3bbbe31b99ce893e"
+    }
+  },
+  "keywords": [
+    "Istruzione, cultura e sport",
+    "Istruzione e apprendimento"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abElenco scuole infanzia e bacini utenza\u00bb (elenco-scuole-infanzia-e-bacini-utenza), pubblicato da Comune di Bologna - Area Educazione e Formazione sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/elenco-scuole-infanzia-e-bacini-utenza/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

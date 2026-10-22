@@ -1,0 +1,241 @@
+{
+  "type": "Collection",
+  "id": "allaus/proteccions-lineals",
+  "stac_version": "1.1.0",
+  "description": "Inventari de proteccions lineals contra allaus al Pirineu de Catalunya. El productor descriu la capa aix\u00ed: \u00abInventari de proteccions lineals per a minimitzar el risc d'allaus. Es classifiquen en diferents tipus de proteccions lineals: terrassa, barrera pel vent, deflector, mur de contenci\u00f3, barrera, tasc\u00f3 de desviament i visera\u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nivoallaus_proteccions_lineals.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Proteccions lineals",
+      "pmtiles:layers": [
+        "nivoallaus_proteccions_lineals"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: proteccions-lineals",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa nivoallaus:proteccions_lineals, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 2728,
+  "table:row_count": 2728,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "TIPOLOGIA",
+      "type": "string",
+      "description": "Tipologia de la protecci\u00f3 lineal en text, per exemple \u00abTerrassa\u00bb."
+    },
+    {
+      "name": "SUBTIPUS",
+      "type": "string",
+      "description": "Subtipus de la protecci\u00f3 com a codi num\u00e8ric en text, per exemple \u00ab12\u00bb o \u00ab13\u00bb; informat en 212 dels 2 729 objectes del recompte complet del 21.9.2026 i buit en la resta. El servei no en publica la taula de codis."
+    },
+    {
+      "name": "SUBTIPLOG",
+      "type": "string",
+      "description": "Subtipus llegible del productor, per exemple \u00abBarrera r\u00edgida\u00bb o \u00abUmbrellis\u00bb; informat en 221 dels 2 729 objectes del recompte complet del 21.9.2026 i buit en la resta."
+    },
+    {
+      "name": "TIPUS",
+      "type": "int64",
+      "description": "Codi num\u00e8ric de la tipologia. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "Data",
+      "type": "string",
+      "description": "Data associada a la protecci\u00f3; el servei la declara com a text lliure i hi escriu valors com \u00abEstiu 2004\u00bb, no una data ISO. Informada en 44 dels 2 729 objectes del recompte complet del 21.9.2026 i buida en la resta."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Proteccions lineals",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.6663856735549261,
+          42.29004483782047,
+          2.156173831495255,
+          42.801366210036555
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions lineals default style",
+      "description": "Default visualization for Proteccions lineals, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1279,
+      "file:checksum": "1220e29c21c9b68cd2493409874cc38b5c2d763869395ad8659de03546f58108a420"
+    },
+    "nivoallaus_proteccions_lineals": {
+      "href": "./nivoallaus_proteccions_lineals.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 520245,
+      "file:checksum": "1220b70fb6707817788c1e70594948c817d8c908dd00811aa3c62773720283a07d50",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nivoallaus_proteccions_lineals.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Proteccions lineals (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 318684,
+      "file:checksum": "1220645fc2a1ea21b0f457cefaa8902d36ee32c6cf1e4072c083738fe0691f51bf89"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions lineals categorical style",
+      "description": "Categorical visualization coloring Proteccions lineals by SUBTIPUS, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1934,
+      "file:checksum": "1220cc38a5eab244cf122b2e236d15575cbfd853ba55b94f6c4592ce43198762fef8"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions lineals labeled style",
+      "description": "Default visualization for Proteccions lineals with SUBTIPUS shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1732,
+      "file:checksum": "12201ae6bd9bd9a14c16236ac76aa6977c0b30163d4c9ff92a7592f22dcc425e7015"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Proteccions lineals graduated style",
+      "description": "Graduated visualization coloring Proteccions lineals by TIPUS, ramped from 31.0 to 38.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2021,
+      "file:checksum": "1220ddbdda901157cf77a7f7ff2731db64d771fa39c5ec55679c481e171d436b2602"
+    },
+    "thumbnail": {
+      "href": "./nivoallaus_proteccions_lineals.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Proteccions lineals",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 97794,
+      "file:checksum": "1220bbde2deeba987bd0df886d99fd9e0c4db54e1ea97c9ee279a646ff8f4c214b14"
+    }
+  },
+  "keywords": [
+    "allaus",
+    "nivologia",
+    "proteccions",
+    "Pirineu",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Proteccions lineals de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

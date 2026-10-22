@@ -1,0 +1,254 @@
+{
+  "type": "Collection",
+  "id": "cadastre/parcelles",
+  "stac_version": "1.1.0",
+  "description": "Le plan cadastral g\u00e9r\u00e9 par l\u2019ACT est le seul document repr\u00e9sentant les parcelles et couvrant tout le territoire du Grand-Duch\u00e9 de Luxembourg. De part sa nature, il repr\u00e9sente un \u00e9tat de droit et ne correspond pas n\u00e9cessairement \u00e0 l\u2019\u00e9tat de fait ou de r\u00e9alit\u00e9 sur le terrain. Le plan cadastral num\u00e9ris\u00e9 est un document h\u00e9t\u00e9rog\u00e8ne qui trouve son origine dans les plans historiques de 1824 et qui depuis, est constamment mis \u00e0 jour sur base des modifications parcellaires identifi\u00e9es. Il int\u00e8gre donc aussi bien des parties anciennes et num\u00e9ris\u00e9es, d'une pr\u00e9cision n'exc\u00e9dant pas celle d'origine (\u00e9chelle 1:2500), que des parties am\u00e9lior\u00e9es par des mensurations officielles r\u00e9centes et plus pr\u00e9cises. Couche PARCELLES : les parcelles cadastrales.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./PARCELLES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PCN \u2013 Parcelles cadastrales",
+      "pmtiles:layers": [
+        "PARCELLES"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/plan-cadastral-numerise-pcn/",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 717523,
+  "table:row_count": 717523,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "ID_PARCELL",
+      "type": "string",
+      "description": "Cl\u00e9 de la parcelle sous forme CCCSPPPPPNNNNNN (commune, section, num\u00e9ro principal, num\u00e9ro secondaire), nom complet ID_PARCELLE."
+    },
+    {
+      "name": "CODE_COMMU",
+      "type": "int64",
+      "description": "Code commune cadastrale, nom complet CODE_COMMUNE."
+    },
+    {
+      "name": "CODE_SECTI",
+      "type": "string",
+      "description": "Code section cadastrale, nom complet CODE_SECTION."
+    },
+    {
+      "name": "NUMERO_PRI",
+      "type": "int64",
+      "description": "Num\u00e9ro principal de la parcelle, nom complet NUMERO_PRINCIPAL."
+    },
+    {
+      "name": "NUMERO_SEC",
+      "type": "int64",
+      "description": "Num\u00e9ro suppl\u00e9mentaire de la parcelle, nom complet NUMERO_SECONDAIRE."
+    },
+    {
+      "name": "LIEUDIT",
+      "type": "string",
+      "description": "Lieudit de la parcelle."
+    },
+    {
+      "name": "CODE_NATUR",
+      "type": "int64",
+      "description": "Nature de la parcelle, code \u00e0 quatre chiffres de la liste officielle de l'\u00e9diteur (par exemple 5007 terre labourable, 5017 bois, 5024 place, 5041 rue), nom complet CODE_NATURE."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "PCN \u2013 Parcelles cadastrales",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.735698757257097,
+          49.447858667065105,
+          6.530897852905405,
+          50.18275238871633
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Parcelles cadastrales default style",
+      "description": "Default visualization for PCN \u2013 Parcelles cadastrales, drawn in #8c6d31.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1145,
+      "file:checksum": "12209aa8329d89c6118781995098b452686dda8b1e4ddefdadcd810e6e4f5920c285"
+    },
+    "PARCELLES": {
+      "href": "./PARCELLES.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 102702819,
+      "file:checksum": "122016fb1cb8faa7a3f8ec9cdcb98e8f5cbee96b790da49a030e16b066a286adde34",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./PARCELLES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PCN \u2013 Parcelles cadastrales (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 117558516,
+      "file:checksum": "122058237d93a21659a4792cdd3375312947cd29cbe57806b8ce77bd99b9b3ec0744"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Parcelles cadastrales categorical style",
+      "description": "Categorical visualization coloring PCN \u2013 Parcelles cadastrales by CODE_SECTI, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1697,
+      "file:checksum": "12203e236cd96eb3284cc4eccf3ef82314208cfbb606d6316bcf3fc41a5b025298fa"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Parcelles cadastrales labeled style",
+      "description": "Default visualization for PCN \u2013 Parcelles cadastrales with CODE_SECTI shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1558,
+      "file:checksum": "1220a1d7045a113bc0f7e97aa0ec0b731302d94d3efb531aa837b9ba180afc338c72"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Parcelles cadastrales graduated style",
+      "description": "Graduated visualization coloring PCN \u2013 Parcelles cadastrales by NUMERO_SEC, ramped from 0.0 to 19875.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1919,
+      "file:checksum": "1220f3038d0d5b026e964ccdd76f9d707e10fddce6cdf3abe6e0d03542afd83c2c99"
+    },
+    "source": {
+      "href": "https://data.public.lu/fr/datasets/r/a43f88ba-c97b-4141-9fef-df7cb0c0f1ce",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: parcelles",
+      "pipeline:upstream": true,
+      "file:size": 189132290,
+      "file:checksum": "1220bf6d7c8c468c2460c2211436e23429d91678ef1282503832b8fb067856714f2f"
+    },
+    "thumbnail": {
+      "href": "./PARCELLES.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of PCN \u2013 Parcelles cadastrales",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 198872,
+      "file:checksum": "1220e1fa85ddc59589b7c74800c5f9e503b5b30fbe1523c3a0987c9f2300424cc6df"
+    }
+  },
+  "keywords": [
+    "cadastre",
+    "parcelle",
+    "plan cadastral num\u00e9ris\u00e9",
+    "PCN",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Plan cadastral num\u00e9ris\u00e9 (PCN), Administration du cadastre et de la topographie, data.public.lu, fichier du 14 septembre 2026, CC BY 4.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

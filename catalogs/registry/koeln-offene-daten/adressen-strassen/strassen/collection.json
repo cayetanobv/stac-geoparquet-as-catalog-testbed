@@ -1,0 +1,252 @@
+{
+  "type": "Collection",
+  "id": "adressen-strassen/strassen",
+  "stac_version": "1.1.0",
+  "description": "Eine Stra\u00dfe ist Teil der Kommunalen Gebietsgliederung. Dieses hierarchische System gliedert das K\u00f6lner Stadtgebiet auf verschiedenen Ebenen in eine Stadtstruktur und Blockstruktur. Weitere Bestandteile sind eine Stra\u00dfenstruktur und Adressen. Die gesamte Kommunale Gebietsgliederung wird in dieser Ver\u00f6ffentlichung erl\u00e4utert.\nDefinition: Die Stadt K\u00f6ln vergibt auf Beschluss der Bezirksvertretungen allen Stra\u00dfen, Wegen und Pl\u00e4tzen einen amtlichen Stra\u00dfennamen. F\u00fcr diesen wird beim Amt f\u00fcr Stadtentwicklung und Statistik ein eindeutiger Stra\u00dfenschl\u00fcssel vergeben. Mit dem amtlichen Stra\u00dfenverzeichnis wird die Grundlage \u00fcber alle geltenden Stra\u00dfennamen und -schl\u00fcssel gef\u00fchrt.\nErl\u00e4uterung der Attribute ist dem Shapefile als CSV beigef\u00fcgt.\nKoordinatensystem Shapefile: ETRS 1989 UTM Zone 32N\nKoordinatensystem KMZ & JSON: WGS 1984\nDas K\u00f6lner Stra\u00dfenverzeichnis gibt einen \u00dcberblick \u00fcber alle geltenden Stra\u00dfennamen und Adressen. Es wird etwa halbj\u00e4hrig und vor jeder Wahl aktualisiert.\nAlle Geodaten der der Kommunalen Gebietsgliederung, wahlorganisatorische Einheiten und weitere Gebietsgliederungen enth\u00e4lt der Datensatz Raumbezugssystem Geopackage.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Strasse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strassen K\u00f6ln",
+      "pmtiles:layers": [
+        "Strasse"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/strassen-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/kgg/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "KGG Sammeldienst WFS (Kommunale Gebietsgliederung, ArcGIS Server)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/kgg_labeled/MapServer",
+      "rel": "related",
+      "title": "Kommunale Gebietsgliederung K\u00f6ln (ArcGIS REST MapServer, beschriftet)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 5633,
+  "table:row_count": 5633,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string",
+      "description": "Nummer: Eindeutiger Stra\u00dfenschl\u00fcssel."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name: Bei mehrfach vorhandenen Stra\u00dfennamen infolge von Eingemeindungen ist eine Detaillierung zur Unterscheidung angegeben. Die Detaillierung sind die ersten drei Buchstaben des Stadtbezirks. Die urspr\u00fcnglichen K\u00f6lner Stra\u00dfen besitzen keine Detaillierung."
+    },
+    {
+      "name": "str_amtl",
+      "type": "string",
+      "description": "Amtl. Stra\u00dfenname: Stra\u00dfenname ohne Detaillierung."
+    },
+    {
+      "name": "str_stb",
+      "type": "string",
+      "description": "Stra\u00dfe (Stadtbezirk): Stra\u00dfenname mit ausgeschriebener Detaillierung."
+    },
+    {
+      "name": "laenge",
+      "type": "double",
+      "description": "L\u00e4nge (m): L\u00e4nge, berechnet im Geographischen Koordinatensystem WGS 1984 (Angabe des Publizierers)."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechneter Umfang beziehungsweise L\u00e4nge der Geometrie in Metern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Strassen K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.811364428237306,
+          50.8308251398576,
+          7.161888701511741,
+          51.084662148426965
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen K\u00f6ln default style",
+      "description": "Default visualization for Strassen K\u00f6ln, drawn in #a63603.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1117,
+      "file:checksum": "122047a7cced0296b72fab96e94dd3f6baa80a838a35d254d76f68a2eacf2c956ddb"
+    },
+    "Strasse": {
+      "href": "./Strasse.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1124011,
+      "file:checksum": "122018167d897a8209e69e10d3b0eb5906b867010563ecf984b21905309aa479416d",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Strasse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strassen K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4652432,
+      "file:checksum": "12204280da83b7cd6037724802a0831c64f3a854bfffc6e100af18ad47157534731b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen K\u00f6ln labeled style",
+      "description": "Default visualization for Strassen K\u00f6ln with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1520,
+      "file:checksum": "122059d5d05ecf166c73d605e21a3d337f7b390944decaf414be8c40439f0dcadf96"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Strassen K\u00f6ln by laenge, ramped from 9.87468497 to 47348.8107814.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1941,
+      "file:checksum": "122021ac47630208d875856a6b530a2d8d91b018e03c8c15271422c220b2697b0d48"
+    },
+    "source": {
+      "href": "https://offenedaten-koeln.de/sites/default/files/uploaded_resources/Strasse.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: strasse",
+      "pipeline:upstream": true,
+      "file:size": 3311787,
+      "file:checksum": "1220b79df006c6ffa8e6ce760512d18e7fabb587d193ec2729e67cbee70ff7b9b352"
+    },
+    "thumbnail": {
+      "href": "./Strasse.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Strassen K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 236052,
+      "file:checksum": "1220dd99a805e0c3498019e27226256bf041fdbe4494062e4d24551f015d334ed065"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Transport und Verkehr",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik, \u201eStrassen K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-stadtentwicklung-und-statistik",
+      "email": "statistik-rbs@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

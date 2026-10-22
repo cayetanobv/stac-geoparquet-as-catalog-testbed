@@ -1,0 +1,347 @@
+{
+  "type": "Collection",
+  "id": "umweltatlas/gebaeudehoehen-2022",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz stellt die Geb\u00e4udeh\u00f6hen (Firsth\u00f6hen) auf der Grundlage der dreidimensionalen Geb\u00e4udemodelle des Landes Berlin im Level of Detail 2 (LoD2), f\u00fcr das Jahr 2022, dar. Die Grundrisse der Geb\u00e4ude entsprechen genau den Geb\u00e4udeumringen, wie sie im Liegenschaftskataster ALKIS nachgewiesen sind. F\u00fcr die Dachformen werden in den Attributen Angaben zur generalisierten Standarddachform angegeben. Die Daten werden computergest\u00fctzt automatisiert berechnet. F\u00fcr einzelne Geb\u00e4ude konnte keine H\u00f6he ermittelt werden.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ua_gebaeudehoehen_gebaeudehoehen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas)",
+      "pmtiles:layers": [
+        "ua_gebaeudehoehen_gebaeudehoehen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/gebaudehohen-umweltatlas-wfs-d918088d",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ua_gebaeudehoehen",
+      "rel": "related",
+      "title": "WFS source service: gebaeudehoehen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 954230,
+  "table:row_count": 954230,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "gisid",
+      "type": "int64",
+      "description": "Laufende technische Kennung des Objekts im Dienst."
+    },
+    {
+      "name": "gml_id",
+      "type": "string",
+      "description": "ALKIS-Geb\u00e4ude-ID im Format DEBE\u2026, identisch mit der Objekt-ID des Geb\u00e4udes im Liegenschaftskataster."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name des Geb\u00e4udes, falls vergeben."
+    },
+    {
+      "name": "funktion",
+      "type": "double",
+      "description": "Geb\u00e4udefunktion als zusammengesetzter Schl\u00fcssel, zum Beispiel 31001_1000."
+    },
+    {
+      "name": "dachart",
+      "type": "int64",
+      "description": "Generalisierte Standarddachform als Schl\u00fcssel."
+    },
+    {
+      "name": "hoehe",
+      "type": "double",
+      "description": "Geb\u00e4udeh\u00f6he (Firsth\u00f6he) laut Datensatzbeschreibung; leer, wo keine H\u00f6he ermittelt werden konnte. Die Einheit nennt der Publizierer nicht ausdr\u00fccklich, die Werte passen zu Metern."
+    },
+    {
+      "name": "geschosse",
+      "type": "int64",
+      "description": "Geschosszahl, vom WFS als Text geliefert."
+    },
+    {
+      "name": "quellebodenhoehe",
+      "type": "int64",
+      "description": "Quelle der Bodenh\u00f6he als Schl\u00fcssel."
+    },
+    {
+      "name": "quelledachhoehe",
+      "type": "int64",
+      "description": "Quelle der Dachh\u00f6he als Schl\u00fcssel."
+    },
+    {
+      "name": "quellelage",
+      "type": "int64",
+      "description": "Quelle der Lage als Schl\u00fcssel."
+    },
+    {
+      "name": "grundrissaktualitaet",
+      "type": "date",
+      "description": "Datum der Grundrissaktualit\u00e4t."
+    },
+    {
+      "name": "strasse",
+      "type": "string",
+      "description": "Stra\u00dfenname der Lagebezeichnung."
+    },
+    {
+      "name": "hnr",
+      "type": "string",
+      "description": "Hausnummer der Lagebezeichnung, als Text mit Zus\u00e4tzen."
+    },
+    {
+      "name": "funktion_txt",
+      "type": "string",
+      "description": "Geb\u00e4udefunktion als Bezeichnung, zum Beispiel Wohngeb\u00e4ude."
+    },
+    {
+      "name": "shape_area",
+      "type": "double",
+      "description": "Vom Publizierer mitgelieferte Fl\u00e4chenangabe des Grundrisses; Einheit nicht dokumentiert, die Werte passen zu Quadratmetern."
+    },
+    {
+      "name": "role_txt",
+      "type": "string",
+      "description": "Rolle des Objekts im Geb\u00e4udemodell, in der Stichprobe stets Geb\u00e4ude."
+    },
+    {
+      "name": "dachart_txt",
+      "type": "string",
+      "description": "Generalisierte Standarddachform als Bezeichnung, zum Beispiel Flachdach."
+    },
+    {
+      "name": "quellebodenhoehe_txt",
+      "type": "string",
+      "description": "Quelle der Bodenh\u00f6he als Bezeichnung, zum Beispiel Verschneidung mit DGM10."
+    },
+    {
+      "name": "quelledachhoehe_txt",
+      "type": "string",
+      "description": "Quelle der Dachh\u00f6he als Bezeichnung, zum Beispiel Laserscan."
+    },
+    {
+      "name": "quellelage_txt",
+      "type": "string",
+      "description": "Quelle der Lage als Bezeichnung, zum Beispiel Liegenschaftskataster."
+    },
+    {
+      "name": "erole_txt",
+      "type": "string",
+      "description": "Rolle als englische Bezeichnung des Publizierers."
+    },
+    {
+      "name": "edachart_txt",
+      "type": "string",
+      "description": "Dachform als englische Bezeichnung des Publizierers."
+    },
+    {
+      "name": "equellebodenhoehe_txt",
+      "type": "string",
+      "description": "Englische Bezeichnung der Bodenh\u00f6henquelle."
+    },
+    {
+      "name": "equelledachhoehe_txt",
+      "type": "string",
+      "description": "Englische Bezeichnung der Dachh\u00f6henquelle."
+    },
+    {
+      "name": "equellelage_txt",
+      "type": "string",
+      "description": "Englische Bezeichnung der Lagequelle."
+    },
+    {
+      "name": "efunktion_txt",
+      "type": "string",
+      "description": "Geb\u00e4udefunktion als englische Bezeichnung des Publizierers."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.0919976,
+          52.33976288,
+          13.75895935,
+          52.66049731
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) default style",
+      "description": "Default visualization for Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas), drawn in #7b3294.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1315,
+      "file:checksum": "1220e56cacec3dfc3a0d29a6239f63c7febc12f0715beed7bdfde87edd7665868f3f"
+    },
+    "ua_gebaeudehoehen_gebaeudehoehen": {
+      "href": "./ua_gebaeudehoehen_gebaeudehoehen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 126364037,
+      "file:checksum": "1220472099ce752c300e1cf86799dbad113f56470df0222560aa42a57ee53f1d70db",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ua_gebaeudehoehen_gebaeudehoehen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 86337382,
+      "file:checksum": "122073ee64248206312bb6016207c214f30c9f7bdaef4b64d46c916431b203e850af"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) categorical style",
+      "description": "Categorical visualization coloring Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) by role_txt, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1937,
+      "file:checksum": "1220ec191e83981212bc4ef152172e161c3bd48d2da32a80a81dd52b2e6cb0434be9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) labeled style",
+      "description": "Default visualization for Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1768,
+      "file:checksum": "122001bc8d53931be0aef6da5347fe07e5d79040449014cd406b74ebb6c3502561c4"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) graduated style",
+      "description": "Graduated visualization coloring Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas) by funktion, ramped from 310011000.0 to 510091750.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2132,
+      "file:checksum": "1220482f6788cbc60b4996cd1596283a7d4cf9df0b8c25e7985cdbfdb9edcdfc199e"
+    },
+    "thumbnail": {
+      "href": "./ua_gebaeudehoehen_gebaeudehoehen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Geb\u00e4udeh\u00f6hen 2022 (Umweltatlas)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 222558,
+      "file:checksum": "122036acc8f2024fc1e0eb96e5fb54cb992c20725faaa87230188cdcfd3901417998"
+    }
+  },
+  "keywords": [
+    "Umweltatlas",
+    "Geb\u00e4udeh\u00f6hen",
+    "Geb\u00e4udemodell",
+    "LoD2",
+    "3D",
+    "ALKIS",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Geb\u00e4udeh\u00f6hen (Umweltatlas), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geoportal@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T23:45:21Z"
+}

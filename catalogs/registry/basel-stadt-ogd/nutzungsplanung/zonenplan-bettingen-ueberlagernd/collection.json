@@ -1,0 +1,284 @@
+{
+  "type": "Collection",
+  "id": "nutzungsplanung/zonenplan-bettingen-ueberlagernd",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beinhaltet die rechtskr\u00e4ftigen \u00fcberlagernden Festlegungen gem\u00e4ss dem Zonenplan. Diese Festlegungen k\u00f6nnen die Grundnutzung erg\u00e4nzen, aber auch \u00fcberstimmen (z.B. Bebauungspl\u00e4ne, Schutzzwecke von Natur- und Landschaftsschutzzonen).\n\nWeitere Daten zum Thema Nutzungsplanung: https://data.bs.ch/explore/?refine.tags=Nutzungsplanung\n\nWeitere Daten zum Thema Nutzungsplanung: https://data.bs.ch/explore/?refine.tags=Nutzungsplanung",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100257.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257)",
+      "pmtiles:layers": [
+        "ods-100257"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100257/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100257/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100257",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 38,
+  "table:row_count": 38,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id_ueberlagernde_festlegung",
+      "type": "string",
+      "description": "Eindeutiger Identifikator der Nutzungszone."
+    },
+    {
+      "name": "festlegung_ueberlagernd",
+      "type": "string",
+      "description": "Das Bau- und Planungsgesetz bestimmt die Art der zul\u00e4ssigen Bebauung bzw. Nutzung anhand von verschiedenen Klassen, wobei die Zuordnung zu Grundnutzung (Fl\u00e4chen) oder \u00fcberlagernden Festlegungen (Fl\u00e4chen, Linien, Punkte) eindeutig ist."
+    },
+    {
+      "name": "festlegung_ueberlagernd_text",
+      "type": "string",
+      "description": "Das Bau- und Planungsgesetz bestimmt die Art der zul\u00e4ssigen Bebauung bzw. Nutzung anhand von verschiedenen Klassen, wobei die Zuordnung zu Grundnutzung (Fl\u00e4chen) oder \u00fcberlagernden Festlegungen (Fl\u00e4chen, Linien, Punkte) eindeutig ist."
+    },
+    {
+      "name": "schutzzweck",
+      "type": "string",
+      "description": "Der Schutzzweck ist i.d.R. ein allgemeiner Text aus einem Planungsbeschluss oder auch nur dessen laufende Nummer."
+    },
+    {
+      "name": "bezeichnung",
+      "type": "string",
+      "description": "Ein rechtskr\u00e4ftiger Bebauungsplan (BP) erh\u00e4lt eine Nummer wenn er in die Gesetzessammlung aufgenommen wird (z.B. BP 044 , siehe SG 730.150 - Spezielle Bauvorschriften und Bebauungspl\u00e4ne). Zwischen \"BP\" und der dreistelligen Nummer und einem allf\u00e4lligen Freitext m\u00fcssen Leerzeichen gesetzt werden (z.B. \"BP 044 Steinentorstrasse\") In MapBS wird der Freitext nicht angezeigt. Wenn mehrere Bebauungspl\u00e4ne gelten, wird die Bezeichnung entsprechend erg\u00e4nzt (BP 214+108)."
+    },
+    {
+      "name": "verbindlichkeit",
+      "type": "string",
+      "description": "Die Verbindlichkeit von Planungsobjekten die in einer Planungskarte (z.B. in einem Zonenplan) dargestellt werden, kann sich unterscheiden. Manche Inhalte werden nicht in einem Nutzungsplanungsverfahren festgelegt, sondern stammen aus anderen Feststellungsverfahren anderer Beh\u00f6rden oder haben nur informativen Charakter. Das Minimale Geodatenmodell (MGDM) 73 des Bundes zur Nutzungsplanung gibt verschiedene Auspr\u00e4gungen f\u00fcr die Verbindlichkeit und ihre Wirkung auf Eigent\u00fcmer vor. Im Kanton Basel-Stadt werden die Verbindlichkeiten die nicht im Vefahren der Nutzungsplanung festgelegt wurden, allgemein als \"orientierender Planinhalt\" klassifiziert."
+    },
+    {
+      "name": "rekurs_haengig",
+      "type": "boolean",
+      "description": "Das Attribut beschreibt, ob f\u00fcr eine in Kraft getretene Zone Rechtsmittel in Anspruch genommen wurden und eine gerichtliche Entscheidung noch aussteht. Verwendet wird dieses Attribut beim Gew\u00e4sserraum und in der Nutzungsplanung und genau f\u00fcr die Gebiete/Zonen, ggf. Zonenteile f\u00fcr die der Einspruch gilt (diese werden dann mit einer speziellen Darstellung versehen). Obwohl der Rekurs bzw. die Einsprache also das politische Gesch\u00e4ft betrifft, k\u00f6nnen nur einzelne Inhalte (z.B. Parzellen/Zonen) davon betroffen sein."
+    },
+    {
+      "name": "geschaeftsbezeichnung",
+      "type": "string",
+      "description": "Die Gesch\u00e4ftsbezeichung kann sich je nach \u00d6REB-Thema unterscheiden. Z.T. wird eine systematische Nummern/Buchstabenkombinationen (z.B. Bau- und Strassenlinien der Stadt Basel) benutzt, meist haben die Gesch\u00e4ftsbezeichnungen aber eine Ortspezifische Bezieichnung. Abk\u00fcrzungen am Anfang der Bezeichnung weisen auf die Verbunden \u00d6REB Themen. Die Abk\u00fcrzung TA steht f\u00fcr Technische Aenderung."
+    },
+    {
+      "name": "geschaeftsstatus",
+      "type": "string",
+      "description": "Der Gesch\u00e4ftsstatus unterscheidet ob das politische Gesch\u00e4ft bereits in Kraft ist, oder ob es sich noch um eine laufende \u00c4nderung handelt. Bei laufende \u00c4nderungen wird zwischen Auflage- und Beschlussphase differenziert. Letztere werden durch unterschiedliche Rekurs- bzw. Referendumfristen vorgegeben."
+    },
+    {
+      "name": "datum_status",
+      "type": "date",
+      "description": "Das Attribut bezeichnet den Start des aktuellen Gesch\u00e4ftsstatus."
+    },
+    {
+      "name": "geolink",
+      "type": "string",
+      "description": "Enth\u00e4lt den Link zu allen Rechtsdokumenten auf \u00d6REBlex https://oereblex.bs.ch/, die das jeweilige Gesch\u00e4ft betreffen. Die Links werden als XML gespeichert und werden durch Austausch der Endung (\".html\") besser lesbar."
+    },
+    {
+      "name": "bemerkung_geschaeft",
+      "type": "string",
+      "description": "Bemerkungen zum Gesch\u00e4ft"
+    },
+    {
+      "name": "id_geschaeft",
+      "type": "string",
+      "description": "Eindeutiger Identifikator des Gesch\u00e4fts."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Polygon) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026). Beschreibung des Publizierers zum Feld geo_shape: \u00abDie 2D Polygongeometrie kann aus Geraden oder Kreisb\u00f6gen bestehen. Multigeometrien werden nicht unterst\u00fctzt.\u00bb"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.657195,
+          47.563461,
+          7.689626,
+          47.581002
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257) default style",
+      "description": "Default visualization for Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257), drawn in #fa9fb5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1207,
+      "file:checksum": "122007d6eb1170e8abc6efd10fd63e5d8ce7e6aa79bc055d70e9ba6d2f861970ca3a"
+    },
+    "ods-100257": {
+      "href": "./ods-100257.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 62518,
+      "file:checksum": "12209fe11d31fbba75b10e462bb5636e2c8c3f8010877343811c435bdd69ade28188",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100257.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 42293,
+      "file:checksum": "1220dc957ed3d61767660d1d31a86fa0cc9e4ee4e3ae36c7eb68cd3bc657684ce3a1"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257) categorical style",
+      "description": "Categorical visualization coloring Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257) by festlegung_ueberlagernd, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1844,
+      "file:checksum": "12208d21d2743e461ef5103f1b8aadf557f7ea4b9e6611b0342be4537925bf633997"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257) labeled style",
+      "description": "Default visualization for Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257) with festlegung_ueberlagernd shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1635,
+      "file:checksum": "122082c8d7c376be63707776e49df2ed0a0024d50cfa251e5c55ee2ba0a7022538a7"
+    },
+    "thumbnail": {
+      "href": "./ods-100257.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Nutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen (data.bs.ch 100257)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 72510,
+      "file:checksum": "122043488bc8be96ff1edee48031e7e007b08aee2ffb7f3bf0e4324cf5e1787192e4"
+    }
+  },
+  "keywords": [
+    "kantonaler Nutzungsplan",
+    "Landnutzung",
+    "Nutzungsplan",
+    "Nutzungsplanung",
+    "Fl\u00e4chennutzungsplan",
+    "Naturschutzzonen",
+    "Bebauungsplan",
+    "Geographie",
+    "Raum und Umwelt",
+    "opendata.swiss",
+    "NPBE",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Einwohnergemeinde Bettingen",
+      "description": "Datenquelle: Kanton Basel-Stadt, Einwohnergemeinde Bettingen (Gemeindebeh\u00f6rden), \u00abNutzungsplan - Zonenplan Bettingen:  \u00dcberlagernde Festlegungen\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100257/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

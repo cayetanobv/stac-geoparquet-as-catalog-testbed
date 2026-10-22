@@ -1,0 +1,362 @@
+{
+  "type": "Collection",
+  "id": "ciclavel/estacoes-gira",
+  "stac_version": "1.1.0",
+  "description": "Esta\u00e7\u00f5es da rede de bicicletas partilhadas GIRA em opera\u00e7\u00e3o no concelho de Lisboa, com o n\u00famero de docas, a tipologia e a implanta\u00e7\u00e3o da esta\u00e7\u00e3o, a entidade respons\u00e1vel e as datas de in\u00edcio e fim de opera\u00e7\u00e3o, na camada Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o do servi\u00e7o Ciclovias da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./estacoes_gira.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o",
+      "pmtiles:layers": [
+        "estacoes_gira"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/440b7424a6284e0b9bf11179b95bf8d1_2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Ciclovias/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Ciclovias (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 199,
+  "table:row_count": 199,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "ID_P",
+      "type": "string",
+      "description": "Identificador de ponto da esta\u00e7\u00e3o no sistema do operador."
+    },
+    {
+      "name": "ID_C",
+      "type": "string",
+      "description": "Identificador de conjunto/cluster da esta\u00e7\u00e3o no sistema do operador."
+    },
+    {
+      "name": "COD_VIA",
+      "type": "string",
+      "description": "C\u00f3digo de via do roteiro de moradas da CML onde a esta\u00e7\u00e3o se situa; junta-se a mobilidade/vias-ruas."
+    },
+    {
+      "name": "NOME_RUA",
+      "type": "string",
+      "description": "Nome da rua onde a esta\u00e7\u00e3o se situa, texto do publicador."
+    },
+    {
+      "name": "N_POLICIA",
+      "type": "string",
+      "description": "N\u00famero de pol\u00edcia de refer\u00eancia da esta\u00e7\u00e3o."
+    },
+    {
+      "name": "PONTO_REFERENCIA",
+      "type": "string",
+      "description": "Ponto de refer\u00eancia que descreve a localiza\u00e7\u00e3o da esta\u00e7\u00e3o."
+    },
+    {
+      "name": "FREGUESIA",
+      "type": "string",
+      "description": "Nome da freguesia onde o objeto se situa, segundo a divis\u00e3o administrativa de 2012 (Lei n.\u00ba 56/2012); texto do publicador, n\u00e3o uma chave para uma camada de freguesias (este cat\u00e1logo n\u00e3o tem nenhuma, ver AGENTS.md)."
+    },
+    {
+      "name": "SITUACAO",
+      "type": "string",
+      "description": "Situa\u00e7\u00e3o da esta\u00e7\u00e3o; dom\u00ednio GIRA_SITUACAO do servi\u00e7o, com os valores Em opera\u00e7\u00e3o, Instalada, Planeada, Abandonada/Desinstalada e Suspensa. Esta camada publica apenas as esta\u00e7\u00f5es em opera\u00e7\u00e3o."
+    },
+    {
+      "name": "IMPLANTACAO",
+      "type": "string",
+      "description": "Indica se a implanta\u00e7\u00e3o da esta\u00e7\u00e3o est\u00e1 definida; dom\u00ednio GIRA_Implantacao (Definida, N\u00e3o Definida)."
+    },
+    {
+      "name": "N_DOCAS",
+      "type": "int32",
+      "description": "N\u00famero de docas da esta\u00e7\u00e3o, inteiro do publicador."
+    },
+    {
+      "name": "TIPO_ESTACAO",
+      "type": "string",
+      "description": "Tipo de esta\u00e7\u00e3o; dom\u00ednio GIRA_TIPO_ESTACAO (Simples, Dupla)."
+    },
+    {
+      "name": "ENTIDADE",
+      "type": "string",
+      "description": "Entidade respons\u00e1vel pela esta\u00e7\u00e3o; dom\u00ednio GIRA_ENTIDADE (EMEL, DMM/EMEL, SRU, DEP, Junta de Freguesia, DMM/DEPM, DMM/DGM)."
+    },
+    {
+      "name": "DESIGNACAO_PROJETO",
+      "type": "string",
+      "description": "Designa\u00e7\u00e3o do projeto no \u00e2mbito do qual a esta\u00e7\u00e3o foi instalada."
+    },
+    {
+      "name": "LOCALIZACAO_INSTALACAO",
+      "type": "string",
+      "description": "Local de instala\u00e7\u00e3o; dom\u00ednio GIRA_LOCAL_INSTALACAO (Passeio, Estacionamento, Outro)."
+    },
+    {
+      "name": "TIPOLOGIA_ESTACIONAMENTO",
+      "type": "string",
+      "description": "Tipologia do estacionamento; dom\u00ednio GIRA_TIPOLGIA_EST (Paralelo, Perpendicular, Espinha)."
+    },
+    {
+      "name": "N_LUGARES_OCUPADOS",
+      "type": "int32",
+      "description": "N\u00famero de lugares de estacionamento autom\u00f3vel ocupados pela esta\u00e7\u00e3o, inteiro do publicador."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "DCOMERCIAL",
+      "type": "string",
+      "description": "Designa\u00e7\u00e3o comercial da esta\u00e7\u00e3o (alias DESIGNACAO_COMERCIAL)."
+    },
+    {
+      "name": "CP7",
+      "type": "string",
+      "description": "C\u00f3digo postal de sete d\u00edgitos da esta\u00e7\u00e3o."
+    },
+    {
+      "name": "NIP",
+      "type": "int32",
+      "description": "N\u00famero de identifica\u00e7\u00e3o predial (alias N_IDENTIFICACAO_PREDIAL)."
+    },
+    {
+      "name": "CPE",
+      "type": "string",
+      "description": "C\u00f3digo de ponto de entrega de energia el\u00e9trica (alias CODIGO_PONTO_ENTREGA)."
+    },
+    {
+      "name": "INSTALADOR",
+      "type": "string",
+      "description": "Instalador da esta\u00e7\u00e3o; dom\u00ednio GIRA_INSTALADOR (Meo/Soltrafego, Yunex/Siemens)."
+    },
+    {
+      "name": "DATA_INICIO",
+      "type": "string",
+      "description": "Data de in\u00edcio de opera\u00e7\u00e3o da esta\u00e7\u00e3o (alias DATA_INICIO_OPERACAO; campo de data do servi\u00e7o)."
+    },
+    {
+      "name": "DATA_FIM",
+      "type": "string",
+      "description": "Data de fim de opera\u00e7\u00e3o da esta\u00e7\u00e3o (alias DATA_FIM_OPERACAO; campo de data do servi\u00e7o)."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.226590461242,
+          38.6935241046304,
+          -9.09247227380015,
+          38.7934548372908
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o default style",
+      "description": "Default visualization for Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1186,
+      "file:checksum": "12203d7e7b2ead43918b557f571fa982710d68dc7a565014291f0c234563838ffd6a"
+    },
+    "estacoes_gira": {
+      "href": "./estacoes_gira.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 30692,
+      "file:checksum": "12203814b0026e0083853b219e58dff7940d91d9602ec5309dd2616ded0715a3e4ef",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./estacoes_gira.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 78312,
+      "file:checksum": "1220cdf12d027cc2b2a5e7a9c059cb1acf98c8c5e553db0e408a655f54bb4b80973b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o categorical style",
+      "description": "Categorical visualization coloring Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o by TIPO_ESTACAO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1776,
+      "file:checksum": "122063da218f4618263320431d51a6b5d8f51c3ac380aa727307ea61991bef89ac5c"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o labeled style",
+      "description": "Default visualization for Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o with NOME_RUA shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1605,
+      "file:checksum": "1220d33bf55095d75a285206ccad8c6c7805de0a3691e62f8bff75d32221045d0ced"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o graduated style",
+      "description": "Graduated visualization coloring Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o by NIP, ramped from 10901964.0 to 654165416.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1980,
+      "file:checksum": "1220cd8336053c9789dec39df962df534fb59a87b2be100c4f8140391a4b332d67a0"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/440b7424a6284e0b9bf11179b95bf8d1/geojson?layers=2&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: estacoes_gira",
+      "pipeline:upstream": true,
+      "file:size": 150427,
+      "file:checksum": "122063bfc812e5ddbe5c6b0a9650e216f698c83b9d2a6f06b85fc97e90106d9012f4"
+    },
+    "thumbnail": {
+      "href": "./estacoes_gira.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 142650,
+      "file:checksum": "122062db4a1013c48aa01b4466168fe4b574546ee492b0def2245ecbae78ed212bf3"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Esta\u00e7\u00f5es GIRA",
+    "Mobilidade Suave",
+    "Mobilidade",
+    "Transportes"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Esta\u00e7\u00f5es GIRA em Opera\u00e7\u00e3o (Ciclovias), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

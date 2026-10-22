@@ -1,0 +1,261 @@
+{
+  "type": "Collection",
+  "id": "best-track/wind-swath",
+  "stac_version": "1.1.0",
+  "description": "Accumulated 34-, 50- and 64-kt wind swath of Hurricane Melissa (AL132025) over its whole life (5 polygons) built by NHC from the best track wind radii. The area that experienced at least tropical-storm, 50-kt and hurricane-force winds according to the working best track. Derived columns start_time, end_time (UTC). NHC: \"The working best track wind swath is created by accumulating the best track wind radii over the course of an ongoing tropical cyclone.\"",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./best-track-wind-swath.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track wind swath",
+      "pmtiles:layers": [
+        "best-track-wind-swath"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/",
+      "type": "text/html"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://www.nhc.noaa.gov/gis/best_track/al132025_best_track.zip",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "RADII",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The wind speed in knots associated with the bounding polygon': 34 (1 polygon), 50 (3 polygons), 64 (1)."
+    },
+    {
+      "name": "STORMID",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'A unique character string ... BBNNYYYY' -> al132025."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): basin code, lower-case 'al'."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13)."
+    },
+    {
+      "name": "ADVNUM",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): advisory number; '000' on every swath row (not tied to one advisory)."
+    },
+    {
+      "name": "STARTDTG",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The time and date at which a tropical cyclone first has winds of at least tropical storm force' (YYYYMMDDHH UTC). Parsed into start_time."
+    },
+    {
+      "name": "ENDDTG",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The time and date of the latest advisory for tropical cyclones that are still active. For tropical cyclones that no longer exist, ENDDTG is the time and date in the best track when the system was last designated as a tropical cyclone' (YYYYMMDDHH UTC). Parsed into end_time."
+    },
+    {
+      "name": "start_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): STARTDTG parsed to UTC; 2025-10-21 06:00 UTC on every row."
+    },
+    {
+      "name": "end_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): ENDDTG parsed to UTC; 2025-11-01 06:00 UTC on every row."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Accumulated wind-swath polygon (all valid) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); extent -79.74, 13.04, -42.64, 50.16."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Working best track wind swath",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -79.73546532518853,
+          13.043462611356127,
+          -42.63521379805931,
+          50.162152434086494
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T06:00:00Z",
+          "2025-11-01T06:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track wind swath default style",
+      "description": "Default visualization for Working best track wind swath, drawn in #2e7d32.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1226,
+      "file:checksum": "1220a5ff7ae8406faee81739f2ac126cb6456cdd2c51df33f504c6af08f9255deb63"
+    },
+    "best-track-wind-swath": {
+      "href": "./best-track-wind-swath.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 43271,
+      "file:checksum": "122026ba72d50170941beaa19085318670dcaeb348cfc65ab262d89155306794e65e",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./best-track-wind-swath.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Working best track wind swath (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8721993,
+      "file:checksum": "12206aeb4480f8c68ca4c97e1719066c10fdb3026f79fbb9913b0c519061264058c4"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track wind swath labeled style",
+      "description": "Default visualization for Working best track wind swath with RADII shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1658,
+      "file:checksum": "12208c605542d51a53d392ef81fe3a409d63e62f2351ce1724cf1b48d5a23389b431"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Working best track wind swath graduated style",
+      "description": "Graduated visualization coloring Working best track wind swath by RADII, ramped from 34.0 to 64.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1968,
+      "file:checksum": "1220298292c3f274eadb858607b10ee624ac3841c96cf73658d0554021541aa99748"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/best-track-wind-swath/best-track-wind-swath.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: best-track-wind-swath",
+      "pipeline:upstream": true,
+      "file:size": 42645,
+      "file:checksum": "1220830da42f3d6d042fd0692e18bd01035b13cb6d78eb74b6e274904c5261afad61"
+    },
+    "thumbnail": {
+      "href": "./best-track-wind-swath.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Working best track wind swath",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 52688,
+      "file:checksum": "1220f24b91edfc6ef98799676c307e473a3bceea8221940af4231ea1f2b0fe45723b"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

@@ -1,0 +1,141 @@
+{
+  "type": "Collection",
+  "id": "breedte_stoepen/abri",
+  "stac_version": "1.1.0",
+  "description": "Abri",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./abri.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "abri"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 42,
+  "table:row_count": 42,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "FID",
+      "type": "int64"
+    },
+    {
+      "name": "Objectsoor",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Abri",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.00113134693176,
+          52.065985414034,
+          5.15754442268899,
+          52.1233144883261
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "abri": {
+      "href": "./abri.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3579,
+      "file:checksum": "1220b7323b398dfbe807abd4d9d1ed6f2747d6e3b143acb8a6dc6f36d94449f73cde",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./abri.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 3178,
+      "file:checksum": "122036a9e0a10898b66120d3ddfad4ff3d5f90682b22c9c7d7c31b2ccbc347c64ed6"
+    },
+    "abri-tiles": {
+      "href": "./abri.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "abri (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2089,
+      "file:checksum": "12206f8601590c646d0e0c55617b7dbfa709a1f8638e540f6dbe71e61bc4ea20b207"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 608,
+      "file:checksum": "12206d530f8a1f4f8b93251aef9bff343b5a2cf98ea216bbdf6310713a8b58cedffc",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

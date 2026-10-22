@@ -1,0 +1,227 @@
+{
+  "type": "Collection",
+  "id": "mobilita/rastrelliere-biciclette",
+  "stac_version": "1.1.0",
+  "description": "Localizzazione delle rastrelliere per il parcheggio delle biciclette nell'area urbana di Bologna",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rastrelliereperbicic.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Rastrelliere per biciclette",
+      "pmtiles:layers": [
+        "rastrelliereperbicic"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/rastrelliere-per-biciclette/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rastrelliere-per-biciclette/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: rastrelliereperbicic",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 824,
+  "table:row_count": 824,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "nomevia",
+      "type": "string",
+      "description": "Localizzazione."
+    },
+    {
+      "name": "civico",
+      "type": "string"
+    },
+    {
+      "name": "numposti",
+      "type": "int32",
+      "description": "Numero posti."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Rastrelliere per biciclette",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.264040052828419,
+          44.46787508217245,
+          11.400864819757556,
+          44.55250089869895
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Rastrelliere per biciclette default style",
+      "description": "Default visualization for Rastrelliere per biciclette, drawn in #4292c6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1217,
+      "file:checksum": "12201e797b265267b9b8e8462554ec3a3d5abb1aaa79cd038ec2d71de6cb5bbbb523"
+    },
+    "rastrelliereperbicic": {
+      "href": "./rastrelliereperbicic.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 58412,
+      "file:checksum": "12206370a54d2d1e4d2252d7a21df5eb8afa04794f62ccc89f73167493cd123fd22d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./rastrelliereperbicic.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Rastrelliere per biciclette (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 90673,
+      "file:checksum": "12200801272c81c963222333b84daa858713c9641efe06cce2892312e5718e0034f1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Rastrelliere per biciclette labeled style",
+      "description": "Default visualization for Rastrelliere per biciclette with nomevia shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1649,
+      "file:checksum": "1220932e3f372e59fac7c546ef87982de14f7a7971edf8bd935ddcf0763efbc804df"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Rastrelliere per biciclette graduated style",
+      "description": "Graduated visualization coloring Rastrelliere per biciclette by numposti, ramped from 2.0 to 156.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1971,
+      "file:checksum": "122017c246dc6ad6a39628e2cbcbc1ff49ef90d485cb744b18bc15a11ffba6dd7bea"
+    },
+    "thumbnail": {
+      "href": "./rastrelliereperbicic.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Rastrelliere per biciclette",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 154546,
+      "file:checksum": "122077ee26966fa9b98d45081659578bc280bb07866e4da5eab198b349af250e3cbb"
+    }
+  },
+  "keywords": [
+    "Trasporti",
+    "Mobilit\u00e0 persone e merci",
+    "infrastrutture",
+    "piano dei quartieri"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abRastrelliere per biciclette\u00bb (rastrelliere-per-biciclette), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/rastrelliere-per-biciclette/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

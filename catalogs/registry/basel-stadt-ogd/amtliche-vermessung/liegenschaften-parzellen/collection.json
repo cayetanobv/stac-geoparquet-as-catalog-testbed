@@ -1,0 +1,261 @@
+{
+  "type": "Collection",
+  "id": "amtliche-vermessung/liegenschaften-parzellen",
+  "stac_version": "1.1.0",
+  "description": "Die Liegenschaften sind eine Informationsebene der amtlichen Vermessung, die alle Liegenschaften, fl\u00e4chenm\u00e4ssig ausgeschieden selbst\u00e4ndigen und dauernen Rechte und Grenzpunkte enth\u00e4lt. Im kantonalen Modell von Basel-Stadt wird zwischen Liegenschaft und Allmendparzelle unterschieden. Zudem gibt es zus\u00e4tzlich zum Baurecht auch Unterbaurechte.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100201.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Liegenschaften: Parzellen (data.bs.ch 100201)",
+      "pmtiles:layers": [
+        "ods-100201"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100201/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100201/exports/geojson?where=geo_shape%20is%20not%20null",
+      "rel": "related",
+      "title": "Upstream source: ods-100201",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 24423,
+  "table:row_count": 24423,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id",
+      "type": "int32",
+      "description": "Eindeutiger Indentifikator"
+    },
+    {
+      "name": "parzellennummer",
+      "type": "string",
+      "description": "In der Regel 10-stellige Nummer: erste 4 Stellen f\u00fcr Stammparzelle - 3 Stellen Stockwerknummer - 3 Stellen Miteigentumsanteilnummer. Der Parzellenindex ist nicht Teil der Parzellennummer.9000er\\=Allmendparzellen.\n\nDie Grundst\u00fccksnummer ist Teil der Identifikation des Grundst\u00fccks. Als Grundst\u00fccks-Identifikator muss ein kombinierter Schl\u00fcssel verwendet werden: Die Parzellennummer identifiziert in BS nur in Kombination mit der Sektion eindeutig ein Grundst\u00fcck (CAPI\\_GEMEINDE+CAPI\\_SEKTION). Im KDM wird als Grundst\u00fccks- Identifikator zus\u00e4tzlich auch die Gemeinde hinzugenommen (CAPI\\_ID \\= CAPI\\_GEMEINDE+CAPI\\_SEKTION+CAPI\\_PARZELLENNUMMER)."
+    },
+    {
+      "name": "parzellenindex",
+      "type": "string",
+      "description": "Anzahl der geometrischen \u00c4nderungen am Grundst\u00fcck\n\nDer Index dr\u00fcckt eine \u00c4nderung bei einem Grundst\u00fcck aus und wird dabei sequentiell hochgez\u00e4hlt. Diese \u00c4nderung kann sowohl die Grundbuchsicht (juristisches Objekt) wie auch die Vermessungssicht (geografisches Objekt) betreffen."
+    },
+    {
+      "name": "egrid",
+      "type": "string",
+      "description": "Identifikationsnummer des elektronischen Grundst\u00fcckinformationssystems (eGRIS). Der eidgen\u00f6ssische Grundst\u00fccksidentifikator ist in der ganzen Schweiz einheitlich und dient dem Informationsaustausch zwischen dem Grundbuch, der amtlichen Vermessung und den anderen Nutzerinnen und Nutzern."
+    },
+    {
+      "name": "sektionsname",
+      "type": "string",
+      "description": "Name einer Sektion"
+    },
+    {
+      "name": "grundstuecksart",
+      "type": "string",
+      "description": "Art des selbst\u00e4ndigen und dauernden Rechts"
+    },
+    {
+      "name": "flaechenmass",
+      "type": "int32",
+      "description": "Fl\u00e4chemass der Liegenschaft"
+    },
+    {
+      "name": "gueltigkeit",
+      "type": "string",
+      "description": "Rechtsstatus eines Grundst\u00fccks."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (MultiPolygon, Polygon) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026). Beschreibung des Publizierers zum Feld geo_shape: \u00abFl\u00e4chenhafte Ausdehnung der Liegenschaft\u00bb."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Liegenschaften: Parzellen (data.bs.ch 100201)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.55466,
+          47.519297,
+          7.693802,
+          47.600918
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liegenschaften: Parzellen (data.bs.ch 100201) default style",
+      "description": "Default visualization for Liegenschaften: Parzellen (data.bs.ch 100201), drawn in #fdae6b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1165,
+      "file:checksum": "1220e72485b892e6308817a941ad4a846ac28449a42b2ff6208086c992e806f22b47"
+    },
+    "ods-100201": {
+      "href": "./ods-100201.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3938546,
+      "file:checksum": "122020089624a257248635cf240155a6880d226f306682c0da042e9ed878a1bbb3fd",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100201.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Liegenschaften: Parzellen (data.bs.ch 100201) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5917078,
+      "file:checksum": "1220fc965ad0893aeb1b42dec7fe5041f34d17dc267d9f952d4df2a2b5f51fd24e68"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liegenschaften: Parzellen (data.bs.ch 100201) categorical style",
+      "description": "Categorical visualization coloring Liegenschaften: Parzellen (data.bs.ch 100201) by grundstuecksart, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1890,
+      "file:checksum": "12207107bada511ced04e6d79538087ee35ab14cb6e430ec5af4b5083ca772ab7e20"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liegenschaften: Parzellen (data.bs.ch 100201) labeled style",
+      "description": "Default visualization for Liegenschaften: Parzellen (data.bs.ch 100201) with sektionsname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1582,
+      "file:checksum": "1220fd986c7a45135d7c1a629f7544c852cca363abb24235a143600b51358de42415"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liegenschaften: Parzellen (data.bs.ch 100201) graduated style",
+      "description": "Graduated visualization coloring Liegenschaften: Parzellen (data.bs.ch 100201) by flaechenmass, ramped from 5.0 to 684121.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1956,
+      "file:checksum": "12200ae1260eb03443d7ec5643c1fe0f57ee44363991425c168fd70f00998604efa3"
+    },
+    "thumbnail": {
+      "href": "./ods-100201.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Liegenschaften: Parzellen (data.bs.ch 100201)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 174237,
+      "file:checksum": "1220dd9f03ce9b02c1b64784515a36a52d6115a35bca0f971d5d13592b48ce467620"
+    }
+  },
+  "keywords": [
+    "Geographie",
+    "Raum und Umwelt",
+    "opendata.swiss",
+    "AVPZ",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Grundbuch- und Vermessungsamt",
+      "description": "Datenquelle: Kanton Basel-Stadt, Grundbuch- und Vermessungsamt (Bau- und Verkehrsdepartement), \u00abLiegenschaften: Parzellen\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100201/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

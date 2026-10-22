@@ -1,0 +1,243 @@
+{
+  "type": "Collection",
+  "id": "verkehr/lichtsignalanlagen",
+  "stac_version": "1.1.0",
+  "description": "In diesem Dienst werden Lichtsignalanlagen (Ampeln) dargestellt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./mor_wfs_lsa_opendata.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Lichtsignalanlagen",
+      "pmtiles:layers": [
+        "mor_wfs_lsa_opendata"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.muenchen.de/dataset/lsa_opendata",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/mor_wfs/ows",
+      "rel": "related",
+      "title": "WFS source service: lsa-opendata",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/mor_wfs/wms?service=WMS&request=GetCapabilities",
+      "rel": "related",
+      "title": "Lichtsignalanlagen (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1186,
+  "table:row_count": 1186,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "standort",
+      "type": "string"
+    },
+    {
+      "name": "lon",
+      "type": "double"
+    },
+    {
+      "name": "lat",
+      "type": "double"
+    },
+    {
+      "name": "abbau",
+      "type": "int64"
+    },
+    {
+      "name": "abbaud",
+      "type": "double"
+    },
+    {
+      "name": "zeb",
+      "type": "string"
+    },
+    {
+      "name": "zeb_bedeutung",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Lichtsignalanlagen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.392370603105327,
+          48.06827173286024,
+          11.715192000332614,
+          48.229734157000514
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Lichtsignalanlagen default style",
+      "description": "Default visualization for Lichtsignalanlagen, drawn in #fd8d3c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1208,
+      "file:checksum": "122066674267971ffbd4df21e91eaad7e42da149401b0fd336b6de1ac8e87ad672e7"
+    },
+    "mor_wfs_lsa_opendata": {
+      "href": "./mor_wfs_lsa_opendata.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 86290,
+      "file:checksum": "1220c25c4d3ce8a50fd8a41cc093979f66ffc00bec56d5b632027ba8506dff18682e",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./mor_wfs_lsa_opendata.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Lichtsignalanlagen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 136792,
+      "file:checksum": "1220dba532c10eaf9d2d9d61e846315323b83d435e86c1b44492b41bd4f60467b277"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Lichtsignalanlagen categorical style",
+      "description": "Categorical visualization coloring Lichtsignalanlagen by zeb, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1735,
+      "file:checksum": "12205786bfbc47e88e259881988b12d52062c2b49dcde4d44898cf739728fb46f1aa"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Lichtsignalanlagen labeled style",
+      "description": "Default visualization for Lichtsignalanlagen with zeb shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1636,
+      "file:checksum": "12204620205bd662ccf03eb4a2a0d885c54c85f9e8523f5c64cef999282fff2919bc"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Lichtsignalanlagen graduated style",
+      "description": "Graduated visualization coloring Lichtsignalanlagen by abbaud, ramped from 20110912120000.0 to 20260814084000.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2062,
+      "file:checksum": "1220a3db099fa2f8d886b0a3f4b50253df185ac295e9f99484ce1ee0211fdd42a03f"
+    },
+    "thumbnail": {
+      "href": "./mor_wfs_lsa_opendata.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Lichtsignalanlagen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 115944,
+      "file:checksum": "122038f5c138f7aecb680e10f84154c67b5e4f4c244227b046f648a4ae195b8bd544"
+    }
+  },
+  "keywords": [
+    "Digitaler Zwilling M\u00fcnchen",
+    "Verkehr",
+    "M\u00fcnchen",
+    "Landeshauptstadt M\u00fcnchen",
+    "GeoPortal M\u00fcnchen"
+  ],
+  "providers": [
+    {
+      "name": "Landeshauptstadt M\u00fcnchen, Mobilit\u00e4tsreferat",
+      "description": "Datenquelle Lichtsignalanlagen, GeoPortal M\u00fcnchen der Landeshauptstadt M\u00fcnchen, abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.muenchen.de/organization/mobilitaetsreferat",
+      "email": "LSA-Betrieb.MOR@muenchen.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T07:15:00Z"
+}

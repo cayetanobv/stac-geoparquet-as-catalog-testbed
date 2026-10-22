@@ -1,0 +1,176 @@
+{
+  "type": "Collection",
+  "id": "demographics/lodes-commutes",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json"
+  ],
+  "description": "Home\u2192work commute flows touching the City of St. Louis, from the U.S. Census Bureau's LEHD Origin-Destination Employment Statistics (LODES) version 8, data year 2023 \u2014 every block-group pair where the home or the workplace (or both) is inside the city, with job counts by earnings band. LODES is the block-level jobs data behind the Bureau's OnTheMap tool; \"Version 8 of LODES was enumerated by 2020 census blocks.\" Flows are aggregated from block\u2192block pairs to block-group\u2192block-group pairs (a block's block group is the first 12 characters of its geocode); `home_in_city` and `work_in_city` flag each end. Out-of-state residents who work in Missouri come from the LODES auxiliary file, so Illinois-to-St.-Louis commutes are included; St. Louis residents working outside Missouri are not, per LODES file structure. LEHD notes that \"the data released by LEHD are based on tabulated and modeled administrative data, which are subject to error.\"\n\nThis is a tabular collection with no geometry: join `home_geoid` or `work_geoid` to the `acs-block-groups` or `lodes-jobs` collections (their `geoid` column) to map it. Unlike the city's own datasets in this catalog, this is **not** City of St. Louis data: it is federal administrative data published by the U.S. Census Bureau's Longitudinal Employer-Household Dynamics program.",
+  "license": "other",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.320522,
+          38.531907,
+          -90.166409,
+          38.774362
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2023-01-01T00:00:00Z",
+          "2023-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 149566,
+  "table:columns": [
+    {
+      "name": "home_geoid",
+      "type": "string",
+      "description": "12-digit block group GEOID where the workers live. Joins acs-block-groups.geoid."
+    },
+    {
+      "name": "work_geoid",
+      "type": "string",
+      "description": "12-digit block group GEOID where the workers' jobs are located. Joins acs-block-groups.geoid."
+    },
+    {
+      "name": "home_in_city",
+      "type": "boolean",
+      "description": "True when the home block group is inside St. Louis city (GEOID starts 29510)."
+    },
+    {
+      "name": "work_in_city",
+      "type": "boolean",
+      "description": "True when the workplace block group is inside St. Louis city (GEOID starts 29510)."
+    },
+    {
+      "name": "jobs",
+      "type": "int64",
+      "description": "Number of jobs with this home/work block-group pair (LODES OD column S000)."
+    },
+    {
+      "name": "jobs_earn_low",
+      "type": "int64",
+      "description": "Jobs in the pair with earnings of $1,250/month or less (LODES SE01)."
+    },
+    {
+      "name": "jobs_earn_mid",
+      "type": "int64",
+      "description": "Jobs in the pair with earnings of $1,251 to $3,333/month (LODES SE02)."
+    },
+    {
+      "name": "jobs_earn_high",
+      "type": "int64",
+      "description": "Jobs in the pair with earnings greater than $3,333/month (LODES SE03)."
+    }
+  ],
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Demographics"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.census.gov/topics/research/research-transparency-public-access/open-data.html",
+      "type": "text/html",
+      "title": "U.S. Census Bureau \u2014 Longitudinal Employer-Household Dynamics \u2014 data license and terms"
+    },
+    {
+      "rel": "via",
+      "href": "https://lehd.ces.census.gov/data/",
+      "type": "text/html",
+      "title": "LEHD Origin-Destination Employment Statistics documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://lehd.ces.census.gov/data/lodes/LODES8/mo",
+      "type": "text/html",
+      "title": "LEHD Origin-Destination Employment Statistics source data"
+    }
+  ],
+  "assets": {
+    "lodes-commutes": {
+      "href": "./lodes-commutes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "LODES Commute Flows (Parquet)",
+      "file:size": 646415,
+      "file:checksum": "12203a58f62e574f1a22e278e60205249278029fcecdb4a519aae5c7b86eb97c4acb"
+    }
+  },
+  "title": "LODES Commute Flows",
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "demographics",
+          "title": "Demographics"
+        }
+      ]
+    },
+    {
+      "scheme": "https://lehd.ces.census.gov/data/",
+      "concepts": [
+        {
+          "id": "lodes",
+          "title": "LEHD Origin-Destination Employment Statistics"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "census",
+    "LEHD",
+    "LODES",
+    "commutes",
+    "origin-destination"
+  ],
+  "providers": [
+    {
+      "name": "U.S. Census Bureau \u2014 Longitudinal Employer-Household Dynamics",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://lehd.ces.census.gov/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

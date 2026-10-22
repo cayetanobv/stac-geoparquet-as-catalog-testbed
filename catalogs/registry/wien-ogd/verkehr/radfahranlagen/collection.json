@@ -1,0 +1,233 @@
+{
+  "type": "Collection",
+  "id": "verkehr/radfahranlagen",
+  "stac_version": "1.1.0",
+  "description": "Radfahranlagen, Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_radwegeogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radfahranlagen Wien",
+      "pmtiles:layers": [
+        "ogdwien_radwegeogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/5e6175cd-dc44-4b32-a64a-1ac4239a6e4a",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: radwegeogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 14936,
+  "table:row_count": 14936,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Linie) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "MERKMAL",
+      "type": "string",
+      "description": "Radwegtyp (Markierte Anlage, Mountainbike-Radfahren im Wald, Radroute, Radweg, Getrennte F\u00fchrung)."
+    },
+    {
+      "name": "SUBMERKMAL",
+      "type": "string",
+      "description": "N\u00e4here Beschreibung der Radfahrinfrastruktur gem\u00e4\u00df StVO 1960 und RVS-Richtlinie \u201eRadverkehr\u201c."
+    },
+    {
+      "name": "SE_SDO_ROWID",
+      "type": "int64",
+      "description": "Interne Zeilenkennung der Datenhaltung, nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Radfahranlagen Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.188137727944206,
+          48.120534135400526,
+          16.57668831939697,
+          48.319898419917926
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radfahranlagen Wien default style",
+      "description": "Default visualization for Radfahranlagen Wien, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1195,
+      "file:checksum": "1220e3791ea733d2d97a4bf6147f7169ed4c837408359e1bff6828798d3b48eb1096"
+    },
+    "ogdwien_radwegeogd": {
+      "href": "./ogdwien_radwegeogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1364557,
+      "file:checksum": "1220e85d9a4669f995f8bf96297c6adf85c2d593fe003e9df4c3ebac77b4ea4686ee",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_radwegeogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radfahranlagen Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2323901,
+      "file:checksum": "122027cccf6f6e6386faa6c8a09b23aa8ad2e7b8fe2e450f166cfb1a356753d2555a"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radfahranlagen Wien categorical style",
+      "description": "Categorical visualization coloring Radfahranlagen Wien by MERKMAL, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2131,
+      "file:checksum": "122097f4a2ca76d86354adcc503927c7b933aa72674c0ed57a0cedd949d4b87a664e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radfahranlagen Wien labeled style",
+      "description": "Default visualization for Radfahranlagen Wien with MERKMAL shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1623,
+      "file:checksum": "1220ea26e154cd0b46fe642b4f147c4877aeda7b3c5634f5a6d2af10d512029aedf3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radfahranlagen Wien graduated style",
+      "description": "Graduated visualization coloring Radfahranlagen Wien by SE_SDO_ROWID, ramped from 71299269.0 to 71316572.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2019,
+      "file:checksum": "12205c424acc133a59ba352fd886eb7276de4c6f01422020e4a58e433fa42424524d"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_radwegeogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Radfahranlagen Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 235096,
+      "file:checksum": "122017f7b704639b96c4a34ba601dc2279a24dd2984abbc0e48d2bf232024c34f491"
+    }
+  },
+  "keywords": [
+    "Radwege",
+    "ViennaGIS",
+    "Radfahranlage",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Radfahranlagen Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

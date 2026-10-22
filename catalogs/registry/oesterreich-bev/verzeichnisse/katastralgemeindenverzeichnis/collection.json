@@ -1,0 +1,194 @@
+{
+  "type": "Collection",
+  "id": "verzeichnisse/katastralgemeindenverzeichnis",
+  "stac_version": "1.1.0",
+  "description": "Liste aller 7.850 Katastralgemeinden \u00d6sterreichs mit der Zuordnung zu politischer Gemeinde, politischem Bezirk, Gerichtsbezirk, Vermessungssprengel und Bundesland, Stichtag 26.03.2026. Beschreibung laut BEV: \u201eDas KG-Verzeichnis ist eine Liste aller Katastralgemeinden \u00d6sterreichs mit der jeweiligen Zuordnung zu anderen Verwaltungseinheiten. Stichtag = Erstellungsdatum: Die Daten sind zu diesem Tag der aktuellste Datenbestand des BEV. Dies ist nicht ident mit dem Aufnahme- bzw. Vermessungsdatum.\u201c",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "\u00d6sterreich \u2013 offene Geobasisdaten des BEV"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bev.gv.at/geonetwork/srv/ger/catalog.search#/metadata/7efa4251-2f30-4058-bd0c-a4e06000ebbf",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "KG_NUMMER",
+      "type": "string",
+      "description": "Katastralgemeindenummer (Wertebereich laut BEV: 01002 - 92129)"
+    },
+    {
+      "name": "KG_NAME",
+      "type": "string",
+      "description": "Katastralgemeindename"
+    },
+    {
+      "name": "MERIDIAN",
+      "type": "int64",
+      "description": "Meridianstreifen (Wertebereich laut BEV: 28, 31 oder 34)"
+    },
+    {
+      "name": "GKZ",
+      "type": "int64",
+      "description": "Kennziffer der politischen Gemeinde (Wertebereich laut BEV: 10101 - 90001)"
+    },
+    {
+      "name": "GEMEINDENAME",
+      "type": "string",
+      "description": "Name der politischen Gemeinde"
+    },
+    {
+      "name": "PB_NUMMER",
+      "type": "int64",
+      "description": "Politische Bezirkskennziffer (Wertebereich laut BEV: 101-900)"
+    },
+    {
+      "name": "PB_NAME",
+      "type": "string",
+      "description": "Name des politischen Bezirks (Bezirkshauptmannschaft oder Magistrat)"
+    },
+    {
+      "name": "GB_NUMMER",
+      "type": "string",
+      "description": "Gerichtsbezirkskennziffer (Wertebereich laut BEV: 010-921)"
+    },
+    {
+      "name": "GB_NAME",
+      "type": "string",
+      "description": "Name des Gerichtsbezirkes"
+    },
+    {
+      "name": "BL_NUMMER",
+      "type": "int64",
+      "description": "Nummer des Bundeslandes (Wertebereich laut BEV: 1-9)"
+    },
+    {
+      "name": "BL_NAME",
+      "type": "string",
+      "description": "Name des Bundeslandes"
+    },
+    {
+      "name": "VA_SPRENGEL_NUMMER",
+      "type": "string",
+      "description": "Nummer des Vermessungssprengels (Wertebereich laut BEV: 01-91)"
+    },
+    {
+      "name": "VA_SPRENGEL_NAME",
+      "type": "string",
+      "description": "Name des Vermessungssprengels"
+    }
+  ],
+  "table:row_count": 7850,
+  "title": "Katastralgemeindenverzeichnis Stichtag 26.03.2026",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "KGVZ_20260326": {
+      "href": "./KGVZ_20260326.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 96189,
+      "file:checksum": "122039d2151d55677c7dd9b6686a383b1c38f52596f32d7211f105816090e73c6aac",
+      "roles": [
+        "data"
+      ]
+    },
+    "source": {
+      "href": "https://data.bev.gv.at/download/Katastralgemeindenverzeichnis/KG_Verzeichnis.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: kgvz",
+      "pipeline:upstream": true,
+      "file:size": 160829,
+      "file:checksum": "1220bebfadb63c1bc119bd7dde1243cca10fe408bfc6ed765f3aa1de2e782e0a5e4b"
+    }
+  },
+  "keywords": [
+    "AT.BEV",
+    "Kataster",
+    "Verwaltungsgrenze",
+    "Register",
+    "National",
+    "Katastralgemeinde",
+    "Verzeichnis",
+    "\u00d6sterreich"
+  ],
+  "providers": [
+    {
+      "name": "Bundesamt f\u00fcr Eich- und Vermessungswesen (BEV)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.bev.gv.at/",
+      "email": "kundenservice@bev.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,199 @@
+{
+  "type": "Collection",
+  "id": "territorio/quartieri",
+  "stac_version": "1.1.0",
+  "description": "Quartieri del comune di Bologna",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./quartieridibologna.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Quartieri di Bologna",
+      "pmtiles:layers": [
+        "quartieridibologna"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/quartieri-di-bologna/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/quartieri-di-bologna/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: quartieridibologna",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 6,
+  "table:row_count": 6,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "cod_quar",
+      "type": "string",
+      "description": "Codice Quartiere."
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "area",
+      "type": "string",
+      "description": "Valore dell'area del quartiere secondo il portale; vuoto in tutti i record della fonte (vedi quirks)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Quartieri di Bologna",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.229655388117086,
+          44.4211100289345,
+          11.433714393752807,
+          44.556205390266975
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Quartieri di Bologna default style",
+      "description": "Default visualization for Quartieri di Bologna, drawn in #7a0177.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1196,
+      "file:checksum": "1220ef1b3a4ebebebc3e7f97249c4776d7429a583bc6ccac0463878ea4047a39d6de"
+    },
+    "quartieridibologna": {
+      "href": "./quartieridibologna.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 105643,
+      "file:checksum": "1220a7375e1422c4e29bc3258cfb4a77c55be781989f478d7d707ebde0988e4f7554",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./quartieridibologna.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Quartieri di Bologna (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 74914,
+      "file:checksum": "1220a0aa31231fafdbabe11c9ab3414e587c3e94c4d152cbab8cc6c1ddd53ded6639"
+    },
+    "thumbnail": {
+      "href": "./quartieridibologna.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Quartieri di Bologna",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 115503,
+      "file:checksum": "1220bde0b9163fec2f4353be773614f7afefeac62b7fba500a4b4e8bf8398e18de73"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0",
+    "Governo"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abQuartieri di Bologna\u00bb (quartieri-di-bologna), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/quartieri-di-bologna/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

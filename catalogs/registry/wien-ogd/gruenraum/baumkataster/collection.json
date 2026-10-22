@@ -1,0 +1,299 @@
+{
+  "type": "Collection",
+  "id": "gruenraum/baumkataster",
+  "stac_version": "1.1.0",
+  "description": "Neben B\u00e4umen in Stra\u00dfenz\u00fcgen umfasst der Baumkataster auch B\u00e4ume in Parks und wald\u00e4hnlichen Fl\u00e4chen in Wien. Die B\u00e4ume in Stra\u00dfenz\u00fcgen sind komplett erfasst, da sie der MA 42 als Arbeitsbehelf dienen. Die B\u00e4ume in Parks und wald\u00e4hnlichen Fl\u00e4chen sind hingegen nur teilweise erfasst.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_baumkatogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumkataster bzw. B\u00e4ume Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_baumkatogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/c91a4635-8b7d-43fe-9b27-d95dec8392a7",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: baumkatogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 233124,
+  "table:row_count": 233124,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "BAUM_ID",
+      "type": "int64",
+      "description": "Baumkennung; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "DATENFUEHRUNG",
+      "type": "string",
+      "description": "Datenf\u00fchrende Stelle; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirk, in dem der Baum steht."
+    },
+    {
+      "name": "OBJEKT_STRASSE",
+      "type": "string",
+      "description": "Anlage, Objekt oder Stra\u00dfe, in der der Baum steht."
+    },
+    {
+      "name": "GEBIETSGRUPPE",
+      "type": "string",
+      "description": "Gebiet, in dem der Baum steht."
+    },
+    {
+      "name": "GATTUNG_ART",
+      "type": "string",
+      "description": "Baumart (Gattung, Art, deutscher Name)."
+    },
+    {
+      "name": "PFLANZJAHR",
+      "type": "int64",
+      "description": "Jahr, in dem der Baum gepflanzt wurde."
+    },
+    {
+      "name": "PFLANZJAHR_TXT",
+      "type": "string",
+      "description": "Pflanzjahr als Text; Nullwerte als \u201enicht bekannt\u201c."
+    },
+    {
+      "name": "STAMMUMFANG",
+      "type": "int64",
+      "description": "Umfang des Baumstammes in cm in einem Meter H\u00f6he."
+    },
+    {
+      "name": "STAMMUMFANG_TXT",
+      "type": "string",
+      "description": "Stammumfang als Text mit Zusatz \u201ecm\u201c; Nullwerte als \u201enicht bekannt\u201c."
+    },
+    {
+      "name": "BAUMHOEHE",
+      "type": "int64",
+      "description": "Einteilung in 8 Gr\u00f6\u00dfenkategorien der Baumh\u00f6he plus Nullwert."
+    },
+    {
+      "name": "BAUMHOEHE_TXT",
+      "type": "string",
+      "description": "Gr\u00f6\u00dfenkategorie der Baumh\u00f6he als Text; Leereintr\u00e4ge als \u201enicht bekannt\u201c."
+    },
+    {
+      "name": "KRONENDURCHMESSER",
+      "type": "int64",
+      "description": "Einteilung in 8 Gr\u00f6\u00dfenkategorien des Kronendurchmessers plus Nullwert."
+    },
+    {
+      "name": "KRONENDURCHMESSER_TXT",
+      "type": "string",
+      "description": "Gr\u00f6\u00dfenkategorie des Kronendurchmessers als Text; Leereintr\u00e4ge als \u201enicht bekannt\u201c."
+    },
+    {
+      "name": "BAUMNUMMER",
+      "type": "string",
+      "description": "Nummer des Baumes."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Baumkataster bzw. B\u00e4ume Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.12399705763052,
+          48.122849149886946,
+          16.56954724177421,
+          48.31979646117192
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster bzw. B\u00e4ume Standorte Wien default style",
+      "description": "Default visualization for Baumkataster bzw. B\u00e4ume Standorte Wien, drawn in #006d2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1219,
+      "file:checksum": "12206dcafd3869dfc46668f629ecfecc2db4f3654d18c145ce3e52cfd4103e564c11"
+    },
+    "ogdwien_baumkatogd": {
+      "href": "./ogdwien_baumkatogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8494963,
+      "file:checksum": "12203109e55d36fffc5fbeba20680d3f32d68941577cb66e3c08f0ce441cd09001de",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_baumkatogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumkataster bzw. B\u00e4ume Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 12829265,
+      "file:checksum": "1220b451bb623e85de5000caf20625145237278751233b43c98d91c21763b873fc33"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster bzw. B\u00e4ume Standorte Wien categorical style",
+      "description": "Categorical visualization coloring Baumkataster bzw. B\u00e4ume Standorte Wien by BAUMHOEHE_TXT, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2458,
+      "file:checksum": "122083116ec24b77d427fa3ff5f2cd173cf8d30596ffc0a3c01c5943eed511237756"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster bzw. B\u00e4ume Standorte Wien labeled style",
+      "description": "Default visualization for Baumkataster bzw. B\u00e4ume Standorte Wien with BAUMHOEHE_TXT shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1653,
+      "file:checksum": "12204f44a9235a93974dddec4a19f676749ac9043e1c90058008ab667ba694da0c34"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster bzw. B\u00e4ume Standorte Wien graduated style",
+      "description": "Graduated visualization coloring Baumkataster bzw. B\u00e4ume Standorte Wien by BAUM_ID, ramped from 1.0 to 415816.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1990,
+      "file:checksum": "1220e61479511d985dffd08f176bbd4e2464e171ecd2ec7813b564da7c89aeeb2d87"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_baumkatogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Baumkataster bzw. B\u00e4ume Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 241561,
+      "file:checksum": "1220958ea0deb7639b8256c62c3be086a0c9ed4d0b24e5fb28ec027a0f8d9dce0b1c"
+    }
+  },
+  "keywords": [
+    "parks",
+    "baum",
+    "allee",
+    "ViennaGIS",
+    "park",
+    "b\u00e4ume",
+    "baumkataster",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien \u2013 Magistratsabteilung 42 (Wiener Stadtg\u00e4rten)",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Baumkataster bzw. B\u00e4ume Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.wien.gv.at/umwelt/parks/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

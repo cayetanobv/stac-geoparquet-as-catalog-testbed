@@ -1,0 +1,229 @@
+{
+  "type": "Collection",
+  "id": "verkehr/stadtrad-stationen",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz enth\u00e4lt die Position aller StadtRAD-Stationen im Hamburger Stadtgebiet und die Anzahl der aktuell zur Ausleihe zur Verf\u00fcgung stehenden Fahrr\u00e4der und Lastenpedelecs.\nWeitere Informationen zum Echtzeitdienst:\nDer Echtzeitdatendienst enth\u00e4lt die Position aller StadtRAD-Stationen im Hamburger Stadtgebiet und die Anzahl der aktuell zur Ausleihe zur Verf\u00fcgung stehenden Fahrr\u00e4der und Lastenpedelecs im JSON-Format bereitgestellt in der SensorThings API (STA). In der SensorThings API (STA) steht die Entit\u00e4t \"Thing\" f\u00fcr jeweils eine StadtRad-Stationen. F\u00fcr die Anzahl der verf\u00fcgbaren R\u00e4der und die Lastenpedelecs gibt es jeweils eine Entit\u00e4t \"Datastream\" je \"Thing\". Die Anzahl der verf\u00fcgbaren R\u00e4der (Echtzeitdaten) erh\u00e4lt man \u00fcber die Entit\u00e4t \"Observations\".\nAlle Zeitangaben sind in der koordinierten Weltzeit (UTC) angegeben.\nIn der Entit\u00e4t Datastreams gibt es im JSON-Objekt unter dem \"key\" \"properties\" weitere \"key-value-Paare\". In Anlehnung an die Service- und Layerstruktur im GIS haben wir Service und Layer als zus\u00e4tzliche \"key-value-Paare\" unter dem JSON-Objekt properties eingef\u00fchrt. \n{\n\"properties\":{\n\"serviceName\": \"HH_STA_StadtRad\",\n\"layerName\": \"E-Lastenraeder\",\n\"key\":\"value\"}\n}\nVerf\u00fcgbare Layer im layerName sind:\n* E-Lastenraeder\n* Fahrraeder\nMit Hilfe dieser \"key-value-Paare\" k\u00f6nnen dann Filter f\u00fcr die REST-Anfrage definiert werden, bspw.\nhttps://iot.hamburg.de/v1.0/Datastreams?$filter=properties/serviceName eq 'HH_STA_StadtRad' and properties/layerName eq 'E-Lastenraeder'\nDie Echtzeitdaten kann man auch \u00fcber einen MQTT-Broker erhalten. Die daf\u00fcr notwendigen IDs k\u00f6nnen \u00fcber eine REST-Anfrage bezogen werden und dann f\u00fcr das Abonnement auf einen Datastream verwendet werden:\nMQTT-Broker: iot.hamburg.de\nTopic: v1.0/Datastream({id})/Observations",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./stadtrad_stationen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen)",
+      "pmtiles:layers": [
+        "stadtrad_stationen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://suche.transparenz.hamburg.de/dataset/stadtrad-stationen-hamburg39",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WFS_Stadtrad?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=de.hh.up:stadtrad_stationen&OUTPUTFORMAT=application/geo%2Bjson&SRSNAME=EPSG:4326",
+      "rel": "related",
+      "title": "Upstream source: stadtrad_stationen",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WFS_Stadtrad?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "WFS HH_WFS_Stadtrad (LGV Hamburg)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WMS_Stadtrad?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS HH_WMS_Stadtrad (LGV Hamburg)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 358,
+  "table:row_count": 358,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.703276986604801e-08,
+          0.0,
+          10.234659999999842,
+          53.67890000088154
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen) default style",
+      "description": "Default visualization for StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen), drawn in #f781bf.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1232,
+      "file:checksum": "12209814e40bade20665ad46d95c327748c300d83d47c0e19f12bbd5443e15e5a586"
+    },
+    "stadtrad_stationen": {
+      "href": "./stadtrad_stationen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 25615,
+      "file:checksum": "122059e0602b1fad19791319c011d7c983a7632ebdfa4229ad2a8aeb36ef12174647",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./stadtrad_stationen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 69349,
+      "file:checksum": "122079ffee32522899386fa2d1a65062f2b106d3a3359f27577275fbdcc80b1e0e1a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen) labeled style",
+      "description": "Default visualization for StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen) with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1657,
+      "file:checksum": "12202174c24a9ef61b586441670253e4c44487721a4fbd2c7c3d12c040ccb70ac830"
+    },
+    "thumbnail": {
+      "href": "./stadtrad_stationen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of StadtRAD-Stationen Hamburg (de.hh.up:stadtrad_stationen)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 62420,
+      "file:checksum": "1220a93ddcf1eae3f5d42c18f40629c40fc52fa6e07e72bf97c7e59fff26cc15bd62"
+    }
+  },
+  "keywords": [
+    "Ausleihen",
+    "BikeSharing",
+    "Echtzeitdaten",
+    "Fahrrad",
+    "Geodaten",
+    "HVD",
+    "Lastenrad",
+    "Micromobility",
+    "Rad",
+    "Radfahren",
+    "Radstation",
+    "SensorThings API",
+    "Sharing Economy",
+    "StadtRAD",
+    "StadtRAD-Station",
+    "Station",
+    "mobilithek_subcategory_BIKE_SHARING_AVAILABILITY",
+    "mobilithek_subcategory_LOCATION_OF_BIKE_SHARING_STATIONS",
+    "mobilthek_category_CAR_UND_BIKE_SHARING",
+    "station\u00e4res Fahrradverleihsystem",
+    "zeitbezogene Informationen",
+    "stadtrad_stationen",
+    "Hamburg",
+    "Freie und Hansestadt Hamburg"
+  ],
+  "providers": [
+    {
+      "name": "Beh\u00f6rde f\u00fcr Verkehr und Mobilit\u00e4tswende (BVM)",
+      "description": "Datenquelle: Beh\u00f6rde f\u00fcr Verkehr und Mobilit\u00e4tswende (BVM), \u00abStadtRAD-Stationen Hamburg\u00bb, Transparenzportal Hamburg, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://suche.transparenz.hamburg.de/dataset/stadtrad-stationen-hamburg39"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T20:30:00Z"
+}

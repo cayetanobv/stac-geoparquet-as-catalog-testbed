@@ -1,0 +1,221 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "id": "forest-types-2020",
+  "title": "Global Forest Types 2020, version 1",
+  "description": "Forest type of each 1/12000 degree cell (about 10 m) in 2020: non-forest, naturally regenerating forest, primary forest, or planted or plantation forest. Version 1 of the global map of forest types by the European Commission Joint Research Centre (JRC), the companion to JRC Global Forest Cover 2020. Mirrored unchanged from JRC JEODPP by Epoch as one COG. See [AGENTS.md](AGENTS.md) for a tested access recipe.",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "forest types",
+    "primary forest",
+    "planted forest",
+    "naturally regenerating forest",
+    "EUDR",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "European Commission, Joint Research Centre (JRC)",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Epoch",
+      "description": "Hosts this mirror on Source Cooperative.",
+      "roles": [
+        "host"
+      ],
+      "url": "https://epoch.blue"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -60.0,
+          180.0,
+          80.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "updated": "2026-07-13T14:54:48Z",
+  "version": "1",
+  "sci:citation": "Bourgoin, Clement; Ameztoy, Iban; Verhegghen, Astrid; Carboni, Silvia; Achard, Frederic; Colditz, Rene (2026): Global map of forest types 2020 - version 1. European Commission, Joint Research Centre (JRC) [Dataset]. PID: http://data.europa.eu/89h/45182662-3015-4a25-8d1e-aa857d75235d",
+  "renders": {
+    "forest-types": {
+      "title": "Forest types 2020 (native resolution only)",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap": {
+        "1": [
+          120,
+          198,
+          121,
+          255
+        ],
+        "10": [
+          0,
+          104,
+          55,
+          255
+        ],
+        "20": [
+          204,
+          102,
+          0,
+          255
+        ]
+      },
+      "resampling": "nearest",
+      "minmax_zoom": [
+        14,
+        22
+      ]
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "https://data.source.coop/epoch/jrc-global-forest-types-2020/v1/JRC_GFT2020_V1_cog.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Forest types 2020 (COG)",
+      "roles": [
+        "data"
+      ],
+      "file:size": 79208218483,
+      "bands": [
+        {
+          "name": "forest_type",
+          "description": "Forest type in 2020. No NoData is declared; 0 (non-forest) is real data.",
+          "data_type": "uint8",
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 9.28,
+          "classification:classes": [
+            {
+              "value": 0,
+              "name": "non_forest",
+              "title": "Non-forest"
+            },
+            {
+              "value": 1,
+              "name": "naturally_regenerating_forest",
+              "title": "Naturally regenerating forest",
+              "color_hint": "78C679"
+            },
+            {
+              "value": 10,
+              "name": "primary_forest",
+              "title": "Primary forest",
+              "color_hint": "006837"
+            },
+            {
+              "value": 20,
+              "name": "planted_or_plantation_forest",
+              "title": "Planted or plantation forest",
+              "color_hint": "CC6600"
+            }
+          ]
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "proj:shape": [
+        1680000,
+        4320000
+      ],
+      "proj:transform": [
+        8.333333333333333e-05,
+        0.0,
+        -180.0,
+        0.0,
+        -8.333333333333333e-05,
+        80.0
+      ]
+    },
+    "source": {
+      "href": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/FOREST/GFT2020/LATEST/single-cog/JRC_GFT2020_V1_cog.tif",
+      "type": "image/tiff; application=geotiff",
+      "title": "Original file on JRC JEODPP (V1)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 79208218483
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Forest presence (any forest type), from the smallest overview",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 15122,
+      "file:checksum": "1220dd7f0b730f15916bc0abde79714325d1ada2e9a4f4c5402bf19f701b86fd2acb"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "http://data.europa.eu/89h/45182662-3015-4a25-8d1e-aa857d75235d",
+      "type": "text/html",
+      "title": "JRC Data Catalogue record (PID)"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "cite-as",
+      "href": "http://data.europa.eu/89h/45182662-3015-4a25-8d1e-aa857d75235d",
+      "type": "text/html",
+      "title": "JRC dataset PID"
+    },
+    {
+      "rel": "license",
+      "href": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/FOREST/GFT2020/LATEST/single-cog/copyright.txt",
+      "type": "text/plain",
+      "title": "JRC copyright notice (CC BY 4.0)"
+    }
+  ]
+}

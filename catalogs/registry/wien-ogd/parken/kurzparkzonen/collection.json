@@ -1,0 +1,258 @@
+{
+  "type": "Collection",
+  "id": "parken/kurzparkzonen",
+  "stac_version": "1.1.0",
+  "description": "Kurzparkzonen, Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_kurzparkzoneogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kurzparkzonen Wien",
+      "pmtiles:layers": [
+        "ogdwien_kurzparkzoneogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/6858b208-62bc-424e-9d7b-c89b74d3d3e3",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: kurzparkzoneogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 81,
+  "table:row_count": 81,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirksnummer."
+    },
+    {
+      "name": "BEZIRK2",
+      "type": "int64",
+      "description": "Zweiter Bezirk bei bezirks\u00fcbergreifenden Zonen; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "WEBLINK1",
+      "type": "string",
+      "description": "Hyperlink; vom Publizierer nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "ZEITRAUM",
+      "type": "string",
+      "description": "G\u00fcltigkeitszeitraum."
+    },
+    {
+      "name": "DAUER",
+      "type": "string",
+      "description": "Nutzungsdauer (in Stunden), als Text."
+    },
+    {
+      "name": "WEBLINK2",
+      "type": "string",
+      "description": "Hyperlink zur Kurzparkzonen-Seite der Stadt Wien."
+    },
+    {
+      "name": "GUELTIG_VON",
+      "type": "string",
+      "description": "G\u00fcltig ab (Datum); vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "SE_SDO_ROWID",
+      "type": "int64",
+      "description": "Interne Zeilenkennung der Datenhaltung, nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Kurzparkzonen Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.199939083028717,
+          48.12102528303603,
+          16.55274500546429,
+          48.30542894579647
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kurzparkzonen Wien default style",
+      "description": "Default visualization for Kurzparkzonen Wien, drawn in #08306b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1229,
+      "file:checksum": "1220bcb923ebc858ee87ac84528e3430ba2713e32147160beba8c7ff9f70bd75c079"
+    },
+    "ogdwien_kurzparkzoneogd": {
+      "href": "./ogdwien_kurzparkzoneogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3103888,
+      "file:checksum": "12203f1eca56206a36da1563f1f980a471adb716ea89f8329f4cad2d482512dabbda",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_kurzparkzoneogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kurzparkzonen Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 359717,
+      "file:checksum": "122076142972564460826535b8477b3f4962c8c050bf79a0f2f46fe35018a9485a20"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kurzparkzonen Wien categorical style",
+      "description": "Categorical visualization coloring Kurzparkzonen Wien by DAUER, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1779,
+      "file:checksum": "122049e351acd181730ed151e8eee6e632458204ffa1f209372a4af6a1a66b87a574"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kurzparkzonen Wien labeled style",
+      "description": "Default visualization for Kurzparkzonen Wien with DAUER shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1665,
+      "file:checksum": "1220f239fd75bf60ff5066deffa20d2f899cee39c872f8f6bd4a5245214b2140ed9d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kurzparkzonen Wien graduated style",
+      "description": "Graduated visualization coloring Kurzparkzonen Wien by BEZIRK, ramped from 1.0 to 23.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1972,
+      "file:checksum": "1220d4eccd4d6b8e99d8a13dd996f35c77d1c5a0b0da91a1c1ea12ef34f43bc00265"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_kurzparkzoneogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kurzparkzonen Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 134659,
+      "file:checksum": "12203813ba4a5eb2909ca314d38ff5a311fe23657eae269833b9454d2c7106bdcc08"
+    }
+  },
+  "keywords": [
+    "Parkraumbewirtschaftung",
+    "ViennaGIS",
+    "Kurzparkzonen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Kurzparkzonen Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

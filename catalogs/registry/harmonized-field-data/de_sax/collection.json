@@ -1,0 +1,328 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "de_sax",
+  "title": "Field blocks for Saxony, Germany",
+  "description": "Feldblöcke und förderfähige Elemente in Sachsen 2026\n\nThis collection holds 1 edition (2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/de_sax/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:25833). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/de_sax/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Feldblöcke",
+    "Germany",
+    "LPIS",
+    "Saxony",
+    "agriculture",
+    "fiboa",
+    "field blocks",
+    "field boundaries"
+  ],
+  "license": "DL-DE-BY-2.0",
+  "providers": [
+    {
+      "name": "Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://geoportal.sachsen.de"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.874736302477823,
+          50.17195588737606,
+          15.04172440329609,
+          51.68458789805254
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:25833"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "FB_BEZEICH",
+      "type": "string",
+      "description": "Descriptive label (per the fiboa data survey)"
+    },
+    {
+      "name": "WT_WRRL",
+      "type": "bool",
+      "description": "Water Framework Directive water body (per the fiboa data survey)"
+    },
+    {
+      "name": "FB_SPA",
+      "type": "bool",
+      "description": "Inside a Special Protection Area (SPA) (per the fiboa data survey)"
+    },
+    {
+      "name": "REG_SAAT",
+      "type": "string",
+      "description": "Regional seed code (per the fiboa data survey)"
+    },
+    {
+      "name": "GLOEZ2",
+      "type": "bool",
+      "description": "GLOEZ-2 (permanent grassland) restriction (per the fiboa data survey)"
+    },
+    {
+      "name": "BERG",
+      "type": "uint8",
+      "description": "Mountain-area classification (per the fiboa data survey)"
+    },
+    {
+      "name": "AGROFORST",
+      "type": "bool",
+      "description": "Agroforestry registered (per the fiboa data survey)"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "AGRIPV",
+      "type": "bool",
+      "description": "Agri-photovoltaic installation (per the fiboa data survey)"
+    },
+    {
+      "name": "NITRAT_TG",
+      "type": "bool",
+      "description": "Nitrate-sensitive partial area (per the fiboa data survey)"
+    },
+    {
+      "name": "KWASSER",
+      "type": "uint8",
+      "description": "Water-erosion class (per the fiboa data survey)"
+    },
+    {
+      "name": "FB_FFH",
+      "type": "bool",
+      "description": "Inside an FFH (Natura 2000) area (per the fiboa data survey)"
+    },
+    {
+      "name": "FB_BN_KAT",
+      "type": "string",
+      "description": "Land-use category (Bodennutzungskategorie) (per the fiboa data survey)"
+    },
+    {
+      "name": "ZUSTAENDIG",
+      "type": "uint8",
+      "description": "Responsible authority code (per the fiboa data survey)"
+    },
+    {
+      "name": "OER_UNZUL",
+      "type": "string",
+      "description": "\"Öko-Regelung unzulässig\" remark (per the fiboa data survey)"
+    },
+    {
+      "name": "NITRAT",
+      "type": "bool",
+      "description": "Nitrate-vulnerable zone (per the fiboa data survey)"
+    },
+    {
+      "name": "KWIND",
+      "type": "uint8",
+      "description": "Wind-erosion class (per the fiboa data survey)"
+    },
+    {
+      "name": "FB_NB",
+      "type": "string",
+      "description": "Nature-protection remarks (per the fiboa data survey)"
+    },
+    {
+      "name": "flik",
+      "type": "string",
+      "description": "The area identifier (FLIK code) is a 16-character string. ([spec](https://github.com/fiboa/flik-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 95305,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 1,
+  "partition:glob": "s3://ftw/harmonized-field-data/de_sax/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/de_sax.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany, Saxony — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/de_sax.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 72479144,
+      "file:checksum": "122019e4830f1879ca319a94d3a01745e5ff8e48a1fc3f29a9f511e6867a6a74b2f7",
+      "proj:code": "EPSG:25833"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 2, 5, 10 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1225,
+      "file:checksum": "12204d00782d963bec8a912b3ba1380b0dde650d8828482f563c49d82ec80622093d"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 742,
+      "file:checksum": "1220a5ae2e901d8f68040a962682da653b2c0f4dcded92e21e0575b948d52bffdc82"
+    },
+    "visual": {
+      "href": "./year=2026/de_sax.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Germany, Saxony — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 32600075,
+      "file:checksum": "1220dcac2d3bf37ad6ac17a57a80e926b8871a63ee393226d246290043a0f221ecd7"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 263393,
+      "file:checksum": "122080dfe224f1e768d37bf4b1f1610706068a2a0836dc0a071ab3398aa218ce9167"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/de_sax.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "de_sax"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://geoportal.sachsen.de",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/DE-SAX.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/de_sax.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/de_sax-2026.json",
+      "type": "application/geo+json",
+      "title": "Germany, Saxony — 2026"
+    }
+  ],
+  "updated": "2026-09-27T20:44:56Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "de_sax": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/flik-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml"
+    ]
+  },
+  "attribution": "Sächsisches Landesamt für Umwelt, Landwirtschaft und Geologie"
+}

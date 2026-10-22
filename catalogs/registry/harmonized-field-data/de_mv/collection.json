@@ -1,0 +1,293 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "de_mv",
+  "title": "Field blocks for Mecklenburg-Western Pomerania, Germany",
+  "description": "Field block register of the Ministry of Agriculture and Environment M-V\n\nThis collection holds 1 edition (2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/de_mv/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:25833). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/de_mv/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Feldblöcke",
+    "Germany",
+    "Mecklenburg-Western Pomerania",
+    "agriculture",
+    "fiboa",
+    "field blocks",
+    "field boundaries"
+  ],
+  "license": "other",
+  "providers": [
+    {
+      "name": "Ministerium für Landwirtschaft und Umwelt M-V",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.geodaten-mv.de/dienste/feldblock_atom?type=dataset&id=f18122c4-2585-4c22-9c48-9e960e8dhd34"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          10.460957127993252,
+          53.08446448481229,
+          14.39716051830725,
+          54.69063591957422
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:25833"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "crop:code",
+      "type": "large_string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "bez_kreis",
+      "type": "large_string",
+      "description": "District name (Kreisbezeichnung) (per the fiboa data survey)"
+    },
+    {
+      "name": "id",
+      "type": "large_string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "erwater",
+      "type": "large_string",
+      "description": "Water-erosion class per Direktzahlungen-Verordnung (per the fiboa data survey)"
+    },
+    {
+      "name": "dgl_jahr",
+      "type": "int16",
+      "description": "Permanent-grassland year (DGL Jahr) (per the fiboa data survey)"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "erwind",
+      "type": "large_string",
+      "description": "Wind-erosion class per Direktzahlungen-Verordnung (per the fiboa data survey)"
+    },
+    {
+      "name": "erwater_l",
+      "type": "large_string",
+      "description": "Water-erosion class per DIN 19708 (per the fiboa data survey)"
+    },
+    {
+      "name": "collection",
+      "type": "large_string",
+      "description": "The identifier of the collection. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:perimeter",
+      "type": "float",
+      "description": "Perimeter of the field, in meters (m). Must be > 0 and <= 125,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "erwind_l",
+      "type": "large_string",
+      "description": "Wind-erosion class per DIN 19708 (per the fiboa data survey)"
+    },
+    {
+      "name": "geometry",
+      "type": "large_binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "flik",
+      "type": "large_string",
+      "description": "The area identifier (FLIK code) is a 16-character string. ([spec](https://github.com/fiboa/flik-extension/blob/main/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 20000,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 1,
+  "partition:glob": "s3://ftw/harmonized-field-data/de_mv/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/de_mv.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany, Mecklenburg-Western Pomerania — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/de_mv.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 48385432,
+      "file:checksum": "12201c15b8a41069ccec5cd51975f4d96f4225efd992b696bb66c753a6bbc6c9233f",
+      "proj:code": "EPSG:25833"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 1, 2, 10, 50 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1243,
+      "file:checksum": "12204e8421d201de7f86da35025e2d45d131670c245b669d869624bd1723eafad52e"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 762,
+      "file:checksum": "122038b3f3288cfe53427f8c50fa38162033a9c3a27e8e29ce876cee0a1aa3d45868"
+    },
+    "visual": {
+      "href": "./year=2026/de_mv.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Germany, Mecklenburg-Western Pomerania — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 14700859,
+      "file:checksum": "1220a9994b3a05f40802715b0cdce80684a2adc8ce536287684b7a2c925b4d905015"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 202002,
+      "file:checksum": "122043d1cef15e113e86a5a9d46b81f4a6ae80965d44526a0467df825733dc3d02d0"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "href": "https://www.geodaten-mv.de/dienste/feldblock_atom?type=dataset&id=f18122c4-2585-4c22-9c48-9e960e8dhd34",
+      "title": "No restrictions apply",
+      "rel": "license",
+      "type": "text/html"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/de_mv.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "de_mv"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.geodaten-mv.de/dienste/feldblock_atom?type=dataset&id=f18122c4-2585-4c22-9c48-9e960e8dhd34",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/DE-MV.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/de_mv.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/de_mv-2026.json",
+      "type": "application/geo+json",
+      "title": "Germany, Mecklenburg-Western Pomerania — 2026"
+    }
+  ],
+  "updated": "2026-08-28T18:52:49Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "de_mv": [
+      "https://fiboa.org/flik-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml"
+    ]
+  }
+}

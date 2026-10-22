@@ -1,0 +1,438 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/vacancy-composite",
+  "stac_version": "1.1.0",
+  "description": "Parcel-level vacancy indicators for St. Louis: vacant buildings, condemnations, tax delinquency, LRA ownership, and private vacancy, compiled by SLDC.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://stlcity.maps.arcgis.com/home/item.html?id=98a6f429617546be9d9b467c5ad1dafc",
+      "type": "text/html",
+      "title": "Dataset page in the city's ArcGIS Online organization"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./vacancy-composite.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "vacancy-composite"
+      ]
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "via",
+      "href": "https://stlcity.maps.arcgis.com/home/item.html?id=98a6f429617546be9d9b467c5ad1dafc",
+      "type": "text/html",
+      "title": "Dataset page in the city's ArcGIS Online organization"
+    },
+    {
+      "rel": "via",
+      "href": "https://services6.arcgis.com/HZXbCkpCSqbGd0vK/arcgis/rest/services/SLDC_SLDC_Tol_Def_Vac_NP/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 20694,
+  "table:row_count": 20694,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "TOLEMI_ID",
+      "type": "double",
+      "description": "Property identifier assigned by Tolemi (the BuildingBlocks data platform SLDC uses to assemble its vacancy composite; the source layer is SLDC.SLDC.Tol_Def_Vac_NP)."
+    },
+    {
+      "name": "PID1",
+      "type": "double",
+      "description": "First parcel identifier for the property as carried in the Tolemi composite (exact scheme not documented; PID2 is a second identifier)."
+    },
+    {
+      "name": "PID2",
+      "type": "double"
+    },
+    {
+      "name": "STREET_ADD",
+      "type": "string",
+      "description": "Street address of the property (shapefile-truncated name)."
+    },
+    {
+      "name": "PROPERTY_T",
+      "type": "string",
+      "description": "Property type (shapefile-truncated 'PROPERTY_TYPE'; no decode published)."
+    },
+    {
+      "name": "TOLEMI_DEF",
+      "type": "string",
+      "description": "Tolemi 'definite vacancy' determination for the property \u2014 the flag/category under which the parcel qualified for this definite-vacant composite (layer name Tol_Def_Vac; no public decode found)."
+    },
+    {
+      "name": "LRA_OWNED_",
+      "type": "int32",
+      "description": "Whether the property is owned by the Land Reutilization Authority (shapefile-truncated flag)."
+    },
+    {
+      "name": "LRA_RORE",
+      "type": "int32",
+      "description": "LRA inventory attribute (untruncated meaning not documented; no public decode found)."
+    },
+    {
+      "name": "VACANT_BUI",
+      "type": "int32",
+      "description": "Vacant-building indicator (shapefile-truncated 'VACANT_BUILDING', i.e. on the city vacant building registry)."
+    },
+    {
+      "name": "CONDEMNATI",
+      "type": "int32",
+      "description": "Condemnation indicator for the structure (shapefile-truncated 'CONDEMNATION')."
+    },
+    {
+      "name": "NSR_OWNED_",
+      "type": "int32",
+      "description": "Flag for ownership recorded in the city's vacancy pipeline under 'NSR' (not expanded in any public documentation found)."
+    },
+    {
+      "name": "LRA_OWNE_1",
+      "type": "int32"
+    },
+    {
+      "name": "PRIVATE_VA",
+      "type": "int32",
+      "description": "Privately-owned vacant indicator (shapefile-truncated 'PRIVATE_VACANT')."
+    },
+    {
+      "name": "NSR_OWNE_1",
+      "type": "int32"
+    },
+    {
+      "name": "LAND_SIZE",
+      "type": "double",
+      "description": "Land area of the parcel (units not documented in the source; city parcel land areas are square feet)."
+    },
+    {
+      "name": "STRUCTUREA",
+      "type": "string",
+      "description": "Structure area (shapefile-truncated; likely 'STRUCTURE_AREA')."
+    },
+    {
+      "name": "YEAR_BUILT",
+      "type": "double",
+      "description": "Year the structure was built."
+    },
+    {
+      "name": "BUILDING_S",
+      "type": "string"
+    },
+    {
+      "name": "NUMBER_OF_",
+      "type": "double"
+    },
+    {
+      "name": "BUILDING_1",
+      "type": "double"
+    },
+    {
+      "name": "OWNER_NAME",
+      "type": "string",
+      "description": "Owner name of record; OWNER_ADDR is the owner's mailing address."
+    },
+    {
+      "name": "OWNER_ADDR",
+      "type": "string"
+    },
+    {
+      "name": "OWNER_TENU",
+      "type": "string",
+      "description": "Owner tenure (shapefile-truncated 'OWNER_TENURE'; no decode published)."
+    },
+    {
+      "name": "TAX_DELINQ",
+      "type": "string",
+      "description": "Tax delinquency indicator for the property."
+    },
+    {
+      "name": "OWNER_PROP",
+      "type": "double"
+    },
+    {
+      "name": "OWNER_VAC_",
+      "type": "double"
+    },
+    {
+      "name": "BUILDING_F",
+      "type": "double"
+    },
+    {
+      "name": "FOREST_FEE",
+      "type": "double"
+    },
+    {
+      "name": "LRA_STATUS",
+      "type": "string",
+      "description": "Status of the property within the LRA inventory; LRA_DATE is the associated date."
+    },
+    {
+      "name": "LRA_DATE",
+      "type": "string"
+    },
+    {
+      "name": "BISA_SCORE",
+      "type": "double",
+      "description": "Building Inspection/condition score carried in the composite ('BISA' not expanded in public documentation)."
+    },
+    {
+      "name": "ECON_INVES",
+      "type": "double"
+    },
+    {
+      "name": "PROB_PROP_",
+      "type": "double"
+    },
+    {
+      "name": "PUBLIC_HEA",
+      "type": "double"
+    },
+    {
+      "name": "COLPARCELI",
+      "type": "double"
+    },
+    {
+      "name": "HANDLE",
+      "type": "double",
+      "description": "Citywide parcel handle (join key to parcels); COLPARCELI is the truncated Collector parcel ID."
+    },
+    {
+      "name": "NBRHD",
+      "type": "double",
+      "description": "City neighborhood number (city 'Neighborhood' vocabulary)."
+    },
+    {
+      "name": "ZONING",
+      "type": "string",
+      "description": "Zoning district code (city 'Zoning Code' vocabulary)."
+    },
+    {
+      "name": "CENSBLOCK2",
+      "type": "string",
+      "description": "2020 census block (shapefile-truncated 'CENSBLOCK20')."
+    },
+    {
+      "name": "WARD20",
+      "type": "double",
+      "description": "2020-cycle aldermanic ward number."
+    },
+    {
+      "name": "LATITUDE",
+      "type": "double"
+    },
+    {
+      "name": "LONGITUDE",
+      "type": "double"
+    },
+    {
+      "name": "SHAPE_1",
+      "type": "string"
+    },
+    {
+      "name": "SHAPE_1_GE",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 6384202,
+  "portolan:asset_count": 1,
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "housing",
+          "title": "Housing"
+        },
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "st-louis-development-corporation",
+          "title": "St. Louis Development Corporation"
+        }
+      ]
+    }
+  ],
+  "title": "Parcel Vacancy Composite",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3170069711414,
+          38.5357964169723,
+          -90.1790919682017,
+          38.7728451074772
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "vacancy",
+    "sldc",
+    "St. Louis Development Corporation"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 St. Louis Development Corporation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://stlcity.maps.arcgis.com/home/item.html?id=98a6f429617546be9d9b467c5ad1dafc"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "vacancy-composite": {
+      "href": "./vacancy-composite.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Parcel Vacancy Composite (GeoParquet)",
+      "file:size": 6403327,
+      "file:checksum": "1220dd137697c18b6d7f0e88f65de8e34769e3a3521f5873904d8827a270ab951ad3",
+      "roles": [
+        "data"
+      ]
+    },
+    "vacancy-composite-tiles": {
+      "href": "./vacancy-composite.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parcel Vacancy Composite (PMTiles)",
+      "file:size": 20240163,
+      "file:checksum": "1220b92eac1d1eb13700f89f9dbb7566a1087af0bc7779c398e8e32c357b3d894b72",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 545,
+      "file:checksum": "12202c85b3ae14f956c0d1a89079a307ae7b177fb761176f520e878eac953c3bf60e",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Vacant land vs structures",
+      "description": "SLDC's parcel-level vacancy composite: 13,987 vacant lots (orange) and 6,707 vacant structures (red).",
+      "file:size": 1200,
+      "file:checksum": "122007e90173d597cf6c99b18f3ddcb8de09ddcaf9faa51aa9aad93dd2ee314ead3d",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-source": {
+      "href": "./styles/style-source.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Vacancy classification",
+      "description": "The composite's own top classes: LRA lots, private lots, Northside Regeneration lots, vacant-building registry, condemnations; smaller combined classes gray.",
+      "file:size": 1847,
+      "file:checksum": "1220926cbf53ce1125ab739f723983af96e13b9753bc85408ee74fb579f3578bd001",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-year-built": {
+      "href": "./styles/style-year-built.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Vacant stock by year built",
+      "description": "Year built of the vacant stock in era steps; 0 or unknown light gray \u2014 most of the vacancy crescent predates 1930.",
+      "file:size": 1415,
+      "file:checksum": "122017a8967b9b92e53a163eed66e583cfe2e9d0a6cce16b4d1fb423e2f30ebef597",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Parcel Vacancy Composite rendered with the default style",
+      "file:size": 385372,
+      "file:checksum": "1220c8252c3ad031357b4fd88a97098aff6c092e411f163816214bd48f4d308002a7",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "type": "Collection",
+  "id": "government/election-precincts",
+  "stac_version": "1.1.0",
+  "description": "Wards & current election precincts for the City of St. Louis.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./election-precincts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "election-precincts"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=124",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Government"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=124",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 209,
+  "table:row_count": 209,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Precinct name/identifier for the election precinct polygon."
+    },
+    {
+      "name": "globalid",
+      "type": "string"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:total_size_bytes": 939891,
+  "portolan:asset_count": 7,
+  "portolan:styles": [
+    "styles/default",
+    "styles/style-boundaries",
+    "styles/style-tint"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "government",
+          "title": "Government"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "board-of-election-commissioners",
+          "title": "Board of Election Commissioners"
+        }
+      ]
+    }
+  ],
+  "title": "Election Wards & Precincts",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051059298894,
+          38.532024890458636,
+          -90.16636362934655,
+          38.774375299544545
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "board of elections",
+    "precincts",
+    "wards",
+    "Board of Election Commissioners"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Board of Election Commissioners",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=124"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "election-precincts": {
+      "href": "./election-precincts.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Election Wards & Precincts (GeoParquet)",
+      "file:size": 275923,
+      "file:checksum": "1220998feacc412ffaded313d56cd453a95c3ee850d0209810ddf0aab0ebfd9d2e78",
+      "roles": [
+        "data"
+      ]
+    },
+    "election-precincts-tiles": {
+      "href": "./election-precincts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "election-precincts (vector tiles)",
+      "file:size": 379181,
+      "file:checksum": "1220d635020f4e71bb6ed43e7bd1aafa9437e3870fe17ba4c66b60004fd414e91b54",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Precincts by ward",
+      "description": "The 209 current voting precincts colored by their ward (from the precinct name, 'W <ward> P <precinct>'), labeled. Same ward colors as the wards collection.",
+      "file:size": 3337,
+      "file:checksum": "1220426ddd5c1b8b9010a4e596d0120876e73f24b786e4927837196ee472f4f43414",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Precinct boundaries",
+      "description": "Outlines only.",
+      "file:size": 482,
+      "file:checksum": "122014e0271561215e79e81a8817f57542ee436f10f3ea29dd6bb37d76237e9d2543",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-tint": {
+      "href": "./styles/style-tint.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tinted precincts",
+      "description": "Solid light fill for reference.",
+      "file:size": 510,
+      "file:checksum": "122016607d559e27a327b45c2fec416c6bcf21763247f3dd0873f9ce89b6be564731",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "file:size": 336239,
+      "file:checksum": "12203c318c7fd044d630a797ca0e7c6940b5e0032b6402d2dc752a993395921a0a3e",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source": {
+      "href": "https://static.stlouis-mo.gov/open-data/BOEC/Precincts_Current.zip",
+      "type": "application/zip",
+      "title": "Current election precincts (zipped Shapefile)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 292503,
+      "file:checksum": "12205b751cd8c63a0bed18907949bfc0fe0b91f6dba66a2731cb1a9f4babed3e46a6",
+      "description": "The file this collection was built from. Served upstream by static.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  }
+}

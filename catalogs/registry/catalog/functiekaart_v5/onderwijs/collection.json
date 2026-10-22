@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_v5/onderwijs",
+  "stac_version": "1.1.0",
+  "description": "Onderwijs",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./onderwijs.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "onderwijs"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 724,
+  "table:row_count": 724,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Onderwijs",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.99837616907494,
+          52.0564782806269,
+          5.18127841344587,
+          52.1276753973622
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "onderwijs": {
+      "href": "./onderwijs.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 33967,
+      "file:checksum": "122068e644ce46bca092c7649594e0663dd5914e823d4a34881d44e21352ee740597",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./onderwijs.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 11582,
+      "file:checksum": "122006497e238cc22d22e64c9881708843b7c33b75d301f0ef8f63e0d73201cb2c90"
+    },
+    "onderwijs-tiles": {
+      "href": "./onderwijs.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "onderwijs (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 28009,
+      "file:checksum": "1220b4f4ef8654922db9e81f8d4af996f8b00a6ff8a2b3dd89070cdbd4df23d07661"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 657,
+      "file:checksum": "12200420bc614deeffc23ce0b6899d612877a123dfea631d8457fc08fa66602f0006",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

@@ -1,0 +1,217 @@
+{
+  "type": "Collection",
+  "id": "oepnv/bushaltestellen",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz enth\u00e4lt das \"Ungest\u00f6rte \u00d6PNV-Netz (Stra\u00dfenbahn- und Busnetz) der BVG\". Dies umfasst den Regelverkehr des \u00d6PNV (Stra\u00dfenbahn und Busnetz) mit den Haltepunkten und Linien des Stra\u00dfenbahn- und Busnetzes.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./oepnv_ungestoert_a_busstopp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "BVG Bushaltestellen (ungest\u00f6rtes Netz)",
+      "pmtiles:layers": [
+        "oepnv_ungestoert_a_busstopp"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/bvg-ungestortes-opnv-netz-strassenbahn-und-busnetz-wfs-c8a3b45a",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/oepnv_ungestoert",
+      "rel": "related",
+      "title": "WFS source service: a-busstopp",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 6456,
+  "table:row_count": 6456,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "no",
+      "type": "int64"
+    },
+    {
+      "name": "hstname",
+      "type": "string"
+    },
+    {
+      "name": "anzlinien",
+      "type": "int64"
+    },
+    {
+      "name": "code",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "BVG Bushaltestellen (ungest\u00f6rtes Netz)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.0825301,
+          52.34049902,
+          13.7534207,
+          52.66072227
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "BVG Bushaltestellen (ungest\u00f6rtes Netz) default style",
+      "description": "Default visualization for BVG Bushaltestellen (ungest\u00f6rtes Netz), drawn in #a50f15.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1282,
+      "file:checksum": "1220e30e2b392e45332ac1932dc4010274af02b795b0c4b16a6145e1d66ed95c7a45"
+    },
+    "oepnv_ungestoert_a_busstopp": {
+      "href": "./oepnv_ungestoert_a_busstopp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 337995,
+      "file:checksum": "1220998b6cf610b567cd929a1ef8acdf5d819eeec56036ad3f9c5e42b323ef0b1e9d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./oepnv_ungestoert_a_busstopp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "BVG Bushaltestellen (ungest\u00f6rtes Netz) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 423949,
+      "file:checksum": "1220d366d61d383d8514353f7a16695a1f7d3b259f8c5b7053adb9a3fd34b6bd6885"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "BVG Bushaltestellen (ungest\u00f6rtes Netz) labeled style",
+      "description": "Default visualization for BVG Bushaltestellen (ungest\u00f6rtes Netz) with hstname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1728,
+      "file:checksum": "12202be255bf83226fafca164f7f71a9e0e1b6596efc76c7321087f7605797a376ff"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "BVG Bushaltestellen (ungest\u00f6rtes Netz) graduated style",
+      "description": "Graduated visualization coloring BVG Bushaltestellen (ungest\u00f6rtes Netz) by no, ramped from 101000001.0 to 101099983.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2075,
+      "file:checksum": "122056ce4e416f21804c6bbc58a24ad8e485d19e435406d4e670d0d399b31c6400c1"
+    },
+    "thumbnail": {
+      "href": "./oepnv_ungestoert_a_busstopp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of BVG Bushaltestellen (ungest\u00f6rtes Netz)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 140045,
+      "file:checksum": "1220967bc898e330da4e009bbd60c4cb16a7a5fc5eef1096bfda80d25cc3edfe2ba1"
+    }
+  },
+  "keywords": [
+    "BVG",
+    "Berlin",
+    "Bus",
+    "Busnetz",
+    "Geodaten",
+    "Karten",
+    "Netz",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Berliner Verkehrsbetriebe",
+      "description": "Datenquelle Geoportal Berlin, BVG: Ungest\u00f6rtes \u00d6PNV-Netz (Stra\u00dfenbahn- und Busnetz), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "ekin.kutlu2@bvg.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

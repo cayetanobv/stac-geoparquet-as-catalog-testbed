@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "maasto-1-2/meri",
+  "stac_version": "1.1.0",
+  "description": "meri",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./meri.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "meri",
+      "pmtiles:layers": [
+        "meri"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/meri/items",
+      "rel": "related",
+      "title": "OGC API source service: meri",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 750,
+  "table:row_count": 750,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 64, joka vastaa aluemaisia Maasto/1-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 36211, merivesi."
+    },
+    {
+      "name": "keskikorkeus",
+      "type": "int32",
+      "description": "Vakaveden keskikorkeus millimetrein\u00e4. Keskikorkeus perustuu pitk\u00e4aikaisiin havaintoihin tai, jos havaintoja ei ole saatavissa, kes\u00e4kauden arvioidun keskiveden korkeuteen. Merenpinnan korkeus ilmoitetaan arvona 0."
+    },
+    {
+      "name": "saannostelynalaraja",
+      "type": "string",
+      "description": "S\u00e4\u00e4nn\u00f6stellyn vakaveden korkeuden alaraja millimetrein\u00e4. Sarake on tyhj\u00e4, jos vakavett\u00e4 ei s\u00e4\u00e4nn\u00f6stell\u00e4."
+    },
+    {
+      "name": "saannostelynylaraja",
+      "type": "string",
+      "description": "S\u00e4\u00e4nn\u00f6stellyn vakaveden korkeuden yl\u00e4raja millimetrein\u00e4. Sarake on tyhj\u00e4, jos vakavett\u00e4 ei s\u00e4\u00e4nn\u00f6stell\u00e4."
+    },
+    {
+      "name": "vedenpinnankorkeusluvutviittaus",
+      "type": "string",
+      "description": "Viittaus vakaveteen yhdistettyihin Vedenpinnan korkeusluku -tekstikohteisiin. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Meriveden aluerajaus WGS84-koordinaatistossa. Merivesi on vakavesi, jonka vedenpinnan korkeus pysyy alueellisesti samalla tasolla eik\u00e4 siin\u00e4 ole olennaista virtaamaa."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "meri",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.0714057,
+          58.8445,
+          27.8035469,
+          65.8162392
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "meri default style",
+      "description": "Default visualization for meri, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1082,
+      "file:checksum": "12208d209d4694407f05c0b9b3053ed7fa3811a8357289ca4ccedbdaf39975ed9f91"
+    },
+    "meri": {
+      "href": "./meri.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 132741091,
+      "file:checksum": "12206c5f39433db01eeba58f7369520eb98318e3b3ecd601853cf3c6c3a40b012759",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./meri.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "meri (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 34596904,
+      "file:checksum": "1220d6635169895b2a7aa8936735355e657d662360d6f85adec4aa2fb3a025e0c144"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "meri graduated style",
+      "description": "Graduated visualization coloring meri by sijaintitarkkuus, ramped from 5000.0 to 7500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1886,
+      "file:checksum": "1220a063e577ece6458d2a3ec8b37d6f6fc0eace47916b21a8f7dd0ed6a236a261a5"
+    },
+    "thumbnail": {
+      "href": "./meri.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of meri",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 94912,
+      "file:checksum": "1220b50ef657ee883ecd2a557d6768d2dfc399d27f78b3c491b765abc65480610cee"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/1",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

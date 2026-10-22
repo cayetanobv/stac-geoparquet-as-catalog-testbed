@@ -1,0 +1,274 @@
+{
+  "type": "Collection",
+  "id": "oeffentlicher-verkehr/liniennetz",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz zeigt das Liniennetz des \u00f6ffentlichen Verkehrs im Kanton Basel-Stadt sowie teilweise in der trinationalen Agglomeration. Es wird nach Liniennummer, Transportunternehmen und Zeitdauer das Angebots unterschieden.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100064.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064)",
+      "pmtiles:layers": [
+        "ods-100064"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100064/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100064/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100064",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 187,
+  "table:row_count": 187,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "l_nr",
+      "type": "string",
+      "description": "Eindeutiger Identifikator der Linien"
+    },
+    {
+      "name": "liniennmr",
+      "type": "string",
+      "description": "Liniennummer"
+    },
+    {
+      "name": "strecke",
+      "type": "string",
+      "description": "Strecke"
+    },
+    {
+      "name": "hinrueck",
+      "type": "string",
+      "description": "Hin- und R\u00fcckweg"
+    },
+    {
+      "name": "fahrzeug",
+      "type": "string",
+      "description": "Transportmittel"
+    },
+    {
+      "name": "angebot",
+      "type": "VARCHAR[]",
+      "description": "Zeitraum, in welchem das Angebot besteht"
+    },
+    {
+      "name": "tu",
+      "type": "string",
+      "description": "Name des Transportunternehmens"
+    },
+    {
+      "name": "shp_length",
+      "type": "int32",
+      "description": "Liniengeometrie"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (LineString, MultiLineString) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.343655428829853,
+          47.35182678291365,
+          8.221947437994702,
+          47.86831038911988
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) default style",
+      "description": "Default visualization for Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064), drawn in #005a32.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1181,
+      "file:checksum": "12205eb66a1d7638ea8ce3a9a54a52d7b14080fd78dd87c3bbfd22ff728c75504555"
+    },
+    "ods-100064": {
+      "href": "./ods-100064.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1270484,
+      "file:checksum": "1220b32754b760939808c6db5f32c586c2c239b1664e17f49acfe256deba0c471046",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100064.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 779717,
+      "file:checksum": "122048dfdb634a349349be53746f88eee478788db67cb853ab59e7ac052a90a5c7d1"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) categorical style",
+      "description": "Categorical visualization coloring Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) by hinrueck, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2472,
+      "file:checksum": "1220cf05efbcbb32bd5ebb3a9be640de60f49fe1daf1f88a3709e21a98dfa6df71ec"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) labeled style",
+      "description": "Default visualization for Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) with hinrueck shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1594,
+      "file:checksum": "12200c518ae37ae0bcb40edbad4b621fcb285e83bb820187e1c5340accaee4962eac"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) graduated style",
+      "description": "Graduated visualization coloring Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064) by shp_length, ramped from 0.0 to 0.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1934,
+      "file:checksum": "1220876730e92dfe277ec212a61779e95f7ece222b6604818c9fb3c3f7550b629af9"
+    },
+    "thumbnail": {
+      "href": "./ods-100064.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Liniennetz des \u00f6ffentlichen Verkehrs (data.bs.ch 100064)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 148957,
+      "file:checksum": "1220f700db0e906fa71b3673c66aaa9aa44d8c7894d6a8c2d5991bb648c01ae0326e"
+    }
+  },
+  "keywords": [
+    "Tram",
+    "Bus",
+    "Zug",
+    "Haltestelle",
+    "Baustelle",
+    "Umleitung",
+    "\u00d6V",
+    "Mobilit\u00e4t und Verkehr",
+    "Raum und Umwelt",
+    "Verwaltung",
+    "Tourismus",
+    "opendata.swiss",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Amt f\u00fcr Mobilit\u00e4t",
+      "description": "Datenquelle: Kanton Basel-Stadt, Amt f\u00fcr Mobilit\u00e4t (Bau- und Verkehrsdepartement), \u00abLiniennetz des \u00f6ffentlichen Verkehrs\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100064/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,282 @@
+{
+  "type": "Collection",
+  "id": "protected-areas/special-protection-areas",
+  "stac_version": "1.1.0",
+  "description": "Special Protection Areas (SPAs) are part of the Natura 2000 network of European sites, designated in accordance with the EU Birds Directive (79/409/EEC), to protect various threatened and migratory bird species. SPA boundaries are mapped using the Irish Grid (epsg. 29903) or Irish Transverse Mercator (epsg 2157) co-ordinate systems. Details of the co-ordinate system for each SPA site can be found in the attribute table of the shapefile.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./special_protection_areas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Special Protection Areas (SPA)",
+      "pmtiles:layers": [
+        "special_protection_areas"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.npws.ie/maps-and-data",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS source service: special_protection_areas",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/rest/services/NPWSDesignatedAreas/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer NPWSDesignatedAreas (live NPWS service)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://dservices-eu1.arcgis.com/Jhij7i46ouO8Cc0N/arcgis/services/NPWSDesignatedAreasWFS/WFSServer",
+      "rel": "related",
+      "title": "WFS NPWSDesignatedAreasWFS (live NPWS service)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 202,
+  "table:row_count": 202,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:2157')",
+      "description": "Feature geometry in WGS 84 (OGC:CRS84) after conversion; the service stores it in Irish Transverse Mercator (EPSG:2157). The only column declared as geometry."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Internal row number of the ArcGIS service; not stable across data versions."
+    },
+    {
+      "name": "SITECODE",
+      "type": "string",
+      "description": "NPWS site code of the designated area, the key used across NPWS publications and at www.npws.ie/protected-sites."
+    },
+    {
+      "name": "SITE_NAME",
+      "type": "string",
+      "description": "Name of the designated site."
+    },
+    {
+      "name": "VERSION",
+      "type": "double",
+      "description": "Version number of the site boundary as released by NPWS."
+    },
+    {
+      "name": "COUNTY",
+      "type": "string",
+      "description": "County or counties the site lies in, as recorded by NPWS."
+    },
+    {
+      "name": "HA",
+      "type": "double",
+      "description": "Area of the site in hectares as computed by NPWS."
+    },
+    {
+      "name": "Source_CRS",
+      "type": "string",
+      "description": "Coordinate reference system the site boundary was originally mapped in; NPWS notes that this varies per site between the Irish Grid, Irish Transverse Mercator and, for offshore marine sites, WGS 84."
+    },
+    {
+      "name": "SourcScale",
+      "type": "string",
+      "description": "Scale of the source mapping the boundary was digitised from."
+    },
+    {
+      "name": "URL",
+      "type": "string",
+      "description": "Link to the NPWS page for the site."
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double",
+      "description": "Area computed by the ArcGIS service in the units of its spatial reference (Irish Transverse Mercator square metres); not derived from the converted WGS 84 geometry. Use the HA column or compute from geom."
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double",
+      "description": "Perimeter computed by the ArcGIS service in the units of its spatial reference (Irish Transverse Mercator metres); not derived from the converted WGS 84 geometry."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Bounding box of the geometry as a struct of xmin, ymin, xmax, ymax, added by the GeoParquet conversion."
+    }
+  ],
+  "title": "Special Protection Areas (SPA)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -10.687972371348735,
+          51.447492329559935,
+          -5.507499999959805,
+          55.44995300498891
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Special Protection Areas (SPA) default style",
+      "description": "Default visualization for Special Protection Areas (SPA), drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1248,
+      "file:checksum": "12201656401f12290fbe0ddd5debc78b6c22c2647e0fb8a8be91798b5212dbc5ac59"
+    },
+    "special_protection_areas": {
+      "href": "./special_protection_areas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13039552,
+      "file:checksum": "122067700b40c5c10d0aa5b11f94931711eb1dccb43a4a38f28727386fcfd72d8b49",
+      "proj:code": "EPSG:2157",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./special_protection_areas.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Special Protection Areas (SPA) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10481336,
+      "file:checksum": "1220bd9202712c79b1e64cfc4b58963e768786c7345a3a2e6538a1ff819a57e02502"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Special Protection Areas (SPA) categorical style",
+      "description": "Categorical visualization coloring Special Protection Areas (SPA) by Source_CRS, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1833,
+      "file:checksum": "12205a41e654db5015df0a6c59e2794bf65ff739cd9904775d086f677fbc5bc55bcc"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Special Protection Areas (SPA) labeled style",
+      "description": "Default visualization for Special Protection Areas (SPA) with SITE_NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1690,
+      "file:checksum": "1220d21cd45bf8561e3cb1489d8ad6584bc05ce9bc16206dcbeb9e51baae9d99dc09"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Special Protection Areas (SPA) graduated style",
+      "description": "Graduated visualization coloring Special Protection Areas (SPA) by Shape__Area, ramped from 41438.91717529297 to 3054063945.0724487.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2134,
+      "file:checksum": "1220a46fea868451e5318d510d00f13301b1a0b9b3b8bdd86a7ac44d4c6c0ffa7f53"
+    },
+    "thumbnail": {
+      "href": "./special_protection_areas.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Special Protection Areas (SPA)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 86993,
+      "file:checksum": "12200216f47f6c799f57ea610956b9fa528ffb89e8604a2cdf691c986e918ca3aaf1"
+    }
+  },
+  "keywords": [
+    "Ireland",
+    "NPWS",
+    "protected areas",
+    "nature conservation",
+    "designated sites",
+    "open data"
+  ],
+  "providers": [
+    {
+      "name": "National Parks and Wildlife Service (NPWS), Department of Housing, Local Government and Heritage",
+      "description": "The National Parks and Wildlife Service of the Department of Housing, Local Government and Heritage designates and manages Ireland's protected sites and publishes their statutory boundaries. Source read 2026-09-20.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.npws.ie/",
+      "email": "natureconservation@npws.gov.ie"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T16:00:00Z"
+}

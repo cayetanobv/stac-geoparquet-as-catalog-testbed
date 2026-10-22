@@ -1,0 +1,173 @@
+{
+  "type": "Collection",
+  "id": "maaibestek_wfl1/exoten",
+  "stac_version": "1.1.0",
+  "description": "Exoten",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./exoten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "exoten"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 350,
+  "table:row_count": 350,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "FID",
+      "type": "int64"
+    },
+    {
+      "name": "ID",
+      "type": "int32"
+    },
+    {
+      "name": "Eigenaar",
+      "type": "string"
+    },
+    {
+      "name": "Soort",
+      "type": "string"
+    },
+    {
+      "name": "Exportdatu",
+      "type": "string"
+    },
+    {
+      "name": "Legenda",
+      "type": "string"
+    },
+    {
+      "name": "Oppervlakt",
+      "type": "double"
+    },
+    {
+      "name": "GlobalID",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Exoten",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.004739939927,
+          52.0474621513076,
+          5.18373068033284,
+          52.1293338092524
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "exoten": {
+      "href": "./exoten.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 62756,
+      "file:checksum": "1220cb612170eb9d19ea01a2aa28d3b8791e9648cf3c69bf191c40ca32e4597ed5c8",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./exoten.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 8729,
+      "file:checksum": "1220cd0f259598459400a0557e71b2236dd65753a7e0e4d7ffa8a03f8910e9e5d962"
+    },
+    "exoten-tiles": {
+      "href": "./exoten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "exoten (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 125157,
+      "file:checksum": "1220603a43853ed4207fd2b6b9353d40686945fa9d1115912b390f997acf3d68a14d"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 2414,
+      "file:checksum": "122004f16f2fd8309783d9e122f9cdfe64cd4bfc7daf677573eadf250b7d5326aad5",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

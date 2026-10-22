@@ -1,0 +1,255 @@
+{
+  "type": "Collection",
+  "id": "wind-speed-probabilities/day-2025-10-24/cycle-2025102412",
+  "stac_version": "1.1.0",
+  "description": "NHC 120-hour cumulative wind speed probability bands (34, 50 and 64 kt; 5 km grid product) for the forecast cycle starting 2025-10-24 12:00 UTC, clipped to lon -90..-65, lat 10..25. 24 band polygons: 34 kt 11, 50 kt 8, 64 kt 5. PERCENTAGE bands as published by NHC; derived cycle_time (UTC), wind_threshold_kt, pct_min and pct_max. Basin-wide product: probabilities include every active cyclone, not only Melissa. The cycle time is the synoptic time of the forecast that the regular advisory issued at 2025-10-24 15:00 UTC is based on.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cycle-2025102412.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC",
+      "pmtiles:layers": [
+        "cycle-2025102412"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/archive_wsp.php?year=2025",
+      "type": "text/html"
+    },
+    {
+      "rel": "canonical",
+      "href": "https://www.nhc.noaa.gov/gis/forecast/archive/2025102412_wsp_120hr5km.zip",
+      "type": "application/json"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 24,
+  "table:row_count": 24,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "cycle_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): forecast cycle start (UTC) from the NHC file name YYYYMMDDHH; equals the synoptic time of the regular advisory issued 3 h later. One value in this file."
+    },
+    {
+      "name": "wind_threshold_kt",
+      "type": "int32",
+      "description": "Derived (CARTO): wind speed threshold of the probability file: 34 (tropical-storm force), 50, or 64 kt (hurricane force)."
+    },
+    {
+      "name": "PERCENTAGE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): probability band label of the 120 h cumulative probability that sustained winds reach the threshold: '<5%', '5-10%', '10-20%', '20-30%', '30-40%', '40-50%', '50-60%', '60-70%', '70-80%', '80-90%', '>90%'. See pct_min / pct_max."
+    },
+    {
+      "name": "pct_min",
+      "type": "int32",
+      "description": "Derived (CARTO): lower bound in percent of the PERCENTAGE band ('<5%' -> 0, '>90%' -> 90)."
+    },
+    {
+      "name": "pct_max",
+      "type": "int32",
+      "description": "Derived (CARTO): upper bound in percent of the PERCENTAGE band ('<5%' -> 5, '>90%' -> 100)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Band polygon (Polygon or MultiPolygon after clipping) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file). NHC ships the shapefiles with an authalic-sphere GCS in the .prj; coordinates were not transformed."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -87.86369358026826,
+          10.0,
+          -65.47563387877273,
+          25.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-24T12:00:00Z",
+          "2025-10-29T12:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC default style",
+      "description": "Default visualization for Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC, drawn in #00838f.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1232,
+      "file:checksum": "1220f1c6ae1aed73faf411e7d36fdf508cfc6d56509bd44605b8278605317a9d75e0"
+    },
+    "cycle-2025102412": {
+      "href": "./cycle-2025102412.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 60214,
+      "file:checksum": "122098d091509aa6991ac70fc2fdee9fdf98d8a6674cf10f69abb7973d2290a831a2",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./cycle-2025102412.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 12521142,
+      "file:checksum": "12208ee7ea6d4dd4d79114886cbca56654d5f20f7e2f17a4a2e47937f649e4674fdf"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC categorical style",
+      "description": "Categorical visualization coloring Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC by PERCENTAGE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2903,
+      "file:checksum": "1220d9c052b5340268959ed6a18ff6d92fdf5e12c7cb4a0efb767e50fd0c3825d44f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC labeled style",
+      "description": "Default visualization for Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC with PERCENTAGE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1659,
+      "file:checksum": "1220177eed98ac3175bfe5585375693be93f023d8a3e74113f0caed699450bff4bbc"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC graduated style",
+      "description": "Graduated visualization coloring Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC by pct_min, ramped from 0.0 to 90.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1979,
+      "file:checksum": "1220964413b013a8075b8dcdfd31dd6d3eeb47a9f4efd4a9d6e9adf44f6fd348d21e"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/wind-speed-probabilities/cycle-2025102412/cycle-2025102412.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: cycle-2025102412",
+      "pipeline:upstream": true,
+      "file:size": 59946,
+      "file:checksum": "1220abb49bdcc0ee91ec49a89e1e8079f45bc3140a5d4b1216044eb1edf23950b304"
+    },
+    "thumbnail": {
+      "href": "./cycle-2025102412.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Wind speed probabilities, 120 h cumulative, cycle 2025-10-24 12:00 UTC",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 57629,
+      "file:checksum": "122086cc6a5273b4ecd83d3c3d0d5d4a1015884229985b10de68457ffdbe47082812"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

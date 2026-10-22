@@ -1,0 +1,145 @@
+{
+  "type": "Collection",
+  "id": "bomenbeleid_wfl1/rijkswegen",
+  "stac_version": "1.1.0",
+  "description": "Rijkswegen",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rijkswegen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "rijkswegen"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Layer",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Rijkswegen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.98028398712677,
+          51.9884488925487,
+          5.21968672393384,
+          52.1502118689714
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "rijkswegen": {
+      "href": "./rijkswegen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6526,
+      "file:checksum": "1220d3a478de965cee6bd60932d21b376468b247598222793531edd6724a7d5c46f0",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./rijkswegen.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 7324,
+      "file:checksum": "1220ff25824e87cebd1e87b8e8442cff6794863d5fce6121da0d52e0d7daf14b04a1"
+    },
+    "rijkswegen-tiles": {
+      "href": "./rijkswegen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "rijkswegen (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3375,
+      "file:checksum": "1220a3865acdc66f7c235e216f81314e07ef905cd284063fbab785f86e4f8a352460"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 538,
+      "file:checksum": "1220e950380d541ca0d390f4dd187097879bb1319e1d8a8415b456169ed285d630da",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

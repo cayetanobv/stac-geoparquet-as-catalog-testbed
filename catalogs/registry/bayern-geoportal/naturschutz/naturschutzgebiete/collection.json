@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "naturschutz/naturschutzgebiete",
+  "stac_version": "1.1.0",
+  "description": "Abgrenzungen der Naturschutzgebiete zum Download als Shapefile. Naturschutzgebiete dienen als Kernfl\u00e4chen des Naturschutzes dem besonderen Schutz von Natur und Landschaft, insbesondere zur Erhaltung, Entwicklung oder Wiederherstellung von Lebensr\u00e4umen und Lebensgemeinschaften von Tier und Pflanzenarten.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nsg_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Naturschutzgebiete",
+      "pmtiles:layers": [
+        "nsg_epsg25832_shp"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/schutzgebiete.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 606,
+  "table:row_count": 606,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Gebietsnummer (PDF-Feld ID)."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Gebietsname (PDF-Feld Name)."
+    },
+    {
+      "name": "nr",
+      "type": "string",
+      "description": "Gebietsnummer des Verordnungsgebers (PDF-Feld NR)."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Status der Verordnung: aktuell oder einstweilig sichergestellt (PDF-Feld STATUS)."
+    },
+    {
+      "name": "area_ha",
+      "type": "double",
+      "description": "Fl\u00e4che in ha, digital berechnet (PDF-Feld AREA_HA)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Naturschutzgebiete",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.987741770926068,
+          47.27011285580462,
+          13.839700111797592,
+          50.55402319560344
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Naturschutzgebiete default style",
+      "description": "Default visualization for Naturschutzgebiete, drawn in #005a32.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1187,
+      "file:checksum": "12209e4df41b92a93dacc3bc97079a30ccd31e5e4b0055ba801141334f0616f2e44d"
+    },
+    "nsg_epsg25832_shp": {
+      "href": "./nsg_epsg25832_shp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2268971,
+      "file:checksum": "122060b0c6b51e4749c94c5679748d1bf46d920563a3836e7c6ffeb6981105b66183",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nsg_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Naturschutzgebiete (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2909534,
+      "file:checksum": "1220f1941a3736dfe911d20c5a9ec71353f8723dfde02921f7dd378e21f080f763db"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Naturschutzgebiete labeled style",
+      "description": "Default visualization for Naturschutzgebiete with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1610,
+      "file:checksum": "1220ae35074d727a17957b5fa3aedf266e8f668ee1d3c63d7efe50e3307114d90138"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Naturschutzgebiete graduated style",
+      "description": "Graduated visualization coloring Naturschutzgebiete by area_ha, ramped from 0.376004800488 to 28863.3397289.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2036,
+      "file:checksum": "1220dd918298b26cd48592f880824a99a61a8794b9ace4e4f8d51d8d1afb5231e838"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/schutzgebiete/nsg_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: schutzgebiete-nsg",
+      "pipeline:upstream": true,
+      "file:size": 2315894,
+      "file:checksum": "12204780e72330966a27573e3bc595aa13f230306059882fa51b19d22dfa3887d160"
+    },
+    "thumbnail": {
+      "href": "./nsg_epsg25832_shp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Naturschutzgebiete",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 136665,
+      "file:checksum": "1220a9b2a9595bc108070f160ee5a9d3f623c1db0c467c9857ba3cb440344584d652"
+    }
+  },
+  "keywords": [
+    "Naturschutzgebiete",
+    "Schutzgebiete",
+    "Naturschutz",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

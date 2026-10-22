@@ -1,0 +1,231 @@
+{
+  "type": "Collection",
+  "id": "bydele/driftsomraader",
+  "stac_version": "1.1.0",
+  "description": "Data viser hvilke bydele i K\u00f8benhavns Kommune, der er driftsomr\u00e5der.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_drift_bydel.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Driftsomr\u00e5der",
+      "pmtiles:layers": [
+        "k101_drift_bydel"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/driftsomrader",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: drift_bydel",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 10,
+  "table:row_count": 10,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "bydel_nr",
+      "type": "int64"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "ogc_fid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Driftsomr\u00e5der",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.453045646538532,
+          55.61284307245765,
+          12.652081263238,
+          55.73271094823869
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Driftsomr\u00e5der default style",
+      "description": "Default visualization for Driftsomr\u00e5der, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1180,
+      "file:checksum": "12203874392b376ab2aa6e012c6dc08345030da9ed75075825847d444ecc5fc27945"
+    },
+    "k101_drift_bydel": {
+      "href": "./k101_drift_bydel.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 85164,
+      "file:checksum": "12202f23158c42327052feeef1202b2e9d9ddf404c9807bdc13385a5b98dbaead0a8",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_drift_bydel.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Driftsomr\u00e5der (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 67333,
+      "file:checksum": "1220a38bedce17b152ff5fcae087a65485533bb3ee6b508723b96ceeabae68a7d67f"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Driftsomr\u00e5der categorical style",
+      "description": "Categorical visualization coloring Driftsomr\u00e5der by navn, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2956,
+      "file:checksum": "12202d15dabf1741cf1fcad7e28c721dd7d40bd4166b7d8b64a19f92816059628063"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Driftsomr\u00e5der labeled style",
+      "description": "Default visualization for Driftsomr\u00e5der with navn shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1601,
+      "file:checksum": "1220f94b235e9d1904bbecde5d98ad457fee7a533f6f796edfa5ae36133d78039753"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Driftsomr\u00e5der graduated style",
+      "description": "Graduated visualization coloring Driftsomr\u00e5der by bydel_nr, ramped from 1.0 to 10.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1928,
+      "file:checksum": "122020ea09cbca48ee909d8ecefea961183f1807d0483cbaa2e76b42ad534f7940b5"
+    },
+    "thumbnail": {
+      "href": "./k101_drift_bydel.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Driftsomr\u00e5der",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 84026,
+      "file:checksum": "1220d2e79fe53d556d75ee3d5b4d2c4c5e1cdc70add564c86c4dbab06dec88dc3691"
+    }
+  },
+  "keywords": [
+    "Driftsomr\u00e5der",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Driftsomr\u00e5der, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/driftsomrader",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

@@ -1,0 +1,230 @@
+{
+  "type": "Collection",
+  "id": "opencellid/cell-towers",
+  "stac_version": "1.1.0",
+  "description": "Global database of 5,218,380 cell tower locations collected by the OpenCellID community (snapshot 2026-05-01). Each tower is a point with its radio technology (LTE, GSM, UMTS, NR, CDMA), network identifiers (mcc, net, area, cell), estimated range in metres, number of measurement samples, average signal and creation/update timestamps. Mirror of the CARTO Data Observatory dataset `infrastructure_celltowers_glo_latlon_v1_snapshot_v1`, republished as a single hilbert-sorted GeoParquet file.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "https://carto.com/spatial-data-catalog/browser/?dataset=ocid_celltowers_cdde8054",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cell-towers.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "cell-towers"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-08-29T22:12:01Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 5218380,
+  "table:row_count": 5218380,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geoid",
+      "type": "string"
+    },
+    {
+      "name": "do_date",
+      "type": "date32[day]"
+    },
+    {
+      "name": "area",
+      "type": "int64"
+    },
+    {
+      "name": "averageSignal",
+      "type": "int64"
+    },
+    {
+      "name": "cell",
+      "type": "int64"
+    },
+    {
+      "name": "changeable",
+      "type": "int64"
+    },
+    {
+      "name": "created",
+      "type": "int64"
+    },
+    {
+      "name": "lat",
+      "type": "double"
+    },
+    {
+      "name": "lon",
+      "type": "double"
+    },
+    {
+      "name": "mcc",
+      "type": "int64"
+    },
+    {
+      "name": "net",
+      "type": "int64"
+    },
+    {
+      "name": "radio",
+      "type": "string"
+    },
+    {
+      "name": "range",
+      "type": "int64"
+    },
+    {
+      "name": "samples",
+      "type": "int64"
+    },
+    {
+      "name": "unit",
+      "type": "int64"
+    },
+    {
+      "name": "updated",
+      "type": "int64"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "title": "OpenCellID Cell Towers — Global",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -174.4104,
+          -54.9363,
+          178.4976,
+          72.6944
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-SA-4.0",
+  "providers": [
+    {
+      "name": "OpenCellID",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opencellid.org"
+    },
+    {
+      "name": "CARTO Data Observatory",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://carto.com/data-observatory"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "host"
+      ],
+      "url": "https://carto.com",
+      "email": "cayetano@cartodb.com"
+    }
+  ],
+  "assets": {
+    "cell-towers": {
+      "href": "./cell-towers.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 210849192,
+      "file:checksum": "1220315ca5f76c2e1fd762e9d34bd31427b690bac564321c9ad9fc248ea58f275d55",
+      "roles": [
+        "data"
+      ]
+    },
+    "cell-towers-tiles": {
+      "href": "./cell-towers.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "cell-towers (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 134670636,
+      "file:checksum": "122043239c9fc7fa2df0ee802e1cdf09993011d55a9e1dd78598da15c2cbb5f6856e"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Radio",
+      "description": "radio categories (LTE, GSM, UMTS, NR, CDMA); CARTOColors Bold.",
+      "file:size": 1553,
+      "file:checksum": "122019abb8b7a05023b351f224b021a89ba13de4d429e4a7e2933f83252bb4b501de"
+    },
+    "styles/flat": {
+      "href": "./styles/flat.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Flat",
+      "description": "Single-colour points.",
+      "file:size": 764,
+      "file:checksum": "1220c6a5595f16d682c5b5b31460e19fcff260184a8b8429392b991c6a1714ac4d25"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Population per cell (thumbnail)",
+      "file:size": 28514,
+      "file:checksum": "1220e3bef6000dd30de5b885fe953eb2d64fa8b0712fff727571fab4e2fda0a80554"
+    }
+  }
+}

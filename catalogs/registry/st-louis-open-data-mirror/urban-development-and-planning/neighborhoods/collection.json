@@ -1,0 +1,261 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/neighborhoods",
+  "stac_version": "1.1.0",
+  "description": "ESRI shapefiles for city neighborhoods",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./neighborhoods.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "neighborhoods"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=85",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=85",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://maps6.stlouis-mo.gov/arcgis/rest/services/PublicDataStore/NEIGHBORHOOD_BOUNDARIES/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 88,
+  "table:row_count": 88,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "NHD_NUM",
+      "type": "int16"
+    },
+    {
+      "name": "NHD_NAME",
+      "type": "string"
+    },
+    {
+      "name": "NHD_NUMTXT",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default",
+    "styles/city-renderer"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "government",
+          "title": "Government"
+        },
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "planning-and-urban-design",
+          "title": "Planning and Urban Design"
+        }
+      ]
+    }
+  ],
+  "title": "Neighborhood Boundaries",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3204988703377,
+          38.53298868754094,
+          -90.17505144558082,
+          38.77434508151282
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "neighborhoods",
+    "Planning and Urban Design"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Planning and Urban Design",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=85"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "neighborhoods": {
+      "href": "./neighborhoods.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Neighborhood Boundaries (GeoParquet)",
+      "file:size": 47314,
+      "file:checksum": "122025f29ee792ec9070dcf80d4eb5cea58cadd69ccc21cd2c0ba70467ab6c97a9f4",
+      "roles": [
+        "data"
+      ]
+    },
+    "neighborhoods-tiles": {
+      "href": "./neighborhoods.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "neighborhoods (vector tiles)",
+      "file:size": 176878,
+      "file:checksum": "12202d8674718d8fe9d32aa603e9df3f52d27301c1e48ef00c8e1246086c8aa43f35",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 537,
+      "file:checksum": "12205758c2190fb549a388c3073a47b117495b3d5da35d4744a0aa1ea4871600a0d0",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Neighborhoods",
+      "description": "The 88 official neighborhoods, each tinted from a repeating ten-color set so adjacent neighborhoods read apart, with name labels. Colors carry no meaning.",
+      "file:size": 1954,
+      "file:checksum": "122072c69be5924dc0d8b18007fd7310ad58c5715f03cf80ee3761498cc601f68fe8",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Boundaries only",
+      "description": "Just the lines, for overlays.",
+      "file:size": 483,
+      "file:checksum": "1220e4a863d631d25bafd7b2812c2604d9c9211d06ffb00cec8c787b803f3450d815",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-number": {
+      "href": "./styles/style-number.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Neighborhood number",
+      "description": "Official neighborhood numbers in steps of 20 \u2014 numbering runs roughly south to north, so the gradient traces the city's geography.",
+      "file:size": 1663,
+      "file:checksum": "1220c069b5cd37dbbe2664c5027262fef4668947af98d98c0ba232d76b34c690ba40",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Neighborhood Boundaries rendered with the default style",
+      "file:size": 353773,
+      "file:checksum": "122036696442dc72f11ba3e81b0838aaf54610e19f56032646a10a5c50444120e1b4",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source-shapefile": {
+      "href": "https://static.stlouis-mo.gov/open-data/planning/neighborhoods/neighborhoods.zip",
+      "type": "application/zip",
+      "title": "Neighborhood boundaries (zipped Shapefile)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 223184,
+      "file:checksum": "122048ba605299916ddbfcf3255b0807721ca0786cc05cf4c3500899b13f60a5b16c",
+      "description": "The city's own alternate distribution of this layer. Served upstream by static.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  }
+}

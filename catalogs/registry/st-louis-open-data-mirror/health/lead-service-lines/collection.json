@@ -1,0 +1,271 @@
+{
+  "type": "Collection",
+  "id": "health/lead-service-lines",
+  "stac_version": "1.1.0",
+  "description": "Lead Service Line Inventory Feature Layer Service",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://stlcity.maps.arcgis.com/home/item.html?id=80c69343cc2d418fb1796a342a863aac",
+      "type": "text/html",
+      "title": "Dataset page in the city's ArcGIS Online organization"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./lead-service-lines.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "lead-service-lines"
+      ]
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Health"
+    },
+    {
+      "rel": "via",
+      "href": "https://stlcity.maps.arcgis.com/home/item.html?id=80c69343cc2d418fb1796a342a863aac",
+      "type": "text/html",
+      "title": "Dataset page in the city's ArcGIS Online organization"
+    },
+    {
+      "rel": "via",
+      "href": "https://services6.arcgis.com/HZXbCkpCSqbGd0vK/arcgis/rest/services/STLWD_LSLI__Read_Only_View/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 112950,
+  "table:row_count": 112950,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "address",
+      "type": "string",
+      "description": "Street address of the water service connection (layer field alias 'Address')."
+    },
+    {
+      "name": "utilmaterial",
+      "type": "int16",
+      "description": "Pipe material of the utility-owned (public right-of-way) side of the service line, coded: 0 Unknown, 81 Asbestos Cement, 83 Cast Iron, 84 Copper, 88 Ductile Iron, 89 Galvanized Pipe, 93 Polyethylene, 94 PVC, 109 Lead, 110 Brass (ArcGIS coded-value domain; alias 'Right of Way Material')."
+    },
+    {
+      "name": "utilsource",
+      "type": "int16",
+      "description": "How the right-of-way side's material was determined: 1 Existing Records, 2 Test Results, 3 Visual Confirmation, 5 Assumed (ArcGIS coded-value domain 'Utility_Source') \u2014 the material-determination basis EPA's Lead and Copper Rule Revisions service-line inventories require."
+    },
+    {
+      "name": "utilstatus",
+      "type": "int16",
+      "description": "Lead classification of the right-of-way side: 0 Unknown, 1 Lead, 2 Non-Lead, 3 Galvanized Requiring Replacement (ArcGIS domain; these are the four service-line categories of the EPA LCRR service line inventory)."
+    },
+    {
+      "name": "custmaterial",
+      "type": "int16",
+      "description": "Pipe material of the customer-owned (building) side of the service line, same material codes as utilmaterial (ArcGIS domain 'Water_Service_Material'; alias 'Building Side Material')."
+    },
+    {
+      "name": "custsource",
+      "type": "int16",
+      "description": "How the building side's material was determined: 1 Existing Records, 2 Test Results, 3 Visual Confirmation, 4 Notified by Customer, 5 Assumed (ArcGIS domain 'Customer_Source')."
+    },
+    {
+      "name": "custstatus",
+      "type": "int16",
+      "description": "Lead classification of the building side: 0 Unknown, 1 Lead, 2 Non-Lead, 3 Galvanized Requiring Replacement (ArcGIS domain 'Status'; EPA LCRR inventory categories)."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS feature object ID."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "ArcGIS global unique identifier for the feature."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 8781788,
+  "portolan:asset_count": 1,
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "environment",
+          "title": "Environment"
+        },
+        {
+          "id": "health",
+          "title": "Health"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "water-division",
+          "title": "Water Division"
+        }
+      ]
+    }
+  ],
+  "title": "Lead Service Line Inventory",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3196726708832,
+          38.5340158845404,
+          -90.1810161864447,
+          38.7645417490548
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "water",
+    "lead",
+    "Water Division"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Water Division",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://stlcity.maps.arcgis.com/home/item.html?id=80c69343cc2d418fb1796a342a863aac"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "lead-service-lines": {
+      "href": "./lead-service-lines.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Lead Service Line Inventory (GeoParquet)",
+      "file:size": 8871466,
+      "file:checksum": "12205a267c78110eebd7e2105152f7d7fb7e378d2e07ccf0d1d7413f3017a2084155",
+      "roles": [
+        "data"
+      ]
+    },
+    "lead-service-lines-tiles": {
+      "href": "./lead-service-lines.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Lead Service Line Inventory (PMTiles)",
+      "file:size": 2342054,
+      "file:checksum": "12208189bee6db6eb627fc13c50266ac38538a801e92554c66bdb50c731ccf359089",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 551,
+      "file:checksum": "1220f6a2278d28174e18702a8e842cfdae4d54c345e4e0c3b3729027d1d698b51fc3",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Utility-side service line status",
+      "description": "Every water service line by the utility-side status from the Water Division's EPA lead inventory: Lead red, Galvanized-requiring-replacement orange, Non-Lead green, Unknown gray (names decoded from the service's own coded-value domain).",
+      "file:size": 1885,
+      "file:checksum": "122090dd0be274463360b4647308334d9b4ab1212dd19d904a89cc52f024387f7bb3",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-customer-side": {
+      "href": "./styles/style-customer-side.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Customer-side status",
+      "description": "Same classification for the customer-owned side of each service line.",
+      "file:size": 1706,
+      "file:checksum": "1220e2ad8bc9ff20a1c95a429f2f10677ef0d91ece073fba6c7d0df917eb84a11061",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-material": {
+      "href": "./styles/style-material.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Pipe material",
+      "description": "Utility-side pipe material, decoded from the service's own domain: Lead red, Galvanized orange, Copper green, iron teal/purple, plastics light, Unknown gray.",
+      "file:size": 2237,
+      "file:checksum": "1220b6416e1b46e834d2643663f793cd71339650f68ad4437c45dd97f6e87f0fd09e",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Lead Service Line Inventory rendered with the default style",
+      "file:size": 388907,
+      "file:checksum": "1220af3eb899ce1103fc34aeeb24e537357df6c471c860fa3667cdd2311efb8b7d5c",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

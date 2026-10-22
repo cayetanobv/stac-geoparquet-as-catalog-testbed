@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "visrechten/visrechten_watergangen",
+  "stac_version": "1.1.0",
+  "description": "Visrechten Watergangen",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./visrechten_watergangen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "visrechten_watergangen"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Visrechten_GemeentelijkEigendom",
+      "type": "string"
+    },
+    {
+      "name": "Aanvulling",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Visrechten Watergangen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.9703432389081,
+          52.0049096194766,
+          5.19758278729351,
+          52.1420509800936
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "visrechten_watergangen": {
+      "href": "./visrechten_watergangen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 5477163,
+      "file:checksum": "12202f6cbecfb2db5b9ca9cb2ff1e0b91d80d1fe87db5295651e65f371c670fcc0c3",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./visrechten_watergangen.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 19691,
+      "file:checksum": "122091faf6821545752bfc1fc6d83cc5112ffaf4d38311576bb0526afa9a61b4f015"
+    },
+    "visrechten_watergangen-tiles": {
+      "href": "./visrechten_watergangen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "visrechten_watergangen (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1367373,
+      "file:checksum": "12207f36fc43188f81378d910217eca73e072e373192a8ef65dab852eb354e109bb1"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 3123,
+      "file:checksum": "1220162d65546ac71353265be73d883b25c231b36d9e17fa37f26f60e421ce908268",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

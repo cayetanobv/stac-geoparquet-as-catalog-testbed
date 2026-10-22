@@ -1,0 +1,229 @@
+{
+  "type": "Collection",
+  "id": "dagi/supplerende-bynavne",
+  "stac_version": "1.1.0",
+  "description": "De supplerende bynavne, der kan indg\u00e5 i en dansk adresse, med navn, DAR-status og den kommune bynavnet ligger i.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./supplerendebynavne2.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Supplerende bynavne",
+      "pmtiles:layers": [
+        "supplerendebynavne2"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/supplerendebynavn2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/supplerendebynavne2?format=geojson&polygon=%5B%5B%5B7.0%2C54.0%5D%2C%5B16.0%2C54.0%5D%2C%5B16.0%2C58.2%5D%2C%5B7.0%2C58.2%5D%2C%5B7.0%2C54.0%5D%5D%5D",
+      "rel": "related",
+      "title": "Upstream source: supplerendebynavne2",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 7838,
+  "table:row_count": 7838,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "dagi_id",
+      "type": "string"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "darstatus",
+      "type": "int32"
+    },
+    {
+      "name": "kommunekode",
+      "type": "string"
+    },
+    {
+      "name": "kommunenavn",
+      "type": "string"
+    },
+    {
+      "name": "\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_version",
+      "type": "int32"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Supplerende bynavne",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.09764923,
+          54.59188129,
+          15.15697216,
+          57.72930617
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Supplerende bynavne default style",
+      "description": "Default visualization for Supplerende bynavne, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1202,
+      "file:checksum": "122065baa62685f8a88b1c593beecf584ff0a134e51c0707eb9db52056e768b12536"
+    },
+    "supplerendebynavne2": {
+      "href": "./supplerendebynavne2.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 17190284,
+      "file:checksum": "1220756e3b05e4b75be25ef987b506faaf456dea3a472bb7c150803602b84472d847",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./supplerendebynavne2.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Supplerende bynavne (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 29673233,
+      "file:checksum": "12209500993f9d84396f6ba31677dcd590b42e775bfd5545cfc2d45b0c2c2f4dd554"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Supplerende bynavne graduated style",
+      "description": "Graduated visualization coloring Supplerende bynavne by geo_version, ramped from 1.0 to 15.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1962,
+      "file:checksum": "1220d4bd2a63085a2ef5fba4469ccb0c582d4f2ce88bea105be2eb7803de946120bc"
+    },
+    "thumbnail": {
+      "href": "./supplerendebynavne2.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Supplerende bynavne",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 151525,
+      "file:checksum": "12202b8079411c68d7e754c0671a0fc560b63b8222f9abdd033020ede0544c494f29"
+    }
+  },
+  "keywords": [
+    "supplerende bynavne",
+    "bynavne",
+    "adresser",
+    "DAGI"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen supplerendebynavne2, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/supplerendebynavn2",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

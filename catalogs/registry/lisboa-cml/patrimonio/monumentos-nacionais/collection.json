@@ -1,0 +1,292 @@
+{
+  "type": "Collection",
+  "id": "patrimonio/monumentos-nacionais",
+  "stac_version": "1.1.0",
+  "description": "Monumentos nacionais no concelho de Lisboa, com o nome, a morada, a freguesia, os contactos, um texto descritivo e a liga\u00e7\u00e3o a uma fotografia, na camada Monumentos Nacionais do servi\u00e7o Patrim\u00f3nio da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./monumentos_nacionais.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Monumentos Nacionais",
+      "pmtiles:layers": [
+        "monumentos_nacionais"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/36d88f51b75142d4b47f5aae34d56f3c_12",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Patrimonio/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Patrimonio (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 63,
+  "table:row_count": 63,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "INF_NOME",
+      "type": "string",
+      "description": "Nome ou designa\u00e7\u00e3o do ponto de interesse (alias NOME / \u00abDesigna\u00e7\u00e3o\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "INF_MORADA",
+      "type": "string",
+      "description": "Morada do ponto de interesse (alias MORADA)."
+    },
+    {
+      "name": "FREGUESIA",
+      "type": "string",
+      "description": "Nome da freguesia onde o objeto se situa, segundo a divis\u00e3o administrativa de 2012 (Lei n.\u00ba 56/2012); texto do publicador, n\u00e3o uma chave para uma camada de freguesias (este cat\u00e1logo n\u00e3o tem nenhuma, ver AGENTS.md)."
+    },
+    {
+      "name": "INF_TELEFONE",
+      "type": "string",
+      "description": "Telefone de contacto publicado, quando existe (alias TELEFONE)."
+    },
+    {
+      "name": "INF_EMAIL",
+      "type": "string",
+      "description": "Endere\u00e7o de correio eletr\u00f3nico publicado, quando existe (alias EMAIL)."
+    },
+    {
+      "name": "INF_SITE",
+      "type": "string",
+      "description": "URL do s\u00edtio web do ponto de interesse, quando existe (alias SITE)."
+    },
+    {
+      "name": "INF_ACTIVO",
+      "type": "int32",
+      "description": "Indicador de registo ativo, mantido pelo publicador como n\u00famero inteiro curto (alias \u00abACTIVO(S/N)\u00bb)."
+    },
+    {
+      "name": "INF_DESCRICAO",
+      "type": "string",
+      "description": "Texto descritivo livre do ponto de interesse (alias DESCRICAO)."
+    },
+    {
+      "name": "URL_FOTO",
+      "type": "string",
+      "description": "URL de uma fotografia do monumento publicada pelo munic\u00edpio, quando existe."
+    },
+    {
+      "name": "CAMADA_ORIGEM",
+      "type": "string",
+      "description": "Camada do armaz\u00e9m de dados de que o registo foi derivado; dom\u00ednio Multiescolha do servi\u00e7o, com os valores Fra\u00e7\u00f5es Total Consulta, Edif\u00edcios Total Consulta, Eixos de Via Consulta, Pontos de \u00c1gua Consulta, Estatu\u00e1ria Consulta, Miradouro Consulta e Parques e Jardins Consulta."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Monumentos Nacionais",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.21592911492644,
+          38.691590592821,
+          -9.11388848927558,
+          38.7662628909928
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumentos Nacionais default style",
+      "description": "Default visualization for Monumentos Nacionais, drawn in #8c2d04.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1210,
+      "file:checksum": "122027a31dbf6ff6c6f54c1e0afc446682bfdf9801e29cbd36ec7a9599d5c234a4b4"
+    },
+    "monumentos_nacionais": {
+      "href": "./monumentos_nacionais.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 44462,
+      "file:checksum": "1220c46eaf01206d44feebedd99f9dd867d31ed8626ea8fc4e0c5f2c9705eedd9e40",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./monumentos_nacionais.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Monumentos Nacionais (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 107792,
+      "file:checksum": "12201f0d5de46a865375de6d3ffe4a89c6c8f6901a1bc2ff9d3ae27a2781de9d3203"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumentos Nacionais categorical style",
+      "description": "Categorical visualization coloring Monumentos Nacionais by URL_FOTO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3086,
+      "file:checksum": "1220ed6525e344e8471330324024fe23b1655fc96fd2e25bd1b72bea1f19b12051a3"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumentos Nacionais labeled style",
+      "description": "Default visualization for Monumentos Nacionais with INF_NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1643,
+      "file:checksum": "1220eb0966622a364fc49484ca3d082c21cd4d4a3c74ea3b0cfd052b80e09d44ee2c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Monumentos Nacionais graduated style",
+      "description": "Graduated visualization coloring Monumentos Nacionais by INF_ACTIVO, ramped from 1.0 to 1.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1963,
+      "file:checksum": "12202adf03ab03b1784ec86d416f4d0651075c779108f8631638d1dda1df88a9d457"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/36d88f51b75142d4b47f5aae34d56f3c/geojson?layers=12&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: monumentos_nacionais",
+      "pipeline:upstream": true,
+      "file:size": 106751,
+      "file:checksum": "122047f1131f156c5274fc08ba60140088a1c9abec858efad1f034d87a8c0155d0b8"
+    },
+    "thumbnail": {
+      "href": "./monumentos_nacionais.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Monumentos Nacionais",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 144347,
+      "file:checksum": "1220b47374d1534860c994c88c13feb4d0a57dacfbd03e184f973a55289581651239"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Patrim\u00f3nio",
+    "Heritage",
+    "CulturaPatrimonio",
+    "POI"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Monumentos Nacionais (Patrimonio), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

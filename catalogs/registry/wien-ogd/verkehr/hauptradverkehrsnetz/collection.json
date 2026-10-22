@@ -1,0 +1,233 @@
+{
+  "type": "Collection",
+  "id": "verkehr/hauptradverkehrsnetz",
+  "stac_version": "1.1.0",
+  "description": "Das Hauptradverkehrsnetz Wien gliedert sich in Basisrouten, Grundnetz und erweitertes Grundnetz und wird laufend aktualisiert.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_radnetzogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hauptradverkehrsnetz Wien",
+      "pmtiles:layers": [
+        "ogdwien_radnetzogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/1ea3d3e8-fa07-4c37-af68-eb588d439de2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: radnetzogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 14936,
+  "table:row_count": 14936,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Linie) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "RANG",
+      "type": "string",
+      "description": "Rang im Radwegenetz, Buchstabenschl\u00fcssel."
+    },
+    {
+      "name": "M18_RANG_SUB",
+      "type": "string",
+      "description": "Rang im Radwegenetz der MA 18: B Basisroute, G Grundnetz, E erweitertes Grundnetz, N Nebennetz (laut Datensatztext)."
+    },
+    {
+      "name": "STRNAM",
+      "type": "string",
+      "description": "Stra\u00dfenname."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Hauptradverkehrsnetz Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.188137727944206,
+          48.120534135400526,
+          16.57668831939697,
+          48.319898419917926
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hauptradverkehrsnetz Wien default style",
+      "description": "Default visualization for Hauptradverkehrsnetz Wien, drawn in #00441b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1201,
+      "file:checksum": "12206340969095d426071c4aab0e00ff8941740941482630db9455111c91521cbff9"
+    },
+    "ogdwien_radnetzogd": {
+      "href": "./ogdwien_radnetzogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1415059,
+      "file:checksum": "12200e00c2501fe636a51e0cfe6620f1c684f62a7c7dfe684691ddf556b51a051386",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_radnetzogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hauptradverkehrsnetz Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2824491,
+      "file:checksum": "12203b7504429f1472261ffa952c32ae67ce029e03c1e99aa48a67b8525a2e4276fe"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hauptradverkehrsnetz Wien categorical style",
+      "description": "Categorical visualization coloring Hauptradverkehrsnetz Wien by RANG, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1729,
+      "file:checksum": "1220a4173f8b4b8c5957aa577764157c1589e320bd2158aa4b587af809d98d3b5868"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hauptradverkehrsnetz Wien labeled style",
+      "description": "Default visualization for Hauptradverkehrsnetz Wien with RANG shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1626,
+      "file:checksum": "12206138f3054efd64f0aca2978db671b972b1614ba79f24adab10f78d42d664e72e"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_radnetzogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Hauptradverkehrsnetz Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 242327,
+      "file:checksum": "1220accfd0dadb69d50b556e1e857bc75339c8363f81d64895774bde901454cf8da5"
+    }
+  },
+  "keywords": [
+    "Radnetz",
+    "ViennaGIS",
+    "Verkehr",
+    "Rad",
+    "Fahrrad",
+    "Radweg",
+    "Hauptradverkehrsnetz",
+    "Radverkehr",
+    "Mobilit\u00e4t",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien \u2013 Magistratsabteilung 18 (Stadtentwicklung und Stadtplanung)",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Hauptradverkehrsnetz Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.wien.gv.at/stadtentwicklung/",
+      "email": "post@ma18.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

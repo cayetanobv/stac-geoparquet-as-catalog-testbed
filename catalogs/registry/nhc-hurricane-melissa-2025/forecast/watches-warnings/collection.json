@@ -1,0 +1,280 @@
+{
+  "type": "Collection",
+  "id": "forecast/watches-warnings",
+  "stac_version": "1.1.0",
+  "description": "Tropical cyclone hurricane/tropical-storm watch and warning coastline segments (NHC breakpoints) for Hurricane Melissa (AL132025), all advisories stacked (673 rows from 78 advisories; none were in effect for advisories 040 and 041). TCWW codes: HWR hurricane warning, HWA hurricane watch, TWR tropical storm warning, TWA tropical storm watch. Derived columns advisory_number, advisory_seq, issue_time (UTC).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./watches-warnings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Coastal watches and warnings (78 advisories)",
+      "pmtiles:layers": [
+        "watches-warnings"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2025&name=Hurricane%20MELISSA",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "LineString"
+  ],
+  "geoparquet:feature_count": 673,
+  "table:row_count": 673,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "advisory_number",
+      "type": "string",
+      "description": "Derived (CARTO): zero-padded advisory id, e.g. '003A'; join key across the forecast/* Collections."
+    },
+    {
+      "name": "advisory_seq",
+      "type": "int32",
+      "description": "Derived (CARTO): 1-based issue order of the advisory (1..80)."
+    },
+    {
+      "name": "STORMNAME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): storm name as written in the watch/warning file."
+    },
+    {
+      "name": "STORMTYPE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The category of the tropical cyclone according to the initial intensity' at issue (TS, HU)."
+    },
+    {
+      "name": "ADVDATE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The date in which an advisory is issued'. Local-time text; parsed into issue_time."
+    },
+    {
+      "name": "ADVISNUM",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): advisory number as NHC text, not zero-padded; use advisory_number."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13 = Melissa, AL132025)."
+    },
+    {
+      "name": "FCSTPRD",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): forecast period in hours; always 120."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The ocean where the tropical cyclone is located'; AL = Atlantic."
+    },
+    {
+      "name": "TCWW",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Code indicating the type of advisory and severity of conditions': HWR Hurricane Warning (294 rows, 50 advisories), HWA Hurricane Watch (149, 60), TWR Tropical Storm Warning (185, 55), TWA Tropical Storm Watch (45, 15)."
+    },
+    {
+      "name": "issue_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): advisory issue time in UTC parsed from ADVDATE (EDT and AST = UTC-4); 2025-10-21 15:00 to 2025-10-31 06:00 UTC."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Watch/warning coastline segment (LineString between NHC breakpoints; 76 single-breakpoint rows are Points) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); extent -78.62, 17.70, -64.54, 32.43."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Coastal watches and warnings (78 advisories)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.62,
+          17.7,
+          -64.54,
+          32.43
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T15:00:00Z",
+          "2025-10-31T06:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastal watches and warnings (78 advisories) default style",
+      "description": "Default visualization for Coastal watches and warnings (78 advisories), drawn in #1565c0.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1206,
+      "file:checksum": "1220ef3f6072ab61c4444d8b34a20bc837cb89fd9ba63912001e3f3d1bf2d7f46000"
+    },
+    "watches-warnings": {
+      "href": "./watches-warnings.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 12085,
+      "file:checksum": "12208bc0234a87c6e793dc02daa8b472e26def5f164a39f47f42381f9c6021b47a37",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./watches-warnings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Coastal watches and warnings (78 advisories) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5282632,
+      "file:checksum": "1220e0edfde37750c303ba6d601184d25baa224a6e72c8fbd9253403cbe2653d6f5e"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastal watches and warnings (78 advisories) categorical style",
+      "description": "Categorical visualization coloring Coastal watches and warnings (78 advisories) by TCWW, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1974,
+      "file:checksum": "122092d60f9e92907dec01030731ef4e912d9642672cbe164bad0b06639a1bf9c96b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastal watches and warnings (78 advisories) labeled style",
+      "description": "Default visualization for Coastal watches and warnings (78 advisories) with STORMNAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1632,
+      "file:checksum": "1220108106cad09fb23c273c7d3171eb4fcd6909f5a6a9904afb9c76d9c4d67a05ef"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastal watches and warnings (78 advisories) graduated style",
+      "description": "Graduated visualization coloring Coastal watches and warnings (78 advisories) by advisory_seq, ramped from 1.0 to 78.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1973,
+      "file:checksum": "122075bb3bcbf9366fe3cd95eadbcb4c6437ba017032939104b7acd2660cc475cfa4"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/watches-warnings/watches-warnings.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: watches-warnings",
+      "pipeline:upstream": true,
+      "file:size": 11247,
+      "file:checksum": "122002e9a0f96228e499761a25527ea58822d5f3595bf4ce84a478eb057315f36983"
+    },
+    "thumbnail": {
+      "href": "./watches-warnings.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Coastal watches and warnings (78 advisories)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 41633,
+      "file:checksum": "12208f4f273d1efcd5984456b9e1a38764e65f37fe409511b9de96aa92ab1b53a0d5"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

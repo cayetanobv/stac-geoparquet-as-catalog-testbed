@@ -1,0 +1,252 @@
+{
+  "type": "Collection",
+  "id": "kultur/kulturhuse",
+  "stac_version": "1.1.0",
+  "description": "Kulturhuse driftet af K\u00f8benhavns Kommune",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_kulturhus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kulturhuse",
+      "pmtiles:layers": [
+        "k101_kulturhus"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/kulturhuse",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: kulturhus",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 29,
+  "table:row_count": 29,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "post_nr",
+      "type": "int64"
+    },
+    {
+      "name": "postdistrikt",
+      "type": "string"
+    },
+    {
+      "name": "e_mail",
+      "type": "string"
+    },
+    {
+      "name": "link",
+      "type": "string"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "vejkode",
+      "type": "double"
+    },
+    {
+      "name": "husnr",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Kulturhuse",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.484316491235987,
+          55.646783390153566,
+          12.609796103780974,
+          55.71911294952689
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kulturhuse default style",
+      "description": "Default visualization for Kulturhuse, drawn in #fe9929.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1158,
+      "file:checksum": "12204513925b218c36e087c2fe60d832dd224ab6bbc6473c374eba520947357d4218"
+    },
+    "k101_kulturhus": {
+      "href": "./k101_kulturhus.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 11825,
+      "file:checksum": "12202ff006e8325843a8064a7d8b7a85b87cc2f0146bb117a04d0addd87928f733e4",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_kulturhus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kulturhuse (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 16023,
+      "file:checksum": "122065ff3082268ef247b2330f8db258fc2eb7a64d0876f18cdc59776ad7246214ce"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kulturhuse categorical style",
+      "description": "Categorical visualization coloring Kulturhuse by postdistrikt, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3014,
+      "file:checksum": "1220b90afdf5fce5ef55fb99398caab2ff6a63cfcb8386809582052a5ca59c1f9c36"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kulturhuse labeled style",
+      "description": "Default visualization for Kulturhuse with postdistrikt shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1583,
+      "file:checksum": "1220462cc1e22cb707a10cea2f28f879f79158ba0a839b5c34ccddc99cfa8f1915eb"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kulturhuse graduated style",
+      "description": "Graduated visualization coloring Kulturhuse by vejkode, ramped from 536.0 to 8544.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1923,
+      "file:checksum": "122008ed155e8b560c1d54d05e51a14a23299ec9ccdecd15350a54661a6e61c01517"
+    },
+    "thumbnail": {
+      "href": "./k101_kulturhus.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kulturhuse",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 164781,
+      "file:checksum": "1220ed93bffdac23826a87ec602409b6a8f6fd3fa039e88d45e4265cd330d84d050b"
+    }
+  },
+  "keywords": [
+    "Kultur",
+    "Kulturhuse",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Kulturhuse, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/kulturhuse",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

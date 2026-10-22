@@ -1,0 +1,328 @@
+{
+  "type": "Collection",
+  "id": "transportation-infrastructure-and-utilities/overture-transportation",
+  "stac_version": "1.1.0",
+  "description": "The Overture transportation theme is a model of how the world's roads, rails, and waterways connect: traversable segments (roads, railways, ferries) and connectors (intersections) representing how people and objects travel, built from OpenStreetMap and enhanced with data from TomTom and other local and regional authoritative sources. It is simple at its core but expressive enough to capture speed limits that change by time of day, one-way streets that allow buses the wrong way, and weight-restricted bridges. Both feature types are merged here, with an `overture_type` column telling segments from connectors. Overture documents this data well: the [transportation theme guide](https://docs.overturemaps.org/guides/transportation/) covers what the theme models, how Overture builds it, and how to query it, and the schema reference gives every field of the feature types merged here \u2014 [`segment`](https://docs.overturemaps.org/schema/reference/transportation/segment/), [`connector`](https://docs.overturemaps.org/schema/reference/transportation/connector/).\n\nUnlike everything else in this catalog, this is **not** City of St. Louis data: it comes from the [Overture Maps Foundation](https://overturemaps.org/), a collaborative project building open, interoperable map data for the world. This collection is a St. Louis extract of that global dataset \u2014 everything inside the city's bounding box, which also takes in the Illinois shore of the Mississippi (East St. Louis, Cahokia Heights) \u2014 included here to demonstrate how a city's open-data catalog can blend in other St. Louis-relevant open data alongside the city's own. The GeoParquet was extracted from Overture release 2026-07-22.0; the map tiles reference Overture's own global PMTiles for the same release, the tiles behind [explore.overturemaps.org](https://explore.overturemaps.org/).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Transportation, Infrastructure, and Utilities"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licensing"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/guides/transportation/",
+      "type": "text/html",
+      "title": "Overture transportation theme guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/transportation/segment/",
+      "type": "text/html",
+      "title": "Overture schema reference: segment"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/transportation/connector/",
+      "type": "text/html",
+      "title": "Overture schema reference: connector"
+    },
+    {
+      "rel": "via",
+      "href": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=transportation/",
+      "type": "text/html",
+      "title": "Overture release 2026-07-22.0 GeoParquet (theme=transportation) on S3"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/transportation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "segment",
+        "connector"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 184137,
+  "table:row_count": 184137,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Overture feature ID \u2014 per the schema, 'a feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS.' GERS IDs are intended to be stable across Overture's monthly releases, which makes this the key for attaching your own data to an Overture feature and for joining to any other GERS-enabled dataset. See the [GERS overview](https://docs.overturemaps.org/gers/)."
+    },
+    {
+      "name": "names",
+      "type": "struct<primary: string, common: map<string, string ('common')>, rules: list<element: struct<variant: string, language: string, perspectives: struct<mode: string, countries: list<element: string>>, value: string, between: list<element: double>, side: string>>>",
+      "description": "Names of the feature. `primary` is the most commonly used name; `common` holds translations keyed by IETF BCP-47 language tag; `rules` carries the variants that cannot be expressed as a simple common name (official, alternate, short), each optionally scoped to a `between` range along the geometry or to one `side` of a road. Schema reference: [names](https://docs.overturemaps.org/schema/reference/common/names/)."
+    },
+    {
+      "name": "subtype",
+      "type": "string",
+      "description": "Broad category of the transportation segment: road, rail or water. Null on connector rows. Schema reference: [subtype](https://docs.overturemaps.org/schema/reference/transportation/types/subtype/)."
+    },
+    {
+      "name": "class",
+      "type": "string",
+      "description": "For a road segment, the kind of road and its position in the road network hierarchy: motorway, trunk, primary, secondary, tertiary, residential, living_street, unclassified, service, pedestrian, footway, steps, path, track, cycleway, bridleway or unknown. For a rail segment: funicular, light_rail, monorail, narrow_gauge, standard_gauge, subway, tram or unknown. Schema reference: [road_class](https://docs.overturemaps.org/schema/reference/transportation/types/road_class/), [rail_class](https://docs.overturemaps.org/schema/reference/transportation/types/rail_class/)."
+    },
+    {
+      "name": "subclass",
+      "type": "string",
+      "description": "Refines the expected usage of the segment; the values must not overlap: link, sidewalk, crosswalk, parking_aisle, driveway, alley or cycle_crossing. Schema reference: [subclass](https://docs.overturemaps.org/schema/reference/transportation/types/subclass/)."
+    },
+    {
+      "name": "subclass_rules",
+      "type": "list<element: struct<value: string, between: list<element: double>>>",
+      "description": "Subclass values scoped to part of the segment, for a segment whose usage changes partway along. Each rule pairs a `value` with a `between` pair of linearly-referenced positions \u2014 fractions of the distance from the start of the geometry, so [0.25, 0.5] is the stretch from a quarter to half way along. Schema reference: [subclass_rules](https://docs.overturemaps.org/schema/reference/transportation/types/subclass_rules/)."
+    },
+    {
+      "name": "connectors",
+      "type": "list<element: struct<connector_id: string, at: double>>",
+      "description": "The connectors this segment is physically connected to and their relative location along it. Each connector is a possible routing decision point: a place along the segment where a traveller can transition to other segments sharing the same connector. `connector_id` joins to the connector rows in this collection; `at` is the linearly-referenced position, 0 at the start of the geometry and 1 at the end. Schema reference: [connector_reference](https://docs.overturemaps.org/schema/reference/transportation/types/connector_reference/)."
+    },
+    {
+      "name": "road_surface",
+      "type": "list<element: struct<value: string, between: list<element: double>>>",
+      "description": "Physical surface of the road \u2014 unknown, paved, unpaved, gravel, dirt, paving_stones or metal \u2014 as an array of rules, each optionally scoped to a `between` range along the segment. Schema reference: [surfaces](https://docs.overturemaps.org/schema/reference/transportation/types/surfaces/)."
+    },
+    {
+      "name": "road_flags",
+      "type": "list<element: struct<values: list<element: string>, between: list<element: double>>>",
+      "description": "Boolean attributes of a road segment, which may overlap and describe physical characteristics: is_bridge, is_link, is_tunnel, is_under_construction, is_abandoned, is_covered, is_indoor. Each entry is a set of `values` optionally scoped to a `between` range along the segment. Schema reference: [road_flags](https://docs.overturemaps.org/schema/reference/transportation/types/road_flags/)."
+    },
+    {
+      "name": "rail_flags",
+      "type": "list<element: struct<values: list<element: string>, between: list<element: double>>>",
+      "description": "Boolean attributes of a railway segment, which may overlap and describe physical characteristics: is_bridge, is_tunnel, is_under_construction, is_abandoned, is_covered, is_passenger, is_freight, is_disused. Each entry is a set of `values` optionally scoped to a `between` range along the segment. Schema reference: [rail_flags](https://docs.overturemaps.org/schema/reference/transportation/types/rail_flags/)."
+    },
+    {
+      "name": "width_rules",
+      "type": "list<element: struct<value: double, between: list<element: double>>>",
+      "description": "Edge-to-edge width of the road modeled by this segment, in meters, scoped along the segment. A carriageway segment's width includes any shoulder; a sidewalk segment's is the width of the sidewalk; a segment modelling a combined sidewalk and carriageway measures across both. Schema reference: [width_rules](https://docs.overturemaps.org/schema/reference/transportation/types/width_rules/)."
+    },
+    {
+      "name": "level_rules",
+      "type": "list<element: struct<value: int32, between: list<element: double>>>",
+      "description": "Z-order (stacking order) of the road segment, as rules rather than a single value so the level can change partway along \u2014 how a road that dips under a bridge midway is modeled. Each rule is a `value` with an optional `between` range. Schema reference: [level_rules](https://docs.overturemaps.org/schema/reference/transportation/types/level_rules/)."
+    },
+    {
+      "name": "access_restrictions",
+      "type": "list<element: struct<access_type: string, when: struct<during: string, heading: string, using: list<element: string>, recognized: list<element: string>, mode: list<element: string>, vehicle: list<element: struct<dimension: string, comparison: string, value: double, unit: string>>>, between: list<element: double>>>",
+      "description": "Rules governing access to this road segment. Each rule gives an `access_type` (allowed, denied or designated) and, in `when`, the scopes it applies under: travel `mode` (vehicle, motor_vehicle, car, truck, motorcycle, foot, bicycle, bus, hgv, hov, emergency), `heading` along the geometry, purpose of use, the traveller's `recognized` status, `vehicle` dimension tests such as height or weight, and `during`, a time span in the OpenStreetMap opening-hours syntax. This is where 'no trucks over 2 tonnes' and 'buses may travel the wrong way' live. Schema reference: [access_rules](https://docs.overturemaps.org/schema/reference/transportation/types/access_rules/)."
+    },
+    {
+      "name": "speed_limits",
+      "type": "list<element: struct<min_speed: struct<value: int32, unit: string>, max_speed: struct<value: int32, unit: string>, is_max_speed_variable: bool, when: struct<during: string, heading: string, using: list<element: string>, recognized: list<element: string>, mode: list<element: string>, vehicle: list<element: struct<dimension: string, comparison: string, value: double, unit: string>>>, between: list<element: double>>>",
+      "description": "Rules governing speed on this road segment: `min_speed` and `max_speed`, each a value with a unit, plus `is_max_speed_variable` for a variable speed corridor. The same `when` scoping as access_restrictions lets a limit apply only to certain modes, headings, vehicles or times of day, and `between` scopes it to part of the segment. Schema reference: [speed_limits](https://docs.overturemaps.org/schema/reference/transportation/types/speed_limits/)."
+    },
+    {
+      "name": "prohibited_transitions",
+      "type": "list<element: struct<sequence: list<element: struct<connector_id: string, segment_id: string>>, final_heading: string, when: struct<heading: string, during: string, using: list<element: string>, recognized: list<element: string>, mode: list<element: string>, vehicle: list<element: struct<dimension: string, comparison: string, value: double, unit: string>>>, between: list<element: double>>>",
+      "description": "Turn restrictions: rules preventing a transition from this segment to another. Each rule gives the ordered `sequence` of connector and segment ids that may not be followed, the `final_heading` prohibited on the destination segment, and the `when` scopes (mode, time, heading, vehicle) under which the prohibition applies. Schema reference: [prohibited_transitions](https://docs.overturemaps.org/schema/reference/transportation/types/prohibited_transitions/)."
+    },
+    {
+      "name": "routes",
+      "type": "list<element: struct<name: string, network: string, ref: string, symbol: string, wikidata: string, between: list<element: double>>>",
+      "description": "The named or numbered routes this segment belongs to \u2014 for each, the route's full `name`, the `network` (highway system) it belongs to, the `ref` code or number used to reference it, a `symbol` describing its signage, and a `wikidata` id. Schema reference: [routes](https://docs.overturemaps.org/schema/reference/transportation/types/routes/)."
+    },
+    {
+      "name": "destinations",
+      "type": "list<element: struct<labels: list<element: struct<value: string, type: string>>, symbols: list<element: string>, from_connector_id: string, to_segment_id: string, to_connector_id: string, when: struct<heading: string>, final_heading: string>>",
+      "description": "Where following this segment gets you, described the way the objects are described on signposts or ground writing that a traveller on the segment would actually observe \u2014 so a navigation system can name the signs the driver sees. Each entry has `labels` (a value plus its type: street, country, route_ref or toward_route_ref), sign `symbols`, the connector it applies from, the segment and connector it leads to, and the heading it applies in. Schema reference: [destinations](https://docs.overturemaps.org/schema/reference/transportation/types/destinations/)."
+    },
+    {
+      "name": "sources",
+      "type": "list<element: struct<property: string, dataset: string, license: string, record_id: string, update_time: string, confidence: double, between: list<element: double>>>",
+      "description": "Per-property provenance. An array of source records, each naming the `property` it covers in JSON Pointer notation plus the source `dataset`, its `license` (an SPDX identifier where one is available; null means contact the data provider for terms), the `record_id` used, an `update_time`, and for ML-derived data a `confidence`. Every feature carries a root-level entry that is the default source for any property without a more specific one. Schema reference: [sources](https://docs.overturemaps.org/schema/reference/common/sources/)."
+    },
+    {
+      "name": "version",
+      "type": "int32",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed. Schema reference: [feature_version](https://docs.overturemaps.org/schema/reference/common/feature_version/)."
+    },
+    {
+      "name": "overture_type",
+      "type": "string",
+      "description": "Which of the transportation theme's two feature types this row is \u2014 `segment` (a path that can be travelled) or `connector` (a point where segments physically connect, i.e. a routing decision point). Connector rows carry only id, geometry, version and sources; every segment attribute is null on them. Not an Overture schema column: this mirror merges the theme's feature types into one collection and records the type here. Schema reference: [segment](https://docs.overturemaps.org/schema/reference/transportation/segment/), [connector](https://docs.overturemaps.org/schema/reference/transportation/connector/)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Segment geometry is a LineString and connector geometry is a Point, both as WKB in EPSG:4326. Lines crossing the edge of the St. Louis bounding box were clipped to it, which can shorten a segment relative to Overture's."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Covering bounding box (xmin, ymin, xmax, ymax) for the row's geometry. Not an Overture schema column: Overture's own bbox was dropped and this one rebuilt by gpio during conversion, with row-group statistics, so a spatial filter can skip most of the file over the network."
+    }
+  ],
+  "portolan:total_size_bytes": 21813999,
+  "portolan:asset_count": 1,
+  "title": "Overture Transportation",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051856117901,
+          38.53199630293254,
+          -90.16630892212817,
+          38.77434671879855
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-07-22T00:00:00Z",
+          "2026-07-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "ODbL-1.0",
+  "assets": {
+    "overture-transportation": {
+      "href": "./overture-transportation.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21813999,
+      "file:checksum": "122021d429236dcabca4dbed9cbe5385f8e715c34f58557e23372128950a3fcd1df1",
+      "roles": [
+        "data"
+      ],
+      "title": "Overture Transportation (GeoParquet)"
+    },
+    "overture-transportation-tiles": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/transportation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture transportation theme (PMTiles, global)",
+      "description": "Overture's own release-pinned global vector tiles for the transportation theme, served from the Overture Maps Foundation's public bucket \u2014 not from this mirror, and not clipped to St. Louis. The styles select this collection's layers (segment, connector) from them.",
+      "file:size": 130331962390
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Road and rail classes",
+      "description": "Every segment colored by Overture's class \u2014 motorways red through the arterial oranges and yellows, residential streets gray, foot and cycle ways green, rail purple \u2014 the full routable network on both sides of the river.",
+      "file:size": 3213,
+      "file:checksum": "1220c4e55069e01d4be0607a7d8ed272c60c4e8cd7718fa85e0b1492900488d35c63"
+    },
+    "styles/style-network": {
+      "href": "./styles/style-network.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Network by mode",
+      "description": "The three Overture subtypes: roads blue, rail purple, waterways teal.",
+      "file:size": 1279,
+      "file:checksum": "12205149fb8d5f541b51a02fa2d6e738b4e54acd853aa2a06cb6c5e7acdb74840e4c"
+    },
+    "styles/style-topology": {
+      "href": "./styles/style-topology.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Segments and connectors",
+      "description": "The routing graph itself: segments in light gray with every connector (intersection) as a red point. Connectors only tile at z13+ \u2014 zoom in.",
+      "file:size": 1198,
+      "file:checksum": "12206538e9c1a2bd92ade8b0f656d8bbf7b6dc890293c8489af5e40152702e924d96"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Overture Transportation rendered with the default style",
+      "file:size": 457689,
+      "file:checksum": "1220a4fb9705e463c60d7aea60f2410d7fe789a60337cebb929020f71d8b2ed47021"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "transportation-infrastructure-and-utilities",
+          "title": "Transportation, Infrastructure, and Utilities"
+        }
+      ]
+    },
+    {
+      "scheme": "https://docs.overturemaps.org/guides/",
+      "concepts": [
+        {
+          "id": "transportation",
+          "title": "Overture transportation theme"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "overture",
+    "Overture Maps Foundation",
+    "transportation",
+    "segment",
+    "connector"
+  ],
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

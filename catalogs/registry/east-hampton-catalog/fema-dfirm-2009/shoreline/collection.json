@@ -1,0 +1,197 @@
+{
+  "type": "Collection",
+  "id": "fema-dfirm-2009/shoreline",
+  "stac_version": "1.1.0",
+  "description": "The shoreline from the 2009 Suffolk County flood map. The layer covers all of Suffolk County. Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/35",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "FEMA Flood Insurance Rate Map, 2009"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./shoreline.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "shoreline"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 803,
+  "table:row_count": 803,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "V_DATM_LID",
+      "type": "string",
+      "description": "Vertical datum, NAVD88 or a single space."
+    },
+    {
+      "name": "SOURCE_CIT",
+      "type": "string",
+      "description": "FEMA source citation code, STUDY5 or a single space."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 16,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -73.4848022,
+    40.9404896,
+    16
+  ],
+  "pmtiles:layers": [
+    "shoreline"
+  ],
+  "title": "FIRM Shoreline, 2009",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -73.4970259,
+          40.6096969,
+          -71.85619674809033,
+          41.2923879
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "Federal Emergency Management Agency",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer"
+    },
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "shoreline": {
+      "href": "./shoreline.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21257142,
+      "file:checksum": "1220662a2fc10d23a88844dddfcef8428956976a1da637e4134f0c3d8d20c6fcc742",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 2846,
+      "file:checksum": "1220e414b3891efdd53076aba82c80f803d0007b5533579751fbbdc422ba17a9d611",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "shoreline-tiles": {
+      "href": "./shoreline.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "shoreline (vector tiles)",
+      "file:size": 5901250,
+      "file:checksum": "12205bff6533f205b6b6630377692b4f84a80811d83bb322e72b14159021a8d350a4",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "FIRM Shoreline, 2009",
+      "file:size": 504,
+      "file:checksum": "1220a124455dc585f47c688a2be1ba535c958d1abcf250551c38da7b4a5b855a0e2f",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./shoreline.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 63187,
+      "file:checksum": "12208a04bec9e46259add851edfce20827c5db5c9cc4ba73f7ac1bae251028cc7868",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

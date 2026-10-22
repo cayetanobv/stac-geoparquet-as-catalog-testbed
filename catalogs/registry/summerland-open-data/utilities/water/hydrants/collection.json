@@ -1,0 +1,185 @@
+{
+  "type": "Collection",
+  "id": "utilities/water/hydrants",
+  "stac_version": "1.1.0",
+  "description": "Locations of fire hydrants in the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./hydrants.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "hydrants"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 580,
+  "table:row_count": 580,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "Description_1",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 563 of 580 rows populated; values: ACTIVE, Entrance of Waste Water Treatment Plant. North side of entrance by gate, Hydrant."
+    },
+    {
+      "name": "ManufactureDated",
+      "type": "timestamp[ms]",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 2 of 580 rows populated; values: 2005-01-02 00:00:00, 2020-01-02 00:00:00."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Hydrants",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.74489551800676,
+          49.562490751394165,
+          -119.62117749476016,
+          49.66462619273004
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "hydrants": {
+      "href": "./hydrants.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 40661,
+      "file:checksum": "1220df75475a7b635fc1d79714ed703aee023e72ea01d181d2c63880e2ee62533257",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./hydrants.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 45603,
+      "file:checksum": "1220ce319e3ff6129815ff3d8e885be8cd74d6261a5b2f8f41bb8a8a82042cb67dd3"
+    },
+    "hydrants-tiles": {
+      "href": "./hydrants.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "hydrants (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 50644,
+      "file:checksum": "1220b0aab8ed6995d2521d42d0965b388f4d8a8a480aa9be16322336ebe27827025c"
+    },
+    "styles/hydrant": {
+      "href": "./styles/hydrant.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Hydrant",
+      "file:size": 402,
+      "file:checksum": "12208a0eb0d6fccce667a7ba48492f166f2b29741a396ea5f604ec7bd2518a9fbc20"
+    }
+  },
+  "keywords": [
+    "Utilities",
+    "Water",
+    "Works",
+    "Infrastructure",
+    "Fire",
+    "Emergency Management",
+    "Fire Department"
+  ]
+}

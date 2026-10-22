@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "allaus/punts-dobservacio-nivologica",
+  "stac_version": "1.1.0",
+  "description": "Punts de presa de dades de la xarxa d'observaci\u00f3 nivol\u00f2gica de Catalunya (XANIC). El productor descriu la capa aix\u00ed: \u00abPunts de presa de dades de la xarxa d'observaci\u00f3 nivol\u00f2gica de Catalunya (XANIC). Els assaigs que es realitzen principalment s\u00f3n sondeigs per colpeig, perfils estratigr\u00e0fics i tests d'estabilitat. Aquesta informaci\u00f3 es b\u00e0sica per a la realitzaci\u00f3 di\u00e0ria del Butllet\u00ed de Perill d'Allaus\u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nivoallaus_puntsobservacio.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC)",
+      "pmtiles:layers": [
+        "nivoallaus_puntsobservacio"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: punts-dobservacio-nivologica",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa nivoallaus:puntsobservacio, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 41,
+  "table:row_count": 41,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "ESTACIO",
+      "type": "string",
+      "description": "Codi o nom de l'estaci\u00f3 d'observaci\u00f3."
+    },
+    {
+      "name": "ZONA",
+      "type": "string",
+      "description": "Zona nivoclim\u00e0tica on es troba el punt; enlla\u00e7a amb allaus/zones-nivoclimatiques."
+    },
+    {
+      "name": "TOPONIM",
+      "type": "string",
+      "description": "Top\u00f2nim del lloc d'observaci\u00f3."
+    },
+    {
+      "name": "ALTITUD",
+      "type": "int64",
+      "description": "Altitud del punt d'observaci\u00f3; el servei no en documenta la unitat, i els valors observats el 21.9.2026 s\u00f3n coherents amb metres."
+    },
+    {
+      "name": "UTMX",
+      "type": "int64",
+      "description": "Coordenada X del punt en el sistema d'origen EPSG:25831 (ETRS89 / UTM fus 31N)."
+    },
+    {
+      "name": "UTMY",
+      "type": "int64",
+      "description": "Coordenada Y del punt en el sistema d'origen EPSG:25831 (ETRS89 / UTM fus 31N)."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.6485745157370236,
+          42.19055449068746,
+          2.257795232066105,
+          42.76782494056346
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) default style",
+      "description": "Default visualization for Punts d'observaci\u00f3 nivol\u00f2gica (XANIC), drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1279,
+      "file:checksum": "12202825ee80891ac9d7a773a95ead0240e7b1b80614eb9e8c30d7382a35713312c2"
+    },
+    "nivoallaus_puntsobservacio": {
+      "href": "./nivoallaus_puntsobservacio.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 14410,
+      "file:checksum": "12200ac753400da82c925a453e7d5e5714232ceb0b9653ef87d335133c7ae3f19257",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nivoallaus_puntsobservacio.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 30418,
+      "file:checksum": "122002f8e5f5b238ef8d8c69674cd36e4701461cebaa635c5a8c2d77432a064397db"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) categorical style",
+      "description": "Categorical visualization coloring Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) by ZONA, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3769,
+      "file:checksum": "1220f481128cda38e7e1295d95bdabf54f2762e15600288380877b0b1b35d319ad6b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) labeled style",
+      "description": "Default visualization for Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) with ZONA shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1720,
+      "file:checksum": "122041cde611b303b641cee69923ab1b82e83529c6dead37b96412febf81c444608e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) graduated style",
+      "description": "Graduated visualization coloring Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) by UTMX, ramped from 307571.0 to 438937.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2053,
+      "file:checksum": "122033532088ef96439bb26bdb46b23338b3b573a3252b44a97928e228a2be365e0c"
+    },
+    "thumbnail": {
+      "href": "./nivoallaus_puntsobservacio.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Punts d'observaci\u00f3 nivol\u00f2gica (XANIC)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 96871,
+      "file:checksum": "12203b6d21392462e203f5e7cf65b974bdf45cc68a4fd41f3e0c5419bf0461d4216e"
+    }
+  },
+  "keywords": [
+    "allaus",
+    "nivologia",
+    "XANIC",
+    "observaci\u00f3",
+    "Pirineu",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Punts d'observaci\u00f3 nivol\u00f2gica (XANIC) de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

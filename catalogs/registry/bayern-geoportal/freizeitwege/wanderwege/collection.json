@@ -1,0 +1,216 @@
+{
+  "type": "Collection",
+  "id": "freizeitwege/wanderwege",
+  "stac_version": "1.1.0",
+  "description": "Zu den Wanderwegen z\u00e4hlen alle \u00f6rtlich beschilderten Wanderwege in Bayern. Die Bereitstellung erfolgt f\u00fcr die Landesfl\u00e4che Bayerns, d. h. \u00fcberregionale Wanderwege enden an der Bayerischen Landesgrenze.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Wanderwege.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wanderwege",
+      "pmtiles:layers": [
+        "Wanderwege"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodaten.bayern.de/opengeodata/OdmInit.do?method=init",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices.bayern.de/od/wms/atkis/v1/freizeitwege?",
+      "rel": "related",
+      "title": "WMS Freizeitwege der Bayerischen Vermessungsverwaltung",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 20129,
+  "table:row_count": 20129,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "ID",
+      "type": "int64",
+      "description": "Laufende Nummer des Wegeabschnitts in der Abgabe des Herausgebers (dBASE-Typ Integer64). Der Herausgeber ver\u00f6ffentlicht keine Feldbeschreibung zu diesem Shapefile."
+    },
+    {
+      "name": "Region",
+      "type": "string",
+      "description": "Regionsangabe des Herausgebers zum Weg."
+    },
+    {
+      "name": "Name",
+      "type": "string",
+      "description": "Name des beschilderten Weges, wie vom Herausgeber gef\u00fchrt."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Wanderwege",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.666019667677153,
+          47.27025975402566,
+          13.83976069641747,
+          50.66676696765272
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wanderwege default style",
+      "description": "Default visualization for Wanderwege, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1130,
+      "file:checksum": "1220eaff182260af028110990e0e648c2a3c11f9659f7c43b4e9ca99bea446186a37"
+    },
+    "Wanderwege": {
+      "href": "./Wanderwege.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 17528659,
+      "file:checksum": "1220c3ad7dc44801d903d087e0f9a3e63202f3b3e9aba64b312c41836204015d6a01",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Wanderwege.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wanderwege (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18426348,
+      "file:checksum": "1220aaae71821a3a4deb11d5c01b4bd8849a5e5fa1f7022e13730cc47b8841ef2176"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wanderwege labeled style",
+      "description": "Default visualization for Wanderwege with Name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1539,
+      "file:checksum": "12207a51cbf4bbc6f5a17ab5ff60d0d473407baae5a76ef7ab6d4495d5626aaee056"
+    },
+    "source": {
+      "href": "https://geodaten.bayern.de/odd/m/2/freizeitwege/wanderwege/shape/wanderwege_shape.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: freizeitwege-wanderwege",
+      "pipeline:upstream": true,
+      "file:size": 78505913,
+      "file:checksum": "122008190ca1a468f7828b749f22258f818c3fb4d6f5ed0e221c35d9c687a7221f2f"
+    },
+    "thumbnail": {
+      "href": "./Wanderwege.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Wanderwege",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 190157,
+      "file:checksum": "1220612a6e592afc295588776ceea5bbec252fb3006d8a017ebeb00ea768dbc805cc"
+    }
+  },
+  "keywords": [
+    "Wanderwege",
+    "Wandern",
+    "Freizeitwege",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Digitalisierung, Breitband und Vermessung (LDBV)",
+      "description": "Datenquelle: Bayerische Vermessungsverwaltung \u2013 www.geodaten.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ldbv.bayern.de/",
+      "email": "service@ldbv.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

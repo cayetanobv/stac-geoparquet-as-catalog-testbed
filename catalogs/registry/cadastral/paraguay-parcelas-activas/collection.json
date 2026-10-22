@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json"
+  ],
+  "id": "paraguay-parcelas-activas",
+  "title": "Paraguay — Active Cadastral Parcels",
+  "updated": "2026-07-24T08:35:25Z",
+  "description": "Active cadastral parcels (*parcelas activas*) for Paraguay: 2,192,890 polygons.\n\n**There is no unique identifier column.** `padron` holds 46,963 distinct values across 2,192,890 rows, and even `dpto` with `dist` and `padron` gives only 814,114 distinct combinations. `ccatastral`, which encodes the same three values as one string, gives 1,107,044. Treat every parcel key here as non-unique.\n\nAttributes include department (`dpto`), district (`dist`), padrón number (`padron`), zone (`zona`), block (`mz`), lot (`lote`), holding (`finca`), registry number (`nro_matricula`), cadastral code (`ccatastral`), area in hectares (`hectareas`), land and building surface (`superficie_tierra`, `superficie_edificado`) and land and building value (`valor_tierra`, `valor_edificado`).\n\n`obs` is uncontrolled free text carried over from the source registry. 886,763 rows are not blank. The same text repeats as the last pipe-delimited field of `clave_comparacion` in 822,579 rows, so a filter on `obs` alone does not remove it.",
+  "keywords": [
+    "cadastre",
+    "land tenure",
+    "parcels",
+    "South America",
+    "rural land",
+    "supply chain",
+    "Paraguay",
+    "parcelas activas",
+    "padron"
+  ],
+  "license": "other",
+  "providers": [
+    {
+      "name": "Servicio Nacional de Catastro",
+      "description": "The national cadastral authority of Paraguay, under the Ministerio de Economía y Finanzas.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.catastro.gov.py/"
+    },
+    {
+      "name": "Tristan Grupp",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://source.coop/tristangruppwri/cadastral"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -62.621396957751074,
+          -27.462299491783956,
+          -54.25848454831384,
+          -19.287647221172584
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-07-17T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "South American Rural Cadastral Boundaries"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "South American Rural Cadastral Boundaries"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Collection README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Collection agent guide"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.catastro.gov.py/visor/?snc=geo",
+      "type": "text/html",
+      "title": "SNC cadastral viewer, layer snc:parcelas_activas"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.catastro.gov.py/",
+      "type": "text/html",
+      "title": "Servicio Nacional de Catastro — no terms of use are published"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "./paraguay_parcelas_activas.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Active cadastral parcels (GeoParquet 1.1)",
+      "roles": [
+        "data"
+      ],
+      "file:size": 227046889,
+      "file:checksum": "122056ee7e560f94d1a7b0bfcaf0bb5635028159ef04e1410c7d60ea2073ac88e283"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "file:size": 87318,
+      "file:checksum": "122032322a2574f6bbec1c7e9475068143c9130b6f0f247915e07b88ba6936c905dd",
+      "title": "Paraguay — Active Cadastral Parcels — parcel density",
+      "description": "Parcel density over every row in this collection, binned from the bbox covering column. It is an overview of where the parcels are, not a rendering of their boundaries.",
+      "roles": [
+        "thumbnail",
+        "overview"
+      ]
+    }
+  },
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 2192890,
+  "table:row_count": 2192890,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "BIGINT"
+    },
+    {
+      "name": "objectid",
+      "type": "BIGINT"
+    },
+    {
+      "name": "id_parcela",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "dpto",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "dist",
+      "type": "BIGINT"
+    },
+    {
+      "name": "padron",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "zona",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "mz",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "lote",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "finca",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "nro_matricula",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "ccatastral",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "obs",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "mz_agr",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "lote_agr",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "tipo_pavim",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "tipo_cuenta",
+      "type": "BIGINT"
+    },
+    {
+      "name": "hectareas",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "superficie_tierra",
+      "type": "BIGINT"
+    },
+    {
+      "name": "superficie_edificado",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "valor_tierra",
+      "type": "BIGINT"
+    },
+    {
+      "name": "valor_edificado",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "tipo",
+      "type": "DOUBLE"
+    },
+    {
+      "name": "referencia",
+      "type": "BIGINT"
+    },
+    {
+      "name": "clave_comparacion",
+      "type": "VARCHAR"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('{\"$schema\":\"https://proj.org/schemas/v0.7/projjson.schema.json\",\"type\":\"GeographicCRS\",\"name\":\"WGS 84\",\"datum_ensemble\":{\"name\":\"World Geodetic System 1984 ensemble\",\"members\":[{\"name\":\"World Geodetic System 1984 (Transit)\",\"id\":{\"authority\":\"EPSG\",\"code\":1166}},{\"name\":\"World Geodetic System 1984 (G730)\",\"id\":{\"authority\":\"EPSG\",\"code\":1152}},{\"name\":\"World Geodetic System 1984 (G873)\",\"id\":{\"authority\":\"EPSG\",\"code\":1153}},{\"name\":\"World Geodetic System 1984 (G1150)\",\"id\":{\"authority\":\"EPSG\",\"code\":1154}},{\"name\":\"World Geodetic System 1984 (G1674)\",\"id\":{\"authority\":\"EPSG\",\"code\":1155}},{\"name\":\"World Geodetic System 1984 (G1762)\",\"id\":{\"authority\":\"EPSG\",\"code\":1156}},{\"name\":\"World Geodetic System 1984 (G2139)\",\"id\":{\"authority\":\"EPSG\",\"code\":1309}},{\"name\":\"World Geodetic System 1984 (G2296)\",\"id\":{\"authority\":\"EPSG\",\"code\":1383}}],\"ellipsoid\":{\"name\":\"WGS 84\",\"semi_major_axis\":6378137,\"inverse_flattening\":298.257223563},\"accuracy\":\"2.0\",\"id\":{\"authority\":\"EPSG\",\"code\":6326}},\"coordinate_system\":{\"subtype\":\"ellipsoidal\",\"axis\":[{\"name\":\"Geodetic latitude\",\"abbreviation\":\"Lat\",\"direction\":\"north\",\"unit\":\"degree\"},{\"name\":\"Geodetic longitude\",\"abbreviation\":\"Lon\",\"direction\":\"east\",\"unit\":\"degree\"}]},\"scope\":\"Horizontal component of 3D system.\",\"area\":\"World.\",\"bbox\":{\"south_latitude\":-90,\"west_longitude\":-180,\"north_latitude\":90,\"east_longitude\":180},\"id\":{\"authority\":\"EPSG\",\"code\":4326}}')"
+    }
+  ]
+}

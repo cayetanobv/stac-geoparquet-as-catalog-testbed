@@ -1,0 +1,317 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "es",
+  "title": "Spain Declared Crops (Cultivos Declarados SIGPAC)",
+  "description": "National declared-crop dataset (Cultivos Declarados SIGPAC) published by the Spanish Agricultural Guarantee Fund\n(FEGA) via the unified SIGPAC Hub Cloud portal (sigpac-hubcloud.es). Each record is a declaration line within a\nfarmer's Single Application (Solicitud Única) for Common Agricultural Policy (CAP) direct payments, mapped onto\nSIGPAC cadastral divisions. Data is distributed as one GeoPackage per Spanish province, harmonised across the\ncountry since the 2025 campaign year.\n\nThis is a high-value dataset (HVD) under EU Implementing Regulation 2023/138.\n\nThis collection holds 4 editions (2021, 2022, 2023, 2025), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/es/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2025). Geometries are kept in the source CRS (EPSG:4258). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/es/AGENTS.md).\n\nThe 2021, 2022 and 2023 editions, which the source above does not offer, come from Spain Declared Crops (Cultivos Declarados SIGPAC) — EuroCrops V2 (Joint Research Centre, European Commission, converter `ec_es`), under CC-BY-4.0; attribution: European Commission, Joint Research Centre — EuroCropsV2; their items carry those terms.\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "FEGA",
+    "SIGPAC",
+    "Spain",
+    "agriculture",
+    "cultivo declarado",
+    "declared crops",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "CC-BY-4.0",
+  "providers": [
+    {
+      "name": "Fondo Español de Garantía Agraria (FEGA)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.fega.gob.es"
+    },
+    {
+      "name": "Joint Research Centre, European Commission",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.jrc.ec.europa.eu/dataset/b9fb9e67-78a9-4327-9d59-39a928d812d3"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -18.145464483191937,
+          27.659948095899708,
+          4.308757944368304,
+          43.78663774518745
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-01-01T00:00:00Z",
+          "2025-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3035",
+      "EPSG:4258"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "irrigation_system",
+      "type": "string",
+      "description": "Carried over from the source column `parc_sistexp`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "cultivation_surface",
+      "type": "int32",
+      "description": "Carried over from the source column `parc_supcult`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "admin_municipality_code",
+      "type": "string",
+      "description": "Carried over from the source column `municipio`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "admin_province_code",
+      "type": "string",
+      "description": "Carried over from the source column `provincia`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 17844643,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 4,
+  "partition:glob": "s3://ftw/harmonized-field-data/es/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/es.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Spain — latest edition (2025) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2025/es-2025.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 10461993678,
+      "file:checksum": "1220213800871b7b72759765f0398361b91c0491b8e26232cbc4fea8de0ea15330f8",
+      "proj:code": "EPSG:4258"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2317,
+      "file:checksum": "122013d7aa17714179bbc7383c537dda780157da4f3cd9602744c6d011f462eac990"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.1, 0.25, 0.5, 1 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1216,
+      "file:checksum": "12200e8276726a380f3b1c14b76f35945a9d75614aebb4543e1a384db59ac5292909"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 725,
+      "file:checksum": "122051e50209f16db37821fe710ab6fa4beb6a647de0ff5eb0b2a9293b843b03059b"
+    },
+    "visual": {
+      "href": "./year=2025/es-2025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Spain — latest edition (2025) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4232930564,
+      "file:checksum": "1220d5ce0ec11b3a846eb1abe01390625b3d2f971cf1dc0e638bb28ea4cde0d75cc3"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 171464,
+      "file:checksum": "122035ec6d663a54136f9ef21be237e679a931fdf880201a5ef5b0bec65de6f4dcf9"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2025/es-2025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "es"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.fega.gob.es",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/ES.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/es.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/es-2021.json",
+      "type": "application/geo+json",
+      "title": "Spain — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/es-2022.json",
+      "type": "application/geo+json",
+      "title": "Spain — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/es-2023.json",
+      "type": "application/geo+json",
+      "title": "Spain — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/es-2025.json",
+      "type": "application/geo+json",
+      "title": "Spain — 2025"
+    }
+  ],
+  "updated": "2026-09-26T22:05:18Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "es": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml"
+    ]
+  },
+  "attribution": "©FEGA / Ministerio de Agricultura, Pesca y Alimentación"
+}

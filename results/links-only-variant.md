@@ -2,7 +2,7 @@
 
 The upstream comment on 2026-10-21 noted that `parents` repeats what the `parent` and `root` links already carry, and asked how searchable those links are inside a list. This experiment builds the Comunidad de Madrid index without `parents` and with a `links` column, a list of link structs as in the stac-geoparquet items table, and asks both questions against both files.
 
-Files: `indexes/comunidad-madrid-datos-abiertos/collections.parquet` and `collections-links.parquet`. Scripts: `benchmarks/links-only/`.
+Files: `indexes/comunidad-madrid-datos-abiertos/collections.parquet` and `collections-links.parquet`. Scripts: `benchmarks/links-only/`. The links file was rebuilt on 2026-10-23 to repair its `geo` metadata; no measurement here reads the geometry column, so the numbers stand.
 
 Every `parent` link in this catalog is the same string, `../catalog.json`. A query has to resolve it against the row's own `href` before it can compare anything.
 

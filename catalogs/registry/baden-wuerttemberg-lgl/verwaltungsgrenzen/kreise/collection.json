@@ -1,0 +1,242 @@
+{
+  "type": "Collection",
+  "id": "verwaltungsgrenzen/kreise",
+  "stac_version": "1.1.0",
+  "description": "aktuell g\u00fcltige ALKIS-Stadt- und Landkreise (Datenstand tagesaktuell) vollst\u00e4ndig topologisch korrekt \u2014 Der WFS-Dienst liefert aktuelle, vektorbasierte ALKIS Daten zu Verwaltungsgrenzen in der NOrA Datenstruktur. Der WFS-Dienst stellt keinen amtlichen Nachweis dar. Der Dienst liefert Flurgrenzen, Gemarkungsgrenzen, Gemeindegrenzen, Kreisgrenzen, Regierungsbezirksgrenzen, Regionsgrenzen sowie Landesgrenze jeweils als FeatureType.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nora_v_al_kreis.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS-Stadt- und Landkreise",
+      "pmtiles:layers": [
+        "nora_v_al_kreis"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://owsproxy.lgl-bw.de/owsproxy/wfs/WFS_LGL-BW_ALKIS_VGr_KatGr_E?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://owsproxy.lgl-bw.de/owsproxy/wfs/WFS_LGL-BW_ALKIS_VGr_KatGr_E",
+      "rel": "related",
+      "title": "WFS source service: alkis-vgr-kreise",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 44,
+  "table:row_count": 44,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "kreis_id",
+      "type": "int64"
+    },
+    {
+      "name": "kreis_name",
+      "type": "string"
+    },
+    {
+      "name": "region_id",
+      "type": "int64"
+    },
+    {
+      "name": "region_name",
+      "type": "string"
+    },
+    {
+      "name": "regierungsbezirk_id",
+      "type": "int64"
+    },
+    {
+      "name": "regierungsbezirk_name",
+      "type": "string"
+    },
+    {
+      "name": "beginn",
+      "type": "timestamp"
+    },
+    {
+      "name": "ende",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "ALKIS-Stadt- und Landkreise",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.5117697,
+          47.5324009,
+          10.4956269,
+          49.7912963
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Stadt- und Landkreise default style",
+      "description": "Default visualization for ALKIS-Stadt- und Landkreise, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1182,
+      "file:checksum": "12203b6892a3bde1206cb9e0a0303c9efa6c6db44e53544404b552b76660b6632492"
+    },
+    "nora_v_al_kreis": {
+      "href": "./nora_v_al_kreis.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4843139,
+      "file:checksum": "1220d353ce06a5599604a3dac18a2e36071b35a14c60dd29f40d1c81908f133b8d26",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./nora_v_al_kreis.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS-Stadt- und Landkreise (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4177355,
+      "file:checksum": "12200eb92088e8904879e2c9a639010b5aeb776a7fb2478b8f7fe7bbc5e3e64214b9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Stadt- und Landkreise categorical style",
+      "description": "Categorical visualization coloring ALKIS-Stadt- und Landkreise by regierungsbezirk_name, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2099,
+      "file:checksum": "122031ed79e8a105a00e0077a241220d22a245ee09abeb8c02f790a80514dcbffc70"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Stadt- und Landkreise labeled style",
+      "description": "Default visualization for ALKIS-Stadt- und Landkreise with kreis_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1607,
+      "file:checksum": "122009a798260c1e51a3aae2a6984ec985a181cc5de45b031c61775786d7c1e2e491"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Stadt- und Landkreise graduated style",
+      "description": "Graduated visualization coloring ALKIS-Stadt- und Landkreise by kreis_id, ramped from 111.0 to 437.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1945,
+      "file:checksum": "1220f6823b8b3aa549ea99871b4a940411531526a730d576204cb8a012a375f09c01"
+    },
+    "thumbnail": {
+      "href": "./nora_v_al_kreis.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of ALKIS-Stadt- und Landkreise",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 173713,
+      "file:checksum": "12205a58650da145caed77c9debfaf08d3b0a9f7492de9182cb3599b47668262acb7"
+    }
+  },
+  "keywords": [
+    "Verwaltungsgrenzen",
+    "Katasterbezirke",
+    "ALKIS",
+    "NOrA",
+    "LGL",
+    "Baden-W\u00fcrttemberg"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Geoinformation und Landentwicklung Baden-W\u00fcrttemberg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lgl-bw.de",
+      "email": "benutzerservice@lgl.bwl.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

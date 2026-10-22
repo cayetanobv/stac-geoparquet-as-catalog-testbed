@@ -1,0 +1,187 @@
+{
+  "type": "Collection",
+  "id": "litoral/celles-litorals",
+  "stac_version": "1.1.0",
+  "description": "Cel\u00b7les litorals de Catalunya: els trams de costa que l'ICGC fa servir com a unitat superior de l'inventari litoral. El productor titula la capa \u00abLitoral cells\u00bb. La capa forma part de l'inventari del litoral de Catalunya que l'ICGC publica al geoservei icgc_icoast; el productor en redacta els t\u00edtols i les paraules clau en angl\u00e8s i en catal\u00e0.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./icgc_icoast_02_lcell_pa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Litoral cells \u2013 cel\u00b7les litorals",
+      "pmtiles:layers": [
+        "icgc_icoast_02_lcell_pa"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: celles-litorals",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa icgc_icoast:02_LCELL_PA, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 22,
+  "table:row_count": 22,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "LIT_CELL",
+      "type": "int64",
+      "description": "N\u00famero de la cel\u00b7la litoral; \u00e9s la clau amb qu\u00e8 les unitats costaneres descriptives s'hi agrupen."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Litoral cells \u2013 cel\u00b7les litorals",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.508841569735661,
+          40.523118912392256,
+          3.322262673041376,
+          42.43548891999085
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Litoral cells \u2013 cel\u00b7les litorals default style",
+      "description": "Default visualization for Litoral cells \u2013 cel\u00b7les litorals, drawn in #41b6c4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1253,
+      "file:checksum": "1220cf9c39887531dccf9435a66605e3d20abc2f69607a9feb3d7282d8e43f3d9159"
+    },
+    "icgc_icoast_02_lcell_pa": {
+      "href": "./icgc_icoast_02_lcell_pa.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1124851,
+      "file:checksum": "12208af94a5955d26595dcf0b651b73c6a9a87fb5383c55630ab9040d4101a87d7c2",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./icgc_icoast_02_lcell_pa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Litoral cells \u2013 cel\u00b7les litorals (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 476480,
+      "file:checksum": "1220072870e9a120a5b945717bcf5098d5eb4800eb3c28ca73c177ff0506b7bbdae1"
+    },
+    "thumbnail": {
+      "href": "./icgc_icoast_02_lcell_pa.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Litoral cells \u2013 cel\u00b7les litorals",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 58503,
+      "file:checksum": "12200f2e0d0f74cd57a381198b57669ce80fe6b6632b1f066c059938c4e017d8865e"
+    }
+  },
+  "keywords": [
+    "litoral",
+    "costa",
+    "cel\u00b7les litorals",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Litoral cells \u2013 cel\u00b7les litorals de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

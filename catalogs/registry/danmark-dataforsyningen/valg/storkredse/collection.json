@@ -1,0 +1,255 @@
+{
+  "type": "Collection",
+  "id": "valg/storkredse",
+  "stac_version": "1.1.0",
+  "description": "Danmarks 10 storkredse fra DAGI med nummer, navn, region og den valglandsdel storkredsen ligger i.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./storkredse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Storkredse",
+      "pmtiles:layers": [
+        "storkredse"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/storkreds",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/storkredse?format=geojson",
+      "rel": "related",
+      "title": "Upstream source: storkredse",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 10,
+  "table:row_count": 10,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "regionskode",
+      "type": "string"
+    },
+    {
+      "name": "regionsnavn",
+      "type": "string"
+    },
+    {
+      "name": "valglandsdelsbogstav",
+      "type": "string"
+    },
+    {
+      "name": "valglandsdelsnavn",
+      "type": "string"
+    },
+    {
+      "name": "\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_version",
+      "type": "int32"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Storkredse",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.07250975,
+          54.55907837,
+          15.19740034,
+          57.75257255
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Storkredse default style",
+      "description": "Default visualization for Storkredse, drawn in #756bb1.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1130,
+      "file:checksum": "122028d608bd7228093bf13e2c10947d20a6b758a3223185a1466de40df86042e30e"
+    },
+    "storkredse": {
+      "href": "./storkredse.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 17094341,
+      "file:checksum": "1220171f568f0e69fbbdfe4aa22494867ff3f2444a323f61f1678d16b2a7e5eb2d5a",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./storkredse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Storkredse (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8323950,
+      "file:checksum": "1220ab374ca18b4e77e39bbda5f2d7c0b694e36c4f85bf03edf049567d6d55a2a8bc"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Storkredse categorical style",
+      "description": "Categorical visualization coloring Storkredse by valglandsdelsbogstav, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1830,
+      "file:checksum": "1220237035c2c693d0ab8e4d0e59b32b314943144ef13966978c1c4925e2b16c1e51"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Storkredse labeled style",
+      "description": "Default visualization for Storkredse with valglandsdelsbogstav shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1555,
+      "file:checksum": "12201deb7fef9c0faa7acd583f320b86f6bb968887b2283a6b1794fb5a844e1d83e5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Storkredse graduated style",
+      "description": "Graduated visualization coloring Storkredse by geo_version, ramped from 6.0 to 45.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1893,
+      "file:checksum": "122030c649ecd866eefb08f0328c86ce16738345acc71a382cf6b87c3cbe9f9ef526"
+    },
+    "thumbnail": {
+      "href": "./storkredse.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Storkredse",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 87334,
+      "file:checksum": "12205fd510f8e2948e7d2078ec1b172d32c8bbe468ee9fc012ab245b57b69d2223fa"
+    }
+  },
+  "keywords": [
+    "storkredse",
+    "valg",
+    "folketingsvalg",
+    "DAGI"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen storkredse, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/storkreds",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

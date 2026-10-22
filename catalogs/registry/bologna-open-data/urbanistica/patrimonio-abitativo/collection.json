@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "urbanistica/patrimonio-abitativo",
+  "stac_version": "1.1.0",
+  "description": "Intero patrimonio abitativo esistente",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./patrimonioabitativo.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Intero patrimonio abitativo esistente",
+      "pmtiles:layers": [
+        "patrimonioabitativo"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/patrimonio-abitativo/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/patrimonio-abitativo/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: patrimonioabitativo",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 100,
+  "table:row_count": 100,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "zona_fiu",
+      "type": "string",
+      "description": "zona di prossimit\u00e0."
+    },
+    {
+      "name": "numquart",
+      "type": "double",
+      "description": "numero quartiere."
+    },
+    {
+      "name": "nomequart",
+      "type": "string",
+      "description": "Quartiere."
+    },
+    {
+      "name": "shape_area",
+      "type": "double",
+      "description": "area (mq)."
+    },
+    {
+      "name": "uiu_abitaz",
+      "type": "int32",
+      "description": "numero abitazioni."
+    },
+    {
+      "name": "data_ril",
+      "type": "date"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Intero patrimonio abitativo esistente",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.229655383192148,
+          44.421110027904916,
+          11.433714398089029,
+          44.556205387977215
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Intero patrimonio abitativo esistente default style",
+      "description": "Default visualization for Intero patrimonio abitativo esistente, drawn in #54278f.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1220,
+      "file:checksum": "1220a9ba6e6b2a2589532a732eb70752f7237b95412a38046374dc77cd5cf3cf7c66"
+    },
+    "patrimonioabitativo": {
+      "href": "./patrimonioabitativo.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 266998,
+      "file:checksum": "1220a33208020837ecb5292eefb713c5bb4a27065682d26309b6dbafb11e63548dff",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./patrimonioabitativo.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Intero patrimonio abitativo esistente (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 229208,
+      "file:checksum": "12201fd243502f57c864c13f3e9ad211f51d7393a4435e2d587db15033b92dc3d725"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Intero patrimonio abitativo esistente categorical style",
+      "description": "Categorical visualization coloring Intero patrimonio abitativo esistente by nomequart, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2440,
+      "file:checksum": "1220b5d4905c2ffa6f04159fc883c46468ecf7a83b773b47c5113bafec0283611e1e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Intero patrimonio abitativo esistente labeled style",
+      "description": "Default visualization for Intero patrimonio abitativo esistente with nomequart shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1652,
+      "file:checksum": "12209cd0eaf5bb3d7859825e553ae42bb577ad057b613832083c1c63af90fc303dbf"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Intero patrimonio abitativo esistente graduated style",
+      "description": "Graduated visualization coloring Intero patrimonio abitativo esistente by shape_area, ramped from 881620.15324 to 24725141.5981.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2075,
+      "file:checksum": "1220aae30dfec153f8a230b795d2077c0e0eb7f5a5b62ac8e92ed32f675112cf5708"
+    },
+    "thumbnail": {
+      "href": "./patrimonioabitativo.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Intero patrimonio abitativo esistente",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 94160,
+      "file:checksum": "12203fcafec5c828e0a5d965f451830e3545c2b033c46bf8cdc8e76b9aad275a4579"
+    }
+  },
+  "keywords": [
+    "Popolazione e societ\u00e0",
+    "piano dei quartieri"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abIntero patrimonio abitativo esistente\u00bb (patrimonio-abitativo), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/patrimonio-abitativo/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

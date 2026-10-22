@@ -1,0 +1,54 @@
+{
+  "type": "Catalog",
+  "id": "publish",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json"
+  ],
+  "title": "Soft Commodity Infrastructure (Brazil)",
+  "description": "Where Brazilian farms connect to markets. This is the geolocated midstream of\nBrazilian agriculture: the silos, slaughterhouses, dairy plants, and sugar/ethanol\nmills that farms sell into, plus the cooperatives that farms belong to. It exists\nto answer, for any rural property, **who to contact** about deforestation on the\nland - the cooperative that has the farmer as a member, or the buyer that receives\ntheir grain, cattle, or cane.\n\n## How it was made\n\nEvery point comes from a government registry, or is geocoded from one. Nothing is\nguessed from satellite imagery.\n\n- **Grain silos** - CONAB's national warehouse registry (`ArmazensCadastrados`),\n  which every grain warehouse must register with. It ships real GPS coordinates,\n  so these are exact. Includes cooperative, trader/private, and official silos.\n- **Slaughterhouses & dairy plants, federal** - MAPA's SIF (federal meat/dairy\n  inspection) registry. Has the company, tax ID, and address but no coordinates,\n  so we geocoded the addresses ourselves. Beef, poultry, pork, dairy.\n- **Slaughterhouses & dairy plants, state/municipal** - the smaller local plants\n  (SIE/SIM/CONSORCIO) that a frontier producer often delivers to, which the\n  federal list misses. These live in MAPA's SISBI system, which has no bulk\n  download; Trase pulled the SISBI records and geocoded them from the registry\n  addresses, and we use that subset. Registry-derived, not AI-detected.\n- **Sugar/ethanol mills** - ANP's ethanol producer list (company, tax ID, town,\n  capacity). No street address, so each mill sits at its town's center.\n- **Cooperative membership** - IBGE's Censo Agropecuario 2017, which counts how\n  many farms in each municipio belong to a cooperative. A density signal, not a\n  named cooperative - but it works even in remote frontier towns.\n- **Municipality geometry** - IBGE's official municipio boundaries.\n\n## Trust labels on every row\n\nBecause not every point is equally precise, each carries two labels. **`basis`**\nis `observed` (someone official recorded it) or `modelled` (we calculated it -\nonly the gravity-catchment rows). **`geom_method`** records how the coordinate\nwas set. Five values occur in the data: `registered` (18,796 rows, the source\ngave the GPS coordinate), `geocoded` (12,007, an address turned into a point,\nwhich can be off), `municipality` (5,257, the municipality polygon itself),\n`derived` (3,103, modelled catchment areas) and `municipality_centroid` (1,506,\nall that was available was the town). A user can see at a glance how good each\nlocation is.\n\n## Full methodology & source\n\nPipeline, tests, and a plain-language writeup live at\nhttps://github.com/wri/rural-land (see `soft_commodity_infrastructure/METHODOLOGY.md`).\nBrazil only. Rice, cotton, and coffee are not covered - no authoritative open\ngeolocated source exists for them.\n",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json",
+      "title": "Soft Commodity Infrastructure (Brazil)"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Catalog README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Catalog agent guide"
+    },
+    {
+      "rel": "child",
+      "href": "./facilities/collection.json",
+      "type": "application/json",
+      "title": "Brazilian soft-commodity facilities and cooperative membership"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/plain",
+      "title": "LLM-oriented catalog summary"
+    },
+    {
+      "rel": "vcs",
+      "href": "https://github.com/wri/rural-land",
+      "type": "text/html",
+      "title": "Catalog source repository"
+    },
+    {
+      "rel": "issues",
+      "href": "https://github.com/wri/rural-land/issues",
+      "type": "text/html",
+      "title": "Catalog issue tracker"
+    }
+  ]
+}

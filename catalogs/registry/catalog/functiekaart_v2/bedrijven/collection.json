@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_v2/bedrijven",
+  "stac_version": "1.1.0",
+  "description": "Bedrijven",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./bedrijven.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "bedrijven"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 3090,
+  "table:row_count": 3090,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Bedrijven",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.97548327432902,
+          52.0348152415857,
+          5.18457438449548,
+          52.1344810704589
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "bedrijven": {
+      "href": "./bedrijven.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 134200,
+      "file:checksum": "122076a26532e5d6682407c1f746f04f663f1e131de148a4ab6b9ca137ddb2f97b86",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./bedrijven.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 13671,
+      "file:checksum": "1220ddd78534b2cc584f976a37987fd2343511f747b9eea0a97a19bc217183da22e3"
+    },
+    "bedrijven-tiles": {
+      "href": "./bedrijven.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "bedrijven (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 53486,
+      "file:checksum": "1220e99908fcd85b910eea0fe10712c92512a978993317598696b7296faca8263c79"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 643,
+      "file:checksum": "122019c33a363430bd3e8654c04dd7669410b8d83e30af6784ecbd05fe301cfc4749",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

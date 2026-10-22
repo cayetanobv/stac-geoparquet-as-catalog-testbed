@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "maasto-1-1/jarvi",
+  "stac_version": "1.1.0",
+  "description": "jarvi",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./jarvi.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "jarvi",
+      "pmtiles:layers": [
+        "jarvi"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/jarvi/items",
+      "rel": "related",
+      "title": "OGC API source service: jarvi",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 150491,
+  "table:row_count": 150491,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 64, joka vastaa aluemaisia Maasto/1-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 36200, j\u00e4rvivesi."
+    },
+    {
+      "name": "keskikorkeus",
+      "type": "int32",
+      "description": "Vakaveden keskikorkeus millimetrein\u00e4. Keskikorkeus perustuu pitk\u00e4aikaisiin havaintoihin tai, jos havaintoja ei ole saatavissa, kes\u00e4kauden arvioidun keskiveden korkeuteen. Merenpinnan korkeus ilmoitetaan arvona 0."
+    },
+    {
+      "name": "saannostelynalaraja",
+      "type": "int32",
+      "description": "S\u00e4\u00e4nn\u00f6stellyn vakaveden korkeuden alaraja millimetrein\u00e4. Sarake on tyhj\u00e4, jos vakavett\u00e4 ei s\u00e4\u00e4nn\u00f6stell\u00e4."
+    },
+    {
+      "name": "saannostelynylaraja",
+      "type": "int32",
+      "description": "S\u00e4\u00e4nn\u00f6stellyn vakaveden korkeuden yl\u00e4raja millimetrein\u00e4. Sarake on tyhj\u00e4, jos vakavett\u00e4 ei s\u00e4\u00e4nn\u00f6stell\u00e4."
+    },
+    {
+      "name": "vedenpinnankorkeusluvutviittaus",
+      "type": "string",
+      "description": "Viittaus vakaveteen yhdistettyihin Vedenpinnan korkeusluku -tekstikohteisiin. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "J\u00e4rviveden aluerajaus WGS84-koordinaatistossa. J\u00e4rvivesi on vakavesi, jonka vedenpinnan korkeus pysyy alueellisesti samalla tasolla eik\u00e4 siin\u00e4 ole olennaista virtaamaa, ja luokkaan kuuluvat j\u00e4rvi, lampi, tekoj\u00e4rvi sek\u00e4 kanava."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "jarvi",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.3165946,
+          59.7382838,
+          31.595994,
+          70.0793272
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "jarvi default style",
+      "description": "Default visualization for jarvi, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1090,
+      "file:checksum": "1220a45ee98d18cef5f4adf738baaefeac1f26872c005446436e109a982db2ae74b4"
+    },
+    "jarvi": {
+      "href": "./jarvi.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1173615953,
+      "file:checksum": "1220affcb0037dde8173680c1b3eecf4beea46641a78c51608fd9ef94051f3314922",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./jarvi.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "jarvi (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 357234973,
+      "file:checksum": "12202c2da43163afade850778eb30c37074893e63cd0128770c296cf76334aa5a897"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "jarvi graduated style",
+      "description": "Graduated visualization coloring jarvi by mtk_id, ramped from 82786435.0 to 3000757509.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1902,
+      "file:checksum": "122081c4661dac6be4f73c00b60fa462acc26d8776bd73dfb05ea0eb9b777de0368a"
+    },
+    "thumbnail": {
+      "href": "./jarvi.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of jarvi",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 124619,
+      "file:checksum": "12204a8f5d32534bb68a56ab3e439b1450c8f9c0fa0da992988e9f395fbea702e44c"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/1",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

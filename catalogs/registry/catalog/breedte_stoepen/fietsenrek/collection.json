@@ -1,0 +1,141 @@
+{
+  "type": "Collection",
+  "id": "breedte_stoepen/fietsenrek",
+  "stac_version": "1.1.0",
+  "description": "Fietsenrek",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./fietsenrek.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "fietsenrek"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 231,
+  "table:row_count": 231,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "FID",
+      "type": "int64"
+    },
+    {
+      "name": "Objectsoor",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Fietsenrek",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.03243794220239,
+          52.0572096152133,
+          5.14580653367288,
+          52.1264382056174
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "fietsenrek": {
+      "href": "./fietsenrek.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 11221,
+      "file:checksum": "1220dadd75fccf8d53381178cb38919ead99b88b5587630633070e5db1bbb5dc7a3a",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./fietsenrek.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 5315,
+      "file:checksum": "1220903e4ca23435d9bb57f2e5ad8e96959271c49dd19ca3134cfdc1749fba884887"
+    },
+    "fietsenrek-tiles": {
+      "href": "./fietsenrek.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "fietsenrek (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9088,
+      "file:checksum": "12204f93537599a2705ca4982f9fae3297d9c17b025842db7c666022caa0b2b3ee27"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 648,
+      "file:checksum": "1220e9db2ad48cfba3245690589d245f04cc5d7216fc19ac42993785376de00c047d",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

@@ -1,0 +1,390 @@
+{
+  "type": "Collection",
+  "id": "housing/market-value-analysis",
+  "stac_version": "1.1.0",
+  "description": "The Market Value Analysis (MVA) is an in-depth study and mapping of a community's housing market. It reveals the mosaic of market conditions in St. Louis.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://stlcity.maps.arcgis.com/home/item.html?id=e71e3ebca1f345a4b7db134d30c5d9ff",
+      "type": "text/html",
+      "title": "Dataset page in the city's ArcGIS Online organization"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./market-value-analysis.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "market-value-analysis"
+      ]
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Housing"
+    },
+    {
+      "rel": "via",
+      "href": "https://stlcity.maps.arcgis.com/home/item.html?id=e71e3ebca1f345a4b7db134d30c5d9ff",
+      "type": "text/html",
+      "title": "Dataset page in the city's ArcGIS Online organization"
+    },
+    {
+      "rel": "via",
+      "href": "https://services6.arcgis.com/HZXbCkpCSqbGd0vK/arcgis/rest/services/2024_Market_Value_Analysis/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 314,
+  "table:row_count": 314,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "geoid",
+      "type": "string",
+      "description": "Census 2020 block group code (AGOL layer documentation)."
+    },
+    {
+      "name": "MVACluster",
+      "type": "string",
+      "description": "Market cluster letter assigned to the block group by Reinvestment Fund's 2024 Market Value Analysis of St. Louis \u2014 clusters group block groups with similar housing-market conditions."
+    },
+    {
+      "name": "MSP2123_CA",
+      "type": "int32",
+      "description": "Median sales price of residential home sales 2021-2023, excluding sales under $1,000, condo-adjusted (AGOL layer documentation)."
+    },
+    {
+      "name": "MSPVar2123",
+      "type": "float",
+      "description": "Variation of home values 2021-2023 (standard deviation divided by average value)."
+    },
+    {
+      "name": "PHHOO",
+      "type": "float",
+      "description": "Households that reported owning their home as a share of all households, ACS 2018-2022."
+    },
+    {
+      "name": "CHHOO",
+      "type": "int32",
+      "description": "Count of households that reported owning their homes, ACS 2018-2022 (documented as 'CHOO' in the layer description)."
+    },
+    {
+      "name": "CHH",
+      "type": "int32",
+      "description": "Count of all households, ACS 2018-2022 (documented as 'CHIH' in the layer description)."
+    },
+    {
+      "name": "PPerm10k",
+      "type": "float",
+      "description": "Share of residential parcels with renovation/addition permits June 2022-June 2024 whose total permit value exceeded $10,000 (excluding demolitions)."
+    },
+    {
+      "name": "CPerm10k",
+      "type": "int32",
+      "description": "Count of residential parcels with such >$10,000 renovation/addition permits, June 2022-June 2024."
+    },
+    {
+      "name": "CResPcl",
+      "type": "int32",
+      "description": "Count of residential parcels in the block group (denominator for the parcel-share indicators; AGOL description text is garbled for this field)."
+    },
+    {
+      "name": "PDSale2123",
+      "type": "float",
+      "description": "Distressed residential sales (foreclosures, sheriff sales, tax sales, bank-sold) as a share of residential transactions 2021-2023."
+    },
+    {
+      "name": "CDSale2123",
+      "type": "int32",
+      "description": "Count of distressed residential home sales 2021-2023."
+    },
+    {
+      "name": "CSales2123",
+      "type": "int32",
+      "description": "Count of residential home sales 2021-2023."
+    },
+    {
+      "name": "PVacBuild",
+      "type": "float",
+      "description": "Vacant housing units as a share of all housing units, 2024."
+    },
+    {
+      "name": "CVacBuild",
+      "type": "int32",
+      "description": "Count of vacant housing units."
+    },
+    {
+      "name": "CHU_All",
+      "type": "int32",
+      "description": "Count of all housing units."
+    },
+    {
+      "name": "PVResLand",
+      "type": "float",
+      "description": "Vacant residential land as a share of all residential land, 2024."
+    },
+    {
+      "name": "VacLotAcre",
+      "type": "double",
+      "description": "Vacant residential land area in acres."
+    },
+    {
+      "name": "PclResAcre",
+      "type": "double",
+      "description": "Residential land area in acres."
+    },
+    {
+      "name": "PResArea",
+      "type": "float",
+      "description": "Residential land area as a share of all land area, 2024."
+    },
+    {
+      "name": "PclAcres",
+      "type": "double",
+      "description": "All land area in acres."
+    },
+    {
+      "name": "Subsidy",
+      "type": "float",
+      "description": "Share of households with a housing subsidy (LIHTC, Public Housing, Housing Choice Voucher, Multifamily), from the National Housing Preservation Database/HUD-POSH/St. Louis Housing Authority."
+    },
+    {
+      "name": "CSubHH",
+      "type": "double",
+      "description": "Count of households with a housing subsidy (same sources as Subsidy)."
+    },
+    {
+      "name": "CHHRO",
+      "type": "int32",
+      "description": "Count of renter households, ACS 2018-2022."
+    },
+    {
+      "name": "CPOP",
+      "type": "int32",
+      "description": "Total population count, ACS 2018-2022."
+    },
+    {
+      "name": "CPOPWH",
+      "type": "int32",
+      "description": "Non-Hispanic white population count, ACS 2018-2022."
+    },
+    {
+      "name": "CPOPBK",
+      "type": "int32",
+      "description": "Non-Hispanic Black population count, ACS 2018-2022."
+    },
+    {
+      "name": "CPOPAS",
+      "type": "int32",
+      "description": "Non-Hispanic Asian population count, ACS 2018-2022."
+    },
+    {
+      "name": "CPOPHISP",
+      "type": "int32",
+      "description": "Hispanic population count, ACS 2018-2022."
+    },
+    {
+      "name": "CPOPOTH",
+      "type": "int32",
+      "description": "Other-race population count, ACS 2018-2022."
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 284884,
+  "portolan:asset_count": 1,
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "housing",
+          "title": "Housing"
+        },
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "community-development-administration",
+          "title": "Community Development Administration"
+        }
+      ]
+    }
+  ],
+  "title": "2024 Market Value Analysis",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3205212204446,
+          38.5320191205876,
+          -90.1667231932123,
+          38.7742951688267
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "mva",
+    "market value analysis",
+    "cda",
+    "housing market",
+    "Community Development Administration"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Community Development Administration",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://stlcity.maps.arcgis.com/home/item.html?id=e71e3ebca1f345a4b7db134d30c5d9ff"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "market-value-analysis": {
+      "href": "./market-value-analysis.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "2024 Market Value Analysis (GeoParquet)",
+      "file:size": 284884,
+      "file:checksum": "1220d62d2583162cbe8be7bd2da53deee208ec4706a9ab604fe79cb600f14789b1c5",
+      "roles": [
+        "data"
+      ]
+    },
+    "market-value-analysis-tiles": {
+      "href": "./market-value-analysis.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "2024 Market Value Analysis (PMTiles)",
+      "file:size": 790702,
+      "file:checksum": "1220441ae2d68bafba9d7128ea7a0fdfa213086a1535d7f395ba2ca7224fe1adb12f",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 1007,
+      "file:checksum": "1220e783c4b1e304f0c3da8e42a17bb03b069c419c467d4656ef84c3688e60d58d09",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "MVA cluster",
+      "description": "The 2024 Market Value Analysis housing-market clusters, A (strongest markets, dark green) through I (most distressed, dark red), by census block group.",
+      "file:size": 1973,
+      "file:checksum": "12203597c5ea25d357ad451ad9953b47ac96149ff50c923ebcbb93c5a27813d1cd8a",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-sale-price": {
+      "href": "./styles/style-sale-price.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Median sale price 2021-23",
+      "description": "Census-adjusted median sale price (MSP2123_CA) in steps from under $50k to over $350k.",
+      "file:size": 1420,
+      "file:checksum": "12205fef56c8d9dd7b85b87b597eed4e3f04fc0f867a32273f362898df864f42d0e8",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-vacancy-rate": {
+      "href": "./styles/style-vacancy-rate.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Vacant building share",
+      "description": "Share of buildings vacant (PVacBuild) in steps: under 2 percent through over 20 percent.",
+      "file:size": 1320,
+      "file:checksum": "12208dfc0c19eda2b6327ed1c6fa73be48f4576e14b7373be456ca53b6f41c116ff4",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "2024 Market Value Analysis rendered with the default style",
+      "file:size": 412321,
+      "file:checksum": "122008bcb57cfe5d51294b13a4f1541d1e71e5906c8d2a94b908a22eab1e44c06168",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

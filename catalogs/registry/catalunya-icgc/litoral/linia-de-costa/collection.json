@@ -1,0 +1,228 @@
+{
+  "type": "Collection",
+  "id": "litoral/linia-de-costa",
+  "stac_version": "1.1.0",
+  "description": "L\u00ednia de costa de Catalunya de l'inventari del litoral, amb l'identificador gr\u00e0fic de l'arc, el nombre de v\u00e8rtexs, la longitud de l'arc i els nodes d'inici i de final. El productor titula la capa \u00abCoastline\u00bb. La capa forma part de l'inventari del litoral de Catalunya que l'ICGC publica al geoservei icgc_icoast; el productor en redacta els t\u00edtols i les paraules clau en angl\u00e8s i en catal\u00e0.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./icgc_icoast_06_cstl_ln.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Coastline \u2013 l\u00ednia de costa",
+      "pmtiles:layers": [
+        "icgc_icoast_06_cstl_ln"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: linia-de-costa",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa icgc_icoast:06_CSTL_LN, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 92,
+  "table:row_count": 92,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "ID_GRAFIC",
+      "type": "int64",
+      "description": "Identificador gr\u00e0fic de l'arc de costa."
+    },
+    {
+      "name": "ATR_VEC_L",
+      "type": "int64",
+      "description": "Codi d'atribut vectorial de l'arc. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "N_VERTEXS",
+      "type": "int64",
+      "description": "Nombre de v\u00e8rtexs de l'arc."
+    },
+    {
+      "name": "LONG_ARC",
+      "type": "double",
+      "description": "Longitud de l'arc tal com la declara el servei; el servei no en documenta la unitat."
+    },
+    {
+      "name": "LONG_ARCE",
+      "type": "double",
+      "description": "Segona longitud de l'arc que publica el servei. El servei no publica cap descripci\u00f3 d'aquest camp; la columna es propaga tal com arriba del servei."
+    },
+    {
+      "name": "NODE_INI",
+      "type": "int64",
+      "description": "Identificador del node d'inici de l'arc."
+    },
+    {
+      "name": "NODE_FI",
+      "type": "int64",
+      "description": "Identificador del node final de l'arc."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Coastline \u2013 l\u00ednia de costa",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.5015688636856455,
+          40.5000817796213,
+          3.332542303035669,
+          42.45534394372269
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastline \u2013 l\u00ednia de costa default style",
+      "description": "Default visualization for Coastline \u2013 l\u00ednia de costa, drawn in #41b6c4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1240,
+      "file:checksum": "1220a32e73242baddd1829a9f800645564bd45673bc564e8d388b66f5dabf924f3f5"
+    },
+    "icgc_icoast_06_cstl_ln": {
+      "href": "./icgc_icoast_06_cstl_ln.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 370161,
+      "file:checksum": "1220356a4a58aac0a142b2578fe25a42c47021615beb0604c6c600297cecc89acd5b",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./icgc_icoast_06_cstl_ln.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Coastline \u2013 l\u00ednia de costa (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 377504,
+      "file:checksum": "1220d655913325bf3604920e1d1038af8a6adc9334defb8771bedcaeb9260b1eb678"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastline \u2013 l\u00ednia de costa graduated style",
+      "description": "Graduated visualization coloring Coastline \u2013 l\u00ednia de costa by LONG_ARCE, ramped from 60.771318 to 755005.880515.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2070,
+      "file:checksum": "1220eed962f5611ae26806929a610b56bce68692dfaff7493575c0d54e7605c2c6d4"
+    },
+    "thumbnail": {
+      "href": "./icgc_icoast_06_cstl_ln.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Coastline \u2013 l\u00ednia de costa",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 59822,
+      "file:checksum": "12207e2aa836bda25d6a263b3f88795fe12fcec48ae76c7f0aa10c5527d9a31a40e6"
+    }
+  },
+  "keywords": [
+    "litoral",
+    "costa",
+    "l\u00ednia de costa",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Coastline \u2013 l\u00ednia de costa de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

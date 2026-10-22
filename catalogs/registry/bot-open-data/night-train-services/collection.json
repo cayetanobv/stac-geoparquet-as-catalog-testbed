@@ -1,0 +1,377 @@
+{
+  "type": "Collection",
+  "id": "night-train-services",
+  "stac_version": "1.1.0",
+  "description": "Every night-train service in Europe as curated by [Back-on-Track Europe](https://back-on-track.eu/) — 410 services run by 31 operators (39 distinct operator codes — joint services like PKP/ČD carry compound codes), snapshot **2026-08** of the Open Night Train Database (ONTD).\n\nEach feature is one service (one train number, one calendar pattern) with its operator, origin/destination, principal via stations, travel classes, running days and known irregularities. **Geometry is schematic**: straight segments connecting the curated stops in running order — it shows the network's structure, not the physical track alignment. For the designed cartographic view of the same data, see the [Back-on-Track night train map](https://back-on-track.eu/night-train-map/) (also available in print).\n\nThe default style colors services by operator:\n\n| Color | Operator | Services |\n|---|---|---|\n| 🟦 `#2a78d6` | UZ (Ukrainian Railways) | 118 |\n| 🟧 `#eb6834` | ÖBB (Nightjet) | 32 |\n| 🟩 `#1baf7a` | FS (Intercity Notte) | 30 |\n| 🟨 `#eda100` | PKP | 26 |\n| 🩷 `#e87ba4` | CFR | 26 |\n| 💚 `#008300` | SNCF (Intercités de Nuit) | 18 |\n| 🟪 `#4a3aa7` | PKP/ČD | 14 |\n| 🟥 `#e34948` | TCDD | 14 |\n| ⬜ `#898781` | all other operators | 132 |\n\nThe interactive data page renders this collection with a style switcher (operators / seasonal / motorail). Field semantics, join keys and runnable queries are in the [agent guide](AGENTS.md). Attribute tables without geometry live in the sibling collection [night-train-network-attributes](../night-train-network-attributes/collection.json).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Back-on-Track Open Night Train Database"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Back-on-Track Open Night Train Database"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./services.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "European night-train services (schematic lines) — vector tiles",
+      "pmtiles:layers": [
+        "services"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 410,
+  "table:row_count": 410,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "trip_id",
+      "type": "string"
+    },
+    {
+      "name": "agency_id",
+      "type": "string"
+    },
+    {
+      "name": "trip_short_name",
+      "type": "string"
+    },
+    {
+      "name": "trip_origin",
+      "type": "string"
+    },
+    {
+      "name": "trip_headsign",
+      "type": "string"
+    },
+    {
+      "name": "via",
+      "type": "string"
+    },
+    {
+      "name": "service_id",
+      "type": "string"
+    },
+    {
+      "name": "season_class",
+      "type": "string"
+    },
+    {
+      "name": "classes",
+      "type": "string"
+    },
+    {
+      "name": "countries",
+      "type": "string"
+    },
+    {
+      "name": "duration",
+      "type": "timestamp[us, tz=UTC]"
+    },
+    {
+      "name": "distance_km",
+      "type": "int64"
+    },
+    {
+      "name": "emissions_co2e",
+      "type": "double"
+    },
+    {
+      "name": "catering",
+      "type": "int64"
+    },
+    {
+      "name": "plugs",
+      "type": "int64"
+    },
+    {
+      "name": "wheelchair_accessible",
+      "type": "int64"
+    },
+    {
+      "name": "bikes_allowed",
+      "type": "int64"
+    },
+    {
+      "name": "car_transport",
+      "type": "int64"
+    },
+    {
+      "name": "irregularities",
+      "type": "string"
+    },
+    {
+      "name": "n_stops",
+      "type": "int64"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default"
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -5.531908,
+          37.068907,
+          43.106386,
+          67.3489608987037
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "ODbL-1.0",
+  "assets": {
+    "services": {
+      "href": "./services.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "file:size": 48188,
+      "file:checksum": "12206269305ee6f895daa5ec0493c66d8a521a02d4bc59821ecd12c2fd60238776a1",
+      "table:columns": [
+        {
+          "name": "trip_id",
+          "type": "varchar",
+          "description": "Key: '{agency} {number}'"
+        },
+        {
+          "name": "agency_id",
+          "type": "varchar",
+          "description": "Operator code (compound = joint)"
+        },
+        {
+          "name": "trip_short_name",
+          "type": "varchar",
+          "description": "Train number"
+        },
+        {
+          "name": "trip_origin",
+          "type": "varchar",
+          "description": "Origin station"
+        },
+        {
+          "name": "trip_headsign",
+          "type": "varchar",
+          "description": "Destination station"
+        },
+        {
+          "name": "via",
+          "type": "varchar",
+          "description": "Principal via stations ' - '"
+        },
+        {
+          "name": "service_id",
+          "type": "varchar",
+          "description": "FK calendar"
+        },
+        {
+          "name": "season_class",
+          "type": "varchar",
+          "description": "Derived: seasonal (date-ranged service_id) or year-round"
+        },
+        {
+          "name": "classes",
+          "type": "varchar",
+          "description": "Travel classes"
+        },
+        {
+          "name": "countries",
+          "type": "varchar",
+          "description": "ISO-2 CSV"
+        },
+        {
+          "name": "duration",
+          "type": "timestamp with time zone",
+          "description": "HH:MM"
+        },
+        {
+          "name": "distance_km",
+          "type": "bigint",
+          "description": "km (sparse)"
+        },
+        {
+          "name": "emissions_co2e",
+          "type": "double",
+          "description": "CO2e (sparse)"
+        },
+        {
+          "name": "catering",
+          "type": "bigint",
+          "description": "Amenity"
+        },
+        {
+          "name": "plugs",
+          "type": "bigint",
+          "description": "Amenity"
+        },
+        {
+          "name": "wheelchair_accessible",
+          "type": "bigint",
+          "description": "GTFS 1/2"
+        },
+        {
+          "name": "bikes_allowed",
+          "type": "bigint",
+          "description": "GTFS 1/2"
+        },
+        {
+          "name": "car_transport",
+          "type": "bigint",
+          "description": "GTFS 1/2: 1 = motorail"
+        },
+        {
+          "name": "irregularities",
+          "type": "varchar",
+          "description": "Curated prose"
+        },
+        {
+          "name": "n_stops",
+          "type": "bigint",
+          "description": "Points in the schematic line"
+        },
+        {
+          "name": "geometry",
+          "type": "geometry('ogc:crs84')",
+          "description": "Schematic LineString, WGS84"
+        },
+        {
+          "name": "bbox",
+          "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+          "description": "Covering bbox struct"
+        }
+      ]
+    },
+    "services-tiles": {
+      "href": "./services.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "services (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1067841,
+      "file:checksum": "1220bff2c5d63c74ad674946059e037be4380bd85f3e3763f63dfd22ffeab5fbf75c"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Default",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1075,
+      "file:checksum": "1220c3b5df848a37fda8d69ead17905b027ccb4e52f754432cffe7bd1d31cb867e6a"
+    },
+    "styles/motorail": {
+      "href": "./styles/motorail.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Motorail (car transport)",
+      "file:size": 991,
+      "file:checksum": "1220f5ee03271fcb32aba691539bde8e4377fbe474ca99032a0fe8ab62025ecf663e"
+    },
+    "styles/seasonal": {
+      "href": "./styles/seasonal.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Seasonal vs year-round",
+      "file:size": 942,
+      "file:checksum": "12206883a5cd9ac3a9dfeae98341cae629c256b389892806b73d51da667381ce5004"
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "README",
+      "file:size": 5147,
+      "file:checksum": "1220aa6189681c2aca668b2b0998173197e3b684e66010db10027723dca3390bfbf0"
+    },
+    "AGENTS": {
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "Agent guide",
+      "file:size": 2388,
+      "file:checksum": "12206cdc2dc2348d2686c767bf4d21d1710f425979033a6af6c86cb6b64cdfe2201e"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Thumbnail",
+      "file:size": 269956,
+      "file:checksum": "122049f767ef7dbe25651fa7dc22d159a10b7059ef92bcba184e9f229dc920ae1ba3"
+    }
+  },
+  "title": "European night-train services (schematic lines)",
+  "providers": [
+    {
+      "name": "OpenStreetMap contributors",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://www.openstreetmap.org/copyright"
+    },
+    {
+      "name": "Back-on-Track Europe AISBL",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://back-on-track.eu"
+    }
+  ]
+}

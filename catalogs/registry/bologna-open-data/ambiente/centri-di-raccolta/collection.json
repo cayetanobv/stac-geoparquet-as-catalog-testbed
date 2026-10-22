@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "ambiente/centri-di-raccolta",
+  "stac_version": "1.1.0",
+  "description": "Dati relativi ai rifiuti nei centri di raccolta",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./daticentridiraccolta.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Dati centri di raccolta",
+      "pmtiles:layers": [
+        "daticentridiraccolta"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/dati-centri-di-raccolta/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/dati-centri-di-raccolta/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: daticentridiraccolta",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 44,
+  "table:row_count": 44,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "periodo",
+      "type": "string"
+    },
+    {
+      "name": "centro_di_raccolta",
+      "type": "string"
+    },
+    {
+      "name": "totale_uscito",
+      "type": "int32"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Dati centri di raccolta",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.2536647,
+          44.4845504,
+          11.4070875,
+          44.5223912
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Dati centri di raccolta default style",
+      "description": "Default visualization for Dati centri di raccolta, drawn in #01665e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1213,
+      "file:checksum": "12209472c33dedb0c6438b9812b54733376b59f1b7a527213b862eedb8419c1df242"
+    },
+    "daticentridiraccolta": {
+      "href": "./daticentridiraccolta.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4112,
+      "file:checksum": "1220bc882f8c59e0ab284d145cece7b03936e3f91da9c0a606c03355a5d4ede0aa66",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./daticentridiraccolta.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Dati centri di raccolta (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6549,
+      "file:checksum": "1220a350f94d1550eaa38a0846f0b71686ed7cf74ba863e885bbd7a6b742ad187050"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Dati centri di raccolta categorical style",
+      "description": "Categorical visualization coloring Dati centri di raccolta by centro_di_raccolta, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2331,
+      "file:checksum": "122005d72f8ce87d080e2ecea8db31cf5e4f2bf84445309ce37726aed33c6c94fa9f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Dati centri di raccolta labeled style",
+      "description": "Default visualization for Dati centri di raccolta with centro_di_raccolta shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1656,
+      "file:checksum": "122054f3ba5a6f9dd017b5b7b7531452c2a7814e475125b9ff5d577b5ca8d288d1ba"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Dati centri di raccolta graduated style",
+      "description": "Graduated visualization coloring Dati centri di raccolta by totale_uscito, ramped from 0.0 to 11624298.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2017,
+      "file:checksum": "1220aa6efd4ae4d04825aa75ce7c9d2eaa9fcb4fde1cd598a296d2f8e1691da28e04"
+    },
+    "thumbnail": {
+      "href": "./daticentridiraccolta.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Dati centri di raccolta",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 147582,
+      "file:checksum": "1220ed673e59d987b6dc5207b05821b7f1cda8fe3f82e9dbb49c859a33889cd817c8"
+    }
+  },
+  "keywords": [
+    "Ambiente",
+    "rifiuti"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abDati centri di raccolta\u00bb (dati-centri-di-raccolta), pubblicato da Comune di Bologna - Gestione Bene Pubblico sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/dati-centri-di-raccolta/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

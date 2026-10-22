@@ -1,0 +1,224 @@
+{
+  "type": "Collection",
+  "id": "fritid/hundeomraader",
+  "stac_version": "1.1.0",
+  "description": "Placering af hundeg\u00e5rde og fritl\u00f8bsomr\u00e5der",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_hundeomraader.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hundeomr\u00e5der",
+      "pmtiles:layers": [
+        "k101_hundeomraader"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/hundeomrader",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: hundeomraader",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 41,
+  "table:row_count": 41,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "parknavn",
+      "type": "string"
+    },
+    {
+      "name": "omraade_type",
+      "type": "string"
+    },
+    {
+      "name": "driftsplan_bydel",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Hundeomr\u00e5der",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.458760980845899,
+          55.63940308836508,
+          12.632989276733701,
+          55.7214957641043
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundeomr\u00e5der default style",
+      "description": "Default visualization for Hundeomr\u00e5der, drawn in #66c2a4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1193,
+      "file:checksum": "12203f0e00d0ddbc0ffcbec37c3d22ee955dc5c16a867022b7614e1497e375aa62c5"
+    },
+    "k101_hundeomraader": {
+      "href": "./k101_hundeomraader.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10440,
+      "file:checksum": "12208af4cfeea91fa3d8f3668c9651c565c2f1ed99eb40dadd68b5823542b4821564",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_hundeomraader.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hundeomr\u00e5der (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 15135,
+      "file:checksum": "12203b6473d357f3d171e1285efced06e6775d7956ced7a74b7c7fac366279907496"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundeomr\u00e5der categorical style",
+      "description": "Categorical visualization coloring Hundeomr\u00e5der by omraade_type, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1861,
+      "file:checksum": "12207430746e2ee6cc731eae5770b0149a017185fb2fd974f372948cb3720bb2a38c"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundeomr\u00e5der labeled style",
+      "description": "Default visualization for Hundeomr\u00e5der with omraade_type shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1626,
+      "file:checksum": "12202ccdcea84c1e6d2b148a659b0b41760d8932bb1032e26ec9c4b7d9d82cb02091"
+    },
+    "thumbnail": {
+      "href": "./k101_hundeomraader.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Hundeomr\u00e5der",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 161357,
+      "file:checksum": "122029c71cb0648dd5ba420a756a325d52d7a93817c3438bec6de33b36a2d67773b4"
+    }
+  },
+  "keywords": [
+    "arealer",
+    "hunde",
+    "hundeomr\u00e5der",
+    "punktsignatur",
+    "Hundeomr\u00e5der",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Hundeomr\u00e5der, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/hundeomrader",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

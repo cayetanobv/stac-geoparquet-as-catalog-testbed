@@ -1,0 +1,381 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "dk",
+  "title": "Denmark Crop Fields (Marker)",
+  "description": "The Danish Ministry of Food, Agriculture and Fisheries publishes Crop Fields (Marker) for each year.\n\nThis collection holds 19 editions (2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/dk/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:25832). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/dk/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Denmark",
+    "IACS",
+    "Marker",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "Danish Agricultural Agency",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://lbst.dk/"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.026519929443044,
+          54.44421479514903,
+          15.573199436854463,
+          57.75163625266765
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2008-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:25832"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 604689,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 19,
+  "partition:glob": "s3://ftw/harmonized-field-data/dk/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/dk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Denmark — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/dk-2026.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 329318924,
+      "file:checksum": "12204a62414cef53dcbc56197b02323683f254cc3649977828d9bed5b5dc1927e0d7",
+      "proj:code": "EPSG:25832"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2357,
+      "file:checksum": "12202e71d78d6fff9fd1839b73a4d5dff5b3df7a3f1804a7a176dc175b916761a901"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 1, 2, 5 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1208,
+      "file:checksum": "12203d642bfdad0857998679b1e046a84bc7f5506852a5967933d06524072c93c232"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 727,
+      "file:checksum": "122083be124b1ea9210b0ad8805607a9684a13c3b1337009c3fc3080834bf1d2f265"
+    },
+    "visual": {
+      "href": "./year=2026/dk-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Denmark — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 252883366,
+      "file:checksum": "1220c26af86ca7d7ea143ec3ed388b638c370bde479b147733937a8538dac8fc5aa9"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 156175,
+      "file:checksum": "1220b318b11db618ca1ea4ebb34421239a9d2fdbee18e0b114107478a687cb6925d1"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/dk-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "dk"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://lbst.dk/",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/DK.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/dk.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2008/dk-2008.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2008"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2009/dk-2009.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2009"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2010/dk-2010.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2010"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2011/dk-2011.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2011"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2012/dk-2012.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2012"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2013/dk-2013.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2013"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2014/dk-2014.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2014"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2015/dk-2015.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2015"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/dk-2016.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/dk-2017.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/dk-2018.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/dk-2019.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/dk-2020.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/dk-2021.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/dk-2022.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/dk-2023.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/dk-2024.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2024"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/dk-2025.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2025"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/dk-2026.json",
+      "type": "application/geo+json",
+      "title": "Denmark — 2026"
+    }
+  ],
+  "updated": "2026-09-18T00:12:30Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "dk": [
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml"
+    ]
+  }
+}

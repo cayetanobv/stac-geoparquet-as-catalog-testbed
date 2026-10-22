@@ -1,0 +1,307 @@
+{
+  "type": "Collection",
+  "id": "verkehr/geschwindigkeitsbeschraenkungen",
+  "stac_version": "1.1.0",
+  "description": "Darstellung aller beh\u00f6rdlich verordneten Geschwindigkeitsbeschr\u00e4nkungen (exkl. I-GL und prov. verordnete Geschwindigkeitsbeschr\u00e4nkungen aufgrund Baustellen) sowie der Verkehrsf\u00fchrung (exkl. Ausnahmen) f\u00fcr den motorisierten Individualverkehr auf Basis des Stra\u00dfengraph Wien. Die Geschwindigkeitsbeschr\u00e4nkungen f\u00fcr Fu\u00dfg\u00e4ngerzonen und Wohnstra\u00dfen werden gem\u00e4\u00df Stra\u00dfenverkehrsordnung (StVO 1960 idgF) als Schrittgeschwindigkeit ausgegeben.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_strassenspeedogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at)",
+      "pmtiles:layers": [
+        "ogdwien_strassenspeedogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/5de779c2-93fc-4830-8e36-93e9ff1e7f7d",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: strassenspeedogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 38657,
+  "table:row_count": 38657,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Linie) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "FEATURENAME",
+      "type": "string",
+      "description": "Name der Erlaubnis/Beschr\u00e4nkung."
+    },
+    {
+      "name": "LINEARUSE_NAME",
+      "type": "string",
+      "description": "Name des Querschnittselements, auf dem die Erlaubnis gilt."
+    },
+    {
+      "name": "EDGE_NAME",
+      "type": "string",
+      "description": "Name des Abschnitts."
+    },
+    {
+      "name": "EDGE_OBJECTID",
+      "type": "int64",
+      "description": "Verweis auf den Abschnitt in der Abschnittstabelle."
+    },
+    {
+      "name": "TYPE",
+      "type": "int64",
+      "description": "Typ der Erlaubnis, Schl\u00fcssel."
+    },
+    {
+      "name": "TYPE_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselter Typ der Erlaubnis."
+    },
+    {
+      "name": "DEFAULTVALIDITY",
+      "type": "int64",
+      "description": "G\u00fcltigkeit der Erlaubnis/Beschr\u00e4nkung, Schl\u00fcssel."
+    },
+    {
+      "name": "DEFVAL_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte G\u00fcltigkeit."
+    },
+    {
+      "name": "DIRECTION",
+      "type": "int64",
+      "description": "Richtung/Seite der Erlaubnis/Beschr\u00e4nkung, Schl\u00fcssel."
+    },
+    {
+      "name": "DIRECTION_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte Richtung/Seite."
+    },
+    {
+      "name": "VALUE",
+      "type": "string",
+      "description": "Wert der Erlaubnis (Geschwindigkeit in km/h), als Zeichenkette."
+    },
+    {
+      "name": "MEASURETYPE",
+      "type": "int64",
+      "description": "Grundlage der Erlaubnis/Beschr\u00e4nkung, Schl\u00fcssel (vom Publizierer als MASURETYPE geschrieben)."
+    },
+    {
+      "name": "MEASURETYPE_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte Grundlage der Erlaubnis/Beschr\u00e4nkung."
+    },
+    {
+      "name": "BASETYPE",
+      "type": "int64",
+      "description": "Art des Querschnittselements, Schl\u00fcssel."
+    },
+    {
+      "name": "BASETYPE_NAME",
+      "type": "string",
+      "description": "Entschl\u00fcsselte Art des Querschnittselements."
+    },
+    {
+      "name": "GIP_OBJECTID",
+      "type": "int64",
+      "description": "Eindeutige Identifizierung des Objekts in der GIP."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.187407078433562,
+          48.12104561596219,
+          16.550054697006125,
+          48.31908103472951
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) default style",
+      "description": "Default visualization for Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at), drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1313,
+      "file:checksum": "1220ac59f8c3425a9999d1937d16dc385ea654c22820e7b02ae423a26c8331206b10"
+    },
+    "ogdwien_strassenspeedogd": {
+      "href": "./ogdwien_strassenspeedogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2010023,
+      "file:checksum": "1220612bb97e38f1ddbb14b867c52a19ec98ee683ffb883e89258813ba799daf27ec",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_strassenspeedogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8897077,
+      "file:checksum": "1220866a8920b1132f99d7f2afd739bed3ff65f36a43115da844d4df35cc40300b75"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) categorical style",
+      "description": "Categorical visualization coloring Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) by TYPE_NAME, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1975,
+      "file:checksum": "12206863f01a09a14db4800087a914a4aff3b3b732aa24e9cdb24e0be2171dfd9633"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) labeled style",
+      "description": "Default visualization for Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) with FEATURENAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1757,
+      "file:checksum": "12204f0ed8e7c24297d070f43ed4df399f3c96d487baa455b1119ea0572004b03e8f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) graduated style",
+      "description": "Graduated visualization coloring Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at) by GIP_OBJECTID, ramped from 26004533.0 to 70186800.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2137,
+      "file:checksum": "1220284514d6a430ec29c67c339983f4e6ee36b40c58de58689dabc7952c66f67514"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_strassenspeedogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Verkehrsgraph Wien \u2013 Geschwindigkeitsbeschr\u00e4nkungen und Verkehrsf\u00fchrung (GIP.at)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 266684,
+      "file:checksum": "122071fb130f51231255e0d78189de2e3deaa539194e4dd9b8881db23f4efb0fb473"
+    }
+  },
+  "keywords": [
+    "Tempo 30-Zonen",
+    "Tempo 30-Beschr\u00e4nkung",
+    "Verkehrsf\u00fchrung",
+    "ViennaGIS",
+    "Tempo 30",
+    "Richtungsfahrbahn",
+    "lineare Geschwindigkeitsbeschr\u00e4nkungen",
+    "Einbahn",
+    "zonale Geschwindigkeitsbeschr\u00e4nkungen",
+    "Geschwindigkeitsbeschr\u00e4nkungen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Intermodales Verkehrsreferenzsystem (GIP.at)  Verkehrsgraph Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

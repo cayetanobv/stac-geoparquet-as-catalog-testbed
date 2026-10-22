@@ -1,0 +1,220 @@
+{
+  "type": "Collection",
+  "id": "mobiliteit/wegendistricten",
+  "stac_version": "1.1.0",
+  "description": "Polygonenlaag van de districten van AWV. Deze is gebaseerd op het voorlopig referentiebestand gemeentegrenzen. Bepaalde autosnelwegen zijn gekoppeld aan een ander district dan waar de gewestwegen van die bepaalde gemeente aan zijn toegewezen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./awv_districten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Districten Agentschap Wegen en Verkeer",
+      "pmtiles:layers": [
+        "awv_districten"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/561fc755-38ef-40e2-9d6b-37d346f1ca50",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.apps.mow.vlaanderen.be/opendata-geoserver/awv/wfs",
+      "rel": "related",
+      "title": "WFS source service: districten",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "Polygon",
+    "MultiLineString",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 90,
+  "table:row_count": 90,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "naam",
+      "type": "string"
+    },
+    {
+      "name": "district",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Districten Agentschap Wegen en Verkeer",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.541,
+          50.687,
+          5.911,
+          51.505
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Districten Agentschap Wegen en Verkeer default style",
+      "description": "Default visualization for Districten Agentschap Wegen en Verkeer, drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1186,
+      "file:checksum": "12204e938456cf36768c57908b3c80a1607aa0069f92ea88067d02c2cbddcf7a4264"
+    },
+    "awv_districten": {
+      "href": "./awv_districten.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 175289,
+      "file:checksum": "12203430bd82799b031a56c4c5c15f78635b0e399c381b41b91b14100233ca111d77",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./awv_districten.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Districten Agentschap Wegen en Verkeer (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1141801,
+      "file:checksum": "12203c64cb834c1301ea963609dcf3dde64a5b41af03141c57a723962229c6cd0f55"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Districten Agentschap Wegen en Verkeer labeled style",
+      "description": "Default visualization for Districten Agentschap Wegen en Verkeer with naam shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1603,
+      "file:checksum": "1220bd70893fa8eb6ee7ab9b6e655bdc71f4535bf7c05f036cb2910f0443bd8721b7"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Districten Agentschap Wegen en Verkeer graduated style",
+      "description": "Graduated visualization coloring Districten Agentschap Wegen en Verkeer by district, ramped from 112.0 to 720.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1949,
+      "file:checksum": "1220fa7eabf7886bec3fc6fa1d2f41fbd2353f734598d2a78a458a7e22f158ff59a6"
+    },
+    "thumbnail": {
+      "href": "./awv_districten.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Districten Agentschap Wegen en Verkeer",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 159944,
+      "file:checksum": "1220429cb8b2bd359b7d2296f2c765ac854e8b93836e394964ca6565e10fee1fc797"
+    }
+  },
+  "keywords": [
+    "Districten",
+    "Agentschap Wegen en Verkeer",
+    "Wegendistricten",
+    "Vervoer",
+    "snelweg",
+    "wegennet",
+    "Grenzen beheer wegen",
+    "AWV"
+  ],
+  "providers": [
+    {
+      "name": "Agentschap Wegen en Verkeer",
+      "description": "Bron: Agentschap Wegen en Verkeer, Districten Agentschap Wegen en Verkeer, Modellicentie voor gratis hergebruik (gratis open datalicentie Vlaanderen v1.2), opgehaald op 20 september 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://wegenenverkeer.be/",
+      "email": "team.aim@mow.vlaanderen.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "nl",
+    "name": "Nederlands",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

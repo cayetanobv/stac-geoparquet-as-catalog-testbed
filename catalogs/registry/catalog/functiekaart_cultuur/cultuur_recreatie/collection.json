@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_cultuur/cultuur_recreatie",
+  "stac_version": "1.1.0",
+  "description": "Cultuur Recreatie",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cultuur_recreatie.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "cultuur_recreatie"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 2,
+  "table:row_count": 2,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Cultuur Recreatie",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.12012864850377,
+          52.0744372243147,
+          5.12206631690469,
+          52.116348808878
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "cultuur_recreatie": {
+      "href": "./cultuur_recreatie.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2239,
+      "file:checksum": "1220a7e8619e2d412c6cd24392f6e1d3d315e3146b015fb4b20000080008ba5a5cc6",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./cultuur_recreatie.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 1741,
+      "file:checksum": "1220bb125b4ad4d9e20b6bf8a8d64fcd00782d263ff056078e2671c2406bf982b14e"
+    },
+    "cultuur_recreatie-tiles": {
+      "href": "./cultuur_recreatie.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "cultuur_recreatie (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1431,
+      "file:checksum": "122073c4a91f48d95da117748fc16a6e0d88866c84db36ab95529ed3a2543f4ce172"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 676,
+      "file:checksum": "12207a753351455e779dc879646331df99d7408eef8228cdd7cb919d7a48647d015a",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

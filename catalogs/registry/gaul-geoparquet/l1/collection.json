@@ -1,0 +1,4758 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "l1",
+  "title": "First-level administrative units (L1)",
+  "description": "FAO's first-level units (states, provinces, regions), geometry and attributes unchanged from the GAUL 2024 release, with the country codes and names each unit belongs to. Published twice from the same rows: one whole-world GeoParquet 2.0 file (3,110 rows, 268 MB, the data asset) for anyone who wants a single download, and one file per country under country=<iso3>/ (265 files, the data-<iso3> assets and the partition glob s3://parquetry/gaul/2024/country=*/L1.parquet) for small reads. Both carry a bbox covering and read in place over HTTPS or through the anonymous S3 endpoint s3.geomermaids.com. A PMTiles archive (zoom 0 to 10) draws the layer on a web map. Data (c) FAO 2024, CC BY 4.0, attribution required. FAO has not participated in, sponsored, approved or endorsed this redistribution. The designations employed and the presentation of material in GAUL do not imply the expression of any opinion whatsoever on the part of FAO concerning the legal status of any country, territory, city or area or of its authorities, or concerning the delimitation of its frontiers or boundaries. GAUL is not an authoritative or official representation of subnational boundaries; its purpose is to support the representation of subnational statistics.",
+  "keywords": [
+    "GAUL",
+    "FAO",
+    "administrative boundaries",
+    "administrative units",
+    "GeoParquet",
+    "global",
+    "L1"
+  ],
+  "license": "CC-BY-4.0",
+  "attribution": "GAUL 2024 (c) FAO, CC BY 4.0",
+  "version": "2024",
+  "updated": "2026-10-22T13:57:18Z",
+  "providers": [
+    {
+      "name": "Food and Agriculture Organization of the United Nations (FAO)",
+      "description": "Develops and owns the Global Administrative Unit Layers, published under CC BY 4.0 and the GAUL 2024 Terms of Use.",
+      "url": "https://data.apps.fao.org/",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted the FAO shapefiles to GeoParquet, derived the L0 layer, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -89.900002,
+          180.0,
+          83.627419
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2024-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "partition:scheme": "hive",
+  "partition:strategy": "attribute",
+  "partition:keys": [
+    {
+      "name": "country",
+      "type": "string",
+      "description": "The unit's iso3_code: ISO 3166-1 alpha-3, plus FAO's pseudo-codes for disputed areas (xAB Abyei, xJK Jammu and Kashmir, xxx). A few codes group several GAUL units, e.g. AUS also holds Ashmore and Cartier Islands. One file per code."
+    }
+  ],
+  "partition:file_count": 265,
+  "partition:glob": "s3://parquetry/gaul/2024/country=*/L1.parquet",
+  "table:row_count": 3110,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "iso3_code",
+      "type": "VARCHAR",
+      "description": "ISO 3166-1 alpha-3 code of the country."
+    },
+    {
+      "name": "map_code",
+      "type": "VARCHAR",
+      "description": "FAO map code of the country, as used across FAO statistical products."
+    },
+    {
+      "name": "gaul0_code",
+      "type": "BIGINT",
+      "description": "GAUL code of the country (level 0). Stable across GAUL releases; the key to join FAO country statistics on."
+    },
+    {
+      "name": "gaul0_name",
+      "type": "VARCHAR",
+      "description": "Name of the country, as FAO writes it."
+    },
+    {
+      "name": "gaul1_code",
+      "type": "BIGINT",
+      "description": "GAUL code of the first-level unit."
+    },
+    {
+      "name": "gaul1_name",
+      "type": "VARCHAR",
+      "description": "Name of the first-level unit."
+    },
+    {
+      "name": "continent",
+      "type": "VARCHAR",
+      "description": "Continent the unit is on, as FAO assigns it."
+    },
+    {
+      "name": "disp_en",
+      "type": "VARCHAR",
+      "description": "Display name in English, the label FAO uses on maps."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups before touching geometry."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Unit outline as native Parquet GEOMETRY (WKB), OGC:CRS84 lon/lat, MultiPolygon."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/GAUL_2024_L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "First-level administrative units (L1), whole world in one file",
+      "description": "3,110 features in 116 row group(s), the largest 12 MB.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 268494673,
+      "file:checksum": "12207ef10140833608f1580742301e4695b1eca860932b08e453800bfb82c94520d4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/GAUL_2024_L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-abw": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ABW/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Aruba (ABW)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7851,
+      "file:checksum": "122087c4a8ce51964dc9ba5499573470cb250f31639fae3296df4b047913817596f2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ABW/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-afg": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AFG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Afghanistan (AFG)",
+      "description": "34 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 666426,
+      "file:checksum": "1220526fbf0f35d734bf919fedbbd945915a5ea8d8414d4250f4e5f0317b4aaf12e7",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AFG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ago": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AGO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Angola (AGO)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 370541,
+      "file:checksum": "1220ec4269f1ed534d06728273f9ba35b2cf4c40b7f55a3eea0bb9dc36d4134f3461",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AGO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-aia": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AIA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Anguilla (AIA)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 39100,
+      "file:checksum": "122069a30bdd162626da59057bc9f067a4b066dfe88d5acc895a5682efab1143a714",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AIA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ala": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ALA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Åland Islands (ALA)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 29892,
+      "file:checksum": "122069c180fb153a4170e533869ae2aaa3d0a8a4457cbd5f7cfaede3b9725e17471c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ALA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-alb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ALB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Albania (ALB)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 209403,
+      "file:checksum": "12205102ad9064495582d582425d78ee3e21cf07ffde56a3eff1d5a1e59b05457dac",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ALB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-and": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AND/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Andorra (AND)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 16846,
+      "file:checksum": "1220fa79a7f23dbc0d43d89c898fbde661c1911927372331a0cb5043bd113bbea6ee",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AND/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-are": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ARE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United Arab Emirates (ARE)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 419988,
+      "file:checksum": "1220ad493781d6bc83963f5509a39ff38c5609848573f405c3bbe47ec42cf8e2290d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ARE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-arg": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ARG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Argentina (ARG)",
+      "description": "24 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 4885954,
+      "file:checksum": "1220e4e1da4d69f87c2aaf33a9bffa622f7c201c7c4a19c37fcd923a2d8a1a767507",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ARG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-arm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ARM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Armenia (ARM)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 120231,
+      "file:checksum": "1220bc3d70633c2d6f42985c11135eb985dfdf5717627358c8416f62e76e37b5571b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ARM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-asm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ASM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "American Samoa (ASM)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 9555,
+      "file:checksum": "1220aeaea1314339a3fa45d6930e6352ea3587b544ba07667df1d8de2b09475e4858",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ASM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ata": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ATA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Antarctica (ATA)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 429130,
+      "file:checksum": "1220efd07d791cf299b45096a86481e841dbafeb7e245a8cd71bebeaa96650873324",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ATA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-atf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ATF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "French Southern Territories (ATF)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 43626,
+      "file:checksum": "1220ccd8ced540228049bc3b32e79e017e91f6426fdf729cf510a460643d3b00e980",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ATF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-atg": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ATG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Antigua And Barbuda (ATG)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 71543,
+      "file:checksum": "1220b92d262ec5cc04bab9f1b9a8566d08a37187339f3701926bfd1baeaba4d30b46",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ATG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-aus": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AUS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ashmore and Cartier Islands, Australia (AUS)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 16649095,
+      "file:checksum": "12206d880dbda4e5d9081ab46f1b38b7eef19dc0d4484adb86db58f6c26edc2c5c08",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AUS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-aut": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AUT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Austria (AUT)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1080413,
+      "file:checksum": "1220eb17306e624d0e2bf240c021b1290bad590204f12371b037a230ebf9d3b4c069",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AUT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-aze": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=AZE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Azerbaijan (AZE)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 214492,
+      "file:checksum": "1220a634541d04abfaec47358ef214a65d97b9eab04ca60e43be1506d1c403f6545c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=AZE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bdi": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BDI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Burundi (BDI)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 193560,
+      "file:checksum": "122098ee7e45b8cb3df95e23c0abedd4188f40e6cdb9fa177bf7c11af8f0ab81832f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BDI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bel": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BEL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Belgium (BEL)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 130808,
+      "file:checksum": "12206ccb00b5a31af2527a5488da7712fc91cff9a40d70bc3dda3985cb3dbbb3a990",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BEL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ben": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BEN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Benin (BEN)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 128902,
+      "file:checksum": "12202781ac48ab6828a8ee41e16b3281165b716e2bf568dc33be35b0fb0b7759a955",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BEN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bes": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BES/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bonaire, Sint Eustatius And Saba (BES)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 30048,
+      "file:checksum": "1220b77c32dda73ebab2e933e907344b3066d42768269b9c14adf58cc06712c05c70",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BES/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bfa": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BFA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Burkina Faso (BFA)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 346852,
+      "file:checksum": "1220822113e594caaf5b490b51e7b223e1d9771e6305d7e77dd81d45e6564211f03e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BFA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bgd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BGD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bangladesh (BGD)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 553455,
+      "file:checksum": "1220eb3f6568e5fc8d592994ef4808a749e8db79a2a533da700fe05809d53ed3deee",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BGD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bgr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BGR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bulgaria (BGR)",
+      "description": "28 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 273438,
+      "file:checksum": "12202b1918343e66723bb79f63a4e10e4aa0c1824a7ffa458b4b10c92eed1c671620",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BGR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bhr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BHR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bahrain (BHR)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 13937,
+      "file:checksum": "122046f9f1bdfbe6dd0560e5849985135fc283ec67c1cce1cda18153b7f77bd758fd",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BHR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bhs": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BHS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bahamas (BHS)",
+      "description": "32 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 961210,
+      "file:checksum": "1220e42eb598143d0fb45f44d2538da1ae428edb679ee2d17f07af899a8ef2a13c13",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BHS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bih": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BIH/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bosnia and Herzegovina (BIH)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 146038,
+      "file:checksum": "1220c2bda84b18f53281d28d852377cf38c0e0086f3af3e76b77ad5772a350ed461c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BIH/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-blm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BLM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saint Barthélemy (BLM)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7609,
+      "file:checksum": "1220b15579696473ba3f1bf1998ca45ce05dbac87949b2cd93ff7ac1c828529ffe08",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BLM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-blr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BLR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Belarus (BLR)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 246606,
+      "file:checksum": "122002447c9ace49d0b7e48c9952cf3a8f9fde7257f40de0c4b590e36092354b0850",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BLR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-blz": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BLZ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Belize (BLZ)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 247311,
+      "file:checksum": "1220202c29de6fd3ced597e3c98bf80ff5b4b5a3ecc3e5cc676202a318a7037f7b1a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BLZ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bmu": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BMU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bermuda (BMU)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 28769,
+      "file:checksum": "12201ec4d48e2d87ee534214051cfc4814f41c9662f0b9c5c2e0768608280479527d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BMU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bol": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BOL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bolivia (Plurinational State of) (BOL)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1112163,
+      "file:checksum": "122022dc9b4e4113c7dd35ff1d22891711f9b430803fedf2a8cd830cb18203a65072",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BOL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bra": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BRA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Brazil (BRA)",
+      "description": "27 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1691160,
+      "file:checksum": "12207138b310694c9f2aa179c34dd68c1b7e2908cbbefc8439f27142e34b44f58cb2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BRA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-brb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BRB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Barbados (BRB)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 21181,
+      "file:checksum": "1220b3311266cc79b29d47ba434b6f493e866bb5dc6782d145ac5edd3cf71ffb028f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BRB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-brn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BRN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Brunei Darussalam (BRN)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 24976,
+      "file:checksum": "122051653ce79e517732f9f128d8e2245e204518333c036621e53408defebf228223",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BRN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-btn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BTN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bhutan (BTN)",
+      "description": "20 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 138032,
+      "file:checksum": "12208b4c79a103ea3c0489988915ec847812076ebb243c2a09247179c20007d8b854",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BTN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bvt": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BVT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bouvet Island (BVT)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8021,
+      "file:checksum": "1220c48e7a335902636f44fe0d4831f4c62b584f3ff8c6496733d066e9430e7d2c62",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BVT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bwa": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=BWA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Botswana (BWA)",
+      "description": "17 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 119057,
+      "file:checksum": "1220fe08249482e4315ea363214f3978d1212dd9112d71866db12bb18417c1b674c2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=BWA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-caf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CAF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Central African Republic (CAF)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 182002,
+      "file:checksum": "1220c2a1f106cee27294e626c78116059709c7463db755f9d49adbeef5eeb133594e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CAF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-can": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CAN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Canada (CAN)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 4094194,
+      "file:checksum": "122067c766697ba83dc1d098ab47fa83b824d6ae67c208c0a3affe96b36fd2982e9b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CAN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cck": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CCK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cocos (Keeling) Islands (CCK)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 10916,
+      "file:checksum": "1220a140285df8dd9a978ba3a1ef0e8f532838b41db3b73da3a17754e419a51fa1f9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CCK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-che": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CHE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Switzerland (CHE)",
+      "description": "26 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1082371,
+      "file:checksum": "1220072d3ad990d608933b7d610117dd3543e282eac9f5eb34e113853192d4da4d37",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CHE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-chl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CHL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chile (CHL)",
+      "description": "16 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 32128853,
+      "file:checksum": "12209b7b80516db9c5b5fb34c89c9974df6fa050a942b5a2e84be21ba0d594d84b40",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CHL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-chn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CHN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "China (CHN)",
+      "description": "31 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1613141,
+      "file:checksum": "1220bf73695c806cdcdeeb8444ed977c4251642246224f77e72c0e9eb729d4107a16",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CHN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-civ": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CIV/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Côte D'Ivoire (CIV)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 479556,
+      "file:checksum": "1220abdf4a32e7e231aac116e8a463add0a666d7507ad96feb6ec2fc0062cbbb4196",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CIV/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cmr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CMR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cameroon (CMR)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 398240,
+      "file:checksum": "1220d57e05d42094344a0642dd2b3fd7752458d5f1d779276c5c46793ccf892b8ba4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CMR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cod": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=COD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Democratic Republic of the Congo (COD)",
+      "description": "26 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 465922,
+      "file:checksum": "122009f05c168b227eff3ac59a94e544184ecd721e24b593d478213f46d3a052c516",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=COD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cog": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=COG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Congo (COG)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 362177,
+      "file:checksum": "1220ee2be2c6d464103ed474de419fd59774110dd423e9b9897eb34edaac2dcf1260",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=COG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cok": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=COK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cook Islands (COK)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 12760,
+      "file:checksum": "1220cb62a9e0cab2dcb8f93bd9778f948c99c3670636bc94dabbd9c3ba3ffcddf065",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=COK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-col": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=COL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Colombia (COL)",
+      "description": "33 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1669033,
+      "file:checksum": "122016aa3d3feae7ba4e053db2912e973a3518b3e8246a33e01832003393b2665565",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=COL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-com": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=COM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Comoros (COM)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 167721,
+      "file:checksum": "122097cba5d10b516ea20a49b15219a72322baf79b2fa6eb3d19d1e13a380116811a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=COM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cpv": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CPV/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cabo Verde (CPV)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2712726,
+      "file:checksum": "1220af640828b6bc523c95f6938da6e59ffedf5e4f7868cc0935f9c0f8f330fe4141",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CPV/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cri": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CRI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Costa Rica (CRI)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 223599,
+      "file:checksum": "1220454df49382d2afe6f8d1aa1d2a27cc19d6c900fe56223017203589640a48e01c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CRI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cub": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CUB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cuba (CUB)",
+      "description": "16 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 420074,
+      "file:checksum": "122033cea80dd5e0017cc7a149a4cdcd55d2183c55cebc15277f14635bd1bf6892f7",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CUB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cuw": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CUW/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Curaçao (CUW)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 32505,
+      "file:checksum": "12200448befa9671636b79b2ee923143ffbc70c0d6adacbf1fba5ebac6682806b5cc",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CUW/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cxr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CXR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Christmas Island (CXR)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8208,
+      "file:checksum": "1220d5a78b1453eadfc2b9f3269807eb002bd00579329fc24da8337b238975fc3835",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CXR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cym": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CYM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cayman Islands (CYM)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 27485,
+      "file:checksum": "122059ed6de90146abb62225d2e0a31646da4afae5b77af3f542125aabf8b25ee51c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CYM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cyp": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CYP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cyprus (CYP)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 88172,
+      "file:checksum": "1220536d2ef1ad812c90c95c92ec09c175ce96d2413dd687916dc7748b37dcda864d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CYP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cze": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=CZE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Czechia (CZE)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 283368,
+      "file:checksum": "1220fdf7468c6d968ce9c8b417ca6fb23799cdf04bd93ef1a96b662dca86cb3f8a3c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=CZE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-deu": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=DEU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany (DEU)",
+      "description": "16 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1007550,
+      "file:checksum": "1220d5d2c6d72e3718c61127eddb75019c5b5592554572aa9509b5191af255984769",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=DEU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-dji": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=DJI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Djibouti (DJI)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 49276,
+      "file:checksum": "1220207cd9161f29d70ff13f012959d405d22eaef21e3f4b637080a20366474d2de7",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=DJI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-dma": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=DMA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Dominica (DMA)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 89026,
+      "file:checksum": "1220c5c65ec9603dd86523f1eb2f476199c36bec66e7037cc994659146195e1c4336",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=DMA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-dnk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=DNK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Denmark (DNK)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 11179126,
+      "file:checksum": "122029ab96580d0d3416277930159cbfbbb49f22046c4aa512c6e72a9d94e3a480aa",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=DNK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-dom": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=DOM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Dominican Republic (DOM)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 753313,
+      "file:checksum": "122070ebeda2110aef347e5e27a241208ccd6a6852be6917ed91038eaa78fda525ac",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=DOM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-dza": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=DZA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Algeria (DZA)",
+      "description": "48 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 689087,
+      "file:checksum": "1220e819e0756c16d74dc6b2558fa0a0bccbad1a5469ca430f6bf3d6a97e8ed2a97c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=DZA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ecu": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ECU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ecuador (ECU)",
+      "description": "24 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 620340,
+      "file:checksum": "1220711521dd281791488ca7cef361d1f8a6bdcd8916ed24fc0d502bde2760747f31",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ECU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-egy": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=EGY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Egypt (EGY)",
+      "description": "28 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 705172,
+      "file:checksum": "12201a6ffe43519ed8241ca13f973ea2174cdd95732170825fd9ab73fa5f08de7185",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=EGY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-eri": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ERI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Eritrea (ERI)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 661415,
+      "file:checksum": "122054aa144dbf9b2dbd8dd268a24f5c0835cd73b76967c8a2ef419b78b237b6d01a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ERI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-esh": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ESH/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Western Sahara (ESH)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 36235,
+      "file:checksum": "12206f229d9e04077424a571ffd5f7243e964539bb06e5359aa6cf309c3beed76e3f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ESH/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-esp": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ESP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Spain (ESP)",
+      "description": "19 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 6240015,
+      "file:checksum": "12207195905792dcb535bac4f4180589f9c35940c92ca8d9fbcfccefc1796dc14816",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ESP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-est": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=EST/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Estonia (EST)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7418782,
+      "file:checksum": "12206b3fe2a9f14a058110a5068df71e3d8d26a13cd4361ec833c74f18b43a8f3874",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=EST/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-eth": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ETH/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ethiopia (ETH)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 256044,
+      "file:checksum": "12209238ee57a9b249442e97072e84d2dcc866a655294d5a8465d4e208fffe82d570",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ETH/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fin": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=FIN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Finland (FIN)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 214001,
+      "file:checksum": "1220348296a22a77a08e6f7a67d273df5af2ec064bcc71753f2e366ebf35fda98baf",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=FIN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fji": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=FJI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Fiji (FJI)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3070518,
+      "file:checksum": "122064cdbf3b63c33643f71a8297f23aafa357e678bbb46325583b1739b9bcc77a96",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=FJI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-flk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=FLK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Falkland Islands (Malvinas) (FLK)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 82687,
+      "file:checksum": "1220f4969eb50aab11ef23fbe91a4f67dce169a14993dfd0205985f01959c160ed45",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=FLK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fra": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=FRA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "France (FRA)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3651434,
+      "file:checksum": "12201ff2af3a69d84ae360139d0f9dc9f332c02325532c7eec387cb5e6f43de256f2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=FRA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fro": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=FRO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Faroe Islands (FRO)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 18155,
+      "file:checksum": "122039be683ca59562b63bf98b62999b32024e74734d13aac2be16b5a600e203e088",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=FRO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fsm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=FSM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Micronesia (Federated States of) (FSM)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 487299,
+      "file:checksum": "122043d4ec208fb8f7f511b36ed035c5d5aa8c05fb53a1c67575d8142b300dc3d4d4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=FSM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gab": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GAB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Gabon (GAB)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 310703,
+      "file:checksum": "1220701b7ef186b7d47905cc3b66fac379420c50b8579cc5d67ef88b7c849b74f4a5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GAB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gbr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GBR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United Kingdom of Great Britain and Northern Ireland (GBR)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3859006,
+      "file:checksum": "122087cffcf3c9c7735c37292d0dae4fce7ef201f3ec4ee90d56a24e149e809b397c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GBR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-geo": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GEO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Georgia (GEO)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 185583,
+      "file:checksum": "1220c931d55aadbca77f24dabad8431b847a5c43d71289c2698d600449397aa8ae48",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GEO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ggy": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GGY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guernsey (GGY)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 69018,
+      "file:checksum": "122042a52824b070c80ff2ce22d54df0da728565cf69e65cf67ea7c03f52a052fc4a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GGY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gha": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GHA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ghana (GHA)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 882308,
+      "file:checksum": "12207aabf56e93ae2dcc866a1c332e15e0eedf6cc3af7335eaf07dfe7dba8d823628",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GHA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gib": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GIB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Gibraltar (GIB)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7297,
+      "file:checksum": "1220af6bb01f9728dfeedc03b5f98ee3daecf5674b269fa91d0df72141d1098e7d5f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GIB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gin": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GIN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guinea (GIN)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 269588,
+      "file:checksum": "1220d5d85b04b65b77cfb3f895980ed747bb644f2f13dcdc538020658c012155008f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GIN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-glp": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GLP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guadeloupe (GLP)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 13331,
+      "file:checksum": "1220b97fe40004d0b71b332588645e910b939334ef9daa8854ffe69a156c7df3eca1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GLP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gmb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GMB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Gambia (GMB)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 75987,
+      "file:checksum": "1220231d96ac1e6bf6d4f343dcbdf18974e624a3ae357f199053bbd5197b7d0f47a8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GMB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gnb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GNB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guinea-Bissau (GNB)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 86317,
+      "file:checksum": "12208cf6475819718d00916784b4b0f71027f7094f8b7e66f775f8ff428c4427c63a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GNB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gnq": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GNQ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Equatorial Guinea (GNQ)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 314927,
+      "file:checksum": "12205ce26c5e1e6702d0691e1fc1075566d1d6111e3460d62de02ea14cfc865d4937",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GNQ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-grc": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GRC/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Greece (GRC)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3254552,
+      "file:checksum": "12201ad50862998a8375f534d3c8c48008c541dce2c5d429a608790219f704f2574b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GRC/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-grd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GRD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Grenada (GRD)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 28584,
+      "file:checksum": "12206486580299e8908f515b6419d6c49001c4fbfd89f44f6f8991381d6a2d85840f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GRD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-grl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GRL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Greenland (GRL)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 766035,
+      "file:checksum": "12204f14f85caa3e68096103d882b3f72c7615481a11de83018217eb0e534b798dbd",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GRL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gtm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GTM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guatemala (GTM)",
+      "description": "22 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 193028,
+      "file:checksum": "1220d0ca06428ef1d960b60fe448d09cfa2889be22d8bb7f71710b0f85397287867d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GTM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-guf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GUF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "French Guiana (GUF)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 76813,
+      "file:checksum": "12209ed2fe3498b63c5278c9833262814e5891676a0441b5521ffc8378eec9744084",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GUF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gum": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GUM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guam (GUM)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8767,
+      "file:checksum": "1220154a347a130b1ea60584279d678fcdbc925e8d7e2aadb48056fd9fc8153cccd2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GUM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-guy": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=GUY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guyana (GUY)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 154445,
+      "file:checksum": "1220f9299f11c169b7966d17b3693208e1be2ef8a08f2144dd942f6c93e2e54a36ed",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=GUY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hkg": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=HKG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "China, Hong Kong SAR (HKG)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 21532,
+      "file:checksum": "12202fa5f9683544e38d2fae54202f3dad4b42fb5164c9ed75804f9ed53e23cf94a9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=HKG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hmd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=HMD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Heard Isl. & McDonald Is. (Aust.) (HMD)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8773,
+      "file:checksum": "1220bcdac9b0911ae8e216aaa3c49479eff54dd9cf10d7eef93cfd1bc078625da49a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=HMD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hnd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=HND/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Honduras (HND)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 5780286,
+      "file:checksum": "1220821ad5eb6496429e8b4d8e9582e024956e6c0807fae50dd373865850a8e3f1b5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=HND/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hrv": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=HRV/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Croatia (HRV)",
+      "description": "21 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8958805,
+      "file:checksum": "1220bcb19658cad401d8484895c76415e8a77c2f1901b8ca8282652a67bdcabb31f8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=HRV/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hti": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=HTI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Haiti (HTI)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 175787,
+      "file:checksum": "1220313d9028ea29d12e77b649ed4fb5a8d7f11ee6676381b619098a5ff374436d67",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=HTI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hun": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=HUN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hungary (HUN)",
+      "description": "20 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 264852,
+      "file:checksum": "12205b06deeb8b79eae72e624c70c88df368784d1bf9ccdf0e42a9972a117b2e7fe8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=HUN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-idn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IDN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Indonesia (IDN)",
+      "description": "34 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 26404421,
+      "file:checksum": "1220735de2807b464a9260ce05084914d5841a7abaa72bbb516f784c45241923fe59",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IDN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-imn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IMN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Isle of Man (IMN)",
+      "description": "24 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 62902,
+      "file:checksum": "122094bb6988491959337b50c5cf2dca21a65d66ef2298166cc61d455bd7cba31476",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IMN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ind": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IND/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "India (IND)",
+      "description": "38 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 4711295,
+      "file:checksum": "1220970d4d7777dea5c85616e9afe4f65c73aa6e45dfacd8ef4354c97dfc2c1795f8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IND/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-iot": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IOT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chagos Archipelagio (IOT)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 9486,
+      "file:checksum": "122069580538b816c649d0c03520120c949faa82dcaa0a3a4511947187749de15c73",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IOT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-irl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IRL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ireland (IRL)",
+      "description": "26 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 887441,
+      "file:checksum": "1220bccebd3b86122599e145405fda59de2f2b126df09ab1aea3de9bec7ddbdd76f9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IRL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-irn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IRN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iran (Islamic Republic Of) (IRN)",
+      "description": "32 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1590669,
+      "file:checksum": "12206f18579ac024d8965f058184b0ac79caefff1d124cbff70d24f4ccf048cf59a5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IRN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-irq": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=IRQ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iraq (IRQ)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 212178,
+      "file:checksum": "1220d69b02f7f7195bb3333d3c20efce784bd74648a87bba6f08c63cc5cde481c1b0",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=IRQ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-isl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ISL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iceland (ISL)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3095959,
+      "file:checksum": "122065e5d7a29322c1d2dc3e031e1bb09f88961eaa0c3524a0004567f47414624bcc",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ISL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-isr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ISR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Israel (ISR)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 51167,
+      "file:checksum": "1220112797cd0188be2d1a059a2701d3f945f10fda34dd4b8238a45cd0e70cb2b36c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ISR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ita": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ITA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Italy (ITA)",
+      "description": "20 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 5039000,
+      "file:checksum": "1220984a69216954dc3334d2caf7a2e1413abe278d7d877e23be35f70fc3deb7aab6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ITA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-jam": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=JAM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jamaica (JAM)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 37339,
+      "file:checksum": "12207eb16509d456983e14443af5f0a79e17d79435c62be71ef57ff01c31863dae36",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=JAM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-jey": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=JEY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jersey (JEY)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 47017,
+      "file:checksum": "1220d4a33690874021d02b4e48fae9f6660a72ab7997d425cce1853febb45016788b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=JEY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-jor": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=JOR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jordan (JOR)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 76146,
+      "file:checksum": "1220e2a012c4ca32ab548176872b91af01d5359799a281b5e0f811421af32349b919",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=JOR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-jpn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=JPN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Japan (JPN)",
+      "description": "47 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 766121,
+      "file:checksum": "12201893ca5ee27f4e0d165c766608d4f2fe517c499466f3eb892e19afe5813e7126",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=JPN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-kaz": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KAZ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kazakhstan (KAZ)",
+      "description": "21 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 898657,
+      "file:checksum": "1220cd907a55c14f0fa30aec753e242871b73d917b89747db091e629aa79bd833fc3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KAZ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ken": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KEN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kenya (KEN)",
+      "description": "47 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 370681,
+      "file:checksum": "1220884efbadb9205a2c3690a41a96071b87a51940cd75f4e6ad3ca084a497acff33",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KEN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-kgz": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KGZ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kyrgyzstan (KGZ)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 308182,
+      "file:checksum": "1220ff6d033a842cb58ed2f1a06c79f84e79041676677ed477f0ebbcc263ba883adf",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KGZ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-khm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KHM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cambodia (KHM)",
+      "description": "26 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 683904,
+      "file:checksum": "1220aa34a54101871cd7f1fb2eccb01280b5f1348bd59468b21f9e7131d07fbd0307",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KHM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-kir": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KIR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kiribati (KIR)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 206252,
+      "file:checksum": "122016d25f47b788d6869ee4eda4a27bb468d4afe4e1f35f7babf4ed38c88fdf6f87",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KIR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-kna": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KNA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saint Kitts And Nevis (KNA)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 34781,
+      "file:checksum": "1220db478413abad78dc915fafe60e7f74132669ff00da1a9a0df003b488a370e9cc",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KNA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-kor": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KOR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Republic Of Korea (KOR)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 195398,
+      "file:checksum": "12205725bb5a67a899d544fc8ac0397e82939648f0ce7cef0eca928bc60838eacdba",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KOR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-kwt": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=KWT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kuwait (KWT)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 21572,
+      "file:checksum": "12204c247f86c77d4fde0333e54e11de2846c473732630680d46f83befe1396aed18",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=KWT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lao": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LAO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Lao People's Democratic Republic (LAO)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 298415,
+      "file:checksum": "12209e7cf1bf840490ea83263b70d3ef06066fb1256c753b7de0bf1638069eda03a4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LAO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lbn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LBN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Lebanon (LBN)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 343362,
+      "file:checksum": "1220325ec8898766dd9adf82a599ce33c0d004b3586e66a961153fb445b96ce9c22e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LBN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lbr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LBR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Liberia (LBR)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 267861,
+      "file:checksum": "1220e62687821e221af2b311d1eef07bde3456a5e6583850bdd43bd06fba5dccedb8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LBR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lby": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LBY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Libya (LBY)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 129949,
+      "file:checksum": "1220facb649aa64b1300c8394c27060e4da7b8d6b0010d5a3b0a5dccd07be36cf1fc",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LBY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lca": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LCA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saint Lucia (LCA)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 606850,
+      "file:checksum": "1220d74bfebd6b74e45b569de52fbe38b0d9fb3fcbf4b013a1cc7473ccddbcd6eca5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LCA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lie": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LIE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Liechtenstein (LIE)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 58489,
+      "file:checksum": "122057bf487c4fc4738e5c3bd78c5dec16596890f6665fc5eaeb1d5859e690b0217a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LIE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lka": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LKA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sri Lanka (LKA)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 531731,
+      "file:checksum": "1220d5daa3ca9a4486ddfe77ba5d2db1d0a5212b41e30a19388b2dba7f02da841701",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LKA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lso": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LSO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Lesotho (LSO)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 146092,
+      "file:checksum": "12200bd07be107d7f81ecf658876a2106195a48a5b8a228d6a56fbb47bfa2f64eba9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LSO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ltu": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LTU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Lithuania (LTU)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 199216,
+      "file:checksum": "122095c283847a454507b292e4b417b9f537a2fe7aa09451be46c9a5da1e93329a23",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LTU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lux": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LUX/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Luxembourg (LUX)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 25916,
+      "file:checksum": "1220222918b6f7bbb41d4b36438ee06b7f5f5b0e5318eeb7128db7b9a646ca26f723",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LUX/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lva": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=LVA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Latvia (LVA)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 123694,
+      "file:checksum": "1220ccd27fde03ba0156b537fb31ab5d32caba39bca4b584c87622ae791c8834b496",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=LVA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mac": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MAC/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "China, Macao SAR (MAC)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7846,
+      "file:checksum": "1220a37175cdd06578b08d68516a92969d457f4b72d04d2f93a8a87f06b06a2a09df",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MAC/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-maf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MAF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saint Martin (French part) (MAF)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8790,
+      "file:checksum": "12207d46bd9f248aa1590d033349a21759e6b0b23eb50380b33c884f3703b6fa6ae9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MAF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mar": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MAR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Morocco (MAR)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 872023,
+      "file:checksum": "1220a0306a801a3deda2a7ba36678bb4c1b0d59bce00ed1a9f4f6813b05223134bae",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MAR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mco": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MCO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Monaco (MCO)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7530,
+      "file:checksum": "1220249e5b275da543266a2ca480b0b490e1243e7085f081ef600e31863f4c7ecefe",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MCO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mda": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MDA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Republic of Moldova (MDA)",
+      "description": "37 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 229626,
+      "file:checksum": "1220ae25d5d568987023ec547d11b7d512ee93f63e15caf58720d32cbe921f6db4ee",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MDA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mdg": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MDG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Madagascar (MDG)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1746210,
+      "file:checksum": "1220ed333bfab3157465d114536177db9fb79a02cadeacedda9bc00efa095468a721",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MDG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mdv": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MDV/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Maldives (MDV)",
+      "description": "20 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 358099,
+      "file:checksum": "1220faba41b6c501bf5cde688e5add3410f46a11b9e9d31f60fe18dfab740bfe67d1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MDV/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mex": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MEX/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mexico (MEX)",
+      "description": "32 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1452443,
+      "file:checksum": "1220e4ceb7716e1258e240d8fcdd1b4bf3ba3c27936a1be1d88f8ef3c675ed66ffa6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MEX/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mhl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MHL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Marshall Islands (MHL)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 32562,
+      "file:checksum": "12207e38ecfa4672be2d5132e250c19d41143606602d1690fca013260ffb9edc5dd9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MHL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mkd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MKD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Macedonia (MKD)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 69315,
+      "file:checksum": "12208493babe02a59cf3397f8c536d9850825de429b88de805dbb9e8002058b99630",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MKD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mli": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MLI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mali (MLI)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 328637,
+      "file:checksum": "1220e681a9cbec6f1e1d8f2562657f861ee744bc71942bbb6bf135b6e2bc7dc98d3f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MLI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mlt": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MLT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Malta (MLT)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 308798,
+      "file:checksum": "1220f25c15e25fb5a1984fbe1384cd4cbfa6ef109d1b686b08fe55b0d1abbb7512df",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MLT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mmr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MMR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Myanmar (MMR)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 887988,
+      "file:checksum": "122044a7a90947639439222e8cf3042f81c0f70ca1c8a0e1e9d44102e9f80865c867",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MMR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mne": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MNE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Montenegro (MNE)",
+      "description": "21 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 81462,
+      "file:checksum": "1220d000275b9cfe356fb6ae425481aded8ae18f2500dff4ca019592de4ee88e72ea",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MNE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mng": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MNG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mongolia (MNG)",
+      "description": "22 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 414940,
+      "file:checksum": "1220de13a1b076af92834afc87bedf7842ee80fc9300b77987d70ae2c216281cf3ee",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MNG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mnp": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MNP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Northern Mariana Islands (MNP)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 12146,
+      "file:checksum": "1220e6add107acff9014b5cc6bf0b02b2ba7f056ebb91acb3781a97482143cff4e8a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MNP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-moz": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MOZ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mozambique (MOZ)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1202469,
+      "file:checksum": "122008d360a67af39fcbe5e8fef1f46de7b041edc8d71d55781fa9f0ef3125d6127d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MOZ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mrt": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MRT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mauritania (MRT)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 156695,
+      "file:checksum": "1220d0fb70d4b65e704c22d9434d2dc69265b0f6feb5392a3351b4519b5380e34935",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MRT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-msr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MSR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Montserrat (MSR)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 11503,
+      "file:checksum": "12207ddeafe09a6ec9cbf1cf47c46e8c4dc356377e2399db3c63bb17068a749b27a5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MSR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mtq": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MTQ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Martinique (MTQ)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 42062,
+      "file:checksum": "12204b4eb8d5273a7b022b000ddb1659c6eedf87997fb561e46e4bd3e4f3c4eef968",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MTQ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mus": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MUS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mauritius (MUS)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 703689,
+      "file:checksum": "1220f26cdf9e6f026970bc8a4b429140c5a971ee490712b1c5ebb06040f5badb3abf",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MUS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mwi": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MWI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Malawi (MWI)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 223616,
+      "file:checksum": "12201afef531df91616bd62828878b463e2d23408bdad33e0765d322e2bced4a993f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MWI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mys": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MYS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Malaysia (MYS)",
+      "description": "16 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1350758,
+      "file:checksum": "1220ee4a52a8c82890bb1c394817487d8969a9021be47c84081e7b0eb261c682d5be",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MYS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-myt": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=MYT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Mayotte (MYT)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 10575,
+      "file:checksum": "1220b6b1b40fadf6fba2888fee46dec2fc81826193f7574c9262219f0a7f7d83c45e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=MYT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nam": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NAM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Namibia (NAM)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 517289,
+      "file:checksum": "1220e621b905fc47d040c70c15b6e85b9699989c72ac1d2dc772bfd6e1420ac8f40c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NAM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ncl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NCL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Caledonia (NCL)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 40092,
+      "file:checksum": "122090cbcfcf6f4de8de839c53df1df5d94eba829c187b438bfb77683226149ed5a4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NCL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ner": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NER/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Niger (NER)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 133930,
+      "file:checksum": "1220e576e1d6792db9c131f7d8a59250c32db1f6b34840ed2127090998f0f0eda017",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NER/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nfk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NFK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Norfolk Island (NFK)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8753,
+      "file:checksum": "1220238d5a692f7d7bdc31c3a145a5c68ffe44881b595248b39ecb4f703235225393",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NFK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nga": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NGA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nigeria (NGA)",
+      "description": "37 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 378507,
+      "file:checksum": "122083ede0d0f92cc87bbd8f26c1688b4a41b32991133fd2898dfdd262cb2e0296a1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NGA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nic": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NIC/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nicaragua (NIC)",
+      "description": "17 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1424574,
+      "file:checksum": "12206ddf2af25e8c2e782151668d1dd2354ad334109ab7572c1302fcd7346610b72f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NIC/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-niu": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NIU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Niue (NIU)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7858,
+      "file:checksum": "122085194334b99a35dfc80fd24615b8b309087e05940f474b814f9b203f510e7965",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NIU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nld": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NLD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Netherlands (Kingdom of the) (NLD)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 156020,
+      "file:checksum": "1220f87890aa4b658268f4c45559c2643aaa88c9e7abfe185773e935b07a02fe011a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NLD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nor": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NOR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Norway (NOR)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1631420,
+      "file:checksum": "12205c829236d431902bff433c51914bd11c0a77abc91dc174d9ba3655a57a9663d1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NOR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-npl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NPL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nepal (NPL)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 316445,
+      "file:checksum": "122096a545ff66e117807306a930ab465a69cbe1b966287b2ad567fac8f6a0bcd160",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NPL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nru": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NRU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Nauru (NRU)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7303,
+      "file:checksum": "12203c9f4c04e61bc3133a972dce76548e0313d371689670c75428077c86b61b0f5f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NRU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nzl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=NZL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Zealand (NZL)",
+      "description": "17 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 5770931,
+      "file:checksum": "12202a029b8ce19a9cb075284bc139f3603302f05c2143c998ff2a590a9354027868",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=NZL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-omn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=OMN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Oman (OMN)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 216421,
+      "file:checksum": "1220794ccd6d6eddde5c56b1f969e64486929aaa2dc9028c13273b140254792b8821",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=OMN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pak": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PAK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Pakistan (PAK)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 352271,
+      "file:checksum": "1220d604db6a473672ca6655ba9f4054fa8f46fd1ece7e165c1d89922706d530d419",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PAK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pan": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PAN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Panama (PAN)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 707345,
+      "file:checksum": "12205e202c48df22f799b270f7369fbca6c415a392df8a2e4f71dff3b727632342b2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PAN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pcn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PCN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Pitcairn (PCN)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8197,
+      "file:checksum": "12201027089016635cad36ed9e413651ab32c4ad44ab460e129453817ece4636ab52",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PCN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-per": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PER/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Peru (PER)",
+      "description": "25 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1276462,
+      "file:checksum": "1220ff0e34b4239e8fce8fbbdeeac4bd0b59c0c5fe41ec2043e8e7083a6de81dd9a3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PER/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-phl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PHL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Philippines (PHL)",
+      "description": "17 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2362321,
+      "file:checksum": "12200afedb2f78e540d9eea7942edd3303bd3eecb2a82d61446be9ffc43125723f85",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PHL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-plw": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PLW/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Palau (PLW)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 15470,
+      "file:checksum": "12204327cad47b4449d679614ba363e41e89401c3db7f4ad1d99aa56ccb6718574fc",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PLW/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-png": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PNG/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Papua New Guinea (PNG)",
+      "description": "22 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1011671,
+      "file:checksum": "12209138872678e84b2010c5930a9070bfacbe89bcb829a451ed739ca91cf499c467",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PNG/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pol": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=POL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Poland (POL)",
+      "description": "16 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 580397,
+      "file:checksum": "12203322d89e191ff75f9c93e95975e61721d4f73cb74431cff8cbd522142c829564",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=POL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pri": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PRI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Puerto Rico (PRI)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 519619,
+      "file:checksum": "1220737a889d1fafad54cfe665c331765f4360030120ab92501f1bd17b0dc97dc2c6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PRI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-prk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PRK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Democratic People's Republic of Korea (PRK)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 286563,
+      "file:checksum": "1220a74b10d554e63ff9aef2bf89380c5b65b7fc8a9951045ca6eda6783e77b78467",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PRK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-prt": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PRT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Portugal (PRT)",
+      "description": "25 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3592846,
+      "file:checksum": "1220f6d3a8ec51268276e555b871da1def8012e63af0bccf505aba741806f6fb5839",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PRT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pry": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PRY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Paraguay (PRY)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 311622,
+      "file:checksum": "1220386905509e9dee1af754d966d92437e2ccf0da234dac7e6db4f461dbeb732b56",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PRY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pse": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PSE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Palestine (PSE)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 40641,
+      "file:checksum": "1220e79f0a7b369110298893666fc6423068e5667a9cce00bfca31c9fbbe49d2b50c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PSE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pyf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=PYF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Clipperton Island, French Polynesia (PYF)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 91201,
+      "file:checksum": "12208201dae39ffcb430ced2ed2c5d30d133f48ec259c4402dd59d6b9685a5d3b8dd",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=PYF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-qat": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=QAT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Qatar (QAT)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1898320,
+      "file:checksum": "1220d97cd1a42c650cb40f113f50c1c787da24ade10cc4d44b6f578098b0b9d89e87",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=QAT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-reu": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=REU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Réunion (REU)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 129181,
+      "file:checksum": "1220dabb44f33619577701fd2c5b287f3272d97f20379762e799d10e4fe0bcdb92c9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=REU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-rou": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ROU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Romania (ROU)",
+      "description": "42 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 763801,
+      "file:checksum": "12206e4cfac4208f635b926d05d8b3800c8c8cc05196eb7f1b8994a078fe426ce3b1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ROU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-rus": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=RUS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Russian Federation (RUS)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2500305,
+      "file:checksum": "12205964e97d938c285d7e54263e6873fe43fb1ef40e0601b60fa5f0b09f5e73fd51",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=RUS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-rwa": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=RWA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Rwanda (RWA)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 256638,
+      "file:checksum": "12203569d60ceb1b38af6a57e7d3e67800f7385e40d48f0bf58edd4733a9f4b84e7e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=RWA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sau": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SAU/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saudi Arabia (SAU)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2775503,
+      "file:checksum": "1220a5141a52a3be32ca1a9e5d8cd8a2a99edc41df2a94234b243529361dbc24a3de",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SAU/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sdn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SDN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sudan (SDN)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 196306,
+      "file:checksum": "1220368bab9cad2fefac8303050ac7d65a50def5ab9d7fcc527fca93ad8e9429683c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SDN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sen": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SEN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Senegal (SEN)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 761278,
+      "file:checksum": "1220eb67ad9c5acdd19b573959a1e125ac8ff1d5f5f9ade2a4ddca647677a5ed6c07",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SEN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sgp": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SGP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Singapore (SGP)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 17219,
+      "file:checksum": "1220514ee02f74521c3df9a91dcd48cbdefd5c39d23d20979221d26acf2e7b753759",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SGP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sgs": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SGS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Georgia and the South Sandwich Islands (SGS)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 23698,
+      "file:checksum": "12209473d0ef201ccdf59dabb0d05e3a37a37d08fa3101ae9452975f8131bc9ccfd6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SGS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-shn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SHN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ascension, Saint Helena and Tristan da Cunha (SHN)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 70884,
+      "file:checksum": "1220c7bb7c8e3035fbb1f878c4467e432408c45202863b3b84acda77f00910eaf55a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SHN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sjm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SJM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Svalbard and Jan Mayen Islands (SJM)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 80916,
+      "file:checksum": "1220913c24936cbff31243870b37b05041e82d511399ff3b285dced46e3b5949681b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SJM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-slb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SLB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Solomon Islands (SLB)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2223166,
+      "file:checksum": "1220cf27f071b9dfba2c961f20c8dddd010faa8a148abbe5f30d1abb0d58e15acb99",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SLB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sle": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SLE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sierra Leone (SLE)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 358195,
+      "file:checksum": "1220f2f55c5364895e96286ea5b7337d08367a9ae0a2c947f8787e71b8e58fbfb0b9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SLE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-slv": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SLV/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "El Salvador (SLV)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 216711,
+      "file:checksum": "12206ccac4705c22c2566dde95fd6bf9db507ec6d7b1b64cf6d743031090924c7356",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SLV/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-smr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SMR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "San Marino (SMR)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8309,
+      "file:checksum": "12201918306afd667f058117e951df5ae70c58bf8cda03b6b77ebdaee39eea488062",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SMR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-som": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SOM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Somalia (SOM)",
+      "description": "18 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 88993,
+      "file:checksum": "1220ae7879c932785348604bca965e2cd3fef05786f3818452f0d0efcc3877911c6f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SOM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-spm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SPM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saint Pierre and Miquelon (SPM)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 54062,
+      "file:checksum": "1220e36f1ac06fd3ceeadb3b94e6bf75bd9dc3a8b3068c05808e266b3b3c1f77966c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SPM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-srb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SRB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Serbia (SRB)",
+      "description": "26 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 262146,
+      "file:checksum": "12201b80c461c02e63f53da641b2cba66c95d8a94180cc0ea7de1e76c8bb75d7ce17",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SRB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ssd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SSD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Sudan (SSD)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 153533,
+      "file:checksum": "1220a4211a62c80c831907357aa8a48d4936c1e39ae8941dc740ff7b3022f918bce6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SSD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-stp": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=STP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sao Tome And Principe (STP)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 44393,
+      "file:checksum": "1220024eb51416c46d60eeb00b3e5520479df28aff74150dcf0d596a11a72d34ee3a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=STP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sur": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SUR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Suriname (SUR)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 120809,
+      "file:checksum": "122018a5eca238554a1fd3da2b86dfcc934004cded75e0bb28a4d476d2986b566c13",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SUR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-svk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SVK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Slovakia (SVK)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 610203,
+      "file:checksum": "122060d221a8442566cab78e635877021d86c6cc3c5a216becdcc800787d947027c1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SVK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-svn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SVN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Slovenia (SVN)",
+      "description": "12 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 589981,
+      "file:checksum": "1220e960f0fed2df4b57a14d2c9c4bb2241cfa205033dc0a0eaec6dda052787d5d9a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SVN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-swe": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SWE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sweden (SWE)",
+      "description": "21 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1296407,
+      "file:checksum": "12206d9262f1bfb3abbb1bfd22ccdc5c2fe5d3891b4ad4e0146dbf14ad9a633814ae",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SWE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-swz": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SWZ/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Eswatini (SWZ)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 32953,
+      "file:checksum": "12204be808a1388a01cb1896c4dc5c9c45195a8e701d238b0a54ab24c0187ff4e5b3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SWZ/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sxm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SXM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sint Maarten (Dutch part) (SXM)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 92147,
+      "file:checksum": "122070c1b5259cf6acf7cd8bc75b03cb6d8080ca6c3e2a495db215b0c5569b95a22e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SXM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-syc": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SYC/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Seychelles (SYC)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3902139,
+      "file:checksum": "12202b81767ea1ec9a3338099d57e5c60e01959faa1d31911e9a75bffdc4f2d6960b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SYC/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-syr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=SYR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Syrian Arab Republic (SYR)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 274427,
+      "file:checksum": "1220bcacae9e02f5b8a474b82b19866a18c880e4b73fca834807c023985bb01de778",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=SYR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tca": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TCA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Turks And Caicos Islands (TCA)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 75292,
+      "file:checksum": "1220f69c848210bd9587744082203db076429982a1d12e003f1b812cfe9ff5ee7258",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TCA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tcd": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TCD/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Chad (TCD)",
+      "description": "24 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 145403,
+      "file:checksum": "1220b5298874a0daaafc3b9f0aa1d4542acc70a165897424445004bb5717a0a731d0",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TCD/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tgo": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TGO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Togo (TGO)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 81617,
+      "file:checksum": "12205fd995022f65e25a0dde7bba4b584d96b83ce09b84cc6ff2b55ab78afa35a34f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TGO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tha": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=THA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Thailand (THA)",
+      "description": "77 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3122103,
+      "file:checksum": "12208e4ce83c6c2cee212a4b69456f7ef4a0f1a87dbb9f03ed3a4c14eacd63a58f0b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=THA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tjk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TJK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tajikistan (TJK)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 212087,
+      "file:checksum": "1220c48f46197de3f9545bc3b6dae6d1e9ee35f8b1699f6c7d868ebe5c73c2f4178d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TJK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tkl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TKL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tokelau (TKL)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7915,
+      "file:checksum": "12201db87fe2f5368e0aa0217b2388f47fa12c81aa0898414489fd893986b4001598",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TKL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tkm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TKM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Turkmenistan (TKM)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 286527,
+      "file:checksum": "12207fb7c0763a684fc6730ba95a25b36d34ca82aed5074c2345c7eed00c45f153de",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TKM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tls": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TLS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Timor-Leste (TLS)",
+      "description": "13 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 793976,
+      "file:checksum": "12205396d51c38513e03a2f260353783f43ce84e2e133898abb632f36c971cc08f18",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TLS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ton": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TON/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tonga (TON)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 125819,
+      "file:checksum": "12200ee811df4498c90bc0c7de35bf9076ec048b14fbd4f97658b4ce0dce92c0b12e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TON/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tto": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TTO/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Trinidad And Tobago (TTO)",
+      "description": "15 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 113034,
+      "file:checksum": "122067ab12a9d0347143f5aedc986e4e01d69905c31ee7b7653babbd493379956733",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TTO/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tun": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TUN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tunisia (TUN)",
+      "description": "24 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1158493,
+      "file:checksum": "1220f4fc935fbecb467fe01d13f9b449d567ad9477d23192ca1a7d345396729d3ce8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TUN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tur": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TUR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Türkiye (TUR)",
+      "description": "81 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3334901,
+      "file:checksum": "122010ab0f2d15c500e76058241af51be90fa0e29111fa931ed6544846a799b3f0ce",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TUR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tuv": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TUV/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Tuvalu (TUV)",
+      "description": "9 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 112652,
+      "file:checksum": "1220bac376600b259ac01fa53d7a9399ac777da6905cb2109969d0f67f1241a6e9fa",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TUV/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-twn": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TWN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Taiwan Province of China (TWN)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 25192,
+      "file:checksum": "1220514bc1100111fcd18623515bdc144f9ef532eca4808bdc42c550b31b7ac6ccf4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TWN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tza": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=TZA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United Republic of Tanzania (TZA)",
+      "description": "31 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1433797,
+      "file:checksum": "12209448ac3eb68ec73a02945adf28be2dc081748c9ee2fe248d8449c509c6100a59",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=TZA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-uga": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=UGA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Uganda (UGA)",
+      "description": "4 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 121691,
+      "file:checksum": "1220837bc5a96710862d66927f7ef4b67f5738efe7a856fc53f53041011b2a4c43ba",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=UGA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ukr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=UKR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ukraine (UKR)",
+      "description": "26 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1664239,
+      "file:checksum": "1220439356df8526157c2a312759bd52d43cd4b6f6f47f36c74a04d75eeef9263180",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=UKR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-umi": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=UMI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United States Minor Outlying Islands (UMI)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 14041,
+      "file:checksum": "122000b25b08ee6edc40da4cbb430a8bac2e2785d013e51a7a6511bdabf4cca91898",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=UMI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ury": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=URY/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Uruguay (URY)",
+      "description": "19 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 218820,
+      "file:checksum": "1220e7e34c3a931f9f6a26260e7233448c424f44375ce920526af5e3a8715c6f4cf1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=URY/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-usa": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=USA/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United States of America (USA)",
+      "description": "52 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8674335,
+      "file:checksum": "12208a22d6721ba172235cdf55c00f74355faf67cbf57b4621e79dcf1ef1ba8125fb",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=USA/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-uzb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=UZB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Uzbekistan (UZB)",
+      "description": "14 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 232597,
+      "file:checksum": "1220cf46e0a867da7c4a400d76ea57a119542a3b11b42cf712f102262fa5e061c194",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=UZB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-vat": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VAT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Holy See (VAT)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7240,
+      "file:checksum": "1220ab1b325d7940d29adf8cb88d4f63734bfbf9be6af0d56006cf0afaf85af6d03c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VAT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-vct": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VCT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Saint Vincent and the Grenadines (VCT)",
+      "description": "6 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 39494,
+      "file:checksum": "1220e0902be71269689e7cae50c0387b217149e2fcd731365aaa1a5c6875cf1bb9e9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VCT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ven": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VEN/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Venezuela (Bolivarian Republic Of) (VEN)",
+      "description": "25 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1731130,
+      "file:checksum": "12203905c1e57ef13cb2b29d3e8cca165a53f3de36b9ef057216c6a84df09e2bd11c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VEN/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-vgb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VGB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "British Virgin Islands (VGB)",
+      "description": "7 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 35634,
+      "file:checksum": "1220a637743b9743c553b29ab28b0b870893191427644e25334d13e1535c6fb8b791",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VGB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-vir": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VIR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United States Virgin Islands (VIR)",
+      "description": "3 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 406295,
+      "file:checksum": "12202fe68cea575c724c92cb81931d039bfbff2ce73404e930f40f27a1fe2bbcb0d3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VIR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-vnm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VNM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Viet Nam (VNM)",
+      "description": "63 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2142652,
+      "file:checksum": "122033223b59560faf1fbb2af05400f7bde591ee9b1d03d20b7ea1fe473e1cb3c221",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VNM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-vut": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=VUT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Vanuatu (VUT)",
+      "description": "8 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 716431,
+      "file:checksum": "122022ceb84c3b0a2d62bb3a7109e60d0ed08b854ccebf4dd38b9e777d7b314a67f2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=VUT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-wlf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=WLF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Wallis and Futuna Islands (WLF)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8615,
+      "file:checksum": "12200356e10e04672e6c761ac917a8d6450e749df9e82a21480d501ab8dc5550f3fa",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=WLF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-wsm": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=WSM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Samoa (WSM)",
+      "description": "11 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 108993,
+      "file:checksum": "1220d902d3318d6cdd9a3802a37ad5c355a7f45ca11f38e4da6d658b6a0394372de7",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=WSM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-yem": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=YEM/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Yemen (YEM)",
+      "description": "22 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 548317,
+      "file:checksum": "12206be10a7d94cae294afb7a5457bcb7a703bedec7f139b0e91917d43018264f48b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=YEM/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-zaf": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ZAF/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "South Africa (ZAF)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 2149301,
+      "file:checksum": "12208bbf11c633960ee4d53f5c839b3f1418be60f27be6efe5228f5bb4631c4d2a96",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ZAF/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-zmb": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ZMB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Zambia (ZMB)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1359478,
+      "file:checksum": "1220a735eb21a006e45bea16583ecd9657eaeb8d2d36eaf9711a033f255874e9bed2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ZMB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-zwe": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=ZWE/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Zimbabwe (ZWE)",
+      "description": "10 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 121067,
+      "file:checksum": "12206ff1c30915f730ad429da15d59a32d2da51c0451ca4d97ab19de4fced0b2d266",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=ZWE/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xab": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xAB/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Abyei (xAB)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 11640,
+      "file:checksum": "12201fa77c25c7dccb5e38a48e52123dd017ecfa620c78e5ce787a05129cdcdc95a3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xAB/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xac": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xAC/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Aksai Chin (xAC)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 46189,
+      "file:checksum": "1220878257e4e557831e8fd4cf69508e038f08ecf7975510a695c33eda0459a137ad",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xAC/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xap": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xAP/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Arunachal Pradesh (xAP)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 76845,
+      "file:checksum": "1220a3b08f1c4c3fec3206d7406aad2f2baae45f1ad6f085cd4a5bc59544abac8beb",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xAP/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xfr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xFR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bassas Da India, Europa Island, Glorioso Islands, Juan De Nova Island, Tromelin Island (xFR)",
+      "description": "5 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8684,
+      "file:checksum": "1220faee9bde731e69e41cc3e3052b4ec2010db52876f7fde6f0503b97fed5fd1765",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xFR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xht": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xHT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hala'Ib Triangle (xHT)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 20948,
+      "file:checksum": "1220d0b4c1ecc8ccaaf7534ee480c485bd6e14de6bc62906c1873cb7f9616603e7be",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xHT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xit": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xIT/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ilemi Triangle (xIT)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 10989,
+      "file:checksum": "1220ef6bb5e5b8425baca81b992fd13cf48c6b5c0d5687e5f6163971c4e0067f617e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xIT/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xjk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xJK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jammu And Kashmir (xJK)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 106295,
+      "file:checksum": "122078671ebd46a01b5de1d65f9345bf20d36d5b794d07eac13ed37e9f0b12640d83",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xJK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xjl": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xJL/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Disputed Area(xJL) (xJL)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 12615,
+      "file:checksum": "1220a9728190e8dea35e7ecdca0326daba614a0a23f30d662a61a1b25592ae2f331e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xJL/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xki": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xKI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Kuril Islands (xKI)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 20898,
+      "file:checksum": "12207c39e937b21d3707ce412eebc83b7c13e13add95e932dea80d570c4793d57b95",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xKI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xms": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xMS/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bīr Ṭawīl (xMS)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 9958,
+      "file:checksum": "12202b13e1bc44d96843ba0ab0450bd472b324b8b7fe4dbba5e8dcf3e4ee64987587",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xMS/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xpi": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xPI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Paracel Islands (xPI)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7921,
+      "file:checksum": "122066c32213a0edd9620072ef1606968604b8414f9b82a6f62cc0e33129810add9d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xPI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xsi": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xSI/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Spratly Islands (xSI)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 8615,
+      "file:checksum": "12209ee02e89f6f8a76adb76160ac6e1ba7b42ad0da55d10c1d74d19642b741a1d96",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xSI/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xsk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xSK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Senkaku Islands (xSK)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7553,
+      "file:checksum": "122091c6e6c6913c06baf5e657faf355b2fdc7c64bc0233eb1640468d05febea62ba",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xSK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xsr": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xSR/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Scarborough Reef (xSR)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 7770,
+      "file:checksum": "122009a507e19de6e336b9595c6935ce9ab354a8a3225bfa011bea9299f3ae49a5d6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xSR/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xuk": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xUK/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Akrotiri, Dekelia (xUK)",
+      "description": "2 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 15571,
+      "file:checksum": "1220d16dce8be9905ecfa50331ed227f0bdbf0b0210366684e0cb5e088716007ede4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xUK/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-xxx": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/country=xxx/L1.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Disputed Area(xxx) (xxx)",
+      "description": "1 features",
+      "roles": [
+        "data"
+      ],
+      "file:size": 38096,
+      "file:checksum": "1220dfa21b28bbb8481a3c2986d9727da31d7ccc62731533641f889afd5ddc0ebe75",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/country=xxx/L1.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/gaul/2024/GAUL_2024_L1.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "First-level administrative units (L1), vector tiles",
+      "description": "PMTiles, layer `l1`, zoom 0 to 10, 578,144 tiles; properties: every attribute column. Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 93866836,
+      "file:checksum": "1220177012eef385755f377e5e2be82bed766e3c986a1a4dfc7cad2fd0d9d1885f2f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/gaul/2024/GAUL_2024_L1.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Units filled by continent, with outlines",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1194,
+      "file:checksum": "1220fe95be516113baf65accd2c61fc47902a8a3f8d8642c86da2dcb325ddf73d27c"
+    },
+    "style-outlines": {
+      "href": "./styles/outlines.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Outlines only, to lay over other data",
+      "roles": [
+        "style"
+      ],
+      "file:size": 685,
+      "file:checksum": "1220496eee31a5b3b2297117a2e7373f68c2ce6477d6049683226b69d6f41c51a601"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "World preview of the layer, flat styling",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 107451,
+      "file:checksum": "1220a8821d5794605c7e4cc45f99fbf9952bd4a49a216e14aebbaef2e83d6943311e"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "First-level administrative units (L1): README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "First-level administrative units (L1): agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "Creative Commons Attribution 4.0 International (CC BY 4.0)"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.apps.fao.org/?lang=en",
+      "type": "text/html",
+      "title": "FAO Map Catalog, where GAUL 2024 is published"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/gaul/2024/",
+      "type": "text/html",
+      "title": "Browse the 2024 files"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/gaul/2024/GAUL_2024_L1.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "First-level administrative units (L1), vector tiles",
+      "pmtiles:layers": [
+        "l1"
+      ]
+    }
+  ]
+}

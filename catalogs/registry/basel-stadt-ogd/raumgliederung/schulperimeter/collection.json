@@ -1,0 +1,215 @@
+{
+  "type": "Collection",
+  "id": "raumgliederung/schulperimeter",
+  "stac_version": "1.1.0",
+  "description": "Die Karte zeigt Schulperimeter im Kanton Basel-Stadt. Die Perimeter werden zu Planungszwecken vom Erziehungsdepartement Basel-Stadt und von der Gemeinde Riehen verwendet. Insbesondere dienen sie als r\u00e4umliche Grundlage f\u00fcr die kleinr\u00e4umigen Sch\u00fclerprognosen, die im Auftrag des Erziehungsdepartements Basel-Stadt und der Gemeinde Riehen erstellt werden.\n\nHinweis:\nDie Perimeter entsprechen dem Stand der Prognose vor dem Schuljahr 2024/2025 und sind nicht mehr aktuell. Der Datensatz bleibt aus Gr\u00fcnden der Transparenz weiterhin verf\u00fcgbar. Eine Aktualisierung wird gepr\u00fcft.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100124.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124)",
+      "pmtiles:layers": [
+        "ods-100124"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100124/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100124/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100124",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 28,
+  "table:row_count": 28,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "nummer",
+      "type": "int32",
+      "description": "Laufnummer der Perimeter"
+    },
+    {
+      "name": "zonen",
+      "type": "string",
+      "description": "R\u00e4umliche Einheiten, die zu Planungszwecken vom Erziehungsdepartement Basel-Stadt und von der Gemeinde Riehen verwendet werden. Die Perimeter dienen als Planungsgrundlage und nicht als effektive Einzugsgebiete."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Polygon) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.554658967648961,
+          47.519297213900465,
+          7.693801159398782,
+          47.60091811814663
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124) default style",
+      "description": "Default visualization for Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124), drawn in #bcbddc.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1187,
+      "file:checksum": "122033ae714a622af343f7d2733263f4f2ad477dbf0fb505661c6d77076295cb08f1"
+    },
+    "ods-100124": {
+      "href": "./ods-100124.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 63924,
+      "file:checksum": "12208e85e38757a3a89df01c5c3c676adf112d399fbd0a96772c62ae3f1729b99e1b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100124.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 62412,
+      "file:checksum": "1220add9b84ea510452800b891595f1272747f491732507609ad2a58fdface3dea6f"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124) graduated style",
+      "description": "Graduated visualization coloring Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124) by nummer, ramped from 1.0 to 28.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1930,
+      "file:checksum": "12206617e817c839468a5a21f0e276e7d562012e52233fbaa7217d43ddccefbf8ade"
+    },
+    "thumbnail": {
+      "href": "./ods-100124.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Perimeter der Sch\u00fclerprognosen Basel-Stadt (data.bs.ch 100124)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 129931,
+      "file:checksum": "122016acaedec0d4516ea920a5cc6982a87262efaef67e88fd44dddb0d328c7eea03"
+    }
+  },
+  "keywords": [
+    "Gemeinden",
+    "Geodaten",
+    "Polygondaten",
+    "Bildung",
+    "Schule",
+    "Sch\u00fcler",
+    "Bildung, Wissenschaft",
+    "opendata.swiss",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Statistisches Amt",
+      "description": "Datenquelle: Kanton Basel-Stadt, Statistisches Amt (Pr\u00e4sidialdepartement), \u00abPerimeter der Sch\u00fclerprognosen Basel-Stadt\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100124/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

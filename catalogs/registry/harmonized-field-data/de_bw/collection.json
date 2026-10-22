@@ -1,0 +1,284 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "de_bw",
+  "title": "Field boundaries for Baden-Württemberg, Germany",
+  "description": "GISELa is the Land Parcel Identification System (LPIS) of Baden-Württemberg, the reference system for\narea-based agricultural payments. Unlike most German states, which use field blocks (\"Feldblöcke\"),\nBaden-Württemberg uses the cadastral parcel (\"Katasterflurstück\") as its reference parcel, subdivided\nby land cover (\"Bodenbedeckung\") - so the same FLIK can appear on several rows. This converter keeps\nthe agricultural classes (arable land, grassland, permanent crops) and drops landscape elements and\nnon-agricultural areas. The area given is the maximum area eligible for direct payments, not the\ngeometric area of the polygon.\n\nThis collection holds 5 editions (2018, 2019, 2020, 2021, 2022), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/de_bw/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2022). Geometries are kept in the source CRS (EPSG:25832). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/de_bw/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Baden-Württemberg",
+    "GISELa",
+    "Germany",
+    "IACS",
+    "LPIS",
+    "agriculture",
+    "fiboa",
+    "field boundaries",
+    "reference parcels"
+  ],
+  "license": "DL-DE-BY-2.0",
+  "providers": [
+    {
+      "name": "Ministerium für Ländlichen Raum und Verbraucherschutz Baden-Württemberg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://mlr.baden-wuerttemberg.de"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.513796125188861,
+          47.533418542546606,
+          10.483133050559513,
+          49.7912962832357
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2018-01-01T00:00:00Z",
+          "2022-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:25832"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:name_en",
+      "type": "string",
+      "description": "Crop name in English. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "flik",
+      "type": "string",
+      "description": "The area identifier (FLIK code) is a 16-character string. ([spec](https://github.com/fiboa/flik-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 4363087,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 5,
+  "partition:glob": "s3://ftw/harmonized-field-data/de_bw/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/de_bw.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany, Baden-Württemberg — latest edition (2022) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2022/de_bw-2022.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 622591049,
+      "file:checksum": "1220fc1af73ddbd267f16d161ef31ede21d6475a2f8db0166490bf6d183d7d4f5057",
+      "proj:code": "EPSG:25832"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.1, 0.25 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1169,
+      "file:checksum": "1220501f09a82fb342265c8119e623ed4528971eb56117f5bb267892d5be0c908da7"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 756,
+      "file:checksum": "122097da9afd1d4c759dd2f6fe280b8698e727684b1a53f81f8dde124a9a02415fff"
+    },
+    "visual": {
+      "href": "./year=2022/de_bw-2022.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Germany, Baden-Württemberg — latest edition (2022) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 516263917,
+      "file:checksum": "1220e312266b14ec7eb9e72a28c131839dc8f2faef3da7b76a5358e73b1695f2efd7"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 212868,
+      "file:checksum": "1220b8cc498efaa9982a82d2aca19e127c47af559140aa7867cf162cb20536cb701e"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2022/de_bw-2022.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "de_bw"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://mlr.baden-wuerttemberg.de",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/DE-BW.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/de_bw.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/de_bw-2018.json",
+      "type": "application/geo+json",
+      "title": "Germany, Baden-Württemberg — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/de_bw-2019.json",
+      "type": "application/geo+json",
+      "title": "Germany, Baden-Württemberg — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/de_bw-2020.json",
+      "type": "application/geo+json",
+      "title": "Germany, Baden-Württemberg — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/de_bw-2021.json",
+      "type": "application/geo+json",
+      "title": "Germany, Baden-Württemberg — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/de_bw-2022.json",
+      "type": "application/geo+json",
+      "title": "Germany, Baden-Württemberg — 2022"
+    }
+  ],
+  "updated": "2026-09-27T14:57:18Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "de_bw": [
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/flik-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml"
+    ]
+  },
+  "attribution": "© MLR Baden-Württemberg, dl-de/by-2-0"
+}

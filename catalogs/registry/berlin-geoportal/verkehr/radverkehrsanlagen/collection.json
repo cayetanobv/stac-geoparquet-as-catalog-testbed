@@ -1,0 +1,256 @@
+{
+  "type": "Collection",
+  "id": "verkehr/radverkehrsanlagen",
+  "stac_version": "1.1.0",
+  "description": "Radverkehrsanlagen, inklusive Bussonderfahrstreifen und StVO-Zeichen, die Bestandteil der Radverkehrsanlagen sind.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./radverkehrsanlagen_b_radverkehrsanlagen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radverkehrsanlagen",
+      "pmtiles:layers": [
+        "radverkehrsanlagen_b_radverkehrsanlagen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/radverkehrsanlagen-wfs-0c37901e",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/radverkehrsanlagen",
+      "rel": "related",
+      "title": "WFS source service: b-radverkehrsanlagen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 18641,
+  "table:row_count": 18641,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "importid",
+      "type": "int64"
+    },
+    {
+      "name": "sobj_kz",
+      "type": "string"
+    },
+    {
+      "name": "segm_segm",
+      "type": "double"
+    },
+    {
+      "name": "segm_bez",
+      "type": "string"
+    },
+    {
+      "name": "stst_str",
+      "type": "string"
+    },
+    {
+      "name": "stor_name",
+      "type": "string"
+    },
+    {
+      "name": "ortstl",
+      "type": "string"
+    },
+    {
+      "name": "rva_typ",
+      "type": "string"
+    },
+    {
+      "name": "sorvt_typ",
+      "type": "string"
+    },
+    {
+      "name": "laenge",
+      "type": "int64"
+    },
+    {
+      "name": "b_pflicht",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Radverkehrsanlagen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09025074,
+          52.37022145,
+          13.75697445,
+          52.64967764
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsanlagen default style",
+      "description": "Default visualization for Radverkehrsanlagen, drawn in #41ab5d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1341,
+      "file:checksum": "1220288cb743e8f3177a90bae3bd97f1462acaf99c3f717e8c3b30dee5ebf3a0e2dd"
+    },
+    "radverkehrsanlagen_b_radverkehrsanlagen": {
+      "href": "./radverkehrsanlagen_b_radverkehrsanlagen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1612213,
+      "file:checksum": "122012882321076ce7ecbb147a30bce1109397449a98c0f39f5d3299a5049bf8d0d6",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./radverkehrsanlagen_b_radverkehrsanlagen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radverkehrsanlagen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5944096,
+      "file:checksum": "122002445147f4b00ec5dfef7df34593119791449d8ba01630a5a362be24d939acf5"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsanlagen categorical style",
+      "description": "Categorical visualization coloring Radverkehrsanlagen by b_pflicht, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1901,
+      "file:checksum": "1220b7553bdd21fba81195741ef6b6411c1c221d2b9ac825e130fb32074840fbd473"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsanlagen labeled style",
+      "description": "Default visualization for Radverkehrsanlagen with stor_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1813,
+      "file:checksum": "1220f14c86aec97d4540d7a6b36ae26fb43b7871be408dffc7190d3c13afdb3f1704"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsanlagen graduated style",
+      "description": "Graduated visualization coloring Radverkehrsanlagen by segm_segm, ramped from 0.0 to 7045000170460001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2180,
+      "file:checksum": "122082fb7e8340f053c0ad3bd7cabef980e174f7a45e84e5035759833597b13e9be6"
+    },
+    "thumbnail": {
+      "href": "./radverkehrsanlagen_b_radverkehrsanlagen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Radverkehrsanlagen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 204073,
+      "file:checksum": "1220d3b375b56cc64d53d3c87aaf42f5d75be8755af4fc4b5507bce92f1d899d6cf7"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Bussonderfahrstreifen",
+    "Fahrrad",
+    "Geodaten",
+    "Karten",
+    "Radfahrstreifen",
+    "Radverkehr",
+    "Radweg"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Radverkehrsanlagen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "verkehrsmanagement@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

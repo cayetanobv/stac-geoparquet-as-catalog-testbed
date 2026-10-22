@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "haldusjaotus/asustusyksused",
+  "stac_version": "1.1.0",
+  "description": "Data of administrative and settlement units is derived from the Land Cadastre. Attribute data is derived from the official Estonian Administrative and Settlement Classification (EHAK) maintained by the Statistics Estonia. A regular snapshop is taken on January 1 each year, but intermediary snapshots are taken when the changes in the Cadastre are significant. Settlements: asustusyksus.shp.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://geoportaal.maaamet.ee/eng/spatial-data/administrative-and-settlement-division-p312.html",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./asustusyksus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Settlements",
+      "pmtiles:layers": [
+        "asustusyksus"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://geoportaal.maaamet.ee/eng/spatial-data/administrative-and-settlement-division-p312.html",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 4717,
+  "table:row_count": 4717,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "ANIMI",
+      "type": "string",
+      "description": "Settlement name."
+    },
+    {
+      "name": "AKOOD",
+      "type": "string",
+      "description": "Settlement ID (EHAK), four characters."
+    },
+    {
+      "name": "TYYP",
+      "type": "string",
+      "description": "Settlement type coded by EHAK: 3 village, 4 town, 5 town without municipal status, 6 urban region (city district), 7 township, 8 hamlet, per the publisher's table; the page prints two slightly different wordings of this code list."
+    },
+    {
+      "name": "ONIMI",
+      "type": "string",
+      "description": "Municipality name."
+    },
+    {
+      "name": "OKOOD",
+      "type": "string",
+      "description": "Municipality ID (EHAK)."
+    },
+    {
+      "name": "MNIMI",
+      "type": "string",
+      "description": "County name."
+    },
+    {
+      "name": "MKOOD",
+      "type": "string",
+      "description": "County ID (EHAK)."
+    },
+    {
+      "name": "EKSPORT",
+      "type": "date",
+      "description": "Extraction date of the file from the publisher's database."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:3301')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Bounding box of the geometry as a struct of xmin, ymin, xmax and ymax, added by the conversion."
+    }
+  ],
+  "title": "Settlements",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          21.764538800975576,
+          57.50931284126826,
+          28.208962251700623,
+          59.82201422353425
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Settlements default style",
+      "description": "Default visualization for Settlements, drawn in #b2df8a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1145,
+      "file:checksum": "1220e1ead72b8c7280221cc3e7fa9de3f27e29ae7261421d67b06f26712115a66648"
+    },
+    "asustusyksus": {
+      "href": "./asustusyksus.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 16740627,
+      "file:checksum": "1220df1028ae3894a389afc6cb179c8c742b626a3c5bf4ff301b3eca8aeac72c9f0a",
+      "proj:code": "EPSG:3301",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./asustusyksus.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Settlements (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 27253754,
+      "file:checksum": "1220836e294d1c5c0ccf2166298e1169e8af923035a1516d7f36cf5bd3d66b0b4ce8"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Settlements categorical style",
+      "description": "Categorical visualization coloring Settlements by TYYP, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1889,
+      "file:checksum": "1220c15998e3a8a38b3c101e5cd90dc833dce605209ec30124c9d7904dda564a7482"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Settlements labeled style",
+      "description": "Default visualization for Settlements with TYYP shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1558,
+      "file:checksum": "12209a34098d851a41ad2a5b186cb9bdc957460314a3b46fef4ba05f0010503691fa"
+    },
+    "source": {
+      "href": "https://s3.pilw.io/rp-kemit-kataster/EHAK/asustusyksus_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: asustusyksus",
+      "pipeline:upstream": true,
+      "file:size": 16603046,
+      "file:checksum": "122029c01cc8cfa6030c2b539b75349e004d99737d73254628dd4062dc86ce82c6ba"
+    },
+    "thumbnail": {
+      "href": "./asustusyksus.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Settlements",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 103687,
+      "file:checksum": "1220674b23b18c4bbc96d6e20ebad0bc072f1196ebe61cd5289748499d76da7b7694"
+    }
+  },
+  "keywords": [
+    "EHAK",
+    "administrative units",
+    "settlement units",
+    "Estonia"
+  ],
+  "providers": [
+    {
+      "name": "Republic of Estonia Land and Spatial Development Board",
+      "description": "Administrative and settlement units, Estonian Land and Spatial Development Board 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://geoportaal.maaamet.ee/",
+      "email": "info@maaruum.ee"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T00:11:07Z"
+}

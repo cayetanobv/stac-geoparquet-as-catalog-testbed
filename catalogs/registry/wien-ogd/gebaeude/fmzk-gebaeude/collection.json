@@ -1,0 +1,271 @@
+{
+  "type": "Collection",
+  "id": "gebaeude/fmzk-gebaeude",
+  "stac_version": "1.1.0",
+  "description": "Geb\u00e4udeebene der Vektordaten der Fl\u00e4chen-Mehrzweckkarte (FMZK), der digitalen Stadtkarte von Wien, mit Bodennutzungsklasse (F_KLASSE, LAYER), Adresscode-Bezug und den Kennungen zusammengeh\u00f6riger Geb\u00e4ude-, Br\u00fccken- und Bauwerksfl\u00e4chen. Der Publizierer empfiehlt beim WFS-Abruf kleine Ausschnitte; diese Sammlung spiegelt die gesamte Ebene seitenweise. Attribut- und Wertebereiche: https://www.wien.gv.at/stadtentwicklung/stadtvermessung/pdf/fmzk-attribute-wertebereiche.pdf",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_fmzkgebogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK)",
+      "pmtiles:layers": [
+        "ogdwien_fmzkgebogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/7cf0da04-1f77-4321-929e-78172c74aa0b",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: fmzkgebogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 781669,
+  "table:row_count": 781669,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "FMZK_ID",
+      "type": "int64",
+      "description": "Eindeutiger Fl\u00e4chenbezug der FMZK."
+    },
+    {
+      "name": "F_KLASSE",
+      "type": "int64",
+      "description": "Bodennutzungsklasse; Wertebereich im PDF fmzk-attribute-wertebereiche.pdf des Publizierers."
+    },
+    {
+      "name": "LM",
+      "type": "int64",
+      "description": "Vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "LAYER",
+      "type": "string",
+      "description": "Textliche Beschreibung f\u00fcr Attribut F_KLASSE."
+    },
+    {
+      "name": "BEZUG",
+      "type": "string",
+      "description": "Adresscode f\u00fcr Geb\u00e4ude."
+    },
+    {
+      "name": "KLASSE_SUB",
+      "type": "int64",
+      "description": "Definition der Bodennutzung der unteren Fl\u00e4che, wenn Fl\u00e4chen \u00fcbereinander liegen; Wertebereich wie bei F_KLASSE."
+    },
+    {
+      "name": "BW_GEB_ID",
+      "type": "int64",
+      "description": "Kennung f\u00fcr zusammengeh\u00f6rige Geb\u00e4udefl\u00e4chen."
+    },
+    {
+      "name": "BW_BRK_ID",
+      "type": "int64",
+      "description": "Kennung f\u00fcr zusammengeh\u00f6rige Br\u00fcckenfl\u00e4chen."
+    },
+    {
+      "name": "BW_SON_ID",
+      "type": "int64",
+      "description": "Kennung f\u00fcr zusammengeh\u00f6rige sonstige Bauwerksfl\u00e4chen."
+    },
+    {
+      "name": "SE_SDO_ROWID",
+      "type": "int64",
+      "description": "Interne Zeilenkennung der Datenhaltung, nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.187319550621545,
+          48.11896611568303,
+          16.57696933499347,
+          48.32429743643388
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) default style",
+      "description": "Default visualization for Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK), drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1235,
+      "file:checksum": "1220c8764a5dddc14ecfc637bc6bb1a5275f3a7be1e3a70f6b2adadfc2014362b6dc"
+    },
+    "ogdwien_fmzkgebogd": {
+      "href": "./ogdwien_fmzkgebogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 80173063,
+      "file:checksum": "1220a3d3f01d1a7dfba329f94f40cec003690ab3811e7496b510884c94a9572eb17e",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_fmzkgebogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 35979793,
+      "file:checksum": "1220c878c3ad8cdb317bd13023f5911f8f17b50c0451e4de20c687399e9fb9925b36"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) categorical style",
+      "description": "Categorical visualization coloring Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) by LAYER, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2256,
+      "file:checksum": "1220b22cf49c0f3ca4e2c87e252d8384adb5c365d6105dc4a20b6f8ebf2c6075ec08"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) labeled style",
+      "description": "Default visualization for Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) with LAYER shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1661,
+      "file:checksum": "1220cc8bcb8700b6fb1df831e38e1f9173f04d00e946251dfeba3c3ad4a0c54c56a2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) graduated style",
+      "description": "Graduated visualization coloring Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK) by SE_SDO_ROWID, ramped from 16657662.0 to 27285702.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2059,
+      "file:checksum": "12200a7ae5ecc2ec56d9145333e3959ae07f16753c3a273479fa9abf5cab8ab0e31d"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_fmzkgebogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Fl\u00e4chen-Mehrzweckkarte Wien \u2013 Geb\u00e4ude (FMZK)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 196760,
+      "file:checksum": "12209b002252b2b6fd07863c7287054ad26842cf9623208ca4fe8d259e11d7354e6e"
+    }
+  },
+  "keywords": [
+    "Stadtplan",
+    "Mehrzweckkarten",
+    "Grundkarte",
+    "ViennaGIS",
+    "FMZK",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien \u2013 Magistratsabteilung 41 (Stadtvermessung)",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Fl\u00e4chen-Mehrzweckkarte Vektordaten Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.wien.gv.at/stadtentwicklung/stadtvermessung/geodaten/fmzk/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

@@ -1,0 +1,532 @@
+{
+  "type": "Collection",
+  "id": "adressen/adressen",
+  "stac_version": "1.1.0",
+  "description": "Adressdaten insbesonders enthaltend die Adressbezeichnung (Verkehrsfl\u00e4che + Orientierungsnummer), sowie die Koordinaten der Zugangsadresse (Liegenschaftszugang) und der Geb\u00e4udeadresse (Lage der Geb\u00e4udezug\u00e4nge) Wichtig: Aufgrund der hohen Anzahl der bei den Adressen angef\u00fchrten Attribute ist der WFS-Download der Adressen derzeit auf 150.000 Objekte beschr\u00e4nkt. Daher: Um s\u00e4mtliche Adressen von Wien effizient mittels WFS herunterladen zu k\u00f6nnen, empfiehlt sich ein bezirksweiser Download. Beispiellinks f\u00fcr den 1. Bezirk sind bei den Ressourcen angef\u00fchrt. Zus\u00e4tzlich kann die Anzahl der Attribute beim WFS-Download mit dem Parameter propertyname eingeschr\u00e4nkt werden. Beispiel, um nur die Koordinate, ACD und GEB_BEZIRK herunterzuladen: &propertyname=SHAPE,ACD,GEB_BEZIRK Hinweis: Die im WMS kartographisch dargestellten Adressen sind nur die Zugangsadressen und somit eine Untermenge der Adressen. Zugangsadressen stellen den eigentlichen Zu/Eingang in das Geb\u00e4ude bzw. den Geb\u00e4udekomplex dar. Die Visualisierung ist auf den Ma\u00dfstabsbereich bis maximal 1:5.000 eingeschr\u00e4nkt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_adressenogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Adressen Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_adressenogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/1d5c2411-9719-4c8f-b99d-57a5f4a4ae41",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: adressenogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 292013,
+  "table:row_count": 292013,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "ABSCHNITT_ZUGANG_STR",
+      "type": "double"
+    },
+    {
+      "name": "ACD",
+      "type": "double",
+      "description": "Adresscode."
+    },
+    {
+      "name": "AP_TIMESTAMP_MODIFY",
+      "type": "string",
+      "description": "\u00c4nderungsdatum des Adresspunkts."
+    },
+    {
+      "name": "BST_BEZEICHNUNG",
+      "type": "string"
+    },
+    {
+      "name": "BST_NUMMER",
+      "type": "string"
+    },
+    {
+      "name": "BST_NUMMER_ALPHA",
+      "type": "string"
+    },
+    {
+      "name": "BST_NUMMER_NUM",
+      "type": "int64"
+    },
+    {
+      "name": "BST_TRENNZEICHEN",
+      "type": "int64"
+    },
+    {
+      "name": "BST_TRENNZ_KURZTEXT",
+      "type": "string"
+    },
+    {
+      "name": "EDGEOBJECTID_ZUGANG_STR",
+      "type": "int64"
+    },
+    {
+      "name": "EXTERNALORGCODE",
+      "type": "int64"
+    },
+    {
+      "name": "GEBADR_ANZEIGEN_J_N",
+      "type": "int64"
+    },
+    {
+      "name": "GEBADR_REGIONALCODE",
+      "type": "string"
+    },
+    {
+      "name": "GEB_BAUBLOCK",
+      "type": "double",
+      "description": "Baublockschl\u00fcssel der Geb\u00e4udeadresse."
+    },
+    {
+      "name": "GEB_BAUBLOCK_ID",
+      "type": "int64"
+    },
+    {
+      "name": "GEB_BEZEICHNUNG",
+      "type": "string"
+    },
+    {
+      "name": "GEB_BEZIRK",
+      "type": "double",
+      "description": "Bezirk der Geb\u00e4udeadresse."
+    },
+    {
+      "name": "GEB_NAMECAT",
+      "type": "int64"
+    },
+    {
+      "name": "GEB_NUMMER",
+      "type": "string"
+    },
+    {
+      "name": "GEB_NUMMER_ALPHA",
+      "type": "string"
+    },
+    {
+      "name": "GEB_NUMMER_NUM",
+      "type": "int64"
+    },
+    {
+      "name": "GEB_OBJEKTID",
+      "type": "int64"
+    },
+    {
+      "name": "GEB_STATUS",
+      "type": "string",
+      "description": "Status der Geb\u00e4udeadresse als Schl\u00fcssel."
+    },
+    {
+      "name": "GEB_STATUS_KURZTEXT",
+      "type": "string",
+      "description": "Status der Geb\u00e4udeadresse als Kurztext."
+    },
+    {
+      "name": "GEB_TIMESTAMP_MODIFY",
+      "type": "string",
+      "description": "\u00c4nderungsdatum der Geb\u00e4udeadresse."
+    },
+    {
+      "name": "GEB_TRENNZEICHEN",
+      "type": "int64"
+    },
+    {
+      "name": "GEB_TRENNZ_KURZTEXT",
+      "type": "string"
+    },
+    {
+      "name": "GEB_WINKEL",
+      "type": "double"
+    },
+    {
+      "name": "GEB_X",
+      "type": "double",
+      "description": "X-Koordinate der Geb\u00e4udeadresse in EPSG:31256."
+    },
+    {
+      "name": "GEB_Y",
+      "type": "double",
+      "description": "Y-Koordinate der Geb\u00e4udeadresse in EPSG:31256."
+    },
+    {
+      "name": "HAUPT_IDENT_PSEUDO",
+      "type": "string"
+    },
+    {
+      "name": "LAGE_ZU_ADR",
+      "type": "string"
+    },
+    {
+      "name": "LAGE_ZU_ADR_TXT",
+      "type": "string"
+    },
+    {
+      "name": "NAME",
+      "type": "string",
+      "description": "Adressbezeichnung (Verkehrsfl\u00e4che und Orientierungsnummer)."
+    },
+    {
+      "name": "NAME_BST",
+      "type": "string",
+      "description": "Bauteilbezeichnung."
+    },
+    {
+      "name": "NAME_BST_GEB",
+      "type": "string"
+    },
+    {
+      "name": "NAME_GEB",
+      "type": "string",
+      "description": "Geb\u00e4udebezeichnung."
+    },
+    {
+      "name": "NAME_ONR",
+      "type": "string",
+      "description": "Orientierungsnummer als Text."
+    },
+    {
+      "name": "NAME_ONR_BST_GEB",
+      "type": "string",
+      "description": "Orientierungsnummer, Bauteil und Geb\u00e4ude zusammengesetzt."
+    },
+    {
+      "name": "NAME_STR",
+      "type": "string",
+      "description": "Name der Verkehrsfl\u00e4che."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "OBJEKT_ID",
+      "type": "int64",
+      "description": "Objektkennung der Adresse."
+    },
+    {
+      "name": "OBJEKTID_NAME_STR",
+      "type": "int64"
+    },
+    {
+      "name": "ON_BIS_ALPHA",
+      "type": "string"
+    },
+    {
+      "name": "ON_BIS_NUM",
+      "type": "int64"
+    },
+    {
+      "name": "ONR_BIS",
+      "type": "string",
+      "description": "Orientierungsnummer bis."
+    },
+    {
+      "name": "ONR_VON",
+      "type": "string",
+      "description": "Orientierungsnummer von."
+    },
+    {
+      "name": "ON_VON_ALPHA",
+      "type": "string"
+    },
+    {
+      "name": "ON_VON_NUM",
+      "type": "int64"
+    },
+    {
+      "name": "PLATZKENNZEICHEN",
+      "type": "int64"
+    },
+    {
+      "name": "PLZ",
+      "type": "int64",
+      "description": "Postleitzahl."
+    },
+    {
+      "name": "SCD_NAME_STR",
+      "type": "double",
+      "description": "Stra\u00dfencode der Verkehrsfl\u00e4che."
+    },
+    {
+      "name": "SCD_ZUGANG_STR",
+      "type": "double"
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "STRABS_ZUGANG_STR",
+      "type": "double"
+    },
+    {
+      "name": "STRASSENSEITE",
+      "type": "int64"
+    },
+    {
+      "name": "TOPOGR_NAME_STR",
+      "type": "string"
+    },
+    {
+      "name": "UEBERACD",
+      "type": "double"
+    },
+    {
+      "name": "ZUGADR_ONR_KGNUM",
+      "type": "double"
+    },
+    {
+      "name": "ZUGADR_ONR_STAMMNR",
+      "type": "double"
+    },
+    {
+      "name": "ZUGADR_ONR_TEILNR",
+      "type": "double"
+    },
+    {
+      "name": "ZUGADR_REGIONALCODE",
+      "type": "string"
+    },
+    {
+      "name": "ZUGADR_TYP",
+      "type": "int64"
+    },
+    {
+      "name": "ZUGANG_MOEGLICH_J_N",
+      "type": "int64",
+      "description": "Zugang m\u00f6glich, ja/nein."
+    },
+    {
+      "name": "ZUG_BEZIRK",
+      "type": "double",
+      "description": "Bezirk der Zugangsadresse."
+    },
+    {
+      "name": "ZUG_OBJEKTID",
+      "type": "int64"
+    },
+    {
+      "name": "ZUG_TIMESTAMP_MODIFY",
+      "type": "string",
+      "description": "\u00c4nderungsdatum der Zugangsadresse."
+    },
+    {
+      "name": "ZUG_TRENNZEICHEN",
+      "type": "int64"
+    },
+    {
+      "name": "ZUG_TRENNZ_KURZTEXT",
+      "type": "string"
+    },
+    {
+      "name": "ZUG_WINKEL",
+      "type": "double"
+    },
+    {
+      "name": "ZUG_X",
+      "type": "double",
+      "description": "X-Koordinate der Zugangsadresse in EPSG:31256."
+    },
+    {
+      "name": "ZUG_Y",
+      "type": "double",
+      "description": "Y-Koordinate der Zugangsadresse in EPSG:31256."
+    },
+    {
+      "name": "ABLAUFDATUM",
+      "type": "string",
+      "description": "Ablaufdatum; im WFS vorhanden, in der Feldliste des Publizierers nicht genannt."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Adressen Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.18721535620375,
+          48.121077072307415,
+          16.573748566072076,
+          48.318677493273235
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Standorte Wien default style",
+      "description": "Default visualization for Adressen Standorte Wien, drawn in #d94801.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1206,
+      "file:checksum": "12208eed5bc240ac519fa4a3c63669aa6b548eb91fd2177c4092905c70185182856a"
+    },
+    "ogdwien_adressenogd": {
+      "href": "./ogdwien_adressenogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 23455288,
+      "file:checksum": "12202bbad04b04c66de2b2c216b80ff961a1090bf52a337e24ebdf82e6168fc32d2a",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_adressenogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Adressen Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 35953255,
+      "file:checksum": "12201c842d3252226ba89994aca9002ecd148d91f63cbfdd648a9380e9eab6adf4a0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Standorte Wien categorical style",
+      "description": "Categorical visualization coloring Adressen Standorte Wien by HAUPT_IDENT_PSEUDO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1790,
+      "file:checksum": "12203651db61b25f4e741252ca40f5863b1d60718578e892da1add34ff668a0dc12b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Standorte Wien labeled style",
+      "description": "Default visualization for Adressen Standorte Wien with GEB_NAMECAT shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1640,
+      "file:checksum": "1220b3d3fb7a42953d17bdab80b6588468fb106993b76ca7d3fa3d0e1d7601bf99b5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Standorte Wien graduated style",
+      "description": "Graduated visualization coloring Adressen Standorte Wien by STRABS_ZUGANG_STR, ramped from 3001009.0 to 18444002001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2062,
+      "file:checksum": "1220accdb8a18b804f7eccc3bdf377cf23285aaba14607801952f5e7a5f7f378f991"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_adressenogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Adressen Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 253012,
+      "file:checksum": "1220c2b7f4cfd3ed86b662a7ae5c336122553b2af133532c7d7f9f063400628d2094"
+    }
+  },
+  "keywords": [
+    "Koordinaten",
+    "Adressen",
+    "Hausnummern",
+    "Orientierungsnummern",
+    "ViennaGIS",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Adressen Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

@@ -1,0 +1,227 @@
+{
+  "type": "Collection",
+  "id": "umwelt/landschaftsschutzgebiete",
+  "stac_version": "1.1.0",
+  "description": "Landschaftsschutzgebiete, Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_landschutzgebogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Landschaftsschutzgebiete Wien",
+      "pmtiles:layers": [
+        "ogdwien_landschutzgebogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/a1347e6c-db7d-423d-9b62-de7717129f5b",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: landschutzgebogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 358,
+  "table:row_count": 358,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "INFORMATION",
+      "type": "string",
+      "description": "Hyperlink zu weiteren Informationen auf der wien.at-Umweltschutz-Seite."
+    },
+    {
+      "name": "RECHTSGRUNDLAGE",
+      "type": "string",
+      "description": "Hyperlink zur Rechtsgrundlage im Wiener Rechtsinformationssystem."
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "string",
+      "description": "Objektbezeichnung."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Landschaftsschutzgebiete Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.18516903614502,
+          48.119931888872685,
+          16.54028430624018,
+          48.32266661341716
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsschutzgebiete Wien default style",
+      "description": "Default visualization for Landschaftsschutzgebiete Wien, drawn in #41ab5d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1247,
+      "file:checksum": "1220e3039f4dc688295c15d9f1b0124e976598ab594af3779e449bceb59ecb3d3798"
+    },
+    "ogdwien_landschutzgebogd": {
+      "href": "./ogdwien_landschutzgebogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 583015,
+      "file:checksum": "12203a6d2613bd988a4b5088cad7ae5cf1553e04b5ee84326853df57a8b6707da5ff",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_landschutzgebogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Landschaftsschutzgebiete Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 375474,
+      "file:checksum": "1220538a2053ae1f412bc37656d45549a61425a840a735091cfff6e7935ff31d8292"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsschutzgebiete Wien categorical style",
+      "description": "Categorical visualization coloring Landschaftsschutzgebiete Wien by SE_ANNO_CAD_DATA, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2021,
+      "file:checksum": "1220856a5ea7df05f4230575ecb1ddc48c2cc1002472112c12758702a0e7ea1633f9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landschaftsschutzgebiete Wien labeled style",
+      "description": "Default visualization for Landschaftsschutzgebiete Wien with SE_ANNO_CAD_DATA shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1696,
+      "file:checksum": "12203a1af5853b4ef52866fd780fc6f8602ac5900463ce9dd29dc2f8ab7b91bfc18e"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_landschutzgebogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Landschaftsschutzgebiete Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 150329,
+      "file:checksum": "122033360f7a667e6dc43f0b79a7beacd52084b10cf65d444860008f26f14c682a3b"
+    }
+  },
+  "keywords": [
+    "Landschaftsschutzgebiete",
+    "ViennaGIS",
+    "Schutzgebiet",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Landschaftsschutzgebiete Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

@@ -1,0 +1,346 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "ee",
+  "title": "Field boundaries for Estonia",
+  "description": "Geospatial Aid Application Estonia Agricultural parcels.\nThe original dataset is provided by ARIB and obtained from the INSPIRE theme GSAA (specifically Geospaial Aid Application Estonia Agricultural parcels) through which the data layer Fields and Eco Areas (GSAA) is made available.\nThe data comes from ARIB's database of agricultural parcels.\n\nThis collection holds 10 editions (2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/ee/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2024). Geometries are kept in the source CRS (EPSG:3301). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/ee/AGENTS.md).\n\nThe 2015 edition, which the source above does not offer, comes from Field boundaries for Estonia — EuroCrops V2 (Joint Research Centre, European Commission, converter `ec_ee`), under CC-BY-4.0; attribution: European Commission, Joint Research Centre — EuroCropsV2; its item carries those terms.\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Estonia",
+    "GSAA",
+    "INSPIRE",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "CC-BY-SA-3.0",
+  "providers": [
+    {
+      "name": "Põllumajanduse Registrite ja Informatsiooni Amet",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "http://data.europa.eu/88u/dataset/pria-pollud"
+    },
+    {
+      "name": "Joint Research Centre, European Commission",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.jrc.ec.europa.eu/dataset/b9fb9e67-78a9-4327-9d59-39a928d812d3"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          21.77699575577166,
+          57.516393562088105,
+          28.158169121679943,
+          59.64530757320617
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2015-01-01T00:00:00Z",
+          "2024-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3035",
+      "EPSG:3301"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "land_use",
+      "type": "string",
+      "description": "Carried over from the source column `taotletud_maakasutus`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "parcel_id",
+      "type": "int64",
+      "description": "Field identifier (source column `pollu_id`, per the fiboa data survey)"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 166500,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 10,
+  "partition:glob": "s3://ftw/harmonized-field-data/ee/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/ee.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Estonia — latest edition (2024) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2024/ee-2024.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 263589795,
+      "file:checksum": "1220ccce0a3452d0a6082ae0c59b65c92e22d5bbac4cf3b6f8aae31d2291e7d49cec",
+      "proj:code": "EPSG:3301"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2321,
+      "file:checksum": "122042c227d09714457891d63294d88b5ae3fa26ce8f531ff620c7dcfaaf8b8965eb"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 2, 5, 10 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1210,
+      "file:checksum": "122035c8139b5aaf83846ade47c0b2c5980b4e2d2a0754ab6d7a42a3ba9039392d07"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 727,
+      "file:checksum": "12201830ba091a5e6921dc3e36a6f58906b1c0e947f75d7adb04d1261a0ce025aac7"
+    },
+    "visual": {
+      "href": "./year=2024/ee-2024.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Estonia — latest edition (2024) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 77237843,
+      "file:checksum": "12204dc4689ae5fc60bbc1b7c8b8c76f389cf6fb143afa0f176c29c32015a2dc48d8"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 185926,
+      "file:checksum": "1220e71c49856337c737f5ecf7e2185099d0d0d660e02d8c83b4d7b3c5437fc23795"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2024/ee-2024.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "ee"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "http://data.europa.eu/88u/dataset/pria-pollud",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/EE.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/ee.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2015/ee-2015.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2015"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/ee-2016.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/ee-2017.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/ee-2018.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/ee-2019.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/ee-2020.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/ee-2021.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/ee-2022.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/ee-2023.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/ee-2024.json",
+      "type": "application/geo+json",
+      "title": "Estonia — 2024"
+    }
+  ],
+  "updated": "2026-10-13T12:00:24Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "ee": [
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml"
+    ]
+  },
+  "attribution": "© Põllumajanduse Registrite ja Informatsiooni Amet"
+}

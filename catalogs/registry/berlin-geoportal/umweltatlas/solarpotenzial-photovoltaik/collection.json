@@ -1,0 +1,266 @@
+{
+  "type": "Collection",
+  "id": "umweltatlas/solarpotenzial-photovoltaik",
+  "stac_version": "1.1.0",
+  "description": "Die Karten veranschaulichen die Photovoltaik-Potenziale Berliner Dachfl\u00e4chen sowie deren Verschattung im Jahresverlauf. Die Daten werden im Solarrechner (https://solarrechner.berlin.de/) genutzt, der eine erste Wirtschaftlichkeitsabsch\u00e4tzung erm\u00f6glicht. Das Solarpotenzial wurde mithilfe von Geodaten aus dem Liegenschaftskataster (ALKIS) und 3D-Geb\u00e4udemodellen (LoD2) ermittelt. Die Verschattung basiert auf monatlichen Rasterdaten, die Dachfl\u00e4chen als verschattet oder unverschattet ausweisen. Die Ebene bildet die Photovoltaik-Potenziale auf den Dachfl\u00e4chen der Berliner Geb\u00e4ude ab.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ua_solarpotenzial_solarrechner_d_photovoltaik_potenzial.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas)",
+      "pmtiles:layers": [
+        "ua_solarpotenzial_solarrechner_d_photovoltaik_potenzial"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/solarpotenzial-solarrechner-umweltatlas-wfs-1b8d9a01",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/ua_solarpotenzial_solarrechner",
+      "rel": "related",
+      "title": "WFS source service: solar-photovoltaik",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 1482626,
+  "table:row_count": 1482626,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Laufende Kennung der Dachteilfl\u00e4che im Dienst."
+    },
+    {
+      "name": "uid_gebaeude",
+      "type": "string",
+      "description": "ALKIS-Geb\u00e4ude-ID des Geb\u00e4udes im Format DEBE\u2026."
+    },
+    {
+      "name": "geeignete_flaeche",
+      "type": "double",
+      "description": "F\u00fcr Photovoltaik geeignete Fl\u00e4che der Dachteilfl\u00e4che; Einheit nicht dokumentiert, die Werte passen zu Quadratmetern."
+    },
+    {
+      "name": "anzahl_standardmodule",
+      "type": "DECIMAL(38,0)",
+      "description": "Anzahl der Standardmodule, die auf der geeigneten Fl\u00e4che Platz finden."
+    },
+    {
+      "name": "potenzielle_leistung",
+      "type": "double",
+      "description": "Potenzielle Leistung; Einheit nicht dokumentiert, die Werte passen zu Kilowatt."
+    },
+    {
+      "name": "eignung",
+      "type": "int64",
+      "description": "Eignungsklasse als Schl\u00fcssel; Codierung vom Publizierer im WFS nicht dokumentiert."
+    },
+    {
+      "name": "verschattung_selten_anteil",
+      "type": "double",
+      "description": "Anteil der Fl\u00e4che, der selten verschattet ist."
+    },
+    {
+      "name": "verschattung_haeufig_anteil",
+      "type": "double",
+      "description": "Anteil der Fl\u00e4che, der h\u00e4ufig verschattet ist."
+    },
+    {
+      "name": "verschattung_meist_anteil",
+      "type": "double",
+      "description": "Anteil der Fl\u00e4che, der meist verschattet ist."
+    },
+    {
+      "name": "hat_mindestgroesse",
+      "type": "boolean",
+      "description": "Ob die Fl\u00e4che die Mindestgr\u00f6\u00dfe f\u00fcr eine Anlage erreicht."
+    },
+    {
+      "name": "ausrichtung",
+      "type": "double",
+      "description": "Ausrichtung der Dachteilfl\u00e4che als Schl\u00fcssel; Codierung vom Publizierer im WFS nicht dokumentiert."
+    },
+    {
+      "name": "neigung",
+      "type": "double",
+      "description": "Neigung der Dachteilfl\u00e4che; Einheit und Codierung vom Publizierer im WFS nicht dokumentiert."
+    },
+    {
+      "name": "flaeche",
+      "type": "double",
+      "description": "Gesamtfl\u00e4che der Dachteilfl\u00e4che; Einheit nicht dokumentiert, die Werte passen zu Quadratmetern."
+    },
+    {
+      "name": "id0",
+      "type": "int64",
+      "description": "Zweite technische Kennung derselben Dachteilfl\u00e4che."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.1069191,
+          52.33976288,
+          13.75893699,
+          52.66049731
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas) default style",
+      "description": "Default visualization for Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas), drawn in #fdae6b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1507,
+      "file:checksum": "12205d76b7ca43782acb9d051a85a3f6b116a4735ce971b0f553def3c341bf9a09aa"
+    },
+    "ua_solarpotenzial_solarrechner_d_photovoltaik_potenzial": {
+      "href": "./ua_solarpotenzial_solarrechner_d_photovoltaik_potenzial.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 154772966,
+      "file:checksum": "122042dcd7bb315032c3fd71833f8b113d28a08a7433774ff6243dc1a31b90d5740d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ua_solarpotenzial_solarrechner_d_photovoltaik_potenzial.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 86410676,
+      "file:checksum": "1220a4c3014e041951f2465d0bd91a3ade8f247e9763335db1476142e2604465f865"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas) graduated style",
+      "description": "Graduated visualization coloring Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas) by id0, ramped from 1.0 to 1482626.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2265,
+      "file:checksum": "12207db145a6acdaa86937c6b0c3da0c94b96cafba37dab6fcc5998983558735f7eb"
+    },
+    "thumbnail": {
+      "href": "./ua_solarpotenzial_solarrechner_d_photovoltaik_potenzial.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Solarpotenzial \u2013 Solarrechner, Photovoltaik-Potenzial (Umweltatlas)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 183055,
+      "file:checksum": "1220fc407ac1d9ed6174e4178104302da6dbc9670952e770b35797679987fc1a638f"
+    }
+  },
+  "keywords": [
+    "Solarpotenzial",
+    "Photovoltaik",
+    "PV",
+    "Solaranlage",
+    "Verschattung",
+    "Energie",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Wirtschaft, Energie und Betriebe",
+      "description": "Datenquelle Geoportal Berlin, Solarpotenzial - Solarrechner (Umweltatlas), abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://solarrechner.berlin.de/",
+      "email": "daniel.gafkemendoza@senweb.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T23:45:21Z"
+}

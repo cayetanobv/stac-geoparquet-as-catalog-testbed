@@ -1,0 +1,172 @@
+{
+  "type": "Collection",
+  "id": "utilities/sanitary/pressure-mains",
+  "stac_version": "1.1.0",
+  "description": "Open Data Layers for the sanitary pressure mains within the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./pressure-mains.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "pressure-mains"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 289,
+  "table:row_count": 289,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Pressure Main - Sanitary",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.70314483631716,
+          49.57384398615866,
+          -119.62391351856968,
+          49.6246844248857
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "pressure-mains": {
+      "href": "./pressure-mains.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 42157,
+      "file:checksum": "1220480487e3e26b48fe1d5005e9fd7bf208f6bcbd59a40b248d7b6236126d0d9b8e",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./pressure-mains.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 14812,
+      "file:checksum": "1220c5ca4ed871d0b75f5bfccd3efb1caef9898a2f4e0d0ad0137f8a2b6763b1c24b"
+    },
+    "pressure-mains-tiles": {
+      "href": "./pressure-mains.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "pressure-mains (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 19831,
+      "file:checksum": "1220e2707bd0f6c5a0f70acdbcabb600e80cf5cd08514f32a4fdc231ffed9853c490"
+    },
+    "styles/pressure-mains": {
+      "href": "./styles/pressure-mains.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Pressure main",
+      "file:size": 340,
+      "file:checksum": "12205ead1a6804085ed3a638a3c4dd2f257698ad6f04aec4c9f29c0f16c47e4e20e1"
+    }
+  },
+  "keywords": [
+    "Wastewater",
+    "Utilities",
+    "Sanitary",
+    "Sewer"
+  ]
+}

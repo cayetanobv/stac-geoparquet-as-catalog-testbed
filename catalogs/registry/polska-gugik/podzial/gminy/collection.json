@@ -1,0 +1,369 @@
+{
+  "type": "Collection",
+  "id": "podzial/gminy",
+  "stac_version": "1.1.0",
+  "description": "Granice gmin z Pa\u0144stwowego Rejestru Granic i Powierzchni Jednostek Podzia\u0142\u00f3w Terytorialnych Kraju (PRG) prowadzonego przez G\u0142\u00f3wnego Geodet\u0119 Kraju: 2 479 obiekt\u00f3w poligonowych z siedmioznakowym identyfikatorem TERYT, nazw\u0105 gminy, urz\u0119dow\u0105 powierzchni\u0105 w hektarach, numerem REGON organu, identyfikatorem obiektu w infrastrukturze informacji przestrzennej oraz datami wersji i obowi\u0105zywania. Uk\u0142ad wsp\u00f3\u0142rz\u0119dnych producenta ETRS89 (EPSG:4258).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./A03_Granice_gmin.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PRG \u2013 Granice gmin",
+      "pmtiles:layers": [
+        "A03_Granice_gmin"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.geoportal.gov.pl/pl/dane/panstwowy-rejestr-granic-prg/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.geoportal.gov.pl/prg/granice/00_jednostki_administracyjne.zip",
+      "rel": "related",
+      "title": "Upstream source: prg_jednostki_administracyjne",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://mapy.geoportal.gov.pl/wss/service/PZGIK/PRG/WFS/AdministrativeBoundaries?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "WFS 2.0.0 GUGiK dla PRG, granice administracyjne (warstwa ms:A03_Granice_gmin). Us\u0142uga udost\u0119pnia wy\u0142\u0105cznie GML, dlatego kopia pobiera plik SHP; szczeg\u00f3\u0142y w AGENTS.md.",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 2479,
+  "table:row_count": 2479,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Kolejny numer rekordu nadany przy konwersji przez GDAL/geoparquet-io; w pliku producenta nie wyst\u0119puje. Stabilny tylko w obr\u0119bie jednej kopii."
+    },
+    {
+      "name": "JPT_KOD_JE",
+      "type": "string",
+      "description": "Siedmioznakowy identyfikator TERYT gminy, np. 1007013 dla gminy Bia\u0142acz\u00f3w, 1813013 dla Birczy, 0408023 dla Bobrownik (obserwacja 2026-09-21). Pierwsze cztery znaki to kod powiatu, pierwsze dwa kod wojew\u00f3dztwa, a ostatni znak w systemie TERYT oznacza rodzaj gminy."
+    },
+    {
+      "name": "JPT_SJR_KO",
+      "type": "string",
+      "description": "Kod poziomu jednostki podzia\u0142u terytorialnego. Dla tej warstwy sta\u0142a warto\u015b\u0107 GMI (gmina) we wszystkich 2 479 rekordach (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_NAZWA_",
+      "type": "string",
+      "description": "Nazwa gminy, np. Bia\u0142acz\u00f3w, Bircza, Bobrowniki (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_POWIER",
+      "type": "double",
+      "description": "Urz\u0119dowa powierzchnia jednostki w HEKTARACH, z rejestru producenta, nie wyliczona z geometrii. Weryfikacja 2026-09-21: gmina Bia\u0142acz\u00f3w 11 461 ha, czyli 114,61 km\u00b2."
+    },
+    {
+      "name": "JPT_ORGAN_",
+      "type": "string",
+      "description": "Nazwa organu w\u0142a\u015bciwego dla jednostki. We wszystkich 2 479 rekordach pusta (obserwacja 2026-09-21); numer REGON organu podaje kolumna REGON."
+    },
+    {
+      "name": "JPT_KOD__1",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe towarzysz\u0105ce JPT_KOD_JE (nazwa skr\u00f3cona przez format Shapefile). We wszystkich 2 479 rekordach puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_NAZWA1",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe towarzysz\u0105ce JPT_NAZWA_ (nazwa skr\u00f3cona przez format Shapefile do 10 znak\u00f3w). We wszystkich 2 479 rekordach puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_ORGAN1",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe towarzysz\u0105ce JPT_ORGAN_. Obserwowane warto\u015bci: NZN w 2 478 rekordach, BRK w 1 (2026-09-21). S\u0142ownika kod\u00f3w producent nie do\u0142\u0105cza do pliku."
+    },
+    {
+      "name": "JPT_WAZNA_",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe dotycz\u0105ce wa\u017cno\u015bci jednostki. Obserwowane warto\u015bci: NZN w 2 386 rekordach, BRK w 93 (2026-09-21). S\u0142ownika kod\u00f3w producent nie do\u0142\u0105cza do pliku."
+    },
+    {
+      "name": "IIP_PRZEST",
+      "type": "string",
+      "description": "Przestrze\u0144 nazw identyfikatora obiektu w infrastrukturze informacji przestrzennej (IIP). W ca\u0142ym zbiorze sta\u0142a warto\u015b\u0107 PL.PZGIK.200 (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "IIP_IDENTY",
+      "type": "string",
+      "description": "Lokalny identyfikator obiektu w IIP: UUID, np. 6b3fe3ac-8239-41d6-84a4-cdc91bd0c88e. Trwa\u0142y identyfikator obiektu u producenta; zmienia si\u0119 tylko przy zast\u0105pieniu obiektu nowym."
+    },
+    {
+      "name": "JPT_KJ_IIP",
+      "type": "string",
+      "description": "Pole wskazuj\u0105ce zbi\u00f3r \u017ar\u00f3d\u0142owy identyfikatora. We wszystkich 2 479 rekordach warto\u015b\u0107 EGIB, czyli ewidencja grunt\u00f3w i budynk\u00f3w (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_KJ_I_1",
+      "type": "string",
+      "description": "Identyfikator jednostki w zbiorze \u017ar\u00f3d\u0142owym. We wszystkich 2 479 rekordach pusty (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_KJ_I_2",
+      "type": "string",
+      "description": "Drugie pole identyfikatora zbioru \u017ar\u00f3d\u0142owego (nazwa skr\u00f3cona przez format Shapefile). We wszystkich 2 479 rekordach puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_SPS_KO",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe. We wszystkich 2 479 rekordach warto\u015b\u0107 UZG (obserwacja 2026-09-21). Producent nie do\u0142\u0105cza s\u0142ownika tych kod\u00f3w do pliku."
+    },
+    {
+      "name": "JPT_POWI_1",
+      "type": "double",
+      "description": "Drugie pole powierzchni (nazwa skr\u00f3cona przez format Shapefile). We wszystkich rekordach 0 (obserwacja 2026-09-21), wi\u0119c nie nale\u017cy go u\u017cywa\u0107; powierzchni\u0119 podaje JPT_POWIER."
+    },
+    {
+      "name": "JPT_KJ_I_3",
+      "type": "string",
+      "description": "Trzecie pole kodowe zbioru \u017ar\u00f3d\u0142owego (nazwa skr\u00f3cona przez format Shapefile). We wszystkich 2 479 rekordach puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_JOR_ID",
+      "type": "double",
+      "description": "Identyfikator rekordu organu w rejestrze producenta. W ca\u0142ym zbiorze sta\u0142a warto\u015b\u0107 13136 (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "WERSJA_OD",
+      "type": "string",
+      "description": "Data i godzina pocz\u0105tku tej wersji obiektu w rejestrze producenta, tekst w formacie YYYY-MM-DDTHH:MM:SS bez strefy czasowej, np. 2026-07-28T01:10:33. Znacznik zmiany w bazie, nie data wej\u015bcia w \u017cycie."
+    },
+    {
+      "name": "WERSJA_DO",
+      "type": "string",
+      "description": "Data i godzina ko\u0144ca wersji obiektu. W pobranym zbiorze pusta we wszystkich rekordach, bo plik zawiera wy\u0142\u0105cznie wersje aktualne (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "WAZNY_OD",
+      "type": "string",
+      "description": "Data, od kt\u00f3rej jednostka jest wa\u017cna w sensie prawnym, tekst YYYY-MM-DDTHH:MM:SS, np. 2012-06-12T00:00:00. R\u00f3\u017cni si\u0119 od WERSJA_OD: WAZNY_OD odnosi si\u0119 do obowi\u0105zywania jednostki, WERSJA_OD do wpisu w bazie."
+    },
+    {
+      "name": "WAZNY_DO",
+      "type": "string",
+      "description": "Data, do kt\u00f3rej jednostka jest wa\u017cna. W pobranym zbiorze pusta we wszystkich rekordach (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "IIP_WERSJA",
+      "type": "string",
+      "description": "Identyfikator wersji obiektu w IIP: ten sam znacznik czasu co WERSJA_OD, niekiedy z przesuni\u0119ciem strefy, np. 2026-07-28T13:10:33+02:00. Producent zapisuje oba warianty, wi\u0119c nie jest to pole por\u00f3wnywalne \u0142a\u0144cuchowo mi\u0119dzy rekordami."
+    },
+    {
+      "name": "JPT_OPIS",
+      "type": "string",
+      "description": "Opis jednostki. W pobranym zbiorze pusty we wszystkich rekordach (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_ID",
+      "type": "double",
+      "description": "Wewn\u0119trzny identyfikator rekordu w bazie producenta, liczba ca\u0142kowita zapisana jako N19.11. Nie jest to identyfikator TERYT ani IIP."
+    },
+    {
+      "name": "REGON",
+      "type": "string",
+      "description": "Numer REGON organu w\u0142a\u015bciwego dla jednostki, 14 znak\u00f3w z dope\u0142nieniem zerami, np. 01552891000000 dla urz\u0119du marsza\u0142kowskiego wojew\u00f3dztwa mazowieckiego (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "D\u0142ugo\u015b\u0107 obwodu obliczona przez producenta w jednostkach uk\u0142adu wsp\u00f3\u0142rz\u0119dnych zbioru, czyli w STOPNIACH, a nie w metrach (weryfikacja 2026-09-21: granica pa\u0144stwa 42,93, wojew\u00f3dztwo mazowieckie 20,21). Warto\u015b\u0107 nie jest miar\u0105 metryczn\u0105 i nie nale\u017cy jej u\u017cywa\u0107 jako d\u0142ugo\u015bci; do pomiar\u00f3w trzeba przeliczy\u0107 geometri\u0119 na uk\u0142ad metryczny, np. PL-1992 (EPSG:2180)."
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double",
+      "description": "Pole powierzchni obliczone przez producenta w jednostkach uk\u0142adu wsp\u00f3\u0142rz\u0119dnych zbioru, czyli w STOPNIACH KWADRATOWYCH (weryfikacja 2026-09-21: granica pa\u0144stwa 42,44). Nie jest to powierzchnia w km\u00b2 ani w ha; urz\u0119dow\u0105 powierzchni\u0119 w hektarach podaje JPT_POWIER."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4258')",
+      "description": "Geometria jednostki w uk\u0142adzie producenta ETRS89 (EPSG:4258, stopnie geograficzne), zapisana jako WKB; zadeklarowana kolumna geometrii. Zasi\u0119gi STAC kopia przelicza na OGC:CRS84."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Prostok\u0105t otaczaj\u0105cy geometri\u0119 jako struktura xmin, ymin, xmax, ymax, dodany przy konwersji jako kolumna pokrywaj\u0105ca (covering) GeoParquet; pozwala czytnikowi pomin\u0105\u0107 ca\u0142e grupy wierszy."
+    }
+  ],
+  "title": "PRG \u2013 Granice gmin",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          14.12298483038569,
+          49.00204323021097,
+          24.14578307033247,
+          54.83641666969362
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PRG \u2013 Granice gmin default style",
+      "description": "Default visualization for PRG \u2013 Granice gmin, drawn in #4292c6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1185,
+      "file:checksum": "1220bb97edae23f2b0d32fc544e9d48f88c9c47578beba8b095438c2b3ac78cff94d"
+    },
+    "A03_Granice_gmin": {
+      "href": "./A03_Granice_gmin.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 65915018,
+      "file:checksum": "122009b8d171bbfd036bd4afe62149cd91c23760602820e9b77cd0de5ee37143d346",
+      "proj:code": "EPSG:4258",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./A03_Granice_gmin.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PRG \u2013 Granice gmin (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 101122160,
+      "file:checksum": "122022cf2e7bd30acdcf376d6c2637532722a536429a0ed41a3644869a5919bb1fa6"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PRG \u2013 Granice gmin categorical style",
+      "description": "Categorical visualization coloring PRG \u2013 Granice gmin by JPT_ORGAN1, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1635,
+      "file:checksum": "12201e4b01b55e842722fdf0b8fa6bbeaaa6444c7672adbe0d822ff6a5849d61af8f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PRG \u2013 Granice gmin labeled style",
+      "description": "Default visualization for PRG \u2013 Granice gmin with JPT_NAZWA_ shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1612,
+      "file:checksum": "12203f2a71e4f4fd3aae6bf0c1f75d7769418b244d382cdad8d116d79f296f58e0ab"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PRG \u2013 Granice gmin graduated style",
+      "description": "Graduated visualization coloring PRG \u2013 Granice gmin by JPT_ID, ramped from 1378516.0 to 10064970.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1979,
+      "file:checksum": "12202dff41d420c4fec0f20d5c66f7ae6cd1b789174f8adf9ed69ef6b6fb5acaa31c"
+    },
+    "thumbnail": {
+      "href": "./A03_Granice_gmin.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of PRG \u2013 Granice gmin",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 202829,
+      "file:checksum": "12203b64b0586422eba74799f159d6259c751dbf541b424c000f429265a5b20ebdba"
+    }
+  },
+  "keywords": [
+    "PRG",
+    "gminy",
+    "granice administracyjne",
+    "TERYT",
+    "LAU",
+    "Polska",
+    "PZGiK",
+    "GUGiK",
+    "podzia\u0142 terytorialny"
+  ],
+  "providers": [
+    {
+      "name": "G\u0142\u00f3wny Urz\u0105d Geodezji i Kartografii (GUGiK)",
+      "description": "Wykorzystano/opracowano na podstawie materia\u0142\u00f3w pa\u0144stwowego zasobu geodezyjnego i kartograficznego, G\u0142\u00f3wny Urz\u0105d Geodezji i Kartografii, PRG, stan zbioru 2026-09-17, pobrano 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "http://www.gugik.gov.pl/",
+      "email": "gugik@gugik.gov.pl"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pl",
+    "name": "Polski",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:00:00Z"
+}

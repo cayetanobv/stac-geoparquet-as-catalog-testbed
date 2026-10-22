@@ -1,0 +1,145 @@
+{
+  "type": "Collection",
+  "id": "knotwilgen_op_landgoed/projectgebied",
+  "stac_version": "1.1.0",
+  "description": "Projectgebied",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./projectgebied.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "projectgebied"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1,
+  "table:row_count": 1,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Projectgebied",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.15002657319596,
+          52.0638576483558,
+          5.19616387101683,
+          52.0811354194287
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "projectgebied": {
+      "href": "./projectgebied.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3123,
+      "file:checksum": "122030e3d64ed5e16af91003dd287f0e6783904d515a4a8f15c63bdf4537002cba04",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./projectgebied.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 4960,
+      "file:checksum": "1220fbc9e1cef0ff7627d55364bbd7e6a959537d93a108a46d975aa4b5c5f188444d"
+    },
+    "projectgebied-tiles": {
+      "href": "./projectgebied.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "projectgebied (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1542,
+      "file:checksum": "1220143e076713b22a6a40c1de706abe466c1d90226e9baeaf592b8d92672486d97a"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 752,
+      "file:checksum": "1220132ae334cb3549338fe26dee7de039a0c2d142940205a3303986ea2aa9b54c17",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

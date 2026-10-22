@@ -1,0 +1,283 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "cbsa",
+  "title": "Core based statistical areas: metropolitan and micropolitan, 2026",
+  "description": "The 'Core Based Statistical Area' layer of the 2026 TIGER/Line Nation-Level Geography National GeoPackage: 935 rows. Columns and values unchanged; 2D geometry in NAD83 (EPSG:4269) with a bbox covering, Hilbert-sorted, as one GeoParquet 2.0 file read in place over HTTPS or the anonymous S3 endpoint s3.geomermaids.com, and a PMTiles archive for web maps. The Census Bureau makes no warranty on the accuracy of TIGER/Line, and its boundaries are for statistical data collection and tabulation only: not a determination of jurisdictional authority, ownership or entitlement, and not legal land descriptions. Credit: U.S. Census Bureau, TIGER/Line 2026.",
+  "keywords": [
+    "TIGER/Line",
+    "US Census Bureau",
+    "boundaries",
+    "metropolitan areas",
+    "urban areas",
+    "ZIP codes",
+    "ZCTA",
+    "cbsa",
+    "GeoParquet",
+    "PMTiles"
+  ],
+  "license": "other",
+  "attribution": "U.S. Census Bureau, TIGER/Line 2026",
+  "version": "2026",
+  "updated": "2026-10-22T13:57:21Z",
+  "providers": [
+    {
+      "name": "U.S. Census Bureau, Geography Division",
+      "description": "Produces TIGER/Line from its MAF/TIGER system and publishes it as national GeoPackages. A US government work, not subject to copyright in the United States.",
+      "url": "https://www.census.gov/geographies/mapping-files.html",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted the GeoPackage layers to GeoParquet, tiled them, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -178.4438,
+          17.831491,
+          -65.4226,
+          65.45359
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 935,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "CSAFP",
+      "type": "VARCHAR",
+      "description": "Combined statistical area FIPS code."
+    },
+    {
+      "name": "CBSAFP",
+      "type": "VARCHAR",
+      "description": "Core based statistical area FIPS code."
+    },
+    {
+      "name": "GEOID",
+      "type": "VARCHAR",
+      "description": "Area identifier: the codes of the areas it nests in, then its own code (e.g. state + county + tract for a tract)."
+    },
+    {
+      "name": "GEOIDFQ",
+      "type": "VARCHAR",
+      "description": "Fully qualified GEOID, used to join data tables from data.census.gov."
+    },
+    {
+      "name": "NAME",
+      "type": "VARCHAR",
+      "description": "Name."
+    },
+    {
+      "name": "NAMELSAD",
+      "type": "VARCHAR",
+      "description": "Name and translated legal/statistical area description."
+    },
+    {
+      "name": "LSAD",
+      "type": "VARCHAR",
+      "description": "Legal/statistical area description code."
+    },
+    {
+      "name": "MEMI",
+      "type": "VARCHAR",
+      "description": "Metropolitan (1) or micropolitan (2) statistical area."
+    },
+    {
+      "name": "MTFCC",
+      "type": "VARCHAR",
+      "description": "MAF/TIGER feature class code, the kind of area (e.g. G5200 congressional district, G4020 county, G5020 census tract)."
+    },
+    {
+      "name": "ALAND",
+      "type": "DOUBLE",
+      "description": "Land area, square metres."
+    },
+    {
+      "name": "AWATER",
+      "type": "DOUBLE",
+      "description": "Water area, square metres."
+    },
+    {
+      "name": "INTPTLAT",
+      "type": "VARCHAR",
+      "description": "Latitude of the internal point (text, as published)."
+    },
+    {
+      "name": "INTPTLON",
+      "type": "VARCHAR",
+      "description": "Longitude of the internal point (text, as published)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Area outline as native Parquet GEOMETRY (WKB), NAD83 (EPSG:4269), longitude and latitude, 2D."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/cbsa.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Core based statistical areas: metropolitan and micropolitan, 2026",
+      "description": "935 rows in 14 row groups of at most 4 MiB of geometry.",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:4269",
+      "file:size": 17807111,
+      "file:checksum": "122029b73ebfa814693b537abb31cc74267a7f64fbb4c1b3b1ccb5ef600dc0e1c9b0",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/nationgeo/cbsa.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/cbsa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Core based statistical areas: metropolitan and micropolitan, vector tiles",
+      "description": "PMTiles, layer `cbsa`, zoom 0 to 12, 134,348 tiles; properties CBSAFP, MEMI, GEOID, NAMELSAD, ALAND, AWATER, color_index (color_index: a colour per area such that neighbours differ). Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 25573124,
+      "file:checksum": "1220d5223fd49616108941135b1b2791644002919ea1e85274a5064a48cb119d4e4a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/nationgeo/cbsa.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Areas, coloured so neighbours differ",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1703,
+      "file:checksum": "1220f796c62a466d6617a2c282516de50d686d0b667ff5b4ebacd0b96f5779439ea4"
+    },
+    "style-outlines": {
+      "href": "./styles/outlines.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Outlines only, to lay over other data",
+      "roles": [
+        "style"
+      ],
+      "file:size": 671,
+      "file:checksum": "12209c631e52bd20fed397ceba3d0973d26a54b74143b09c77c259b79e4a2346684b"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Core based statistical areas: metropolitan and micropolitan, overview map",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 114084,
+      "file:checksum": "12204e13b876dadaf9dd017e47b356ce9cefbe86e6242b267b6b2c812c3361a9d788"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Core based statistical areas: metropolitan and micropolitan: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Core based statistical areas: metropolitan and micropolitan: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.usa.gov/government-copyright",
+      "type": "text/html",
+      "title": "Works of the US federal government are not subject to copyright in the United States (17 U.S.C. 105)"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-geopackage-file.html",
+      "type": "text/html",
+      "title": "TIGER/Line GeoPackages on census.gov, where they are published"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2026/2026_TIGERLINE_GPKG_Record_Layouts.pdf",
+      "type": "application/pdf",
+      "title": "2026 TIGER/Line GeoPackage record layouts"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/",
+      "type": "text/html",
+      "title": "Browse the files"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://census.geomermaids.com/",
+      "type": "text/html",
+      "title": "census.geomermaids.com"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/cbsa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Core based statistical areas: metropolitan and micropolitan, vector tiles",
+      "pmtiles:layers": [
+        "cbsa"
+      ]
+    }
+  ]
+}

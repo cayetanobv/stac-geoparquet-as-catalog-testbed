@@ -1,0 +1,703 @@
+{
+  "type": "Collection",
+  "id": "comercio/terrazas-hosteleria",
+  "stac_version": "1.1.0",
+  "description": "Fichero de microdatos del **censo de locales y actividades** del Ayuntamiento de Madrid, clasificados seg\u00fan su tipo de acceso (puerta de calle o agrupado), situaci\u00f3n (abierto, cerrado...) e indicaci\u00f3n de la actividad econ\u00f3mica ejercida y de las**terrazas de hosteler\u00eda y restauraci\u00f3n** que aparecen registradas en dicho censo.\n\n**La informaci\u00f3n (relativa a los ep\u00edgrafes asociados al local) es s\u00f3lo a efectos estad\u00edsticos**. En el cat\u00e1logo de este portal tambi\u00e9n est\u00e1 publicado el conjunto de datos[ Ep\u00edgrafes de actividad econ\u00f3mica](https://datos.madrid.es/dataset/300080-0-epigrafe-actividad-economica).\n\nEn este portal tambien est\u00e1 disponible otro conjunto de datos, con toda la informaci\u00f3n hist\u00f3rica que se puede facilitar (desde marzo de 2014):\n\n  * [Censo de locales, sus actividades y terrazas de hosteler\u00eda y restauraci\u00f3n. Hist\u00f3rico](https://datos.madrid.es/dataset/209548-0-censo-locales-historico \"Censo de locales, sus actividades y terrazas de hosteler\u00eda y restauraci\u00f3n. Hist\u00f3rico\")\n\n\n\nLa informaci\u00f3n sobre las licencias urban\u00edsticas otorgadas al local se obtiene a trav\u00e9s de la consulta de licencias concedidas que existe en la web municipal (Consulta de licencias concedidas desde 2005).\n\n****Importante:** **la informaci\u00f3n relativa a este conjunto de datos, procede de un registro administrativo, sin tratamiento estad\u00edstico, por lo que puede contener alguna inconsistencia. \n\n**AVISO:** \u201cA partir de octubre de 2022, esta informaci\u00f3n se pone a disposici\u00f3n en los siguientes formatos: CSV, JSON y XML\u201d. \n\n**AVISO:** En los ficheros generados a partir del 15 de junio de 2017, aunque las secciones 47 y 49 a 65 del distrito \u201c18.Villa de Vallecas\u201d aparecen asignadas al \u201cbarrio 181\u201d, \u00e9stas forman parte del nuevo barrio 183.Ensanche de Vallecas. Se est\u00e1 trabajando para corregir este error.\n\nEl Ayuntamiento de Madrid pone a tu disposici\u00f3n una visualizaci\u00f3n de [**Zonas de alta ocupaci\u00f3n por terrazas de la Ciudad de Madrid**](https://madrid.es/go/visualiza/terrazas) que utiliza este conjunto de datos abiertos. ",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Cat\u00e1logo de Datos Abiertos del Ayuntamiento de Madrid"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://datos.madrid.es/dataset/200085-0-censo-locales",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "id_terraza",
+      "type": "int64",
+      "description": "Identificador \u00fanico de la terraza dentro del censo de locales."
+    },
+    {
+      "name": "id_local",
+      "type": "int64",
+      "description": "Identificador \u00fanico del local al que est\u00e1 asociada la terraza dentro del censo."
+    },
+    {
+      "name": "id_distrito_local",
+      "type": "int64",
+      "description": "C\u00f3digo num\u00e9rico del distrito donde se ubica el local."
+    },
+    {
+      "name": "desc_distrito_local",
+      "type": "string",
+      "description": "Nombre del distrito donde se ubica el local."
+    },
+    {
+      "name": "id_barrio_local",
+      "type": "int64",
+      "description": "C\u00f3digo num\u00e9rico del barrio donde se ubica el local."
+    },
+    {
+      "name": "desc_barrio_local",
+      "type": "string",
+      "description": "Nombre del barrio donde se ubica el local."
+    },
+    {
+      "name": "id_ndp_edificio",
+      "type": "int64",
+      "description": "Identificador interno del n\u00famero de polic\u00eda (numeraci\u00f3n postal) del edificio del local."
+    },
+    {
+      "name": "id_clase_ndp_edificio",
+      "type": "int64",
+      "description": "C\u00f3digo de la clase de numeraci\u00f3n postal del edificio del local."
+    },
+    {
+      "name": "id_vial_edificio",
+      "type": "int64",
+      "description": "C\u00f3digo de la v\u00eda p\u00fablica donde se ubica el edificio del local."
+    },
+    {
+      "name": "clase_vial_edificio",
+      "type": "string",
+      "description": "Tipo de v\u00eda del edificio del local, por ejemplo calle, avenida o plaza."
+    },
+    {
+      "name": "desc_vial_edificio",
+      "type": "string",
+      "description": "Nombre de la v\u00eda donde se ubica el edificio del local."
+    },
+    {
+      "name": "nom_edificio",
+      "type": "string",
+      "description": "Nombre propio del edificio del local, cuando lo tiene."
+    },
+    {
+      "name": "num_edificio",
+      "type": "string",
+      "description": "N\u00famero de portal del edificio del local en la v\u00eda p\u00fablica."
+    },
+    {
+      "name": "cal_edificio",
+      "type": "string",
+      "description": "Calificador del n\u00famero de portal del edificio, por ejemplo bis o duplicado."
+    },
+    {
+      "name": "ref_catastral",
+      "type": "string",
+      "description": "Referencia catastral del inmueble donde se ubica el local."
+    },
+    {
+      "name": "Cod_Postal",
+      "type": "int64",
+      "description": "C\u00f3digo postal del local."
+    },
+    {
+      "name": "coordenada_x_local",
+      "type": "double",
+      "description": "Coordenada X del local en el sistema de proyecci\u00f3n de origen del dato."
+    },
+    {
+      "name": "coordenada_y_local",
+      "type": "double",
+      "description": "Coordenada Y del local en el sistema de proyecci\u00f3n de origen del dato."
+    },
+    {
+      "name": "id_tipo_acceso_local",
+      "type": "int64",
+      "description": "C\u00f3digo del tipo de acceso al local, puerta de calle o agrupado."
+    },
+    {
+      "name": "desc_tipo_acceso_local",
+      "type": "string",
+      "description": "Descripci\u00f3n del tipo de acceso al local, puerta de calle o agrupado."
+    },
+    {
+      "name": "id_situacion_local",
+      "type": "int64",
+      "description": "C\u00f3digo de la situaci\u00f3n del local, por ejemplo abierto o cerrado."
+    },
+    {
+      "name": "desc_situacion_local",
+      "type": "string",
+      "description": "Descripci\u00f3n de la situaci\u00f3n del local, por ejemplo abierto o cerrado."
+    },
+    {
+      "name": "secuencial_local_PC",
+      "type": "int64",
+      "description": "N\u00famero secuencial que distingue el local dentro del mismo portal catastral."
+    },
+    {
+      "name": "Escalera",
+      "type": "string",
+      "description": "Identificador de la escalera del edificio en la que se ubica el local."
+    },
+    {
+      "name": "id_planta_agrupado",
+      "type": "int64",
+      "description": "C\u00f3digo de la planta del local cuando su acceso es agrupado."
+    },
+    {
+      "name": "id_local_agrupado",
+      "type": "string",
+      "description": "Identificador del local dentro de la agrupaci\u00f3n cuando su acceso es agrupado."
+    },
+    {
+      "name": "coordenada_x_agrupacion",
+      "type": "double",
+      "description": "Coordenada X del punto de acceso agrupado del local."
+    },
+    {
+      "name": "coordenada_y_agrupacion",
+      "type": "double",
+      "description": "Coordenada Y del punto de acceso agrupado del local."
+    },
+    {
+      "name": "rotulo",
+      "type": "string",
+      "description": "R\u00f3tulo comercial visible del local."
+    },
+    {
+      "name": "id_periodo_terraza",
+      "type": "int64",
+      "description": "C\u00f3digo del periodo de autorizaci\u00f3n de la terraza, estacional o anual."
+    },
+    {
+      "name": "desc_periodo_terraza",
+      "type": "string",
+      "description": "Descripci\u00f3n del periodo de autorizaci\u00f3n de la terraza, estacional o anual."
+    },
+    {
+      "name": "id_situacion_terraza",
+      "type": "int64",
+      "description": "C\u00f3digo de la situaci\u00f3n administrativa de la terraza."
+    },
+    {
+      "name": "desc_situacion_terraza",
+      "type": "string",
+      "description": "Descripci\u00f3n de la situaci\u00f3n administrativa de la terraza."
+    },
+    {
+      "name": "Superficie_ES",
+      "type": "double",
+      "description": "Superficie en metros cuadrados autorizada para la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "Superficie_RA",
+      "type": "double",
+      "description": "Superficie en metros cuadrados autorizada para la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "Fecha_confir_ult_decreto_resol",
+      "type": "timestamp",
+      "description": "Fecha de confirmaci\u00f3n del \u00faltimo decreto o resoluci\u00f3n sobre la terraza."
+    },
+    {
+      "name": "id_ndp_terraza",
+      "type": "int64",
+      "description": "Identificador interno del n\u00famero de polic\u00eda (numeraci\u00f3n postal) asociado a la terraza."
+    },
+    {
+      "name": "id_clase_ndp_terraza",
+      "type": "int64",
+      "description": "C\u00f3digo de la clase de numeraci\u00f3n postal asociada a la terraza."
+    },
+    {
+      "name": "id_vial",
+      "type": "int64",
+      "description": "C\u00f3digo de la v\u00eda p\u00fablica donde se ubica la terraza."
+    },
+    {
+      "name": "desc_clase",
+      "type": "string",
+      "description": "Tipo de v\u00eda donde se ubica la terraza, por ejemplo calle, avenida o plaza."
+    },
+    {
+      "name": "desc_nombre",
+      "type": "string",
+      "description": "Nombre de la v\u00eda donde se ubica la terraza."
+    },
+    {
+      "name": "nom_terraza",
+      "type": "string",
+      "description": "Nombre propio del edificio de referencia de la terraza, cuando lo tiene."
+    },
+    {
+      "name": "num_terraza",
+      "type": "string",
+      "description": "N\u00famero de portal de referencia de la terraza en la v\u00eda p\u00fablica."
+    },
+    {
+      "name": "cal_terraza",
+      "type": "string",
+      "description": "Calificador del n\u00famero de portal de referencia de la terraza."
+    },
+    {
+      "name": "desc_ubicacion_terraza",
+      "type": "string",
+      "description": "Descripci\u00f3n textual de la ubicaci\u00f3n de la terraza en la v\u00eda p\u00fablica."
+    },
+    {
+      "name": "hora_ini_LJ_es",
+      "type": "time",
+      "description": "Hora de inicio de funcionamiento de la terraza de lunes a jueves en \u00e9poca estival."
+    },
+    {
+      "name": "hora_fin_LJ_es",
+      "type": "time",
+      "description": "Hora de fin de funcionamiento de la terraza de lunes a jueves en \u00e9poca estival."
+    },
+    {
+      "name": "hora_ini_LJ_ra",
+      "type": "time",
+      "description": "Hora de inicio de funcionamiento de la terraza de lunes a jueves en el resto del a\u00f1o."
+    },
+    {
+      "name": "hora_fin_LJ_ra",
+      "type": "time",
+      "description": "Hora de fin de funcionamiento de la terraza de lunes a jueves en el resto del a\u00f1o."
+    },
+    {
+      "name": "hora_ini_VS_es",
+      "type": "time",
+      "description": "Hora de inicio de funcionamiento de la terraza de viernes a s\u00e1bado en \u00e9poca estival."
+    },
+    {
+      "name": "hora_fin_VS_es",
+      "type": "time",
+      "description": "Hora de fin de funcionamiento de la terraza de viernes a s\u00e1bado en \u00e9poca estival."
+    },
+    {
+      "name": "hora_ini_VS_ra",
+      "type": "time",
+      "description": "Hora de inicio de funcionamiento de la terraza de viernes a s\u00e1bado en el resto del a\u00f1o."
+    },
+    {
+      "name": "hora_fin_VS_ra",
+      "type": "time",
+      "description": "Hora de fin de funcionamiento de la terraza de viernes a s\u00e1bado en el resto del a\u00f1o."
+    },
+    {
+      "name": "mesas_aux_es",
+      "type": "int64",
+      "description": "N\u00famero de mesas auxiliares autorizadas en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "mesas_aux_ra",
+      "type": "int64",
+      "description": "N\u00famero de mesas auxiliares autorizadas en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "mesas_es",
+      "type": "int64",
+      "description": "N\u00famero de mesas autorizadas en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "mesas_ra",
+      "type": "int64",
+      "description": "N\u00famero de mesas autorizadas en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "sillas_es",
+      "type": "int64",
+      "description": "N\u00famero de sillas autorizadas en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "sillas_ra",
+      "type": "int64",
+      "description": "N\u00famero de sillas autorizadas en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "mesas_altas_estacional",
+      "type": "int64",
+      "description": "N\u00famero de mesas altas autorizadas en la terraza en el periodo estacional."
+    },
+    {
+      "name": "mesas_altas_anual",
+      "type": "int64",
+      "description": "N\u00famero de mesas altas autorizadas en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "anclaje",
+      "type": "boolean",
+      "description": "Indica si el mobiliario de la terraza est\u00e1 anclado al suelo."
+    },
+    {
+      "name": "apilamiento",
+      "type": "boolean",
+      "description": "Indica si el mobiliario de la terraza es apilable."
+    },
+    {
+      "name": "ambito_ordenacion_cod",
+      "type": "string",
+      "description": "C\u00f3digo del \u00e1mbito de ordenaci\u00f3n urban\u00edstica que regula la terraza."
+    },
+    {
+      "name": "ambito_ordenacion_desc",
+      "type": "string",
+      "description": "Descripci\u00f3n del \u00e1mbito de ordenaci\u00f3n urban\u00edstica que regula la terraza."
+    },
+    {
+      "name": "denominacion_cod",
+      "type": "string",
+      "description": "C\u00f3digo de la denominaci\u00f3n del \u00e1rea de ordenaci\u00f3n espec\u00edfica de la terraza."
+    },
+    {
+      "name": "denominacion_desc",
+      "type": "string",
+      "description": "Descripci\u00f3n de la denominaci\u00f3n del \u00e1rea de ordenaci\u00f3n espec\u00edfica de la terraza."
+    },
+    {
+      "name": "fecha_acuerdo_delimitacion",
+      "type": "date",
+      "description": "Fecha del acuerdo de delimitaci\u00f3n del \u00e1mbito de ordenaci\u00f3n de la terraza."
+    },
+    {
+      "name": "tipo_suelo_cod",
+      "type": "int64",
+      "description": "C\u00f3digo del tipo de suelo sobre el que se instala la terraza."
+    },
+    {
+      "name": "tipo_suelo_desc",
+      "type": "string",
+      "description": "Descripci\u00f3n del tipo de suelo sobre el que se instala la terraza."
+    },
+    {
+      "name": "separadores_moviles_menor_estacional",
+      "type": "int64",
+      "description": "N\u00famero de separadores m\u00f3viles de menor altura autorizados en la terraza en el periodo estacional."
+    },
+    {
+      "name": "separadores_moviles_mayor_estacional",
+      "type": "int64",
+      "description": "N\u00famero de separadores m\u00f3viles de mayor altura autorizados en la terraza en el periodo estacional."
+    },
+    {
+      "name": "auxiliares_informacion_es",
+      "type": "int64",
+      "description": "N\u00famero de elementos auxiliares de informaci\u00f3n autorizados en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "elem_jard_menor_estacional",
+      "type": "int64",
+      "description": "N\u00famero de elementos de jardiner\u00eda de menor tama\u00f1o autorizados en la terraza en el periodo estacional."
+    },
+    {
+      "name": "elem_jard_mayor_estacional",
+      "type": "int64",
+      "description": "N\u00famero de elementos de jardiner\u00eda de mayor tama\u00f1o autorizados en la terraza en el periodo estacional."
+    },
+    {
+      "name": "sombrillas_es",
+      "type": "int64",
+      "description": "N\u00famero de sombrillas autorizadas en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "otros_es_mobiliario",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de otro mobiliario adicional autorizado en \u00e9poca estival."
+    },
+    {
+      "name": "separadores_moviles_menor_anual",
+      "type": "int64",
+      "description": "N\u00famero de separadores m\u00f3viles de menor altura autorizados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "separadores_moviles_mayor_anual",
+      "type": "int64",
+      "description": "N\u00famero de separadores m\u00f3viles de mayor altura autorizados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "auxiliares_informacion_ra",
+      "type": "int64",
+      "description": "N\u00famero de elementos auxiliares de informaci\u00f3n autorizados en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "elem_jard_menor_anual",
+      "type": "int64",
+      "description": "N\u00famero de elementos de jardiner\u00eda de menor tama\u00f1o autorizados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "elem_jard_mayor_anual",
+      "type": "int64",
+      "description": "N\u00famero de elementos de jardiner\u00eda de mayor tama\u00f1o autorizados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "sombrillas_ra",
+      "type": "int64",
+      "description": "N\u00famero de sombrillas autorizadas en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "otros_ra_mobiliario",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de otro mobiliario adicional autorizado en el resto del a\u00f1o."
+    },
+    {
+      "name": "construccion_ligera_fachada_es",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de construcci\u00f3n ligera adosada a fachada en \u00e9poca estival."
+    },
+    {
+      "name": "construccion_ligera_bordillo_es",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de construcci\u00f3n ligera sobre bordillo en \u00e9poca estival."
+    },
+    {
+      "name": "tarima_pavimento_es",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de tarima como pavimento en \u00e9poca estival."
+    },
+    {
+      "name": "toldos_pavimento_es",
+      "type": "int64",
+      "description": "N\u00famero de toldos instalados sobre el pavimento de la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "sombrillas_pavimento_es",
+      "type": "int64",
+      "description": "N\u00famero de sombrillas instaladas sobre el pavimento de la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "elem_separacion_menor_estacional",
+      "type": "int64",
+      "description": "N\u00famero de elementos de separaci\u00f3n de menor altura autorizados en la terraza en el periodo estacional."
+    },
+    {
+      "name": "elem_separacion_mayor_estacional",
+      "type": "int64",
+      "description": "N\u00famero de elementos de separaci\u00f3n de mayor altura autorizados en la terraza en el periodo estacional."
+    },
+    {
+      "name": "elem_aux_apoyo_es",
+      "type": "int64",
+      "description": "N\u00famero de elementos auxiliares de apoyo autorizados en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "construccion_ligera_fachada_ra",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de construcci\u00f3n ligera adosada a fachada en el resto del a\u00f1o."
+    },
+    {
+      "name": "construccion_ligera_bordillo_ra",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de construcci\u00f3n ligera sobre bordillo en el resto del a\u00f1o."
+    },
+    {
+      "name": "tarima_pavimento_ra",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de tarima como pavimento en el resto del a\u00f1o."
+    },
+    {
+      "name": "toldos_pavimento_ra",
+      "type": "int64",
+      "description": "N\u00famero de toldos instalados sobre el pavimento de la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "sombrillas_pavimento_ra",
+      "type": "int64",
+      "description": "N\u00famero de sombrillas instaladas sobre el pavimento de la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "elem_separacion_menor_anual",
+      "type": "int64",
+      "description": "N\u00famero de elementos de separaci\u00f3n de menor altura autorizados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "elem_separacion_mayor_anual",
+      "type": "int64",
+      "description": "N\u00famero de elementos de separaci\u00f3n de mayor altura autorizados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "elem_aux_apoyo_ra",
+      "type": "int64",
+      "description": "N\u00famero de elementos auxiliares de apoyo autorizados en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "estufas_gas_es",
+      "type": "int64",
+      "description": "N\u00famero de estufas de gas autorizadas en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "estufas_electricas_es",
+      "type": "int64",
+      "description": "N\u00famero de estufas el\u00e9ctricas autorizadas en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "aparatos_clima_es",
+      "type": "int64",
+      "description": "N\u00famero de aparatos de climatizaci\u00f3n autorizados en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "nebulizadores_es",
+      "type": "int64",
+      "description": "N\u00famero de nebulizadores autorizados en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "iluminacion_es",
+      "type": "int64",
+      "description": "N\u00famero de elementos de iluminaci\u00f3n autorizados en la terraza en \u00e9poca estival."
+    },
+    {
+      "name": "otros_es_elem_ind",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de otros elementos industriales adicionales autorizados en \u00e9poca estival."
+    },
+    {
+      "name": "estufas_gas_ra",
+      "type": "int64",
+      "description": "N\u00famero de estufas de gas autorizadas en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "estufas_electricas_ra",
+      "type": "int64",
+      "description": "N\u00famero de estufas el\u00e9ctricas autorizadas en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "aparatos_clima_ra",
+      "type": "int64",
+      "description": "N\u00famero de aparatos de climatizaci\u00f3n autorizados en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "nebulizadores_ra",
+      "type": "int64",
+      "description": "N\u00famero de nebulizadores autorizados en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "iluminacion_ra",
+      "type": "int64",
+      "description": "N\u00famero de elementos de iluminaci\u00f3n autorizados en la terraza en el resto del a\u00f1o."
+    },
+    {
+      "name": "otros_ra_elem_ind",
+      "type": "boolean",
+      "description": "Indica si la terraza dispone de otros elementos industriales adicionales autorizados en el resto del a\u00f1o."
+    },
+    {
+      "name": "sonometro_estacional",
+      "type": "int64",
+      "description": "N\u00famero de son\u00f3metros instalados en la terraza durante el periodo estacional."
+    },
+    {
+      "name": "sonometro_anual",
+      "type": "int64",
+      "description": "N\u00famero de son\u00f3metros instalados en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "placas_fotovoltaicas_estacional",
+      "type": "int64",
+      "description": "N\u00famero de placas fotovoltaicas instaladas en la terraza durante el periodo estacional."
+    },
+    {
+      "name": "placas_fotovoltaicas_anual",
+      "type": "int64",
+      "description": "N\u00famero de placas fotovoltaicas instaladas en la terraza durante todo el a\u00f1o."
+    },
+    {
+      "name": "fx_carga",
+      "type": "string",
+      "description": "Fecha de carga o actualizaci\u00f3n del registro en el sistema de datos abiertos."
+    }
+  ],
+  "table:row_count": 6593,
+  "title": "Censo de locales, sus actividades y terrazas de hosteler\u00eda y restauraci\u00f3n",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2014-03-28T00:00:00Z",
+          "2026-09-03T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "terrazas-hosteleria": {
+      "href": "./terrazas-hosteleria.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 562827,
+      "file:checksum": "12203998f0d27f12df95264d4be3cbc06d40a18811cc4ccfac05e677b04a615a52ba",
+      "roles": [
+        "data"
+      ]
+    },
+    "source": {
+      "href": "https://datos.madrid.es/dataset/200085-0-censo-locales/resource/200085-6-censo-locales/download",
+      "type": "text/csv",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: terrazas-hosteleria",
+      "pipeline:upstream": true,
+      "file:size": 5192527,
+      "file:checksum": "1220f392c4792d568c924c3b08c66a1fefb7d797b9a6c4789c13734398e5ee1e31bc"
+    }
+  },
+  "keywords": [
+    "censo",
+    "empresas",
+    "licencias urban\u00edsticas"
+  ],
+  "providers": [
+    {
+      "name": "Direcci\u00f3n General de Contrataci\u00f3n y Servicios - Subdirecci\u00f3n General de Estad\u00edstica",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.madrid.es"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "es",
+    "name": "Espa\u00f1ol",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-05T12:56:16Z"
+}

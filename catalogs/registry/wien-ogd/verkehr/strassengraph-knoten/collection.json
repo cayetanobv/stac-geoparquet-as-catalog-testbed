@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "verkehr/strassengraph-knoten",
+  "stac_version": "1.1.0",
+  "description": "Der Stra\u00dfengraph ist ein topologischer Graph des Abschnittsnetzes der Wiener Stra\u00dfen. Die Netzlinien verlaufen in der Regel in der Stra\u00dfenachse. Ein Stra\u00dfenabschnitt ist der Teil einer Stra\u00dfe zwischen zwei Kreuzungen. Die Stationierungsrichtung erfolgt entsprechend der aufsteigenden Orientierungsnummern. Die Stra\u00dfenabschnitte werden von Netzknoten begrenzt. Diese Netzknoten liegen im Regelfall im Kreuzungsmittelpunkt. Dieser Datensatz beihnaltet die \u00f6ffentlichen Verkehrsfl\u00e4chen (Gemeindestra\u00dfen, Hauptstra\u00dfen A und B).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_strassenknotenogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stra\u00dfengraph Wien \u2013 Knoten (GIP.at)",
+      "pmtiles:layers": [
+        "ogdwien_strassenknotenogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/1039ed7e-97fb-435f-b6cc-f6a105ba5e09",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: strassenknotenogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 20517,
+  "table:row_count": 20517,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "FEATURENAME",
+      "type": "string",
+      "description": "Knotenname, in der Regel \u201eKreuzung zwischen \u2026 und \u2026\u201c."
+    },
+    {
+      "name": "NEIGHBORNODE_OBJECTID",
+      "type": "DECIMAL(38,0)",
+      "description": "Verweis auf den Anschlussknoten in einem Nachbarnetz, das in einem anderen System gepflegt wird (zum Beispiel Wien \u2013 ASFINAG)."
+    },
+    {
+      "name": "GIP_OBJECTID",
+      "type": "int64",
+      "description": "Eindeutige Identifizierung des Objekts in der GIP."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Stra\u00dfengraph Wien \u2013 Knoten (GIP.at)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.187407078433562,
+          48.12104561596219,
+          16.550054697006125,
+          48.32140575210717
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Knoten (GIP.at) default style",
+      "description": "Default visualization for Stra\u00dfengraph Wien \u2013 Knoten (GIP.at), drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1270,
+      "file:checksum": "122021794f6bf757ece0a7de01c1faaaeeb19f9465e35fd454ffe049fd4d2b57754e"
+    },
+    "ogdwien_strassenknotenogd": {
+      "href": "./ogdwien_strassenknotenogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 766958,
+      "file:checksum": "12200e5f48ccfd1d078898c6241ba95c42bd212789be2a25cfa1e3a9c63875dc530e",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_strassenknotenogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stra\u00dfengraph Wien \u2013 Knoten (GIP.at) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1125450,
+      "file:checksum": "1220036e1659099aa93b20fba07af4b16d5e042340af44ea2970c6f8935b0845245b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Knoten (GIP.at) labeled style",
+      "description": "Default visualization for Stra\u00dfengraph Wien \u2013 Knoten (GIP.at) with FEATURENAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1716,
+      "file:checksum": "1220d35f4cb8fe12c90be24a69b3e7c8f473c06af137dbf6edaaa4e46bb3de3016a5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stra\u00dfengraph Wien \u2013 Knoten (GIP.at) graduated style",
+      "description": "Graduated visualization coloring Stra\u00dfengraph Wien \u2013 Knoten (GIP.at) by GIP_OBJECTID, ramped from 10339610.0 to 20159800.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2094,
+      "file:checksum": "12201743a3bb8b5e1df8cb255c117538a88a2aa20d7fa830f6383c8e7ee265d8d26d"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_strassenknotenogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stra\u00dfengraph Wien \u2013 Knoten (GIP.at)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 152490,
+      "file:checksum": "122057ed2b2a3f65a125f991b14bce9046fe3df43b9814ae8d5161ce5ff69e5efcbc"
+    }
+  },
+  "keywords": [
+    "Autobahnen",
+    "Gemeindestra\u00dfe",
+    "Landesstra\u00dfe",
+    "Hauptstra\u00dfe B",
+    "Stra\u00dfennamen",
+    "Hauptstra\u00dfe A",
+    "Stra\u00dfe",
+    "Netz",
+    "Schnellstra\u00dfen",
+    "RBW",
+    "Bundesstra\u00dfe",
+    "Stra\u00dfennetz",
+    "ViennaGIS",
+    "Namen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Intermodales Verkehrsreferenzsystem (GIP.at) Stra\u00dfengraph Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

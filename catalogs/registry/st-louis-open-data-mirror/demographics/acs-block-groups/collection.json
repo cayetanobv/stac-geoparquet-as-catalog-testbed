@@ -1,0 +1,665 @@
+{
+  "type": "Collection",
+  "id": "demographics/acs-block-groups",
+  "stac_version": "1.1.0",
+  "description": "Curated demographic, economic, housing and transportation indicators for all 314 census block groups in the City of St. Louis, from the U.S. Census Bureau's American Community Survey (ACS) 2020\u20132024 5-year estimates. The Census Bureau describes the ACS as \"an ongoing survey that provides vital information on a yearly basis about our nation and its people\" and \"the premier source of detailed information about the nation's people and housing.\" Every indicator ships with its margin of error (`*_moe` \u2014 the Census Bureau publishes ACS margins at the 90% confidence level), and the headline medians and rates also carry a coefficient of variation (`*_cv`) so small-area noise can be flagged instead of mapped as if certain: at block-group scale margins are often large (one St. Louis block group's median household income is $76,466 \u00b1 $20,097). Derived percentages propagate error with the Census Bureau's own formulas from the ACS Accuracy of the Data documentation; ACS jam values for suppressed estimates are nulls here, never numbers; medians are published as-is and cannot be aggregated to larger areas. Each column's description names the exact ACS table it comes from.\n\nUnlike the city's own datasets in this catalog, this is **not** City of St. Louis data: it is federal survey data published by the U.S. Census Bureau, extracted for St. Louis city (FIPS 29510) from the ACS table-based Summary File and joined to the Bureau's 2024 cartographic boundary geometries (1:500,000 scale, clipped to the Mississippi shoreline \u2014 TIGER/Line extends block groups into the river channel). It is included to show how a city catalog can blend federal demographic context alongside the city's own data.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Demographics"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./acs-block-groups.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "acs-block-groups"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.census.gov/topics/research/research-transparency-public-access/open-data.html",
+      "type": "text/html",
+      "title": "U.S. Census Bureau \u2014 data license and terms"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/programs-surveys/acs.html",
+      "type": "text/html",
+      "title": "American Community Survey documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/",
+      "type": "text/html",
+      "title": "American Community Survey source data"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 314,
+  "table:row_count": 314,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geoid",
+      "type": "string",
+      "description": "12-digit census block group GEOID (state 29 + county 510 + tract + block group). Join key across the census family."
+    },
+    {
+      "name": "population",
+      "type": "int64",
+      "description": "Total population. ACS table B01003."
+    },
+    {
+      "name": "population_moe",
+      "type": "double",
+      "description": "Margin of error for population at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_age",
+      "type": "double",
+      "description": "Median age in years. ACS table B01002."
+    },
+    {
+      "name": "median_age_moe",
+      "type": "double",
+      "description": "Margin of error for median_age at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_under_18",
+      "type": "double",
+      "description": "Percent of the population under 18 years old. ACS table B01001."
+    },
+    {
+      "name": "pct_under_18_moe",
+      "type": "double",
+      "description": "Margin of error for pct_under_18 at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_65_plus",
+      "type": "double",
+      "description": "Percent of the population 65 years and over. ACS table B01001."
+    },
+    {
+      "name": "pct_65_plus_moe",
+      "type": "double",
+      "description": "Margin of error for pct_65_plus at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_white_nh",
+      "type": "double",
+      "description": "Percent of the population that is White alone, not Hispanic or Latino. ACS table B03002."
+    },
+    {
+      "name": "pct_white_nh_moe",
+      "type": "double",
+      "description": "Margin of error for pct_white_nh at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_black",
+      "type": "double",
+      "description": "Percent of the population that is Black or African American alone, not Hispanic or Latino. ACS table B03002."
+    },
+    {
+      "name": "pct_black_moe",
+      "type": "double",
+      "description": "Margin of error for pct_black at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_hispanic",
+      "type": "double",
+      "description": "Percent of the population that is Hispanic or Latino, of any race. ACS table B03002."
+    },
+    {
+      "name": "pct_hispanic_moe",
+      "type": "double",
+      "description": "Margin of error for pct_hispanic at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_bachelors_plus",
+      "type": "double",
+      "description": "Percent of the population 25 years and over holding a bachelor's degree or higher. ACS table B15003."
+    },
+    {
+      "name": "pct_bachelors_plus_moe",
+      "type": "double",
+      "description": "Margin of error for pct_bachelors_plus at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_hh_income",
+      "type": "double",
+      "description": "Median household income in the past 12 months, in 2024 inflation-adjusted dollars. ACS table B19013."
+    },
+    {
+      "name": "median_hh_income_moe",
+      "type": "double",
+      "description": "Margin of error for median_hh_income at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_hh_income_cv",
+      "type": "double",
+      "description": "Coefficient of variation for median_hh_income (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "per_capita_income",
+      "type": "double",
+      "description": "Per capita income in the past 12 months, in 2024 inflation-adjusted dollars. ACS table B19301."
+    },
+    {
+      "name": "per_capita_income_moe",
+      "type": "double",
+      "description": "Margin of error for per_capita_income at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_below_poverty",
+      "type": "double",
+      "description": "Percent of the population for whom poverty status is determined with income below the poverty level (income-to-poverty ratio under 1.00). ACS table C17002."
+    },
+    {
+      "name": "pct_below_poverty_moe",
+      "type": "double",
+      "description": "Margin of error for pct_below_poverty at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_below_poverty_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_below_poverty (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_below_2x_poverty",
+      "type": "double",
+      "description": "Percent of the population with an income-to-poverty ratio under 2.00. ACS table C17002."
+    },
+    {
+      "name": "pct_below_2x_poverty_moe",
+      "type": "double",
+      "description": "Margin of error for pct_below_2x_poverty at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_snap",
+      "type": "double",
+      "description": "Percent of households that received Food Stamps/SNAP in the past 12 months. ACS table B22010."
+    },
+    {
+      "name": "pct_snap_moe",
+      "type": "double",
+      "description": "Margin of error for pct_snap at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_unemployed",
+      "type": "double",
+      "description": "Unemployed as a percent of the civilian labor force (population 16 years and over). ACS table B23025."
+    },
+    {
+      "name": "pct_unemployed_moe",
+      "type": "double",
+      "description": "Margin of error for pct_unemployed at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "housing_units",
+      "type": "int64",
+      "description": "Total housing units. ACS table B25002."
+    },
+    {
+      "name": "housing_units_moe",
+      "type": "double",
+      "description": "Margin of error for housing_units at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_vacant_units",
+      "type": "double",
+      "description": "Percent of housing units vacant. The ACS counts for-sale, for-rent and seasonal units as vacant \u2014 this is not the city's abandonment measure. ACS table B25002."
+    },
+    {
+      "name": "pct_vacant_units_moe",
+      "type": "double",
+      "description": "Margin of error for pct_vacant_units at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "households",
+      "type": "int64",
+      "description": "Occupied housing units (households). ACS table B25003."
+    },
+    {
+      "name": "households_moe",
+      "type": "double",
+      "description": "Margin of error for households at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_owner_occupied",
+      "type": "double",
+      "description": "Percent of occupied housing units that are owner-occupied. ACS table B25003."
+    },
+    {
+      "name": "pct_owner_occupied_moe",
+      "type": "double",
+      "description": "Margin of error for pct_owner_occupied at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_gross_rent",
+      "type": "double",
+      "description": "Median gross rent in dollars per month. ACS table B25064."
+    },
+    {
+      "name": "median_gross_rent_moe",
+      "type": "double",
+      "description": "Margin of error for median_gross_rent at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_gross_rent_cv",
+      "type": "double",
+      "description": "Coefficient of variation for median_gross_rent (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_rent_burdened",
+      "type": "double",
+      "description": "Percent of renter households paying 30 percent or more of household income on gross rent, excluding households where the ratio cannot be computed. ACS table B25070."
+    },
+    {
+      "name": "pct_rent_burdened_moe",
+      "type": "double",
+      "description": "Margin of error for pct_rent_burdened at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_rent_burdened_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_rent_burdened (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_severely_rent_burdened",
+      "type": "double",
+      "description": "Percent of renter households paying 50 percent or more of household income on gross rent, excluding households where the ratio cannot be computed. ACS table B25070."
+    },
+    {
+      "name": "pct_severely_rent_burdened_moe",
+      "type": "double",
+      "description": "Margin of error for pct_severely_rent_burdened at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_home_value",
+      "type": "double",
+      "description": "Median value of owner-occupied housing units in dollars. ACS table B25077."
+    },
+    {
+      "name": "median_home_value_moe",
+      "type": "double",
+      "description": "Margin of error for median_home_value at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_home_value_cv",
+      "type": "double",
+      "description": "Coefficient of variation for median_home_value (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_built_pre_1940",
+      "type": "double",
+      "description": "Percent of housing units built 1939 or earlier. ACS table B25034."
+    },
+    {
+      "name": "pct_built_pre_1940_moe",
+      "type": "double",
+      "description": "Margin of error for pct_built_pre_1940 at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_single_family",
+      "type": "double",
+      "description": "Percent of housing units that are single-family (1 unit, detached or attached). ACS table B25024."
+    },
+    {
+      "name": "pct_single_family_moe",
+      "type": "double",
+      "description": "Margin of error for pct_single_family at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "hh_no_vehicle",
+      "type": "int64",
+      "description": "Occupied housing units with no vehicle available, owner- and renter-occupied combined. ACS table B25044."
+    },
+    {
+      "name": "hh_no_vehicle_moe",
+      "type": "double",
+      "description": "Margin of error for hh_no_vehicle at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_hh_no_vehicle",
+      "type": "double",
+      "description": "Percent of occupied housing units with no vehicle available. ACS table B25044."
+    },
+    {
+      "name": "pct_hh_no_vehicle_moe",
+      "type": "double",
+      "description": "Margin of error for pct_hh_no_vehicle at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_hh_no_vehicle_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_hh_no_vehicle (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_commute_drive_alone",
+      "type": "double",
+      "description": "Percent of workers 16 years and over who drove alone to work (car, truck, or van). ACS table B08301."
+    },
+    {
+      "name": "pct_commute_drive_alone_moe",
+      "type": "double",
+      "description": "Margin of error for pct_commute_drive_alone at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_commute_transit",
+      "type": "double",
+      "description": "Percent of workers 16 years and over who commuted by public transportation, excluding taxicab. ACS table B08301."
+    },
+    {
+      "name": "pct_commute_transit_moe",
+      "type": "double",
+      "description": "Margin of error for pct_commute_transit at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_commute_transit_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_commute_transit (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_commute_walk_bike",
+      "type": "double",
+      "description": "Percent of workers 16 years and over who walked or bicycled to work. ACS table B08301."
+    },
+    {
+      "name": "pct_commute_walk_bike_moe",
+      "type": "double",
+      "description": "Margin of error for pct_commute_walk_bike at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_work_from_home",
+      "type": "double",
+      "description": "Percent of workers 16 years and over who worked from home. ACS table B08301."
+    },
+    {
+      "name": "pct_work_from_home_moe",
+      "type": "double",
+      "description": "Margin of error for pct_work_from_home at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_commute_45min_plus",
+      "type": "double",
+      "description": "Percent of workers 16 years and over (not working at home) with a travel time to work of 45 minutes or more. ACS table B08303."
+    },
+    {
+      "name": "pct_commute_45min_plus_moe",
+      "type": "double",
+      "description": "Margin of error for pct_commute_45min_plus at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_no_internet",
+      "type": "double",
+      "description": "Percent of households with no internet access. ACS table B28002."
+    },
+    {
+      "name": "pct_no_internet_moe",
+      "type": "double",
+      "description": "Margin of error for pct_no_internet at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_no_internet_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_no_internet (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_no_computer",
+      "type": "double",
+      "description": "Percent of households with no computer. ACS table B28001."
+    },
+    {
+      "name": "pct_no_computer_moe",
+      "type": "double",
+      "description": "Margin of error for pct_no_computer at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_people_of_color",
+      "type": "double",
+      "description": "Percent of the population that is not White-alone non-Hispanic (the complement of pct_white_nh). ACS table B03002."
+    },
+    {
+      "name": "pct_people_of_color_moe",
+      "type": "double",
+      "description": "Margin of error for pct_people_of_color at the 90% confidence level (a complement carries the same error as pct_white_nh)."
+    },
+    {
+      "name": "tract",
+      "type": "string",
+      "description": "11-digit census tract GEOID (the first 11 characters of geoid); joins acs-tracts and cdc-places."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 1570162,
+  "portolan:asset_count": 11,
+  "portolan:styles": [
+    "styles/default"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "demographics",
+          "title": "Demographics"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.census.gov/programs-surveys/acs.html",
+      "concepts": [
+        {
+          "id": "acs",
+          "title": "American Community Survey"
+        }
+      ]
+    }
+  ],
+  "proj:epsg": 3857,
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -90.2197265,
+    38.6511901,
+    12
+  ],
+  "pmtiles:layers": [
+    "acs-block-groups"
+  ],
+  "title": "ACS Demographics \u2014 Block Groups",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051589533225,
+          38.532001591520135,
+          -90.16671561256314,
+          38.77428387126793
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "census",
+    "ACS",
+    "American Community Survey",
+    "demographics",
+    "income",
+    "poverty",
+    "equity"
+  ],
+  "providers": [
+    {
+      "name": "U.S. Census Bureau",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.census.gov/programs-surveys/acs.html"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "acs-block-groups": {
+      "href": "./acs-block-groups.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "ACS Demographics \u2014 Block Groups (GeoParquet)",
+      "file:size": 159469,
+      "file:checksum": "1220552647b0a6e8bb8b3ea271255542b0745a1d8b68564203d1f944a92afe5edf71",
+      "roles": [
+        "data"
+      ]
+    },
+    "acs-block-groups-tiles": {
+      "href": "./acs-block-groups.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "acs-block-groups (vector tiles)",
+      "file:size": 1040256,
+      "file:checksum": "1220edc02983ea998f8671376e56415dd73eb441ca0e1a6ca0d3497d5ec8b4075afd",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Median household income",
+      "description": "Median household income per block group, light to dark blue \u2014 the city's north\u2013south income divide in one layer. Block groups whose estimate is too noisy to trust (coefficient of variation over 0.30) render faded; the income is real but the margin of error swamps it.",
+      "file:size": 2176,
+      "file:checksum": "122021da37a15e0dd369a7b3198b005b35f36b15a225f46eab6f4ec44583fde00b71",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/internet": {
+      "href": "./styles/internet.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Households without internet",
+      "description": "Share of households with no internet access, yellow to dark blue \u2014 the digital divide, block group by block group.",
+      "file:size": 1638,
+      "file:checksum": "12204ee76fc3237c8d97af7ee323ae85638ccf1fd37ee40fda5610fd44e6a69113ee",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/no-vehicle": {
+      "href": "./styles/no-vehicle.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Households without a vehicle",
+      "description": "Share of households with no vehicle available, yellow to dark red. Pair with transit and grocery locations: these are the residents for whom walkable service coverage is not optional.",
+      "file:size": 1709,
+      "file:checksum": "12201d5a989514b081333a57f85b4c34b85b234cfeed197905e59cb905124cf97dd2",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/poverty": {
+      "href": "./styles/poverty.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Population below poverty",
+      "description": "Share of residents below the federal poverty line, cream to dark red.",
+      "file:size": 1593,
+      "file:checksum": "1220638e99adf91d5b93c793f1f8e34c6782b67a9505dc34600ccf61c535fc912365",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/race": {
+      "href": "./styles/race.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "People of color",
+      "description": "Share of residents who are not White-alone non-Hispanic. St. Louis's Delmar Divide appears without drawing a single extra line.",
+      "file:size": 1648,
+      "file:checksum": "1220ea01a4696334f546d907621a5df4af4474df435e9a58153808e7eca19c0d077e",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/rent-burden": {
+      "href": "./styles/rent-burden.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Rent-burdened households",
+      "description": "Share of renter households paying 30%+ of income on rent, light blue to purple. The city median block group is already above 40%.",
+      "file:size": 1653,
+      "file:checksum": "12200707b5f8421957c9026db366a268f87bd6ef93d5b905f09cb5a852d98429923e",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/transit-commute": {
+      "href": "./styles/transit-commute.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Commuting by transit",
+      "description": "Share of workers commuting by public transportation, white to dark green. Compare with the no-vehicle style: where car-free households outnumber transit commuters, service is failing its dependents.",
+      "file:size": 1720,
+      "file:checksum": "1220dfb079bc4671eb7575c9f36c56aefb44417a27a1055a71405acaf755087da97f",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "ACS Demographics \u2014 Block Groups rendered with the default style",
+      "file:size": 341574,
+      "file:checksum": "12205bb63df955ab08f5dc0f7e68eac995159f15831c7ee82b08179d44316412acf0",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "type": "Collection",
+  "id": "statistica/popolazione-residente-aree-statistiche",
+  "stac_version": "1.1.0",
+  "description": "I dati si riferiscono ai residenti per et\u00e0, sesso, cittadinanza, quartiere e zona e area statistica in serie storica dal 2010\nPer individuare correttamente le aree di interesse clicca - qui .\nPer maggiori informazioni\u00a0 vai alla sezione Dati Statistici del sito web dell'Area Programmazione Controlli e Statistica.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Bologna Open Data \u2013 dati geografici aperti del Comune di Bologna"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/popolazione-residente-per-eta-sesso-cittadinanza-quartiere-zona-area-statistica-/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/popolazione-residente-per-eta-sesso-cittadinanza-quartiere-zona-area-statistica-/exports/parquet",
+      "rel": "related",
+      "title": "Upstream source: popolazioneresidente",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "anno",
+      "type": "date",
+      "description": "Anno. Data con precisione annuale esportata al 1\u00b0 gennaio (2024-01-01 indica il 2024); il 16.10.2026 andava dal 2010 al 2024."
+    },
+    {
+      "name": "codice_area_statistica",
+      "type": "string",
+      "description": "Codice Area Statistica. Testo a due cifre con zero iniziale, da \u00ab01\u00bb a \u00ab90\u00bb, pi\u00f9 \u00ab99\u00bb per l'area \u00abnon indicata\u00bb; nei poligoni di territorio/aree-statistiche \u00e8 un intero."
+    },
+    {
+      "name": "area_statistica",
+      "type": "string",
+      "description": "Area Statistica. Nome dell'area in maiuscolo e minuscolo, \u00abnon indicata\u00bb per il codice 99."
+    },
+    {
+      "name": "quartiere",
+      "type": "string",
+      "description": "Quartiere. I sei quartieri del Comune, pi\u00f9 \u00abSenza fissa dimora\u00bb per il codice 99."
+    },
+    {
+      "name": "zona",
+      "type": "string",
+      "description": "Zona. Le zone del Comune, pi\u00f9 \u00abSenza fissa dimora\u00bb per il codice 99."
+    },
+    {
+      "name": "sesso",
+      "type": "string",
+      "description": "Sesso. Valori osservati il 16.10.2026, \u00abFemmine\u00bb e \u00abMaschi\u00bb."
+    },
+    {
+      "name": "eta_grandi",
+      "type": "string",
+      "description": "Et\u00e0 grandi. Nove classi osservate il 16.10.2026, \u00ab02 e prima\u00bb, \u00ab03-05\u00bb, \u00ab06-14\u00bb, \u00ab15-24\u00bb, \u00ab25-34\u00bb, \u00ab35-44\u00bb, \u00ab45-54\u00bb, \u00ab55-64\u00bb, \u00ab65 e oltre\u00bb; non annidate con eta."
+    },
+    {
+      "name": "eta",
+      "type": "string",
+      "description": "Et\u00e0. Cinque classi osservate il 16.10.2026, \u00ab00-14\u00bb, \u00ab15-29\u00bb, \u00ab30-44\u00bb, \u00ab45-64\u00bb, \u00ab65 e oltre\u00bb; non annidate con eta_grandi."
+    },
+    {
+      "name": "cittadinanza",
+      "type": "string",
+      "description": "Cittadinanza. Valori osservati il 16.10.2026, \u00abItaliana\u00bb e \u00abStraniera\u00bb."
+    },
+    {
+      "name": "residenti",
+      "type": "int64",
+      "description": "Residenti. Numero di residenti della combinazione di anno, area statistica, sesso, eta_grandi, eta e cittadinanza della riga; sempre almeno 1."
+    },
+    {
+      "name": "nomezona",
+      "type": "string",
+      "description": "Zona di prossimit\u00e0. Nome della zona di prossimit\u00e0 che contiene l'area, in maiuscolo; vuoto per il codice 99."
+    }
+  ],
+  "table:row_count": 50023,
+  "title": "Popolazione residente per et\u00e0, sesso, cittadinanza, quartiere, zona, area statistica - serie storica",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "popolazioneresidente": {
+      "href": "./popolazioneresidente.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 195507,
+      "file:checksum": "12200193f55576197b3fd48718d07f7277528d49f47edda40765a8a1d447533d7649",
+      "roles": [
+        "data"
+      ]
+    }
+  },
+  "keywords": [
+    "Popolazione e societ\u00e0",
+    "Individui e Famiglie",
+    "piano dei quartieri",
+    "statistica",
+    "uguaglianzadigenere"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abPopolazione residente per et\u00e0, sesso, cittadinanza, quartiere, zona, area statistica - serie storica\u00bb (popolazione-residente-per-eta-sesso-cittadinanza-quartiere-zona-area-statistica-), pubblicato da Comune di Bologna - U.I. Ufficio Comunale di Statistica sul portale Open Data Comune di Bologna, consultato il 16.10.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/popolazione-residente-per-eta-sesso-cittadinanza-quartiere-zona-area-statistica-/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-10-16T12:00:00Z"
+}

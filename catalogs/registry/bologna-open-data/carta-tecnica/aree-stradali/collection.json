@@ -1,0 +1,253 @@
+{
+  "type": "Collection",
+  "id": "carta-tecnica/aree-stradali",
+  "stac_version": "1.1.0",
+  "description": "Carta tecnica comunale - Layer \"aree stradali\" (sistema di riferimento WGS84)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./areestradali.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "CARTA TECNICA COMUNALE - Aree stradali",
+      "pmtiles:layers": [
+        "areestradali"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/aree-stradali/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/aree-stradali/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: areestradali",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 10629,
+  "table:row_count": 10629,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "codice_ogg",
+      "type": "int32"
+    },
+    {
+      "name": "data_istit",
+      "type": "date"
+    },
+    {
+      "name": "data_varia",
+      "type": "date"
+    },
+    {
+      "name": "area_ogg",
+      "type": "double"
+    },
+    {
+      "name": "perimetro",
+      "type": "double"
+    },
+    {
+      "name": "descrizion",
+      "type": "string"
+    },
+    {
+      "name": "sede",
+      "type": "string"
+    },
+    {
+      "name": "fondo",
+      "type": "string"
+    },
+    {
+      "name": "origine",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "CARTA TECNICA COMUNALE - Aree stradali",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.229381151569621,
+          44.42093968884176,
+          11.433714393752807,
+          44.556191724043465
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "CARTA TECNICA COMUNALE - Aree stradali default style",
+      "description": "Default visualization for CARTA TECNICA COMUNALE - Aree stradali, drawn in #dfc27d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1172,
+      "file:checksum": "1220c7544dec271d64b33b68c0e70a6d815a02ec0f587b93d3da6c9ad716826566b0"
+    },
+    "areestradali": {
+      "href": "./areestradali.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3728550,
+      "file:checksum": "1220c8e76d4b9f4aee3997d56f6a342174ba319290571104b305d31c4e681f524995",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./areestradali.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "CARTA TECNICA COMUNALE - Aree stradali (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4017659,
+      "file:checksum": "1220c8c42a04aca8f58d20e3bad3d87947e34415209c7e244ecdb74581d241e5d1e9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "CARTA TECNICA COMUNALE - Aree stradali categorical style",
+      "description": "Categorical visualization coloring CARTA TECNICA COMUNALE - Aree stradali by fondo, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1746,
+      "file:checksum": "122095273a5ba27c5656cd033a39d97a094a269dbcb0e725f3d0a0d14ea033db0546"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "CARTA TECNICA COMUNALE - Aree stradali labeled style",
+      "description": "Default visualization for CARTA TECNICA COMUNALE - Aree stradali with fondo shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1586,
+      "file:checksum": "1220259851bac46df366cc8e1b64fba0d58c1d74efd168976d58a82ad51081a71ef0"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "CARTA TECNICA COMUNALE - Aree stradali graduated style",
+      "description": "Graduated visualization coloring CARTA TECNICA COMUNALE - Aree stradali by area_ogg, ramped from 0.0 to 50694.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1941,
+      "file:checksum": "1220c6842b9f9442b0b45c55012db864e6be2f182582381d7590fe5e33c8f35d8ff2"
+    },
+    "thumbnail": {
+      "href": "./areestradali.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of CARTA TECNICA COMUNALE - Aree stradali",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 165249,
+      "file:checksum": "1220f991c3a6718f028e35132c2c692c3c839e0e1f2b7bab9fcf7dbd1799d9794424"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abCARTA TECNICA COMUNALE - Aree stradali\u00bb (aree-stradali), pubblicato da Comune di Bologna - Sistema Informativo Territoriale (SIT) sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/aree-stradali/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

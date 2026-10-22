@@ -1,0 +1,1184 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "transition-map-subtypes",
+  "title": "TMF Transition Map, sub-types",
+  "description": "JRC Tropical Moist Forests (TMF) v1.2025: the forest transition sub-type of every 30 m cell at the end of 2025 (39 classes), one COG per tile. Produced by the European Commission Joint Research Centre; mirrored by Epoch as north-up ZSTD COGs with pixel values unchanged. 86 tiles of about 10 by 10 degrees in EPSG:4326 at 0.00026949 degrees (about 30 m). See [AGENTS.md](AGENTS.md) for tested access recipes.",
+  "license": "other",
+  "keywords": [
+    "tropical moist forest",
+    "deforestation",
+    "forest degradation",
+    "JRC",
+    "Landsat"
+  ],
+  "providers": [
+    {
+      "name": "European Commission, Joint Research Centre (JRC)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://forobs.jrc.ec.europa.eu/TMF"
+    },
+    {
+      "name": "Epoch",
+      "description": "Re-encoded the JRC tiles as north-up ZSTD COGs, pixel values unchanged, and hosts them on Source Cooperative.",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://epoch.blue"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -110.000144,
+          -40.107801,
+          180.0,
+          30.09473
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1990-01-01T00:00:00Z",
+          "2025-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "updated": "2026-06-24T20:04:20Z",
+  "version": "1.2025",
+  "sci:publications": [
+    {
+      "doi": "10.1126/sciadv.abe1603",
+      "citation": "Vancutsem, C., Achard, F., Pekel, J.-F., et al. (2021). Long-term (1990-2019) monitoring of forest cover changes in the humid tropics. Science Advances."
+    }
+  ],
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "title": "TMF Transition Map, sub-types (COG)",
+      "bands": [
+        {
+          "name": "TransitionMap_Subtypes",
+          "description": "Transition sub-type at the end of 2025, 39 classes. Value 0 is not in the JRC legend; the files declare no NoData value.",
+          "data_type": "uint8",
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 30.0,
+          "classification:classes": [
+            {
+              "value": 10,
+              "name": "undisturbed_forest",
+              "title": "Undisturbed tropical moist forest",
+              "color_hint": "005000"
+            },
+            {
+              "value": 11,
+              "name": "bamboo_forest",
+              "title": "Bamboo-dominated forest",
+              "color_hint": "0A640A"
+            },
+            {
+              "value": 12,
+              "name": "undisturbed_mangrove",
+              "title": "Undisturbed mangrove",
+              "color_hint": "0A5A3C"
+            },
+            {
+              "value": 21,
+              "name": "degraded_short_pre2016",
+              "title": "Degraded forest, short-duration (started before 2016)",
+              "color_hint": "1E7800"
+            },
+            {
+              "value": 22,
+              "name": "degraded_short_2016_2024",
+              "title": "Degraded forest, short-duration (started 2016–2024)",
+              "color_hint": "509600"
+            },
+            {
+              "value": 23,
+              "name": "degraded_long_pre2016",
+              "title": "Degraded forest, long-duration (started before 2016)",
+              "color_hint": "64A028"
+            },
+            {
+              "value": 24,
+              "name": "degraded_long_2016_2024",
+              "title": "Degraded forest, long-duration (started 2016–2024)",
+              "color_hint": "78AA28"
+            },
+            {
+              "value": 25,
+              "name": "degraded_multi_pre2016",
+              "title": "Degraded forest, 2/3 periods (last started before 2016)",
+              "color_hint": "64A028"
+            },
+            {
+              "value": 26,
+              "name": "degraded_multi_2016_2024",
+              "title": "Degraded forest, 2/3 periods (last started 2016–2024)",
+              "color_hint": "78AA28"
+            },
+            {
+              "value": 31,
+              "name": "regrowth_old",
+              "title": "Old forest regrowth (disturbed before 2006)",
+              "color_hint": "B9C83C"
+            },
+            {
+              "value": 32,
+              "name": "regrowth_young",
+              "title": "Young forest regrowth (disturbed 2006–2015)",
+              "color_hint": "C8E63C"
+            },
+            {
+              "value": 33,
+              "name": "regrowth_very_young",
+              "title": "Very young forest regrowth (disturbed 2016–2022)",
+              "color_hint": "D2FA3C"
+            },
+            {
+              "value": 41,
+              "name": "deforestation_pre2015",
+              "title": "Deforestation started before 2015",
+              "color_hint": "FFF0A0"
+            },
+            {
+              "value": 42,
+              "name": "deforestation_2015_2022",
+              "title": "Deforestation started 2015–2022",
+              "color_hint": "FF9608"
+            },
+            {
+              "value": 51,
+              "name": "deforestation_2023",
+              "title": "Deforestation started 2023",
+              "color_hint": "FA3C0A"
+            },
+            {
+              "value": 52,
+              "name": "deforestation_2024",
+              "title": "Deforestation started 2024",
+              "color_hint": "AA500A"
+            },
+            {
+              "value": 53,
+              "name": "deforestation_2025",
+              "title": "Deforestation started 2025",
+              "color_hint": "8C641E"
+            },
+            {
+              "value": 54,
+              "name": "degradation_2025",
+              "title": "Degradation started 2025",
+              "color_hint": "8C783C"
+            },
+            {
+              "value": 61,
+              "name": "mangrove_degraded_pre2016",
+              "title": "Degraded mangrove (started before 2016)",
+              "color_hint": "286432"
+            },
+            {
+              "value": 62,
+              "name": "mangrove_degraded_2016_2024",
+              "title": "Mangrove recently degraded (2016–2024)",
+              "color_hint": "509600"
+            },
+            {
+              "value": 63,
+              "name": "mangrove_regrowth_10y",
+              "title": "Mangrove regrowing (≥10 yr, 2016–2025)",
+              "color_hint": "C8E63C"
+            },
+            {
+              "value": 64,
+              "name": "mangrove_regrowth_3y",
+              "title": "Mangrove regrowing (≥3 yr, 2023–2025)",
+              "color_hint": "D2FA3C"
+            },
+            {
+              "value": 65,
+              "name": "mangrove_deforested_pre2015",
+              "title": "Mangrove deforested (started before 2015)",
+              "color_hint": "FFE66E"
+            },
+            {
+              "value": 66,
+              "name": "mangrove_deforested_2016_2022",
+              "title": "Mangrove deforested (started 2016–2022)",
+              "color_hint": "FF3C0A"
+            },
+            {
+              "value": 67,
+              "name": "mangrove_disturbed_2023_2025",
+              "title": "Mangrove recently disturbed (2023–2025)",
+              "color_hint": "9B6946"
+            },
+            {
+              "value": 71,
+              "name": "permanent_water",
+              "title": "Permanent water",
+              "color_hint": "003296"
+            },
+            {
+              "value": 72,
+              "name": "seasonal_water",
+              "title": "Seasonal water",
+              "color_hint": "0096C8"
+            },
+            {
+              "value": 73,
+              "name": "deforestation_to_permanent_water",
+              "title": "Deforestation to permanent water",
+              "color_hint": "00A096"
+            },
+            {
+              "value": 74,
+              "name": "deforestation_to_seasonal_water",
+              "title": "Deforestation to seasonal water",
+              "color_hint": "00D2D2"
+            },
+            {
+              "value": 81,
+              "name": "old_plantation",
+              "title": "Old plantation",
+              "color_hint": "336333"
+            },
+            {
+              "value": 82,
+              "name": "plantation_regrowth_pre2016",
+              "title": "Plantation regrowing (disturbed before 2016)",
+              "color_hint": "62A150"
+            },
+            {
+              "value": 83,
+              "name": "plantation_regrowth_2016_2022",
+              "title": "Plantation regrowing (disturbed 2016–2022)",
+              "color_hint": "BCD169"
+            },
+            {
+              "value": 84,
+              "name": "conversion_to_plantation_pre2015",
+              "title": "Conversion to plantation (deforestation before 2015)",
+              "color_hint": "FFE494"
+            },
+            {
+              "value": 85,
+              "name": "conversion_to_plantation_2016_2022",
+              "title": "Conversion to plantation (deforestation 2016–2022)",
+              "color_hint": "FAB496"
+            },
+            {
+              "value": 86,
+              "name": "conversion_to_plantation_2023_2025",
+              "title": "Recent conversion to plantation (2023–2025)",
+              "color_hint": "CCA3A3"
+            },
+            {
+              "value": 91,
+              "name": "other_no_afforestation",
+              "title": "Other land cover without afforestation",
+              "color_hint": "FFFFFF"
+            },
+            {
+              "value": 92,
+              "name": "afforestation_young",
+              "title": "Young afforestation (3–9 yr regrowth)",
+              "color_hint": "EDFFD7"
+            },
+            {
+              "value": 93,
+              "name": "afforestation_old",
+              "title": "Old afforestation (10–20 yr regrowth)",
+              "color_hint": "E0FA9D"
+            },
+            {
+              "value": 94,
+              "name": "water_to_regrowth",
+              "title": "Water converted recently into forest regrowth (≥3 yr)",
+              "color_hint": "D6FABC"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "renders": {
+    "classes": {
+      "title": "TMF Transition Map, sub-types",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap": {
+        "10": [
+          0,
+          80,
+          0,
+          255
+        ],
+        "11": [
+          10,
+          100,
+          10,
+          255
+        ],
+        "12": [
+          10,
+          90,
+          60,
+          255
+        ],
+        "21": [
+          30,
+          120,
+          0,
+          255
+        ],
+        "22": [
+          80,
+          150,
+          0,
+          255
+        ],
+        "23": [
+          100,
+          160,
+          40,
+          255
+        ],
+        "24": [
+          120,
+          170,
+          40,
+          255
+        ],
+        "25": [
+          100,
+          160,
+          40,
+          255
+        ],
+        "26": [
+          120,
+          170,
+          40,
+          255
+        ],
+        "31": [
+          185,
+          200,
+          60,
+          255
+        ],
+        "32": [
+          200,
+          230,
+          60,
+          255
+        ],
+        "33": [
+          210,
+          250,
+          60,
+          255
+        ],
+        "41": [
+          255,
+          240,
+          160,
+          255
+        ],
+        "42": [
+          255,
+          150,
+          8,
+          255
+        ],
+        "51": [
+          250,
+          60,
+          10,
+          255
+        ],
+        "52": [
+          170,
+          80,
+          10,
+          255
+        ],
+        "53": [
+          140,
+          100,
+          30,
+          255
+        ],
+        "54": [
+          140,
+          120,
+          60,
+          255
+        ],
+        "61": [
+          40,
+          100,
+          50,
+          255
+        ],
+        "62": [
+          80,
+          150,
+          0,
+          255
+        ],
+        "63": [
+          200,
+          230,
+          60,
+          255
+        ],
+        "64": [
+          210,
+          250,
+          60,
+          255
+        ],
+        "65": [
+          255,
+          230,
+          110,
+          255
+        ],
+        "66": [
+          255,
+          60,
+          10,
+          255
+        ],
+        "67": [
+          155,
+          105,
+          70,
+          255
+        ],
+        "71": [
+          0,
+          50,
+          150,
+          255
+        ],
+        "72": [
+          0,
+          150,
+          200,
+          255
+        ],
+        "73": [
+          0,
+          160,
+          150,
+          255
+        ],
+        "74": [
+          0,
+          210,
+          210,
+          255
+        ],
+        "81": [
+          51,
+          99,
+          51,
+          255
+        ],
+        "82": [
+          98,
+          161,
+          80,
+          255
+        ],
+        "83": [
+          188,
+          209,
+          105,
+          255
+        ],
+        "84": [
+          255,
+          228,
+          148,
+          255
+        ],
+        "85": [
+          250,
+          180,
+          150,
+          255
+        ],
+        "86": [
+          204,
+          163,
+          163,
+          255
+        ],
+        "91": [
+          255,
+          255,
+          255,
+          255
+        ],
+        "92": [
+          237,
+          255,
+          215,
+          255
+        ],
+        "93": [
+          224,
+          250,
+          157,
+          255
+        ],
+        "94": [
+          214,
+          250,
+          188,
+          255
+        ]
+      },
+      "resampling": "nearest"
+    }
+  },
+  "assets": {
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Classes in JRC legend colours",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 13921,
+      "file:checksum": "1220ec3f1be8505aeedce78ae3ea71eea6e81f1b7c2f5f2b08b814c499ede18efcfd"
+    },
+    "geoparquet-items": {
+      "href": "./items.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "STAC items as GeoParquet",
+      "roles": [
+        "collection-mirror"
+      ],
+      "file:size": 29708,
+      "file:checksum": "1220ebe0c57e1b2f351e92d2517c350156233260d8f03d1da4ce199b202120a54a8d"
+    },
+    "footprints": {
+      "href": "./footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "TMF Transition Map, sub-types item footprints (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 734416,
+      "file:checksum": "122068e1959961ea1dd6b28a49c78d8fa69436bdf8292681abcedbad8ddf83431352"
+    },
+    "style-default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Item footprints",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 663,
+      "file:checksum": "122097f5f5c48eb4714f6c495c5b858db629cfff6fb333abfbccb186a19c036643a1"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "https://forobs.jrc.ec.europa.eu/TMF/data",
+      "type": "text/html",
+      "title": "JRC TMF data download page"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://forobs.jrc.ec.europa.eu/TMF/data",
+      "type": "text/html",
+      "title": "JRC TMF data page: terms of use"
+    },
+    {
+      "rel": "license",
+      "href": "http://data.europa.eu/eli/reg_del/2013/1159/oj",
+      "type": "text/html",
+      "title": "Copernicus Regulation: Commission Delegated Regulation (EU) No 1159/2013"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_W70/S20_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_W60/S20_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./S30_W60/S30_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile S30_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_W50/S20_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W50/S10_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W40/S10_W40.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W40"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W50/N0_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W40/N0_W40.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W40"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W60/N0_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W70/N0_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W60/S10_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W70/S10_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_W80/S10_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W80/N0_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_W90/N0_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W110/N20_W110.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W110"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W100/N20_W100.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W100"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W110/N30_W110.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W110"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W100/N30_W100.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W100"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W90/N30_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_W80/N30_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W60/N20_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W70/N20_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W90/N20_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W80/N20_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W90/N10_W90.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W90"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W80/N10_W80.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W80"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W70/N10_W70.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W70"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W60/N10_W60.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W60"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W50/N10_W50.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W50"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_W20/N20_W20.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_W20"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W20/N10_W20.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W20"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_W10/N10_W10.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_W10"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E0/N10_E0.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E0"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E10/N10_E10.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E10"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E20/N10_E20.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E20"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E30/N10_E30.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E30"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E40/N10_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E70/N10_E70.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E70"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E80/N10_E80.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E80"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E70/N20_E70.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E70"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E80/N20_E80.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E80"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E70/N30_E70.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E70"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E80/N30_E80.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E80"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E90/N30_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E100/N30_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N30_E110/N30_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N30_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E120/N20_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E110/N20_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E90/N20_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./N20_E100/N20_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N20_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E90/N10_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E100/N10_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E110/N10_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N10_E120/N10_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile N10_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E160/N0_E160.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E160"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E150/N0_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E140/N0_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E150/S10_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E140/S10_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E160/S10_E160.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E160"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E170/S10_E170.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E170"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E160/S20_E160.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E160"
+    },
+    {
+      "rel": "item",
+      "href": "./S30_E150/S30_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile S30_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./S30_E140/S30_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile S30_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E150/S20_E150.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E150"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E140/S20_E140.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E140"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E120/S10_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E130/S10_E130.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E130"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E120/N0_E120.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E120"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E130/N0_E130.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E130"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E110/N0_E110.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E110"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E100/N0_E100.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E100"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E90/N0_E90.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E90"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E50/S10_E50.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E50"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E30/N0_E30.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E30"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E40/N0_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E20/N0_E20.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E20"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E10/N0_E10.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E10"
+    },
+    {
+      "rel": "item",
+      "href": "./N0_E0/N0_E0.json",
+      "type": "application/geo+json",
+      "title": "Tile N0_E0"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E10/S10_E10.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E10"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E20/S10_E20.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E20"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E30/S10_E30.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E30"
+    },
+    {
+      "rel": "item",
+      "href": "./S10_E40/S10_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile S10_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E40/S20_E40.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E40"
+    },
+    {
+      "rel": "item",
+      "href": "./S20_E50/S20_E50.json",
+      "type": "application/geo+json",
+      "title": "Tile S20_E50"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./footprints.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Item footprints (vector tiles)",
+      "pmtiles:layers": [
+        "footprints"
+      ]
+    }
+  ]
+}

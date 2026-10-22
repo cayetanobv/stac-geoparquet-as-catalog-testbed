@@ -1,0 +1,425 @@
+{
+  "type": "Collection",
+  "id": "night-train-network-attributes",
+  "stac_version": "1.1.0",
+  "description": "The relational core of the Open Night Train Database, snapshot **2026-08** — four plain Parquet tables without geometry: `trips` (410 services with full attributes), `routes` (206), `agencies` (31 operators with URLs and booking contacts), and `calendar` (132 running-day patterns).\n\nThe schema is GTFS-flavored but hand-curated in [Back-on-Track's](https://back-on-track.eu/) collaborative database. Join keys: `trip_id` links to the [night-train-services](../night-train-services/collection.json) geometry; station-name strings link to [night-train-stations](../night-train-stations/collection.json); `service_id` links trips to calendar. Accessibility fields (`car_transport`, `bikes_allowed`, `wheelchair_accessible`) use [GTFS 1/2 semantics](https://gtfs.org/documentation/schedule/reference/#tripstxt) (1 = yes, 2 = no). Full field notes and runnable joins in the [agent guide](AGENTS.md).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Back-on-Track Open Night Train Database"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Back-on-Track Open Night Train Database"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -5.531908,
+          37.068907,
+          43.106386,
+          67.3489608987037
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-08-01T00:00:00Z",
+          "2026-08-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "agencies": {
+      "href": "./agencies.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "file:size": 3771,
+      "file:checksum": "12208d8f06b7a824c3dea9c5d93ad7ed18b97fe82548ea4f38f31d34011d22657ee8",
+      "table:columns": [
+        {
+          "name": "agency_id",
+          "type": "varchar",
+          "description": "Operator code (primary key)"
+        },
+        {
+          "name": "agency_name",
+          "type": "varchar",
+          "description": "Operator full name"
+        },
+        {
+          "name": "agency_url",
+          "type": "varchar",
+          "description": "Operator website"
+        },
+        {
+          "name": "agency_timezone",
+          "type": "varchar",
+          "description": "IANA timezone"
+        },
+        {
+          "name": "agency_lang",
+          "type": "varchar",
+          "description": "Language"
+        },
+        {
+          "name": "agency_phone",
+          "type": "varchar",
+          "description": "Contact phone"
+        },
+        {
+          "name": "agency_fare_url",
+          "type": "varchar",
+          "description": "Booking URL"
+        },
+        {
+          "name": "agency_email",
+          "type": "varchar",
+          "description": "Contact email"
+        },
+        {
+          "name": "agency_name_romanized",
+          "type": "varchar",
+          "description": "Romanized name"
+        },
+        {
+          "name": "agency_name_brand",
+          "type": "varchar",
+          "description": "Night-train brand (e.g. Nightjet)"
+        },
+        {
+          "name": "agency_state",
+          "type": "varchar",
+          "description": "Home country"
+        }
+      ]
+    },
+    "calendar": {
+      "href": "./calendar.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "file:size": 4246,
+      "file:checksum": "1220ced31329f1e0556b50e22490b53edd4f94ee867d4caef0fb6b742fd9bfca1b54",
+      "table:columns": [
+        {
+          "name": "service_id",
+          "type": "varchar",
+          "description": "Primary key, referenced by trips"
+        },
+        {
+          "name": "monday",
+          "type": "double",
+          "description": "Runs on Mondays"
+        },
+        {
+          "name": "tuesday",
+          "type": "double",
+          "description": "Runs on Tuesdays"
+        },
+        {
+          "name": "wednesday",
+          "type": "double",
+          "description": "Runs on Wednesdays"
+        },
+        {
+          "name": "thursday",
+          "type": "double",
+          "description": "Runs on Thursdays"
+        },
+        {
+          "name": "friday",
+          "type": "double",
+          "description": "Runs on Fridays"
+        },
+        {
+          "name": "saturday",
+          "type": "double",
+          "description": "Runs on Saturdays"
+        },
+        {
+          "name": "sunday",
+          "type": "double",
+          "description": "Runs on Sundays"
+        },
+        {
+          "name": "start_date",
+          "type": "varchar",
+          "description": "Validity start (date-ranged = seasonal)"
+        },
+        {
+          "name": "end_date",
+          "type": "varchar",
+          "description": "Validity end"
+        }
+      ]
+    },
+    "routes": {
+      "href": "./routes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "file:size": 22724,
+      "file:checksum": "1220acb42b498d07716147a896d2e722d4f1df56d3ee6ad393c38a712fb43510e02c",
+      "table:columns": [
+        {
+          "name": "route_id",
+          "type": "bigint",
+          "description": "Primary key"
+        },
+        {
+          "name": "agency_id",
+          "type": "varchar",
+          "description": "Operator code"
+        },
+        {
+          "name": "route_short_name",
+          "type": "varchar",
+          "description": "Line short name"
+        },
+        {
+          "name": "route_long_name",
+          "type": "varchar",
+          "description": "Line long name"
+        },
+        {
+          "name": "route_desc",
+          "type": "varchar",
+          "description": "Line description"
+        },
+        {
+          "name": "route_type",
+          "type": "bigint",
+          "description": "GTFS route type"
+        },
+        {
+          "name": "is_active",
+          "type": "varchar",
+          "description": "Y/N"
+        },
+        {
+          "name": "origin_trip_0",
+          "type": "varchar",
+          "description": "Origin of direction 0"
+        },
+        {
+          "name": "destination_trip_0",
+          "type": "varchar",
+          "description": "Destination of direction 0"
+        },
+        {
+          "name": "distance",
+          "type": "bigint",
+          "description": "Line length km"
+        },
+        {
+          "name": "classes",
+          "type": "varchar",
+          "description": "Travel classes"
+        },
+        {
+          "name": "countries",
+          "type": "varchar",
+          "description": "ISO-2 codes traversed"
+        },
+        {
+          "name": "source",
+          "type": "varchar",
+          "description": "Curation source note"
+        }
+      ]
+    },
+    "trips": {
+      "href": "./trips.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "file:size": 31866,
+      "file:checksum": "122048eeaa2f0ef7169c14c5a30f1864433afe8e1be25cdc6b50507b44e558df9182",
+      "table:columns": [
+        {
+          "name": "route_id",
+          "type": "bigint",
+          "description": "FK to routes.route_id"
+        },
+        {
+          "name": "agency_id",
+          "type": "varchar",
+          "description": "Operator code; joint operations use compound codes (PKP/ČD)"
+        },
+        {
+          "name": "trip_id",
+          "type": "varchar",
+          "description": "Primary key: '{agency_id} {trip_short_name}', freeform variant suffixes"
+        },
+        {
+          "name": "trip_origin",
+          "type": "varchar",
+          "description": "Origin station (name = station ID)"
+        },
+        {
+          "name": "origin_departure_time",
+          "type": "timestamp with time zone",
+          "description": "Departure HH:MM local"
+        },
+        {
+          "name": "trip_headsign",
+          "type": "varchar",
+          "description": "Destination station (name = station ID)"
+        },
+        {
+          "name": "destination_arrival_time",
+          "type": "timestamp with time zone",
+          "description": "Arrival HH:MM local"
+        },
+        {
+          "name": "trip_short_name",
+          "type": "varchar",
+          "description": "Operator's train number without agency prefix"
+        },
+        {
+          "name": "countries",
+          "type": "varchar",
+          "description": "ISO-2 codes, comma-space separated"
+        },
+        {
+          "name": "is_active",
+          "type": "varchar",
+          "description": "Y/N"
+        },
+        {
+          "name": "irregularities",
+          "type": "varchar",
+          "description": "Curated factual prose: day-specific timings, seasonal extensions, booking quirks"
+        },
+        {
+          "name": "service_id",
+          "type": "varchar",
+          "description": "FK to calendar.service_id; date-ranged naming = seasonal"
+        },
+        {
+          "name": "classes",
+          "type": "varchar",
+          "description": "Travel classes (seat/couchette/sleeper variants)"
+        },
+        {
+          "name": "connections",
+          "type": "varchar",
+          "description": "Noted connecting services"
+        },
+        {
+          "name": "catering",
+          "type": "bigint",
+          "description": "Catering amenity"
+        },
+        {
+          "name": "plugs",
+          "type": "bigint",
+          "description": "Power sockets amenity"
+        },
+        {
+          "name": "wheelchair_accessible",
+          "type": "bigint",
+          "description": "GTFS semantics: 1=yes, 2=no"
+        },
+        {
+          "name": "bikes_allowed",
+          "type": "bigint",
+          "description": "GTFS semantics: 1=yes, 2=no"
+        },
+        {
+          "name": "car_transport",
+          "type": "bigint",
+          "description": "Motorail: GTFS semantics 1=yes (30 services), 2=no"
+        },
+        {
+          "name": "duration",
+          "type": "timestamp with time zone",
+          "description": "Scheduled duration HH:MM"
+        },
+        {
+          "name": "distance",
+          "type": "bigint",
+          "description": "Route length km (sparse)"
+        },
+        {
+          "name": "emissions_co2e",
+          "type": "double",
+          "description": "CO2e estimate for the trip (sparse)"
+        },
+        {
+          "name": "co2_per_km",
+          "type": "double",
+          "description": "CO2e per km (sparse)"
+        },
+        {
+          "name": "via",
+          "type": "varchar",
+          "description": "Curated principal stations, ' - ' separated (not all stops)"
+        }
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "README",
+      "file:size": 3418,
+      "file:checksum": "12209eff26b0eb8c1f701c4ff6b7b156b198ef5e44ff2d3396cc62738290024d3260"
+    },
+    "AGENTS": {
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "roles": [
+        "documentation"
+      ],
+      "title": "Agent guide",
+      "file:size": 1617,
+      "file:checksum": "1220ec39c57e81d859533e2749520e9942f3e72c729d7396423ffe64f2b43619c9be"
+    }
+  },
+  "title": "ONTD network attribute tables",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json"
+  ],
+  "providers": [
+    {
+      "name": "Back-on-Track Europe AISBL",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://back-on-track.eu"
+    }
+  ]
+}

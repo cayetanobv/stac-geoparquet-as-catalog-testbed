@@ -1,0 +1,331 @@
+{
+  "type": "Collection",
+  "id": "rakennukset/rakennukset-alue",
+  "stac_version": "1.1.0",
+  "description": "Helsingin rakennukset -aineisto sis\u00e4lt\u00e4\u00e4 tietoa rakennuksista kahdesta eri l\u00e4hteest\u00e4. Karttakohteet (Rajapintataso Rakennukset_alue) perustuvat Kaupunkimittauspalvelujen yll\u00e4pit\u00e4m\u00e4\u00e4n Kantakartan rakennusalueisiin. Aineistossa ei ole alle 10 neli\u00f6metrin rakennuksia eik\u00e4 merkitykselt\u00e4\u00e4n v\u00e4h\u00e4p\u00e4t\u00f6isi\u00e4 rakennusalueita (katokset, vajat tms., joilla ei rakennustunnusta). Karttakohteiden esitystapana on alue.\r\n\r\nRekisteritiedot (Rakennukset_alue_rekisteritiedot ja Rakennukset_piste_rekisteritiedot) on esitetty kaupungin eri toimialojen yll\u00e4pit\u00e4m\u00e4st\u00e4 tietokannasta, johon on koottu keskeisi\u00e4 rakennuksiin liittyvi\u00e4 ominaisuustietoja. Rekisterikohteiden esitystavaksi voidaan valita joko alue tai piste.\r\n\r\nAineiston mittakaava on 1:500.\r\n\r\nRinnakkaisosoitteet rakennuksille on saatavilla rajapintatasosta Helsinki_osoitteet_rakennukset.\r\n\r\nAineiston tarkemmat metatiedot sek\u00e4 koodien selitykset.\nRuotsiksi: Byggnader i Helsingfors. Englanniksi: Buildings in Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_rakennukset_alue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue)",
+      "pmtiles:layers": [
+        "avoindata_rakennukset_alue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-rakennukset",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: rakennukset_alue",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 84966,
+  "table:row_count": 84966,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Kohteen yksil\u00f6iv\u00e4 tunniste."
+    },
+    {
+      "name": "kuntarekisteri_id",
+      "type": "int64",
+      "description": "Kuntarekisterin (FACTA) ID-avain. Kattavasti olemassa oleva, luotettava tieto."
+    },
+    {
+      "name": "ratu",
+      "type": "int64",
+      "description": "Helsingin pysyv\u00e4 rakennustunnus eli \"RATU\". Kattavasti olemassa oleva tieto. Tulkintaa vaativien kohteiden osalta tarkastelu on kesken."
+    },
+    {
+      "name": "vtj_prt",
+      "type": "string",
+      "description": "Valtakunnallinen pysyv\u00e4 rakennustunnus. Kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "ratu_vastaavuus",
+      "type": "string",
+      "description": "Rakennusalueen ja tunnuksen vastaavuus, sanallinen tieto. Kattavasti olemassa oleva tieto. Tulkintaa vaativien kohteiden osalta vastaavuustarkastelu on kesken."
+    },
+    {
+      "name": "ratu_vastaavuus_koodi",
+      "type": "int64",
+      "description": "Rakennusalueen ja tunnuksen vastaavuus (koodisto VASTAAVUUS). Kattavasti olemassa oleva tieto. Tulkintaa vaativien kohteiden osalta vastaavuustarkastelu on kesken."
+    },
+    {
+      "name": "ratu_laatu",
+      "type": "string",
+      "description": "Tunnuksen luotettavuuden laatu, sanallinen tieto. Kattavasti olemassa oleva tieto. Tulkintaa vaativien kohteiden osalta laatutarkastelu on kesken."
+    },
+    {
+      "name": "ratu_laatu_koodi",
+      "type": "int64",
+      "description": "Tunnuksen luotettavuuden laatu (koodisto LAATU). Kattavasti olemassa oleva tieto. Tulkintaa vaativien kohteiden osalta laatutarkastelu on kesken."
+    },
+    {
+      "name": "tila",
+      "type": "string",
+      "description": "Rakennuksen olotilan sanallinen tieto. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tila_koodi",
+      "type": "int64",
+      "description": "Rakennuksen olotila (koodisto OLOTILA). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tyyppi",
+      "type": "string",
+      "description": "Rakennuksen tyyppi. Perustuu kantakartan luokitukseen. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tyyppi_koodi",
+      "type": "int64",
+      "description": "Rakennuksen tyyppi, (koodisto TYYPPI). Perustuu kantakartan luokitukseen. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "luontipvm",
+      "type": "date",
+      "description": "Kohteen luontip\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "muokkauspvm",
+      "type": "date",
+      "description": "Kohteen muokkausp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "katunimi_suomi",
+      "type": "string",
+      "description": "Suomenkielinen katunimi, ensisijainen osoite."
+    },
+    {
+      "name": "katunimi_ruotsi",
+      "type": "string",
+      "description": "Ruotsinkielinen katunimi, ensisijainen osoite."
+    },
+    {
+      "name": "osoitenumero",
+      "type": "string",
+      "description": "L\u00e4hiosoitteen osoitenumero kasattuna, ensisijainen osoite."
+    },
+    {
+      "name": "postinumero",
+      "type": "double",
+      "description": "Osoitteen postinumeroalue, ensisijainen osoite."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Datanomistajan organisaatio."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalveluun p\u00e4ivitysp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.83043442,
+          60.08513378,
+          25.35550533,
+          60.29581196
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) default style",
+      "description": "Default visualization for Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue), drawn in #b2182b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1306,
+      "file:checksum": "1220f6ebb949acd27b49d2d45299b83875ef29239ef24344126df2049a84c7a5b0d4"
+    },
+    "avoindata_rakennukset_alue": {
+      "href": "./avoindata_rakennukset_alue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 14096381,
+      "file:checksum": "12208d09b9a23d45970902251a10af11c5beda5b46f05a6afaf717b889f7a55da2af",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_rakennukset_alue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 14694529,
+      "file:checksum": "1220a4d0f675a6de596c112b5814fdcbfc81ebf31a6ce503c79a0e2adcbaccaf2860"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) categorical style",
+      "description": "Categorical visualization coloring Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) by ratu_laatu, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2284,
+      "file:checksum": "1220ba462c4eede1f1229e9761763c0145a9e9b0deb59df76b6fb55fb4b30b5d060a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) labeled style",
+      "description": "Default visualization for Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1756,
+      "file:checksum": "12204abaf0f7df3a24e977ea55387d23f66a2f12f2f7e9cf0b35e2bea71a293e5895"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) graduated style",
+      "description": "Graduated visualization coloring Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue) by kuntarekisteri_id, ramped from 1.0 to 5165599.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2123,
+      "file:checksum": "12203a97dc08c758cd2114b74b535290fa11d14f5503bc716c59a1ac08eefb53d6eb"
+    },
+    "thumbnail": {
+      "href": "./avoindata_rakennukset_alue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin rakennukset \u2013 kantakartan rakennusalueet (Rakennukset_alue)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 162386,
+      "file:checksum": "122011a63dd7ef79feee4b046266ef2c25b8dc35f5e454d417c9366bf189efb7845f"
+    }
+  },
+  "keywords": [
+    "asuinrakennukset",
+    "julkiset-rakennukset",
+    "liikerakennukset",
+    "rakennukset",
+    "teollisuusrakennukset",
+    "varastorakennukset",
+    "yleiset-rakennukset",
+    "Rakennukset_alue",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin rakennukset\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-rakennukset",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

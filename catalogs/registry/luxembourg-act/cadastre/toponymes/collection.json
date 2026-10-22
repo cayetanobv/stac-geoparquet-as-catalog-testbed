@@ -1,0 +1,213 @@
+{
+  "type": "Collection",
+  "id": "cadastre/toponymes",
+  "stac_version": "1.1.0",
+  "description": "Le plan cadastral g\u00e9r\u00e9 par l\u2019ACT est le seul document repr\u00e9sentant les parcelles et couvrant tout le territoire du Grand-Duch\u00e9 de Luxembourg. De part sa nature, il repr\u00e9sente un \u00e9tat de droit et ne correspond pas n\u00e9cessairement \u00e0 l\u2019\u00e9tat de fait ou de r\u00e9alit\u00e9 sur le terrain. Le plan cadastral num\u00e9ris\u00e9 est un document h\u00e9t\u00e9rog\u00e8ne qui trouve son origine dans les plans historiques de 1824 et qui depuis, est constamment mis \u00e0 jour sur base des modifications parcellaires identifi\u00e9es. Il int\u00e8gre donc aussi bien des parties anciennes et num\u00e9ris\u00e9es, d'une pr\u00e9cision n'exc\u00e9dant pas celle d'origine (\u00e9chelle 1:2500), que des parties am\u00e9lior\u00e9es par des mensurations officielles r\u00e9centes et plus pr\u00e9cises. Couche TOPONYMES : les toponymes cadastraux.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./TOPONYMES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PCN \u2013 Toponymes",
+      "pmtiles:layers": [
+        "TOPONYMES"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/plan-cadastral-numerise-pcn/",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 34018,
+  "table:row_count": 34018,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "TOPONYME",
+      "type": "string",
+      "description": "Toponyme cadastral (lieu-dit)."
+    },
+    {
+      "name": "CODE_COMMU",
+      "type": "string",
+      "description": "Code commune cadastrale, nom complet CODE_COMMUNE."
+    },
+    {
+      "name": "ROTATION",
+      "type": "double",
+      "description": "Angle de rotation de l'\u00e9tiquette sur le plan ; unit\u00e9 non document\u00e9e par l'\u00e9diteur, les valeurs correspondent \u00e0 des degr\u00e9s."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "PCN \u2013 Toponymes",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.738324983777408,
+          49.449560541897036,
+          6.529505709601926,
+          50.180415247433224
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Toponymes default style",
+      "description": "Default visualization for PCN \u2013 Toponymes, drawn in #7570b3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1133,
+      "file:checksum": "12201b5702c96675333b9f00849dbc2ee751596408bada4fa87e3712c0f2717a05c1"
+    },
+    "TOPONYMES": {
+      "href": "./TOPONYMES.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1337461,
+      "file:checksum": "1220c5583ee37570f93999f93fce3313c7ae0b361f3d05fd28b2f766fa5a8b72591f",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./TOPONYMES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PCN \u2013 Toponymes (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1649646,
+      "file:checksum": "1220688e7be772af2c312629a1e76add25d985b0e97960f1565786e4e470eefe1cd5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PCN \u2013 Toponymes graduated style",
+      "description": "Graduated visualization coloring PCN \u2013 Toponymes by ROTATION, ramped from 0.0 to 359.999427049.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1941,
+      "file:checksum": "12208ca90fd77df4301fe446ccb817955a34b8e7e12795dcfa099a16c0db7b49ce57"
+    },
+    "source": {
+      "href": "https://data.public.lu/fr/datasets/r/a43f88ba-c97b-4141-9fef-df7cb0c0f1ce",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: toponymes",
+      "pipeline:upstream": true,
+      "file:size": 189132290,
+      "file:checksum": "1220bf6d7c8c468c2460c2211436e23429d91678ef1282503832b8fb067856714f2f"
+    },
+    "thumbnail": {
+      "href": "./TOPONYMES.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of PCN \u2013 Toponymes",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 134394,
+      "file:checksum": "122082044cdf9fb5925900b10b5f5d25b2e00f6821085fe696d149bcc880e84c14d8"
+    }
+  },
+  "keywords": [
+    "cadastre",
+    "toponymes",
+    "lieux-dits",
+    "plan cadastral num\u00e9ris\u00e9",
+    "PCN",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Plan cadastral num\u00e9ris\u00e9 (PCN), Administration du cadastre et de la topographie, data.public.lu, fichier du 14 septembre 2026, CC BY 4.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

@@ -1,0 +1,149 @@
+{
+  "type": "Collection",
+  "id": "parkgrenzen/groen_in_parken",
+  "stac_version": "1.1.0",
+  "description": "Groen In Parken",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./groen_in_parken.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "groen_in_parken"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 19,
+  "table:row_count": 19,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Groen_i_ID",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Groen In Parken",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.00242478576857,
+          52.0555094367216,
+          5.15448446970315,
+          52.1248393230102
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "groen_in_parken": {
+      "href": "./groen_in_parken.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1184133,
+      "file:checksum": "12209ffb3699117b66c9b458e83671c2661a9172b13b1765c1576f05b2b50a88964b",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./groen_in_parken.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 6690,
+      "file:checksum": "122088bdcf7aee5520ec198de74ba83beb14d43af9c302277b112d6ddd0717a52936"
+    },
+    "groen_in_parken-tiles": {
+      "href": "./groen_in_parken.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "groen_in_parken (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 322424,
+      "file:checksum": "1220ac101ed33bf2139f644fef54706a765f2844073c767e15e758b58ac66cb2e3da"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 756,
+      "file:checksum": "122050fcdc82a9cf7c37c39eaa350aa2cd3beb72a6141a10924cf25a421983b6b089",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

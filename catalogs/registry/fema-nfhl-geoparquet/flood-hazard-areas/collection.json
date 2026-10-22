@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json"
+  ],
+  "id": "flood-hazard-areas",
+  "title": "Flood hazard areas",
+  "description": "FEMA's flood zones (NFHL layer S_FLD_HAZ_AR) for every county-wide delivery that holds one, cut into pieces of at most 100 vertices so a point lookup tests a small polygon. A row is a piece of a zone, not a zone: piece_id numbers the pieces of a zone from 0. FEMA's attributes are kept, and a risk reading of the zone and subtype is added. 5,810,397 zones in 95,616,307 pieces from 2,502 county deliveries, checked against FEMA's list every day (last: 2026-10-22). One GeoParquet 2.0 file per delivery, state=<XX>/<DFIRM_ID>.parquet, so a delivery FEMA republishes replaces one file; counties.parquet (the index asset) gives each file's bbox, date, rows and checksum, and the partition glob s3://parquetry/nfhl/latest/state=*/*.parquet reads them all. Every file carries a bbox covering and reads in place over HTTPS or through the anonymous S3 endpoint s3.geomermaids.com. Public domain, FEMA. Not a FEMA product and not the effective Flood Insurance Rate Map: do not use it for flood zone determinations, insurance rating, regulatory or legal purposes; use the FEMA Flood Map Service Center for those. FEMA has not reviewed, approved or endorsed this redistribution.",
+  "keywords": [
+    "NFHL",
+    "FEMA",
+    "flood",
+    "flood zones",
+    "FIRM",
+    "flood hazard",
+    "GeoParquet",
+    "United States"
+  ],
+  "license": "CC-PDM-1.0",
+  "attribution": "FEMA National Flood Hazard Layer",
+  "version": "2026-10-22",
+  "updated": "2026-10-22T20:46:44Z",
+  "providers": [
+    {
+      "name": "Federal Emergency Management Agency (FEMA)",
+      "description": "Produces the National Flood Hazard Layer, the digital Flood Insurance Rate Map data, and publishes it county by county.",
+      "url": "https://msc.fema.gov/portal/home",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Assembled the county deliveries, cut the zones into pieces, converted them to GeoParquet, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -158.875,
+          17.875,
+          -65.218447,
+          64.937513
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2002-03-04T00:00:00Z",
+          "2026-10-22T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "partition:scheme": "hive",
+  "partition:strategy": "attribute",
+  "partition:keys": [
+    {
+      "name": "state",
+      "type": "string",
+      "description": "US postal code of the state or territory: the 50 states and PR where FEMA has county-wide deliveries. The same value as the state column in the files. Inside a state, one file per delivery, named by its dfirm_id."
+    }
+  ],
+  "partition:file_count": 2502,
+  "partition:glob": "s3://parquetry/nfhl/latest/state=*/*.parquet",
+  "table:row_count": 95616307,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "state",
+      "type": "VARCHAR",
+      "description": "US postal code of the state or territory of the county delivery (LA, PR...). Also the partition key."
+    },
+    {
+      "name": "county",
+      "type": "VARCHAR",
+      "description": "County (parish, borough...) of the delivery, title case, without the COUNTY / PARISH suffix."
+    },
+    {
+      "name": "dfirm_id",
+      "type": "VARCHAR",
+      "description": "FEMA DFIRM_ID of the delivery: the county FIPS code and C for county-wide (22071C). Also the file name."
+    },
+    {
+      "name": "fema_update_date",
+      "type": "DATE",
+      "description": "Date of the county delivery on the FEMA portal, from its file name. Counties are updated independently."
+    },
+    {
+      "name": "source_feature_id",
+      "type": "VARCHAR",
+      "description": "FEMA's FLD_AR_ID of the zone the piece comes from. Not unique inside every county: see the collection README."
+    },
+    {
+      "name": "piece_id",
+      "type": "INTEGER",
+      "description": "Number of the piece inside its zone, from 0. `piece_id = 0` counts zones."
+    },
+    {
+      "name": "flood_zone",
+      "type": "VARCHAR",
+      "description": "FEMA flood zone (FLD_ZONE), upper case: A, AE, AH, AO, VE, X, D, OPEN WATER, AREA NOT INCLUDED..."
+    },
+    {
+      "name": "zone_subtype",
+      "type": "VARCHAR",
+      "description": "FEMA zone subtype (ZONE_SUBTY), e.g. FLOODWAY, 0.2 PCT ANNUAL CHANCE FLOOD HAZARD, AREA OF MINIMAL FLOOD HAZARD. NULL when blank."
+    },
+    {
+      "name": "sfha",
+      "type": "BOOLEAN",
+      "description": "FEMA SFHA_TF: true inside the Special Flood Hazard Area (1 percent annual chance)."
+    },
+    {
+      "name": "static_bfe",
+      "type": "DOUBLE",
+      "description": "FEMA STATIC_BFE: base flood elevation in the zone's vertical datum, feet. NULL where FEMA writes -9999."
+    },
+    {
+      "name": "dual_zone",
+      "type": "BOOLEAN",
+      "description": "FEMA DUAL_ZONE: true where two zones overlap (AR/A...)."
+    },
+    {
+      "name": "risk",
+      "type": "VARCHAR",
+      "description": "Geomermaids reading of flood_zone and zone_subtype, not FEMA's: 1 percent flood zone, 0.2 percent flood zone (shaded X, B), minimal, undetermined (D), water, unmapped (AREA NOT INCLUDED)."
+    },
+    {
+      "name": "floodplain",
+      "type": "BOOLEAN",
+      "description": "Geomermaids: the same as sfha, under a plain name."
+    },
+    {
+      "name": "subzone",
+      "type": "VARCHAR",
+      "description": "Geomermaids: the zone of a dual or AR zone, NULL otherwise."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Piece outline as native Parquet GEOMETRY (WKB), NAD83 lon/lat (EPSG:4269) as FEMA delivers it, Polygon, at most 100 vertices."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups before touching geometry."
+    }
+  ],
+  "assets": {
+    "index": {
+      "href": "https://parquetry.geomermaids.com/nfhl/latest/counties.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Index of the delivery files",
+      "description": "2,502 rows, one per file: state, county, dfirm_id, fema_update_date, zip_name, path (relative to latest/), features, zones, bytes, sha256, the file's bbox as geometry and bbox columns. Filter it, then read the files it names.",
+      "roles": [
+        "metadata"
+      ],
+      "file:size": 400804,
+      "file:checksum": "12206d6f4c4e7926c4aa940c7f7e051722988e89dcb80f1458001425566e8e83f0d5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/nfhl/latest/counties.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "1 percent annual chance flood zones, contiguous United States",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 133099,
+      "file:checksum": "1220bc1584c0627a1fedb1571bd4a80d12da2ea984a2b6389da66c9f14ab5c0495e7"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Flood hazard areas: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Flood hazard areas: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.usa.gov/government-copyright",
+      "type": "text/html",
+      "title": "US government works are not subject to copyright (17 U.S.C. 105)"
+    },
+    {
+      "rel": "via",
+      "href": "https://hazards.fema.gov/femaportal/NFHL/searchResult",
+      "type": "text/html",
+      "title": "FEMA Flood Map Service Center, NFHL downloads by county"
+    },
+    {
+      "rel": "related",
+      "href": "https://parquetry.geomermaids.com/nfhl/latest/ATTRIBUTION.txt",
+      "type": "text/plain",
+      "title": "Attribution, what was changed, and the not-for-official-use notice"
+    },
+    {
+      "rel": "related",
+      "href": "https://parquetry.geomermaids.com/nfhl/latest/changes.json",
+      "type": "application/json",
+      "title": "Deliveries replaced, added or skipped, by day"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/nfhl/latest/",
+      "type": "text/html",
+      "title": "Browse the files"
+    }
+  ]
+}

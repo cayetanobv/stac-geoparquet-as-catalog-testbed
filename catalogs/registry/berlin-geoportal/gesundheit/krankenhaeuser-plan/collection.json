@@ -1,0 +1,226 @@
+{
+  "type": "Collection",
+  "id": "gesundheit/krankenhaeuser-plan",
+  "stac_version": "1.1.0",
+  "description": "Standorte der Berliner Krankenh\u00e4user mit Informationen zur Adresse und der Anzahl der verf\u00fcgbaren Betten, unterteilt in Plankrankenh\u00e4user und weitere Krankenh\u00e4user. Krankenhausstandorte - Plankrankenh\u00e4user",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./krankenhaeuser_plankrankenhaeuser.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Krankenhausstandorte \u2013 Plankrankenh\u00e4user",
+      "pmtiles:layers": [
+        "krankenhaeuser_plankrankenhaeuser"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/krankenhauser-wfs-71ad834d",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/krankenhaeuser",
+      "rel": "related",
+      "title": "WFS source service: plankrankenhaeuser",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 64,
+  "table:row_count": 64,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "nr_standort",
+      "type": "int64"
+    },
+    {
+      "name": "kkh_standort",
+      "type": "string"
+    },
+    {
+      "name": "nr_kkh",
+      "type": "int64"
+    },
+    {
+      "name": "kkh",
+      "type": "string"
+    },
+    {
+      "name": "gc_strasse",
+      "type": "string"
+    },
+    {
+      "name": "gc_haus",
+      "type": "string"
+    },
+    {
+      "name": "gc_plz",
+      "type": "int64"
+    },
+    {
+      "name": "gc_ortsteil",
+      "type": "string"
+    },
+    {
+      "name": "betten_insgesamt",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Krankenhausstandorte \u2013 Plankrankenh\u00e4user",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.15694293,
+          52.4059015,
+          13.60354189,
+          52.63406751
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Krankenhausstandorte \u2013 Plankrankenh\u00e4user default style",
+      "description": "Default visualization for Krankenhausstandorte \u2013 Plankrankenh\u00e4user, drawn in #c51b8a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1331,
+      "file:checksum": "122091a9fa0a99e03399bbb7e84f9e1e9bf9d564fbe0adaa4fda7d6fdc855868787c"
+    },
+    "krankenhaeuser_plankrankenhaeuser": {
+      "href": "./krankenhaeuser_plankrankenhaeuser.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 11195,
+      "file:checksum": "12206c1f8aed460587be0a485caa8660a22015a26007506a02c44aa8d5384a0c9cbd",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./krankenhaeuser_plankrankenhaeuser.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Krankenhausstandorte \u2013 Plankrankenh\u00e4user (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 42923,
+      "file:checksum": "12204e4564b0a8f53f83b4c3a07881b80d56fa36388a9325ad92470a2f9333db4875"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Krankenhausstandorte \u2013 Plankrankenh\u00e4user graduated style",
+      "description": "Graduated visualization coloring Krankenhausstandorte \u2013 Plankrankenh\u00e4user by gc_plz, ramped from 10115.0 to 14195.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2104,
+      "file:checksum": "122053d4cf2ecde8c4adbb35f59a31936a2add883bef1eafd114ed307b623706432a"
+    },
+    "thumbnail": {
+      "href": "./krankenhaeuser_plankrankenhaeuser.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Krankenhausstandorte \u2013 Plankrankenh\u00e4user",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 122581,
+      "file:checksum": "1220a7bcfb0eaefd3b18fb5489c2a2643f8c432d23879e9121c654436b76e9f90b84"
+    }
+  },
+  "keywords": [
+    "Krankenh\u00e4user",
+    "Krankenhausplan",
+    "Gesundheit",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Wissenschaft, Gesundheit, Pflege und Gleichstellung",
+      "description": "Datenquelle Geoportal Berlin, Krankenh\u00e4user, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "helge.franz@senwgp.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T02:00:01Z"
+}

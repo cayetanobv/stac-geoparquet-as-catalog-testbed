@@ -1,0 +1,237 @@
+{
+  "type": "Collection",
+  "id": "georisiken/georisk-anbruch",
+  "stac_version": "1.1.0",
+  "description": "Der Download beinhaltet die Datens\u00e4tze GEORISK-Punktobjekte, Anbruch- und Ablagerungsbereiche. GEORISK-Objekte k\u00f6nnen alte, bereits abgelaufene, oder aber potentielle, also zuk\u00fcnftige Hangbewegungen (Felsst\u00fcrze, Rutschungen, Schuttstr\u00f6me etc.) sein. Eine eventuelle Gef\u00e4hrdung ist deshalb aus den Punkten allein noch nicht abzulesen. Oft finden allerdings die aktuellen Hangbewegungen an Stellen statt, an denen bereits fr\u00fcher solche Ereignisse erfolgt waren. N\u00e4here Details k\u00f6nnen im GEORISK-Dokumentations- und Informationssystem im Bayerischen Landesamt f\u00fcr Umwelt abgefragt werden. Die Daten werden laufend fortgeschrieben.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./georisk_anbruch_epsg25832.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "GEORISK-Anbruchbereiche",
+      "pmtiles:layers": [
+        "georisk_anbruch_epsg25832"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/georisiken.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 27900,
+  "table:row_count": 27900,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "OBJEKTID",
+      "type": "string",
+      "description": "Objektschl\u00fcssel des GEORISK-Katasters."
+    },
+    {
+      "name": "LAENGE",
+      "type": "double",
+      "description": "L\u00e4nge des Anbruchbereichs."
+    },
+    {
+      "name": "FACHKLASSE",
+      "type": "string",
+      "description": "Fachliche Klassifikation des Anbruchbereichs."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "GEORISK-Anbruchbereiche",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.089602943426392,
+          47.291028151004035,
+          13.782472133728927,
+          50.55291402902901
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Anbruchbereiche default style",
+      "description": "Default visualization for GEORISK-Anbruchbereiche, drawn in #fc4e2a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1248,
+      "file:checksum": "122033b130f326794d6f4f7741b7d3174bb67b14b0c8f591981d75af791ece0eb88e"
+    },
+    "georisk_anbruch_epsg25832": {
+      "href": "./georisk_anbruch_epsg25832.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4346848,
+      "file:checksum": "122051496d8f27b5970a079f994d8e35901ba7253451ad4cab8ff425aafa2142ed57",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./georisk_anbruch_epsg25832.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "GEORISK-Anbruchbereiche (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9094413,
+      "file:checksum": "1220060dd4a48db4c6a263aa18fcecdb602594ceee80c3cecee73e92beb6dfea7319"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Anbruchbereiche categorical style",
+      "description": "Categorical visualization coloring GEORISK-Anbruchbereiche by FACHKLASSE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1863,
+      "file:checksum": "1220d0ee9946e3031a4bcf03804840958d25f2b14156176a681c678e5aad6152af56"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Anbruchbereiche labeled style",
+      "description": "Default visualization for GEORISK-Anbruchbereiche with FACHKLASSE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1693,
+      "file:checksum": "1220c2225a6b6a8ad0e7e61db5bbacb74a048642afedc31775e84e86452f03e95183"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Anbruchbereiche graduated style",
+      "description": "Graduated visualization coloring GEORISK-Anbruchbereiche by LAENGE, ramped from 0.0 to 4068.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2003,
+      "file:checksum": "122064cd39abc5df30e3ce8b98b168d7e78a49ccee2b14ea8e0e89e4aaae758b6936"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/georisiken/georisk-objekte_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: georisk_anbruch_epsg25832",
+      "pipeline:upstream": true,
+      "file:size": 14039422,
+      "file:checksum": "1220b9f0ed577612f4f3ba2b534179d7ccc4db718ea248097c434d4c388d777724e7"
+    },
+    "thumbnail": {
+      "href": "./georisk_anbruch_epsg25832.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of GEORISK-Anbruchbereiche",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 157815,
+      "file:checksum": "12201cb43cee1c2a7480e19cdf7cd2424d330feccec68e9bedf71da36b7911052136"
+    }
+  },
+  "keywords": [
+    "GEORISK",
+    "Georisiken",
+    "Hangbewegungen",
+    "Massenbewegungen",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

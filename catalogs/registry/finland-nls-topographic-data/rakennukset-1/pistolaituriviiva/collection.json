@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "rakennukset-1/pistolaituriviiva",
+  "stac_version": "1.1.0",
+  "description": "pistolaituriviiva",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./pistolaituriviiva.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "pistolaituriviiva",
+      "pmtiles:layers": [
+        "pistolaituriviiva"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/pistolaituriviiva/items",
+      "rel": "related",
+      "title": "OGC API source service: pistolaituriviiva",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 11202,
+  "table:row_count": 11202,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "korkeustarkkuus",
+      "type": "int32",
+      "description": "Kohteen korkeustarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4. Arvo 1 tarkoittaa m\u00e4\u00e4rittelem\u00e4t\u00f6nt\u00e4. Korkeusmallista interpoloitua korkeutta merkit\u00e4\u00e4n omilla koodeillaan, 201 kahden metrin mallille, 100001 kymmenen metrin mallille ja 250001 kahdenkymmenenviiden metrin mallille."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kulkutapa",
+      "type": "int32",
+      "description": "Viivan kulkutavan koodi. Arvot ovat 1 murtoviiva, 2 k\u00e4yr\u00e4viiva ja 4 tihent\u00e4m\u00e4t\u00f6n k\u00e4yr\u00e4viiva. Murtoviiva kulkee kontrollipisteest\u00e4 kontrollipisteeseen, kun taas k\u00e4yr\u00e4viivaan on interpoloitu tihennyspisteit\u00e4 kuvaamaan muotoa tarkemmin."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 27, joka vastaa viivamaisia Rakennukset-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvoja on kaksi, 45111 alle viiden metrin pistolaituri ja 45112 v\u00e4hint\u00e4\u00e4n viiden metrin pistolaituri."
+    },
+    {
+      "name": "aluejakoonosallistuminen",
+      "type": "string",
+      "description": "Viivan aluejakoon osallistumisen koodi, jossa 0 tarkoittaa viivan osallistuvan aluejakoon ja 1 tarkoittaa, ettei se osallistu. Aluejakoon osallistuva viiva voi toimia aluekohteen reunaviivana."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Pistolaiturin keskiviiva WGS84-koordinaatistossa. Pistolaituri on vedenpinnan yl\u00e4puolella sijaitseva rannasta ulkoneva rakennelma, johon kiinnitet\u00e4\u00e4n aluksia tai josta on helppo p\u00e4\u00e4sy veteen."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "pistolaituriviiva",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.3169036,
+          59.7755931,
+          31.0841478,
+          69.508872
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "pistolaituriviiva default style",
+      "description": "Default visualization for pistolaituriviiva, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1186,
+      "file:checksum": "1220dcc23fe4918a6e8be4d6ae24849720880be631903491ffaa5a7a127e03d4e066"
+    },
+    "pistolaituriviiva": {
+      "href": "./pistolaituriviiva.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 762448,
+      "file:checksum": "1220538b29ca7669056bca80ff96190fcd94f34ad3806cd4ea5d78718289d33da30a",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./pistolaituriviiva.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "pistolaituriviiva (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5300342,
+      "file:checksum": "1220c75413cdf08309f420bfac59d844f0947e1cbfa9a558856229b30b9dfe4486e4"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "pistolaituriviiva graduated style",
+      "description": "Graduated visualization coloring pistolaituriviiva by korkeustarkkuus, ramped from 201.0 to 100001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1992,
+      "file:checksum": "12203fcf922bee648ef9dcc87db0ca7d579c8a147e369a38ca4bdbaff21c569305ca"
+    },
+    "thumbnail": {
+      "href": "./pistolaituriviiva.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of pistolaituriviiva",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 87400,
+      "file:checksum": "1220757166461732e32613b9cb28a25e0b8feefbe8cce77b7f6f7d9b5e9a422c8262"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Rakennukset",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

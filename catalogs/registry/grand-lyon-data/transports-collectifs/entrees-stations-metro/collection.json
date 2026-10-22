@@ -1,0 +1,237 @@
+{
+  "type": "Collection",
+  "id": "transports-collectifs/entrees-stations-metro",
+  "stac_version": "1.1.0",
+  "description": "Les Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau TCL sont des objets ponctuels qui localisent les diff\u00e9rentes bouches des stations de M\u00e9tro.\nL\u2019entr\u00e9e/sortie est caract\u00e9ris\u00e9e par des informations de gestion (identifiant, nom de la station, liste des identifiants des points d\u2019arr\u00eats, coordonn\u00e9es  x/y).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sytral_tcl_sytral_tclstation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais",
+      "pmtiles:layers": [
+        "sytral_tcl_sytral_tclstation"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/entrees-sorties-stations-metro-reseau-transports-commun-lyonnais/info",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/sytral/ows",
+      "rel": "related",
+      "title": "WFS source service: tclstation",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/sytral/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais (WFS)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/sytral/ows?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 169,
+  "table:row_count": 169,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "id_station",
+      "type": "int64"
+    },
+    {
+      "name": "nom",
+      "type": "string"
+    },
+    {
+      "name": "desserte",
+      "type": "string"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "last_update",
+      "type": "timestamp"
+    },
+    {
+      "name": "last_update_fme",
+      "type": "timestamp"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.80417294,
+          45.70119654,
+          4.9223956,
+          45.78543724
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "etalab-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais default style",
+      "description": "Default visualization for Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais, drawn in #e31a1c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1338,
+      "file:checksum": "1220ff0c77a60674d579b7f40cf67da482c2644483ca3a8574d9b226a03e931d643f"
+    },
+    "sytral_tcl_sytral_tclstation": {
+      "href": "./sytral_tcl_sytral_tclstation.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13144,
+      "file:checksum": "1220a4aa4615de461e8aa92df4509ca4ef5a1ed422d79a29f92fc2d80367ca19ee9a",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./sytral_tcl_sytral_tclstation.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 26387,
+      "file:checksum": "1220c4ac333a917a216af543f047f04faa613edeed47b99e09004be0c3969d10a5e9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais labeled style",
+      "description": "Default visualization for Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais with nom shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1782,
+      "file:checksum": "122055644f4d8b57a5396a48d04212aa392288ab97d6274d0c8fb064cd7ef81d49d2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais graduated style",
+      "description": "Graduated visualization coloring Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais by id_station, ramped from 50001.0 to 59372.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2127,
+      "file:checksum": "1220f4da37614ea9ab01abdb64db51b32c0013b23b752fe530917e5106bd1fd73120"
+    },
+    "thumbnail": {
+      "href": "./sytral_tcl_sytral_tclstation.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 185178,
+      "file:checksum": "12209413684039b8f6a59a07ad10d18bc99baacf34f3dedcf5cc0f36d24fcdecbd4a"
+    }
+  },
+  "keywords": [
+    "R\u00e9seaux de transport",
+    "Transport",
+    "Services d'utilit\u00e9 publique et services publics",
+    "M\u00e9tropole de Lyon"
+  ],
+  "providers": [
+    {
+      "name": "SYTRAL Mobilit\u00e9s \u2013 TCL",
+      "description": "Donn\u00e9es SYTRAL Mobilit\u00e9s publi\u00e9es sur data.grandlyon.com, Entr\u00e9es/sorties des stations de M\u00e9tro du r\u00e9seau Transports en Commun Lyonnais, consult\u00e9es le 20.9.2026. Le publicateur ne nomme pas d'adresse de contact pour ce jeu ; data@grandlyon.com est le contact de la plateforme.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.sytral.fr/",
+      "email": "data@grandlyon.com"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:30:00Z"
+}

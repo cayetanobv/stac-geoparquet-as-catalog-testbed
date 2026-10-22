@@ -1,0 +1,280 @@
+{
+  "type": "Collection",
+  "id": "business-and-industry/tax-sales",
+  "stac_version": "1.1.0",
+  "description": "Tax sale parcels from SLDC.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Business and Industry"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/SLDC/Tax_Sales/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tax-sales.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "tax-sales"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/SLDC/Tax_Sales/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service \u2014 this layer has no portal dataset page"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 2200,
+  "table:row_count": 2200,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "ColParcelId",
+      "type": "string"
+    },
+    {
+      "name": "SubmittedParcel",
+      "type": "string"
+    },
+    {
+      "name": "Suit",
+      "type": "string"
+    },
+    {
+      "name": "Sequence",
+      "type": "string"
+    },
+    {
+      "name": "Owners",
+      "type": "string"
+    },
+    {
+      "name": "Demensions",
+      "type": "string"
+    },
+    {
+      "name": "Property_Address",
+      "type": "string"
+    },
+    {
+      "name": "Opening_Bid",
+      "type": "int32"
+    },
+    {
+      "name": "Ward",
+      "type": "int32"
+    },
+    {
+      "name": "Sales_Date",
+      "type": "timestamp[us]"
+    },
+    {
+      "name": "Current_Sales",
+      "type": "string"
+    },
+    {
+      "name": "Tax_Sale",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 406414,
+  "portolan:asset_count": 1,
+  "title": "Tax Sales",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.31475414516635,
+          38.5393093116633,
+          -90.18394760049364,
+          38.741245019881234
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "tax-sales": {
+      "href": "./tax-sales.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 406414,
+      "file:checksum": "1220e7b9cb0580dfa8bbbf0b0158d4ea9db0e78abd789a649b021dd70344a446dba6",
+      "roles": [
+        "data"
+      ],
+      "title": "Tax Sales (GeoParquet)"
+    },
+    "tax-sales-tiles": {
+      "href": "./tax-sales.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Tax Sales (PMTiles)",
+      "file:size": 1093329,
+      "file:checksum": "12205e982f66a9e8e1288cb053c1b98603d1c15c865fc0123f1df4c50c34c0b0b0c6"
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 529,
+      "file:checksum": "12200bb7c96b0871ca8b9caa3ab1cce393b3a58d39d5c505302c98feca5a56dd16c2"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Tax sale parcels by opening bid",
+      "description": "2,200 parcels in tax sale proceedings, stepped by opening bid.",
+      "file:size": 1381,
+      "file:checksum": "12203df4879d423c616a6489f4c78f5cd9684a17cd11a3d1ec888a91b729d446cf49"
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Parcel outlines",
+      "description": "Outlines only.",
+      "file:size": 460,
+      "file:checksum": "1220a8e696fe5caa0ee6f9c0a9cc24f7be3a477c54768963680125c7f3a3dfd3a3f9"
+    },
+    "styles/style-solid": {
+      "href": "./styles/style-solid.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "All tax-sale parcels",
+      "description": "One color for overlays.",
+      "file:size": 488,
+      "file:checksum": "12206ce86ca649806499f525489ed42b08883726d5336b9bf03218b370401f8ca406"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Tax Sales rendered with the default style",
+      "file:size": 357578,
+      "file:checksum": "1220fcb1d01a3b06b06690171521919480f61dc200a14e4f670dc9008eca276e1a72"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "business-and-industry",
+          "title": "Business and Industry"
+        },
+        {
+          "id": "housing",
+          "title": "Housing"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "st-louis-development-corporation",
+          "title": "St. Louis Development Corporation"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "tax sale",
+    "sldc",
+    "St. Louis Development Corporation"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 St. Louis Development Corporation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://maps8.stlouis-mo.gov/arcgis/rest/services/SLDC/Tax_Sales/FeatureServer"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

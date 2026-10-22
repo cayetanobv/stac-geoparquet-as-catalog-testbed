@@ -1,0 +1,200 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+  ],
+  "id": "forest-cover-2020-v4",
+  "title": "JRC Global Map of Forest Cover 2020, version 4",
+  "description": "Forest presence or absence in 2020 at 1/12000 degree (about 10 m), following the FAO forest definition that the EU Deforestation Regulation also uses. Produced by the European Commission Joint Research Centre (JRC), version 4, and mirrored unchanged from the JRC JEODPP server by Epoch as one global COG. The current version; it supersedes the deprecated version 3 (collection `forest-cover-2020-v3`) on the same grid. See [AGENTS.md](AGENTS.md) for a tested access recipe.",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "forest cover",
+    "forest",
+    "EUDR",
+    "deforestation-free",
+    "global"
+  ],
+  "providers": [
+    {
+      "name": "European Commission, Joint Research Centre (JRC)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://joint-research-centre.ec.europa.eu"
+    },
+    {
+      "name": "Epoch",
+      "description": "Hosts this mirror on Source Cooperative.",
+      "roles": [
+        "host"
+      ],
+      "url": "https://epoch.blue"
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -60.0,
+          180.0,
+          80.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2020-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "updated": "2026-10-08T10:44:03Z",
+  "version": "4",
+  "sci:doi": "10.2905/JRC.3KATEH8",
+  "sci:citation": "Colditz, Rene; Bourgoin, Clement; Carboni, Silvia; Achard, Frederic; Carreiras, Joao; Marinelli, Daniele; Rotllan-Puig, Xavier; Beuchle, Rene (2026): Global map of forest cover 2020 - version 4. European Commission, Joint Research Centre (JRC) [Dataset]. PID: http://data.europa.eu/89h/cf7c49ea-8f00-4c5a-bd40-6f25dc341580",
+  "renders": {
+    "forest-cover": {
+      "title": "Forest cover 2020",
+      "assets": [
+        "data"
+      ],
+      "bidx": [
+        1
+      ],
+      "colormap": {
+        "1": [
+          77,
+          146,
+          33,
+          255
+        ]
+      },
+      "resampling": "nearest"
+    }
+  },
+  "assets": {
+    "data": {
+      "href": "https://data.source.coop/epoch/jrc-global-forest-cover-2020/v4/JRC_GFC2020_V4_COG.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Forest cover 2020, version 4 (COG)",
+      "roles": [
+        "data"
+      ],
+      "file:size": 40491726377,
+      "bands": [
+        {
+          "name": "forest_cover",
+          "description": "Forest presence in 2020: 1 = forest, 0 = non-forest. No NoData is declared; 0 is real data.",
+          "data_type": "uint8",
+          "raster:sampling": "area",
+          "raster:spatial_resolution": 9.27,
+          "classification:classes": [
+            {
+              "value": 0,
+              "name": "non-forest",
+              "title": "Non-forest"
+            },
+            {
+              "value": 1,
+              "name": "forest",
+              "title": "Forest",
+              "color_hint": "4D9221"
+            }
+          ]
+        }
+      ],
+      "proj:code": "EPSG:4326",
+      "proj:shape": [
+        1680000,
+        4320000
+      ],
+      "proj:transform": [
+        8.333333333333333e-05,
+        0.0,
+        -180.0,
+        0.0,
+        -8.333333333333333e-05,
+        80.0
+      ]
+    },
+    "source": {
+      "href": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/FOREST/GFC2020/LATEST/single-cog/JRC_GFC2020_V4_COG.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Original file on JRC JEODPP (version 4)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 40491726377
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Forest cover 2020, version 4, forest in the JRC WMS colour",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 13766,
+      "file:checksum": "1220f59f7a674698ae5a4cf3105adfc4c79078780250c3c1e28bcea5b735b5ef62c9"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "http://data.europa.eu/89h/cf7c49ea-8f00-4c5a-bd40-6f25dc341580",
+      "type": "text/html",
+      "title": "JRC Data Catalogue record (version 4)"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent guide"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.2905/JRC.3KATEH8",
+      "type": "text/html",
+      "title": "JRC dataset DOI (version 4)"
+    },
+    {
+      "rel": "license",
+      "href": "https://jeodpp.jrc.ec.europa.eu/ftp/jrc-opendata/FOREST/GFC2020/copyright.txt",
+      "type": "text/plain",
+      "title": "JRC copyright notice (CC BY 4.0)"
+    },
+    {
+      "rel": "predecessor-version",
+      "href": "../forest-cover-2020-v3/collection.json",
+      "type": "application/json",
+      "title": "JRC Global Map of Forest Cover 2020, version 3 (deprecated)"
+    }
+  ]
+}

@@ -1,0 +1,298 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "place",
+  "title": "Places: incorporated places and census designated places, 2026",
+  "description": "The 'Place' layer of the 2026 TIGER/Line Sub-State Geography National GeoPackage: 32,642 rows, of which 32,642 areas in 56 states and territories. Columns and values unchanged; 2D geometry in NAD83 (EPSG:4269) with a bbox covering, Hilbert-sorted, as one GeoParquet 2.0 file read in place over HTTPS or the anonymous S3 endpoint s3.geomermaids.com, and a PMTiles archive for web maps. The Census Bureau makes no warranty on the accuracy of TIGER/Line, and its boundaries are for statistical data collection and tabulation only: not a determination of jurisdictional authority, ownership or entitlement, and not legal land descriptions. Credit: U.S. Census Bureau, TIGER/Line 2026.",
+  "keywords": [
+    "TIGER/Line",
+    "US Census Bureau",
+    "boundaries",
+    "counties",
+    "places",
+    "census tracts",
+    "block groups",
+    "place",
+    "GeoParquet",
+    "PMTiles"
+  ],
+  "license": "other",
+  "attribution": "U.S. Census Bureau, TIGER/Line 2026",
+  "version": "2026",
+  "updated": "2026-10-22T13:57:21Z",
+  "providers": [
+    {
+      "name": "U.S. Census Bureau, Geography Division",
+      "description": "Produces TIGER/Line from its MAF/TIGER system and publishes it as national GeoPackages. A US government work, not subject to copyright in the United States.",
+      "url": "https://www.census.gov/geographies/mapping-files.html",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted the GeoPackage layers to GeoParquet, tiled them, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          144.6179,
+          -14.419965,
+          -64.6956,
+          71.340256
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 32642,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "STATEFP",
+      "type": "VARCHAR",
+      "description": "State FIPS code."
+    },
+    {
+      "name": "PLACEFP",
+      "type": "VARCHAR",
+      "description": "Place FIPS code."
+    },
+    {
+      "name": "PLACENS",
+      "type": "VARCHAR",
+      "description": "Place National Standards (NS) code."
+    },
+    {
+      "name": "GEOID",
+      "type": "VARCHAR",
+      "description": "Area identifier: the codes of the areas it nests in, then its own code (e.g. state + county + tract for a tract)."
+    },
+    {
+      "name": "GEOIDFQ",
+      "type": "VARCHAR",
+      "description": "Fully qualified GEOID, used to join data tables from data.census.gov."
+    },
+    {
+      "name": "NAME",
+      "type": "VARCHAR",
+      "description": "Name."
+    },
+    {
+      "name": "NAMELSAD",
+      "type": "VARCHAR",
+      "description": "Name and translated legal/statistical area description."
+    },
+    {
+      "name": "LSAD",
+      "type": "VARCHAR",
+      "description": "Legal/statistical area description code."
+    },
+    {
+      "name": "CLASSFP",
+      "type": "VARCHAR",
+      "description": "FIPS class code."
+    },
+    {
+      "name": "PCICBSA",
+      "type": "VARCHAR",
+      "description": "Principal city of a core based statistical area (Y or N)."
+    },
+    {
+      "name": "MTFCC",
+      "type": "VARCHAR",
+      "description": "MAF/TIGER feature class code, the kind of area (e.g. G5200 congressional district, G4020 county, G5020 census tract)."
+    },
+    {
+      "name": "FUNCSTAT",
+      "type": "VARCHAR",
+      "description": "Functional status."
+    },
+    {
+      "name": "ALAND",
+      "type": "DOUBLE",
+      "description": "Land area, square metres."
+    },
+    {
+      "name": "AWATER",
+      "type": "DOUBLE",
+      "description": "Water area, square metres."
+    },
+    {
+      "name": "INTPTLAT",
+      "type": "VARCHAR",
+      "description": "Latitude of the internal point (text, as published)."
+    },
+    {
+      "name": "INTPTLON",
+      "type": "VARCHAR",
+      "description": "Longitude of the internal point (text, as published)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Area outline as native Parquet GEOMETRY (WKB), NAD83 (EPSG:4269), longitude and latitude, 2D."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/place.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Places: incorporated places and census designated places, 2026",
+      "description": "32,642 rows in 55 row groups of at most 4 MiB of geometry.",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:4269",
+      "file:size": 82267879,
+      "file:checksum": "1220498826272c04b2600f7696c1efe6886d28e346373565ec5518cd4025981bc92f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/substategeo/place.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/place.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Places: incorporated places and census designated places, vector tiles",
+      "description": "PMTiles, layer `place`, zoom 6 to 12, 90,413 tiles; properties STATEFP, PLACEFP, GEOID, NAMELSAD, ALAND, AWATER, color_index (color_index: a colour per area such that neighbours differ). Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 75109076,
+      "file:checksum": "1220ef5984ea229be228235565d64fdc58d742108d4e8ab270f07758370e219cec67",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/substategeo/place.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Areas, coloured so neighbours differ",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1711,
+      "file:checksum": "1220da933b27a30289a470cfe6a16325bced7019f31f3ab610e3147b2b81a5edcb9b"
+    },
+    "style-outlines": {
+      "href": "./styles/outlines.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Outlines only, to lay over other data",
+      "roles": [
+        "style"
+      ],
+      "file:size": 677,
+      "file:checksum": "1220e68c358720fa29636ca3d3746c130fee18bc22e81ed6e0d94ee116b80acf5640"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Places: incorporated places and census designated places, overview map",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 114916,
+      "file:checksum": "12206df7bce08feb91693016e7c01a6679c744bfbc203362772f6dcfb6872d3489ab"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Places: incorporated places and census designated places: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Places: incorporated places and census designated places: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.usa.gov/government-copyright",
+      "type": "text/html",
+      "title": "Works of the US federal government are not subject to copyright in the United States (17 U.S.C. 105)"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-geopackage-file.html",
+      "type": "text/html",
+      "title": "TIGER/Line GeoPackages on census.gov, where they are published"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2026/2026_TIGERLINE_GPKG_Record_Layouts.pdf",
+      "type": "application/pdf",
+      "title": "2026 TIGER/Line GeoPackage record layouts"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/",
+      "type": "text/html",
+      "title": "Browse the files"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://census.geomermaids.com/",
+      "type": "text/html",
+      "title": "census.geomermaids.com"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/substategeo/place.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Places: incorporated places and census designated places, vector tiles",
+      "pmtiles:layers": [
+        "place"
+      ]
+    }
+  ]
+}

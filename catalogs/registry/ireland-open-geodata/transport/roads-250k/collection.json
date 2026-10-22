@@ -1,0 +1,219 @@
+{
+  "type": "Collection",
+  "id": "transport/roads-250k",
+  "stac_version": "1.1.0",
+  "description": "All European roads (E-roads) and all roads connecting built-up areas, additionally, other roads can be included when it is needed to reach full connectivity of the transportation network (e.g. direct link between two built-up areas) or only way to reach a built-up area or isolated places (harbours, airports). Inside built-up areas only main roads (e.g. through roads) are portrayed. Roads are represented by one line regardless of the number of lanes or carriageways This dataset is provided by Tailte \u00c9ireann",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./roads_250k_map_of_ireland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Roads - National 250k Map Of Ireland",
+      "pmtiles:layers": [
+        "roads_250k_map_of_ireland"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.arcgis.com/home/item.html?id=61c59828f60e471095f9945bb59a69e1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/FH5XCsx8rYXqnjF5/arcgis/rest/services/Roads___OSi_National_250k_Map_Of_Ireland/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS source service: roads_250k_map_of_ireland",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://services-eu1.arcgis.com/FH5XCsx8rYXqnjF5/arcgis/rest/services/Roads___OSi_National_250k_Map_Of_Ireland/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Roads - 250k Map of Ireland (live Tailte \u00c9ireann service)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 5188,
+  "table:row_count": 5188,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:2157')",
+      "description": "Feature geometry in WGS 84 (OGC:CRS84) after conversion; the service stores it in Irish Transverse Mercator (EPSG:2157). The only column declared as geometry."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Internal row number of the ArcGIS service; not stable across data versions."
+    },
+    {
+      "name": "FCsubtype",
+      "type": "int32",
+      "description": "Feature-class subtype code of the 250k product, distinguishing the classes of the feature (for example road or railway class)."
+    },
+    {
+      "name": "RTT",
+      "type": "int32",
+      "description": "Road traffic type code of the 250k product."
+    },
+    {
+      "name": "LEN",
+      "type": "double",
+      "description": "Length of the line as computed by the publisher, in metres."
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double",
+      "description": "Perimeter or line length computed by the ArcGIS service in the units of its spatial reference (Irish Transverse Mercator metres); not derived from the converted WGS 84 geometry."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Bounding box of the geometry as a struct of xmin, ymin, xmax, ymax, added by the GeoParquet conversion."
+    }
+  ],
+  "title": "Roads - National 250k Map Of Ireland",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -10.467045000000269,
+          51.46161249999983,
+          -6.01017550000023,
+          55.371589499999835
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Roads - National 250k Map Of Ireland default style",
+      "description": "Default visualization for Roads - National 250k Map Of Ireland, drawn in #525252.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1261,
+      "file:checksum": "12203b8adfb4146100de6ecd9c963868e0752fa960ed5ea01cc0c1973a0b07d783ca"
+    },
+    "roads_250k_map_of_ireland": {
+      "href": "./roads_250k_map_of_ireland.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1808556,
+      "file:checksum": "1220b749c29fde935b9aa3553c9c0989add549548ae3382c577b65b022cb4ba9fdc1",
+      "proj:code": "EPSG:2157",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./roads_250k_map_of_ireland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Roads - National 250k Map Of Ireland (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8512303,
+      "file:checksum": "1220947ab55e796f4e49fbdbead1f60283a3f72ad1541f33ccc7e9adcec06d7bcb7e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Roads - National 250k Map Of Ireland graduated style",
+      "description": "Graduated visualization coloring Roads - National 250k Map Of Ireland by Shape__Length, ramped from 36.49555625504616 to 47472.41906148623.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2152,
+      "file:checksum": "122008f91f4eb1b2e882e203aaea90a39fa78046f387917283516699fa808290d11a"
+    },
+    "thumbnail": {
+      "href": "./roads_250k_map_of_ireland.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Roads - National 250k Map Of Ireland",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 120586,
+      "file:checksum": "1220510a3fd097073df975b805b7cd4b8c035d4aa4666bb723cf6fb0848b178527f9"
+    }
+  },
+  "keywords": [
+    "250K Map of Ireland",
+    "Ireland",
+    "Tailte \u00c9ireann",
+    "open data"
+  ],
+  "providers": [
+    {
+      "name": "Tailte \u00c9ireann",
+      "description": "Tailte \u00c9ireann, the State agency for national mapping, land registration and property valuation established under the Tailte \u00c9ireann Act 2022 and successor to Ordnance Survey Ireland (OSi). Publisher of the National Statutory Boundaries, the national placenames gazetteer and the 250k mapping series as open data. Source read 2026-09-20.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.tailte.ie/",
+      "email": "custserv@tailte.ie"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T16:00:00Z"
+}

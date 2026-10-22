@@ -1,0 +1,230 @@
+{
+  "type": "Collection",
+  "id": "hidrografia/zones-humides",
+  "stac_version": "1.1.0",
+  "description": "Zones humides de Catalunya publicades com a tema INSPIRE \u00abHydrography \u2013 Physical waters\u00bb, amb el tipus local de zona humida i si est\u00e0 sotmesa a la marea.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./inspire_hy_physicalwaters_wetland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wetlands \u2013 zones humides (INSPIRE HY)",
+      "pmtiles:layers": [
+        "inspire_hy_physicalwaters_wetland"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: zones-humides",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa inspire:HY.PhysicalWaters.Wetland, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 67,
+  "table:row_count": 67,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "localid",
+      "type": "string",
+      "description": "Identificador local de l'objecte dins de l'identificador INSPIRE (\u00abinspireId.localId\u00bb); el servei el retorna amb el patr\u00f3 ID.<tema>.<codi>."
+    },
+    {
+      "name": "localtype",
+      "type": "string",
+      "description": "Tipus local de l'element en la terminologia del productor (element INSPIRE \u00ablocalType\u00bb), per exemple \u00abreservoir\u00bb."
+    },
+    {
+      "name": "tidal",
+      "type": "boolean",
+      "description": "Si la zona humida est\u00e0 sotmesa a la marea (element INSPIRE \u00abtidal\u00bb); en els objectes observats el 21.9.2026, fals."
+    },
+    {
+      "name": "namespace",
+      "type": "string",
+      "description": "Espai de noms de l'identificador INSPIRE; el servei retorna \u00abCatalunya.HY\u00bb per a aquesta capa."
+    },
+    {
+      "name": "versionid",
+      "type": "int64",
+      "description": "Versi\u00f3 del conjunt de dades que el productor associa a l'objecte; el servei retorna \u00ab1\u00bb en la lectura del 21.9.2026."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Wetlands \u2013 zones humides (INSPIRE HY)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.588131549796246,
+          40.563539736117946,
+          3.1959819331987194,
+          42.78311137543707
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wetlands \u2013 zones humides (INSPIRE HY) default style",
+      "description": "Default visualization for Wetlands \u2013 zones humides (INSPIRE HY), drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1323,
+      "file:checksum": "12207fd88d16ac3dd4229ad366b1336a150c5910e3e4551e41bd4cf8d9e4796a4b78"
+    },
+    "inspire_hy_physicalwaters_wetland": {
+      "href": "./inspire_hy_physicalwaters_wetland.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 252713,
+      "file:checksum": "12209551c07eae5137642587de354200cc242b0598f783bebf57cd92a810e432dd49",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./inspire_hy_physicalwaters_wetland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wetlands \u2013 zones humides (INSPIRE HY) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 209472,
+      "file:checksum": "122000bfa12da705e6ef95feedf2bc11a18a3b8852035b68e7156621139c2beed637"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wetlands \u2013 zones humides (INSPIRE HY) labeled style",
+      "description": "Default visualization for Wetlands \u2013 zones humides (INSPIRE HY) with namespace shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1783,
+      "file:checksum": "122012ae081992910604aae4b84e2c6689090dce787662d17f30f373588b52865d88"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wetlands \u2013 zones humides (INSPIRE HY) graduated style",
+      "description": "Graduated visualization coloring Wetlands \u2013 zones humides (INSPIRE HY) by versionid, ramped from 1.0 to 1.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2072,
+      "file:checksum": "12208625cd10b9633bbfb2b4f66f210924077da97782c609b4c9aed0cd8e7b5708be"
+    },
+    "thumbnail": {
+      "href": "./inspire_hy_physicalwaters_wetland.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Wetlands \u2013 zones humides (INSPIRE HY)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 59486,
+      "file:checksum": "12206635fa364cea9fedcac41308e9e035de26772b687463729229007b50b88786f1"
+    }
+  },
+  "keywords": [
+    "INSPIRE",
+    "Hydrography",
+    "zones humides",
+    "aiguamolls",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Wetlands \u2013 zones humides (INSPIRE HY) de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

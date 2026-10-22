@@ -1,0 +1,234 @@
+{
+  "type": "Collection",
+  "id": "equipements/piscines",
+  "stac_version": "1.1.0",
+  "description": "Localisation de l'emprise des piscines et bassins publics de la M\u00e9tropole de Lyon avec nom, identifiant, code Siret et date de mise \u00e0 jour.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./metropole_de_lyon_adr_voie_lieu_adrequippiscine.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Piscines de la M\u00e9tropole de Lyon",
+      "pmtiles:layers": [
+        "metropole_de_lyon_adr_voie_lieu_adrequippiscine"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/piscines-metropole-lyon/info",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows",
+      "rel": "related",
+      "title": "WFS source service: adrequippiscine",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Piscines de la M\u00e9tropole de Lyon (WFS)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Piscines de la M\u00e9tropole de Lyon (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 40,
+  "table:row_count": 40,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "nom",
+      "type": "string"
+    },
+    {
+      "name": "idexterne",
+      "type": "double"
+    },
+    {
+      "name": "siret",
+      "type": "int64"
+    },
+    {
+      "name": "datecreation",
+      "type": "date"
+    },
+    {
+      "name": "datemaj",
+      "type": "date"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Piscines de la M\u00e9tropole de Lyon",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.77043267,
+          45.59001677,
+          5.01428452,
+          45.81716468
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "etalab-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piscines de la M\u00e9tropole de Lyon default style",
+      "description": "Default visualization for Piscines de la M\u00e9tropole de Lyon, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1416,
+      "file:checksum": "122007b6d02ec284a6713ac5c5be7c9a24079abee5cdcd3aa6024639ebf3cd7e4c8c"
+    },
+    "metropole_de_lyon_adr_voie_lieu_adrequippiscine": {
+      "href": "./metropole_de_lyon_adr_voie_lieu_adrequippiscine.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 22913,
+      "file:checksum": "1220877275d782d55c0a3508b77994a3bf53c9ce547d7b00d9bbcd06b7c1e687b99c",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./metropole_de_lyon_adr_voie_lieu_adrequippiscine.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Piscines de la M\u00e9tropole de Lyon (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 35319,
+      "file:checksum": "122036138b871eb9c3774f2a0b4d3129f5e12131d8141ec13932d27ff54e80e2949a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piscines de la M\u00e9tropole de Lyon labeled style",
+      "description": "Default visualization for Piscines de la M\u00e9tropole de Lyon with nom shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1898,
+      "file:checksum": "1220203ef83f1e868e06d155929289081793d40ea4c69157cfa97c86aea2d2e00a6d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piscines de la M\u00e9tropole de Lyon graduated style",
+      "description": "Graduated visualization coloring Piscines de la M\u00e9tropole de Lyon by idexterne, ramped from 690290001.0 to 692660106264512.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2273,
+      "file:checksum": "1220ace870747d2770ef4023a4fe0b58f60a593e67434709d2b0ec4b58f400f5c013"
+    },
+    "thumbnail": {
+      "href": "./metropole_de_lyon_adr_voie_lieu_adrequippiscine.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Piscines de la M\u00e9tropole de Lyon",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 126356,
+      "file:checksum": "1220868c59e2ede0a3eb63e26a20335799df24884d79a53eb1070e7d7c98395760e1"
+    }
+  },
+  "keywords": [
+    "Transport",
+    "B\u00e2timents",
+    "Localisation",
+    "Services d'utilit\u00e9 publique et services publics",
+    "M\u00e9tropole de Lyon"
+  ],
+  "providers": [
+    {
+      "name": "M\u00e9tropole de Lyon \u2013 Direction Innovation Num\u00e9rique et Syst\u00e8mes d'Information",
+      "description": "Source : M\u00e9tropole de Lyon, data.grandlyon.com, Piscines de la M\u00e9tropole de Lyon, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.grandlyon.com/",
+      "email": "data@grandlyon.com"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:30:00Z"
+}

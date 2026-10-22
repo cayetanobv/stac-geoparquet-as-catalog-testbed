@@ -1,0 +1,312 @@
+{
+  "type": "Collection",
+  "id": "planeamento/planos-pormenor",
+  "stac_version": "1.1.0",
+  "description": "Layer com os limites das \u00e1reas de interven\u00e7\u00e3o dos Planos de Pormenor no concelho de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./planos_pormenor.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limite de Planos de Pormenor",
+      "pmtiles:layers": [
+        "planos_pormenor"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/98329b0625f94bc49e228660f9f63a20_0",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Planeamento/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Planeamento (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 67,
+  "table:row_count": 67,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "NOME",
+      "type": "string",
+      "description": "Nome do plano, texto do publicador."
+    },
+    {
+      "name": "ESTADO",
+      "type": "string",
+      "description": "Estado do plano no seu procedimento (por exemplo em vigor ou em elabora\u00e7\u00e3o), texto do publicador."
+    },
+    {
+      "name": "PUBLICACAO",
+      "type": "string",
+      "description": "Refer\u00eancia da publica\u00e7\u00e3o em Di\u00e1rio da Rep\u00fablica que aprovou o plano, texto do publicador."
+    },
+    {
+      "name": "DATAPUBLICACAO",
+      "type": "string",
+      "description": "Data de publica\u00e7\u00e3o do plano, mantida como texto pelo publicador."
+    },
+    {
+      "name": "TIPO",
+      "type": "string",
+      "description": "Tipo de plano, texto do publicador."
+    },
+    {
+      "name": "LABEL",
+      "type": "string",
+      "description": "R\u00f3tulo curto do plano usado na cartografia do publicador."
+    },
+    {
+      "name": "NOME_LABEL",
+      "type": "string",
+      "description": "Nome do plano na forma usada como r\u00f3tulo cartogr\u00e1fico."
+    },
+    {
+      "name": "FREGUESIA",
+      "type": "string",
+      "description": "Nome da freguesia onde o objeto se situa, segundo a divis\u00e3o administrativa de 2012 (Lei n.\u00ba 56/2012); texto do publicador, n\u00e3o uma chave para uma camada de freguesias (este cat\u00e1logo n\u00e3o tem nenhuma, ver AGENTS.md)."
+    },
+    {
+      "name": "PERIMETRO",
+      "type": "double",
+      "description": "Per\u00edmetro da geometria em metros, calculado pelo publicador (alias \u00abPer\u00edmetro\u00bb)."
+    },
+    {
+      "name": "AREA_M2",
+      "type": "double",
+      "description": "\u00c1rea da geometria em metros quadrados, calculada pelo publicador no sistema de proje\u00e7\u00e3o de origem (alias \u00ab\u00c1rea (m2)\u00bb)."
+    },
+    {
+      "name": "PUBLIC_ANTIGAS",
+      "type": "string",
+      "description": "Refer\u00eancias de publica\u00e7\u00f5es anteriores do plano, texto do publicador."
+    },
+    {
+      "name": "ID",
+      "type": "int32",
+      "description": "Identificador num\u00e9rico do plano no invent\u00e1rio do publicador."
+    },
+    {
+      "name": "ATIVO",
+      "type": "string",
+      "description": "Indicador de plano ativo, texto do publicador."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Limite de Planos de Pormenor",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.22724115806235,
+          38.693625670873,
+          -9.0896537581333,
+          38.796885225548
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Pormenor default style",
+      "description": "Default visualization for Limite de Planos de Pormenor, drawn in #762a83.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1183,
+      "file:checksum": "1220e091414d93a5988b34a21d935257643675b6e70b06019059a65d231aa6cc3c17"
+    },
+    "planos_pormenor": {
+      "href": "./planos_pormenor.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 120621,
+      "file:checksum": "12201a579900ae106a6aa0cd7c6f63f4bc69915d815d80b0c45f4dff8cdcb6c0d85c",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./planos_pormenor.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limite de Planos de Pormenor (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 192909,
+      "file:checksum": "12208f34cd7b93ce9f05c6cdc8e0ee72b3fe70cda6679e194777b50f657367cba793"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Pormenor categorical style",
+      "description": "Categorical visualization coloring Limite de Planos de Pormenor by IDTIPO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1737,
+      "file:checksum": "1220a0fac04634c54f6c9c0fdb0168d3fa95a409365050814501e8795f98d504b952"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Pormenor labeled style",
+      "description": "Default visualization for Limite de Planos de Pormenor with NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1602,
+      "file:checksum": "12207f81eb34c01a56e6481cbd0a7904df5321f777648a34801124d4a050a7361c47"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Pormenor graduated style",
+      "description": "Graduated visualization coloring Limite de Planos de Pormenor by AREA_M2, ramped from 4440.68 to 3901006.35.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2002,
+      "file:checksum": "1220039ff4281f921f697838ab8ed86c39ae48c86dc2652155a3cf98ea5c3c31d46e"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/98329b0625f94bc49e228660f9f63a20/geojson?layers=0&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: planos_pormenor",
+      "pipeline:upstream": true,
+      "file:size": 351006,
+      "file:checksum": "1220856f801f046416c71a9e62c162c24734bedd635efb95286ef06a502a1d290ff3"
+    },
+    "thumbnail": {
+      "href": "./planos_pormenor.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Limite de Planos de Pormenor",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 156388,
+      "file:checksum": "1220107d79dd2a0327eec56c899d6d48ec40580f40ac098427259e7de96e7850a12f"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Planeamento",
+    "Planos de Pormenor",
+    "Detail Plan",
+    "PlaneamentoUrbano"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Limite de Planos de Pormenor (Planeamento), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

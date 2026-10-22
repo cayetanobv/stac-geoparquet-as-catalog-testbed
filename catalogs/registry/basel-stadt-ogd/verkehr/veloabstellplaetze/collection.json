@@ -1,0 +1,292 @@
+{
+  "type": "Collection",
+  "id": "verkehr/veloabstellplaetze",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beinhaltet alle Veloabstellpl\u00e4tze auf \u00f6ffentlichem Grund, die grossen Abstellanlagen bei den Bahnh\u00f6fen, Velostationen, Bike+Ride-Anlagen und Cargovelo-Pl\u00e4tze. Die Punkte befinden sich in der Mitte der Parkfelder.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100241.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241)",
+      "pmtiles:layers": [
+        "ods-100241"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100241/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100241/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100241",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1437,
+  "table:row_count": 1437,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "2D-Punktkoordinaten des jeweiligen Veloabstellplatzes in LV95 (Punkte sind in der Mitte der Parkfelder platziert). Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id_veloabstellplatz",
+      "type": "int32",
+      "description": "Eindeutige Identifikationsnummer des Veloabstellplatzes."
+    },
+    {
+      "name": "stationstyp",
+      "type": "VARCHAR[]",
+      "description": "Art des Veloabstellplatzes bzw. der Abstellanlage."
+    },
+    {
+      "name": "strasse",
+      "type": "string",
+      "description": "Mit diesem Merkmal wird die Strassenbezeichnung in offizieller Schreibweise der Gemeinde erfasst.\nGem\u00e4ss der Verordnung \u00fcber die geografischen Namen f\u00e4llt die Benennung der Strassen in den Zust\u00e4ndigkeitsbereich der Gemeinden.\nDie Strassennamen m\u00fcssen grunds\u00e4tzlich den Empfehlungen \"Geb\u00e4udeadressierung und Schreibweise von Strassennamen f\u00fcr die deutschsprachige Schweiz\", herausgegeben vom Bundesamt f\u00fcr Landestopographie, folgen.\nBei einigen allein stehenden Geb\u00e4uden (landwirtschaftliche Geb\u00e4ude, Bergh\u00fctten usw.) kann die Geb\u00e4udeadresse nicht mit einer Strasse in Verbindung gebracht werden.\nIn diesem Fall kann der Strassenname durch den Namen eines benannten Gebiets ersetzt werden."
+    },
+    {
+      "name": "tarif",
+      "type": "string",
+      "description": "Tarif f\u00fcr die Benutzung des Abstellplatzes."
+    },
+    {
+      "name": "anzahl_velos",
+      "type": "int32",
+      "description": "Anzahl Stellpl\u00e4tze f\u00fcr Velos/Motorr\u00e4der."
+    },
+    {
+      "name": "anschliessbar",
+      "type": "string",
+      "description": "Gibt an, ob Velos am Abstellplatz angeschlossen werden k\u00f6nnen bzw. ob eine Vorrichtung f\u00fcr die Anschliessung vorhanden ist."
+    },
+    {
+      "name": "gedeckt",
+      "type": "string",
+      "description": "Gibt an, ob der Abstellplatz \u00fcberdacht ist. (ja, nein oder k.A.)"
+    },
+    {
+      "name": "zugaenglichkeit",
+      "type": "string",
+      "description": "Beschreibt die Zug\u00e4nglichkeit des Veloabstellplatzes."
+    },
+    {
+      "name": "infos",
+      "type": "string",
+      "description": "Zus\u00e4tzliche Informationen oder Hinweise zum Abstellplatz."
+    },
+    {
+      "name": "platz_cargovelos",
+      "type": "string",
+      "description": "Gibt an, ob Stellpl\u00e4tze f\u00fcr Cargovelos vorhanden sind. (ja, nein oder k.A.)"
+    },
+    {
+      "name": "bike_ride",
+      "type": "boolean",
+      "description": "Kennzeichnet die Zugeh\u00f6rigkeit zu einer Bike-&-Ride-Anlage."
+    },
+    {
+      "name": "ort",
+      "type": "string",
+      "description": "Bezeichnung der Ortschaft."
+    },
+    {
+      "name": "map_links",
+      "type": "string",
+      "description": "URL zur Navigation des Standorts in einer Karten-App"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Point) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.556662,
+          47.527854,
+          7.683167,
+          47.594392
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241) default style",
+      "description": "Default visualization for Veloabstellpl\u00e4tze (data.bs.ch 100241), drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1162,
+      "file:checksum": "12200607836f1da15bbba0b3829dcdf888d88f48911a285e6aa646f7076ae4494c7b"
+    },
+    "ods-100241": {
+      "href": "./ods-100241.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 103680,
+      "file:checksum": "12204fa0dbdd3606c9d99a117e3d07f9d69aa9b03a346b66d3bcf2e4cbfda49ce8c5",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100241.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 166157,
+      "file:checksum": "1220e1f096211df8a7feb596c63a936dc850124045a4e47542638654db26c8ac19cc"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241) categorical style",
+      "description": "Categorical visualization coloring Veloabstellpl\u00e4tze (data.bs.ch 100241) by tarif, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1781,
+      "file:checksum": "1220ff7623e4b90ac9e752d73a4824c9ddd22b8a044c3c97a736d86c5a92d8564bee"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241) labeled style",
+      "description": "Default visualization for Veloabstellpl\u00e4tze (data.bs.ch 100241) with tarif shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1572,
+      "file:checksum": "12204ef44958a393fa8729afc952e9c50dab6e72719449111d7e8ad116170d2a1b39"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Veloabstellpl\u00e4tze (data.bs.ch 100241) graduated style",
+      "description": "Graduated visualization coloring Veloabstellpl\u00e4tze (data.bs.ch 100241) by id_veloabstellplatz, ramped from 206.0 to 43403.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1981,
+      "file:checksum": "12201183e47e21d5aa015d2d7d8317f747683fb36de4afd63810acea1841a2a9791d"
+    },
+    "thumbnail": {
+      "href": "./ods-100241.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Veloabstellpl\u00e4tze (data.bs.ch 100241)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 164563,
+      "file:checksum": "1220ce6566eadba7ce5a37004658ae6a32d770ca7ada9b1beac231c5ea5f7e81d3ee"
+    }
+  },
+  "keywords": [
+    "Abstellplatz",
+    "Fahrrad",
+    "Fahrradabstellplatz",
+    "Velo",
+    "Mobilit\u00e4t und Verkehr",
+    "Geographie",
+    "opendata.swiss",
+    "VEAB",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Amt f\u00fcr Mobilit\u00e4t",
+      "description": "Datenquelle: Kanton Basel-Stadt, Amt f\u00fcr Mobilit\u00e4t (Bau- und Verkehrsdepartement), \u00abVeloabstellpl\u00e4tze\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100241/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

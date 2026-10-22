@@ -1,0 +1,378 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "de_bb",
+  "title": "Field boundaries for Berlin / Brandenburg, Germany",
+  "description": "A Crop Field (German: \"Schlaege\") is a contiguous agricultural area surrounded by permanent boundaries, which is cultivated with a single crop.\n\nThis collection holds 15 editions (2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/de_bb/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:25833). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/de_bb/AGENTS.md).\n\nThe 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 and 2023 editions, which the source above does not offer, come from Field boundaries for Berlin / Brandenburg, Germany — EuroCrops V2 (Joint Research Centre, European Commission, converter `ec_de_bb`), under CC-BY-4.0; attribution: European Commission, Joint Research Centre — EuroCropsV2; their items carry those terms.\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Berlin",
+    "Brandenburg",
+    "Germany",
+    "IACS",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "DL-DE-BY-2.0",
+  "providers": [
+    {
+      "name": "Land Brandenburg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://geobroker.geobasis-bb.de/gbss.php?MODE=GetProductInformation&PRODUCTID=9e95f21f-4ecf-4682-9a44-e5f7609f6fa0"
+    },
+    {
+      "name": "Joint Research Centre, European Commission",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.jrc.ec.europa.eu/dataset/b9fb9e67-78a9-4327-9d59-39a928d812d3"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.270204131714435,
+          51.35897444894012,
+          14.764205570276713,
+          53.55867696243755
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2010-01-01T00:00:00Z",
+          "2026-06-04T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:25833",
+      "EPSG:3035"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "flik",
+      "type": "string",
+      "description": "The area identifier (FLIK code) is a 16-character string. ([spec](https://github.com/fiboa/flik-extension/blob/main/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "determination:datetime",
+      "type": "timestamp[ms, tz=UTC]",
+      "description": "The last timestamp at which the field did exist and was observed. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 232338,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 15,
+  "partition:glob": "s3://ftw/harmonized-field-data/de_bb/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/de_bb.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany, Berlin/Brandenburg — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/de_bb-2026.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 103687233,
+      "file:checksum": "122025d3f0803e207de61edfa30933a26be6c120ea286bdc8c1f076065da66fe785d",
+      "proj:code": "EPSG:25833"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2358,
+      "file:checksum": "1220b921500c20b5f630f9a2a8f2523193a1f05e027d29b2f3b17024a04262ead89a"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.1, 1, 2, 10 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1239,
+      "file:checksum": "1220f2b11954a57ac6d86779f9602a3328e642b24aa88bbdc916a82c09354c9559b2"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 756,
+      "file:checksum": "12206b85606915139535d219c2bf638abe69d07c691535974b74c3d135d5cb62ce36"
+    },
+    "visual": {
+      "href": "./year=2026/de_bb-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Germany, Berlin/Brandenburg — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 52687123,
+      "file:checksum": "12201b3ddc7a3f1e49b8d9f92f5f4760798c7b192f1ed59c6f8a7d06d92f77913607"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 218450,
+      "file:checksum": "1220c6052858cfb79bee708217ebfcba34bbead5713ae4484a81f65565bf043a9965"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/de_bb-2026.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "de_bb"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://geobroker.geobasis-bb.de/gbss.php?MODE=GetProductInformation&PRODUCTID=9e95f21f-4ecf-4682-9a44-e5f7609f6fa0",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/DE-BB.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/de_bb.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2010/de_bb-2010.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2010"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2011/de_bb-2011.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2011"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2012/de_bb-2012.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2012"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2013/de_bb-2013.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2013"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2014/de_bb-2014.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2014"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2015/de_bb-2015.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2015"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/de_bb-2016.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/de_bb-2017.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/de_bb-2018.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/de_bb-2019.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/de_bb-2020.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/de_bb-2021.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/de_bb-2022.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/de_bb-2023.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/de_bb-2026.json",
+      "type": "application/geo+json",
+      "title": "Germany, Berlin/Brandenburg — 2026"
+    }
+  ],
+  "updated": "2026-10-12T22:55:53Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "de_bb": [
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml",
+      "https://fiboa.org/flik-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml"
+    ]
+  }
+}

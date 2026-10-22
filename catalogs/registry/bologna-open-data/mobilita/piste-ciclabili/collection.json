@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "mobilita/piste-ciclabili",
+  "stac_version": "1.1.0",
+  "description": "Il dataset contiene il tracciato delle piste e itinerari ciclabili e dei percorsi pedonali in formato cartografico. Questo dataset pu\u00f2 essere integrato con il dataset \"Cammini e Percorsi\" della Citta Metropolitana di Bologna disponibile su\u00a0Cammini e percorsi",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./pisteciclopedonali.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Piste e itinerari ciclabili",
+      "pmtiles:layers": [
+        "pisteciclopedonali"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/piste-ciclopedonali/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/piste-ciclopedonali/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: pisteciclopedonali",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 1141,
+  "table:row_count": 1141,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "codice",
+      "type": "int32"
+    },
+    {
+      "name": "anno",
+      "type": "string"
+    },
+    {
+      "name": "lunghezza",
+      "type": "double"
+    },
+    {
+      "name": "duso",
+      "type": "string",
+      "description": "Utilizzo."
+    },
+    {
+      "name": "dtipologia2",
+      "type": "string",
+      "description": "Descrizione tipologia."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "fid",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Piste e itinerari ciclabili",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.230948271928,
+          44.44740697798703,
+          11.427015412028394,
+          44.5533324221773
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piste e itinerari ciclabili default style",
+      "description": "Default visualization for Piste e itinerari ciclabili, drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1203,
+      "file:checksum": "1220f4c30421e749a3c6d654ada71dc25c2eb0ca929cd7ffc2df40fdd7268887dd54"
+    },
+    "pisteciclopedonali": {
+      "href": "./pisteciclopedonali.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 195297,
+      "file:checksum": "1220414fa19e831ade179fe1c074bdb755fcd582282e6de37065df4c3b4600f62216",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./pisteciclopedonali.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Piste e itinerari ciclabili (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 769333,
+      "file:checksum": "12205c41a79bc575801a84c5d037134090f1ddee74a265b7ac79f5924ec7539ebf2d"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piste e itinerari ciclabili categorical style",
+      "description": "Categorical visualization coloring Piste e itinerari ciclabili by duso, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2142,
+      "file:checksum": "122013a10eb2d38db2833cb71f8d0526dd9cb637bdd4ad4b536b766dc19e50607d1a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piste e itinerari ciclabili labeled style",
+      "description": "Default visualization for Piste e itinerari ciclabili with duso shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1628,
+      "file:checksum": "122005099fa0abadd4f16fbaf29f2082e87e7aa4b9b866690c3aedf5bef388e1e7c9"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Piste e itinerari ciclabili graduated style",
+      "description": "Graduated visualization coloring Piste e itinerari ciclabili by lunghezza, ramped from 7.0 to 2345.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1970,
+      "file:checksum": "1220dc73ddfce7d0173ba88519660a878cc75efb871c7b5ef8f30c85893e3fa4bf07"
+    },
+    "thumbnail": {
+      "href": "./pisteciclopedonali.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Piste e itinerari ciclabili",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 197883,
+      "file:checksum": "12208f4dbc6c0ba7f4c44ade2b5f3919c5b23b8d7fb79c0afe36ded892b6696bccc7"
+    }
+  },
+  "keywords": [
+    "Trasporti",
+    "Mobilit\u00e0 persone e merci",
+    "infrastrutture",
+    "Citt\u00e0 in 15 minuti",
+    "piano dei quartieri"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abPiste e itinerari ciclabili\u00bb (piste-ciclopedonali), pubblicato da Comune di Bologna - Settore mobilit\u00e0 sostenibile e Infrastrutture sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/piste-ciclopedonali/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

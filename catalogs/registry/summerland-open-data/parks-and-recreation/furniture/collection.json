@@ -1,0 +1,180 @@
+{
+  "type": "Collection",
+  "id": "parks-and-recreation/furniture",
+  "stac_version": "1.1.0",
+  "description": "Identifies and shows the locations of furniture (i.e. benches, bleachers, picnic tables and garbage cans) in Summerland parks.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./furniture.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "furniture"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 333,
+  "table:row_count": 333,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "Description_1",
+      "type": "large_string",
+      "description": "Description."
+    },
+    {
+      "name": "PARK_NAME",
+      "type": "large_string",
+      "description": "Coded values from the service's WS2_prkSGN_ParkName domain: Antl = Antlers; Brtm = Bertram; BulLake = Bouleau Lake; CinnCrk = Cinnabar Creek; Cldhm = Coldham; DvsCrkC = Daves Creek Corridor; EllHall = Ellison Community Hall; EllET = Ellison Estates Trail; FA1 = Fintry Access #1; FA2 = Fintry Access #2; FA3 = Fintry Access #3; GHer = Gellatly Heritage; GNF = Gellatly Nut Farm; GCan = Glen Canyon; Gpeak = Goats Peak; HFall = Hardy Falls; JRCH = Joe Rich Community Hall; JFNC = John's FNC; Klmr = Kalamoir; Kly = Kaloya (+27 more)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Park Furniture",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.77437065862739,
+          49.56544816900358,
+          -119.61987027580267,
+          49.68482660274768
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "furniture": {
+      "href": "./furniture.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 30167,
+      "file:checksum": "1220c994dd9058d03513f31a9329907c42276806c2b41654af534e5e0ff5afe90ed2",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./furniture.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 11829,
+      "file:checksum": "122009079b3e99b0c04e0fc4ac9b0bb16ee8c452225c750e0b79ef8dde40a1de2b5f"
+    },
+    "furniture-tiles": {
+      "href": "./furniture.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "furniture (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 36257,
+      "file:checksum": "12206048835ec0f5a7dcbb6b260348a303c1b068a1bb405e622a6608bc31ec9dbeda"
+    },
+    "styles/furniture": {
+      "href": "./styles/furniture.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Furniture type",
+      "file:size": 871,
+      "file:checksum": "12205062832e142ee84f5ce4a5679f85b307ed6b1b3ec3e28199954828774a5e52a5"
+    }
+  },
+  "keywords": [
+    "Parks and Recreation",
+    "Community Resources"
+  ]
+}

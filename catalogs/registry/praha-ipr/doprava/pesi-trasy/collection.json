@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "doprava/pesi-trasy",
+  "stac_version": "1.1.0",
+  "description": "p\u011b\u0161\u00ed trasy v\u010detn\u011b mimo\u00farov\u0148ov\u00fdch a pas\u00e1\u017e\u00ed. P\u016fvod: Datov\u00e1 sada po\u0159\u00edzen\u00e1 Institutem pl\u00e1nov\u00e1n\u00ed a rozvoje hl. m. Prahy.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./dop_cur_dop_pesitrasy_l.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "P\u011b\u0161\u00ed trasy",
+      "pmtiles:layers": [
+        "dop_cur_dop_pesitrasy_l"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.geoportalpraha.cz/datasets/b00b0a0e123b49449a458e72bdf5032d_0",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.geoportalpraha.cz/api/download/v1/items/b00b0a0e123b49449a458e72bdf5032d/geojson?layers=0",
+      "rel": "related",
+      "title": "Upstream source: dop_cur_dop_pesitrasy_l",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://mp.iprpraha.cz/arcgis/rest/services/Hosted/DOP_CUR_DOP_PESITRASY_L/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer DOP_CUR_DOP_PESITRASY_L (\u017eiv\u00e1 slu\u017eba IPR Praha)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 101520,
+  "table:row_count": 101520,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Pr\u016fb\u011b\u017en\u00e9 \u010d\u00edslo \u0159\u00e1dku p\u0159idan\u00e9 konverz\u00ed GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); nen\u00ed atributem publik\u00e1tora ani stabiln\u00edm identifik\u00e1torem objektu."
+    },
+    {
+      "name": "objectid",
+      "type": "int32",
+      "description": "Intern\u00ed po\u0159adov\u00e9 \u010d\u00edslo objektu ve slu\u017eb\u011b ArcGIS (OBJECTID); nen\u00ed stabiln\u00ed mezi verzemi dat."
+    },
+    {
+      "name": "vrstva",
+      "type": "string",
+      "description": "Typ. charakter \u00faseku."
+    },
+    {
+      "name": "min",
+      "type": "double",
+      "description": "Minuty. po\u010det minut."
+    },
+    {
+      "name": "id_poskyt",
+      "type": "int32",
+      "description": "ID poskytovatele dat v datov\u00e9m skladu GIS hl. m. Prahy (\u010d\u00edseln\u00edk IPR Praha)."
+    },
+    {
+      "name": "globalid",
+      "type": "string",
+      "description": "Glob\u00e1ln\u00ed jednozna\u010dn\u00fd identifik\u00e1tor objektu (GUID ve slo\u017een\u00fdch z\u00e1vork\u00e1ch) p\u0159id\u011blen\u00fd geodatab\u00e1z\u00ed publik\u00e1tora."
+    },
+    {
+      "name": "shape_Length",
+      "type": "double",
+      "description": "D\u00e9lka obvodu geometrie vypo\u010dten\u00e1 slu\u017ebou ArcGIS v jednotk\u00e1ch exportu, tj. ve stupn\u00edch WGS 84; bez praktick\u00e9ho v\u00fdznamu, d\u00e9lky po\u010d\u00edtejte ze sloupce geom (ST_Length_Spheroid po SET geometry_always_xy = true)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie objektu ve WGS 84 (OGC:CRS84), jak ji vrac\u00ed export Hubu ArcGIS; jedin\u00fd sloupec deklarovan\u00fd jako geometrie. Konverze jej pojmenov\u00e1v\u00e1 geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ohrani\u010duj\u00edc\u00ed obd\u00e9ln\u00edk geometrie jako struktura xmin, ymin, xmax, ymax, dopln\u011bn\u00fd konverz\u00ed."
+    }
+  ],
+  "title": "P\u011b\u0161\u00ed trasy",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          14.256960417000073,
+          49.941960936000044,
+          14.70617680600003,
+          50.17484971700003
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "P\u011b\u0161\u00ed trasy default style",
+      "description": "Default visualization for P\u011b\u0161\u00ed trasy, drawn in #74c476.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1236,
+      "file:checksum": "122023622e70863916ecd43d1874cc22ed7001e4e4391a2d70b8fc89073cbfc41f24"
+    },
+    "dop_cur_dop_pesitrasy_l": {
+      "href": "./dop_cur_dop_pesitrasy_l.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10396607,
+      "file:checksum": "1220a9ca4717fafa715a0c2a57f4903a4a700fdb43a4a7b3c4432071cd74d787b4cf",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./dop_cur_dop_pesitrasy_l.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "P\u011b\u0161\u00ed trasy (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 25058648,
+      "file:checksum": "12204b99ae3ed735c675223b1be673f57a227d20cdd8edf2ed8af9d21cb32683931d"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "P\u011b\u0161\u00ed trasy categorical style",
+      "description": "Categorical visualization coloring P\u011b\u0161\u00ed trasy by vrstva, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2393,
+      "file:checksum": "1220c44aaeb3552df86a015f17ed3e7e6b396a91eca547acc2624a252546e31fec43"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "P\u011b\u0161\u00ed trasy labeled style",
+      "description": "Default visualization for P\u011b\u0161\u00ed trasy with vrstva shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1673,
+      "file:checksum": "122049f4aa7b88471c64ab9126529ae5f88b1a744d401d371b037a406c3a995ed9a5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "P\u011b\u0161\u00ed trasy graduated style",
+      "description": "Graduated visualization coloring P\u011b\u0161\u00ed trasy by min, ramped from 0.01673969 to 37.29493319.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2030,
+      "file:checksum": "1220840c35cf82f9a5599154367e215da01500eac116d231e96bbf9610fbf54f2280"
+    },
+    "thumbnail": {
+      "href": "./dop_cur_dop_pesitrasy_l.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of P\u011b\u0161\u00ed trasy",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 248845,
+      "file:checksum": "12200f7a68f9ebbe17efbdf23354a022fed6428879cde83b743f36e81553367e4bd8"
+    }
+  },
+  "keywords": [
+    "P\u011b\u0161\u00ed doprava/Pedestrian transport",
+    "Doprava/Transportation",
+    "Praha",
+    "IPR Praha"
+  ],
+  "providers": [
+    {
+      "name": "Institut pl\u00e1nov\u00e1n\u00ed a rozvoje hlavn\u00edho m\u011bsta Prahy (IPR Praha)",
+      "description": "Datov\u00fd podklad \u00a9 IPR Praha, P\u011b\u0161\u00ed trasy, opendata.geoportalpraha.cz, sta\u017eeno 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://geoportalpraha.cz/",
+      "email": "info@geoportalpraha.cz"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "cs",
+    "name": "\u010ce\u0161tina",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

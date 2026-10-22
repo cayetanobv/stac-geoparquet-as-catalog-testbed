@@ -1,0 +1,212 @@
+{
+  "type": "Collection",
+  "id": "medi-ambient/qualitat-aire-pm10-2024",
+  "stac_version": "1.1.0",
+  "description": "Els mapes d'immissi\u00f3 de la qualitat de l\u2019aire proporcionen un conjunt d\u2019informaci\u00f3 detallada de la contaminaci\u00f3 atmosf\u00e8rica a la qual est\u00e0 sotmesa la ciutat de Barcelona i permeten con\u00e8ixer i avaluar globalment la pres\u00e8ncia dels diferents contaminants amb m\u00e9s incid\u00e8ncia a la ciutat, seguint els criteris d\u2019avaluaci\u00f3 que s\u2019estableixen a la Directiva 2008/50/CE, de 21 de maig de 2008, i als valors guia de l\u2019Organitzaci\u00f3 Mundial de la Salut (OMS). Aquests mapes han estat realitzats conjuntament per l\u2019Ajuntament de Barcelona i l\u2019Ag\u00e8ncia de Salut P\u00fablica de Barcelona (ASPB). Aquesta Collection recull el mapa d'immissi\u00f3 de part\u00edcules PM10 de 2024 per tram de carrer: 15.041 trams amb el rang de concentraci\u00f3 assignat.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./aire-pm10-2024.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024)",
+      "pmtiles:layers": [
+        "aire-pm10-2024"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata-ajuntament.barcelona.cat/data/ca/dataset/mapes-immissio-qualitat-aire",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata-ajuntament.barcelona.cat/data/dataset/d8f6af6e-e03e-462d-b3c8-d40b64179446/resource/f6c898f1-8820-45bb-a100-1aebe5659fee/download",
+      "rel": "related",
+      "title": "Upstream source: aire-pm10-2024",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 15041,
+  "table:row_count": 15041,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "TRAM",
+      "type": "string",
+      "description": "Identificador del tram de carrer."
+    },
+    {
+      "name": "Rang",
+      "type": "string",
+      "description": "Rang de concentraci\u00f3 del contaminant assignat al tram."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:25831')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.0590574772635013,
+          41.32260114576479,
+          2.222323722808398,
+          41.46827616175554
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024) default style",
+      "description": "Default visualization for Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024), drawn in #e34a33.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1233,
+      "file:checksum": "1220ca758fd1e11d67765f32255a78d01c712a023c58119a3ffa7d0b3a0f740ca26d"
+    },
+    "aire-pm10-2024": {
+      "href": "./aire-pm10-2024.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 900486,
+      "file:checksum": "1220511de4463378ae5dcd3f5bee2e787e0e0afdffbcb560bd456ba43c525fca7289",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./aire-pm10-2024.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2691550,
+      "file:checksum": "1220fe957b2e1a0bdc0b3251d5d6a7392a2ed1c78ab77e354e493574880393cb4acf"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024) categorical style",
+      "description": "Categorical visualization coloring Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024) by Rang, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2550,
+      "file:checksum": "1220f6666632b27e70db5253c6a9d44198d52602a2c7e6cf773ab9332c968f4e2588"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024) labeled style",
+      "description": "Default visualization for Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024) with Rang shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1650,
+      "file:checksum": "12202fcc6a7fafff4985333dda9312d92cc0ecea7dc551367158d1c1d264e38be1e8"
+    },
+    "thumbnail": {
+      "href": "./aire-pm10-2024.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Mapes d'immissi\u00f3 de la qualitat de l'aire de la ciutat de Barcelona (PM10, 2024)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 185737,
+      "file:checksum": "122070d6ece4a3a68f01b10601ee273efa179bc7989290b4a656ac0fd37aaaf3c4fc"
+    }
+  },
+  "keywords": [
+    "qualitat de l'aire",
+    "PM10",
+    "part\u00edcules",
+    "contaminaci\u00f3 atmosf\u00e8rica",
+    "any 2024",
+    "Barcelona"
+  ],
+  "providers": [
+    {
+      "name": "Ajuntament de Barcelona",
+      "description": "Font de les dades: Ajuntament de Barcelona",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata-ajuntament.barcelona.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:00:00Z"
+}

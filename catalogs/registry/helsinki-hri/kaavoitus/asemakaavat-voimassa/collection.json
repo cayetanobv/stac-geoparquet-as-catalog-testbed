@@ -1,0 +1,311 @@
+{
+  "type": "Collection",
+  "id": "kaavoitus/asemakaavat-voimassa",
+  "stac_version": "1.1.0",
+  "description": "Helsingin asemakaavahakemistokartta eli asemakaavatilannekartta on koostekartta kaupungissa voimassa olevista asemakaavoista. Hakemistokartassa on kuvattu asemakaavojen rajat, numerot ja p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4t. Asemakaavojen tunnukset tallennetaan siten, ett\u00e4 jokaisella 1:2000 lehdell\u00e4 tulee n\u00e4ky\u00e4 asemakaavan numero sek\u00e4 p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4.\nRuotsiksi: Helsingfors planindex karta. Englanniksi: Detailed plans index map of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_kaavahakemisto_alue_kaava_voimassa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa)",
+      "pmtiles:layers": [
+        "avoindata_kaavahakemisto_alue_kaava_voimassa"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-asemakaavahakemistokartta-asemakaavahakemisto",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: kaavahakemisto_alue_kaava_voimassa",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 4391,
+  "table:row_count": 4391,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Kohteen yksil\u00f6iv\u00e4 tunniste. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tyyppi",
+      "type": "string",
+      "description": "Asemakaavan tyyppi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "kaavatunnus",
+      "type": "string",
+      "description": "Asemakaavan tunnus. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "luokka",
+      "type": "string",
+      "description": "Asemakaavan tilaa kuvaava luokka. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "alkuperainen",
+      "type": "boolean",
+      "description": "Asemakaavan historiaa kuvaava tila. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "pintaala",
+      "type": "double",
+      "description": "Asemakaavan kattavan alueen pinta-ala. Pinta-alan yksikk\u00f6 on neli\u00f6metri. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "korkeusjarjestelma",
+      "type": "string",
+      "description": "Asemakaavassa k\u00e4yt\u00f6ss\u00e4 oleva korkeusj\u00e4rjestelm\u00e4. 12/2012 j\u00e4lkeisiss\u00e4 kaavoissa korkeusj\u00e4rjestelm\u00e4 on p\u00e4\u00e4s\u00e4\u00e4nt\u00f6isesti N2000 ja sit\u00e4 vanhemissa NN. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "sijaintialue",
+      "type": "double",
+      "description": "Sijaintialue. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "hyvaksymispvm",
+      "type": "string",
+      "description": "Asemakaavan hyv\u00e4ksymisp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "lainvoimaisuuspvm",
+      "type": "date",
+      "description": "Asemakaavan lainvoimasuusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "voimaantulopvm",
+      "type": "date",
+      "description": "Asemakaavan voimaantulop\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "vahvistamispvm",
+      "type": "date",
+      "description": "Asemakaavan vahvistamisp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "luontipvm",
+      "type": "date",
+      "description": "Kohteen luontip\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "muokkauspvm",
+      "type": "date",
+      "description": "Kohteen edellinen muokkausp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.83250805,
+          60.12859186,
+          25.24082452,
+          60.28931819
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) default style",
+      "description": "Default visualization for Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa), drawn in #d95f02.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1459,
+      "file:checksum": "1220852de2de0aef52051bf71597d33008bdd0a386b06832de26603764400709355e"
+    },
+    "avoindata_kaavahakemisto_alue_kaava_voimassa": {
+      "href": "./avoindata_kaavahakemisto_alue_kaava_voimassa.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1910551,
+      "file:checksum": "12204565f2da16790627bf5adf7b1e007e1137d7d11b9756d17dea7b823f029cc50e",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_kaavahakemisto_alue_kaava_voimassa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4120061,
+      "file:checksum": "1220f09549ca6ac15abdbc74b627fd7ec841f0d775d826d52a0c4bdc8e57df3e3571"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) categorical style",
+      "description": "Categorical visualization coloring Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) by korkeusjarjestelma, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2058,
+      "file:checksum": "12206eecdea3f7af72f82d3a76cd112b001609d9c3bccc0479cdb06aec7b9fbd0404"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) labeled style",
+      "description": "Default visualization for Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1945,
+      "file:checksum": "1220970166d8e944d3f8450cd028187593dd6335207795451cebb251975117a0cd7b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) graduated style",
+      "description": "Graduated visualization coloring Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa) by pintaala, ramped from 0.0 to 33194758.513576.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2276,
+      "file:checksum": "1220cb2740a2ca4f107fb0d6155dc5fbea5a6c29d7afdd1cd12eb367f25267cec352"
+    },
+    "thumbnail": {
+      "href": "./avoindata_kaavahakemisto_alue_kaava_voimassa.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin asemakaavahakemisto \u2013 voimassa olevat asemakaavat (Kaavahakemisto_alue_kaava_voimassa)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 171848,
+      "file:checksum": "1220320becec25da78505bf0235511bce49fbc33a2d0edfdc25f9a5cfc6ec8dc01c8"
+    }
+  },
+  "keywords": [
+    "ajantasa-asemakaava",
+    "asemakaavat",
+    "kaavasuunnittelu",
+    "kartat",
+    "maank\u00e4ytt\u00f6",
+    "rakennusoikeus",
+    "Kaavahakemisto_alue_kaava_voimassa",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin asemakaavahakemistokartta (asemakaavahakemisto)\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-asemakaavahakemistokartta-asemakaavahakemisto",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

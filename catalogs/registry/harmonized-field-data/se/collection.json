@@ -1,0 +1,334 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "se",
+  "title": "Swedish Crop Fields (Jordbruksskiften)",
+  "description": "A crop field (Jordbruksskift) is a contiguous area of land within a block where a farmer grows a crop or otherwise manages the land.\nTo receive compensation for agricultural support (EU support), farmers apply for support from the\nSwedish Agency for Agriculture via a SAM application. The data set contains parcels where the area\napplied for and the area decided on are the same. The data is published at the end of a year.\n\n    Codes found at https://jordbruksverket.se/stod/jordbruk-tradgard-och-rennaring/sam-ansokan-och-allmant-om-jordbrukarstoden/grodkoder\n\nThis collection holds 11 editions (2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/se/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2025). Geometries are kept in the source CRS (EPSG:3006). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/se/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "INSPIRE",
+    "Sweden",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries",
+    "jordbruksskiften"
+  ],
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "Jordbruksverket (The Swedish Board of Agriculture)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://jordbruksverket.se"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.241347749947842,
+          55.17419888840092,
+          25.28141413665115,
+          68.91596387958512
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2015-01-01T00:00:00Z",
+          "2025-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3006"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "collection",
+      "type": "string",
+      "description": "The identifier of the collection. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 1207889,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 11,
+  "partition:glob": "s3://ftw/harmonized-field-data/se/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/se.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sweden — latest edition (2025) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2025/se-2025.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 306842110,
+      "file:checksum": "122094f5f18e8e5fa9f97889718ad2b1733bd397e40a27527c3a696eae337087d696",
+      "proj:code": "EPSG:3006"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2340,
+      "file:checksum": "122050a4693658991b1d63b44294f2777b70d789175de5b61303ff4fcf44b738283b"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 1, 2 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1170,
+      "file:checksum": "122095fef7a771cf65af6294b19e9dd5fd8bf419540eac466c6eb5ce3135f38a8e48"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 726,
+      "file:checksum": "122005fb4bb085e68ac53722072895a8caf41d9d0b3e50499aeddc04b9bc76bcaf4e"
+    },
+    "visual": {
+      "href": "./year=2025/se-2025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sweden — latest edition (2025) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 158004333,
+      "file:checksum": "12205c94335de1c825adf696879fcd5f4232d2f42ddd5e15f13c9c40d14e2a575e60"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 253073,
+      "file:checksum": "12200d16a32b78b7033e4bafe9d2894f1cd82387c8dc98f6ab516e7de4fb600d238e"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2025/se-2025.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "se"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://jordbruksverket.se",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/SE.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/se.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2015/se-2015.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2015"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/se-2016.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/se-2017.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/se-2018.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/se-2019.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/se-2020.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/se-2021.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/se-2022.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/se-2023.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2023"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2024/se-2024.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2024"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/se-2025.json",
+      "type": "application/geo+json",
+      "title": "Sweden — 2025"
+    }
+  ],
+  "updated": "2026-09-13T14:47:55Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "se": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml"
+    ]
+  },
+  "attribution": "Jordbruksverket"
+}

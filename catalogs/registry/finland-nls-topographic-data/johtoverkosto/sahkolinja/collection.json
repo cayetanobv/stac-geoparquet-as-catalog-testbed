@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "johtoverkosto/sahkolinja",
+  "stac_version": "1.1.0",
+  "description": "sahkolinja",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sahkolinja.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "sahkolinja",
+      "pmtiles:layers": [
+        "sahkolinja"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/sahkolinja/items",
+      "rel": "related",
+      "title": "OGC API source service: sahkolinja",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 148669,
+  "table:row_count": 148669,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "korkeustarkkuus",
+      "type": "int32",
+      "description": "Kohteen korkeustarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4. Arvo 1 tarkoittaa m\u00e4\u00e4rittelem\u00e4t\u00f6nt\u00e4. Korkeusmallista interpoloitua korkeutta merkit\u00e4\u00e4n omilla koodeillaan, 201 kahden metrin mallille, 100001 kymmenen metrin mallille ja 250001 kahdenkymmenenviiden metrin mallille."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kulkutapa",
+      "type": "int32",
+      "description": "Viivan kulkutavan koodi. Arvot ovat 1 murtoviiva, 2 k\u00e4yr\u00e4viiva ja 4 tihent\u00e4m\u00e4t\u00f6n k\u00e4yr\u00e4viiva. Murtoviiva kulkee kontrollipisteest\u00e4 kontrollipisteeseen, kun taas k\u00e4yr\u00e4viivaan on interpoloitu tihennyspisteit\u00e4 kuvaamaan muotoa tarkemmin."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 28, joka vastaa viivamaisia Johtoverkosto-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvoja on kaksi, 22311 suurj\u00e4nnite eli 110 kilovoltin tai sit\u00e4 suurempi linja ja 22312 jakeluj\u00e4nnite eli v\u00e4hint\u00e4\u00e4n 20 mutta alle 110 kilovoltin linja."
+    },
+    {
+      "name": "tasosijainti",
+      "type": "int32",
+      "description": "Kohteen tasosijainnin koodi, jossa 0 tarkoittaa pinnalla, -1 pinnan alla ja 1 pinnan yll\u00e4. Tasosijainti kuvaa kulkuyhteyksien ja johtojen keskin\u00e4ist\u00e4 riste\u00e4mist\u00e4, ei korkeutta merenpinnasta."
+    },
+    {
+      "name": "sahkolinjansymbolitviittaus",
+      "type": "string",
+      "description": "Viittaus s\u00e4hk\u00f6linjalle tallennettuihin s\u00e4hk\u00f6linjan symboleihin. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "S\u00e4hk\u00f6linjan murtoviiva WGS84-koordinaatistossa. S\u00e4hk\u00f6linja on kiinte\u00e4 s\u00e4hk\u00f6n johtamiseen tarkoitettu ilmajohto, eik\u00e4 maakaapeleita tallenneta."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "sahkolinja",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.4738499,
+          59.8373998,
+          31.4100983,
+          70.0898805
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "sahkolinja default style",
+      "description": "Default visualization for sahkolinja, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1130,
+      "file:checksum": "1220fc8013f5638b26c5f05f532dd0803db596bddbf2f0df3ba1d8f762bb16057c33"
+    },
+    "sahkolinja": {
+      "href": "./sahkolinja.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21456300,
+      "file:checksum": "12200cbba2ae2979437575ae0f3af8d8800823a4010fac55d2ebca91eed8059464f2",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./sahkolinja.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "sahkolinja (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 97718337,
+      "file:checksum": "1220afa2e489531e475d0e6466cdb37eb463016a428a505d8cdd9ba54f85d2ea1797"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "sahkolinja graduated style",
+      "description": "Graduated visualization coloring sahkolinja by korkeustarkkuus, ramped from 201.0 to 100001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1936,
+      "file:checksum": "122005a76c2697ec3032f396794b53594e5df0b6d2bcb4791665b707eec47dbf8188"
+    },
+    "thumbnail": {
+      "href": "./sahkolinja.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of sahkolinja",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 135751,
+      "file:checksum": "122083ff37ad7b033d1b2edde91aaa2a8e5a45e478ed868033ab026c2df41354eb76"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Johtoverkosto",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

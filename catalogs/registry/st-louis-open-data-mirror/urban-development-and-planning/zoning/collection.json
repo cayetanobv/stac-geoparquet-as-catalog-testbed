@@ -1,0 +1,260 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/zoning",
+  "stac_version": "1.1.0",
+  "description": "Strategic land use (SLUP),parcel, and zoning data",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zoning.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "zoning"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=78",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=78",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://maps9.stlouis-mo.gov/arcgis/rest/services/PDA/Zoning/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 126945,
+  "table:row_count": 126945,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Shape",
+      "type": "binary"
+    },
+    {
+      "name": "HANDLE",
+      "type": "string",
+      "description": "Citywide parcel handle of the parcel the zoning polygon corresponds to (join key to the parcels collections)."
+    },
+    {
+      "name": "LAYER",
+      "type": "string",
+      "description": "Zoning district letter, per the city's ArcGIS renderer: A Single-Family Residential Dwelling District, B Two-Family Dwelling District, C/D/E Multiple-Family Dwelling Districts, F Neighborhood Commercial District, G Local Commercial and Office District, H Area Commercial District, I Central Business District, J Industrial District, K Unrestricted District, L Jefferson Memorial District."
+    },
+    {
+      "name": "Shape.STArea()",
+      "type": "double"
+    },
+    {
+      "name": "Shape.STLength()",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default",
+    "styles/city-renderer",
+    "styles/style-boundaries",
+    "styles/style-broad-use"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "planning-and-urban-design",
+          "title": "Planning and Urban Design"
+        }
+      ]
+    }
+  ],
+  "title": "Zoning",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3205822022534,
+          38.53308187196831,
+          -90.17536578157505,
+          38.77436290172529
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Planning and Urban Design",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=78"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "zoning": {
+      "href": "./zoning.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Zoning (GeoParquet)",
+      "file:size": 16981825,
+      "file:checksum": "1220c46633ca06ffe944bf978bf25721a1fe37595b49dc6b5b4c8742e4bb7cfb2bd3",
+      "roles": [
+        "data"
+      ]
+    },
+    "zoning-tiles": {
+      "href": "./zoning.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "zoning (vector tiles)",
+      "file:size": 9670713,
+      "file:checksum": "12207500861df5ac8b49857a2c7873feefba11b47a89f753e0f210cbc4ab023e4adb",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 1028,
+      "file:checksum": "12203fa66b388c70c51e77c03d3684a3c89a4ef211db374b367a597f13048d003b1b",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zoning districts",
+      "description": "Parcel-level zoning colored by the twelve district letters, with the city's official district names (from the city's own map renderer) in the legend.",
+      "file:size": 1885,
+      "file:checksum": "122072ea8e07f18f7ce7beab527a8b2ac0ee05c3c68bbc4b091ed94ce586c81d62b5",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "District boundaries",
+      "description": "Zoning outlines only, for overlaying on imagery or the parcel fabric.",
+      "file:size": 513,
+      "file:checksum": "1220aa7e721c23c1af23b08fa893411c55e0def7b04ee479af0bcc74f9755bb29705",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-broad-use": {
+      "href": "./styles/style-broad-use.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Residential / commercial / industrial",
+      "description": "Districts grouped into broad uses: residential A-E green, commercial F-H orange, Central Business red, Industrial purple, Unrestricted brown, Jefferson Memorial light blue.",
+      "file:size": 1928,
+      "file:checksum": "1220abe912179f6cef6fa84fcf3647b7b7a27b1ece6b09d7626973ee761ff2b46fee",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Zoning rendered with the default style",
+      "file:size": 314314,
+      "file:checksum": "1220cae9c9d6513e1466932de1386932693e0b0259cbf4b801a9476460799571be65",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source-shapefile": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/zoning.zip",
+      "type": "application/zip",
+      "title": "Zoning districts (zipped Shapefile)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 11264726,
+      "file:checksum": "1220d0781e9300a366da799ea15097306c5254a0b0711c1d4a4a799b8e9cc99ba929",
+      "description": "The city's own alternate distribution of this layer. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  },
+  "keywords": [
+    "Planning and Urban Design"
+  ]
+}

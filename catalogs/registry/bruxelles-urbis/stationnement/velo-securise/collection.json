@@ -1,0 +1,274 @@
+{
+  "type": "Collection",
+  "id": "stationnement/velo-securise",
+  "stac_version": "1.1.0",
+  "description": "Ce jeu de donn\u00e9es rassemble les lieux de stationnement s\u00e9curis\u00e9 d\u00e9di\u00e9s au v\u00e9lo en R\u00e9gion de Bruxelles-Capitale, g\u00e9r\u00e9s par parking.brussels.\n\nTitre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab Beveiligde parkeeraanbod voor fietsen in het Brussels Hoofdstedelijk Gewest \u00bb ; titre anglais : \u00ab Secured parking-supply for bicycles in Brussels-Capital Region \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./parkingbrussels_cyclo_parking.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale",
+      "pmtiles:layers": [
+        "parkingbrussels_cyclo_parking"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/b8eaa09c-2c34-11f1-ba63-f020ff9afd75",
+      "type": "text/html"
+    },
+    {
+      "href": "https://ows.parking.brussels/ws/ParkingBrussels/ows",
+      "rel": "related",
+      "title": "WFS source service: cyclo-parking",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1402,
+  "table:row_count": 1402,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "code",
+      "type": "string"
+    },
+    {
+      "name": "parking_type_name",
+      "type": "string"
+    },
+    {
+      "name": "capacity_classic",
+      "type": "int64"
+    },
+    {
+      "name": "capacity_cargo",
+      "type": "int64"
+    },
+    {
+      "name": "latitude",
+      "type": "double"
+    },
+    {
+      "name": "longitude",
+      "type": "double"
+    },
+    {
+      "name": "spots_available_classic",
+      "type": "int64"
+    },
+    {
+      "name": "spots_available_cargo",
+      "type": "int64"
+    },
+    {
+      "name": "number_of_requests_in_scope",
+      "type": "int64"
+    },
+    {
+      "name": "update_timestamp",
+      "type": "timestamp"
+    },
+    {
+      "name": "address_nl",
+      "type": "string"
+    },
+    {
+      "name": "address_fr",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.264849995566929,
+          50.78354000248967,
+          4.465864995538745,
+          50.8980060026977
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale default style",
+      "description": "Default visualization for Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale, drawn in #7570b3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1341,
+      "file:checksum": "12204afa348ea5d1fd627f580947a3407955db1d9a0b78e68c872567dbf3d3ce3568"
+    },
+    "parkingbrussels_cyclo_parking": {
+      "href": "./parkingbrussels_cyclo_parking.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 129487,
+      "file:checksum": "1220c7da0221f62f58bc44b7d0649255416b85ee37d2bb1f0c289f801cf6bb505544",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./parkingbrussels_cyclo_parking.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 249171,
+      "file:checksum": "1220e827fc57ee69c174c83f4972afe82047d4de712746d293883d2c6ad30dfd1c93"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale categorical style",
+      "description": "Categorical visualization coloring Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale by parking_type_name, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2401,
+      "file:checksum": "1220a676ee813c3e6d6e76b7fe5b1516aa91a2585e20180d49dc060c94dc9c89014f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale labeled style",
+      "description": "Default visualization for Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1788,
+      "file:checksum": "1220aea5cac161b3d6ed4c306726efdf5ee8dfbcc93d5b139dd57d19796a7ab9c285"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale graduated style",
+      "description": "Graduated visualization coloring Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale by capacity_classic, ramped from 0.0 to 610.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2130,
+      "file:checksum": "12204648497e311017a5a83ad64297af150f568f1166cc45d075656c3ee7729b9742"
+    },
+    "thumbnail": {
+      "href": "./parkingbrussels_cyclo_parking.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 134465,
+      "file:checksum": "122092cc5c0d81bbe6e302f92541857a4b53d867e1c87b28021f09ada6ba9a4bcbb8"
+    }
+  },
+  "keywords": [
+    "aire de stationnement",
+    "transport non motoris\u00e9",
+    "autorit\u00e9 r\u00e9gionale",
+    "bicyclette",
+    "place de stationnement",
+    "R\u00e9gions et villes",
+    "Transports",
+    "R\u00e9seaux de transport",
+    "R\u00e9gional",
+    "Type de service routier",
+    "fiets",
+    "parking",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "parking.brussels",
+      "description": "Source : parking.brussels, \u00ab Offre de stationnement v\u00e9lo s\u00e9curis\u00e9 en R\u00e9gion de Bruxelles Capitale \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://parking.brussels/",
+      "email": "data@parking.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

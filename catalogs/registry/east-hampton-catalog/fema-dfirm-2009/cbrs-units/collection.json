@@ -1,0 +1,207 @@
+{
+  "type": "Collection",
+  "id": "fema-dfirm-2009/cbrs-units",
+  "stac_version": "1.1.0",
+  "description": "Coastal Barrier Resources System (CBRS) units, as the Town serves them with the 2009 flood map. The layer covers all of Suffolk County. The U.S. Fish and Wildlife Service publishes the [current CBRS units](https://www.fws.gov/program/coastal-barrier-resources-act). Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/34",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "FEMA Flood Insurance Rate Map, 2009"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cbrs-units.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "cbrs-units"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 211,
+  "table:row_count": 211,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "Unit",
+      "type": "string",
+      "description": "CBRS unit number. An Otherwise Protected Area number ends in P."
+    },
+    {
+      "name": "CBRS_Type",
+      "type": "string",
+      "description": "\"System Unit\", where most new federal spending and federal flood insurance are prohibited. \"Otherwise Protected Area\", where only federal flood insurance is prohibited."
+    },
+    {
+      "name": "FI_Date",
+      "type": "timestamp[us]",
+      "description": "\"The date on which the prohibition on Federal flood insurance first took effect for a given area\" (USFWS CBRS metadata)."
+    },
+    {
+      "name": "SU_Date",
+      "type": "timestamp[us]",
+      "description": "\"The date on which prohibitions on Federal expenditures besides flood insurance ... went into effect\" (USFWS CBRS metadata). Null for an Otherwise Protected Area."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -72.4658203,
+    41.0130574,
+    12
+  ],
+  "pmtiles:layers": [
+    "cbrs-units"
+  ],
+  "title": "Coastal Barrier Resources System Units",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -73.7357779,
+          40.566822,
+          -71.850313,
+          41.272561
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "U.S. Fish and Wildlife Service, Coastal Barrier Resources System",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.fws.gov/program/coastal-barrier-resources-act"
+    },
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "cbrs-units": {
+      "href": "./cbrs-units.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 790500,
+      "file:checksum": "1220913970fe97783df2a384e34b329ecd93cb43e9bad8012e43a3cfb268bf412f51",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3537,
+      "file:checksum": "12205973f60bd226905516287912b746906c3054369e600e5ea7feee6f8764157e54",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "cbrs-units-tiles": {
+      "href": "./cbrs-units.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "cbrs-units (vector tiles)",
+      "file:size": 290414,
+      "file:checksum": "1220f9b36e9156a5c124d8037a382ad00c681c6720d56fc337712f1726a05624903c",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Coastal Barrier Resources System Units by cbrs unit type",
+      "file:size": 979,
+      "file:checksum": "12204538932d7c98c2c130dcebb81ba68388a8ef7d77776e72dc49631590de052bec",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./cbrs-units.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 54122,
+      "file:checksum": "1220f31e65512b48ec5f12545acc09f26a24f06a4000edaa8925a29cb0e655011e81",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

@@ -1,0 +1,210 @@
+{
+  "type": "Collection",
+  "id": "gruenraum/trinkbrunnen",
+  "stac_version": "1.1.0",
+  "description": "Trinkbrunnen, Spr\u00fchnebel, Standorte, Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_trinkbrunnenogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Trinkbrunnen Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_trinkbrunnenogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/2ed52078-7e55-40ea-8036-0d89118a06f4",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: trinkbrunnenogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 2316,
+  "table:row_count": 2316,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "BASIS_TYP_TXT",
+      "type": "string",
+      "description": "Typ als Klartext."
+    },
+    {
+      "name": "BASIS_TYP",
+      "type": "int64",
+      "description": "Typ als Schl\u00fcssel: 1 Grundwasserbrunnen, 2 Hundetrinkbrunnen, 3 Spielbrunnen, 4 Trinkbrunnen, 5 Trinkbrunnen mit Tr\u00e4nke, 7 Auslaufbrunnen, 9 Sommerspritzer, 10 Trinkhydrant, 11 Spr\u00fchnebeldusche, 12 Bodenfont\u00e4ne, 13 Wasserspielm\u00f6glichkeit, 14 mobiler Trinkbrunnen mit Spr\u00fchnebelfunktion (Brunnhilde), 15 Nebelstelen, 16 Schiff, 17 Auslaufbrunnen mit Tr\u00e4nke, 18 Trinkhydrant mit Tr\u00e4nke."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Trinkbrunnen Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.184149024264343,
+          48.122726549275,
+          16.54514238646136,
+          48.31700935339366
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trinkbrunnen Standorte Wien default style",
+      "description": "Default visualization for Trinkbrunnen Standorte Wien, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1238,
+      "file:checksum": "122005aaf9aa3ddd8c88757a3f9e5e191f7e7bd2ead566e18121f35ac03d63d105e3"
+    },
+    "ogdwien_trinkbrunnenogd": {
+      "href": "./ogdwien_trinkbrunnenogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 96149,
+      "file:checksum": "1220604098acfa2bdfdf4233e49513864a2f803db885dcefb823e60d9fbd81cf1db4",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_trinkbrunnenogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Trinkbrunnen Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 95145,
+      "file:checksum": "12203d72a6230aa3dd8584706ec9fb9cd931a2c55ab164d3f5971aa09190e409a55b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Trinkbrunnen Standorte Wien graduated style",
+      "description": "Graduated visualization coloring Trinkbrunnen Standorte Wien by BASIS_TYP, ramped from 1.0 to 19.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1993,
+      "file:checksum": "122039daca73ed015ea50c4b866a6c8fc137635e9d58a01b453e594b858be66176a1"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_trinkbrunnenogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Trinkbrunnen Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 122944,
+      "file:checksum": "122060ba4f96e0d6d81451c9597afe05eaa6ee5ddb6845759ca56b9b2ccef83f5f30"
+    }
+  },
+  "keywords": [
+    "Trinkwasser",
+    "ViennaGIS",
+    "Brunnen",
+    "Wasser",
+    "Spr\u00fchnebel",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Trinkbrunnen Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

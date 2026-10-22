@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "id": "wetlands/dec-tidal-wetlands",
+  "stac_version": "1.1.0",
+  "description": "Tidal wetlands mapped by NYSDEC, as the Town serves them. The column names refer to 1974. The category codes come from the [NYSDEC tidal wetland categories](https://dec.ny.gov/nature/waterbodies/wetlands/tidal/categories) page. Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/27",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Wetlands and Watercourses"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./dec-tidal-wetlands.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "dec-tidal-wetlands"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 466,
+  "table:row_count": 466,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "TWCAT74",
+      "type": "string",
+      "description": "1974 tidal wetland category. IM is Intertidal Marsh. HM is High Marsh or Salt Meadow. FM is Coastal Fresh Marsh. FC is Formerly Connected. SM is Coastal Shoals, Bars and Mudflats. LZ is Littoral Zone. AA is Adjacent Area. DS is Dredged Spoil. HL is a hole area with no tidal wetland, as TW_Desig states."
+    },
+    {
+      "name": "ACREAGE74",
+      "type": "double",
+      "description": "Area in acres, as the source records it."
+    },
+    {
+      "name": "TW_Desig",
+      "type": "string",
+      "description": "The category name, as text."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 14,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -72.1472167,
+    41.0213545,
+    14
+  ],
+  "pmtiles:layers": [
+    "dec-tidal-wetlands"
+  ],
+  "title": "NYSDEC Tidal Wetlands",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -72.30167135698223,
+          40.9076569,
+          -71.85267385035543,
+          41.139844225593464
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "New York State Department of Environmental Conservation",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://dec.ny.gov/"
+    },
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "dec-tidal-wetlands": {
+      "href": "./dec-tidal-wetlands.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3265834,
+      "file:checksum": "122043c816d6a33711c57e0751bc12e200b6906b1e7011152d72540b78668bc5e4ab",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3348,
+      "file:checksum": "1220c679dd3c80f8480762491a89452b2fe5c4b3b8e6d6dca75624e247b029cbdb5c",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "dec-tidal-wetlands-tiles": {
+      "href": "./dec-tidal-wetlands.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "dec-tidal-wetlands (vector tiles)",
+      "file:size": 886591,
+      "file:checksum": "1220f3be4cb02e3144f7302b5fe1b2efdd72f0eb04d8150d7b958cea2d1d2b0c6c79",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "NYSDEC Tidal Wetlands by tidal wetland category",
+      "file:size": 1226,
+      "file:checksum": "1220bacb347ac1a95e83fcf820a9d3cefebb3954387f98375e25f42355283bb11738",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./dec-tidal-wetlands.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 42325,
+      "file:checksum": "12204a75169bd2c92e7a697c756b265941f521f2d3952773af6ab04126b79372a674",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

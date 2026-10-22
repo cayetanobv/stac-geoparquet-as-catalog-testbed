@@ -1,0 +1,221 @@
+{
+  "type": "Collection",
+  "id": "naturschutz/nationale-naturmonumente",
+  "stac_version": "1.1.0",
+  "description": "Abgrenzungen der Nationalen Naturmonumente zum Download als Shapefile. Nationale Naturmonumente sind rechtsverbindlich festgesetzte Gebiete, die aus wissenschaftlichen, naturgeschichtlichen, kulturhistorischen oder landeskundlichen Gr\u00fcnden und wegen ihrer Seltenheit, Eigenart oder Sch\u00f6nheit von herausragender Bedeutung sind.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nationale_naturmonumente_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Nationale Naturmonumente",
+      "pmtiles:layers": [
+        "nationale_naturmonumente_epsg25832_shp"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/schutzgebiete.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 2,
+  "table:row_count": 2,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Gebietsnummer (PDF-Feld ID)."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Gebietsname (PDF-Feld Name)."
+    },
+    {
+      "name": "nr",
+      "type": "string",
+      "description": "Gebietsnummer des Verordnungsgebers (PDF-Feld NR)."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Status der Verordnung: aktuell oder einstweilig sichergestellt (PDF-Feld STATUS)."
+    },
+    {
+      "name": "area_ha",
+      "type": "double",
+      "description": "Fl\u00e4che in ha, digital berechnet (PDF-Feld AREA_HA)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Nationale Naturmonumente",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.814295766565985,
+          48.89343296034039,
+          12.010681743375711,
+          50.01236396975741
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nationale Naturmonumente default style",
+      "description": "Default visualization for Nationale Naturmonumente, drawn in #006d2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1340,
+      "file:checksum": "1220cab9d8409025498ca8f511aeb4eced09ff4283554c52eb92f1427ca18f4a5354"
+    },
+    "nationale_naturmonumente_epsg25832_shp": {
+      "href": "./nationale_naturmonumente_epsg25832_shp.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 22760,
+      "file:checksum": "12201798ccd50c3e220007d0f9ffee8862c3c104d30658decd23cb6b4f3d8875e2ad",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./nationale_naturmonumente_epsg25832_shp.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Nationale Naturmonumente (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 16489,
+      "file:checksum": "1220ac27a03ebfb535f4d116dc91d86058901113b0cb6e564f558922292e6caf10e5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Nationale Naturmonumente labeled style",
+      "description": "Default visualization for Nationale Naturmonumente with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1805,
+      "file:checksum": "1220be5b8a2bba53772a28b2519487057f0381e112aa23be2a7692d09ffad1edb5a3"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/schutzgebiete/nationale_naturmonumente_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: schutzgebiete-nationale_naturmonumente",
+      "pipeline:upstream": true,
+      "file:size": 123803,
+      "file:checksum": "1220c50656558cc8884aedb63eba04b9e0f9375e712b7c02744bbd51595f0ad95476"
+    },
+    "thumbnail": {
+      "href": "./nationale_naturmonumente_epsg25832_shp.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Nationale Naturmonumente",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 147577,
+      "file:checksum": "1220960de2000deaf47deea8258ba74cebc446079e7cb6d4a616d11c8f78c27b3c24"
+    }
+  },
+  "keywords": [
+    "Nationale Naturmonumente",
+    "Schutzgebiete",
+    "Naturschutz",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

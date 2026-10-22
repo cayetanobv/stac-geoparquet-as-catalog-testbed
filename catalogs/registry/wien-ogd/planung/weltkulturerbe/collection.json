@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "planung/weltkulturerbe",
+  "stac_version": "1.1.0",
+  "description": "Zwei auf der Weltkulturerbeliste der UNESCO befindliche gro\u00dffl\u00e4chige Wiener Stadtgebiete: Das gesamte historische Stadtzentrum, das 2001 ernannt wurde, sowie Schlo\u00df und Park von Sch\u00f6nbrunn, die bereits 1996 in den Stand eines Weltkulturerbes erhoben wurden. Beide Zonen bestehen aus einer Kern- und Pufferzone.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_weltkulterbeogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Weltkulturerbe Wien",
+      "pmtiles:layers": [
+        "ogdwien_weltkulterbeogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/12426052-8803-4deb-8c89-9e78785f7dd2",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: weltkulterbeogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 4,
+  "table:row_count": 4,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Eine ID."
+    },
+    {
+      "name": "NAME",
+      "type": "string",
+      "description": "Name des Weltkulturerbes."
+    },
+    {
+      "name": "TYP",
+      "type": "int64",
+      "description": "1 oder 2, je nachdem, ob es sich um eine Kern- oder Pufferzone handelt."
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "string",
+      "description": "Angaben zu Kern- oder Pufferzone."
+    },
+    {
+      "name": "INFO",
+      "type": "string",
+      "description": "N\u00e4here Information."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Weltkulturerbe Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.29229127555922,
+          48.169546407809825,
+          16.387465844240552,
+          48.227611007536275
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Weltkulturerbe Wien default style",
+      "description": "Default visualization for Weltkulturerbe Wien, drawn in #7a0177.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1230,
+      "file:checksum": "122022a6315a4cd55d9846241ef2ba1fc7971795bc641221ce7d9c64c846d66f7d92"
+    },
+    "ogdwien_weltkulterbeogd": {
+      "href": "./ogdwien_weltkulterbeogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 19519,
+      "file:checksum": "1220464efefaacd5babf5803cac2314da82003b956ce127cd0802e55bd280a6dadd2",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_weltkulterbeogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Weltkulturerbe Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 28990,
+      "file:checksum": "12205ffe9e37f267cbff1995c0e7a22f286985b19eed5e8afac2a86d5d7a47ca30d9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Weltkulturerbe Wien categorical style",
+      "description": "Categorical visualization coloring Weltkulturerbe Wien by NAME, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1833,
+      "file:checksum": "1220bdaaf03e6534218a2c740ce9a1ba9f4de9ba01ff7b95e37c9db8486f8337f440"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Weltkulturerbe Wien labeled style",
+      "description": "Default visualization for Weltkulturerbe Wien with NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1665,
+      "file:checksum": "1220e196d260c322c7a66e1f1f8539aa651884c0e253f1a47051797436e005235000"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Weltkulturerbe Wien graduated style",
+      "description": "Graduated visualization coloring Weltkulturerbe Wien by TYP, ramped from 1.0 to 2.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1955,
+      "file:checksum": "122096b093bacd8613237b27b13216a53a2b0db8d2a37fb150c32b87ef2f1a35d00d"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_weltkulterbeogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Weltkulturerbe Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 162708,
+      "file:checksum": "1220c17411d6b21191ea3632715edaa40dff725bd76b9fc43a22449d81880c842485"
+    }
+  },
+  "keywords": [
+    "UNESCO",
+    "Au\u00dfenzone",
+    "Historisches",
+    "Pufferzone",
+    "ViennaGIS",
+    "Weltkulturerbe",
+    "Geschichte",
+    "Kernzone",
+    "Stadtzentrum",
+    "Wien Kulturgut",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Weltkulturerbe Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

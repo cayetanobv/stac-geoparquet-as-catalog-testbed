@@ -1,0 +1,288 @@
+{
+  "type": "Collection",
+  "id": "demographics/lodes-jobs",
+  "stac_version": "1.1.0",
+  "description": "Jobs by workplace and employed residents by home location for every census block group in the City of St. Louis, from the U.S. Census Bureau's LEHD Origin-Destination Employment Statistics (LODES) version 8, data year 2023. LODES is the block-level jobs data behind the Bureau's OnTheMap tool; \"Version 8 of LODES was enumerated by 2020 census blocks.\" Workplace Area Characteristics (jobs located in the block group, `jobs_*`) and Residence Area Characteristics (employed people living in the block group, `workers_resident*`) are aggregated here from census blocks to block groups \u2014 a block's block group is the first 12 characters of its 15-character geocode \u2014 with breakdowns by earnings band and selected NAICS sectors. LEHD notes that \"the data released by LEHD are based on tabulated and modeled administrative data, which are subject to error\"; these are administrative tabulations, not survey estimates, so no margins of error apply.\n\nUnlike the city's own datasets in this catalog, this is **not** City of St. Louis data: it is federal administrative data published by the U.S. Census Bureau's Longitudinal Employer-Household Dynamics program, extracted for St. Louis city (FIPS 29510) and joined to the Bureau's 2024 cartographic boundary geometries. Pair it with `acs-block-groups` to compare daytime (working) and residential population, or with `lodes-commutes` for the underlying home\u2192work flows.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Demographics"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./lodes-jobs.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "lodes-jobs"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.census.gov/topics/research/research-transparency-public-access/open-data.html",
+      "type": "text/html",
+      "title": "U.S. Census Bureau \u2014 Longitudinal Employer-Household Dynamics \u2014 data license and terms"
+    },
+    {
+      "rel": "via",
+      "href": "https://lehd.ces.census.gov/data/",
+      "type": "text/html",
+      "title": "LEHD Origin-Destination Employment Statistics documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://lehd.ces.census.gov/data/lodes/LODES8/mo",
+      "type": "text/html",
+      "title": "LEHD Origin-Destination Employment Statistics source data"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 314,
+  "table:row_count": 314,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geoid",
+      "type": "string",
+      "description": "12-digit census block group GEOID. Join key to acs-block-groups and lodes-commutes."
+    },
+    {
+      "name": "jobs_total",
+      "type": "int64",
+      "description": "All jobs located in the block group (LODES WAC column C000), aggregated from census blocks."
+    },
+    {
+      "name": "jobs_earn_low",
+      "type": "int64",
+      "description": "Jobs with earnings of $1,250/month or less (LODES CE01)."
+    },
+    {
+      "name": "jobs_earn_mid",
+      "type": "int64",
+      "description": "Jobs with earnings of $1,251 to $3,333/month (LODES CE02)."
+    },
+    {
+      "name": "jobs_earn_high",
+      "type": "int64",
+      "description": "Jobs with earnings greater than $3,333/month (LODES CE03)."
+    },
+    {
+      "name": "jobs_manufacturing",
+      "type": "int64",
+      "description": "Jobs in Manufacturing, NAICS sectors 31-33 (LODES CNS05)."
+    },
+    {
+      "name": "jobs_retail",
+      "type": "int64",
+      "description": "Jobs in Retail Trade, NAICS sectors 44-45 (LODES CNS07)."
+    },
+    {
+      "name": "jobs_education",
+      "type": "int64",
+      "description": "Jobs in Educational Services, NAICS sector 61 (LODES CNS15)."
+    },
+    {
+      "name": "jobs_healthcare",
+      "type": "int64",
+      "description": "Jobs in Health Care and Social Assistance, NAICS sector 62 (LODES CNS16)."
+    },
+    {
+      "name": "jobs_food_accomm",
+      "type": "int64",
+      "description": "Jobs in Accommodation and Food Services, NAICS sector 72 (LODES CNS18)."
+    },
+    {
+      "name": "workers_resident",
+      "type": "int64",
+      "description": "Employed people living in the block group, wherever they work (LODES RAC column C000)."
+    },
+    {
+      "name": "workers_resident_earn_low",
+      "type": "int64",
+      "description": "Employed residents earning $1,250/month or less (LODES RAC CE01)."
+    },
+    {
+      "name": "workers_resident_earn_mid",
+      "type": "int64",
+      "description": "Employed residents earning $1,251 to $3,333/month (LODES RAC CE02)."
+    },
+    {
+      "name": "workers_resident_earn_high",
+      "type": "int64",
+      "description": "Employed residents earning more than $3,333/month (LODES RAC CE03)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 587222,
+  "portolan:asset_count": 6,
+  "portolan:styles": [
+    "styles/default"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "demographics",
+          "title": "Demographics"
+        }
+      ]
+    },
+    {
+      "scheme": "https://lehd.ces.census.gov/data/",
+      "concepts": [
+        {
+          "id": "lodes",
+          "title": "LEHD Origin-Destination Employment Statistics"
+        }
+      ]
+    }
+  ],
+  "proj:epsg": 3857,
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -90.2197265,
+    38.6511901,
+    12
+  ],
+  "pmtiles:layers": [
+    "lodes-jobs"
+  ],
+  "title": "LODES Jobs",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051589533225,
+          38.532001591520135,
+          -90.16671561256314,
+          38.77428387126793
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2023-01-01T00:00:00Z",
+          "2023-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "census",
+    "LEHD",
+    "LODES",
+    "jobs",
+    "employment"
+  ],
+  "providers": [
+    {
+      "name": "U.S. Census Bureau \u2014 Longitudinal Employer-Household Dynamics",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://lehd.ces.census.gov/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "lodes-jobs": {
+      "href": "./lodes-jobs.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "LODES Jobs (GeoParquet)",
+      "file:size": 49705,
+      "file:checksum": "1220d44aae0c729e126c61de0430a4af47532c730d9a2bf73417ec5483f264a4c728",
+      "roles": [
+        "data"
+      ]
+    },
+    "lodes-jobs-tiles": {
+      "href": "./lodes-jobs.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "lodes-jobs (vector tiles)",
+      "file:size": 186465,
+      "file:checksum": "122015712857e0e419cc3857e3898f78828785c13bb8803112a0ec88fa41bcd12158",
+      "roles": [
+        "data"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Jobs by workplace",
+      "description": "Where St. Louis works: total jobs located in each block group, light to dark blue. Downtown, the central corridor and the hospital campuses carry most of the city's employment.",
+      "file:size": 1654,
+      "file:checksum": "1220f7462951e633e144d8905ee79e613cb81ad94ef09c51965707271d1750497877",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/balance": {
+      "href": "./styles/balance.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Jobs vs. resident workers",
+      "description": "Jobs located in the block group divided by employed residents living in it: purple block groups are bedroom areas, orange ones are job centers with few resident workers. Crime and service rates computed per residential population overstate risk in orange areas \u2014 their daytime population is far larger than their census count.",
+      "file:size": 2363,
+      "file:checksum": "1220c79df5de398205f25e515a1539efacb5f1b69051813aed15c55134a3c9527dd5",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "LODES Jobs rendered with the default style",
+      "file:size": 341576,
+      "file:checksum": "1220091152edf8400db5324bc37cd5f0357f5354de1ddb3e77cc718bd67382ec3b93",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "verwaltung/zaehlbezirke",
+  "stac_version": "1.1.0",
+  "description": "Z\u00e4hlbezirke sind statistische Definitionen. Die 23 Bezirke werden in 250 Z\u00e4hlbezirke unterteilt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_zaehlbezirkogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Z\u00e4hlbezirksgrenzen Wien",
+      "pmtiles:layers": [
+        "ogdwien_zaehlbezirkogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/e4079286-310c-435a-af2d-64604ba9ade5",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: zaehlbezirkogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 250,
+  "table:row_count": 250,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "BEZNR",
+      "type": "int64",
+      "description": "Bezirksnummer, ein- bis zweistellig, numerisch."
+    },
+    {
+      "name": "ZBEZNR",
+      "type": "int64",
+      "description": "Z\u00e4hlbezirksnummer innerhalb des Bezirks, ein- bis zweistellig, numerisch."
+    },
+    {
+      "name": "BEZ",
+      "type": "double",
+      "description": "Bezirksnummer, zweistellig, Zeichenkette."
+    },
+    {
+      "name": "ZBEZ",
+      "type": "double",
+      "description": "Z\u00e4hlbezirksnummer, vierstellig, Zeichenkette, inklusive Bezirksnummer."
+    },
+    {
+      "name": "FLAECHE",
+      "type": "double",
+      "description": "Fl\u00e4che in Quadratmetern."
+    },
+    {
+      "name": "UMFANG",
+      "type": "double",
+      "description": "Umfang in Metern."
+    },
+    {
+      "name": "AKT_TIMESTAMP",
+      "type": "string",
+      "description": "Letzte Aktualisierung (Datum)."
+    },
+    {
+      "name": "SE_SDO_ROWID",
+      "type": "int64",
+      "description": "Interne Zeilenkennung der Datenhaltung, nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Z\u00e4hlbezirksgrenzen Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.181830379117955,
+          48.117903301153454,
+          16.577514130310036,
+          48.32266661161856
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Z\u00e4hlbezirksgrenzen Wien default style",
+      "description": "Default visualization for Z\u00e4hlbezirksgrenzen Wien, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1232,
+      "file:checksum": "12206445f7d7968a27d8a79eeebb4c1a02a6e5a9b341d1195af5e8c8e4efd52de1c7"
+    },
+    "ogdwien_zaehlbezirkogd": {
+      "href": "./ogdwien_zaehlbezirkogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1082176,
+      "file:checksum": "1220ea9fab8c5c177ace2c73abb5203076096bcc2df25e097e875ed7c0ca5aace482",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_zaehlbezirkogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Z\u00e4hlbezirksgrenzen Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 534220,
+      "file:checksum": "1220c12a114c1f67fea54ef8f3685443b43414cefee991e2668556bf9e29623ef113"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Z\u00e4hlbezirksgrenzen Wien graduated style",
+      "description": "Graduated visualization coloring Z\u00e4hlbezirksgrenzen Wien by FLAECHE, ramped from 164927.9 to 26081797.66.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2036,
+      "file:checksum": "1220515f5d69db16c0109b402a95233615e5a0dd4f05d7f8cb32ffe26ce1202c8140"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_zaehlbezirkogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Z\u00e4hlbezirksgrenzen Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 137034,
+      "file:checksum": "1220307d26ba2de27298940d1dac079f7b32b14abf48db1ae1dd13394b24dddf5919"
+    }
+  },
+  "keywords": [
+    "HighValueDataset",
+    "Verwaltungseinheit",
+    "ViennaGIS",
+    "RBW",
+    "Grenzen",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Z\u00e4hlbezirksgrenzen Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

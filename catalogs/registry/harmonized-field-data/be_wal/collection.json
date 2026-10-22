@@ -1,0 +1,321 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "be_wal",
+  "title": "Belgium Wallonia: Parcellaire Agricole Anonyme",
+  "description": "The Crop Fields (PAA) covers land use in agricultural and forestry areas managed as part of the implementation of the\nCommon Agricultural Policy by the Paying Agency of Wallonia.\n\nThe PAA represents the public version of the agricultural plot. It therefore does not include personal information\nallowing the operator to be identified. It is provided on an annual basis. Data from a year of cultivation are made\navailable to the public during the following year.\n\nThe data is distributed in two ways: either at the source of the paying agency (more attributes\nbut no public distribution) or at the European Commission data portal (no limitations). We use the\nfree-licensed version for this converter.\n\nThis collection holds 9 editions (2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/be_wal/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2023). Geometries are kept in the source CRS (EPSG:3035). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/be_wal/AGENTS.md).\n\nThe 2015, 2016, 2017, 2018, 2019, 2020, 2021 and 2023 editions, which the source above does not offer, come from Belgium Wallonia: Parcellaire Agricole Anonyme — EuroCrops V2 (Joint Research Centre, European Commission, converter `ec_be_wal`), under CC-BY-4.0; attribution: European Commission, Joint Research Centre — EuroCropsV2; their items carry those terms.\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "Belgium",
+    "IACS",
+    "Wallonia",
+    "agriculture",
+    "fiboa",
+    "field boundaries",
+    "parcellaire agricole anonyme"
+  ],
+  "license": "CC-BY-4.0",
+  "providers": [
+    {
+      "name": "Joint Research Centre, European Commission",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.jrc.ec.europa.eu/dataset/b9fb9e67-78a9-4327-9d59-39a928d812d3"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.8422075478432887,
+          49.496968463303936,
+          6.408084735391007,
+          50.81074869787403
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2015-01-01T00:00:00Z",
+          "2023-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3035"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:name",
+      "type": "string",
+      "description": "Crop name in the original language. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "crop:code",
+      "type": "string",
+      "description": "The crop code, from the code list of the source. ([spec](https://github.com/fiboa/crop-extension/blob/main/README.md))"
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 342315,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 9,
+  "partition:glob": "s3://ftw/harmonized-field-data/be_wal/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/be_wal.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Belgium, Wallonia — latest edition (2023) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2023/be_wal-2023.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 111187547,
+      "file:checksum": "122003cdc8dcb9de52fb105b766ef58a4036ea81e5801975b45fb3b58a7e46ab7400",
+      "proj:code": "EPSG:3035"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2343,
+      "file:checksum": "1220add26f63edc16e020dfbd98e1d1a7998f03a06f658575a08c9763b34a83a57fd"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 1, 2, 5 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1230,
+      "file:checksum": "1220d9b6626ed08a5397583aa4fd1999c4df52b541d16641b1b58195dac41580f430"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 749,
+      "file:checksum": "1220284108b3575793ff05d2f29488d206698917805a10567d97699e0b019f7bb4bd"
+    },
+    "visual": {
+      "href": "./year=2023/be_wal-2023.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Belgium, Wallonia — latest edition (2023) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 28546288,
+      "file:checksum": "1220c2f5b1c67cac4794ecde63e0114010c280d2c386e4987ef69bb832d2fa3cc975"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 362243,
+      "file:checksum": "122034225ee3638b847659d5d187134bf3b3ae9122d0b9009d497781bba0e183e6c9"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2023/be_wal-2023.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "be_wal"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://inspire-geoportal.ec.europa.eu/srv/eng/catalog.search#/metadata/2a0d9be0-ac3d-443e-9db0-a7cfb0f128e2",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/BE-WAL.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/be_wal.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2015/be_wal-2015.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2015"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2016/be_wal-2016.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2016"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/be_wal-2017.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2018/be_wal-2018.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2018"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2019/be_wal-2019.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2019"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/be_wal-2020.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2020"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/be_wal-2021.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2021"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2022/be_wal-2022.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2022"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2023/be_wal-2023.json",
+      "type": "application/geo+json",
+      "title": "Belgium, Wallonia — 2023"
+    }
+  ],
+  "updated": "2026-10-15T10:33:36Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "ec_be_wal": [
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml"
+    ]
+  }
+}

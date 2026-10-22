@@ -1,0 +1,226 @@
+{
+  "type": "Collection",
+  "id": "riscos/sondagens",
+  "stac_version": "1.1.0",
+  "description": "Localiza\u00e7\u00e3o das sondagens geol\u00f3gicas, geot\u00e9cnicas e hidrogeol\u00f3gicas realizadas no concelho de Lisboa no \u00e2mbito de campanhas de prospe\u00e7\u00e3o, com a refer\u00eancia da sondagem e o n\u00famero do relat\u00f3rio, na camada Sondagens do servi\u00e7o Sondagens da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./sondagens.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sondagens",
+      "pmtiles:layers": [
+        "sondagens"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/ade0b788321b49a9a0a0d6dfbcccc879_1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Sondagens/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Sondagens (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 12747,
+  "table:row_count": 12747,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "Relatorio",
+      "type": "int32",
+      "description": "N\u00famero do relat\u00f3rio de campanha de prospe\u00e7\u00e3o a que a sondagem pertence, inteiro do publicador."
+    },
+    {
+      "name": "Referencia",
+      "type": "string",
+      "description": "Refer\u00eancia da sondagem no relat\u00f3rio de campanha (por exemplo \u00abS1\u00bb), texto do publicador."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Sondagens",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.22978007306462,
+          38.6917542980349,
+          -9.09064319045492,
+          38.796603158165
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sondagens default style",
+      "description": "Default visualization for Sondagens, drawn in #7f2704.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1122,
+      "file:checksum": "122032db3be4ba905dd6f4d99b44ed65c857d9c03357e91b666c6fd1e52cbbd76db2"
+    },
+    "sondagens": {
+      "href": "./sondagens.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 881461,
+      "file:checksum": "1220e9fc0e81586f5f21c405893654ec4fdbb0272ee2f86f2750ec54acaa0788735f",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./sondagens.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sondagens (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1014021,
+      "file:checksum": "12201f6bcff9d72d38a242829070bfdd1828e71927d926a70de1a3c850899965b3ec"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sondagens graduated style",
+      "description": "Graduated visualization coloring Sondagens by Relatorio, ramped from 1.0 to 2483.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1889,
+      "file:checksum": "1220357715d809cebc989a060fcaec742c6a6dd2f6ad59d53897e05d331045a0d889"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/ade0b788321b49a9a0a0d6dfbcccc879/geojson?layers=1&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: sondagens",
+      "pipeline:upstream": true,
+      "file:size": 2857104,
+      "file:checksum": "1220a0e246f18573b919c494bfffed619daed3608bc318d9f3d15dd85944f7786433"
+    },
+    "thumbnail": {
+      "href": "./sondagens.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Sondagens",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 193787,
+      "file:checksum": "122025d2ecfae456752364dd34dc7af3d51f4ca4ab60edef6d0fae65299b6fe0f12c"
+    }
+  },
+  "keywords": [
+    "Sondagens",
+    "Geologia",
+    "Cartografia Geot\u00e9cnica",
+    "Subsolo",
+    "Geotechnical Mapping",
+    "Ambiente"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Sondagens (Sondagens), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

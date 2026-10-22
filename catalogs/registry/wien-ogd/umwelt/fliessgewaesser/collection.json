@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "umwelt/fliessgewaesser",
+  "stac_version": "1.1.0",
+  "description": "Gew\u00e4ssernetz der Flie\u00dfenden Gew\u00e4sser Wiens",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_fliessgewogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gew\u00e4ssernetz Wien",
+      "pmtiles:layers": [
+        "ogdwien_fliessgewogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/ac4c2ac5-6be4-4471-bbf4-f09228f5db04",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: fliessgewogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 1154,
+  "table:row_count": 1154,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Linie) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "NAME",
+      "type": "string",
+      "description": "Gew\u00e4ssername."
+    },
+    {
+      "name": "HAUPTNEBEN",
+      "type": "int64",
+      "description": "Kennzeichen Haupt- oder Nebengew\u00e4sser; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Gew\u00e4ssernetz Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.105638759714367,
+          48.10277485339335,
+          16.590335819699163,
+          48.314329519079635
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4ssernetz Wien default style",
+      "description": "Default visualization for Gew\u00e4ssernetz Wien, drawn in #2171b5.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1212,
+      "file:checksum": "1220129630f8c6fc7a45731235328043eb416eaed04187741049e8349c41b901ff96"
+    },
+    "ogdwien_fliessgewogd": {
+      "href": "./ogdwien_fliessgewogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 879085,
+      "file:checksum": "12209ed66faa2b9467182e1b255a461f5f635413603e833c3b914d13f557301f07ed",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_fliessgewogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gew\u00e4ssernetz Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 578513,
+      "file:checksum": "122055e54eb4392ffd1cd17249effae9c24dfff6fc40c15ecb0c1a1e083521c3c668"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4ssernetz Wien labeled style",
+      "description": "Default visualization for Gew\u00e4ssernetz Wien with NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1641,
+      "file:checksum": "122014dd5019f837d719d20f74803616bcbac8cb27a415e3f142278eb0792fa03550"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gew\u00e4ssernetz Wien graduated style",
+      "description": "Graduated visualization coloring Gew\u00e4ssernetz Wien by HAUPTNEBEN, ramped from 1.0 to 2.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1965,
+      "file:checksum": "12208609a16dd5d1125a57f3193c87098c8bd7740efc299d5599b2843c8e10b08788"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_fliessgewogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Gew\u00e4ssernetz Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 193011,
+      "file:checksum": "12200d551371939e8797bec3df178edcd3a00c77cd5d40cb47743189fedebfbf3f36"
+    }
+  },
+  "keywords": [
+    "HighValueDataset",
+    "Gew\u00e4sser",
+    "ViennaGIS",
+    "Gew\u00e4ssernetz",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Gew\u00e4ssernetz Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

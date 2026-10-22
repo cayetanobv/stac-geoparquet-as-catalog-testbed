@@ -1,0 +1,249 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "br_conab",
+  "title": "Brazil Crop Fields (CONAB)",
+  "description": "CONAB, Brazil's National Supply Company, is the government agency responsible for providing information on the country's agricultural harvest.\n\nThese 29 mappings, after inspecting all boundaries in the CONAB public database, appear to be hand-drawn field boundaries.\n\nThe content of the Mappings comes from Conab, total or partial reproduction without profit motives is authorized,\nas long as the source is cited and the integrity of the information is maintained.\n\nFurther information or suggestions can be sent to the email address conab.geote@conab.gov.br\n\nThis collection holds 1 edition (2026), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/br_conab/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2026). Geometries are kept in the source CRS (EPSG:4674). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/br_conab/AGENTS.md).\n\nBoundaries are mapped: an authority delineated them from imagery or survey, with no farmer's declaration behind them.",
+  "boundaries": "mapped",
+  "keywords": [
+    "Brazil",
+    "Conab",
+    "agriculture",
+    "coffee",
+    "cotton",
+    "fiboa",
+    "field boundaries",
+    "irrigated rice",
+    "mapeamento agrícola",
+    "sugarcane"
+  ],
+  "license": "CC-BY-NC-4.0",
+  "providers": [
+    {
+      "name": "Conab",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://portaldeinformacoes.conab.gov.br/mapeamentos-agricolas-downloads.html"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -57.573012311771095,
+          -33.67341213187876,
+          -39.01882177997186,
+          -6.3782529999999955
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:4674"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "admin_municipality_code",
+      "type": "string",
+      "description": "Municipality code (source column `cd_mun`, per the fiboa data survey)"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "admin_municipality_name",
+      "type": "string",
+      "description": "Municipality name (source column `nm_mun`, per the fiboa data survey)"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 390805,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 1,
+  "partition:glob": "s3://ftw/harmonized-field-data/br_conab/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/br_conab.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Conab — latest edition (2026) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2026/br_conab.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 212324727,
+      "file:checksum": "12203a372cf13a2eba7a27d09408f752090c5d4611a3f832d26d8f8d17104a5dafc3",
+      "proj:code": "EPSG:4674"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.5, 1, 2, 5 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1219,
+      "file:checksum": "122020fabb8b8ed9e228fb47e9d150cff4714fd876b63391489b5ae5766f5d5a552b"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 738,
+      "file:checksum": "12207ce19dc889eecfff413f99f7759006fcb15f98dc770428986708654bf829069c"
+    },
+    "visual": {
+      "href": "./year=2026/br_conab.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Conab — latest edition (2026) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 111992238,
+      "file:checksum": "12209ab4ac2dc1be9ee995dcd6cd214b5112bed09ee5707ba5aba5b9c89abc605dc8"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 279848,
+      "file:checksum": "122036e92eb8705cb63d31e44d4d12a84d7b99a79819d563c5c10ef0dbda1df976aa"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2026/br_conab.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "br_conab"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://portaldeinformacoes.conab.gov.br/mapeamentos-agricolas-downloads.html",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/BR-CONAB.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/br_conab.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2026/br_conab-2026.json",
+      "type": "application/geo+json",
+      "title": "Conab — 2026"
+    }
+  ],
+  "updated": "2026-10-08T18:48:27Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "br_conab": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml"
+    ]
+  },
+  "attribution": "CONAB - conab.gov.br"
+}

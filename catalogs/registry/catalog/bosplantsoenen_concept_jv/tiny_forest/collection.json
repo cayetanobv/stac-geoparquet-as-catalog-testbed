@@ -1,0 +1,145 @@
+{
+  "type": "Collection",
+  "id": "bosplantsoenen_concept_jv/tiny_forest",
+  "stac_version": "1.1.0",
+  "description": "Tiny Forest",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tiny_forest.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "tiny_forest"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 4,
+  "table:row_count": 4,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "FID",
+      "type": "int64"
+    },
+    {
+      "name": "Straat",
+      "type": "string"
+    },
+    {
+      "name": "Oppervlakt",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Tiny Forest",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.04175652522842,
+          52.0763994938045,
+          5.12728463492898,
+          52.1088985418482
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "tiny_forest": {
+      "href": "./tiny_forest.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1881,
+      "file:checksum": "1220b870884f8ced12eb9244727017e1ce864e187ffca4d7d7baeef0516793aed361",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./tiny_forest.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 1809,
+      "file:checksum": "1220ff772e616bc8d74643db443c5e0e87f184c2ce32d0471664033374fd28aa1654"
+    },
+    "tiny_forest-tiles": {
+      "href": "./tiny_forest.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "tiny_forest (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1335,
+      "file:checksum": "12207976e4f10bc6ba3fe7e62fdf5d8b588278c15e1b325879ea06ed44827bec0aaf"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 636,
+      "file:checksum": "122013480c90a35df005d9f6982a51c03d68acd9c94ab94bd4368bb6c735e0958fb6",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

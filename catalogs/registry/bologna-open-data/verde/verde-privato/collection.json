@@ -1,0 +1,241 @@
+{
+  "type": "Collection",
+  "id": "verde/verde-privato",
+  "stac_version": "1.1.0",
+  "description": "Il dataset del verde privato corrisponde al disegno delle aree verdi interne al territorio urbanizzato escluse dal verde pubblico in\u00a0manutenzione.\nIl disegno \u00e8 stato realizzato attraverso una foto interpretazione del volo aereo del 2022, incrociando\u00a0quindi dati grafici e cartografici. Dove le ombre degli edifici o le chiome degli alberi impedivano di definire una sagoma del verde al suolo, sono stati fatti controlli con le foto oblique e con Google street view.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./verdeprivatourbanizz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Verde privato nel territorio urbanizzato",
+      "pmtiles:layers": [
+        "verdeprivatourbanizz"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/verde_privato_urbanizzato/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/verde_privato_urbanizzato/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: verdeprivatourbanizz",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 25529,
+  "table:row_count": 25529,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "codice_ogg",
+      "type": "int32"
+    },
+    {
+      "name": "centro_sto",
+      "type": "string"
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "patrimonio",
+      "type": "string"
+    },
+    {
+      "name": "note",
+      "type": "string"
+    },
+    {
+      "name": "area_ogg",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Verde privato nel territorio urbanizzato",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.230486595944154,
+          44.446939047085365,
+          11.430641719522244,
+          44.55596314758445
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verde privato nel territorio urbanizzato default style",
+      "description": "Default visualization for Verde privato nel territorio urbanizzato, drawn in #74c476.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1230,
+      "file:checksum": "12200c986f7c5fd1979e445be81aca56d33d1a41f41f8acfb32569c7f909bc0645e1"
+    },
+    "verdeprivatourbanizz": {
+      "href": "./verdeprivatourbanizz.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6931334,
+      "file:checksum": "122027172570b97275668d0aae3d2032601e12ed70c19d28a9d79a16f03d1a8d47e4",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./verdeprivatourbanizz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Verde privato nel territorio urbanizzato (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5717413,
+      "file:checksum": "12203ab2127be0cd10b483eb4dda9f6504ba62446a2f117f1198349f1fac2e2e7eba"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verde privato nel territorio urbanizzato categorical style",
+      "description": "Categorical visualization coloring Verde privato nel territorio urbanizzato by centro_sto, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1677,
+      "file:checksum": "122070b974aa567cd388df3b6d2b19000fda9707ca8014c7d6d739b463dca9bfba0e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verde privato nel territorio urbanizzato labeled style",
+      "description": "Default visualization for Verde privato nel territorio urbanizzato with centro_sto shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1665,
+      "file:checksum": "12205ca799318cda4d24461a0267e3a6488c406a5f227bd32ef0dbc4d036224757dc"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Verde privato nel territorio urbanizzato graduated style",
+      "description": "Graduated visualization coloring Verde privato nel territorio urbanizzato by area_ogg, ramped from 1.0 to 233643.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2005,
+      "file:checksum": "1220c05df18d36bcea1840c2496c4dda5ff7c05df22e5478dffb98641f26466c9178"
+    },
+    "thumbnail": {
+      "href": "./verdeprivatourbanizz.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Verde privato nel territorio urbanizzato",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 178709,
+      "file:checksum": "122002730165ebfda6c5fe15a067bd50faa86a8bc1411ea7bbdce2e9cb058fcd0854"
+    }
+  },
+  "keywords": [
+    "Ambiente"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abVerde privato nel territorio urbanizzato\u00bb (verde_privato_urbanizzato), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/verde_privato_urbanizzato/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

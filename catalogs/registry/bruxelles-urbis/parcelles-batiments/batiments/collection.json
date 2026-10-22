@@ -1,0 +1,211 @@
+{
+  "type": "Collection",
+  "id": "parcelles-batiments/batiments",
+  "stac_version": "1.1.0",
+  "description": "Le produit UrbIS \u2013 Parcelles et b\u00e2timents correspond au jeu de donn\u00e9es des b\u00e2timents mod\u00e9lis\u00e9es de mani\u00e8re bidimensionnelle dans la R\u00e9gion bruxelloise ainsi qu'au Plan parcellaire cadastral. Ce jeu de donn\u00e9es est compos\u00e9 de trois classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond aux b\u00e2timents. La deuxi\u00e8me correspond aux adresses (seules celles de statut \u00ab current \u00bb sont incluses dans ce jeu de donn\u00e9es), et la troisi\u00e8me correspond aux parcelles cadastrales. La trois\u00e8me classe provient du SPF Finances. Sa licence est d'application en ce qui concerne la troisi\u00e8me classe.\n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable sous forme de fichiers zipp\u00e9s et via le WFS ad hoc.\n\nCette collection reprend la classe \u00ab B\u00e2timents \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:Buildings (Buildings : \u00ab Buildings located in the Brussels Region. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Percelen en gebouwen \u00bb ; titre anglais : \u00ab UrbIS - Parcels and buildings \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/legalcode",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_buildings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents)",
+      "pmtiles:layers": [
+        "urbisvector_buildings"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/2cf42541-1813-11ef-8a81-00090ffe0001",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: buildings",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 249072,
+  "table:row_count": 249072,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable du b\u00e2timent, fix\u00e9 et maintenu par Paradigm."
+    },
+    {
+      "name": "BLOCK_ID",
+      "type": "string",
+      "description": "Identifiant du bloc dans lequel se trouve le b\u00e2timent."
+    },
+    {
+      "name": "AREA",
+      "type": "int64",
+      "description": "Superficie au sol du b\u00e2timent (m\u00b2)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.244366253434142,
+          50.76311356306489,
+          4.4825032529730455,
+          50.91222702966268
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents) default style",
+      "description": "Default visualization for B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents), drawn in #b30000.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1254,
+      "file:checksum": "1220b7d399e8028b55fbf166937d2f9c2ad677bea72af0fcd0da325b5d182156c896"
+    },
+    "urbisvector_buildings": {
+      "href": "./urbisvector_buildings.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 26296933,
+      "file:checksum": "12207393f30677ba426f42a9fa6c561af95ab040ebf65542b4914e73a1068423df32",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_buildings.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 15766693,
+      "file:checksum": "122076e0d32bc35930ea312382e6d29715847e7dcbb26c9a2ec84600f9b8fb9f86fa"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents) graduated style",
+      "description": "Graduated visualization coloring B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents) by AREA, ramped from 1.0 to 148416.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2010,
+      "file:checksum": "1220bbb2c5af29f38e2f694b63d7bec16885efc4ebb737988cf4d43e9587f4882a4d"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_buildings.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of B\u00e2timents (UrbIS \u2013 Parcelles et b\u00e2timents)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 248551,
+      "file:checksum": "1220921287357367562ecdd5e7b3aebbe97d24a9bd9047bc4ced851a7f7a8b9006a3"
+    }
+  },
+  "keywords": [
+    "b\u00e2timent",
+    "Population et soci\u00e9t\u00e9",
+    "Adresses",
+    "B\u00e2timents",
+    "Parcelles cadastrales",
+    "R\u00e9gional",
+    "Adresse",
+    "AgriBuilding",
+    "Parcelle cadastrale",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 Parcelles et b\u00e2timents \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

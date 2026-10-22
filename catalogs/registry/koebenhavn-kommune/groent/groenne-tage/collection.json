@@ -1,0 +1,246 @@
+{
+  "type": "Collection",
+  "id": "groent/groenne-tage",
+  "stac_version": "1.1.0",
+  "description": "Bygninger med gr\u00f8nt tag som prim\u00e6r eller sekund\u00e6r tagkonstruktion. Registreret p\u00e5 baggrund af BBR og luftfoto.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_groenne_tage.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gr\u00f8nne tage",
+      "pmtiles:layers": [
+        "k101_groenne_tage"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/gronne-tage",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: groenne_tage",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 2029,
+  "table:row_count": 2029,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "v_id",
+      "type": "int64"
+    },
+    {
+      "name": "bbruuid",
+      "type": "string"
+    },
+    {
+      "name": "tagkonstruktion",
+      "type": "string"
+    },
+    {
+      "name": "bygnings_status",
+      "type": "string"
+    },
+    {
+      "name": "opfoerelse_aar",
+      "type": "int64"
+    },
+    {
+      "name": "tagdaekningmateriale",
+      "type": "string"
+    },
+    {
+      "name": "supp_tag_konst",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Gr\u00f8nne tage",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.46111869821445,
+          55.616449073987354,
+          12.640689796437371,
+          55.731078127081815
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00f8nne tage default style",
+      "description": "Default visualization for Gr\u00f8nne tage, drawn in #41ab5d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1185,
+      "file:checksum": "122095a26ab169312071b4abe6c47a49e6c84e806b7fcadc7d52aa7d10be92d067d8"
+    },
+    "k101_groenne_tage": {
+      "href": "./k101_groenne_tage.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 225706,
+      "file:checksum": "1220740923fa2c224fb6b57c7c65361bd3a51933bd60ca5e668bfadbf8a4aec7a635",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_groenne_tage.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gr\u00f8nne tage (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 375208,
+      "file:checksum": "12206b1a13a67c8834e609cbd276da2939b876539b7d3ac534a655d7c452270beec2"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00f8nne tage categorical style",
+      "description": "Categorical visualization coloring Gr\u00f8nne tage by bygnings_status, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2003,
+      "file:checksum": "1220333f123f2b74eed4bf8c331c368bd5d69846af69ea802311a3fd90e73b66f02e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00f8nne tage labeled style",
+      "description": "Default visualization for Gr\u00f8nne tage with bygnings_status shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1619,
+      "file:checksum": "1220ca0282e2bc2720a490f79cf3368b838cb71c60a3d23cb9017f70070bd954cfb4"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00f8nne tage graduated style",
+      "description": "Graduated visualization coloring Gr\u00f8nne tage by v_id, ramped from 1.0 to 2029.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1932,
+      "file:checksum": "122014f85661cb9ba268b8cf8f846df0fb5172c749907f79ef74ceab92c06ff7fe0a"
+    },
+    "thumbnail": {
+      "href": "./k101_groenne_tage.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Gr\u00f8nne tage",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 98754,
+      "file:checksum": "1220cf5b422ba017b05a4f2d478937c0d22bc80793f14ad5e482fb6703ebba8969f3"
+    }
+  },
+  "keywords": [
+    "Tag",
+    "gr\u00f8n",
+    "gr\u00f8nt",
+    "Gr\u00f8nne tage",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Gr\u00f8nne tage, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/gronne-tage",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

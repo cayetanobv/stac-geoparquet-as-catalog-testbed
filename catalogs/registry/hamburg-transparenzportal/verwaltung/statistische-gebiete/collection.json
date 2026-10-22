@@ -1,0 +1,214 @@
+{
+  "type": "Collection",
+  "id": "verwaltung/statistische-gebiete",
+  "stac_version": "1.1.0",
+  "description": "Die Einteilung Hamburgs in jetzt 943 Statistische Gebiete (Stand: Januar 2016) erfolgte im Anschluss an die Volksz\u00e4hlung 1987. Die Statistischen Gebiete sind eine Zusammenfassung von nebeneinander liegenden Baubl\u00f6cken, die hinsichtlich ausgew\u00e4hlter baulicher und sozialstruktureller Merkmale homogen und damit vergleichbar sind. Sie schneiden keine Stadtteile, jedoch in einigen Bereichen Ortsteilgrenzen.\nEine breite Palette an sozialstruktureller Informationen werden f\u00fcr diese Gebietseinheiten abrufbar vom Statistikamt Nord bereitgestellt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./statistische_gebiete.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Statistische Gebiete in Hamburg (app:statistische_gebiete)",
+      "pmtiles:layers": [
+        "statistische_gebiete"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://suche.transparenz.hamburg.de/dataset/statistische-gebiete-in-hamburg28",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WFS_Statistische_Gebiete?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetFeature&TYPENAMES=app:statistische_gebiete&OUTPUTFORMAT=application/geo%2Bjson&SRSNAME=EPSG:4326",
+      "rel": "related",
+      "title": "Upstream source: statistische_gebiete",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WFS_Statistische_Gebiete?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "WFS HH_WFS_Statistische_Gebiete (LGV Hamburg)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodienste.hamburg.de/HH_WMS_Statistische_Gebiete?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS HH_WMS_Statistische_Gebiete (LGV Hamburg)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 945,
+  "table:row_count": 945,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "statgebiet",
+      "type": "string"
+    },
+    {
+      "name": "flaeche",
+      "type": "int32"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Statistische Gebiete in Hamburg (app:statistische_gebiete)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.413190412394645,
+          53.395010846554044,
+          10.325276797341,
+          53.964906228578
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Statistische Gebiete in Hamburg (app:statistische_gebiete) default style",
+      "description": "Default visualization for Statistische Gebiete in Hamburg (app:statistische_gebiete), drawn in #ff7f00.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1248,
+      "file:checksum": "12200b2817793a836fd0cf30d6d3d9264f4ef520f6dab50814bc4bfb8aeff12bb849"
+    },
+    "statistische_gebiete": {
+      "href": "./statistische_gebiete.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 996350,
+      "file:checksum": "12202291b0128be26727557bf7971d6015c0b9dbde7f85e6ccc4cbfba2ae4e336eb7",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./statistische_gebiete.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Statistische Gebiete in Hamburg (app:statistische_gebiete) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1260955,
+      "file:checksum": "1220098865f83809b3e6d838c0cf04895b67a36f4f43db9aa43386fa1cca3a329d78"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Statistische Gebiete in Hamburg (app:statistische_gebiete) graduated style",
+      "description": "Graduated visualization coloring Statistische Gebiete in Hamburg (app:statistische_gebiete) by flaeche, ramped from 37510.0 to 17496744.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2040,
+      "file:checksum": "12205d9fe26b5ddac2b47e025e0f60eae3e044edac89d746807ff12f69c67666b0c8"
+    },
+    "thumbnail": {
+      "href": "./statistische_gebiete.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Statistische Gebiete in Hamburg (app:statistische_gebiete)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 118472,
+      "file:checksum": "122055d66325b53478fb17e764395d93d8616e3cfd22f2c628b39866a3c3b016d979"
+    }
+  },
+  "keywords": [
+    "Ohne gesetzliche Verpflichtung",
+    "Sozialstruktur",
+    "statistische_gebiete",
+    "Hamburg",
+    "Freie und Hansestadt Hamburg"
+  ],
+  "providers": [
+    {
+      "name": "Statistisches Amt f\u00fcr Hamburg und Schleswig-Holstein",
+      "description": "Datenquelle: Statistisches Amt f\u00fcr Hamburg und Schleswig-Holstein, \u00abStatistische Gebiete in Hamburg\u00bb, Transparenzportal Hamburg, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://suche.transparenz.hamburg.de/dataset/statistische-gebiete-in-hamburg28"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T20:30:00Z"
+}

@@ -1,0 +1,286 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "ec_si",
+  "title": "Field boundaries for Slovenia - Eurocrops 2021",
+  "description": "This dataset contains the field boundaries for all of Slovenia in 2021. The data was collected by the Slovenian government.\n\nThis collection holds 1 edition (2021), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/ec_si/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2021). Geometries are kept in the source CRS (EPSG:3794). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/ec_si/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "EuroCrops",
+    "Slovenia",
+    "agriculture",
+    "crop fields",
+    "fiboa",
+    "field boundaries"
+  ],
+  "license": "CC-BY-SA-4.0",
+  "providers": [
+    {
+      "name": "Ministrstvo za kmetijstvo, gozdarstvo in prehrano",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://rkg.gov.si/vstop/>, EuroCrops <https://github.com/maja601/EuroCrops"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.391407223909523,
+          45.41166432305473,
+          16.60796186754382,
+          46.86979599355252
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2021-01-01T00:00:00Z",
+          "2021-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:3794"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "rastlina",
+      "type": "string",
+      "description": "Carried over from the source column `RASTLINA`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "color",
+      "type": "string",
+      "description": "Carried over from the source column `COLOR`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "hcat:name",
+      "type": "string",
+      "description": "The machine-readable HCAT name of the crop (Hierarchical Crop and Agriculture Taxonomy, EuroCrops). ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "gerk_pid",
+      "type": "uint64",
+      "description": "Carried over from the source column `GERK_PID`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "EC_NUTS3",
+      "type": "string",
+      "description": "Source-specific column; the publisher documents no meaning for it."
+    },
+    {
+      "name": "hcat:name_en",
+      "type": "string",
+      "description": "The original crop name translated into English. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "crop_type_class",
+      "type": "string",
+      "description": "Carried over from the source column `SIFRA_KMRS`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "crop_lat_e",
+      "type": "string",
+      "description": "Carried over from the source column `CROP_LAT_E`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "hcat:code",
+      "type": "uint32",
+      "description": "The 10-digit HCAT code indicating the hierarchy of the crop. The first 4, 6, 8 digits select increasingly specific crop groups. ([spec](https://github.com/fiboa/hcat-extension/blob/main/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 828263,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 1,
+  "partition:glob": "s3://ftw/harmonized-field-data/ec_si/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/ec_si.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Slovenia - Eurocrops 2021 — latest edition (2021) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2021/ec_si.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 174134035,
+      "file:checksum": "1220ac5a34e7c2c5209a60704f095bbb3eb1d3183194c4a13b6c87b827a66df516fd",
+      "proj:code": "EPSG:3794"
+    },
+    "style-hcat-crops": {
+      "href": "./styles/hcat-crops.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Crops (HCAT)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields coloured by harmonized crop (EuroCrops HCAT code, `hcat:code`). The 12 crops covering the most area are named, everything else is grey. Colours follow the fiboa.org crop map palette.",
+      "file:size": 2423,
+      "file:checksum": "1220ba1fb3db0ae01f9a3fa1043e209f6e7d6a5af1deb10a8666a79a5c8c434400f0"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.1, 0.25, 0.5, 1 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1240,
+      "file:checksum": "1220b77ca5d1f60c9cb37f3063a745d6daddd5e9334987bb0add2d2ba5e4a72e1b57"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 749,
+      "file:checksum": "122093a9b4e6b3a7cafa8204b191d88367625b57f72affb34f7b734fd7ae8a38623a"
+    },
+    "visual": {
+      "href": "./year=2021/ec_si.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Slovenia - Eurocrops 2021 — latest edition (2021) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 148478714,
+      "file:checksum": "122023957adfec96c2c4b589818f467b6b335bf76733000094bf151db94c01633bcd"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the collection's default style.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 318753,
+      "file:checksum": "122019aca537bb70ab56dbd01cac0f6fbc70925bafe9ac053a4293ed4ef6d385f21d"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2021/ec_si.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "ec_si"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://github.com/maja601/EuroCrops",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/ec_si.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2021/ec_si-2021.json",
+      "type": "application/geo+json",
+      "title": "Slovenia - Eurocrops 2021 — 2021"
+    }
+  ],
+  "updated": "2026-09-03T23:26:30Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "ec_si": [
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/hcat-extension/v0.3.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://fiboa.org/crop-extension/v0.2.0/schema.yaml"
+    ]
+  },
+  "attribution": "Ministrstvo za kmetijstvo, gozdarstvo in prehrano"
+}

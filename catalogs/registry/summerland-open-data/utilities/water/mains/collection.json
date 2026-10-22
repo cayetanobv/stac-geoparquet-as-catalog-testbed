@@ -1,0 +1,197 @@
+{
+  "type": "Collection",
+  "id": "utilities/water/mains",
+  "stac_version": "1.1.0",
+  "description": "Locations of water mains within the District of Summerland.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./mains.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "mains"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 2177,
+  "table:row_count": 2177,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Diameter",
+      "type": "double",
+      "description": "Coded values from the service's wMainDiameter domain: 0 = Unknown; 19 = 19 mm; 25 = 25 mm; 30 = 30 mm; 32 = 32 mm; 38 = 38 mm; 50 = 50 mm; 64 = 64 mm; 75 = 75 mm; 80 = 80 mm; 100 = 100 mm; 150 = 150 mm; 200 = 200 mm; 250 = 250 mm; 300 = 300 mm; 350 = 350 mm; 400 = 400 mm; 450 = 450 mm; 500 = 500 mm; 600 = 600 mm (+5 more)."
+    },
+    {
+      "name": "Materials",
+      "type": "large_string",
+      "description": "Coded values from the service's wMainMaterial domain: AC = Asbestos Cement; DI = Ductile Iron; GI = Galvanized Iron; HDPE = High Density Polyethylene; PE = Polyethylene; PVC = Polyvinyl Chloride; PCCP = Pre-Stressed Concrete Cylinder Pipe; SRC = Steel Cylinder Reinforced Concrete Pipe; PSC = Plastic/Steel Composite; CI = Cast Iron."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "material_family",
+      "type": "large_string",
+      "description": "Pipe material, normalised here from the raw Materials field. That field mixes the service's wMainMaterial domain labels with the same domain's raw codes and with free text appended by staff, so the same material appears under several spellings. Codes are expanded using that published domain and a trailing Domestic / Irrigation / Abandoned qualifier is removed. Raw Materials is retained unchanged alongside this column."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Main - Water Utility",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.77379950029251,
+          49.56254062969128,
+          -119.62107339035879,
+          49.683252008392884
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "mains": {
+      "href": "./mains.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 217103,
+      "file:checksum": "12206ddba82bccd1590ae675c064946daebdc1b7620927e9a662e372e8267c048581",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./mains.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 95504,
+      "file:checksum": "1220b9b2e26238be688a4364207731abf84adc107e4f46e9566614051798d75c9f2d"
+    },
+    "mains-tiles": {
+      "href": "./mains.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "mains (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 211996,
+      "file:checksum": "122033f700a8675c78fbeb018855697c480656eef85e7370386a1158a790296d02ac"
+    },
+    "styles/pipe-diameter": {
+      "href": "./styles/pipe-diameter.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Pipe diameter",
+      "file:size": 616,
+      "file:checksum": "1220067a0a277f7cfe118ed50e7dd20e52f06c77c6e15843f1c799224c72529d4c3c"
+    },
+    "styles/pipe-material": {
+      "href": "./styles/pipe-material.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Pipe material",
+      "file:size": 1426,
+      "file:checksum": "122071bfeca978e73ab200bd43b8be059efc64a9132c08376bba6570d211ddb45f5b"
+    }
+  },
+  "keywords": [
+    "Utilities",
+    "Water",
+    "Works",
+    "Infrastructure"
+  ]
+}

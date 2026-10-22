@@ -1,0 +1,320 @@
+{
+  "type": "Collection",
+  "id": "building-damage-h3",
+  "stac_version": "1.1.0",
+  "description": "Counts of buildings predicted damaged by the Microsoft AI for Good Lab damage-assessment models, aggregated to H3 resolution-9 hexagons (about 0.086 km2 each, roughly 290 m across) per imagery assessment. Four assessments are included as separate rows for the same cell: Vantor (formerly Maxar) satellite imagery of 2025-10-29 (St Elizabeth strip, 107,133 footprints of which 64,652 cloud-obscured) and 2025-10-31 (St James / Montego Bay, 61,161 footprints), and NOAA NGS aerial imagery of 2025-11-01 (Westmoreland, 34,403) and 2025-11-02 (labelled St Elizabeth by the publisher but 30,091 of 30,545 footprints fall in Westmoreland parish). 11,101 rows over 10,916 cells; 233,242 footprints; 81,299 predicted damaged. damaged in the source is binary (roof visibly damaged from above); the four n_damaged_* bins are CARTO's split of the publisher's damage_pct_0m and are derived. Individual footprints are deliberately not published (privacy decision for this demo). A cell with no row was either not imaged, cloud-covered or had no footprints: absence of detection is not absence of damage. Source: Hurricane Melissa: Building Damage Assessment in Jamaica (HDX), retrieved 2026-09-23.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica)",
+      "pmtiles:layers": [
+        "data"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.humdata.org/dataset/hurricane-melissa-building-damage-assessment-in-jamaica",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 11101,
+  "table:row_count": 11101,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "h3_index",
+      "type": "string",
+      "description": "H3 resolution-9 cell id, 15-character string such as 8945b2a2ac3ffff; 10,916 distinct, 185 appear twice (two assessments)."
+    },
+    {
+      "name": "assessment_id",
+      "type": "string",
+      "description": "One of vantor-20251029-st-elizabeth, vantor-20251031-st-james, noaa-20251101a-westmoreland, noaa-20251102a-st-elizabeth (CARTO's ids; the parish in the id is the publisher's label, not the COD-AB parish)."
+    },
+    {
+      "name": "imagery_date",
+      "type": "date",
+      "description": "Imagery acquisition date from the HDX resource description / file name: 2025-10-29, 2025-10-31, 2025-11-01 or 2025-11-02."
+    },
+    {
+      "name": "imagery_provider",
+      "type": "string",
+      "description": "Vantor (formerly Maxar) or NOAA NGS, from the HDX methodology text."
+    },
+    {
+      "name": "source_file",
+      "type": "string",
+      "description": "Name of the HDX GeoPackage the rows were aggregated from."
+    },
+    {
+      "name": "n_buildings",
+      "type": "int64",
+      "description": "Footprints whose centroid falls in the cell (1-387; total 233,242)."
+    },
+    {
+      "name": "n_assessed",
+      "type": "int64",
+      "description": "Footprints with unknown_pct = 0 in the source, or all footprints for the NOAA files (no cloud column); total 151,837."
+    },
+    {
+      "name": "n_cloud_obscured",
+      "type": "int64",
+      "description": "Footprints with unknown_pct > 0 (share of the footprint under cloud); reproduces the publisher's 64,652 for 2025-10-29; total 81,405; always 0 for NOAA rows."
+    },
+    {
+      "name": "n_damaged",
+      "type": "int64",
+      "description": "Footprints with source damaged = 1, which is exactly damage_pct_0m > 0 in all four files; total 81,299."
+    },
+    {
+      "name": "n_damaged_assessed",
+      "type": "int64",
+      "description": "damaged = 1 and not cloud-obscured; total 77,634."
+    },
+    {
+      "name": "n_intact_assessed",
+      "type": "int64",
+      "description": "damaged = 0 and not cloud-obscured (publisher: intact, roof on)."
+    },
+    {
+      "name": "n_damaged_lt25",
+      "type": "int64",
+      "description": "Derived bin (CARTO, not a publisher class): damaged = 1 with damage_pct_0m < 0.25; total 31,302."
+    },
+    {
+      "name": "n_damaged_25_50",
+      "type": "int64",
+      "description": "Derived bin: damaged = 1 with 0.25 <= damage_pct_0m < 0.5; total 14,015."
+    },
+    {
+      "name": "n_damaged_50_75",
+      "type": "int64",
+      "description": "Derived bin: damaged = 1 with 0.5 <= damage_pct_0m < 0.75; total 12,867."
+    },
+    {
+      "name": "n_damaged_gte75",
+      "type": "int64",
+      "description": "Derived bin: damaged = 1 with damage_pct_0m >= 0.75; total 23,115."
+    },
+    {
+      "name": "n_debris_within_20m",
+      "type": "double",
+      "description": "Footprints with damage_pct_20m > 0 (share of a 20 m buffer predicted damaged: nearby debris); Vantor files only, NULL for NOAA rows (35,166 for 2025-10-29, 43,141 for 2025-10-31)."
+    },
+    {
+      "name": "mean_damage_pct_damaged",
+      "type": "double",
+      "description": "Mean damage_pct_0m over the cell's damaged footprints (0-1)."
+    },
+    {
+      "name": "share_damaged",
+      "type": "double",
+      "description": "n_damaged_assessed / n_assessed, 0-1; NULL when n_assessed = 0 (3,625 rows). Quartiles 0.0 / 0.286 / 0.591. The default style grades this column."
+    },
+    {
+      "name": "adm1_name",
+      "type": "string",
+      "description": "OCHA COD-AB parish name (Saint Elizabeth, Westmoreland, Saint James, Hanover, Trelawny), the mode over the cell's footprints; a border cell is attributed whole to one parish."
+    },
+    {
+      "name": "adm1_pcode",
+      "type": "string",
+      "description": "COD-AB parish P-code JM01..JM14 of adm1_name; joins to building-damage-parishes and to the ocha-cod-jamaica parishes."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "H3 resolution-9 cell boundary polygon, WGS 84 longitude/latitude (EPSG:4326); extent -78.347, 17.859, -77.667, 18.484."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bbox covering column (xmin, ymin, xmax, ymax), added by the conversion."
+    }
+  ],
+  "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.346885,
+          17.859214,
+          -77.666941,
+          18.484105
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-29T00:00:00Z",
+          "2025-11-02T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) default style",
+      "description": "Default visualization for Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica), drawn in #f9a825.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1172,
+      "file:checksum": "12200c522642a4539d55c5c84f51f803dbbb2e4afbe3c6b53f1edcfe2e5f77e8bf0d"
+    },
+    "data": {
+      "href": "./data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 912176,
+      "file:checksum": "1220e080e0ee0a9183abd5162cbc7e6e8b04b22ecb8be382bf927fafb8100fc1b06a",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3588465,
+      "file:checksum": "1220b8f486d2ad05d830df9f07828ace57a9de40f23b97241d5ca232795cdd2f3b55"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) categorical style",
+      "description": "Categorical visualization coloring Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) by imagery_provider, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1706,
+      "file:checksum": "1220564bfd548ee9c6835293ec9e7a39cdd732c243ed054c82034f42d154f6b4b93d"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) labeled style",
+      "description": "Default visualization for Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) with imagery_provider shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1581,
+      "file:checksum": "1220008df079b89fcbd818ffc9ba6829103f5438507929b8a8ce9086fedde76a4754"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) graduated style",
+      "description": "Graduated visualization coloring Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica) by share_damaged, ramped from 0.0 to 1.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1937,
+      "file:checksum": "1220a3e42c136c0ab202ad35aa7a271af3d3cf2e5be7d7bda0265e9f6705046cf328"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/hurricane-melissa-impact/building-damage-h3/data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: data",
+      "pipeline:upstream": true,
+      "file:size": 1109253,
+      "file:checksum": "12207b9899dcf051260e80b9a7cbf206d21be6773811e4b8698049cd4af5233d12d7"
+    },
+    "thumbnail": {
+      "href": "./data.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Building damage predictions aggregated to H3 resolution 9 (Hurricane Melissa, western Jamaica)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 110208,
+      "file:checksum": "1220b0f7924c545b82930415edd7006a0ae94fe5dc7f3754a1d51eccb90468ac8143"
+    }
+  },
+  "keywords": [
+    "Hurricane Melissa",
+    "Jamaica",
+    "building damage",
+    "damage assessment",
+    "H3",
+    "Microsoft AI for Good Lab",
+    "HDX",
+    "Vantor",
+    "NOAA NGS"
+  ],
+  "providers": [
+    {
+      "name": "Microsoft AI for Good Lab",
+      "description": "Damage-assessment AI model predictions on Vantor (formerly Maxar) and NOAA NGS imagery; four GeoPackages on HDX dated 2025-10-31 to 2025-11-06, retrieved 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.humdata.org/organization/microsoft-ai4g-lab"
+    },
+    {
+      "name": "CARTO",
+      "description": "Aggregation to H3 resolution 9 per assessment, parish attribution (OCHA COD-AB) and derived bins.",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T00:00:00Z"
+}

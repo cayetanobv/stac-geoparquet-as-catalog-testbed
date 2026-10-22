@@ -1,0 +1,999 @@
+{
+  "type": "Collection",
+  "id": "government/property-taxes",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "description": "Property tax records by parcel",
+  "license": "other",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.320522,
+          38.531907,
+          -90.166409,
+          38.774362
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "table:row_count": 135969,
+  "table:columns": [
+    {
+      "name": "CityBlock",
+      "type": "double",
+      "description": "City block number, first component of the parcel key (portal: 'key fields: CITYBLOCK, PARCEL, OWNERCODE')."
+    },
+    {
+      "name": "Parcel",
+      "type": "int64",
+      "description": "Parcel number within the city block, second component of the parcel key."
+    },
+    {
+      "name": "OwnerCode",
+      "type": "int64",
+      "description": "Taxing-status component of the parcel key: 0 Standard, 1 Redev Taxable, 2 Redev Exempt, 3 In Lieu of Payment, 4 Charity Exempt, 5 Charity Taxable, 6 Mixed Res, 7 Mixed Comm, 8 Sign, 9 Demo/Maintenance Charge (city PrclCode.mdb CdOwnerCode)."
+    },
+    {
+      "name": "AsrParcelId",
+      "type": "string",
+      "description": "The Assessor's parcel ID in the numbering schema introduced in 2021 (portal field definition for ParcelId)."
+    },
+    {
+      "name": "ColParcelId",
+      "type": "string",
+      "description": "Unformatted Collector of Revenue parcel ID \u2014 the pre-2021 numbering scheme used across many city departments (portal field definition)."
+    },
+    {
+      "name": "ColCityBlock",
+      "type": "int64"
+    },
+    {
+      "name": "ColParcel",
+      "type": "int64"
+    },
+    {
+      "name": "ParcelId",
+      "type": "string",
+      "description": "Unformatted parcel ID in the Assessor's 2021 numbering schema (portal field definition)."
+    },
+    {
+      "name": "PrimAddrRecNum",
+      "type": "int64"
+    },
+    {
+      "name": "AddrType",
+      "type": "string"
+    },
+    {
+      "name": "LowAddrNum",
+      "type": "int64",
+      "description": "Lowest house number referencing this parcel on its primary street (portal field definition); HighAddrNum is the highest."
+    },
+    {
+      "name": "LowAddrSuf",
+      "type": "string"
+    },
+    {
+      "name": "HighAddrNum",
+      "type": "int64"
+    },
+    {
+      "name": "HighAddrSuf",
+      "type": "string"
+    },
+    {
+      "name": "NLC",
+      "type": "int64",
+      "description": "City internal numeric street code for the parcel's primary street (see parcels.NLC)."
+    },
+    {
+      "name": "Parity",
+      "type": "string"
+    },
+    {
+      "name": "StPreDir",
+      "type": "string"
+    },
+    {
+      "name": "StName",
+      "type": "string"
+    },
+    {
+      "name": "StType",
+      "type": "string"
+    },
+    {
+      "name": "StSufDir",
+      "type": "string"
+    },
+    {
+      "name": "StdUnitNum",
+      "type": "string"
+    },
+    {
+      "name": "OwnerName",
+      "type": "string"
+    },
+    {
+      "name": "OwnerName2",
+      "type": "string"
+    },
+    {
+      "name": "OwnerAddr",
+      "type": "string"
+    },
+    {
+      "name": "OwnerCity",
+      "type": "string"
+    },
+    {
+      "name": "OwnerState",
+      "type": "string"
+    },
+    {
+      "name": "OwnerCountry",
+      "type": "string"
+    },
+    {
+      "name": "OwnerZIP",
+      "type": "string"
+    },
+    {
+      "name": "OwnerRank",
+      "type": "int64"
+    },
+    {
+      "name": "LegalDesc1",
+      "type": "string"
+    },
+    {
+      "name": "LegalDesc2",
+      "type": "string"
+    },
+    {
+      "name": "LegalDesc3",
+      "type": "string"
+    },
+    {
+      "name": "LegalDesc4",
+      "type": "string"
+    },
+    {
+      "name": "LegalDesc5",
+      "type": "string"
+    },
+    {
+      "name": "AsrClassCode",
+      "type": "int64",
+      "description": "Assessor's owner-class code (100 Individual, 200 Company, 49 Land Re-Utilization, etc.; city controlled vocabulary 'Assessor Class Code')."
+    },
+    {
+      "name": "PropertyClassCode",
+      "type": "int64",
+      "description": "Statutory property classification: 10 Agricultural, 12 Commercial, 15 Residential, 17 Exempt, plus mixed-class combination codes (city controlled vocabulary 'Property Class Code')."
+    },
+    {
+      "name": "AsrLandUse1",
+      "type": "int64",
+      "description": "Assessor's primary land-use code (city controlled vocabulary 'Assessor Land Use'; e.g. 1110 Single Family Units, 1010 Vacant Residential Lot, 5000 Trade \u2014 see parcels.AsrLandUse1 for more codes)."
+    },
+    {
+      "name": "AsrLanduse2",
+      "type": "int64",
+      "description": "Secondary land-use code, 'present, if necessary, otherwise 0' (portal field definition)."
+    },
+    {
+      "name": "IsAbatedProperty",
+      "type": "int64",
+      "description": "0/1 flag that the parcel has a tax abatement."
+    },
+    {
+      "name": "AbatementType",
+      "type": "string",
+      "description": "Program under which the abatement was granted: CH99 Chapter 99, CH100 Chapter 100, CH353 Chapter 353, EEZ Enterprise Zone (city controlled vocabulary 'Abatement Type')."
+    },
+    {
+      "name": "AbatementStartYear",
+      "type": "int64",
+      "description": "First tax year of the abatement period."
+    },
+    {
+      "name": "AbatementEndYear",
+      "type": "int64",
+      "description": "Last tax year of the abatement period."
+    },
+    {
+      "name": "RedevPhase",
+      "type": "int64"
+    },
+    {
+      "name": "RedevYearEnd",
+      "type": "int64"
+    },
+    {
+      "name": "RedevPhase2",
+      "type": "int64"
+    },
+    {
+      "name": "RedevYearEnd2",
+      "type": "int64"
+    },
+    {
+      "name": "VacantLot",
+      "type": "int64",
+      "description": "0/1 vacant-lot flag (see parcels.VacantLot)."
+    },
+    {
+      "name": "SpecBusDist",
+      "type": "int64"
+    },
+    {
+      "name": "SpecBusDist2",
+      "type": "int64"
+    },
+    {
+      "name": "SpecBusDist3",
+      "type": "int64"
+    },
+    {
+      "name": "TIFDist",
+      "type": "int64"
+    },
+    {
+      "name": "LendingAgcy",
+      "type": "int64"
+    },
+    {
+      "name": "Condominium",
+      "type": "int64"
+    },
+    {
+      "name": "NbrOfUnitsSource",
+      "type": "int64",
+      "description": "Source system for the NbrOfUnits value: 1 DevNet Building Apartment Data, 2/3 DevNet Land Use with/without Building Rec, 10 Permits, 50 Pre-DevNet Parcel Unit Data, 110/120 overrides, 20 Other (city controlled vocabulary 'Number Of Units Source')."
+    },
+    {
+      "name": "NbrOfUnits",
+      "type": "int64"
+    },
+    {
+      "name": "NbrOfApts",
+      "type": "int64"
+    },
+    {
+      "name": "Frontage",
+      "type": "double"
+    },
+    {
+      "name": "LandArea",
+      "type": "int64"
+    },
+    {
+      "name": "RecDailyDate",
+      "type": "string",
+      "description": "Recorder of Deeds daily-record date for the latest recorded instrument; RecDailyNum, RecBookNum and RecPageNum are the daily number and book/page references."
+    },
+    {
+      "name": "RecDailyNum",
+      "type": "int64"
+    },
+    {
+      "name": "RecBookNum",
+      "type": "string"
+    },
+    {
+      "name": "RecPageNum",
+      "type": "int64"
+    },
+    {
+      "name": "AsdLand",
+      "type": "double",
+      "description": "Assessed value of land in dollars (Missouri assessed value = 19% residential / 32% commercial / 12% agricultural of appraised value, RSMo 137.115)."
+    },
+    {
+      "name": "AsdImprove",
+      "type": "double",
+      "description": "Assessed value of improvements in dollars."
+    },
+    {
+      "name": "AsdTotal",
+      "type": "double",
+      "description": "Total assessed value in dollars."
+    },
+    {
+      "name": "AsdResLand",
+      "type": "double",
+      "description": "Assessed land value attributed to the residential class portion (AsdResImprove, AsdComLand, AsdComImprove, AsdAgrLand, AsdAgrImprove are the parallel class-portion splits)."
+    },
+    {
+      "name": "AsdResImprove",
+      "type": "double"
+    },
+    {
+      "name": "AsdComLand",
+      "type": "double"
+    },
+    {
+      "name": "AsdComImprove",
+      "type": "double"
+    },
+    {
+      "name": "AsdAgrLand",
+      "type": "double"
+    },
+    {
+      "name": "AsdAgrImprove",
+      "type": "double"
+    },
+    {
+      "name": "BillYear",
+      "type": "int64",
+      "description": "Tax year of the bill the Bill* fields refer to."
+    },
+    {
+      "name": "BillSuffix",
+      "type": "int64"
+    },
+    {
+      "name": "BillLand",
+      "type": "double",
+      "description": "Land assessed value as billed for BillYear; the Asd* vs Bill* distinction (current assessment vs billed assessment) is not formally documented on the portal."
+    },
+    {
+      "name": "BillImprove",
+      "type": "double",
+      "description": "Improvement assessed value as billed for BillYear."
+    },
+    {
+      "name": "BillTotal",
+      "type": "double",
+      "description": "Total assessed value as billed for BillYear."
+    },
+    {
+      "name": "BillResLand",
+      "type": "double"
+    },
+    {
+      "name": "BillResImprove",
+      "type": "double"
+    },
+    {
+      "name": "BillComLand",
+      "type": "double"
+    },
+    {
+      "name": "BillComImprove",
+      "type": "double"
+    },
+    {
+      "name": "BillAgrLand",
+      "type": "double"
+    },
+    {
+      "name": "BillAgrImprove",
+      "type": "double"
+    },
+    {
+      "name": "BillTaxAmt",
+      "type": "double",
+      "description": "Total tax amount billed for BillYear in dollars (name-based)."
+    },
+    {
+      "name": "TaxBalDue",
+      "type": "double",
+      "description": "Outstanding tax balance due in dollars (name-based)."
+    },
+    {
+      "name": "AprLand",
+      "type": "double",
+      "description": "Appraised (market) value of land in dollars; AprResLand/AprResImprove/AprComLand/AprComImprove/AprAgrLand/AprAgrImprove split it by property class, and AprExemptLand/AprExemptImprove carry exempt portions."
+    },
+    {
+      "name": "AprResLand",
+      "type": "double"
+    },
+    {
+      "name": "AprResImprove",
+      "type": "double"
+    },
+    {
+      "name": "AprComLand",
+      "type": "double"
+    },
+    {
+      "name": "AprComImprove",
+      "type": "double"
+    },
+    {
+      "name": "AprAgrLand",
+      "type": "double"
+    },
+    {
+      "name": "AprAgrImprove",
+      "type": "double"
+    },
+    {
+      "name": "AprExemptLand",
+      "type": "double"
+    },
+    {
+      "name": "AprExemptImprove",
+      "type": "double"
+    },
+    {
+      "name": "CostAprImprove",
+      "type": "double",
+      "description": "Cost-approach appraised value of improvements (name-based)."
+    },
+    {
+      "name": "AsmtAppealYear",
+      "type": "int64"
+    },
+    {
+      "name": "AsmtAppealNum",
+      "type": "int64"
+    },
+    {
+      "name": "AsmtAppealType",
+      "type": "string",
+      "description": "Type of assessment appeal filed (city controlled vocabulary 'Assessment Appeal Type')."
+    },
+    {
+      "name": "PriorAsdDate",
+      "type": "timestamp"
+    },
+    {
+      "name": "PriorAsdLand",
+      "type": "double",
+      "description": "Assessed land value from the prior assessment (PriorAsdImprove/PriorAsdTotal/PriorAsdDate/PriorTaxAmt are the matching prior-cycle values)."
+    },
+    {
+      "name": "PriorAsdImprove",
+      "type": "double"
+    },
+    {
+      "name": "PriorAsdTotal",
+      "type": "double"
+    },
+    {
+      "name": "PriorTaxAmt",
+      "type": "double"
+    },
+    {
+      "name": "CDALandUse1",
+      "type": "int64"
+    },
+    {
+      "name": "CDALandUse2",
+      "type": "int64"
+    },
+    {
+      "name": "LRMSUnitNum",
+      "type": "string"
+    },
+    {
+      "name": "Zoning",
+      "type": "string"
+    },
+    {
+      "name": "FormBasedDist1",
+      "type": "int64"
+    },
+    {
+      "name": "FormBasedType1",
+      "type": "string"
+    },
+    {
+      "name": "FormBasedDist2",
+      "type": "int64"
+    },
+    {
+      "name": "FormBasedType2",
+      "type": "string"
+    },
+    {
+      "name": "CUPArea",
+      "type": "int64"
+    },
+    {
+      "name": "PUDArea",
+      "type": "int64"
+    },
+    {
+      "name": "SPDArea",
+      "type": "int64"
+    },
+    {
+      "name": "SUDArea",
+      "type": "int64"
+    },
+    {
+      "name": "TODArea",
+      "type": "int64"
+    },
+    {
+      "name": "NbrOfBldgsRes",
+      "type": "int64"
+    },
+    {
+      "name": "NbrOfBldgsCom",
+      "type": "int64"
+    },
+    {
+      "name": "FirstYearBuilt",
+      "type": "int64"
+    },
+    {
+      "name": "LastYearBuilt",
+      "type": "int64"
+    },
+    {
+      "name": "ResSalePrice",
+      "type": "double"
+    },
+    {
+      "name": "ResSaleDate",
+      "type": "string"
+    },
+    {
+      "name": "VacBldgYear",
+      "type": "int64"
+    },
+    {
+      "name": "GeoCityBlockPart",
+      "type": "double"
+    },
+    {
+      "name": "Ward20",
+      "type": "int64"
+    },
+    {
+      "name": "Precinct20",
+      "type": "int64"
+    },
+    {
+      "name": "InspArea20",
+      "type": "int64"
+    },
+    {
+      "name": "Ward10",
+      "type": "int64"
+    },
+    {
+      "name": "Precinct10",
+      "type": "int64"
+    },
+    {
+      "name": "InspArea10",
+      "type": "int64"
+    },
+    {
+      "name": "Ward00",
+      "type": "int64"
+    },
+    {
+      "name": "Precinct02",
+      "type": "int64"
+    },
+    {
+      "name": "Precinct04",
+      "type": "int64"
+    },
+    {
+      "name": "Nbrhd",
+      "type": "int64"
+    },
+    {
+      "name": "CDADist",
+      "type": "int64"
+    },
+    {
+      "name": "CDASubDist",
+      "type": "int64"
+    },
+    {
+      "name": "PoliceDist",
+      "type": "int64"
+    },
+    {
+      "name": "IsHUDQualifiedTract",
+      "type": "int64",
+      "description": "Flag that the parcel lies in a HUD Qualified Census Tract (name-based)."
+    },
+    {
+      "name": "ComNeedGrantCode",
+      "type": "int64"
+    },
+    {
+      "name": "CensTract20",
+      "type": "double"
+    },
+    {
+      "name": "CensBlock20",
+      "type": "int64"
+    },
+    {
+      "name": "CensTract10",
+      "type": "double"
+    },
+    {
+      "name": "CensBlock10",
+      "type": "int64"
+    },
+    {
+      "name": "CensBlock00",
+      "type": "double"
+    },
+    {
+      "name": "Ward90",
+      "type": "int64"
+    },
+    {
+      "name": "Precinct90",
+      "type": "int64"
+    },
+    {
+      "name": "CensBlock90",
+      "type": "double"
+    },
+    {
+      "name": "HouseConsDist",
+      "type": "int64"
+    },
+    {
+      "name": "AsrNbrhd",
+      "type": "int64"
+    },
+    {
+      "name": "EntZone",
+      "type": "int64"
+    },
+    {
+      "name": "ImpactArea",
+      "type": "int64"
+    },
+    {
+      "name": "CTDArea",
+      "type": "int64"
+    },
+    {
+      "name": "LeafArea",
+      "type": "int64"
+    },
+    {
+      "name": "MaintZoneWC",
+      "type": "int64"
+    },
+    {
+      "name": "TransDevDist",
+      "type": "int64"
+    },
+    {
+      "name": "BedBreakfastDist",
+      "type": "int64"
+    },
+    {
+      "name": "CORTEXArea",
+      "type": "int64"
+    },
+    {
+      "name": "Ch99Area",
+      "type": "double"
+    },
+    {
+      "name": "Ch100Area",
+      "type": "int64"
+    },
+    {
+      "name": "Ch353Area",
+      "type": "int64"
+    },
+    {
+      "name": "ParkNum",
+      "type": "int64"
+    },
+    {
+      "name": "CityLandmark",
+      "type": "int64"
+    },
+    {
+      "name": "CityLandmarkDist",
+      "type": "int64"
+    },
+    {
+      "name": "CertLocalHistDist",
+      "type": "int64"
+    },
+    {
+      "name": "LocalHistDist",
+      "type": "int64"
+    },
+    {
+      "name": "NatHistDist",
+      "type": "int64"
+    },
+    {
+      "name": "NatHistLandmark",
+      "type": "int64"
+    },
+    {
+      "name": "NatRegSite",
+      "type": "int64"
+    },
+    {
+      "name": "PresRevDist",
+      "type": "int64"
+    },
+    {
+      "name": "ZIP",
+      "type": "int64"
+    },
+    {
+      "name": "FloodPlain",
+      "type": "int64",
+      "description": "Floodplain status of the parcel: 10/11 100-Year Flood all/part in, 50/51 500-Year Flood all/part in, 30/31 Levee all/part in (city controlled vocabulary 'Flood Plain Type')."
+    },
+    {
+      "name": "OnFloodBlock",
+      "type": "int64"
+    },
+    {
+      "name": "SpecParcelType",
+      "type": "string",
+      "description": "Special-parcel type: C/K Condo Master, H Highway ROW, R Other ROW, S Special Account, W Water, X Non-parcel Area (city PrclCode.mdb CdSpecParcelType)."
+    },
+    {
+      "name": "SubParcelType",
+      "type": "string",
+      "description": "Sub-parcel type code (A Account Separation, B Back Taxes Owed, C Condo, G Garage/Parking Condo, K Commercial Condo, M Multi-Owner, X Other, plus retirement codes; city 'Parcel Sub Type' vocabulary)."
+    },
+    {
+      "name": "NbrOfSubAccts",
+      "type": "int64",
+      "description": "Number of sub-accounts under this parcel (e.g. condo units billed separately; name-based)."
+    },
+    {
+      "name": "NbrOfCondos",
+      "type": "int64",
+      "description": "Number of condominium units associated with the parcel (name-based)."
+    },
+    {
+      "name": "LRMSParcel",
+      "type": "int64",
+      "description": "Flag/identifier linking the parcel to the city's LRMS land-records system (the LRMS acronym appears throughout city address vocabularies without an expansion; not formally documented)."
+    },
+    {
+      "name": "AcctPrimary",
+      "type": "int64",
+      "description": "Flag marking the primary account record for the parcel (name-based)."
+    },
+    {
+      "name": "GisPrimary",
+      "type": "int64",
+      "description": "Flag marking the record that represents the parcel in GIS when multiple accounts share a parcel (name-based); GisCityBLock/GisParcel/GisOwnerCode are the GIS-side key components."
+    },
+    {
+      "name": "GisCityBLock",
+      "type": "double"
+    },
+    {
+      "name": "GisParcel",
+      "type": "int64"
+    },
+    {
+      "name": "GisOwnerCode",
+      "type": "int64"
+    },
+    {
+      "name": "Handle",
+      "type": "int64",
+      "description": "Citywide parcel join key (see parcels.HANDLE); the portal marks the numbering schema DEPRECATED."
+    },
+    {
+      "name": "Parcel9",
+      "type": "int64",
+      "description": "Nine-digit parcel root built from CityBlock and Parcel (schema BBBBbbPPP), described in legacy city documentation as the 'root of all taxable info'."
+    },
+    {
+      "name": "OwnerOcc",
+      "type": "string",
+      "description": "Owner-occupancy dwelling-type code: 1 Single Family, 2 Two-Family, 4 Three-or-Four Family, 5 Five-plus Family, C Condo, X Other (city PrclCode.mdb CdOwnerOccCode)."
+    },
+    {
+      "name": "FirstDate",
+      "type": "string",
+      "description": "Date the record first appeared in the extract (name-based; not formally documented)."
+    },
+    {
+      "name": "LastDate",
+      "type": "timestamp",
+      "description": "Date the record was last updated in the extract (name-based; not formally documented)."
+    },
+    {
+      "name": "OwnerUpdate",
+      "type": "string",
+      "description": "Date of the last ownership update on the record (name-based; not formally documented)."
+    }
+  ],
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Government"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=3",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=3",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./property-taxes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "property-taxes"
+      ]
+    }
+  ],
+  "assets": {
+    "property-taxes": {
+      "href": "./property-taxes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Property Taxes (Parquet)",
+      "file:size": 14372080,
+      "file:checksum": "1220badeef091761c2a6e7f7012a42e84fa367719ef4e60493e21a21da525a29c9fb"
+    },
+    "property-taxes-tiles": {
+      "href": "./property-taxes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Property Taxes (PMTiles)",
+      "file:size": 23740408,
+      "file:checksum": "12209e0adce78fbc95be5ae9cf324115cb9b54a5ba722572e4c539b0240cdf9fd3c7"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Property Taxes rendered with the default style",
+      "file:size": 391916,
+      "file:checksum": "1220bd41a2829d55133f42f37eb1714cc4738fd47bb34f44f8a1494afd7bbc618608"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Assessed total",
+      "description": "The assessor's tax roll joined to parcel geometry: total assessed value in quintile steps.",
+      "file:size": 1371,
+      "file:checksum": "1220b7f6be0ad56c79a72234af836ed21dbec0b48f156405dec15de5577e4430e9e8"
+    },
+    "styles/style-land-value": {
+      "href": "./styles/style-land-value.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Assessed land value",
+      "description": "Land-only assessed value (AsdLand) in steps \u2014 land value geography without improvements.",
+      "file:size": 1297,
+      "file:checksum": "122019ca0a761c4ec1889fe334face09964a8b6fd6f510ae9ed28873044df55d939d"
+    },
+    "styles/style-solid": {
+      "href": "./styles/style-solid.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Tax roll parcels",
+      "description": "Every joined parcel in one color.",
+      "file:size": 506,
+      "file:checksum": "1220fa3a2804f98c3255b798e7ed5a96401e006cfe8875e50f754ebb4e4afab33818"
+    },
+    "source": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/prcl.zip",
+      "type": "application/zip",
+      "title": "Property taxes (zipped Microsoft Access database)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 112687940,
+      "file:checksum": "122066e381ba97b4f8ab59f496a45e8e2c32f437c5d3f59ce75341397b76f410a684",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  },
+  "title": "Property Taxes",
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "government",
+          "title": "Government"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "assessor-s-office",
+          "title": "Assessor's Office"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "asset-parcel",
+    "property address",
+    "taxes",
+    "Assessor's Office"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Assessor's Office",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=3"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

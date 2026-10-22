@@ -1,0 +1,216 @@
+{
+  "type": "Collection",
+  "id": "utilities/electrical/event-power",
+  "stac_version": "1.1.0",
+  "description": "Data history: Downtown Event Power layer was collected using GPS by the District's Electrician and an Engineering Technician in November & December of 2021. Points were collected close to the location of the receptacles (some are in buildings and were taken outside) Estimated to be within 1m-5m of receptacles. Precision is expected to be <0.10m.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./event-power.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "event-power"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 44,
+  "table:row_count": 44,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "PlugID",
+      "type": "int32",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 44 of 44 rows populated; 44 distinct values."
+    },
+    {
+      "name": "NAME",
+      "type": "large_string",
+      "description": "PlugDescription."
+    },
+    {
+      "name": "Status",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 43 of 44 rows populated; values: Available."
+    },
+    {
+      "name": "PlugType1",
+      "type": "large_string",
+      "description": "First Outlet Type."
+    },
+    {
+      "name": "Amount1",
+      "type": "double",
+      "description": "Number of First Type Outlets."
+    },
+    {
+      "name": "PlugType2",
+      "type": "large_string",
+      "description": "econdary Outlet Type."
+    },
+    {
+      "name": "Amount2",
+      "type": "double",
+      "description": "Number of Secondary Type Outlets."
+    },
+    {
+      "name": "PlugType3",
+      "type": "large_string",
+      "description": "Third Outlet Type."
+    },
+    {
+      "name": "Amount3",
+      "type": "double",
+      "description": "Number of Third Type Outlets."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Electrical Event Power",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.7328128696822,
+          49.56548617134721,
+          -119.62246320002896,
+          49.61901583970441
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "event-power": {
+      "href": "./event-power.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 20693,
+      "file:checksum": "12201e0348068929f9da650afa3a966c73537f32c70e8ce53e4d18b15c5a476fa0dd",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./event-power.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 9429,
+      "file:checksum": "1220b1c91a4a99d903a408ecf014ef30e044ea8f0b2fb7cfd87a0cb60a973df82da6"
+    },
+    "event-power-tiles": {
+      "href": "./event-power.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "event-power (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 17464,
+      "file:checksum": "1220ff4211f8de4aff0f593432364807aad24cba31508f557055e3381171cabc3a58"
+    },
+    "styles/event-power": {
+      "href": "./styles/event-power.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Receptacle type",
+      "file:size": 958,
+      "file:checksum": "12200ed9d49639a74533e8c79b4c2b39f72292059087b002cfc5c42beb6baaa06ec2"
+    }
+  },
+  "keywords": [
+    "Electrical",
+    "Event",
+    "Power"
+  ]
+}

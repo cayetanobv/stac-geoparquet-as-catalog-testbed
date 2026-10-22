@@ -1,0 +1,260 @@
+{
+  "type": "Collection",
+  "id": "urban-development-and-planning/city-boundary",
+  "stac_version": "1.1.0",
+  "description": "St. Louis City limits",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./city-boundary.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "city-boundary"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=67",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Urban Development and Planning"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=67",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STLOUIS/BOUNDARIES/MapServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1,
+  "table:row_count": 1,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "LAYER",
+      "type": "string"
+    },
+    {
+      "name": "AREA_SQMI",
+      "type": "double"
+    },
+    {
+      "name": "Shape",
+      "type": "binary"
+    },
+    {
+      "name": "Shape_Length",
+      "type": "double"
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default",
+    "styles/city-renderer",
+    "styles/style-dashed",
+    "styles/style-filled"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "information-technology-services-agency",
+          "title": "Information Technology Services Agency"
+        }
+      ]
+    }
+  ],
+  "title": "City Boundary",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051856117901,
+          38.53199630293254,
+          -90.16630892212817,
+          38.77434671879855
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "boundary",
+    "limit",
+    "Information Technology Services Agency"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Information Technology Services Agency",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=67"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "city-boundary": {
+      "href": "./city-boundary.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "City Boundary (GeoParquet)",
+      "file:size": 16691,
+      "file:checksum": "1220da821494e1c93d32c53b85c42c772c11d8520ddf67742d934433d32e61b95889",
+      "roles": [
+        "data"
+      ]
+    },
+    "city-boundary-tiles": {
+      "href": "./city-boundary.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "city-boundary (vector tiles)",
+      "file:size": 21543,
+      "file:checksum": "12204ef4831f83c54f77634227258fb9a9d1b02eec95235842b584589b4680c16916",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 757,
+      "file:checksum": "122058eaed012ce9082ff31b4ea7d4dda82af3c8e67db78367a35dd7a7435a5a0138",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City boundary",
+      "description": "The city limits \u2014 St. Louis is an independent city, in no county since 1876.",
+      "file:size": 533,
+      "file:checksum": "122008134b130cf8dca3451ed6f5b7b4d87dd542219b1f8171fdd327f76720243424",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-dashed": {
+      "href": "./styles/style-dashed.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Dashed context line",
+      "description": "Dashed outline for basemap-heavy contexts.",
+      "file:size": 564,
+      "file:checksum": "1220a66ee00c137179f1814a8620c05023bc5a42e264b8aecfb81dc6ea8b87890d67",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-filled": {
+      "href": "./styles/style-filled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Filled",
+      "description": "Boundary with a light tint.",
+      "file:size": 717,
+      "file:checksum": "12201fcce7bb376200ddd0b37adcce19a6e16f697f092ff710f3f86d85e3f5bce5f1",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "City Boundary rendered with the default style",
+      "file:size": 321518,
+      "file:checksum": "122075c63958c254f0af2c24dc8a591ac58ed47f2e6acfb6a5139caba233ec01ef00",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source-shapefile": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/stl_boundary.zip",
+      "type": "application/zip",
+      "title": "City boundary (zipped Shapefile)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 5251,
+      "file:checksum": "122042a054ef3a77ce5ea948b857ad2d7c7787a775863e22a1d4abefdc4fc308b91c",
+      "description": "The city's own alternate distribution of this layer. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  }
+}

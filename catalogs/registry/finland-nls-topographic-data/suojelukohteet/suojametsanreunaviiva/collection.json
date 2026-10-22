@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "suojelukohteet/suojametsanreunaviiva",
+  "stac_version": "1.1.0",
+  "description": "suojametsanreunaviiva",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./suojametsanreunaviiva.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "suojametsanreunaviiva",
+      "pmtiles:layers": [
+        "suojametsanreunaviiva"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/suojametsanreunaviiva/items",
+      "rel": "related",
+      "title": "OGC API source service: suojametsanreunaviiva",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 1254,
+  "table:row_count": 1254,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "korkeustarkkuus",
+      "type": "int32",
+      "description": "Kohteen korkeustarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4. Arvo 1 tarkoittaa m\u00e4\u00e4rittelem\u00e4t\u00f6nt\u00e4. Korkeusmallista interpoloitua korkeutta merkit\u00e4\u00e4n omilla koodeillaan, 201 kahden metrin mallille, 100001 kymmenen metrin mallille ja 250001 kahdenkymmenenviiden metrin mallille."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kulkutapa",
+      "type": "int32",
+      "description": "Viivan kulkutavan koodi. Arvot ovat 1 murtoviiva, 2 k\u00e4yr\u00e4viiva ja 4 tihent\u00e4m\u00e4t\u00f6n k\u00e4yr\u00e4viiva. Murtoviiva kulkee kontrollipisteest\u00e4 kontrollipisteeseen, kun taas k\u00e4yr\u00e4viivaan on interpoloitu tihennyspisteit\u00e4 kuvaamaan muotoa tarkemmin."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 26, joka vastaa viivamaisia Suojelukohteet-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvo on aina 72500, suojamets\u00e4."
+    },
+    {
+      "name": "aluejakoonosallistuminen",
+      "type": "string",
+      "description": "Viivan aluejakoon osallistumisen koodi, jossa 0 tarkoittaa viivan osallistuvan aluejakoon ja 1 tarkoittaa, ettei se osallistu. Aluejakoon osallistuva viiva voi toimia aluekohteen reunaviivana."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Suojamets\u00e4n reunaviiva WGS84-koordinaatistossa. Viiva on valtioneuvoston p\u00e4\u00e4t\u00f6ksell\u00e4 perustetun suojamets\u00e4alueen etel\u00e4reuna tai erillisen suojamets\u00e4alueen reunaviiva."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "suojametsanreunaviiva",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          23.2895364,
+          67.2372725,
+          29.6456866,
+          69.1692015
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "suojametsanreunaviiva default style",
+      "description": "Default visualization for suojametsanreunaviiva, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1218,
+      "file:checksum": "122087b64aeee7163ad832efb1b729c4b4f4bf3f6488929c5a25eb45150207ea8250"
+    },
+    "suojametsanreunaviiva": {
+      "href": "./suojametsanreunaviiva.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6269810,
+      "file:checksum": "12203faca618785c1b06a3081ae441aedd08c9ecafe99db8e071f892511137c7a49e",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./suojametsanreunaviiva.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "suojametsanreunaviiva (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2610791,
+      "file:checksum": "1220a811d1447fbe59e38cc0a9f3cca1ef748c9cef0d731e90149c568ee2e53c438a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "suojametsanreunaviiva graduated style",
+      "description": "Graduated visualization coloring suojametsanreunaviiva by korkeustarkkuus, ramped from 201.0 to 100001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2024,
+      "file:checksum": "12205710be875de9cf428f89fab550c231afe7698fadeb74d99ebfab260a93ad4fd9"
+    },
+    "thumbnail": {
+      "href": "./suojametsanreunaviiva.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of suojametsanreunaviiva",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 79177,
+      "file:checksum": "1220b06b97d9f29214ec1bb4cd6b04f0433b6f1a642bb35558da7144066bea522431"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Suojelukohteet",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

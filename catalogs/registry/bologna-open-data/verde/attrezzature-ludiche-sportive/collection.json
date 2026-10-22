@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "verde/attrezzature-ludiche-sportive",
+  "stac_version": "1.1.0",
+  "description": "Dataset che raccoglie tutte le attrezzature di tipo ludico e ginnico sportivo presenti sul territorio del comune di Bologna.\nPer ogni attrezzatura viene indicati:\n- Classe dell'attrezzatura\n- Tipologia di attrezzatura",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./attrezzatureludicheg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Attrezzature ludico ginniche sportive",
+      "pmtiles:layers": [
+        "attrezzatureludicheg"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/attrezzature_ludiche_ginniche_sportive/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/attrezzature_ludiche_ginniche_sportive/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: attrezzatureludicheg",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1292,
+  "table:row_count": 1292,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "categoria",
+      "type": "string"
+    },
+    {
+      "name": "classe",
+      "type": "string",
+      "description": "Tipo Attrezzatura."
+    },
+    {
+      "name": "presenza",
+      "type": "string",
+      "description": "Stato."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Attrezzature ludico ginniche sportive",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.256466106588672,
+          44.44369083868915,
+          11.401532256653699,
+          44.54851253249421
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Attrezzature ludico ginniche sportive default style",
+      "description": "Default visualization for Attrezzature ludico ginniche sportive, drawn in #a1d99b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1227,
+      "file:checksum": "1220c2a716d78a613f4a7b25e11a36218573c5145a66d97340c0e10de265c234a852"
+    },
+    "attrezzatureludicheg": {
+      "href": "./attrezzatureludicheg.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 78129,
+      "file:checksum": "12204f63aa49f04af29f9ec1f1f5b25eec540c715fcabd83ea632ae5e686db95a766",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./attrezzatureludicheg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Attrezzature ludico ginniche sportive (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 101718,
+      "file:checksum": "1220264fd52330a83aa78ed244d45dc23c9022100eb092e651626045c962c3eb02a2"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Attrezzature ludico ginniche sportive categorical style",
+      "description": "Categorical visualization coloring Attrezzature ludico ginniche sportive by presenza, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1822,
+      "file:checksum": "122017feafe9319a135577a9f1417fc779e750f99dd4b4406a16d70e37846564b47d"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Attrezzature ludico ginniche sportive labeled style",
+      "description": "Default visualization for Attrezzature ludico ginniche sportive with presenza shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1660,
+      "file:checksum": "1220858264bfbcf59f0e1279977aff4066be3c03a001dd62979f327f9a8ecba0e36e"
+    },
+    "thumbnail": {
+      "href": "./attrezzatureludicheg.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Attrezzature ludico ginniche sportive",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 152193,
+      "file:checksum": "1220125c3e9ed27efc81625456eb80a2e9c8a9bbe3bf96666aee3b6b31a457dbb7ae"
+    }
+  },
+  "keywords": [
+    "Ambiente",
+    "Verde urbano",
+    "parchi",
+    "Adolescenti Giovani"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abAttrezzature ludico ginniche sportive\u00bb (attrezzature_ludiche_ginniche_sportive), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/attrezzature_ludiche_ginniche_sportive/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

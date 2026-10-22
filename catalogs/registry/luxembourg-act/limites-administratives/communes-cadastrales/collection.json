@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "limites-administratives/communes-cadastrales",
+  "stac_version": "1.1.0",
+  "description": "Le pr\u00e9sent jeu de donn\u00e9es contient les donn\u00e9es vectorielles issues de la base de donn\u00e9es du PCN (plan cadastral num\u00e9ris\u00e9), contenant les couches suivantes : les sections cadastrales, les communes administratives, les cantons, les districts administratifs \u00ab historiques \u00bb (les districts sont abolis, suivant la loi du 2 septembre 2015 portant abolition des districts), les arrondissements judiciaires, les circonscriptions \u00e9lectorales, les limites nationales du pays, ainsi qu'une version g\u00e9n\u00e9ralis\u00e9e de ces couches. Pour les communes, les codes LAU2 sont maintenant aussi inclus. Couche LIMADM_COMM_CADASTRALES.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./LIMADM_COMM_CADASTRALES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limites administratives \u2013 Communes cadastrales",
+      "pmtiles:layers": [
+        "LIMADM_COMM_CADASTRALES"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.public.lu/fr/datasets/limites-administratives-du-grand-duche-de-luxembourg/",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 130,
+  "table:row_count": 130,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "TYPE",
+      "type": "double",
+      "description": "Type de l'unit\u00e9 cadastrale selon l'\u00e9diteur ; valeurs non document\u00e9es dans la fiche."
+    },
+    {
+      "name": "CODE_COMMU",
+      "type": "double",
+      "description": "Code de la commune cadastrale, le m\u00eame que CODE_COMMU dans les couches du PCN."
+    },
+    {
+      "name": "NOM_COMMUN",
+      "type": "string",
+      "description": "Nom de la commune cadastrale."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:2169')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie sous forme de structure xmin, ymin, xmax, ymax, ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Limites administratives \u2013 Communes cadastrales",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.735698757257097,
+          49.447858667065105,
+          6.530897855690466,
+          50.1827988624458
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limites administratives \u2013 Communes cadastrales default style",
+      "description": "Default visualization for Limites administratives \u2013 Communes cadastrales, drawn in #9ecae1.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1262,
+      "file:checksum": "122068ddb0f043e9a97b62a3f07ed62ec431b5ee818f418c90b7a2770368e62b2117"
+    },
+    "LIMADM_COMM_CADASTRALES": {
+      "href": "./LIMADM_COMM_CADASTRALES.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1421099,
+      "file:checksum": "12206e6e2f14c3c8aef65f03caf482c0a80ede23cfb42b718e2de60ffe443775fe4f",
+      "proj:code": "EPSG:2169",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./LIMADM_COMM_CADASTRALES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limites administratives \u2013 Communes cadastrales (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1456963,
+      "file:checksum": "12201a0de72d66ae732568a5bcf7b248bcb18a26760879464917c7e840f775045d41"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limites administratives \u2013 Communes cadastrales labeled style",
+      "description": "Default visualization for Limites administratives \u2013 Communes cadastrales with NOM_COMMUN shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1703,
+      "file:checksum": "12206d5b3498506c6557dd8b7ba5aa2758fec5abfffea6eefba62781698cd41d1871"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limites administratives \u2013 Communes cadastrales graduated style",
+      "description": "Graduated visualization coloring Limites administratives \u2013 Communes cadastrales by CODE_COMMU, ramped from 1.0 to 130.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2024,
+      "file:checksum": "122090d35b687719179403ba38bf42a36e0991c23ead01b22ebe3d8f273a8157cc3f"
+    },
+    "source": {
+      "href": "https://data.public.lu/fr/datasets/r/c4ca391e-0a1e-4d8e-a98a-63f78016f058",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: communes-cadastrales",
+      "pipeline:upstream": true,
+      "file:size": 9910788,
+      "file:checksum": "1220c9adb6c31b0010526af8b1497d0773b11499c47e73a0ca4ecee22940419a95f7"
+    },
+    "thumbnail": {
+      "href": "./LIMADM_COMM_CADASTRALES.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Limites administratives \u2013 Communes cadastrales",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 119512,
+      "file:checksum": "12205417b8712e45ad7abeb4f8d793f6f67c8462731733a3174e388c7b5e260d653b"
+    }
+  },
+  "keywords": [
+    "limites administratives",
+    "communes",
+    "cantons",
+    "sections cadastrales",
+    "Luxembourg"
+  ],
+  "providers": [
+    {
+      "name": "Administration du cadastre et de la topographie",
+      "description": "Limites administratives du Grand-Duch\u00e9 de Luxembourg, Administration du cadastre et de la topographie, data.public.lu, fichier du 5 septembre 2026, CC0 1.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://act.public.lu/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T01:03:47Z"
+}

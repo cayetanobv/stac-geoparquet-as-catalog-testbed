@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_v5/gezondheidszorg",
+  "stac_version": "1.1.0",
+  "description": "Gezondheidszorg",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gezondheidszorg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "gezondheidszorg"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1175,
+  "table:row_count": 1175,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Gezondheidszorg",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.99500781161232,
+          52.0556326688059,
+          5.18337991603555,
+          52.1297037446621
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "gezondheidszorg": {
+      "href": "./gezondheidszorg.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 53271,
+      "file:checksum": "1220609db6a4ae28166d6ba9409ace894864197a1f5df2a08bfc3a1f9273691a0d4a",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./gezondheidszorg.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 12770,
+      "file:checksum": "1220f0918bba8fe430be80031df5993f386f4a56e365183e5f6d0eafef7d92a94047"
+    },
+    "gezondheidszorg-tiles": {
+      "href": "./gezondheidszorg.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "gezondheidszorg (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 44327,
+      "file:checksum": "1220079275d7716f7c9faf268a2eb0f6b77873cafb7d5314dfd9e611a8fcda677af7"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 681,
+      "file:checksum": "1220e255aa017eb65a6f69a3ec995322c29f07b01207e6808434f02fb117ddc1c14a",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

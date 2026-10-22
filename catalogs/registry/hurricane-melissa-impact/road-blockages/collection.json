@@ -1,0 +1,234 @@
+{
+  "type": "Collection",
+  "id": "road-blockages",
+  "stac_version": "1.1.0",
+  "description": "32 points (9 in Jamaica, 23 in Haiti) where Planetary Response Network volunteers on the Zooniverse platform identified road blockages, bridge damage, flooding, coastal damage or debris on PlanetScope 3 m imagery after Hurricane Melissa, as published on HDX on 2025-12-12 (file names dated 02_11_25; HDX dataset date 2025-11-02 to 2025-11-04). The publisher's attributes are kept (Damage class, Location for Jamaica, image_id for Haiti); country and source_file are derived. Roads categorised: Jamaica motorway/primary/secondary, Haiti primary/secondary/tertiary. A consensus of twelve volunteers, checked against imagery by an expert, not a ground survey. Source: Jamaica and Haiti - Hurricane Melissa Road Blockages (HDX), retrieved 2026-09-23.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti)",
+      "pmtiles:layers": [
+        "data"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.humdata.org/dataset/jamaica-and-haiti-hurricane-melissa-road-blockages",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 32,
+  "table:row_count": 32,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Damage",
+      "type": "string",
+      "description": "Publisher's damage class: road_damage, road_damage_coastal, road_damage_debris (Jamaica); road_blockage, road_blockage_flooding, road_blockage_coastal, road_damage (Haiti). The default style colours by this column."
+    },
+    {
+      "name": "Location",
+      "type": "string",
+      "description": "Publisher attribute of the Jamaica file only: 'Jamaica'; NULL for Haiti."
+    },
+    {
+      "name": "image_id",
+      "type": "string",
+      "description": "Publisher attribute of the Haiti file only: Zooniverse subject image, e.g. after_haiti_roads_016_031.jpg; NULL for Jamaica."
+    },
+    {
+      "name": "country",
+      "type": "string",
+      "description": "Derived from the source file: Jamaica (9) or Haiti (23)."
+    },
+    {
+      "name": "source_file",
+      "type": "string",
+      "description": "Derived: jamaica_road_damage_02_11_25.shp or haiti_damage_roads_bridges_02_11_25.shp."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Point, WGS 84 longitude/latitude (EPSG:4326); extent -77.916, 17.883, -73.618, 18.647."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bbox covering column (xmin, ymin, xmax, ymax), added by the conversion."
+    }
+  ],
+  "title": "Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -77.91634651032425,
+          17.882562810263256,
+          -73.6175934535433,
+          18.64699555770412
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-11-02T00:00:00Z",
+          "2025-11-04T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti) default style",
+      "description": "Default visualization for Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti), drawn in #1565c0.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1154,
+      "file:checksum": "12203298b99b3786ad7463e507bee7ae550ac934303730b2a1a7b6f1c7dbcf7f5fa4"
+    },
+    "data": {
+      "href": "./data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 5615,
+      "file:checksum": "12207361aca0e792ce1866044ebba47197b14e80d2eeac17c95c52085c736381ab3e",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 24548,
+      "file:checksum": "1220219578f828d98329733e21f01d3ed1568a7805e5707070a3ef3829134fa89f46"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti) categorical style",
+      "description": "Categorical visualization coloring Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti) by Damage, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2416,
+      "file:checksum": "12202586d9538b4193e152373bfebc4571b321895c13e7e21e5c13faac894b695139"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti) labeled style",
+      "description": "Default visualization for Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti) with Damage shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1553,
+      "file:checksum": "1220db39062cf4de7865d731a6ff38595bdd96d0b2d8ec16f0da6346d4bc7934dd58"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/hurricane-melissa-impact/road-blockages/data.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: data",
+      "pipeline:upstream": true,
+      "file:size": 13357,
+      "file:checksum": "1220cc844cafb7a665c3258120deb808a1b13de025b47543c28b9d1e3c56eff4f1f4"
+    },
+    "thumbnail": {
+      "href": "./data.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Road blockages and damage points after Hurricane Melissa (Jamaica and Haiti)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 20001,
+      "file:checksum": "122037ca3008c5ceab0b30ed68cc7ee0df014ae38527d26620ef67e1051653628f62"
+    }
+  },
+  "keywords": [
+    "Hurricane Melissa",
+    "Jamaica",
+    "Haiti",
+    "road blockages",
+    "road damage",
+    "Planetary Response Network",
+    "Zooniverse",
+    "PlanetScope",
+    "HDX"
+  ],
+  "providers": [
+    {
+      "name": "Planetary Response Network",
+      "description": "Crowd-sourced road damage points from PlanetScope imagery via Zooniverse; HDX dataset jamaica-and-haiti-hurricane-melissa-road-blockages, shapefiles dated 2025-12-12, retrieved 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.humdata.org/organization/planetary-response-network"
+    },
+    {
+      "name": "CARTO",
+      "description": "Union of the two shapefiles with derived country and source_file columns.",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T00:00:00Z"
+}

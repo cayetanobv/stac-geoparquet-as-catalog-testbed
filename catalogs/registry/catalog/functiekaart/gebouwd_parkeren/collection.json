@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart/gebouwd_parkeren",
+  "stac_version": "1.1.0",
+  "description": "Gebouwd Parkeren",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gebouwd_parkeren.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "gebouwd_parkeren"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 3157,
+  "table:row_count": 3157,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Gebouwd Parkeren",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.00722642192032,
+          52.0582244880176,
+          5.15530452263315,
+          52.1271269479885
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "gebouwd_parkeren": {
+      "href": "./gebouwd_parkeren.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 136208,
+      "file:checksum": "12204c60ad8ecfd65a31c6c89fa265c48fdda084b80a17d5f5e045556f183234976d",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./gebouwd_parkeren.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 9321,
+      "file:checksum": "12202c6c261749edc480d02df0eb0c353d6cf990f1ca2690b6d9b646a0d060acf187"
+    },
+    "gebouwd_parkeren-tiles": {
+      "href": "./gebouwd_parkeren.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "gebouwd_parkeren (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 68822,
+      "file:checksum": "1220f990f00759d5a98cdb5a0f3468c79e0202fcfbb1012d7f63a30d1923eb3e9c37"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 683,
+      "file:checksum": "1220602d3c4eb0f732eb5880f2da196a3849f108df20e17a0f7267dfdfccbf4c89f7",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

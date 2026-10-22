@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "id": "fema-dfirm-2009/limwa",
+  "stac_version": "1.1.0",
+  "description": "The Limit of Moderate Wave Action (LiMWA) from the 2009 Suffolk County flood map. FEMA describes the LiMWA as \"the approximate landward limit of the 1.5 foot breaking wave\" ([FEMA IS-727](https://emilms.fema.gov/is_0727/groups/48.html)). The layer covers all of Suffolk County. Read [AGENTS.md](AGENTS.md) for the column meanings and tested queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "Town of East Hampton, NY GIS Layers"
+    },
+    {
+      "rel": "license",
+      "href": "https://source.coop/portolan-mirrors/east-hampton-catalog/LICENSE.md",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://eh-gis.ehamptonny.gov/arcgis/rest/services/MapServiceForOpenGov/MapServer/33",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "FEMA Flood Insurance Rate Map, 2009"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./limwa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "limwa"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-15T11:43:49Z",
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 1079,
+  "table:row_count": 1079,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object ID in the source layer."
+    },
+    {
+      "name": "LIMWA_ID",
+      "type": "string",
+      "description": "FEMA feature identifier."
+    },
+    {
+      "name": "SOURCE_CIT",
+      "type": "string",
+      "description": "FEMA source citation code, STUDY5 or a single space."
+    },
+    {
+      "name": "Shape_Length",
+      "type": "double",
+      "description": "Line length in feet, as ArcGIS computed it."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Bounding box of the geometry, for spatial filters."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry in EPSG:2263 (US survey feet)."
+    }
+  ],
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 13,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -72.4877929,
+    40.9964819,
+    13
+  ],
+  "pmtiles:layers": [
+    "limwa"
+  ],
+  "title": "Limit of Moderate Wave Action, 2009",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -73.49544940985385,
+          40.610781,
+          -71.8623757419538,
+          41.1604809
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "Federal Emergency Management Agency",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://www.fema.gov/flood-maps/national-flood-hazard-layer"
+    },
+    {
+      "name": "Town of East Hampton, Department of Information Technology, GIS Division",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://www.ehamptonny.gov/1955/Geographic-Information-System-GIS"
+    },
+    {
+      "name": "Nissim Lebovits",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/east-hampton-catalog"
+    }
+  ],
+  "assets": {
+    "limwa": {
+      "href": "./limwa.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1741095,
+      "file:checksum": "1220b85db7102995f575d0daa0fef5ef4ca32d2b48066274342ac3385b4f211440c6",
+      "proj:code": "EPSG:2263",
+      "roles": [
+        "data"
+      ]
+    },
+    "documentation": {
+      "href": "./README.md",
+      "type": "text/markdown",
+      "file:size": 3088,
+      "file:checksum": "1220f0c5d14d998fedf6d9f067e2d292f1916929f0e04baf1de25c9afc4050abf340",
+      "roles": [
+        "documentation"
+      ]
+    },
+    "limwa-tiles": {
+      "href": "./limwa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "limwa (vector tiles)",
+      "file:size": 778810,
+      "file:checksum": "1220db89601cfbc875e8919d3d60a50c62b84a8b888d75833c8697ad8de316bd814e",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limit of Moderate Wave Action, 2009",
+      "file:size": 526,
+      "file:checksum": "122052eb30c10ca6b31723d52a1ac22d7d41e4c322ea53e8ed482f30fb97d3d1730f",
+      "roles": [
+        "style",
+        "default"
+      ]
+    },
+    "thumbnail": {
+      "href": "./limwa.thumb.jpg",
+      "type": "image/jpeg",
+      "file:size": 53184,
+      "file:checksum": "1220ec5f683b57d2f99f858e01a0399d65fa444d058e8e305fa81e0e034128cf950d",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "verkehr/tempo-30-zonen",
+  "stac_version": "1.1.0",
+  "description": "Dieser Datensatz enth\u00e4lt Informationen zu den Tempo 30-Zonen in der Stadt K\u00f6ln. Er zeigt alle derzeitig umgesetzten Zonen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tempo_30_zonen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Tempo 30-Zonen",
+      "pmtiles:layers": [
+        "tempo_30_zonen"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/tempo-30-zonen",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/verkehr/zone_tempo30/MapServer",
+      "rel": "related",
+      "title": "ArcGIS source service: tempo-30-zonen",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/verkehr/zone_tempo30/MapServer",
+      "rel": "related",
+      "title": "Tempo 30-Zonen K\u00f6ln (ArcGIS REST MapServer)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/verkehr/zone_tempo30/MapServer/WMSServer?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "Tempo 30-Zonen K\u00f6ln (WMS)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/verkehr/zone_tempo30/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "Tempo 30-Zonen K\u00f6ln (WFS 2.0.0, GML 3.2)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 431,
+  "table:row_count": 431,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "stadtbezirk",
+      "type": "string"
+    },
+    {
+      "name": "stadtteil",
+      "type": "string"
+    },
+    {
+      "name": "name",
+      "type": "string"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "st_simplify",
+      "type": "BLOB"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Tempo 30-Zonen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.816627447494743,
+          50.83594068014199,
+          7.1112752291209995,
+          51.07180454166951
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempo 30-Zonen default style",
+      "description": "Default visualization for Tempo 30-Zonen, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1162,
+      "file:checksum": "12209cc7ba2431bdff1ef6ef9ab4c1aa8e6b30d70269d4f37ac4769076611894dbee"
+    },
+    "tempo_30_zonen": {
+      "href": "./tempo_30_zonen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 927641,
+      "file:checksum": "122041509a737024af10c0a19e5d4a128c2a6a34da34b3e5d8f54c8ee59770546392",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./tempo_30_zonen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Tempo 30-Zonen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 495181,
+      "file:checksum": "12209cd65f06fb7b132c9b517b12a18092540311cc2112799a0f1b97b5e7cee6627b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempo 30-Zonen categorical style",
+      "description": "Categorical visualization coloring Tempo 30-Zonen by stadtbezirk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2678,
+      "file:checksum": "12208f96c49ed5fcb28b303a9f30c8cb73b07931daf504e270c354442b16c03c7139"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempo 30-Zonen labeled style",
+      "description": "Default visualization for Tempo 30-Zonen with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1579,
+      "file:checksum": "122090060fde09ed1f7faeadde63c77b0a66e24446a3216116368f1abde504095ddb"
+    },
+    "thumbnail": {
+      "href": "./tempo_30_zonen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Tempo 30-Zonen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 178791,
+      "file:checksum": "1220566ca71dbcd580932e5650342b8fb628853db3c03aa0f8796fc2add760c7566a"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Infrastruktur",
+    "Bauen und Wohnen",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stra\u00dfen und Radwegebau",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stra\u00dfen und Radwegebau, \u201eTempo 30-Zonen\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-strassen-und-radwegebau",
+      "email": "strassen-radwegebau@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

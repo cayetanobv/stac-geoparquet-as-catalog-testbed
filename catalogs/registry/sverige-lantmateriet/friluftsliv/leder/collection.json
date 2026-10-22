@@ -1,0 +1,317 @@
+{
+  "type": "Collection",
+  "id": "friluftsliv/leder",
+  "stac_version": "1.1.0",
+  "description": "Data f\u00f6r leder och anordningar inom skyddade omr\u00e5den samt statliga leder i fj\u00e4llen finns tillg\u00e4ngliga enligt principen f\u00f6r \u00f6ppen data. Data som publiceras registreras och underh\u00e5lls av l\u00e4nsstyrelser och utsedda f\u00f6rvaltare f\u00f6r de skyddade omr\u00e5dena och de statliga lederna i fj\u00e4llen. Som st\u00f6d i anv\u00e4ndningen finns en produktbeskrivning och f\u00f6rslag till legender tillg\u00e4ngliga f\u00f6r nedladdning.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./leder.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Friluftsliv: leder i skyddade omr\u00e5den",
+      "pmtiles:layers": [
+        "leder"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodatakatalogen.naturvardsverket.se/geonetwork/srv/swe/catalog.search#/metadata/af2e37d3-45b0-4623-bcf2-0765c8ca7ab5",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/anordningar_friluftsliv/wms",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets visningstj\u00e4nst f\u00f6r friluftsanordningar (WMS, levande tj\u00e4nst)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/leder_friluftsliv/wms",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets visningstj\u00e4nst f\u00f6r leder (WMS, levande tj\u00e4nst)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/leder_friluftsliv/wfs",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets nedladdningstj\u00e4nst f\u00f6r leder (WFS, lagren LED och STATLIG_LED)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geodata.naturvardsverket.se/anordningar_friluftsliv/wfs",
+      "rel": "related",
+      "title": "Naturv\u00e5rdsverkets nedladdningstj\u00e4nst f\u00f6r anordningar (WFS, lagret ANORDNINGAR)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 12045,
+  "table:row_count": 12045,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "\u00abID-nummer f\u00f6r objektet i den h\u00e4r filen.\u00bb"
+    },
+    {
+      "name": "GEOMETRIKVALITET",
+      "type": "string",
+      "description": "\u00abAnger positionsangivelsens noggrannhet, d.v.s. hur v\u00e4l ledens str\u00e4ckning i kartan sitt l\u00e4ge i kartan kan antas st\u00e4mma \u00f6verens med verkligheten.\u00bb Godk\u00e4nda v\u00e4rden enligt produktbeskrivningen: \u00ab<= 20 meter\u00bb, \u00ab>20-50 meter\u00bb, \u00ab>50-100 meter\u00bb, \u00ab>100-200 meter\u00bb, \u00ab>200 meter\u00bb och \u00abok\u00e4nd noggrannhet\u00bb."
+    },
+    {
+      "name": "LED_ID",
+      "type": "string",
+      "description": "Producentens attribut Led_ID: \u00abUnikt ID-nummer p\u00e5 ledstr\u00e4ckan som kommer fr\u00e5n f\u00f6rvaltningssystemet.\u00bb"
+    },
+    {
+      "name": "LEDNAMN",
+      "type": "string",
+      "description": "Producentens attribut Lednamn: \u00abI de fall leden har ett namn s\u00e5 visas detta h\u00e4r.\u00bb"
+    },
+    {
+      "name": "BESKRIVNING",
+      "type": "string",
+      "description": "Producentens attribut Beskrivning: \u00abBeskrivning av leden. Exempelvis: mellan vilka platser leden g\u00e5r, vart man hittar leden, plats d\u00e4r mer information kan hittas mm\u00bb."
+    },
+    {
+      "name": "LEDMARKERING",
+      "type": "string",
+      "description": "Producentens attribut Ledmarkering: \u00abH\u00e4r anges hur den aktuella leden \u00e4r markerad i naturen. Till exempel f\u00e4rgmarkering.\u00bb"
+    },
+    {
+      "name": "LEDTYP",
+      "type": "string",
+      "description": "Producentens attribut Typ_av_led: \u00abKategorisering av ledstr\u00e4ckan\u00bb, med kodlista i produktbeskrivningens tabell 6."
+    },
+    {
+      "name": "LEDKATEGORI",
+      "type": "string",
+      "description": "Producentens attribut Ledkategori: \u00abAnger om leden \u00e4r kategoriserad som Sommarled, Vinterled eller Led p\u00e5 \u00f6ppet vatten\u00bb."
+    },
+    {
+      "name": "STATLIGLED",
+      "type": "string",
+      "description": "Producentens attribut Statlig_led: \u00abAnger om ledstr\u00e4ckan ing\u00e5r i en statlig led (och i s\u00e5 fall den statliga ledens ID). Statliga leder \u00e4r det ledsystem i fj\u00e4llen som staten ansvarar f\u00f6r.\u00bb"
+    },
+    {
+      "name": "STATLIGLED_ID",
+      "type": "string",
+      "description": "Producentens attribut Statlig_led_ID: \u00abOm leden \u00e4r kopplad till en statlig led anges det i den h\u00e4r kolumnen vilket ID den statliga leden har.\u00bb"
+    },
+    {
+      "name": "SKYDDATOMRADE",
+      "type": "string",
+      "description": "Producentens attribut Skyddat_omr\u00e5de: \u00abNamn p\u00e5 det skyddade omr\u00e5de som leden \u00e4r kopplad till. En led kan vara kopplat till flera skyddade omr\u00e5den.\u00bb"
+    },
+    {
+      "name": "SKYDDATOMRADE_ID",
+      "type": "string",
+      "description": "Producentens attribut Skyddat_omr\u00e5de_ID: \u00abAnger NVRID f\u00f6r det skyddade omr\u00e5de som leden \u00e4r kopplad till. En led kan vara kopplad till flera skyddade omr\u00e5den.\u00bb"
+    },
+    {
+      "name": "LEDLANGD",
+      "type": "int32",
+      "description": "Producentens attribut L\u00e4ngd_p\u00e5_led_m: \u00abBer\u00e4knad totall\u00e4ngd f\u00f6r samtliga kopplade ledstr\u00e4ckor p\u00e5 en led i meter.\u00bb Flyttal."
+    },
+    {
+      "name": "SHAPE.LEN",
+      "type": "double",
+      "description": "Geodatabasens egen l\u00e4ngdber\u00e4kning, levererad som ett vanligt attribut. Producentens attributtabell dokumenterar inte detta f\u00e4ltnamn, s\u00e5 ingen tolkning g\u00f6rs h\u00e4r; anv\u00e4nd geometrin f\u00f6r l\u00e4ngdber\u00e4kningar."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:3006')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrins omskrivna rektangel som strukturen xmin, ymin, xmax, ymax, tillagd av konverteringen."
+    }
+  ],
+  "title": "Friluftsliv: leder i skyddade omr\u00e5den",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          10.990655909070764,
+          55.35703124875895,
+          23.982708847490198,
+          69.05919634230995
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friluftsliv: leder i skyddade omr\u00e5den default style",
+      "description": "Default visualization for Friluftsliv: leder i skyddade omr\u00e5den, drawn in #d95f0e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1127,
+      "file:checksum": "12207ef8ebecfcec7ec5d84cb2e90a61e32c774fdb3d484cb767727735ee53dacdd8"
+    },
+    "leder": {
+      "href": "./leder.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 9704679,
+      "file:checksum": "1220b6e840614af611d45165d109d98c3cce7f292006727b236eca5955c66096a824",
+      "proj:code": "EPSG:3006",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./leder.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Friluftsliv: leder i skyddade omr\u00e5den (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 24018480,
+      "file:checksum": "12206e000247489a6622eed05899773e6c08b6d495a18371659db7754c668c8754a3"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friluftsliv: leder i skyddade omr\u00e5den categorical style",
+      "description": "Categorical visualization coloring Friluftsliv: leder i skyddade omr\u00e5den by LEDKATEGORI, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1605,
+      "file:checksum": "12207ae47f09b82acb9236e999ee59fcbf283c21db31e54a238536c5ff5ed320f369"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friluftsliv: leder i skyddade omr\u00e5den labeled style",
+      "description": "Default visualization for Friluftsliv: leder i skyddade omr\u00e5den with LEDKATEGORI shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1533,
+      "file:checksum": "1220b8c753b0b7f8a55016b2b3c5a109540829d329ba40e3bd82cbc3eece9ad261eb"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Friluftsliv: leder i skyddade omr\u00e5den graduated style",
+      "description": "Graduated visualization coloring Friluftsliv: leder i skyddade omr\u00e5den by LEDLANGD, ramped from 11.0 to 90236.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1899,
+      "file:checksum": "12209001a23510fbb2823760b478ec5c5d444a160bd2fd8f396ffd8c5ea6a5df1ecd"
+    },
+    "source": {
+      "href": "https://geodata.naturvardsverket.se/nedladdning/friluftsliv/Leder.geojson",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: leder",
+      "pipeline:upstream": true,
+      "file:size": 51478027,
+      "file:checksum": "12209e913fc0596f07a8c258b1066eb2350bff3e79e2460ad2d1240f819cf02f5223"
+    },
+    "thumbnail": {
+      "href": "./leder.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Friluftsliv: leder i skyddade omr\u00e5den",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 85935,
+      "file:checksum": "12209168a79dd820e70a93fdd685b3929c18e9620c7bbc195411e8342e1fdb33e343"
+    }
+  },
+  "keywords": [
+    "Friluftsliv",
+    "Leder",
+    "Anordningar",
+    "Skyddad natur",
+    "\u00d6ppna data",
+    "Sverige"
+  ],
+  "providers": [
+    {
+      "name": "Naturv\u00e5rdsverket",
+      "description": "K\u00e4lla: Naturv\u00e5rdsverket, \u00f6ppna data h\u00e4mtade 21.9.2026, CC0 1.0.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.naturvardsverket.se/",
+      "email": "data@naturvardsverket.se"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "sv",
+    "name": "Svenska",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

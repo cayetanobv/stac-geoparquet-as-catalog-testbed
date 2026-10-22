@@ -1,0 +1,187 @@
+{
+  "type": "Collection",
+  "id": "utilities/sanitary/network-structures",
+  "stac_version": "1.1.0",
+  "description": "Converted from AutoCAD in 2018; new data model applied by Urban Systems in 2023. This feature originally came from SanLS from GISPROD\\GIS.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./network-structures.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "network-structures"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 9,
+  "table:row_count": 9,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "StrucName",
+      "type": "large_string",
+      "description": "Structure Name."
+    },
+    {
+      "name": "Address",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 9 of 9 rows populated; 9 distinct values."
+    },
+    {
+      "name": "LSCode",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 9 of 9 rows populated; 9 distinct values."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Network Structure - Sanitary",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.68628929908425,
+          49.573892563045106,
+          -119.62396336157241,
+          49.62471082638185
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "network-structures": {
+      "href": "./network-structures.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 15074,
+      "file:checksum": "1220dd226e6c6403084cbf3f29b30813246ea19568187f8dd9f0a55bfc74b4b06937",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./network-structures.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 7506,
+      "file:checksum": "1220d515d7770423d34f79e758f7b2ce1488efdcd3c6560b5bff33ca1016676e3201"
+    },
+    "network-structures-tiles": {
+      "href": "./network-structures.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "network-structures (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10771,
+      "file:checksum": "122017fbb27b6a6618a706070e831cd02d2e4985f9109ad9bf1e583e4beffb0b77d0"
+    },
+    "styles/network-structures": {
+      "href": "./styles/network-structures.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Lift station",
+      "file:size": 881,
+      "file:checksum": "1220d07e6f5ee8908a966495653fb2162a89a21449fce7a73d58c58581673fc083c3"
+    }
+  },
+  "keywords": [
+    "Utilities",
+    "Sanitary",
+    "Sewer",
+    "Wastewater"
+  ]
+}

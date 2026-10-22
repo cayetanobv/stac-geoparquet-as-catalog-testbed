@@ -1,0 +1,244 @@
+{
+  "type": "Collection",
+  "id": "riscos-geologics/epicentres-instrumentals",
+  "stac_version": "1.1.0",
+  "description": "Epicentres dels sismes registrats instrumentalment a Catalunya i l'entorn. El productor descriu la capa aix\u00ed: \u00abEpicentres de sismes determinats a partir de registres instrumentals pel per\u00edode 1977-2019\u00bb. Cada epicentre porta la data desglossada en camps, la latitud i la longitud, la profunditat i la magnitud.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./icgc_sismicitat_epicentres_instrumentals.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Epicentres instrumentals",
+      "pmtiles:layers": [
+        "icgc_sismicitat_epicentres_instrumentals"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: epicentres-instrumentals",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa icgc_sismicitat:epicentres_instrumentals, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPoint",
+  "geoparquet:feature_count": 17849,
+  "table:row_count": 17849,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "any",
+      "type": "int64",
+      "description": "Any del sisme."
+    },
+    {
+      "name": "latitud",
+      "type": "double",
+      "description": "Latitud de l'epicentre en graus, tal com la publica el productor."
+    },
+    {
+      "name": "longitud",
+      "type": "double",
+      "description": "Longitud de l'epicentre en graus, tal com la publica el productor."
+    },
+    {
+      "name": "profundit",
+      "type": "decimal(38,0)",
+      "description": "Profunditat de l'epicentre; el servei no en documenta la unitat."
+    },
+    {
+      "name": "magnitud",
+      "type": "double",
+      "description": "Magnitud del sisme; el servei no documenta l'escala emprada."
+    },
+    {
+      "name": "mes",
+      "type": "double",
+      "description": "Mes del sisme; el servei el declara com a text."
+    },
+    {
+      "name": "dia",
+      "type": "double",
+      "description": "Dia del sisme; el servei el declara com a text."
+    },
+    {
+      "name": "hora",
+      "type": "double",
+      "description": "Hora del sisme; el servei la declara com a text i no en documenta la zona hor\u00e0ria."
+    },
+    {
+      "name": "min",
+      "type": "double",
+      "description": "Minut del sisme; el servei el declara com a text."
+    },
+    {
+      "name": "seg",
+      "type": "string",
+      "description": "Segon del sisme; el servei el declara com a text."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Epicentres instrumentals",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -0.3330000000000559,
+          40.17300000000232,
+          3.9819999999999554,
+          43.48300000000538
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Epicentres instrumentals default style",
+      "description": "Default visualization for Epicentres instrumentals, drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1354,
+      "file:checksum": "1220b8799b98185f2315344eeefa681e0addc26ae927fee304d74837a3deccf57671"
+    },
+    "icgc_sismicitat_epicentres_instrumentals": {
+      "href": "./icgc_sismicitat_epicentres_instrumentals.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 894895,
+      "file:checksum": "12209ed006296424245ff05926850b76d68cc11d705a42795608af881bd62c54fb1f",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./icgc_sismicitat_epicentres_instrumentals.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Epicentres instrumentals (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3313200,
+      "file:checksum": "1220f48b6d2268b90df5b0515ef4d7369168b5c49ece25935a587ff53b622b881a95"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Epicentres instrumentals graduated style",
+      "description": "Graduated visualization coloring Epicentres instrumentals by profundit, ramped from -2.0 to 70.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2112,
+      "file:checksum": "1220d0650f27724df6cbecf2e02cf9a3e81d2374b1dcc752fb36d826d56baefeca27"
+    },
+    "thumbnail": {
+      "href": "./icgc_sismicitat_epicentres_instrumentals.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Epicentres instrumentals",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 67678,
+      "file:checksum": "1220052890fffe0c264e2c7511152252af3352a0b2f3e22e131067beb510d763bba2"
+    }
+  },
+  "keywords": [
+    "sismicitat",
+    "terratr\u00e8mols",
+    "epicentres",
+    "risc",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Epicentres instrumentals de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

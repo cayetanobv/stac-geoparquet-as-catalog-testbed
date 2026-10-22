@@ -1,0 +1,270 @@
+{
+  "type": "Collection",
+  "id": "gruenraum/parkanlagen",
+  "stac_version": "1.1.0",
+  "description": "Standorte der Parkanlagen in Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_parkinfoogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkanlagen Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_parkinfoogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/22add642-d849-48ff-9913-8c7ba2d99b46",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: parkinfoogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1054,
+  "table:row_count": 1054,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "ANL_NAME",
+      "type": "string",
+      "description": "Bezeichnung der Anlage."
+    },
+    {
+      "name": "BEZIRK",
+      "type": "int64",
+      "description": "Wiener Gemeindebezirksnummer."
+    },
+    {
+      "name": "FLAECHE",
+      "type": "string",
+      "description": "Gr\u00f6\u00dfe der Anlage in Quadratmetern, als Text."
+    },
+    {
+      "name": "OEFF_ZEITEN",
+      "type": "string",
+      "description": "Sperr- und \u00d6ffnungszeiten."
+    },
+    {
+      "name": "SPIELEN_IM_PARK",
+      "type": "string",
+      "description": "Spielplatz vorhanden, Ja/Nein."
+    },
+    {
+      "name": "WASSER_IM_PARK",
+      "type": "string",
+      "description": "Trinkbrunnen beziehungsweise Wasser vorhanden, Ja/Nein."
+    },
+    {
+      "name": "HUNDE_IM_PARK",
+      "type": "string",
+      "description": "Hundefl\u00e4chentyp, wenn vorhanden, sonst Nein."
+    },
+    {
+      "name": "TELEFON",
+      "type": "string",
+      "description": "Telefonnummer (Parktelefon)."
+    },
+    {
+      "name": "WEBLINK1",
+      "type": "string",
+      "description": "Link zu Parkanlagen in Wien."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Parkanlagen Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.212349457094028,
+          48.126083135899535,
+          16.534835837001307,
+          48.30310058441208
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkanlagen Standorte Wien default style",
+      "description": "Default visualization for Parkanlagen Standorte Wien, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1209,
+      "file:checksum": "1220511fce03577c40b3cd739dd55e8619034cd1a1366dca841d95503cfcbf15a8c3"
+    },
+    "ogdwien_parkinfoogd": {
+      "href": "./ogdwien_parkinfoogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 66262,
+      "file:checksum": "1220accfbbc3041f0754af5f0f4d44589dd65f0d2be574718c58d4c67fb96c9cac5c",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_parkinfoogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkanlagen Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 138327,
+      "file:checksum": "12203111e3285505b8430dd567f2e5e47940de0b3af80d23a94876b1b283867a1628"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkanlagen Standorte Wien categorical style",
+      "description": "Categorical visualization coloring Parkanlagen Standorte Wien by SPIELEN_IM_PARK, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1793,
+      "file:checksum": "1220c5ab09e1a23029d8aa248332c758cb80d3f0b37774e897acec77d43a07e28a3a"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkanlagen Standorte Wien labeled style",
+      "description": "Default visualization for Parkanlagen Standorte Wien with ANL_NAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1640,
+      "file:checksum": "12200fbb3a4f8ae68f0ec434ca577b56e5bcd8c8a475572a8fa94107fd4e6f7baf9d"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkanlagen Standorte Wien graduated style",
+      "description": "Graduated visualization coloring Parkanlagen Standorte Wien by BEZIRK, ramped from 1.0 to 23.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1952,
+      "file:checksum": "1220186e078bd698062b84a5c8e082951a3239e7bcd57cb6b9da1bbcc0c648cfb184"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_parkinfoogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parkanlagen Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 116308,
+      "file:checksum": "1220ebc1ad3e7f9c12ea7a8b4ad6ecb4d005f07d1e44d7aaea831db6a769f809ebeb"
+    }
+  },
+  "keywords": [
+    "Parktelefon",
+    "Spielplatz im Park",
+    "Fl\u00e4che",
+    "ViennaGIS",
+    "Trinkbrunnen im Park",
+    "Hundezone",
+    "Bezirk",
+    "Parkanlage",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Parkanlagen Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

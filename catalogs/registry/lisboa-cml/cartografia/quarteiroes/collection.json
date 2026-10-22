@@ -1,0 +1,264 @@
+{
+  "type": "Collection",
+  "id": "cartografia/quarteiroes",
+  "stac_version": "1.1.0",
+  "description": "Quarteir\u00f5es da cidade de Lisboa em pol\u00edgono, com c\u00f3digo SIG, \u00e1rea em metros quadrados, per\u00edmetro e fun\u00e7\u00e3o dominante, na camada Quarteir\u00f5es do servi\u00e7o de cartografia base da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./quarteiroes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Quarteir\u00f5es",
+      "pmtiles:layers": [
+        "quarteiroes"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/75c297009ef84178a391af98c7352552_5",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Cartografia_Base/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Cartografia_Base (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 1086,
+  "table:row_count": 1086,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "AREA_M2",
+      "type": "double",
+      "description": "\u00c1rea da geometria em metros quadrados, calculada pelo publicador no sistema de proje\u00e7\u00e3o de origem (alias \u00ab\u00c1rea (m2)\u00bb)."
+    },
+    {
+      "name": "PERIMETRO",
+      "type": "double",
+      "description": "Per\u00edmetro da geometria em metros, calculado pelo publicador (alias \u00abPer\u00edmetro\u00bb)."
+    },
+    {
+      "name": "FUNCAO",
+      "type": "string",
+      "description": "Fun\u00e7\u00e3o dominante do quarteir\u00e3o, texto do publicador (alias \u00abFun\u00e7\u00e3o\u00bb)."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Quarteir\u00f5es",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.229831538008,
+          38.6913974836343,
+          -9.0896675320194,
+          38.796763907184
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Quarteir\u00f5es default style",
+      "description": "Default visualization for Quarteir\u00f5es, drawn in #807dba.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1143,
+      "file:checksum": "1220e00e9dd110128023bb48581cd4eaebe5761e8b0fe8fecb1c521ace0aaa33bdda"
+    },
+    "quarteiroes": {
+      "href": "./quarteiroes.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1858184,
+      "file:checksum": "122010794ff991999030fe9c05d4442985f40de581cc9db30bfdd62a51ee1643ec15",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./quarteiroes.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Quarteir\u00f5es (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1061699,
+      "file:checksum": "12202160513e118fb1256af874f57d42105478bdf540adc8f827e9562fc53ad8fcfb"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Quarteir\u00f5es categorical style",
+      "description": "Categorical visualization coloring Quarteir\u00f5es by IDTIPO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2123,
+      "file:checksum": "1220bcf3953c3e6622dd33712793a69084111218ab69281accca9c139389b7eaaa07"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Quarteir\u00f5es labeled style",
+      "description": "Default visualization for Quarteir\u00f5es with IDTIPO shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1556,
+      "file:checksum": "122065143d0d15c68318d6fabb2bb8b47b8c6b6c7eaa83a673c05637d303cc4fa740"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Quarteir\u00f5es graduated style",
+      "description": "Graduated visualization coloring Quarteir\u00f5es by AREA_M2, ramped from 34.65 to 3364359.37.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1932,
+      "file:checksum": "12205328c774ba7ac439f0e8859dd84cfc8bcbeb5286cfeaf42d6b12d639d1618f98"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/75c297009ef84178a391af98c7352552/geojson?layers=5&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: quarteiroes",
+      "pipeline:upstream": true,
+      "file:size": 5029890,
+      "file:checksum": "12204874ebad727246db727d6418c0d8afb34a7970ce14f973703971e8d332cbb13b"
+    },
+    "thumbnail": {
+      "href": "./quarteiroes.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Quarteir\u00f5es",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 178052,
+      "file:checksum": "122004bf62b5691d9c8876b65c9953757adb98b784ae4a2a4480c7bcb0a91bd40231"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Quarteir\u00f5es",
+    "City Blocks",
+    "InformacaoBaseCartografia"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Quarteir\u00f5es (Cartografia_Base), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

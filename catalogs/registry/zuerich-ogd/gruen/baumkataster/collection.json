@@ -1,0 +1,324 @@
+{
+  "type": "Collection",
+  "id": "gruen/baumkataster",
+  "stac_version": "1.1.0",
+  "description": "Im Baumkataster werden alle st\u00e4dtischen B\u00e4ume im Strassenraum erfasst, welche von Gr\u00fcn Stadt Z\u00fcrich verwaltet oder gepflegt werden. Erg\u00e4nzt wird das Baumkataster durch das Obstbauminventar sowie B\u00e4ume ausgew\u00e4hlter \u00f6ffentlicher Gr\u00fcnanlagen und private B\u00e4ume.\nZweck: Das Baumkataster dient der Verwaltung der B\u00e4ume im \u00f6ffentlichen Raum. Es ist Hilfsmittel f\u00fcr die Pflege dieser B\u00e4ume und f\u00fcr den Ersatz \"alter\" B\u00e4ume. Zudem ist es eine wichtige Informationsgrundlage f\u00fcr Planende, Projektierende die sich \u00fcber die bestehenden Baumstandorte orientieren wollen. Interessierte sollen jederzeit aktuell und pr\u00e4zise \u00fcber Baumarten und Baumstandorte informieren k\u00f6nnen.\nGeodatenelement baumkataster_baumstandorte: Baumstandorte in der Stadt Z\u00fcrich",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./baumkataster_baumstandorte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte)",
+      "pmtiles:layers": [
+        "baumkataster_baumstandorte"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/rahmenbedingungen.html",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.stadt-zuerich.ch/dataset/geo_baumkataster",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Baumkataster?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=baumkataster_baumstandorte",
+      "rel": "related",
+      "title": "Upstream source: baumkataster_baumstandorte",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Baumkataster?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.1.0",
+      "rel": "related",
+      "title": "WFS Baumkataster (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wms/geoportal/Baumkataster?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS Baumkataster (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 81142,
+  "table:row_count": 81142,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Feature-Id der GeoJSON-Ausgabe des WFS (Form baumkataster_baumstandorte.<n>), von der Konvertierung als Text \u00fcbernommen; nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "baumartlat",
+      "type": "string",
+      "description": "Art (lateinisch)."
+    },
+    {
+      "name": "baumgattunglat",
+      "type": "string",
+      "description": "Gattung (lateinisch)."
+    },
+    {
+      "name": "baumnamedeu",
+      "type": "string",
+      "description": "Gattung, Art und Sorte (deutsch)."
+    },
+    {
+      "name": "baumnamelat",
+      "type": "string",
+      "description": "Gattung, Art und Sorte (lateinisch)."
+    },
+    {
+      "name": "baumnummer",
+      "type": "string",
+      "description": "Eindeutige Baumnummer.; Vermessungsbezirk (z.B. AL f\u00fcr Altstetten) + \"-\" + eindeutige Identifikationsnummer pro Vermessungsbezirk."
+    },
+    {
+      "name": "baumtyp",
+      "type": "int32",
+      "description": "Umschreibung der Wuchsform.; Coded Domain; 1: H\u00f6he: >20m, Breite: >10m; grosskronige, breit wachsende B\u00e4ume; 2: H\u00f6he: >20m, Breite: 10m; mittelgrosse, breit wachsende B\u00e4ume; 4: H\u00f6he:10-20m, Breite: <10m; mittelgrosse, schmal wachsende B\u00e4ume; 5: H\u00f6he: <10m, Breite: <10m; kleinkronige B\u00e4ume; 6: Obstb\u00e4ume."
+    },
+    {
+      "name": "baumtyptext",
+      "type": "string",
+      "description": "Umschreibung der Wuchsform.; Coded Domain; 1: H\u00f6he: >20m, Breite: >10m; grosskronige, breit wachsende B\u00e4ume; 2: H\u00f6he: >20m, Breite: 10m; mittelgrosse, breit wachsende B\u00e4ume; 4: H\u00f6he: 10-20m, Breite: <10m; mittelgrosse, schmal wachsende B\u00e4ume; 5: H\u00f6he: <10m, Breite: <10m; kleinkronige B\u00e4ume; 6: Obstb\u00e4ume."
+    },
+    {
+      "name": "genauigkeit",
+      "type": "string",
+      "description": "Art der Koordinaten-Bestimmung; - Bildschirmeingabe; - Digitalisierung oder ELTA2; - Eingemessen; - Eingemessen (Nachpflanzung); - Luftbild; - Unbekannte Quelle."
+    },
+    {
+      "name": "geometrie_gdo",
+      "type": "string"
+    },
+    {
+      "name": "kategorie",
+      "type": "string",
+      "description": "Kategorie f\u00fcr Z\u00fcriplan (Zusammnzug aus Attribut Status): - \"Strasssenbaum\": Attribut 'STATUS', Werte 'Strassenbaum' + 'Strassebaum (A)'; - \"Gr\u00fcnanlage\": Attribut 'STATUS', Wert 'Gr\u00fcnanlage'."
+    },
+    {
+      "name": "kronendurchmesser",
+      "type": "int32",
+      "description": "Krondendurchmesser in m. Die Kronendurchmesser im Baumkataster sind unvollst\u00e4ndig, werden unregelm\u00e4ssig nachgef\u00fchrt und sind nur gesch\u00e4tzt. Bei B\u00e4umen bei denen keine Kronendurchmesser vorhanden ist, wird ein Durchmesser von 8m verwendet."
+    },
+    {
+      "name": "objectid",
+      "type": "int32",
+      "description": "ESRI Identifikationsnummer (Systemvorgabe)."
+    },
+    {
+      "name": "pflanzjahr",
+      "type": "int32",
+      "description": "Jahr, in welchem der Baum gepflanzt wurde. Ist nicht f\u00fcr alle B\u00e4ume bekannt."
+    },
+    {
+      "name": "poi_id",
+      "type": "string",
+      "description": "Identifikationsnummer f\u00fcr Z\u00fcriplan; \"bm_\" + OBJID."
+    },
+    {
+      "name": "quartier",
+      "type": "string",
+      "description": "Name des statistischen Quartiers in dem der Baum liegt."
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Kategorisierung der B\u00e4ume.; - Strassenbaum: Baum, der vollst\u00e4ndig im Strassenraum steht; - Strassenbaum (A): Baum in einer Gr\u00fcnanlage, welcher den Strassenraum mitpr\u00e4gt; - Gr\u00fcnanlage: Baum in einer Gr\u00fcnanlage (wichtig: nicht alle Gr\u00fcnanlagenb\u00e4ume sind erfasst); - Bund: B\u00e4ume, die auf Grundst\u00fccken im Eigentum des Bundes stehen; - Kanton: B\u00e4ume, die auf Grundst\u00fccken im Eigentum des Kantones stehen; - Schulen: B\u00e4ume auf Schularealen; - Privat: B\u00e4ume auf Privatgrund; - Obst: separat erfasste Obstb\u00e4ume, die nicht in eine andere Kategorie fallen."
+    },
+    {
+      "name": "strasse",
+      "type": "string",
+      "description": "Strasse an der Baum steht."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Point) in WGS 84 (OGC:CRS84), vom WFS des Publizierers aus CH1903+ / LV95 (EPSG:2056) umgerechnet und auf sechs Dezimalstellen gerundet; einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 19.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.463149,
+          47.321549,
+          8.612854,
+          47.436116
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) default style",
+      "description": "Default visualization for Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte), drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1294,
+      "file:checksum": "1220323ed2a6da85cbc55c8636b55521c6f08aaed1e17a1533a2d88158a428c1447a"
+    },
+    "baumkataster_baumstandorte": {
+      "href": "./baumkataster_baumstandorte.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4377240,
+      "file:checksum": "12202de8dbf415de36a05dd5b16c82c3079aa68c05cebac1b87f0b1429ee44d79c50",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./baumkataster_baumstandorte.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5686581,
+      "file:checksum": "1220fe640f72cc031d8841856aba2a44b09e1e31f95ad7ec07cd618c4492d536658f"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) categorical style",
+      "description": "Categorical visualization coloring Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) by kategorie, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1896,
+      "file:checksum": "1220dce4b51690cdb260f48ad476a35fd77b9ba5d96f964dfa87a738cd5236fb22cf"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) labeled style",
+      "description": "Default visualization for Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) with baumnamedeu shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1742,
+      "file:checksum": "122098c54f6a3dbf0ca49fa474f7b25ed3eecbb1730d318db622c3930f7a7f3f57a5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) graduated style",
+      "description": "Graduated visualization coloring Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte) by pflanzjahr, ramped from 1665.0 to 2026.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2074,
+      "file:checksum": "122013676da46396d47e5f30e0c37eb70471241c020fb9f06da79453622aa9955ed9"
+    },
+    "thumbnail": {
+      "href": "./baumkataster_baumstandorte.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Baumkataster \u2013 Baumstandorte (baumkataster_baumstandorte)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 205830,
+      "file:checksum": "1220d9e4723d588101e13d1f06ed2b9326e87f52d9174e6738bbfa903451612b2c03"
+    }
+  },
+  "keywords": [
+    "baum",
+    "geodaten",
+    "geoportal",
+    "obstbaum",
+    "polygondaten",
+    "punktdaten",
+    "stassenbaum",
+    "stzh",
+    "vektordaten",
+    "baumkataster_baumstandorte",
+    "Z\u00fcrich",
+    "Stadt Z\u00fcrich"
+  ],
+  "providers": [
+    {
+      "name": "Region Nord, Gr\u00fcn Stadt Z\u00fcrich, Tiefbau- und Entsorgungsdepartement",
+      "description": "Datenquelle: Stadt Z\u00fcrich, Region Nord, Gr\u00fcn Stadt Z\u00fcrich, Tiefbau- und Entsorgungsdepartement, \u00abBaumkataster\u00bb, Open Data Z\u00fcrich, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.stadt-zuerich.ch/dataset/geo_baumkataster",
+      "email": "opendata@zuerich.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

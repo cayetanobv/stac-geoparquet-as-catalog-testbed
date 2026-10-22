@@ -1,0 +1,389 @@
+{
+  "type": "Collection",
+  "id": "population-statistics",
+  "stac_version": "1.1.0",
+  "description": "The OCHA COD-PS Jamaica tables (jam_adm0_pop_v2.csv and jam_adm1_pop_v2.csv, source Statistical Institute of Jamaica, reference year 2011, methodology: census) as one Parquet table: 15 rows, one national row (admin_level = 0) and 14 parish rows (admin_level = 1). Columns keep the publisher names: T_TL, F_TL, M_TL and the sex-specific five-year bands T_00_04 to T_65Plus, F_..., M_.... Official children counts for 2011: 977,500 aged 0-19 nationally (T_00_04 + T_05_09 + T_10_14 + T_15_19). Join to the parishes Collection on ADM1_EN = adm1_name (names trimmed), not on P-code. No geometry; a joined spatial version is the parishes Collection. Retrieved from HDX on 2026-09-23 via the CKAN API (package_show cod-ps-jam).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Jamaica Common Operational Datasets: parish boundaries (COD-AB) and population statistics (COD-PS)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/3.0/igo/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.humdata.org/dataset/cod-ps-jam",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "table:columns": [
+    {
+      "name": "admin_level",
+      "type": "int32",
+      "description": "Derived (CARTO): 0 = national row (from jam_adm0_pop_v2.csv), 1 = parish row (from jam_adm1_pop_v2.csv)."
+    },
+    {
+      "name": "ADM0_EN",
+      "type": "string",
+      "description": "Country name (Jamaica), COD-PS."
+    },
+    {
+      "name": "ADM0_PCODE",
+      "type": "string",
+      "description": "Country P-code (JM), COD-PS."
+    },
+    {
+      "name": "ADM1_EN",
+      "type": "string",
+      "description": "Parish name as published in COD-PS; trailing tab characters removed from five names (derived clean-up). Join key to parishes.adm1_name. NULL on the national row."
+    },
+    {
+      "name": "ADM1_PCODE",
+      "type": "string",
+      "description": "COD-PS P-code (JM01-JM17 with gaps: JM03, JM05, JM06 unused; Kingston = JM17). Does not match COD-AB adm1_pcode for 12 of 14 parishes. NULL on the national row."
+    },
+    {
+      "name": "T_TL",
+      "type": "int64",
+      "description": "Total (both sexes) population all ages, 2011 census (COD-PS, Statistical Institute of Jamaica). Parish rows sum to 2,697,983; Saint Ann's T_TL = F_TL + M_TL + 1 (publisher rounding)."
+    },
+    {
+      "name": "F_TL",
+      "type": "int64",
+      "description": "Female population all ages, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_TL",
+      "type": "int64",
+      "description": "Male population all ages, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_00_04",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 0-4, 2011 census (COD-PS, Statistical Institute of Jamaica). National 209,871."
+    },
+    {
+      "name": "T_05_09",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 5-9, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_10_14",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 10-14, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_15_19",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 15-19, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_20_24",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 20-24, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_25_29",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 25-29, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_30_34",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 30-34, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_35_39",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 35-39, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_40_44",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 40-44, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_45_49",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 45-49, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_50_54",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 50-54, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_55_59",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 55-59, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_60_64",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 60-64, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "T_65Plus",
+      "type": "int64",
+      "description": "Total (both sexes) population aged 65 and over, 2011 census (COD-PS, Statistical Institute of Jamaica). National 218,338."
+    },
+    {
+      "name": "F_00_04",
+      "type": "int64",
+      "description": "Female population aged 0-4, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_05_09",
+      "type": "int64",
+      "description": "Female population aged 5-9, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_10_14",
+      "type": "int64",
+      "description": "Female population aged 10-14, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_15_19",
+      "type": "int64",
+      "description": "Female population aged 15-19, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_20_24",
+      "type": "int64",
+      "description": "Female population aged 20-24, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_25_29",
+      "type": "int64",
+      "description": "Female population aged 25-29, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_30_34",
+      "type": "int64",
+      "description": "Female population aged 30-34, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_35_39",
+      "type": "int64",
+      "description": "Female population aged 35-39, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_40_44",
+      "type": "int64",
+      "description": "Female population aged 40-44, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_45_49",
+      "type": "int64",
+      "description": "Female population aged 45-49, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_50_54",
+      "type": "int64",
+      "description": "Female population aged 50-54, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_55_59",
+      "type": "int64",
+      "description": "Female population aged 55-59, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_60_64",
+      "type": "int64",
+      "description": "Female population aged 60-64, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "F_65Plus",
+      "type": "int64",
+      "description": "Female population aged 65 and over, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_00_04",
+      "type": "int64",
+      "description": "Male population aged 0-4, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_05_09",
+      "type": "int64",
+      "description": "Male population aged 5-9, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_10_14",
+      "type": "int64",
+      "description": "Male population aged 10-14, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_15_19",
+      "type": "int64",
+      "description": "Male population aged 15-19, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_20_24",
+      "type": "int64",
+      "description": "Male population aged 20-24, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_25_29",
+      "type": "int64",
+      "description": "Male population aged 25-29, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_30_34",
+      "type": "int64",
+      "description": "Male population aged 30-34, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_35_39",
+      "type": "int64",
+      "description": "Male population aged 35-39, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_40_44",
+      "type": "int64",
+      "description": "Male population aged 40-44, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_45_49",
+      "type": "int64",
+      "description": "Male population aged 45-49, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_50_54",
+      "type": "int64",
+      "description": "Male population aged 50-54, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_55_59",
+      "type": "int64",
+      "description": "Male population aged 55-59, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_60_64",
+      "type": "int64",
+      "description": "Male population aged 60-64, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    },
+    {
+      "name": "M_65Plus",
+      "type": "int64",
+      "description": "Male population aged 65 and over, 2011 census (COD-PS, Statistical Institute of Jamaica)."
+    }
+  ],
+  "table:row_count": 15,
+  "title": "Jamaica subnational population statistics, 2011 census by sex and five-year age band (COD-PS)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2011-01-01T00:00:00Z",
+          "2011-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-3.0-IGO",
+  "assets": {
+    "population-statistics": {
+      "href": "./population-statistics.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 10498,
+      "file:checksum": "12204526d3a019f79345ff533d95a3157f9c24053e9785eb781a4c2160d057214024",
+      "roles": [
+        "data"
+      ]
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/ocha-cod-jamaica/population-statistics/population-statistics.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: population-statistics",
+      "pipeline:upstream": true,
+      "file:size": 10498,
+      "file:checksum": "122096dff699918e1c55409f1326e293ce9442d34ef2f7d5a40f8cdeac17accb02cb"
+    }
+  },
+  "keywords": [
+    "OCHA",
+    "HDX",
+    "Common Operational Dataset",
+    "COD-AB",
+    "COD-PS",
+    "administrative boundaries",
+    "parishes",
+    "population",
+    "census 2011",
+    "Jamaica"
+  ],
+  "providers": [
+    {
+      "name": "Statistical Institute of Jamaica (STATIN)",
+      "description": "Source of the 2011 census tables (HDX dataset_source: Statistical Institute of Jamaica; methodology: Census).",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://statinja.gov.jm/"
+    },
+    {
+      "name": "OCHA Regional Office for Latin America and the Caribbean (ROLAC)",
+      "description": "Published COD-PS Jamaica on HDX (cod-ps-jam; resources jam_adm0_pop_v2.csv and jam_adm1_pop_v2.csv modified 2022-10-11), retrieved 2026-09-23.",
+      "roles": [
+        "processor",
+        "licensor"
+      ],
+      "url": "https://data.humdata.org/organization/ocha-rolac"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:35:00Z"
+}

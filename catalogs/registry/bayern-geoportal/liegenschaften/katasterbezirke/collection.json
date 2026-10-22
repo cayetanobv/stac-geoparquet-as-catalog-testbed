@@ -1,0 +1,247 @@
+{
+  "type": "Collection",
+  "id": "liegenschaften/katasterbezirke",
+  "stac_version": "1.1.0",
+  "description": "Das Produkt ALKIS\u00ae Katasterbezirke beinhaltet die Verwaltungseinheiten des Liegenschaftskatasters. Die Abgabe der Daten erfolgt in ETRS89/UTM32 (EPSG:25832) ohne Zonenziffer. Das Produkt umfasst nicht den vollst\u00e4ndigen Inhalt von ALKIS\u00ae. Es enth\u00e4lt reduzierte Inhalte, die aufgrund des Dateiformats einfacher strukturiert sind. Es gelten die Vorgaben der AdV-Produktspezifikation ALKIS\u00ae-WFS und Ausgabeformate (Shape, CSV), Version 2.0.0. Download der ALKIS\u00ae-Katasterbezirke f\u00fcr ganz Bayern.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./KatasterBezirk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS\u00ae-Katasterbezirke Bayern",
+      "pmtiles:layers": [
+        "KatasterBezirk"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geodaten.bayern.de/opengeodata/OdmInit.do?method=init",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices.bayern.de/od/wms/alkis/v1/verwaltungsgrenzen?",
+      "rel": "related",
+      "title": "WMS ALKIS\u00ae-Verwaltungsgrenzen der Bayerischen Vermessungsverwaltung",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 7859,
+  "table:row_count": 7859,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "gml_id",
+      "type": "string",
+      "description": "Technisches Schl\u00fcsselattribut des Shapefiles; in der Stichprobe vom 21.9.2026 gleichlautend mit oid. Die Datenformatbeschreibung des Herausgebers f\u00fchrt dieses Feld nicht auf."
+    },
+    {
+      "name": "oid",
+      "type": "string",
+      "description": "Objektidentifikator, zum Beispiel DE092772000."
+    },
+    {
+      "name": "aktualit",
+      "type": "string",
+      "description": "Beginn des Lebenszeitintervalls des Objekts in JJJJ-MM-TT, zum Beispiel 2019-01-04Z."
+    },
+    {
+      "name": "art",
+      "type": "string",
+      "description": "Art des Katasterbezirks, zum Beispiel Gemarkung."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Name des Katasterbezirks, zum Beispiel Erlangen."
+    },
+    {
+      "name": "schluessel",
+      "type": "string",
+      "description": "Gemarkungsschl\u00fcssel, zum Beispiel 092772."
+    },
+    {
+      "name": "gemeinde",
+      "type": "string",
+      "description": "Name der Gemeinde, zum Beispiel Erlangen. Reicht ein Katasterbezirk \u00fcber mehrere Gemeinden, stehen die Namen durch Semikolon getrennt in einem Feld."
+    },
+    {
+      "name": "gmdschl",
+      "type": "string",
+      "description": "Amtlicher Gemeindeschl\u00fcssel, zum Beispiel 09562000. Reicht ein Katasterbezirk \u00fcber mehrere Gemeinden, stehen die Schl\u00fcssel durch Semikolon getrennt in einem Feld."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "ALKIS\u00ae-Katasterbezirke Bayern",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.976365432116882,
+          47.270112847721435,
+          13.839635357624292,
+          50.56469924090745
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS\u00ae-Katasterbezirke Bayern default style",
+      "description": "Default visualization for ALKIS\u00ae-Katasterbezirke Bayern, drawn in #8c6d31.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1182,
+      "file:checksum": "122049c26807c2cbb30d21c08faa881af782959afd6ae0ae02eef353f765e53d35b8"
+    },
+    "KatasterBezirk": {
+      "href": "./KatasterBezirk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 49993076,
+      "file:checksum": "1220daa2c5304ea773e57c2d6e015a8c71dd7cce91318c554fdfb5657ca135496780",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./KatasterBezirk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS\u00ae-Katasterbezirke Bayern (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 60345086,
+      "file:checksum": "12201144114f2736081245b256bdabafa5f79aa86dae001c98ac360fc04e1a547a1f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS\u00ae-Katasterbezirke Bayern labeled style",
+      "description": "Default visualization for ALKIS\u00ae-Katasterbezirke Bayern with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1599,
+      "file:checksum": "122078bbd13841209aaaf4f25506986bcdc472c4c58eaa5675fa719c3bad9bbb4a04"
+    },
+    "source": {
+      "href": "https://geodaten.bayern.de/odd/m/4/verwaltung/alkis-katasterbezirk.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: alkis-katasterbezirk",
+      "pipeline:upstream": true,
+      "file:size": 50143731,
+      "file:checksum": "12200cb5ae5f54808c0c7dce3494771aaaf59117951b57873cb35b3a80da2b4c90ba"
+    },
+    "thumbnail": {
+      "href": "./KatasterBezirk.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of ALKIS\u00ae-Katasterbezirke Bayern",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 186295,
+      "file:checksum": "1220a5545ff3354cec1ce81a3c0fdec3d91d1bfbe813b2668097402022bae593248e"
+    }
+  },
+  "keywords": [
+    "ALKIS",
+    "Katasterbezirke",
+    "Gemarkung",
+    "Liegenschaftskataster",
+    "Verwaltungseinheit",
+    "LDBV",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Digitalisierung, Breitband und Vermessung (LDBV)",
+      "description": "Datenquelle: Bayerische Vermessungsverwaltung \u2013 www.geodaten.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.ldbv.bayern.de/",
+      "email": "service@ldbv.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

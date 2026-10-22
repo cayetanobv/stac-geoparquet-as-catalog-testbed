@@ -1,0 +1,281 @@
+{
+  "type": "Collection",
+  "id": "housing/property-sales",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "description": "Dataset describes real estate sale prices for recent property sales in the city. A separate table describes codes for different type of sales.",
+  "license": "other",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.320522,
+          38.531907,
+          -90.166409,
+          38.774362
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1986-12-31T00:00:00Z",
+          "2026-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 191829,
+  "table:columns": [
+    {
+      "name": "CityBlock",
+      "type": "double",
+      "description": "City block component of the sold parcel's key; Parcel and OwnerCode complete the key (see parcels)."
+    },
+    {
+      "name": "Parcel",
+      "type": "int64"
+    },
+    {
+      "name": "OwnerCode",
+      "type": "int64"
+    },
+    {
+      "name": "SaleNum",
+      "type": "int64",
+      "description": "Sequential sale number for the parcel."
+    },
+    {
+      "name": "AsrParcelId",
+      "type": "string",
+      "description": "Assessor's parcel ID (2021 numbering schema)."
+    },
+    {
+      "name": "SaleType",
+      "type": "int64",
+      "description": "Coded sale type from the city 'Sale Type' vocabulary, e.g. 11 Investor, 25 House/Vacant Lot, 36/37 Condo with/without parking, 42 Government, 46 Gift, 47-49 Exempt, 70 Foreclosure, 80 Foreclosure Sale, 61 Inter-Corporate; SaleTypeDescr carries the decoded description and SaleTypeOther any free-text type."
+    },
+    {
+      "name": "SaleTypeOther",
+      "type": "string"
+    },
+    {
+      "name": "SaleDate",
+      "type": "string",
+      "description": "Date of the sale; LRMSSaleDate is the sale date as carried in the LRMS land-records system."
+    },
+    {
+      "name": "SalePrice",
+      "type": "double",
+      "description": "Sale price in dollars."
+    },
+    {
+      "name": "NbrOfParcels",
+      "type": "int64",
+      "description": "Number of parcels included in the transaction; SalePricePerParcel is SalePrice divided across them."
+    },
+    {
+      "name": "SalePricePerParcel",
+      "type": "double"
+    },
+    {
+      "name": "SaleDocNum",
+      "type": "int64",
+      "description": "Recorder of Deeds document number for the sale."
+    },
+    {
+      "name": "LRMSSaleDate",
+      "type": "string"
+    },
+    {
+      "name": "SaleTypeDescr",
+      "type": "string"
+    }
+  ],
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Housing"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=31",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=31",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./property-sales.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "property-sales"
+      ]
+    }
+  ],
+  "assets": {
+    "property-sales": {
+      "href": "./property-sales.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "data"
+      ],
+      "title": "Property Sales (Parquet)",
+      "file:size": 2462849,
+      "file:checksum": "122088e0e4fe6a9ec288e2fe1fff7fb627f1905d09ee1b1672b8977d6d260a8c5f7d"
+    },
+    "property-sales-tiles": {
+      "href": "./property-sales.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Property Sales (PMTiles)",
+      "file:size": 14441107,
+      "file:checksum": "122098554acf69f5c1d61d08668e7c3082468b8b68daf0a85136aa08d8b89ae39108"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Property Sales rendered with the default style",
+      "file:size": 399815,
+      "file:checksum": "122004eefc9fb5bfec29c8a67627584f9aa18556c3c0b1b9781540d5d3f0879de043"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Sale price",
+      "description": "Recorded sales joined to parcel geometry, stepped by sale price; a parcel appears once per sale.",
+      "file:size": 1386,
+      "file:checksum": "12209323c67f7f71325303f4f27a7ed69527dd4a91a5952f79d6f6cae0ef315e9103"
+    },
+    "styles/style-price-per-sqft": {
+      "href": "./styles/style-price-per-sqft.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Price per square foot",
+      "description": "Sale price divided by the parcel's lot area \u2014 the cleanest way to compare land value across parcel sizes (steps at $1, $4, $10, $25, $60 per sq ft of lot).",
+      "file:size": 1541,
+      "file:checksum": "12201bc2360ac354d06b4b00b5065d90deec331a10a4f8b97648f436bfabd2f65d43"
+    },
+    "styles/style-solid": {
+      "href": "./styles/style-solid.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "All sold parcels",
+      "description": "Every parcel with a recorded sale.",
+      "file:size": 507,
+      "file:checksum": "122052fe2aab6ea3586ff61f970f82030fa92c02c2dccd6490a7cd1a7ca62cf6b4f8"
+    },
+    "styles/style-year": {
+      "href": "./styles/style-year.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Sale year",
+      "description": "Sales stepped by decade, 2020s in red.",
+      "file:size": 1237,
+      "file:checksum": "1220cdf948972743d64bea79c3b5b6e77aeb486d8edd4af81ccbe4b978465e482787"
+    },
+    "source": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/prclsale.zip",
+      "type": "application/zip",
+      "title": "Property sales (zipped Microsoft Access database)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 6716955,
+      "file:checksum": "1220ef374b13fb6fa4a0bec92a63845232575fed227b7edec24e68875d8b428d2389",
+      "description": "The file this collection was built from. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  },
+  "title": "Property Sales",
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "housing",
+          "title": "Housing"
+        },
+        {
+          "id": "urban-development-and-planning",
+          "title": "Urban Development and Planning"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "assessor-s-office",
+          "title": "Assessor's Office"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "asset-parcel",
+    "property address",
+    "Assessor's Office"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Assessor's Office",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=31"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

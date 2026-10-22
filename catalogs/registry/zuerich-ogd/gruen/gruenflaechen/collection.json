@@ -1,0 +1,283 @@
+{
+  "type": "Collection",
+  "id": "gruen/gruenflaechen",
+  "stac_version": "1.1.0",
+  "description": "Beschreibt die internen Zust\u00e4ndigkeiten nach Produkten und Erfassungseinheiten in den vom Gesch\u00e4ftsbereich Park- und Gr\u00fcnanlagen GSZ verwalteten oder bewirtschafteten Fl\u00e4chen.\nZweck: GSZ setzt das Fl\u00e4chenmanagementsystem (FMS) zur Verwaltung von Gr\u00fcnfl\u00e4chen, zur Auskunft von Zust\u00e4ndigkeiten innerhalb von GSZ oder zur Ermittlung von Kennzahlen und Benchmarks ein.\nDer Geodatensatz Gr\u00fcnfl\u00e4chen stellt einen vereinfachten Auszug aus dem FMS dar, welcher Auskunft \u00fcber die Bezeichnungen sowie Produkt- und Teilproduktzuteilungen der vom Gesch\u00e4ftsbereich Park- und Gr\u00fcnanlagen verwalteten oder bewirtschafteten Gr\u00fcnanlagen gibt.\nBeschreibung des Geodatenelements auf geocat.ch: Pflegeelemente. Eine einzelne erfasste Geometrie und somit die kleinste Fl\u00e4cheneinheit im Fl\u00e4chenmanagementsystem (FMS).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gruenflaechen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen)",
+      "pmtiles:layers": [
+        "gruenflaechen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stadt-zuerich.ch/de/politik-und-verwaltung/statistik-und-daten/open-government-data/rahmenbedingungen.html",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.stadt-zuerich.ch/dataset/geo_gruenflaechen",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gruenflaechen?service=WFS&version=1.1.0&request=GetFeature&outputFormat=GeoJSON&typename=gruenflaechen",
+      "rel": "related",
+      "title": "Upstream source: gruenflaechen",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wfs/geoportal/Gruenflaechen?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=1.1.0",
+      "rel": "related",
+      "title": "WFS Gruenflaechen (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://www.ogd.stadt-zuerich.ch/wms/geoportal/Gruenflaechen?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "WMS Gruenflaechen (Geoportal Stadt Z\u00fcrich)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 61247,
+  "table:row_count": 61247,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Feature-Id der GeoJSON-Ausgabe des WFS (Form gruenflaechen.<n>), von der Konvertierung als Text \u00fcbernommen; nicht stabil \u00fcber Zeit."
+    },
+    {
+      "name": "erfassungseinheit",
+      "type": "string",
+      "description": "Erfassungseinheit."
+    },
+    {
+      "name": "geometrie_gdo",
+      "type": "string"
+    },
+    {
+      "name": "objectid",
+      "type": "int32",
+      "description": "Systemattribut."
+    },
+    {
+      "name": "objektidentifikator",
+      "type": "int32",
+      "description": "Systemattribut."
+    },
+    {
+      "name": "pflegeareal",
+      "type": "string",
+      "description": "Fasst die r\u00e4umliche Zusammengeh\u00f6rigkeit der Pflegeelemente mit einem Namen zusammen und ist somit die gr\u00f6sste Fl\u00e4cheneinheit im FMS. Beispiele: B\u00e4ckeranlage, Friedhof Eichb\u00fchl, Schulhaus Riedtli."
+    },
+    {
+      "name": "pflegeeinheit",
+      "type": "string"
+    },
+    {
+      "name": "pflegestufe",
+      "type": "string"
+    },
+    {
+      "name": "produkt",
+      "type": "string",
+      "description": "Produkt."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (MultiPolygon) in WGS 84 (OGC:CRS84), vom WFS des Publizierers aus CH1903+ / LV95 (EPSG:2056) umgerechnet und auf sechs Dezimalstellen gerundet; einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 19.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.461902,
+          47.29043,
+          8.614353,
+          47.434741
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen) default style",
+      "description": "Default visualization for Gr\u00fcnfl\u00e4chen (gruenflaechen), drawn in #74c476.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1178,
+      "file:checksum": "12206cdcc73af873e0e090d82325de349aef1425a0873ec2a1e10ab8966e64a1aad2"
+    },
+    "gruenflaechen": {
+      "href": "./gruenflaechen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 16221091,
+      "file:checksum": "12209cbef6929c5bfdec887714e5683f6d5d2b4ca864a66d6069031bfbc727dc99a1",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./gruenflaechen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8967232,
+      "file:checksum": "12200e207d537f45de30a95a376ec60cb777164132ddbba0a9e5182e76cd03665d23"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen) categorical style",
+      "description": "Categorical visualization coloring Gr\u00fcnfl\u00e4chen (gruenflaechen) by pflegestufe, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1992,
+      "file:checksum": "1220c65de033cb6ca98db65ce64c8b4155a144d9922fcc0cf72500b828bf17fab5c9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen) labeled style",
+      "description": "Default visualization for Gr\u00fcnfl\u00e4chen (gruenflaechen) with pflegestufe shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1600,
+      "file:checksum": "12205f46256a33a9d8dc71cc605f9d19f4abab3fc782fedd1e5f8456287c94214edf"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Gr\u00fcnfl\u00e4chen (gruenflaechen) graduated style",
+      "description": "Graduated visualization coloring Gr\u00fcnfl\u00e4chen (gruenflaechen) by objektidentifikator, ramped from 3714.0 to 126429.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2003,
+      "file:checksum": "1220849eb8855faf3a7e3c855358a358d8c776831903a5a20fd8259f03458da2c3a1"
+    },
+    "thumbnail": {
+      "href": "./gruenflaechen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Gr\u00fcnfl\u00e4chen (gruenflaechen)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 158081,
+      "file:checksum": "1220ccf72478dd9c8b7bbe419f695dbe87d4eb73c21d6efa237370d24346446108c0"
+    }
+  },
+  "keywords": [
+    "geodaten",
+    "geoportal",
+    "geschaftsbereich-park--und-grunanlagen",
+    "grun-stadt-zurich",
+    "grunflachen",
+    "polygondaten",
+    "produkte",
+    "stzh",
+    "teilprodukte",
+    "vektordaten",
+    "zustandigkeit",
+    "gruenflaechen",
+    "Z\u00fcrich",
+    "Stadt Z\u00fcrich"
+  ],
+  "providers": [
+    {
+      "name": "Produkteverantw.  & Unterst\u00fctzungsfunk., Gr\u00fcn Stadt Z\u00fcrich, Tiefbau- und Entsorgungsdepartement",
+      "description": "Datenquelle: Stadt Z\u00fcrich, Produkteverantw.  & Unterst\u00fctzungsfunk., Gr\u00fcn Stadt Z\u00fcrich, Tiefbau- und Entsorgungsdepartement, \u00abGr\u00fcnfl\u00e4chen\u00bb, Open Data Z\u00fcrich, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.stadt-zuerich.ch/dataset/geo_gruenflaechen",
+      "email": "opendata@zuerich.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T15:30:00Z"
+}

@@ -1,0 +1,234 @@
+{
+  "type": "Collection",
+  "id": "limiti-amministrativi/agenzie-tutela-salute",
+  "stac_version": "1.1.0",
+  "description": "Dal servizio di mappa si visualizzano i confini delle nuove AGENZIE DI TUTELA DELLA SALUTE (ATS) e dei Distretti sanitari della Lombardia istituiti con Legge regionale n. 23 dell'11 agosto 2015. Rispetto alle precedenti 15 ASL le nuove ATS sono 8.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ATS.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Agenzie di Tutela della Salute (ATS)",
+      "pmtiles:layers": [
+        "ATS"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.geoportale.regione.lombardia.it/metadati?p_p_id=detailSheetMetadata_WAR_gptmetadataportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_detailSheetMetadata_WAR_gptmetadataportlet_identifier=r_lombar%3A40123a37-8c6e-4e93-9d39-33d5a16d16c2&_detailSheetMetadata_WAR_gptmetadataportlet_rid=local",
+      "type": "text/html"
+    },
+    {
+      "href": "https://www.geoportale.regione.lombardia.it/rlregis_download/service/package?dbId=6&cod=03",
+      "rel": "related",
+      "title": "Upstream source: ats",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 8,
+  "table:row_count": 8,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "CODICE_ATS",
+      "type": "string"
+    },
+    {
+      "name": "DESCRIZION",
+      "type": "string"
+    },
+    {
+      "name": "SHAPE_AREA",
+      "type": "double"
+    },
+    {
+      "name": "SHAPE_LEN",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:32632')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Agenzie di Tutela della Salute (ATS)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.498413262956799,
+          44.67984099494623,
+          11.429275221493008,
+          46.63538906402218
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Agenzie di Tutela della Salute (ATS) default style",
+      "description": "Default visualization for Agenzie di Tutela della Salute (ATS), drawn in #525252.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1107,
+      "file:checksum": "1220c75013ce866dee39d5004c3e2b67996b79de1e8c6ec0d5b0806a21238eb5f081"
+    },
+    "ATS": {
+      "href": "./ATS.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1402676,
+      "file:checksum": "122037201c0b6f7ae23b39a78cba9adf48f3d56f1edf5d14882c9924aa5c65ba3ffd",
+      "proj:code": "EPSG:32632",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ATS.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Agenzie di Tutela della Salute (ATS) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1564587,
+      "file:checksum": "1220e9fe4878eadc923df65f552dd1a9ac7fd2e6807c81a1644fa28ffb68ad5ea833"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Agenzie di Tutela della Salute (ATS) categorical style",
+      "description": "Categorical visualization coloring Agenzie di Tutela della Salute (ATS) by CODICE_ATS, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2427,
+      "file:checksum": "122013d743bedab26139a8ae65c4eab16886d16bf42c8c3eb652d1741a6923439f32"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Agenzie di Tutela della Salute (ATS) labeled style",
+      "description": "Default visualization for Agenzie di Tutela della Salute (ATS) with CODICE_ATS shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1508,
+      "file:checksum": "1220950e2ad1c69540e2ceec0bb09b5973f0940dee62863c44d0be5380c55ae3e9e8"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Agenzie di Tutela della Salute (ATS) graduated style",
+      "description": "Graduated visualization coloring Agenzie di Tutela della Salute (ATS) by SHAPE_AREA, ramped from 1216895847.17 to 4758717097.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1950,
+      "file:checksum": "122038bb157acdd9827216cec4d695320615e57e0fd0e4b197866bfd791fe28a813a"
+    },
+    "thumbnail": {
+      "href": "./ATS.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Agenzie di Tutela della Salute (ATS)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 135707,
+      "file:checksum": "1220570ea69601eefa4eb98d305c182b97aae1c50d8d81b3ea8d348f6ca54c1b5caa"
+    }
+  },
+  "keywords": [
+    "Mappe di base - Immagini - Copertura terrestre",
+    "Salute",
+    "Confini",
+    "Salute umana e sicurezza",
+    "Unit\u00e0 amministrative",
+    "Orto immagini",
+    "Unit\u00e0 statistiche"
+  ],
+  "providers": [
+    {
+      "name": "Regione Lombardia",
+      "description": "Fonte: Regione Lombardia, \u00abAGENZIE DI TUTELA DELLA SALUTE (ATS)\u00bb, scheda di metadato del Geoportale della Lombardia (identificatore r_lombar:40123a37-8c6e-4e93-9d39-33d5a16d16c2), consultata il 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.geoportale.regione.lombardia.it/metadati?p_p_id=detailSheetMetadata_WAR_gptmetadataportlet&p_p_lifecycle=0&p_p_state=normal&p_p_mode=view&_detailSheetMetadata_WAR_gptmetadataportlet_identifier=r_lombar%3A40123a37-8c6e-4e93-9d39-33d5a16d16c2&_detailSheetMetadata_WAR_gptmetadataportlet_rid=local",
+      "email": "infosanita@regione.lombardia.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

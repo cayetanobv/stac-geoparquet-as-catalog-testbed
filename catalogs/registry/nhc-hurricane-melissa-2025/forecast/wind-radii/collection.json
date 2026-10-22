@@ -1,0 +1,306 @@
+{
+  "type": "Collection",
+  "id": "forecast/wind-radii",
+  "stac_version": "1.1.0",
+  "description": "NHC 34-, 50- and 64-kt wind radii polygons for Hurricane Melissa (AL132025): the initial (analysed) wind field at each advisory and the forecast radii at each forecast hour to 72 h, all 80 advisories stacked (1,904 polygons). Quadrant extents NE/SE/SW/NW in nautical miles. This is the product to use for the wind field; the forecast cone is not. Derived columns advisory_number, advisory_seq, radii_kind, issue_time, synoptic_time, valid_time (UTC).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./forecast-wind-radii.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast and initial wind radii (all 80 advisories)",
+      "pmtiles:layers": [
+        "forecast-wind-radii"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2025&name=Hurricane%20MELISSA",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1904,
+  "table:row_count": 1904,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "advisory_number",
+      "type": "string",
+      "description": "Derived (CARTO): zero-padded advisory id, e.g. '003A'; join key across the forecast/* Collections."
+    },
+    {
+      "name": "advisory_seq",
+      "type": "int32",
+      "description": "Derived (CARTO): 1-based issue order of the advisory (1..80)."
+    },
+    {
+      "name": "radii_kind",
+      "type": "string",
+      "description": "Derived (CARTO): 'initial' = analysed wind field at advisory time (NHC initialradii file, 181 rows); 'forecast' = forecast radii at TAU 0..72 (NHC forecastradii file, 1,723 rows)."
+    },
+    {
+      "name": "RADII",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The wind speed in knots associated with the bounding polygon': 34 = tropical storm force (796 rows), 50 (684), 64 = hurricane force (424)."
+    },
+    {
+      "name": "STORMID",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'A unique character string ... BBNNYYYY' -> al132025."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): basin code, lower-case 'al' in the radii files."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): sequential number of the cyclone in the basin (13)."
+    },
+    {
+      "name": "ADVNUM",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): advisory number the radii belong to, same unpadded text as ADVISNUM ('20', '20A'); verified equal to the package's advisory."
+    },
+    {
+      "name": "VALIDTIME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The time in which a forecast or warning is in effect', YYYYMMDDHH UTC. Parsed into valid_time."
+    },
+    {
+      "name": "SYNOPTIME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'Initial time in the forecast cycle in which a tropical cyclones intensity and size are analyzed, occurring at 0000, 0600, 1200, or 1800 UTC' (YYYYMMDDHH). Parsed into synoptic_time."
+    },
+    {
+      "name": "TIMEZONE",
+      "type": "string",
+      "description": "NHC (undocumented field): time zone of VALIDTIME and SYNOPTIME; 'UTC' in the radii files."
+    },
+    {
+      "name": "TAU",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): forecast hour from synoptic_time (0, 12, 24, 36, 48, 60, 72); NHC forecasts radii only to 72 h."
+    },
+    {
+      "name": "NE",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the NE (0 - 90 degree) quadrant.'"
+    },
+    {
+      "name": "SE",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the SE (90 - 180 degree) quadrant.'"
+    },
+    {
+      "name": "SW",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the SW (180 - 270 degree) quadrant.'"
+    },
+    {
+      "name": "NW",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The largest distance of wind speed in Nautical Miles in the NW (270 - 360 degree) quadrant.'"
+    },
+    {
+      "name": "issue_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): issue time (UTC) of the advisory the package belongs to, copied from forecast/cone."
+    },
+    {
+      "name": "synoptic_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): SYNOPTIME parsed to UTC; the 00/06/12/18 UTC cycle the TAU hours count from."
+    },
+    {
+      "name": "valid_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): VALIDTIME parsed to UTC; 2025-10-21 12:00 to 2025-11-04 21:00 UTC."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Quadrant-wise wind-extent polygon built by NHC from the four radii (all valid) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); coordinates as shipped by NHC, not transformed."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Forecast and initial wind radii (all 80 advisories)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -81.1027679,
+          12.6727428,
+          -8.05455112,
+          63.9945259
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T12:00:00Z",
+          "2025-11-04T21:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast and initial wind radii (all 80 advisories) default style",
+      "description": "Default visualization for Forecast and initial wind radii (all 80 advisories), drawn in #2e7d32.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1234,
+      "file:checksum": "12205e327ad6c98469bf71d177a5a5b014a69efaeec409d98f0897e66f6743350ede"
+    },
+    "forecast-wind-radii": {
+      "href": "./forecast-wind-radii.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3254397,
+      "file:checksum": "122062dad7da0735936b7f3408b555812826eff4dc9b2f8bb680be143f7e91e0edd1",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./forecast-wind-radii.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast and initial wind radii (all 80 advisories) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1047638496,
+      "file:checksum": "1220510bb7220ccb59e1c3ae6be96b4b4019c4f3e7d9fb5e263abd745597a82470e0"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast and initial wind radii (all 80 advisories) labeled style",
+      "description": "Default visualization for Forecast and initial wind radii (all 80 advisories) with RADII shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1662,
+      "file:checksum": "1220f721026d928ddb51273f51bdbaf99c31d5a330e9e3de5ebe4658bffee116df9a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast and initial wind radii (all 80 advisories) graduated style",
+      "description": "Graduated visualization coloring Forecast and initial wind radii (all 80 advisories) by SW, ramped from 0.0 to 420.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1967,
+      "file:checksum": "12202f0ec1667a26da888d64e741927b380561ec224f095fe1b54f14a2e8bb258b41"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/forecast-wind-radii/forecast-wind-radii.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: forecast-wind-radii",
+      "pipeline:upstream": true,
+      "file:size": 3341100,
+      "file:checksum": "1220f2cbd7961878270adea779942b96d6b814f13dd725faf35602e939916ce62581"
+    },
+    "thumbnail": {
+      "href": "./forecast-wind-radii.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Forecast and initial wind radii (all 80 advisories)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 65166,
+      "file:checksum": "12207d8ff537ba069fe87197f8828111da3f25809ddc3fd43379df4a5ba469a012e8"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

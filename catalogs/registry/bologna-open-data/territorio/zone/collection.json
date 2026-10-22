@@ -1,0 +1,231 @@
+{
+  "type": "Collection",
+  "id": "territorio/zone",
+  "stac_version": "1.1.0",
+  "description": "Zone del Comune di Bologna. Il dataset contiene le 18 zone in cui era, in passato, suddiviso il territorio comunale.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zonedelcomunedibolog.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zone del Comune di Bologna",
+      "pmtiles:layers": [
+        "zonedelcomunedibolog"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/zone-del-comune-di-bologna/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/zone-del-comune-di-bologna/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: zonedelcomunedibolog",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 18,
+  "table:row_count": 18,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "area",
+      "type": "double",
+      "description": "Area in mq della zona."
+    },
+    {
+      "name": "perimeter",
+      "type": "double",
+      "description": "Lunghezza perimetro della zona."
+    },
+    {
+      "name": "codzona",
+      "type": "string",
+      "description": "CODZONA. Codice identificativo della zona."
+    },
+    {
+      "name": "numquart",
+      "type": "int32",
+      "description": "NUMQUART. Numero identificativo del quartiere a cui appartiene la zona."
+    },
+    {
+      "name": "nomezona",
+      "type": "string",
+      "description": "NOMEZONA. Nome della zona."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Zone del Comune di Bologna",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.229655721792613,
+          44.42111339506899,
+          11.433716695306199,
+          44.556206646493365
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zone del Comune di Bologna default style",
+      "description": "Default visualization for Zone del Comune di Bologna, drawn in #ae017e.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1216,
+      "file:checksum": "1220cab2f34fe272dabea54f15158128fd3dc6ae8b8486e0debbb23f9c21c804b158"
+    },
+    "zonedelcomunedibolog": {
+      "href": "./zonedelcomunedibolog.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 105192,
+      "file:checksum": "1220a1dbe41bec02e0c75e2940a6b52a62458a848c3ae5886c2297a3bec109272758",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./zonedelcomunedibolog.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Zone del Comune di Bologna (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 117504,
+      "file:checksum": "12200963866bbb33eb89999dec4dc5854aa84ab1c24a13472b3212340dd7cbf107ef"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zone del Comune di Bologna labeled style",
+      "description": "Default visualization for Zone del Comune di Bologna with nomezona shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1649,
+      "file:checksum": "1220323d696239259b448ab24dc0b329e4a83a63abf8d454a672c948bbbebb46701c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Zone del Comune di Bologna graduated style",
+      "description": "Graduated visualization coloring Zone del Comune di Bologna by area, ramped from 959599.953 to 26166338.127.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2038,
+      "file:checksum": "1220dcfa67b5b235f3b535380d0c3c9d8cd28be8d5acdd05f77ee1e8ca9b42cdba6f"
+    },
+    "thumbnail": {
+      "href": "./zonedelcomunedibolog.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Zone del Comune di Bologna",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 118966,
+      "file:checksum": "12209a17626605bd678dccadd2e23fe9b02b0bd5a1a5efa01e21136ba6dce8371c44"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abZone del Comune di Bologna\u00bb (zone-del-comune-di-bologna), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/zone-del-comune-di-bologna/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

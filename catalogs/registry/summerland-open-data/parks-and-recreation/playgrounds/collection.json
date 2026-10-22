@@ -1,0 +1,180 @@
+{
+  "type": "Collection",
+  "id": "parks-and-recreation/playgrounds",
+  "stac_version": "1.1.0",
+  "description": "Shows the locations of all the playgrounds in the Summerland parks.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./playgrounds.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "playgrounds"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 24,
+  "table:row_count": 24,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "Description_1",
+      "type": "large_string",
+      "description": "Description."
+    },
+    {
+      "name": "PARK_NAME",
+      "type": "large_string",
+      "description": "Coded values from the service's WS2_prkSGN_ParkName domain: Antl = Antlers; Brtm = Bertram; BulLake = Bouleau Lake; CinnCrk = Cinnabar Creek; Cldhm = Coldham; DvsCrkC = Daves Creek Corridor; EllHall = Ellison Community Hall; EllET = Ellison Estates Trail; FA1 = Fintry Access #1; FA2 = Fintry Access #2; FA3 = Fintry Access #3; GHer = Gellatly Heritage; GNF = Gellatly Nut Farm; GCan = Glen Canyon; Gpeak = Goats Peak; HFall = Hardy Falls; JRCH = Joe Rich Community Hall; JFNC = John's FNC; Klmr = Kalamoir; Kly = Kaloya (+27 more)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Playground",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.68791308752841,
+          49.57314700879613,
+          -119.6212076161462,
+          49.608267613404614
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "playgrounds": {
+      "href": "./playgrounds.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 15192,
+      "file:checksum": "1220faa3bdd53fe5e3b0c587a53b3027b05f21e1f90c30590c061be053aa023bbe55",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./playgrounds.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 6983,
+      "file:checksum": "1220267a835ac7fd76e9de835a85611e41e456944875c7e10dba215c1ef1ca134b7a"
+    },
+    "playgrounds-tiles": {
+      "href": "./playgrounds.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "playgrounds (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 7869,
+      "file:checksum": "122058ef75fd8491190a1c9bcf6aa6a0d6b89aac1fbcce7462cdf018d7afdc0ea56e"
+    },
+    "styles/playgrounds": {
+      "href": "./styles/playgrounds.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Playground",
+      "file:size": 869,
+      "file:checksum": "12204e30155b81fd366e9aac7496c9309baaa2cf2b50456554a3662fe3bbdeed1cc1"
+    }
+  },
+  "keywords": [
+    "Community Resources",
+    "Parks and Recreation"
+  ]
+}

@@ -1,0 +1,321 @@
+{
+  "type": "Collection",
+  "id": "reseau/sections-de-ligne",
+  "stac_version": "1.1.0",
+  "description": "Segmentation du r\u00e9seau ferroviaire suivant les caract\u00e9ristiques de l'infrastructure et les possibilit\u00e9s d'op\u00e9ration. Cette liste reprend le trac\u00e9 et les caract\u00e9ristiques techniques des sections de ligne.\nNote importante :\n- Ces donn\u00e9es sont \u00e0 associer au jeu de donn\u00e9e des Points op\u00e9rationnels du r\u00e9seau (https://opendata.infrabel.be/explore/dataset/operationele-punten-van-het-netwerk/). Celui-ci g\u00e9olocalise les points de d\u00e9but et de fin de section dont les identifiants et abr\u00e9viations sont donn\u00e9s dans ce jeu de donn\u00e9es.\n- Ces donn\u00e9es ont pour but de permettre des repr\u00e9sentations sch\u00e9matiques du r\u00e9seau ferr\u00e9 belge (c\u2019est-\u00e0-dire pour une \u00e9chelle max. d\u20191/25 000). Pour une g\u00e9olocalisation plus pr\u00e9cise des voies principales, nous vous recommandons le dataset suivant Liste et position g\u00e9ographique des voies principales (https://infrabel.opendatasoft.com/explore/dataset/geosporen/)\n\nCes donn\u00e9es sont \u00e9galement publi\u00e9es dans le Registre europ\u00e9en des Infrastructures ferroviaires (RINF) (https://www.era.europa.eu/domains/registers/rinf_en)\nCe jeu de donn\u00e9es reprend principalement les caract\u00e9ristiques techniques des sections de ligne en mati\u00e8re de gabarit, d'installation \u00e9lectrique et de type de trafic ferroviaire autoris\u00e9. Les codes utilis\u00e9s font sont repris et explicit\u00e9s dans les documents de r\u00e9f\u00e9rence suivants :\n- Abr\u00e9viations du LVT. Le Livret du Service des trains, fait partie du Document de R\u00e9f\u00e9rence du r\u00e9seau, consultable sur notre site corporate (https://www.infrabel.be/fr/networkstatement)\nLa norme NBN EN 15273-3 (https://www.nbn.be/fr/catalogue/standard/nbn-en-15273-3-0) explique, entre autres, les codes de gabarit minimal belges et interop\u00e9rables.\n\nLes codes C400,C70,P400 et P70 renvoient vers les codes de la fiche technique UIC 596-6 (http://www.shop-etf.com/en/conditions-de-codification-des-unites-de-transport-intermodal-en-transport-combine-des-lignes-de-transport-combine-et-des-wagons) pour la codification des unit\u00e9s de transport intermodale en transport combin\u00e9, des lignes de transport combin\u00e9s et des wagons.\n\nTitre n\u00e9erlandais du publicateur : \u00ab Lijnsecties \u00bb ; titre anglais : \u00ab Railway line sections \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./lijnsecties.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sections de ligne",
+      "pmtiles:layers": [
+        "lijnsecties"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://opendata.infrabel.be/pages/license/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.infrabel.be/explore/dataset/lijnsecties/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.infrabel.be/api/explore/v2.1/catalog/datasets/lijnsecties/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: lijnsecties",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 1210,
+  "table:row_count": 1210,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Num\u00e9ro d'ordre du lecteur GeoJSON de GDAL/OGR, ajout\u00e9 par la conversion ; non stable d'une ex\u00e9cution \u00e0 l'autre."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Centro\u00efde du portail Opendatasoft (champ geo_point_2d), livr\u00e9 par l'export GeoJSON comme objet imbriqu\u00e9 {lon, lat} et conserv\u00e9 par la conversion sous forme de texte JSON ; redondant avec geom."
+    },
+    {
+      "name": "ls_id",
+      "type": "int32",
+      "description": "ID de la section de ligne."
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "description": "Ligne \u00e0 laquelle appartient la section."
+    },
+    {
+      "name": "ptcarfrom",
+      "type": "string",
+      "description": "ID du point op\u00e9rationnel de d\u00e9but de section. A reporter sur le jeu de donn\u00e9e des Points op\u00e9rationnels du r\u00e9seau"
+    },
+    {
+      "name": "ptcarfromname",
+      "type": "string",
+      "description": "Abr\u00e9viation LST du point de d\u00e9part de la section. Abr\u00e9viation officielle selon le Livret du Service des trains. Un autre jeu de donn\u00e9es reprend la liste de ces points op\u00e9rationnels"
+    },
+    {
+      "name": "ptcarto",
+      "type": "string",
+      "description": "ID du Point op\u00e9rationnel de fin de section. A reporter sur le jeu de donn\u00e9e des Points op\u00e9rationnels du r\u00e9seau"
+    },
+    {
+      "name": "ptcartoname",
+      "type": "string",
+      "description": "Abr\u00e9viation LST du point op\u00e9rationnel de fin de section. Abr\u00e9viation officielle selon le Livret du Service des trains. Un autre jeu de donn\u00e9es reprend la liste de ces points op\u00e9rationnels"
+    },
+    {
+      "name": "mfrom",
+      "type": "int32",
+      "description": "Coordonn\u00e9e M du d\u00e9but de section. Calcule la distance entre la borne kilom\u00e9trique la plus proche du d\u00e9but de la section et le point op\u00e9rationnel de d\u00e9but de section"
+    },
+    {
+      "name": "mto",
+      "type": "int32",
+      "description": "Coordonn\u00e9e M de fin de section. Calcule la distance entre la borne kilom\u00e9trique la plus proche de la fin de la section et le point op\u00e9rationnel de fin de section"
+    },
+    {
+      "name": "ecs_voltfreq",
+      "type": "string",
+      "description": "Type d'\u00e9lectrification install\u00e9e."
+    },
+    {
+      "name": "ecs_maxtraincurrent",
+      "type": "int32",
+      "description": "Intensit\u00e9 maximale du courant que le train est autoris\u00e9 \u00e0 tirer."
+    },
+    {
+      "name": "ecs_maxstandstillcurrent",
+      "type": "int32",
+      "description": "Intensit\u00e9 maximale de courant que le train est autoris\u00e9 \u00e0 tirer \u00e0 l'arr\u00eat."
+    },
+    {
+      "name": "ecs_minwireheight",
+      "type": "double",
+      "description": "Hauteur minimale du fil cat\u00e9naire."
+    },
+    {
+      "name": "nrtracks",
+      "type": "int32",
+      "description": "Nombre de voies. Nombre de voies sur cette section"
+    },
+    {
+      "name": "c400",
+      "type": "string",
+      "description": "c400. codes Cxxx des profils de trafic combin\u00e9 selon fiche UIC 596-6"
+    },
+    {
+      "name": "c70",
+      "type": "string",
+      "description": "c70. codes Cxx des profils de trafic combin\u00e9 (cfr fiche UIC 596-6)"
+    },
+    {
+      "name": "p70",
+      "type": "string",
+      "description": "p70. codes Pxx des profils de trafic combin\u00e9  selon la fiche UIC 596-6"
+    },
+    {
+      "name": "p400",
+      "type": "string",
+      "description": "p400. codes Pxxx des profils de trafic combin\u00e9"
+    },
+    {
+      "name": "symnamefrom",
+      "type": "string",
+      "description": "Nom symbolique du point de d\u00e9part. tel qu'utilis\u00e9 dans les communications \u00e9lectroniques. Un autre jeu de donn\u00e9es reprend la liste de ces points op\u00e9rationnels"
+    },
+    {
+      "name": "symnameto",
+      "type": "string",
+      "description": "Nom symbolique du point op\u00e9rationel de fin de section. tel qu'utilis\u00e9 dans les communications \u00e9lectroniques. Un autre jeu de donn\u00e9es reprend la liste de ces points op\u00e9rationnels"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "G\u00e9om\u00e9trie (LineString) en WGS 84 (OGC:CRS84) telle que servie par l'export GeoJSON du portail ; le publicateur g\u00e8re les donn\u00e9es en Lambert 72 (EPSG:31370) et les reprojette lui-m\u00eame. Seule colonne d\u00e9clar\u00e9e comme g\u00e9om\u00e9trie (nom geom selon la conversion du 20.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie (structure xmin, ymin, xmax, ymax), ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Sections de ligne",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.55516400205721,
+          49.54679206865008,
+          6.152311246015393,
+          51.48573529673874
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sections de ligne default style",
+      "description": "Default visualization for Sections de ligne, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1144,
+      "file:checksum": "1220ab6ffcb4b54c125fe437b3e1991f978f42ca3e4788e64c72361492274f328f4d"
+    },
+    "lijnsecties": {
+      "href": "./lijnsecties.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 907859,
+      "file:checksum": "12200e3b8249626e1ec30814b7bc251593fa3ad3448f6c18ad5362b061d373cfe3af",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./lijnsecties.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Sections de ligne (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3804778,
+      "file:checksum": "1220c62d3ba9a16f90e67f2417c004d7df632bd1831a3401670d47a32b946f74a032"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sections de ligne categorical style",
+      "description": "Categorical visualization coloring Sections de ligne by ecs_voltfreq, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2013,
+      "file:checksum": "122038ad5ccf77a4aecb713930deb1bbf241b9e33a5f9d0e95e458b9ca07360c2142"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sections de ligne labeled style",
+      "description": "Default visualization for Sections de ligne with label shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1556,
+      "file:checksum": "1220aa8c0e593b4724ccb61022de26716394a543ad6728625e9d79c350ab263d903e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Sections de ligne graduated style",
+      "description": "Graduated visualization coloring Sections de ligne by mfrom, ramped from -1458.0 to 214325.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1919,
+      "file:checksum": "12204f301c06d963920d37f0d248098fa9f745b580efca3bcad3f25beebdfda76432"
+    },
+    "thumbnail": {
+      "href": "./lijnsecties.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Sections de ligne",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 178440,
+      "file:checksum": "1220d4f802fc14b1645d542e171c8d33614a3c403dace1befdab4197ac857870ca5b"
+    }
+  },
+  "keywords": [
+    "Voies",
+    "Lignes",
+    "G\u00e9olocalisation",
+    "Energie",
+    "Fret",
+    "Voyageurs",
+    "Infrastructure",
+    "Infrabel",
+    "Belgique",
+    "Chemin de fer"
+  ],
+  "providers": [
+    {
+      "name": "Infrabel",
+      "description": "Source : Infrabel, Infrabel Open Data (opendata.infrabel.be), \u00ab Sections de ligne \u00bb, direction publiante \u00ab Assets Management \u00bb, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://infrabel.be",
+      "email": "contact@infrabel.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T14:00:00Z"
+}

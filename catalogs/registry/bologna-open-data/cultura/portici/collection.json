@@ -1,0 +1,240 @@
+{
+  "type": "Collection",
+  "id": "cultura/portici",
+  "stac_version": "1.1.0",
+  "description": "Il dataset geolocalizza e descrive brevemente i 12 Portici selezionati da UNESCO.\nI Portici di Bologna sono stati iscritti nella Lista UNESCO del Patrimonio Mondiale il 28 luglio 2021. Si tratta di un sito seriale che comprende 12 gruppi di portici e le circostanti aree edificate, situati all\u2019interno del Comune di Bologna.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./portici.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Portici di Bologna",
+      "pmtiles:layers": [
+        "portici"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/portici/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/portici/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: portici",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 12,
+  "table:row_count": 12,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "int32"
+    },
+    {
+      "name": "titolo",
+      "type": "string"
+    },
+    {
+      "name": "testo",
+      "type": "string"
+    },
+    {
+      "name": "immagine_principale",
+      "type": "string"
+    },
+    {
+      "name": "videoguida_is",
+      "type": "string"
+    },
+    {
+      "name": "videoguida_lis",
+      "type": "string"
+    },
+    {
+      "name": "poi_id",
+      "type": "string",
+      "description": "Id Poi."
+    },
+    {
+      "name": "url",
+      "type": "string"
+    },
+    {
+      "name": "coordinate",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Portici di Bologna",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.283667,
+          44.478816,
+          11.365244,
+          44.503069
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Portici di Bologna default style",
+      "description": "Default visualization for Portici di Bologna, drawn in #a6761d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1117,
+      "file:checksum": "12205fda3f48e985505eea8c4db02375d32792d5c7f0ee56d83b5e0cf9f9f8c6daf8"
+    },
+    "portici": {
+      "href": "./portici.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 17109,
+      "file:checksum": "12202283ead9b07c69ea2c865b69fdf90a0aab3b5e224cd9126a5f53224dd94d9658",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./portici.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Portici di Bologna (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 85325,
+      "file:checksum": "1220f84b138ac7f130e7155ed70484f1aab41d3f21fb2f1607572ebf1d070081e3e9"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Portici di Bologna categorical style",
+      "description": "Categorical visualization coloring Portici di Bologna by titolo, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3360,
+      "file:checksum": "1220b1f4da4ced71d579443775754a65427015242e661571569f365b5dbc2b5fafa7"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Portici di Bologna labeled style",
+      "description": "Default visualization for Portici di Bologna with titolo shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1522,
+      "file:checksum": "1220e74e83440c225d27c28d1390bec837fa20dac3f7a8d5f2774fa9d1a1fed31a38"
+    },
+    "thumbnail": {
+      "href": "./portici.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Portici di Bologna",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 146585,
+      "file:checksum": "1220cfe1996a3ddf1c583279fd56f30102eb655d8202b7f574258cf79254ac180903"
+    }
+  },
+  "keywords": [
+    "Istruzione, cultura e sport",
+    "Portici",
+    "UNESCO",
+    "Arte Cultura"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abPortici di Bologna\u00bb (portici), pubblicato da Comune di Bologna - Innovazione Digitale e Dati sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/portici/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

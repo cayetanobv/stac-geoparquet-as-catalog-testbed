@@ -1,0 +1,160 @@
+{
+  "type": "Collection",
+  "id": "wwdh:usbr:rise",
+  "stac_version": "1.1.0",
+  "description": "Contains U.S. Bureau of Reclamation location and reservoir data from the RISE API, accessed through a proxied version of the API hosted within the USBR / Internet of Water Western Water Datahub rather than queried directly from the original RISE API.\n\nMore info can be found at https://api.wwdh.internetofwater.app/\n\nAll features in this dataset derive from the 'wwdh:usbr:rise' sitemap in Geoconnex.\n\nMainstem association was enabled for this dataset so features may have an associated Geoconnex mainstem.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Geoconnex Spatial Data Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/exports/pmtiles/wwdh:usbr:rise.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "wwdh_usbr_rise"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json"
+  ],
+  "title": "US Bureau of Reclamation RISE API Locations",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "Internet of Water Coalition",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Colton Loftus",
+      "description": "Processed and maintained by Colton Loftus at the Lincoln Institute of Land Policy's Center for Geospatial Solutions. For help, contact cloftus@lincolninst.edu or open an issue at https://github.com/internetofwater/geoconnex.us/issues",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://cgsearth.org/"
+    },
+    {
+      "name": "Internet of Water Coalition",
+      "roles": [
+        "host"
+      ],
+      "url": "https://geoconnex.us"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/summoned/wwdh:usbr:rise.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "US Bureau of Reclamation RISE API Locations",
+      "table:columns": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "geoconnex_sitemap",
+          "type": "string"
+        },
+        {
+          "name": "feature_name",
+          "type": "string"
+        },
+        {
+          "name": "feature_description",
+          "type": "string"
+        },
+        {
+          "name": "mainstem_uri",
+          "type": "string"
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "WKB-encoded geometry"
+        }
+      ],
+      "file:size": 504211,
+      "file:checksum": "1220470b9ac3d701b2f6d750988aa0e14f2d6e92282fd244a71948e8e32af81b6d33",
+      "roles": [
+        "data",
+        "external"
+      ]
+    },
+    "pmtiles": {
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/exports/pmtiles/wwdh:usbr:rise.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Vector tiles",
+      "description": "Features as PMTiles vector tiles for web visualization.",
+      "roles": [
+        "visual"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Default thumbnail",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 63898,
+      "file:checksum": "1220933a47d860a58dc07a5f638df51af65aaf833ef89e5104a9097e3470a70a694b"
+    },
+    "style_default": {
+      "href": "./style.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Default MapLibre style",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 2662,
+      "file:checksum": "1220d0398d594855eca18c918908ebab5fc0d365962b9ea36695ef1bef103335aec2"
+    }
+  }
+}

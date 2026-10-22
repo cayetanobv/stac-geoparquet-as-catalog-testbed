@@ -1,0 +1,293 @@
+{
+  "type": "Collection",
+  "id": "leisure-and-culture/parks",
+  "stac_version": "1.1.0",
+  "description": "A database containing information on city parks, park amenities, and amenity attributes",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./parks.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "parks"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=46",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Leisure and Culture"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=46",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://maps9.stlouis-mo.gov/arcgis/rest/services/PARKS/Reservable_Park_Amenities/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 117,
+  "table:row_count": 117,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "CLASS",
+      "type": "string"
+    },
+    {
+      "name": "NEW_CLASS",
+      "type": "string"
+    },
+    {
+      "name": "YR_ACQRD",
+      "type": "int16"
+    },
+    {
+      "name": "TEXT_",
+      "type": "string"
+    },
+    {
+      "name": "WARD10",
+      "type": "int16"
+    },
+    {
+      "name": "PARK_ID",
+      "type": "string"
+    },
+    {
+      "name": "ACRES",
+      "type": "double"
+    },
+    {
+      "name": "AREA_SQFT",
+      "type": "double"
+    },
+    {
+      "name": "AREA_ACRES",
+      "type": "double"
+    },
+    {
+      "name": "CENSUS_POP",
+      "type": "double"
+    },
+    {
+      "name": "PARCEL_POP",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default",
+    "styles/city-renderer"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "leisure-and-culture",
+          "title": "Leisure and Culture"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "parks",
+          "title": "Parks"
+        }
+      ]
+    }
+  ],
+  "title": "City Parks",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.31685159358771,
+          38.544538428476805,
+          -90.18238985198289,
+          38.753368662590674
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "asset-prcl",
+    "neighborhood",
+    "park details",
+    "parks",
+    "property address",
+    "Parks"
+  ],
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Parks",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=46"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "parks": {
+      "href": "./parks.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "City Parks (GeoParquet)",
+      "file:size": 57205,
+      "file:checksum": "1220eaff86442230eaa4cfbec77eb034dae5f9a8982a569e6f322aaf3040326a9bde",
+      "roles": [
+        "data"
+      ]
+    },
+    "parks-tiles": {
+      "href": "./parks.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "parks (vector tiles)",
+      "file:size": 149323,
+      "file:checksum": "1220acaf63e0402e74fbe341b64c15517f35bd27313f6b6cd717f31c7595634ca428",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 480,
+      "file:checksum": "1220007769233c7b62b30c9080a401bc8d737a77bc07fffe44481ae64f4cf66cdd74",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City parks",
+      "description": "All 117 city parks in park green with labels.",
+      "file:size": 1049,
+      "file:checksum": "122015c26ff64bdd1a107d2e2899d89a95a70cab8133c493adeafd060f95b36cf761",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-class": {
+      "href": "./styles/style-class.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Park classification",
+      "description": "The Parks Department's classification: neighborhood, community, regional, mini, special-use, cemeteries.",
+      "file:size": 1780,
+      "file:checksum": "1220fd983f64f8a8093c33f358d5dae57a991d00682a6439e515e205c1f589b3af0b",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-size": {
+      "href": "./styles/style-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Park size",
+      "description": "Acreage steps (4 / 14 / 100+): Forest Park's 1,293 acres anchors the dark end.",
+      "file:size": 1147,
+      "file:checksum": "12208f7e1a3052968ece68545438b37c8fabb1f7a2aacb0598e28d74a7e39da377e5",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "City Parks rendered with the default style",
+      "file:size": 389490,
+      "file:checksum": "1220e0426d8f8e844731737903b4f91fd4c5e40d94a36bfcec3d16715e2a789c878f",
+      "roles": [
+        "thumbnail"
+      ]
+    },
+    "source-shapefile": {
+      "href": "https://www.stlouis-mo.gov/data/upload/data-files/parks.zip",
+      "type": "application/zip",
+      "title": "City parks (zipped Shapefile)",
+      "roles": [
+        "source"
+      ],
+      "file:size": 42383,
+      "file:checksum": "1220a34d0e0370f44c7ef804b07061f6d0ba482be2f7550f7df263fd6de065c0e599",
+      "description": "The city's own alternate distribution of this layer. Served upstream by www.stlouis-mo.gov, not by this mirror; size and checksum are of the bytes it served at the sync time in `updated`."
+    }
+  }
+}

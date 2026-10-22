@@ -1,0 +1,220 @@
+{
+  "type": "Collection",
+  "id": "bildung/einschulbereiche",
+  "stac_version": "1.1.0",
+  "description": "Standorte der Berliner Schulen mit Informationen zu Schulart, Name, Anschrift und Kontaktm\u00f6glichkeiten. Die Daten beinhalten auch die Information, ob es sich um eine \u00f6ffentliche oder private Schule handelt. Es werden nur die Hauptstandorte dargestellt. Der Datensatz beinhaltet die Einschulbereiche f\u00fcr das aktuelle Schuljahr. Die Einschulbereiche werden durch die zw\u00f6lf Bezirksschul\u00e4mter festgelegt und im Amt f\u00fcr Statistik Berlin-Brandenburg zusammengef\u00fchrt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./schulen_schulen_esb.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schulen \u2013 Einschulbereiche",
+      "pmtiles:layers": [
+        "schulen_schulen_esb"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/schulen-wfs-ebc64e18",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/schulen",
+      "rel": "related",
+      "title": "WFS source service: schulen-esb",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 409,
+  "table:row_count": 409,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "esb",
+      "type": "double"
+    },
+    {
+      "name": "bez",
+      "type": "double"
+    },
+    {
+      "name": "bezname",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Schulen \u2013 Einschulbereiche",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.08834552,
+          52.33824234,
+          13.76113311,
+          52.67550599
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen \u2013 Einschulbereiche default style",
+      "description": "Default visualization for Schulen \u2013 Einschulbereiche, drawn in #fdae6b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1214,
+      "file:checksum": "1220ddbb556a0bdfad7009cedb01cdacf53c7eaf659867def45195ab5f9d7d6abcf3"
+    },
+    "schulen_schulen_esb": {
+      "href": "./schulen_schulen_esb.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 582434,
+      "file:checksum": "1220825dd0771ab4fe8c480565b2c92f6fdff37fd87d4757613c633e4f3081685ceb",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./schulen_schulen_esb.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Schulen \u2013 Einschulbereiche (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 771832,
+      "file:checksum": "1220ef2abe56157416573c9362b3e36c3f449a046fc76a3191af8b25c2d843bb9f96"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen \u2013 Einschulbereiche categorical style",
+      "description": "Categorical visualization coloring Schulen \u2013 Einschulbereiche by bezname, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3365,
+      "file:checksum": "1220cc932f2734c47c4f2d436cddbc11b7b87445392f30dda54b96a319bd648336a6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen \u2013 Einschulbereiche labeled style",
+      "description": "Default visualization for Schulen \u2013 Einschulbereiche with bezname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1644,
+      "file:checksum": "1220033e4a0b99c062ff84e68cdd772fec3334ac23b63cd8b6aeac17df311b1d1395"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Schulen \u2013 Einschulbereiche graduated style",
+      "description": "Graduated visualization coloring Schulen \u2013 Einschulbereiche by bez, ramped from 1.0 to 12.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1942,
+      "file:checksum": "122021786f48fb2ed844047b64ee69cd48c5e77cadc2e21843dd23a2d26710fa705c"
+    },
+    "thumbnail": {
+      "href": "./schulen_schulen_esb.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Schulen \u2013 Einschulbereiche",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 133939,
+      "file:checksum": "1220fb1939c4112ef46dfa55456a8f7b481bcbb0052a02ade1f7aaf060a296fccc74"
+    }
+  },
+  "keywords": [
+    "Einschulbereiche",
+    "Grundschulen",
+    "Bildung",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Schulen, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "philipp.heise@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T02:00:01Z"
+}

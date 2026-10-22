@@ -1,0 +1,1140 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "clc_2018",
+  "title": "Corine Land Cover 2018, land cover polygons",
+  "description": "Corine Land Cover 2018 (version 2020 20u1), the EEA's pan-European land cover inventory: 2,375,406 polygons in 44 classes, minimum mapping unit 25 ha, ETRS89 / LAEA Europe (EPSG:3035), geometry and attributes unchanged. Three layouts of the same polygons: the Europe file (2.7 GB, the data asset), one file per country under country=<XX>/ (48 files, the data-<xx> assets and the partition glob s3://parquetry/clc/2018/country=*/clc_2018.parquet), both with a bbox covering and read in place over HTTPS or the anonymous S3 endpoint s3.geomermaids.com. Derived here: land cover aggregated on H3 cells (the data-h3 asset), and a PMTiles archive for web maps, zoom 0 to 12, H3 cells up to zoom 8 then the polygons, every feature carrying its official legend colour. The country column is ours, assigned from GAUL 2024. (c) European Union, Copernicus Land Monitoring Service, European Environment Agency (EEA).",
+  "keywords": [
+    "CORINE",
+    "CLC",
+    "land cover",
+    "land use",
+    "Copernicus",
+    "EEA",
+    "Europe",
+    "H3",
+    "GeoParquet",
+    "PMTiles"
+  ],
+  "license": "other",
+  "attribution": "(c) European Union, Copernicus Land Monitoring Service, European Environment Agency (EEA)",
+  "version": "2018",
+  "updated": "2026-10-22T13:57:26Z",
+  "providers": [
+    {
+      "name": "European Environment Agency (EEA), Copernicus Land Monitoring Service",
+      "description": "Produces Corine Land Cover and distributes it under the Copernicus data policy: full, open and free access, attribution required.",
+      "url": "https://land.copernicus.eu/en/products/corine-land-cover/clc2018",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted CLC 2018 to GeoParquet, assigned each polygon a country, split it per country, tiled it, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -55.5095,
+          24.4941,
+          71.1178,
+          72.123
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2017-01-01T00:00:00Z",
+          "2018-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "partition:scheme": "hive",
+  "partition:strategy": "attribute",
+  "partition:keys": [
+    {
+      "name": "country",
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country the polygon was assigned to (Geomermaids, from GAUL 2024; Kosovo is in RS). One file per code."
+    }
+  ],
+  "partition:file_count": 48,
+  "partition:glob": "s3://parquetry/clc/2018/country=*/clc_2018.parquet",
+  "table:row_count": 2375406,
+  "table:primary_geometry": "Shape",
+  "table:columns": [
+    {
+      "name": "Shape",
+      "type": "GEOMETRY",
+      "description": "Land cover polygon as native Parquet GEOMETRY (WKB), ETRS89 / LAEA Europe (EPSG:3035), metres. Minimum mapping unit 25 ha."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "BIGINT",
+      "description": "Object id from the EEA GeoPackage."
+    },
+    {
+      "name": "Code_18",
+      "type": "VARCHAR",
+      "description": "CLC class, the three-digit code of the CLC nomenclature (111 continuous urban fabric ... 523 sea and ocean; 999 NODATA). The legend is in the README."
+    },
+    {
+      "name": "Remark",
+      "type": "VARCHAR",
+      "description": "EEA remark on the polygon, mostly empty."
+    },
+    {
+      "name": "Area_Ha",
+      "type": "DOUBLE",
+      "description": "Polygon area in hectares, as the EEA computed it."
+    },
+    {
+      "name": "ID",
+      "type": "VARCHAR",
+      "description": "EEA polygon id (EU_<n>), unique across Europe."
+    },
+    {
+      "name": "country",
+      "type": "VARCHAR",
+      "description": "ISO 3166-1 alpha-2 country, added by Geomermaids (not part of CLC): the GAUL 2024 country the polygon overlaps most, or the nearest one. Polygons are never cut. Also the partition key."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax) in EPSG:3035 metres, declared as the GeoParquet covering. Filter on it to prune row groups."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Corine Land Cover 2018, Europe in one file",
+      "description": "2,375,406 polygons in 232 row groups, sorted by country then along a Hilbert curve.",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 2731321437,
+      "file:checksum": "1220617754dbb73904bc913657e20cc55800c31a0e3a50ae2f249fd835dad301a67a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ad": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=AD/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Andorra (AD)",
+      "description": "24 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 53411,
+      "file:checksum": "1220206ec1cc407614c2a845d6c3394fa28e795c09183716cc2febf83b7516e71e14",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=AD/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-al": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=AL/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Albania (AL)",
+      "description": "13,281 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 10903197,
+      "file:checksum": "1220c1bfc208826d9dd7af1d5d605aa1f7997ef0b65c42aea85da62a3f44def9e84b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=AL/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-at": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=AT/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Austria (AT)",
+      "description": "38,677 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 32297968,
+      "file:checksum": "12202ef34603b02f41d48f37ea3690ea5f3cee563aecab156a4223f4e8f6bcc1509e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=AT/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ax": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=AX/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Åland Islands (AX)",
+      "description": "1,077 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 499116,
+      "file:checksum": "1220c8269ea72d5acde8ae710a5bc2f714dfcd9120df6b4978130a5065bfc5fda1ca",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=AX/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ba": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=BA/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bosnia and Herzegovina (BA)",
+      "description": "21,437 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 25449352,
+      "file:checksum": "1220138401acc714c290308bfd65d1cc3a90c71bf678da91c841c161c18c3870686b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=BA/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-be": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=BE/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Belgium (BE)",
+      "description": "23,702 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 17861042,
+      "file:checksum": "1220f46e721615875bdd305b0938c23e40074e6b670cfd772415a1da08b5296f45b2",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=BE/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-bg": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=BG/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Bulgaria (BG)",
+      "description": "52,998 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 37725624,
+      "file:checksum": "1220f1bd024f7ee9c66cae27afb5c743d9b9be3c31f60c49a7ae9eafa9fe7b7bab4e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=BG/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ch": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=CH/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Switzerland (CH)",
+      "description": "16,321 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 14781454,
+      "file:checksum": "12201a3165ee034e898365a581781222a4480b55b832751dec7a9e60f31703719a4e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=CH/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cy": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=CY/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Cyprus (CY)",
+      "description": "2,905 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 1989352,
+      "file:checksum": "1220901ddb6cf48501483ca6139d3ba16af447827ec5d8d771dceb3ffebcad95fd3f",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=CY/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-cz": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=CZ/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Czechia (CZ)",
+      "description": "45,338 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 38118856,
+      "file:checksum": "1220ccfdbd8627a685c8423ecdaf990c1dfe2e05d170c59cdcb452354018f7d7f03c",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=CZ/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-de": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=DE/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Germany (DE)",
+      "description": "169,170 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 229919685,
+      "file:checksum": "122047f07e38d55df100f4d58f5e581c30f7219c346c4146f5fe6104aa580ec0fb32",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=DE/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-dk": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=DK/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Denmark (DK)",
+      "description": "14,973 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 5500841,
+      "file:checksum": "12204b38b4e4055544141fc74f45cd62d0a2edf20fd01f63878166548288533b52df",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=DK/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ee": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=EE/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Estonia (EE)",
+      "description": "29,078 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 11969369,
+      "file:checksum": "122050c507357d0da490e611a2bddcb9558c6ce54d691bc4104c386efffa170e5da6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=EE/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-es": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=ES/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Spain (ES)",
+      "description": "232,256 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 957889318,
+      "file:checksum": "122063730a8a0450b5ef84dfc163991ddea68951021682c47d412eee77581e49e2b8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=ES/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fi": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=FI/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Finland (FI)",
+      "description": "145,678 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 89615346,
+      "file:checksum": "12207d752170591fdddc551d99e531e47e0fe296fa73923e08e6e7855ef1d3e601c3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=FI/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fo": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=FO/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Faroe Islands (FO)",
+      "description": "350 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 354858,
+      "file:checksum": "12209fa9ff3b9efb1ae3a3fd8a7cf476c624a5baef62dafe72bed39b903a2bb0f425",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=FO/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-fr": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=FR/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "France (FR)",
+      "description": "271,161 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 151884472,
+      "file:checksum": "1220522e5efa5c79bd86cbab0e13bdb518ed91eb53f6f2e56483a85fb6eaf6515da3",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=FR/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gb": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=GB/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "United Kingdom (GB)",
+      "description": "74,597 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 60597317,
+      "file:checksum": "122037b3a57a93de8dcd8f196910170fed7956a3a42aa1de32cfe74ae485de506118",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=GB/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gg": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=GG/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Guernsey (GG)",
+      "description": "42 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 29349,
+      "file:checksum": "1220b40ed441a4a6fa5eab20bfae77dda9b164a0e689574fe12a084f2216dd4c6b52",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=GG/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gi": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=GI/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Gibraltar (GI)",
+      "description": "3 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 20424,
+      "file:checksum": "12202c0e3190950b6c6b10b6e5a89ba726c6e8a75aad04fabb08cd1b48df7a65cb99",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=GI/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-gr": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=GR/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Greece (GR)",
+      "description": "48,814 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 54372466,
+      "file:checksum": "1220445f27155e6477865d7bdd0630b5449fc142dbbf8f5aaf9e71dde0d87f29c106",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=GR/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hr": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=HR/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Croatia (HR)",
+      "description": "22,973 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 12164050,
+      "file:checksum": "122040a8eb26cb32b486329b24b0999e7f609d404e054845b728529da16acdca64fc",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=HR/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-hu": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=HU/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Hungary (HU)",
+      "description": "41,181 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 28958787,
+      "file:checksum": "1220c982894ec57d802cc684a0073f7d926c239e6aea60aaed6f14450dbb0dc36945",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=HU/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ie": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=IE/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Ireland (IE)",
+      "description": "18,797 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 86342852,
+      "file:checksum": "1220b6a9658b6afb07b638e576bea1fbaa88c4a83fd0655ff8bda4024249e53e5ac5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=IE/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-im": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=IM/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Isle of Man (IM)",
+      "description": "207 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 120217,
+      "file:checksum": "122070c0f25ed1ec72ac5f1add5a6bade559f365cffcfcc9fe42ff9fe9cf5cb2118e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=IM/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-is": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=IS/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Iceland (IS)",
+      "description": "17,633 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 22061146,
+      "file:checksum": "1220918d7bb6936405784f61ce0a1e3b29e728f514e0bdae4aeaa0e5fbf12b422137",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=IS/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-it": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=IT/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Italy (IT)",
+      "description": "112,333 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 88493183,
+      "file:checksum": "1220a9e7232bcac5769958e621e0175834464892104dad9d9738f759da05c85e598e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=IT/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-je": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=JE/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Jersey (JE)",
+      "description": "33 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 26298,
+      "file:checksum": "12208b38d566b3c85d2e8b948c1d8bdac890a4adb25bc4fb5af1017246fdbafe2ed5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=JE/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-li": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=LI/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Liechtenstein (LI)",
+      "description": "112 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 93541,
+      "file:checksum": "1220de55697a43c894cca5b8eafce906739e997bd65984d463a63704d7dbab25cddf",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=LI/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lt": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=LT/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Lithuania (LT)",
+      "description": "41,722 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 30204606,
+      "file:checksum": "1220baed93f367802a7e32ddad8df3e8eb052956db4b41cf0ecba5aec65736abf765",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=LT/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lu": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=LU/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Luxembourg (LU)",
+      "description": "1,760 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 1830624,
+      "file:checksum": "1220ebfff56e7e13120f0fd98c2c196a88611dc9efa057905800abc6c940d9ad344b",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=LU/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-lv": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=LV/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Latvia (LV)",
+      "description": "54,345 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 24962038,
+      "file:checksum": "12201274945deb97706b29e3ec381bd715a945f0a8083004e3405adcf30ef0a76431",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=LV/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mc": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=MC/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Monaco (MC)",
+      "description": "2 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 9522,
+      "file:checksum": "1220f4fc3fa7829f634659db3a9d7f2a4a115986c715124da16f6f93e1f280f90176",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=MC/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-me": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=ME/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Montenegro (ME)",
+      "description": "5,682 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 5850511,
+      "file:checksum": "1220543207a4ad323ff9939604774e80ae3d3563b1487929a9d9d76e63792a9bdcd1",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=ME/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mk": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=MK/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "North Macedonia (MK)",
+      "description": "11,647 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 20209244,
+      "file:checksum": "1220808b1986b3dac8eb9c838974067d9ea14f6f079f86bded679cb7129322ec36f8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=MK/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-mt": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=MT/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Malta (MT)",
+      "description": "160 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 195797,
+      "file:checksum": "122092b77d2088d478dfd78723b59115c51a22fa7b42123b2be86a29a683f25d5bff",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=MT/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-nl": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=NL/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Netherlands (NL)",
+      "description": "9,238 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 5814583,
+      "file:checksum": "12206a2d0c284e5424c9c7ce4ce79fddb45e10e45d7b52e20a4191e6ede4922e09ce",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=NL/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-no": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=NO/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Norway (NO)",
+      "description": "101,218 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 110647929,
+      "file:checksum": "12205e6309cd7501d634af86ae507799dee2acb6c93e03c04bf59c32fd5e9c902ba8",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=NO/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pl": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=PL/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Poland (PL)",
+      "description": "148,307 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 90062904,
+      "file:checksum": "1220ed33c719096419806385b0628ecf5062a48d57abb0339721047766f3eb60a0d5",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=PL/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-pt": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=PT/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Portugal (PT)",
+      "description": "55,899 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 41078760,
+      "file:checksum": "12200586e0cf629ed6294e983604ce95fde20e4695ec24a60b5faac539b03b029ec4",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=PT/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-ro": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=RO/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Romania (RO)",
+      "description": "83,664 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 63477221,
+      "file:checksum": "122037f7e36053e8441ea176d1127e683781bfd040a522734503510ce21abae184fd",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=RO/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-rs": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=RS/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Serbia (RS)",
+      "description": "37,193 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 27343698,
+      "file:checksum": "1220d6c7bd2c287f60f8c607d47d1c6b96acfa839c4905e63a623fd2a62eb5db3fc6",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=RS/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-se": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=SE/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Sweden (SE)",
+      "description": "165,434 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 138630222,
+      "file:checksum": "12207a5fb8f11eccb27225992413b6dceab48923b7277dca4a2712461f3563f1dbed",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=SE/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-si": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=SI/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Slovenia (SI)",
+      "description": "14,093 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 11759657,
+      "file:checksum": "1220661c75a777225b24cfc2d23b1b75a83d62b9665697bc4ba6df0dc9f8eee973a9",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=SI/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sk": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=SK/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Slovakia (SK)",
+      "description": "21,325 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 20376604,
+      "file:checksum": "122001833176e6f16358a14b6d007d8e7f10ce79eca1384161be9a803b10a4ede596",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=SK/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-sm": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=SM/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "San Marino (SM)",
+      "description": "40 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 45625,
+      "file:checksum": "1220843bc7eabf4280eb51fc20130836253248ead9efa23d48b87a55eb22bb4e9355",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=SM/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-tr": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=TR/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Türkiye (TR)",
+      "description": "208,525 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 159074873,
+      "file:checksum": "12205ac3862feb83d684c6f1687669b3ff81db5fefacc3b59d3683a600ee6f6f475d",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=TR/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-va": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/country=VA/clc_2018.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Holy See (Vatican City State) (VA)",
+      "description": "1 polygons",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:3035",
+      "file:size": 9961,
+      "file:checksum": "1220ab270a0171262ae44ac66a97c7733a88a1f691b62f9713a67f62b7be3433ac61",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/country=VA/clc_2018.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/clc_2018.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Corine Land Cover 2018, vector tiles",
+      "description": "PMTiles, zoom 0 to 12, 297,845 tiles. Zooms 0 to 8 draw the `cells` layer, H3 cells with the dominant class and the share of each CLC group (z0-2 r3, z3 r4, z4-5 r5, z6 r6, z7-8 r7); from zoom 9 the `clc_2018` layer holds the CLC polygons themselves. Every feature carries Code_18, color (the official legend hex) and label. Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2196224147,
+      "file:checksum": "1220c45bc037ea6ea7c6d2060dabdf400f721eca0379461c515409adab8e18050835",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/clc_2018.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "data-h3": {
+      "href": "https://parquetry.geomermaids.com/clc/2018/clc_2018_h3.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Corine Land Cover 2018 on H3 cells",
+      "description": "Land cover per H3 cell, one row per cell of resolutions 3, 4, 5, 6, 7 (r3: 866, r4: 5,165, r5: 33,244, r6: 224,652, r7: 1,549,546): dominant class, its share, the share of each CLC group and the part of the cell CLC covers, from a sample of resolution 9 cells. The z0-8 layer of the map tiles, and a table to join on H3. Lon/lat (OGC:CRS84).",
+      "roles": [
+        "data"
+      ],
+      "file:size": 79295225,
+      "file:checksum": "12204523cc341fc2cb34abcc78a10179885feec9f5ce0a5cc9ec72b524481bd00737",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/clc/2018/clc_2018_h3.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Official CLC legend: dominant class per H3 cell, then the polygons",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 5981,
+      "file:checksum": "1220aaf685e4222a88827e5ebbe4f11a1df2615cbcfabef1aa0545b6c8e594746ca0"
+    },
+    "style-artificial": {
+      "href": "./styles/artificial.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Share of artificial surfaces (CLC 1xx)",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1820,
+      "file:checksum": "12205e2d5ed600afed0979b4f2d55a61a828293c77543c241277879220baeafdd9af"
+    },
+    "style-forest": {
+      "href": "./styles/forest.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Share of forest and semi-natural areas (CLC 3xx)",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1857,
+      "file:checksum": "12201a4cb2be6f407791fc8ccd9b97c9350bea24e9484129d9cc28333538db9771d7"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Europe, dominant class per H3 cell, official CLC legend",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 171022,
+      "file:checksum": "122039cb7d7a361952c43daef1f02d44561bbca873cf6a4dea4e7aa687530d15ad82"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Corine Land Cover 2018: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Corine Land Cover 2018: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://land.copernicus.eu/en/data-policy",
+      "type": "text/html",
+      "title": "Copernicus data policy: full, open and free access, attribution required (Regulation (EU) No 1159/2013)"
+    },
+    {
+      "rel": "via",
+      "href": "https://land.copernicus.eu/en/products/corine-land-cover/clc2018",
+      "type": "text/html",
+      "title": "CLC 2018 on the Copernicus Land Monitoring Service, where it is published"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/clc/2018/",
+      "type": "text/html",
+      "title": "Browse the 2018 files"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/clc/2018/clc_2018.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Corine Land Cover 2018, vector tiles",
+      "pmtiles:layers": [
+        "cells",
+        "clc_2018"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "transportes/estacoes-metro",
+  "stac_version": "1.1.0",
+  "description": "Esta\u00e7\u00f5es do Metropolitano de Lisboa no concelho de Lisboa, com o nome da esta\u00e7\u00e3o, a linha e a situa\u00e7\u00e3o, na camada Esta\u00e7\u00f5es de Metro do servi\u00e7o POITransportes da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./estacoes_metro.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Esta\u00e7\u00f5es de Metro",
+      "pmtiles:layers": [
+        "estacoes_metro"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/ea654070f91a4e4da6531fff0e2614a2_1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/POITransportes/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer POITransportes (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 50,
+  "table:row_count": 50,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "NOME",
+      "type": "string",
+      "description": "Nome da esta\u00e7\u00e3o, texto do publicador."
+    },
+    {
+      "name": "SITUACAO",
+      "type": "string",
+      "description": "Situa\u00e7\u00e3o da esta\u00e7\u00e3o (alias \u00abSitua\u00e7\u00e3o\u00bb), texto do publicador."
+    },
+    {
+      "name": "LINHA",
+      "type": "string",
+      "description": "Linha ou linhas do Metropolitano servidas pela esta\u00e7\u00e3o, texto do publicador."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Esta\u00e7\u00f5es de Metro",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.22388329579027,
+          38.7061150810876,
+          -9.0998135518355,
+          38.7935139056005
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es de Metro default style",
+      "description": "Default visualization for Esta\u00e7\u00f5es de Metro, drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1175,
+      "file:checksum": "1220b7a317e8bd3907193ed938b231f61a024c4d3af1cdb39e98aecd33c229895954"
+    },
+    "estacoes_metro": {
+      "href": "./estacoes_metro.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8168,
+      "file:checksum": "122029483e205e4d4a1903ac60be947352e0ff671b4b59402d5f4ee4f7525ac403a7",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./estacoes_metro.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Esta\u00e7\u00f5es de Metro (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18732,
+      "file:checksum": "1220890436f19b1db0ac955ef731c420ed6533e61c178f13bddab2a9065734a6b6f0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es de Metro categorical style",
+      "description": "Categorical visualization coloring Esta\u00e7\u00f5es de Metro by LINHA, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2847,
+      "file:checksum": "122028e6f60371867390438bd964730b96a04cd46b21b64ca3c79b57a96550760b9c"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Esta\u00e7\u00f5es de Metro labeled style",
+      "description": "Default visualization for Esta\u00e7\u00f5es de Metro with NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1592,
+      "file:checksum": "122024f9a6623b28c8b25304e9ef9ac50169567fcceac8bac9266678af6baac2db6f"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/ea654070f91a4e4da6531fff0e2614a2/geojson?layers=1&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: estacoes_metro",
+      "pipeline:upstream": true,
+      "file:size": 14210,
+      "file:checksum": "12201eac9fbd8dd9bdd5db853e9fa2d1e603fd055adb2c618487124109bd4f41cdfd"
+    },
+    "thumbnail": {
+      "href": "./estacoes_metro.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Esta\u00e7\u00f5es de Metro",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 156711,
+      "file:checksum": "122092ab6f1ed2bce027b01b1a504b5f9003e87d3c63e44b4846548be610d2fee8f1"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Esta\u00e7\u00e3o de Metro",
+    "Underground Stations",
+    "Transportes",
+    "Mobilidade"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Esta\u00e7\u00f5es de Metro (POITransportes), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "environment/overture-land-cover",
+  "stac_version": "1.1.0",
+  "description": "Land cover features from the Overture base theme: the primary natural or artificial surface material covering a land area \u2014 vegetation like forests and crops, built environments, and natural surfaces like wetlands or barren ground. Derived from ESA WorldCover, high-resolution optical Earth observation data. Land cover is the physical thing covering the land, while land use is the human use the land is put to. Overture documents this data well: the [base theme guide](https://docs.overturemaps.org/guides/base/) covers what the theme models, how Overture builds it, and how to query it, and the schema reference gives every field of its feature type \u2014 [`land_cover`](https://docs.overturemaps.org/schema/reference/base/land_cover/).\n\nUnlike everything else in this catalog, this is **not** City of St. Louis data: it comes from the [Overture Maps Foundation](https://overturemaps.org/), a collaborative project building open, interoperable map data for the world. This collection is a St. Louis extract of that global dataset \u2014 everything inside the city's bounding box, which also takes in the Illinois shore of the Mississippi (East St. Louis, Cahokia Heights) \u2014 included here to demonstrate how a city's open-data catalog can blend in other St. Louis-relevant open data alongside the city's own. The GeoParquet was extracted from Overture release 2026-07-22.0; the map tiles reference Overture's own global PMTiles for the same release, the tiles behind [explore.overturemaps.org](https://explore.overturemaps.org/).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Environment"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://docs.overturemaps.org/attribution/",
+      "type": "text/html",
+      "title": "Overture attribution and licensing"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/guides/base/",
+      "type": "text/html",
+      "title": "Overture base theme guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://docs.overturemaps.org/schema/reference/base/land_cover/",
+      "type": "text/html",
+      "title": "Overture schema reference: land_cover"
+    },
+    {
+      "rel": "via",
+      "href": "s3://overturemaps-us-west-2/release/2026-07-22.0/theme=base/",
+      "type": "text/html",
+      "title": "Overture release 2026-07-22.0 GeoParquet (theme=base) on S3"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "land_cover"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 921,
+  "table:row_count": 921,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Overture feature ID \u2014 per the schema, 'a feature ID. This may be an ID associated with the Global Entity Reference System (GERS) if\u2014and-only-if the feature represents an entity that is part of GERS.' GERS IDs are intended to be stable across Overture's monthly releases, which makes this the key for attaching your own data to an Overture feature and for joining to any other GERS-enabled dataset. See the [GERS overview](https://docs.overturemaps.org/gers/)."
+    },
+    {
+      "name": "subtype",
+      "type": "string",
+      "description": "Type of surface represented: barren, crop, forest, grass, mangrove, moss, shrub, snow, urban or wetland. This is the only classification column in the theme \u2014 land cover has no `class`. Derived from ESA WorldCover, high-resolution optical Earth observation data, so it records the physical thing covering the land, not the human use it is put to (that is overture-land-use). Schema reference: [land_cover_subtype](https://docs.overturemaps.org/schema/reference/base/types/land_cover_subtype/)."
+    },
+    {
+      "name": "cartography",
+      "type": "struct<prominence: int32, min_zoom: int32, max_zoom: int32, sort_key: int32>",
+      "description": "Cartographic hints for map-making: `prominence` is Overture's view of the feature's significance on a 1\u2013100 scale, derived from factors including population, capital status, place tags and type; `min_zoom` and `max_zoom` are the recommended Slippy Map tile zooms; `sort_key` is the recommended draw order, with lower numbers drawn on top. Schema reference: [cartographic_hints](https://docs.overturemaps.org/schema/reference/common/cartographic_hints/)."
+    },
+    {
+      "name": "sources",
+      "type": "list<element: struct<property: string, dataset: string, license: string, record_id: string, update_time: string, confidence: double, between: list<element: double>>>",
+      "description": "Per-property provenance. An array of source records, each naming the `property` it covers in JSON Pointer notation plus the source `dataset`, its `license` (an SPDX identifier where one is available; null means contact the data provider for terms), the `record_id` used, an `update_time`, and for ML-derived data a `confidence`. Every feature carries a root-level entry that is the default source for any property without a more specific one. Schema reference: [sources](https://docs.overturemaps.org/schema/reference/common/sources/)."
+    },
+    {
+      "name": "version",
+      "type": "int32",
+      "description": "Version number of the feature, incremented in each Overture release where the geometry or attributes of this feature changed. Schema reference: [feature_version](https://docs.overturemaps.org/schema/reference/common/feature_version/)."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "WKB polygon in EPSG:4326 covering the area of a single cover class, derived from ESA WorldCover Earth observation data and clipped to the St. Louis bounding box."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Covering bounding box (xmin, ymin, xmax, ymax) for the row's geometry. Not an Overture schema column: Overture's own bbox was dropped and this one rebuilt by gpio during conversion, with row-group statistics, so a spatial filter can skip most of the file over the network."
+    }
+  ],
+  "portolan:total_size_bytes": 659483,
+  "portolan:asset_count": 1,
+  "title": "Overture Land Cover",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051856117901,
+          38.53199630293254,
+          -90.16630892212817,
+          38.77434671879855
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-07-22T00:00:00Z",
+          "2026-07-22T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "ODbL-1.0",
+  "assets": {
+    "overture-land-cover": {
+      "href": "./overture-land-cover.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 659483,
+      "file:checksum": "12202b8961d703e1a8651c2f6d3f4333eb576c4fb104343b88dc7a9f3adbeda834c5",
+      "roles": [
+        "data"
+      ],
+      "title": "Overture Land Cover (GeoParquet)"
+    },
+    "overture-land-cover-tiles": {
+      "href": "https://overturemaps-extras-us-west-2.s3.us-west-2.amazonaws.com/tiles/2026-07-22.0/base.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "roles": [
+        "visual"
+      ],
+      "title": "Overture base theme (PMTiles, global)",
+      "description": "Overture's own release-pinned global vector tiles for the base theme, served from the Overture Maps Foundation's public bucket \u2014 not from this mirror, and not clipped to St. Louis. The styles select this collection's layers (land_cover) from them.",
+      "file:size": 195353612308
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "default",
+        "style"
+      ],
+      "title": "Land cover",
+      "description": "ESA WorldCover surface classes in the Explorer site's own palette \u2014 forest, shrub, grass, crop, wetland, barren, and built-up. Drawn at full opacity here (the Explorer fades land cover out above z11; a data collection should not hide its data).",
+      "file:size": 1937,
+      "file:checksum": "12205914fc83ee721887ee696d2e85ed6bbed68617512425a3da2ee2df01d764c3cc"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "roles": [
+        "thumbnail"
+      ],
+      "title": "Overture Land Cover rendered with the default style",
+      "file:size": 375384,
+      "file:checksum": "122054ac21ceb5af9aaa2ebf116efb36428aa1c114181d49abf781b3999d1aa3e7da"
+    }
+  },
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "environment",
+          "title": "Environment"
+        }
+      ]
+    },
+    {
+      "scheme": "https://docs.overturemaps.org/guides/",
+      "concepts": [
+        {
+          "id": "base",
+          "title": "Overture base theme"
+        }
+      ]
+    }
+  ],
+  "keywords": [
+    "overture",
+    "Overture Maps Foundation",
+    "base",
+    "land cover"
+  ],
+  "providers": [
+    {
+      "name": "Overture Maps Foundation",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://overturemaps.org/"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ]
+}

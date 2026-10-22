@@ -1,0 +1,344 @@
+{
+  "type": "Collection",
+  "id": "gebietsgliederung/blockseiten",
+  "stac_version": "1.1.0",
+  "description": "Eine Blockseite ist Teil der Kommunalen Gebietsgliederung. Dieses hierarchische System gliedert das K\u00f6lner Stadtgebiet auf verschiedenen Ebenen in eine Stadtstruktur und Blockstruktur. Weitere Bestandteile sind eine Stra\u00dfenstruktur und Adressen. Die gesamte Kommunale Gebietsgliederung wird in dieser Ver\u00f6ffentlichung erl\u00e4utert.\nDefinition: Eine Blockseite ist Teil eines Blocks und eindeutig einem Stra\u00dfenabschnitt zugeordnet. Sie bezeichnet das Gebiet, in dem sich bebaute Grundst\u00fccke mit Adressen zu diesem Stra\u00dfenabschnitt befinden oder unbebaute Grundst\u00fccke, von denen zu erwarten ist, dass Neubauten dieser Stra\u00dfe zugeordnet werden. Die Blockseite hat immer mindestens einen Blockabschnitt.\nErl\u00e4uterung der Attribute ist dem Shapefile als CSV beigef\u00fcgt.\nKoordinatensystem Shapefile: ETRS 1989 UTM Zone 32N\nAlle Geodaten der der Kommunalen Gebietsgliederung, wahlorganisatorische Einheiten und weitere Gebietsgliederungen enth\u00e4lt der Datensatz Raumbezugssystem Geopackage.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./Blockseite.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Blockseiten K\u00f6ln",
+      "pmtiles:layers": [
+        "Blockseite"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://offenedaten-koeln.de/dataset/blockseiten-koeln",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/services/basiskarten/kgg/MapServer/WFSServer?request=GetCapabilities&service=WFS",
+      "rel": "related",
+      "title": "KGG Sammeldienst WFS (Kommunale Gebietsgliederung, ArcGIS Server)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.stadt-koeln.de/arcgis/rest/services/basiskarten/kgg_labeled/MapServer",
+      "rel": "related",
+      "title": "Kommunale Gebietsgliederung K\u00f6ln (ArcGIS REST MapServer, beschriftet)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 22147,
+  "table:row_count": 22147,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "nummer",
+      "type": "string",
+      "description": "Eindeutiger 7-stelliger Schl\u00fcssel, zusammengesetzt aus 6-stelligem Blockschl\u00fcssel + 1-stelliger fortlaufende Nummerierung."
+    },
+    {
+      "name": "nr_str",
+      "type": "string",
+      "description": "Strassenschl\u00fcssel: Eindeutiger Stra\u00dfenschl\u00fcssel."
+    },
+    {
+      "name": "str",
+      "type": "string",
+      "description": "Stra\u00dfe: Bei mehrfach vorhandenen Stra\u00dfennamen infolge von Eingemeindungen ist eine Detaillierung zur Unterscheidung angegeben. Die Detaillierung sind die ersten drei Buchstaben des Stadtbezirks. Die urspr\u00fcnglichen K\u00f6lner Stra\u00dfen besitzen keine Detaillierung."
+    },
+    {
+      "name": "str_amtl",
+      "type": "string",
+      "description": "Amtl. Stra\u00dfenname: Stra\u00dfenname ohne Detaillierung."
+    },
+    {
+      "name": "str_stb",
+      "type": "string",
+      "description": "Stra\u00dfe (Stadtbezirk): Stra\u00dfenname mit ausgeschriebener Detaillierung."
+    },
+    {
+      "name": "id_typ_geb",
+      "type": "int64",
+      "description": "Gebietsfl\u00e4che (Typ ID): Domain ID des Typs der Gebietsfl\u00e4che (in der CSV als Feld typ beschrieben)."
+    },
+    {
+      "name": "nr_stviert",
+      "type": "string",
+      "description": "Stadtviertel (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtviertels."
+    },
+    {
+      "name": "stviertel",
+      "type": "string",
+      "description": "Stadtviertel: Name des \u00fcbergeordneten Stadtviertels."
+    },
+    {
+      "name": "nr_squart",
+      "type": "string",
+      "description": "Statistisches Quartier (Nr.): Schl\u00fcssel des \u00fcbergeordneten Statistischen Quartiers."
+    },
+    {
+      "name": "stat_quart",
+      "type": "string",
+      "description": "Statistisches Quartier: Name des \u00fcbergeordneten Statistischen Quartiers."
+    },
+    {
+      "name": "nr_stteil",
+      "type": "string",
+      "description": "Stadtteil (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtteils."
+    },
+    {
+      "name": "nr_stbez",
+      "type": "string",
+      "description": "Stadtteil: Name des \u00fcbergeordneten Stadtteils (Beschreibung laut CSV; Feldname weicht ab)."
+    },
+    {
+      "name": "nr_stadtbe",
+      "type": "string",
+      "description": "Stadtbezirk (Nr.): Schl\u00fcssel des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "stbezirk",
+      "type": "string",
+      "description": "Stadtbezirk: Name des \u00fcbergeordneten Stadtbezirks."
+    },
+    {
+      "name": "stimmbez",
+      "type": "string",
+      "description": "Stimmbezirk: Nummer des zugeh\u00f6rigen Stimmbezirks."
+    },
+    {
+      "name": "plz",
+      "type": "string",
+      "description": "Postleitzahlgebiet: Nummer des zugeh\u00f6rigen Postleitzahlgebiets."
+    },
+    {
+      "name": "schied_bez",
+      "type": "string",
+      "description": "Schiedsamtsbezirk: Nummer des zugeh\u00f6rigen Schiedsamtsbezirks."
+    },
+    {
+      "name": "nr_sozraum",
+      "type": "string",
+      "description": "Sozialraum (Nr.): Schl\u00fcssel des zugeh\u00f6rigen Sozialraums."
+    },
+    {
+      "name": "sozialraum",
+      "type": "string",
+      "description": "Sozialraum: Name des zugeh\u00f6rigen Sozialraums."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechneter Umfang beziehungsweise L\u00e4nge der Geometrie in Metern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double",
+      "description": "Vom Export des Publizierers (ArcGIS) berechnete Fl\u00e4che der Geometrie in Quadratmetern (EPSG:25832); nicht in der Attribut-CSV beschrieben."
+    },
+    {
+      "name": "d_typ",
+      "type": "string",
+      "description": "Gebietsfl\u00e4che (Typ Text): Unterteilung der Blockseiten nach Gebietstyp (Siedlungsfl\u00e4che, Freiraumfl\u00e4che, Verkehrsfl\u00e4che, Wasserfl\u00e4che)."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Blockseiten K\u00f6ln",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          6.772530289962422,
+          50.830440162951355,
+          7.1620280236619625,
+          51.08497432222056
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Blockseiten K\u00f6ln default style",
+      "description": "Default visualization for Blockseiten K\u00f6ln, drawn in #9ecae1.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1141,
+      "file:checksum": "122094a3631b632ddd64598adb94873fb02ea41065f2044597b732639f80fa56356a"
+    },
+    "Blockseite": {
+      "href": "./Blockseite.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 18516483,
+      "file:checksum": "1220d1a4416f13f0bd20218171d75463e335f2498235ffd1024643a2e54d07b8111d",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./Blockseite.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Blockseiten K\u00f6ln (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 14263370,
+      "file:checksum": "12201306110fcbf4e144a10ffc436505df9fe00325bd739b2c2874393beabf1b8735"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Blockseiten K\u00f6ln categorical style",
+      "description": "Categorical visualization coloring Blockseiten K\u00f6ln by d_typ, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2102,
+      "file:checksum": "1220ec38b3cc81765e3dfeda72d5e03b031c4f85a01b7905e09ab8d1ce2e30b52047"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Blockseiten K\u00f6ln labeled style",
+      "description": "Default visualization for Blockseiten K\u00f6ln with d_typ shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1551,
+      "file:checksum": "1220d482783757f2dfc5055efb55f00d602da9fc1f2a9147a2ec61389470c9aafe8c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Blockseiten K\u00f6ln graduated style",
+      "description": "Graduated visualization coloring Blockseiten K\u00f6ln by Shape_Area, ramped from 36.9375427096 to 6503599.14011.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1996,
+      "file:checksum": "12205685d2661bcab1490fc2656c136bf479203c16b6f1b7a490151639100d0c1282"
+    },
+    "source": {
+      "href": "https://offenedaten-koeln.de/sites/default/files/uploaded_resources/Blockseite.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: blockseite",
+      "pipeline:upstream": true,
+      "file:size": 61877018,
+      "file:checksum": "122097a4b5c59089b04b024c9888aa1f5b5675c12bc2795a3768e4dd9f8190c9ffe8"
+    },
+    "thumbnail": {
+      "href": "./Blockseite.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Blockseiten K\u00f6ln",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 155166,
+      "file:checksum": "1220d00af95ba752e7008757f4e351ec5be330c913c184b0c75a89936f5156c8748e"
+    }
+  },
+  "keywords": [
+    "Geo",
+    "Infrastruktur",
+    "Bauen und Wohnen",
+    "K\u00f6ln",
+    "Stadt K\u00f6ln"
+  ],
+  "providers": [
+    {
+      "name": "Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik",
+      "description": "Datenquelle: Stadt K\u00f6ln \u2013 Amt f\u00fcr Stadtentwicklung und Statistik, Raumbezogene Statistik, \u201eBlockseiten K\u00f6ln\u201c, Offene Daten K\u00f6ln (offenedaten-koeln.de), abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stadt-koeln.de/service/adressen/amt-fuer-stadtentwicklung-und-statistik",
+      "email": "statistik-rbs@stadt-koeln.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:00:00Z"
+}

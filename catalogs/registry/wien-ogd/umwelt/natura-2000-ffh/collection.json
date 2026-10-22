@@ -1,0 +1,235 @@
+{
+  "type": "Collection",
+  "id": "umwelt/natura-2000-ffh",
+  "stac_version": "1.1.0",
+  "description": "Natura 2000 - Europaschutzgebiete in Wien nach FFH-Richtlinie (Fauna- Flora- Habitatrichtlinie), Site of Community Importance (SCI). Gesetzliche Grundlagen: Wiener Naturschutzgesetz LGBl. f\u00fcr Wien Nr.45/1998, Richtlinie 92/43/EWG des Rates der Europ\u00e4ischen Gemeinschaft (FFH-Richtlinie) Ver\u00f6ffentlichung u.a. auf Grundlage des Wiener Umweltinformationsgesetz (Wr. UIG) bzw. der Richtlinie 2003/4/EG \u00fcber den Zugang der \u00d6ffentlichkeit zu Umweltinformationen",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_natura2togd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien",
+      "pmtiles:layers": [
+        "ogdwien_natura2togd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/f08964c6-5987-43c3-97d8-cb5a4eff0454",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: natura2togd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 8,
+  "table:row_count": 8,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Fl\u00e4che) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "string",
+      "description": "Objektbezeichnung."
+    },
+    {
+      "name": "KATEGORIE",
+      "type": "string",
+      "description": "Typ des Europaschutzgebietes (in Wien alle Typ C)."
+    },
+    {
+      "name": "INFORMATION",
+      "type": "string",
+      "description": "Hyperlink zu weiteren Informationen auf der wien.at-Umweltschutz-Seite."
+    },
+    {
+      "name": "RECHTSGRUNDLAGE",
+      "type": "string",
+      "description": "Hyperlink zur Rechtsgrundlage."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.181830379117955,
+          48.124180660715524,
+          16.577514130352206,
+          48.32266661161856
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien default style",
+      "description": "Default visualization for Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien, drawn in #006d2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1235,
+      "file:checksum": "12205b6a404c5ff0cef0b85b800223e1e1cba8c6376b3517979391d9c7ce9dcdf15f"
+    },
+    "ogdwien_natura2togd": {
+      "href": "./ogdwien_natura2togd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 64283,
+      "file:checksum": "12205cef0b3d13c8d89d0e6255ab8ded3c8191270c89b165bc4e02849363053bfa76",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_natura2togd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 67817,
+      "file:checksum": "12200b9b13f84531e7bfca5661e0228986b3300857112ce728410fdc52e3b7474f53"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien categorical style",
+      "description": "Categorical visualization coloring Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien by INFORMATION, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 3321,
+      "file:checksum": "1220e848acd5c13a5eb987b12d5af046348f839b099838c59d0cc6a2d0ec8c30bfe6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien labeled style",
+      "description": "Default visualization for Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien with INFORMATION shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1669,
+      "file:checksum": "1220d76c4e6b6990d8e2fd4f8700a5c40578ad6972a7c155ab55173f7c2844d79d8c"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_natura2togd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 126144,
+      "file:checksum": "1220a5acc70fc8b60bf52ca4f25d6786fdbb68c02efc3ede7baf64e8382d287d604b"
+    }
+  },
+  "keywords": [
+    "Wiener Umweltinformationsgesetz Wr. UIG",
+    "Schutzgebiet",
+    "ViennaGIS",
+    "Europaschutzgebiet",
+    "Fauna-Flora-Habitatrichtlinie SCI",
+    "Natura 2000",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Natura 2000 Fauna-Flora-Habitatrichtlinie (SCI) Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

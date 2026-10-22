@@ -1,0 +1,222 @@
+{
+  "type": "Collection",
+  "id": "reseau/bornes-kilometriques-voies-principales",
+  "stac_version": "1.1.0",
+  "description": "Deze dataset geeft voor iedere kilometerpaal aan voor welk hoofdspoor (van een lijn) de kilometerpaal van toepassing is.\nEen kilometerpaal kan voor meerdere hoofdsporen gelden, zelfs van verschillende lijnen. Het is niet zo dat een kilometerpaal altijd geldig is voor het dichtst bijzijnde of voor alle nabije sporen.\n\nDeze dataset is verbonden met de volgende datasets:\n\n- Lijst en geografische positie van de hoofdsporen (https://infrabel.opendatasoft.com/explore/dataset/geosporen): Lijst en geografische beschrijving van de hoofdsporen die een lijnnummer hebben. (bv: L50A).\n\n- Geografische positie van alle spoorsegmenten (https://infrabel.opendatasoft.com/explore/dataset/geografische-positie-van-alle-spoorsegmenten): Geografische beschrijving van alle spoorsegmenten op het Infrabel-netwerk, niet enkel hoofdspoor.\n\n- Kilometerpalen op het netwerk (https://infrabel.opendatasoft.com/explore/dataset/kilometerpalen-op-het-netwerk/): Posities van kilometerpalen langsheen het spoorwegnetwerk\n\nTitre n\u00e9erlandais du publicateur : \u00ab Relatie tussen kilometerpalen en hoofdsporen \u00bb ; titre anglais : \u00ab Combination of kilometre markers and main tracks \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./relatie-kilometerpalen-lijnen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Association des bornes kilom\u00e9triques et lignes principales",
+      "pmtiles:layers": [
+        "relatie-kilometerpalen-lijnen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://opendata.infrabel.be/pages/license/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.infrabel.be/explore/dataset/relatie-tussen-kilometerpalen-en-lijnen/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.infrabel.be/api/explore/v2.1/catalog/datasets/relatie-tussen-kilometerpalen-en-lijnen/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: relatie-kilometerpalen-lijnen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 5956,
+  "table:row_count": 5956,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Num\u00e9ro d'ordre du lecteur GeoJSON de GDAL/OGR, ajout\u00e9 par la conversion ; non stable d'une ex\u00e9cution \u00e0 l'autre."
+    },
+    {
+      "name": "kpp_id",
+      "type": "string",
+      "description": "ID de la borne kilom\u00e9trique."
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Nom de la borne kilom\u00e9trique."
+    },
+    {
+      "name": "track_id",
+      "type": "string",
+      "description": "ID de la voie."
+    },
+    {
+      "name": "linecalfa",
+      "type": "string",
+      "description": "Nom de la ligne ferroviaire. Alfanumerieke code voor de spoorlijn"
+    },
+    {
+      "name": "geo_shape",
+      "type": "string",
+      "description": "Geo Shape. Champ texte du publicateur portant la g\u00e9om\u00e9trie en GeoJSON ; redondant avec geom."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "G\u00e9om\u00e9trie (Point) en WGS 84 (OGC:CRS84) telle que servie par l'export GeoJSON du portail ; le publicateur g\u00e8re les donn\u00e9es en Lambert 72 (EPSG:31370) et les reprojette lui-m\u00eame. Seule colonne d\u00e9clar\u00e9e comme g\u00e9om\u00e9trie (nom geom selon la conversion du 20.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie (structure xmin, ymin, xmax, ymax), ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Association des bornes kilom\u00e9triques et lignes principales",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.56784875368265,
+          49.546747531029254,
+          6.269442029759756,
+          51.46901975283849
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Association des bornes kilom\u00e9triques et lignes principales default style",
+      "description": "Default visualization for Association des bornes kilom\u00e9triques et lignes principales, drawn in #fd8d3c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1316,
+      "file:checksum": "122065d51069c3d4c3c838b58cbcd597f5d8c17b600839bf020c7fd087f2cc68f5f4"
+    },
+    "relatie-kilometerpalen-lijnen": {
+      "href": "./relatie-kilometerpalen-lijnen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 408068,
+      "file:checksum": "12209b4240eb54bc8462bdb9b8cd1c4a6c692bc8df12e2ed12e7c774db15f9a1b07c",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./relatie-kilometerpalen-lijnen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Association des bornes kilom\u00e9triques et lignes principales (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1387238,
+      "file:checksum": "1220df86b0dddeca1f58a7eb0cd81e52f99b62a45f2cde10c8060fdd9eb30d5a2820"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Association des bornes kilom\u00e9triques et lignes principales labeled style",
+      "description": "Default visualization for Association des bornes kilom\u00e9triques et lignes principales with name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1763,
+      "file:checksum": "12205c77c6f1a009347be05ef2bb33bd13f2dfed921648e273f4883102b9599bc3eb"
+    },
+    "thumbnail": {
+      "href": "./relatie-kilometerpalen-lijnen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Association des bornes kilom\u00e9triques et lignes principales",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 149875,
+      "file:checksum": "1220dc4385cf7121b2e887aba3dfe04b7392ff750496fc2a7fd846b2cd731f13cf5b"
+    }
+  },
+  "keywords": [
+    "Voies principales",
+    "Bornes kilom\u00e9triques",
+    "Lignes",
+    "G\u00e9olocalisation",
+    "Infrastructure",
+    "Infrabel",
+    "Belgique",
+    "Chemin de fer"
+  ],
+  "providers": [
+    {
+      "name": "Infrabel",
+      "description": "Source : Infrabel, Infrabel Open Data (opendata.infrabel.be), \u00ab Association des bornes kilom\u00e9triques et lignes principales \u00bb, direction publiante \u00ab Assets Management \u00bb, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://infrabel.be",
+      "email": "contact@infrabel.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T14:00:00Z"
+}

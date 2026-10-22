@@ -1,0 +1,286 @@
+{
+  "type": "Collection",
+  "id": "geologia/plecs",
+  "stac_version": "1.1.0",
+  "description": "Plecs de Catalunya publicats com a tema INSPIRE \u00abGeology\u00bb, amb el nom de l'estructura, el tipus de perfil del plec, la descripci\u00f3 original de la llegenda i l'esdeveniment geol\u00f2gic associat. En tots els objectes observats el 21.9.2026 el camp collection_name deia \u00abBase de dades geol\u00f2giques de Catalunya 1:250.000\u00bb i versionid \u00ab2020\u00bb, de manera que la capa \u00e9s la sortida vectorial d'aquesta base de dades i no una cartografia de m\u00e9s detall.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./inspire_ge_geologicfold.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geologic Folds \u2013 plecs (INSPIRE GE)",
+      "pmtiles:layers": [
+        "inspire_ge_geologicfold"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: plecs",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa inspire:GE.GeologicFold, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "localid",
+      "type": "string",
+      "description": "Identificador local de l'objecte dins de l'identificador INSPIRE (\u00abinspireId.localId\u00bb); el servei el retorna amb el patr\u00f3 ID.<tema>.<codi>."
+    },
+    {
+      "name": "collection_name",
+      "type": "string",
+      "description": "Nom de la col\u00b7lecci\u00f3 geol\u00f2gica de qu\u00e8 prov\u00e9 l'objecte; el servei retorna \u00abBase de dades geol\u00f2giques de Catalunya 1:250.000\u00bb."
+    },
+    {
+      "name": "collection_type",
+      "type": "string",
+      "description": "Tipus de col\u00b7lecci\u00f3; el servei retorna \u00abgeologicalMap\u00bb."
+    },
+    {
+      "name": "mappingframe",
+      "type": "string",
+      "description": "Marc de representaci\u00f3 cartogr\u00e0fica (element INSPIRE \u00abmappingFrame\u00bb); el servei retorna \u00absurfaceGeology\u00bb."
+    },
+    {
+      "name": "structure_name",
+      "type": "string",
+      "description": "Nom o codi de l'estructura en la llegenda del productor."
+    },
+    {
+      "name": "profile_type",
+      "type": "string",
+      "description": "Tipus de perfil del plec (element INSPIRE \u00abprofileType\u00bb)."
+    },
+    {
+      "name": "fold_originaldescription",
+      "type": "string",
+      "description": "Descripci\u00f3 original del plec a la llegenda del productor."
+    },
+    {
+      "name": "event_name",
+      "type": "string",
+      "description": "Nom de l'esdeveniment geol\u00f2gic associat (element INSPIRE \u00abGeologicEvent.name\u00bb); el servei fa servir \u00ab-\u00bb quan no n'hi ha."
+    },
+    {
+      "name": "event_environment",
+      "type": "string",
+      "description": "Entorn de l'esdeveniment geol\u00f2gic (element INSPIRE \u00abeventEnvironment\u00bb)."
+    },
+    {
+      "name": "event_process",
+      "type": "string",
+      "description": "Proc\u00e9s de l'esdeveniment geol\u00f2gic (element INSPIRE \u00abeventProcess\u00bb)."
+    },
+    {
+      "name": "event_oldernamedage",
+      "type": "string",
+      "description": "Edat anomenada m\u00e9s antiga de l'esdeveniment (element INSPIRE \u00abolderNamedAge\u00bb)."
+    },
+    {
+      "name": "event_youngernamedage",
+      "type": "string",
+      "description": "Edat anomenada m\u00e9s moderna de l'esdeveniment (element INSPIRE \u00abyoungerNamedAge\u00bb)."
+    },
+    {
+      "name": "namespace",
+      "type": "string",
+      "description": "Espai de noms de l'identificador INSPIRE; el servei retorna \u00abCatalunya.GE\u00bb per a aquesta capa."
+    },
+    {
+      "name": "versionid",
+      "type": "int64",
+      "description": "Versi\u00f3 del conjunt de dades que el productor associa a l'objecte; el servei retorna \u00ab2020\u00bb en la lectura del 21.9.2026."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Geologic Folds \u2013 plecs (INSPIRE GE)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.042911834901294264,
+          40.57462150167956,
+          3.2856273585298807,
+          42.909539549032765
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Folds \u2013 plecs (INSPIRE GE) default style",
+      "description": "Default visualization for Geologic Folds \u2013 plecs (INSPIRE GE), drawn in #d94801.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1251,
+      "file:checksum": "12208abb56bb846c5fa5199badd6c6802d274314b9c7a985ca33eef5532fef5a9a9a"
+    },
+    "inspire_ge_geologicfold": {
+      "href": "./inspire_ge_geologicfold.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 37497,
+      "file:checksum": "1220ee12084af79deadb9504428f3b31442d8185492d69921e396ce6b96925fdaf3d",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./inspire_ge_geologicfold.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Geologic Folds \u2013 plecs (INSPIRE GE) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 963733,
+      "file:checksum": "12200e61af036011553aa099cdd3ccbb91722851daee56d5a32f3c776d6e7d8ca402"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Folds \u2013 plecs (INSPIRE GE) categorical style",
+      "description": "Categorical visualization coloring Geologic Folds \u2013 plecs (INSPIRE GE) by event_environment, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1924,
+      "file:checksum": "12200ac213651da0e0c1103e635938d466f14f444f4f9b0a44618bf507a875d0b9c5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Folds \u2013 plecs (INSPIRE GE) labeled style",
+      "description": "Default visualization for Geologic Folds \u2013 plecs (INSPIRE GE) with collection_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1697,
+      "file:checksum": "122036c39f2dfcd8563409a1831d916a9c07c2f0577a366f39935367e7913179c14e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Geologic Folds \u2013 plecs (INSPIRE GE) graduated style",
+      "description": "Graduated visualization coloring Geologic Folds \u2013 plecs (INSPIRE GE) by versionid, ramped from 2020.0 to 2020.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2027,
+      "file:checksum": "122030f7f48776e4ab2acb6a16726a3b41d7649979117e4d251013b2cca718d060d2"
+    },
+    "thumbnail": {
+      "href": "./inspire_ge_geologicfold.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Geologic Folds \u2013 plecs (INSPIRE GE)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 84642,
+      "file:checksum": "12207feb0be5e2daa8bb6ced980b607bea4e37efa1025bbc9f698a26e20ecdeed091"
+    }
+  },
+  "keywords": [
+    "INSPIRE",
+    "Geology",
+    "geologia",
+    "plecs",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Geologic Folds \u2013 plecs (INSPIRE GE) de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

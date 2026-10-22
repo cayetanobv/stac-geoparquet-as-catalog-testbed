@@ -1,0 +1,281 @@
+{
+  "type": "Collection",
+  "id": "adressen/adressen-berlin",
+  "stac_version": "1.1.0",
+  "description": "Die Adresspunkte stellen die amtlichen Berliner Adressen inklusive Koordinaten gem\u00e4\u00df den Nummerierungspl\u00e4nen der Vermessungs\u00e4mter dar. Sie dienen zur Generierung / Validierung vornehmlich statistischer Raumeinheiten. Ein Adress-Datensatz enth\u00e4lt in dieser Ver\u00f6ffentlichung neben den Geometrieinformationen (amtliche Koordinaten) eine Auswahl von Sachattributen, welche in der Regel Referenzen auf andere Raumbez\u00fcge in Form von Schl\u00fcsselwerten enthalten. Hinweis: Die Adress-Suche im FIS-Broker wird monatlich mit den RBS-Adressen aktualisiert. Abweichungen in der Lage als auch im Datenbestand selbst sind m\u00f6glich.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./adressen_berlin_adressen_berlin.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Adressen Berlin",
+      "pmtiles:layers": [
+        "adressen_berlin_adressen_berlin"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/adressen-berlin-wfs-634ab8ba",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/adressen_berlin",
+      "rel": "related",
+      "title": "WFS source service: adressen-berlin",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 402756,
+  "table:row_count": 402756,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "adressid",
+      "type": "string"
+    },
+    {
+      "name": "hnr",
+      "type": "int64"
+    },
+    {
+      "name": "hnr_zusatz",
+      "type": "string"
+    },
+    {
+      "name": "str_name",
+      "type": "string"
+    },
+    {
+      "name": "str_nr",
+      "type": "double"
+    },
+    {
+      "name": "plz",
+      "type": "int64"
+    },
+    {
+      "name": "bez_name",
+      "type": "string"
+    },
+    {
+      "name": "bez_nr",
+      "type": "double"
+    },
+    {
+      "name": "ort_name",
+      "type": "string"
+    },
+    {
+      "name": "ort_nr",
+      "type": "double"
+    },
+    {
+      "name": "plr_name",
+      "type": "string"
+    },
+    {
+      "name": "plr_nr",
+      "type": "double"
+    },
+    {
+      "name": "blk",
+      "type": "double"
+    },
+    {
+      "name": "qualitaet",
+      "type": "string"
+    },
+    {
+      "name": "typ",
+      "type": "string"
+    },
+    {
+      "name": "adr_datum",
+      "type": "date"
+    },
+    {
+      "name": "str_datum",
+      "type": "date"
+    },
+    {
+      "name": "hko_id",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Adressen Berlin",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09135479,
+          52.3399778,
+          13.75627882,
+          52.66008454
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Berlin default style",
+      "description": "Default visualization for Adressen Berlin, drawn in #08519c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1282,
+      "file:checksum": "12209ae05e0e212b6001b13bfd267034d7a1efae38843b4df679ca80d4b802474260"
+    },
+    "adressen_berlin_adressen_berlin": {
+      "href": "./adressen_berlin_adressen_berlin.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 21472418,
+      "file:checksum": "122086528e9ab8e08bfce06ccd14bb55069bc0376cb6397c18626c99ca61951fa62b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./adressen_berlin_adressen_berlin.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Adressen Berlin (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 17816962,
+      "file:checksum": "12209613b6a88a8d2122b7405b5b7cf0305d293fa0f8ae3b2b21c4422759c7acfe20"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Berlin categorical style",
+      "description": "Categorical visualization coloring Adressen Berlin by typ, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1716,
+      "file:checksum": "12207eddcad6c92cfc03cf0c6ab2bef7cc2716ca30e45245ae20547983b9fde68a07"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Berlin labeled style",
+      "description": "Default visualization for Adressen Berlin with str_name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1737,
+      "file:checksum": "122058ca94059ffa4a5c3fde7c3746c2a573c3a2c46b599d275ce735229238bc30c1"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Adressen Berlin graduated style",
+      "description": "Graduated visualization coloring Adressen Berlin by plr_nr, ramped from 1100101.0 to 12601236.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2076,
+      "file:checksum": "1220266cedd7b9164cfd5adc2cc0c1990d2ef984f8913cc8586c0797547ef4a62ec4"
+    },
+    "thumbnail": {
+      "href": "./adressen_berlin_adressen_berlin.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Adressen Berlin",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 266328,
+      "file:checksum": "122093ac665d189dbf65dbfd365f75c1483431e9ecec6558e525003deffa5295d208"
+    }
+  },
+  "keywords": [
+    "Adressen",
+    "Hausnummern",
+    "Stra\u00dfen",
+    "Amt f\u00fcr Statistik Berlin-Brandenburg",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Amt f\u00fcr Statistik Berlin-Brandenburg",
+      "description": "Datenquelle Geoportal Berlin, Adressen Berlin, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geoservice@statistik-bbb.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T02:00:01Z"
+}

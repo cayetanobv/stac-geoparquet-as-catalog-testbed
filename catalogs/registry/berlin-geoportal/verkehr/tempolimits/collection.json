@@ -1,0 +1,244 @@
+{
+  "type": "Collection",
+  "id": "verkehr/tempolimits",
+  "stac_version": "1.1.0",
+  "description": "Die Geometrien repr\u00e4sentieren die angeordneten zul\u00e4ssigen H\u00f6chstgeschwindigkeiten im Berliner Stra\u00dfennetz als Ausnahmen vom generellen Tempo 50 (lediglich bei den Autobahnen wird auch Tempo 50 dargestellt). \u00dcber die Sachdatenabfrage lassen sich weitere Merkmale zur jeweils angeordneten zul\u00e4ssigen H\u00f6chstgeschwindigkeit abfragen, z.B. der Grund der Anordnung oder eine evtl. zeitliche Einschr\u00e4nkung. Als Referenznetz wurde das sog. \"Detailnetz Berlin\" gew\u00e4hlt.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tempolimits_hoechstgeschwindigkeit.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Tempolimits",
+      "pmtiles:layers": [
+        "tempolimits_hoechstgeschwindigkeit"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/tempolimits-wfs-08198ab7",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/tempolimits",
+      "rel": "related",
+      "title": "WFS source service: hoechstgeschwindigkeit",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 29800,
+  "table:row_count": 29800,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "elem_nr",
+      "type": "double"
+    },
+    {
+      "name": "wert_ves",
+      "type": "int64"
+    },
+    {
+      "name": "zeit_t",
+      "type": "string"
+    },
+    {
+      "name": "tag_t",
+      "type": "string"
+    },
+    {
+      "name": "durch_t",
+      "type": "string"
+    },
+    {
+      "name": "dann_t",
+      "type": "string"
+    },
+    {
+      "name": "dat_t",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Tempolimits",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.11187659,
+          52.34041372,
+          13.74161814,
+          52.65994928
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempolimits default style",
+      "description": "Default visualization for Tempolimits, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1299,
+      "file:checksum": "12203f3ab335e38214b667e95476be2d579ff2b654e9a267bc38e435a8920c617d51"
+    },
+    "tempolimits_hoechstgeschwindigkeit": {
+      "href": "./tempolimits_hoechstgeschwindigkeit.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 4429213,
+      "file:checksum": "12201e5dbae7da5f31103a91a57fce40e894506cbd23c86b7f36278bd41e716aee58",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./tempolimits_hoechstgeschwindigkeit.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Tempolimits (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10063312,
+      "file:checksum": "1220b9de687f9ba59ea7b3958218736000a7cd7903e1ad3f5b428080ccd869eb5bac"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempolimits categorical style",
+      "description": "Categorical visualization coloring Tempolimits by dann_t, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1754,
+      "file:checksum": "1220261dc9b51fe7c8eb7ea6f468c3ed8f2116050ed82f5ce33371013312e4cdb801"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempolimits labeled style",
+      "description": "Default visualization for Tempolimits with dann_t shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1758,
+      "file:checksum": "1220dd279cd9cda6982a971047bd386c5f1f65aeddc47020c4a9f304a15719f51fa3"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Tempolimits graduated style",
+      "description": "Graduated visualization coloring Tempolimits by elem_nr, ramped from 2647000726470002.0 to 6944002069440003.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2175,
+      "file:checksum": "1220fa989fa8306859c0a5a517142eb87e3f6ca4df116cb31e54519b7d8e09167e59"
+    },
+    "thumbnail": {
+      "href": "./tempolimits_hoechstgeschwindigkeit.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Tempolimits",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 254211,
+      "file:checksum": "1220d779bff9e9cc13688291305c5a5935513e6f28c77cdca694ec04449b67eb6476"
+    }
+  },
+  "keywords": [
+    "Abweichung",
+    "Anordnung",
+    "Berlin",
+    "Geodaten",
+    "Geschwindigkeit",
+    "Karten",
+    "Kfz",
+    "Sachdaten"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Tempolimits, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "melanie.jachtner@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

@@ -1,0 +1,237 @@
+{
+  "type": "Collection",
+  "id": "georisiken/georisk-ablagerung",
+  "stac_version": "1.1.0",
+  "description": "Der Download beinhaltet die Datens\u00e4tze GEORISK-Punktobjekte, Anbruch- und Ablagerungsbereiche. GEORISK-Objekte k\u00f6nnen alte, bereits abgelaufene, oder aber potentielle, also zuk\u00fcnftige Hangbewegungen (Felsst\u00fcrze, Rutschungen, Schuttstr\u00f6me etc.) sein. Eine eventuelle Gef\u00e4hrdung ist deshalb aus den Punkten allein noch nicht abzulesen. Oft finden allerdings die aktuellen Hangbewegungen an Stellen statt, an denen bereits fr\u00fcher solche Ereignisse erfolgt waren. N\u00e4here Details k\u00f6nnen im GEORISK-Dokumentations- und Informationssystem im Bayerischen Landesamt f\u00fcr Umwelt abgefragt werden. Die Daten werden laufend fortgeschrieben.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./georisk_ablagerung_epsg25832.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "GEORISK-Ablagerungsbereiche",
+      "pmtiles:layers": [
+        "georisk_ablagerung_epsg25832"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.lfu.bayern.de/gdi/dls/georisiken.xml",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 17942,
+  "table:row_count": 17942,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "OBJEKTID",
+      "type": "string",
+      "description": "Objektschl\u00fcssel des GEORISK-Katasters."
+    },
+    {
+      "name": "FLAECHE",
+      "type": "double",
+      "description": "Fl\u00e4che des Ablagerungsbereichs."
+    },
+    {
+      "name": "FACHKLASSE",
+      "type": "string",
+      "description": "Fachliche Klassifikation des Ablagerungsbereichs."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "GEORISK-Ablagerungsbereiche",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          9.089685445765427,
+          47.28667691023986,
+          13.785696923390017,
+          50.555294905310724
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Ablagerungsbereiche default style",
+      "description": "Default visualization for GEORISK-Ablagerungsbereiche, drawn in #fd8d3c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1273,
+      "file:checksum": "122057c89b1b31383580271b63f94ecbb57f7ccdd2241ed2e4a29e0ef3bc34430a00"
+    },
+    "georisk_ablagerung_epsg25832": {
+      "href": "./georisk_ablagerung_epsg25832.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 7573139,
+      "file:checksum": "1220c14b1f55ccc43af24e2363ed9018ccbe403ba055d9c87cb4be6400b33d3b222d",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./georisk_ablagerung_epsg25832.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "GEORISK-Ablagerungsbereiche (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 10206472,
+      "file:checksum": "12208a53a270a16097d347f15571b3b83ed43d9bc7633a2ba41a43f510c21c75b2b3"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Ablagerungsbereiche categorical style",
+      "description": "Categorical visualization coloring GEORISK-Ablagerungsbereiche by FACHKLASSE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2035,
+      "file:checksum": "12206c31f0ad47226adb29b7c525af1be8ed5de7eadce3170979b64622b78aa7f1a2"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Ablagerungsbereiche labeled style",
+      "description": "Default visualization for GEORISK-Ablagerungsbereiche with FACHKLASSE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1724,
+      "file:checksum": "1220f8b1a6b60cbda07e0518cf6364c31b2f23bc5562dc21ecab87cb530aa52fca24"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "GEORISK-Ablagerungsbereiche graduated style",
+      "description": "Graduated visualization coloring GEORISK-Ablagerungsbereiche by FLAECHE, ramped from 0.0 to 17051953.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2053,
+      "file:checksum": "122044f96665574568fc5da910666069cd95bac4d0462d1b0e7b7616aed17d9b5765"
+    },
+    "source": {
+      "href": "https://www.lfu.bayern.de/gdi/dls/daten/georisiken/georisk-objekte_epsg25832_shp.zip",
+      "type": "application/zip",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: georisk_ablagerung_epsg25832",
+      "pipeline:upstream": true,
+      "file:size": 14039422,
+      "file:checksum": "1220b9f0ed577612f4f3ba2b534179d7ccc4db718ea248097c434d4c388d777724e7"
+    },
+    "thumbnail": {
+      "href": "./georisk_ablagerung_epsg25832.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of GEORISK-Ablagerungsbereiche",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 140045,
+      "file:checksum": "1220c70f75873f3bfc4cd2e541d90b6f9565b093d83efccf43ebe9ecd84303515a03"
+    }
+  },
+  "keywords": [
+    "GEORISK",
+    "Georisiken",
+    "Hangbewegungen",
+    "Massenbewegungen",
+    "LfU",
+    "Bayern"
+  ],
+  "providers": [
+    {
+      "name": "Bayerisches Landesamt f\u00fcr Umwelt (LfU)",
+      "description": "Datenquelle: Bayerisches Landesamt f\u00fcr Umwelt, www.lfu.bayern.de, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lfu.bayern.de/",
+      "email": "poststelle@lfu.bayern.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

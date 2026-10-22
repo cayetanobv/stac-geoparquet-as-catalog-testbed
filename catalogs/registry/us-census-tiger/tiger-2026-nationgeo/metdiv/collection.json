@@ -1,0 +1,283 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "metdiv",
+  "title": "Metropolitan divisions, 2026",
+  "description": "The 'Metropolitan Division' layer of the 2026 TIGER/Line Nation-Level Geography National GeoPackage: 37 rows. Columns and values unchanged; 2D geometry in NAD83 (EPSG:4269) with a bbox covering, Hilbert-sorted, as one GeoParquet 2.0 file read in place over HTTPS or the anonymous S3 endpoint s3.geomermaids.com, and a PMTiles archive for web maps. The Census Bureau makes no warranty on the accuracy of TIGER/Line, and its boundaries are for statistical data collection and tabulation only: not a determination of jurisdictional authority, ownership or entitlement, and not legal land descriptions. Credit: U.S. Census Bureau, TIGER/Line 2026.",
+  "keywords": [
+    "TIGER/Line",
+    "US Census Bureau",
+    "boundaries",
+    "metropolitan areas",
+    "urban areas",
+    "ZIP codes",
+    "ZCTA",
+    "metdiv",
+    "GeoParquet",
+    "PMTiles"
+  ],
+  "license": "other",
+  "attribution": "U.S. Census Bureau, TIGER/Line 2026",
+  "version": "2026",
+  "updated": "2026-10-22T13:57:21Z",
+  "providers": [
+    {
+      "name": "U.S. Census Bureau, Geography Division",
+      "description": "Produces TIGER/Line from its MAF/TIGER system and publishes it as national GeoPackages. A US government work, not subject to copyright in the United States.",
+      "url": "https://www.census.gov/geographies/mapping-files.html",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted the GeoPackage layers to GeoParquet, tiled them, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -123.174,
+          25.137394,
+          -70.3224,
+          48.299038
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 37,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "CSAFP",
+      "type": "VARCHAR",
+      "description": "Combined statistical area FIPS code."
+    },
+    {
+      "name": "CBSAFP",
+      "type": "VARCHAR",
+      "description": "Core based statistical area FIPS code."
+    },
+    {
+      "name": "METDIVFP",
+      "type": "VARCHAR",
+      "description": "Metropolitan division FIPS code."
+    },
+    {
+      "name": "GEOID",
+      "type": "VARCHAR",
+      "description": "Area identifier: the codes of the areas it nests in, then its own code (e.g. state + county + tract for a tract)."
+    },
+    {
+      "name": "GEOIDFQ",
+      "type": "VARCHAR",
+      "description": "Fully qualified GEOID, used to join data tables from data.census.gov."
+    },
+    {
+      "name": "NAME",
+      "type": "VARCHAR",
+      "description": "Name."
+    },
+    {
+      "name": "NAMELSAD",
+      "type": "VARCHAR",
+      "description": "Name and translated legal/statistical area description."
+    },
+    {
+      "name": "LSAD",
+      "type": "VARCHAR",
+      "description": "Legal/statistical area description code."
+    },
+    {
+      "name": "MTFCC",
+      "type": "VARCHAR",
+      "description": "MAF/TIGER feature class code, the kind of area (e.g. G5200 congressional district, G4020 county, G5020 census tract)."
+    },
+    {
+      "name": "ALAND",
+      "type": "DOUBLE",
+      "description": "Land area, square metres."
+    },
+    {
+      "name": "AWATER",
+      "type": "DOUBLE",
+      "description": "Water area, square metres."
+    },
+    {
+      "name": "INTPTLAT",
+      "type": "VARCHAR",
+      "description": "Latitude of the internal point (text, as published)."
+    },
+    {
+      "name": "INTPTLON",
+      "type": "VARCHAR",
+      "description": "Longitude of the internal point (text, as published)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Area outline as native Parquet GEOMETRY (WKB), NAD83 (EPSG:4269), longitude and latitude, 2D."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/metdiv.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Metropolitan divisions, 2026",
+      "description": "37 rows in 1 row groups of at most 4 MiB of geometry.",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:4269",
+      "file:size": 1268230,
+      "file:checksum": "12202e851e16472c3f65482fb84d52a6a38a299a42e8918b0f71ff53e73ccf9ad12e",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/nationgeo/metdiv.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/metdiv.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Metropolitan divisions, vector tiles",
+      "description": "PMTiles, layer `metdiv`, zoom 0 to 12, 6,267 tiles; properties CBSAFP, METDIVFP, GEOID, NAMELSAD, ALAND, AWATER, color_index (color_index: a colour per area such that neighbours differ). Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1537461,
+      "file:checksum": "12205a36bad6cfe014717a44f7ff28dab2f4c38ba994e6b3eecbee28ccdc9833db48",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/nationgeo/metdiv.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Areas, coloured so neighbours differ",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1715,
+      "file:checksum": "12209c8b7b90defed791dc0c2f2ee4a5f8753e572e0ba67aa1c40be402f7d5798d0a"
+    },
+    "style-outlines": {
+      "href": "./styles/outlines.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Outlines only, to lay over other data",
+      "roles": [
+        "style"
+      ],
+      "file:size": 679,
+      "file:checksum": "12205cd1d82cfb6d9bbf2826b11b18fc47350d9aa552c91c4619e08a53efdc57c180"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Metropolitan divisions, overview map",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 10170,
+      "file:checksum": "122062c06f00508aefda521ef52354dc74b2d35528a71bdc23403dee76e4a2709f79"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Metropolitan divisions: README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Metropolitan divisions: agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.usa.gov/government-copyright",
+      "type": "text/html",
+      "title": "Works of the US federal government are not subject to copyright in the United States (17 U.S.C. 105)"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-geopackage-file.html",
+      "type": "text/html",
+      "title": "TIGER/Line GeoPackages on census.gov, where they are published"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2026/2026_TIGERLINE_GPKG_Record_Layouts.pdf",
+      "type": "application/pdf",
+      "title": "2026 TIGER/Line GeoPackage record layouts"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/",
+      "type": "text/html",
+      "title": "Browse the files"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://census.geomermaids.com/",
+      "type": "text/html",
+      "title": "census.geomermaids.com"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/nationgeo/metdiv.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Metropolitan divisions, vector tiles",
+      "pmtiles:layers": [
+        "metdiv"
+      ]
+    }
+  ]
+}

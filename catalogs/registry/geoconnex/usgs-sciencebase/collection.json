@@ -1,0 +1,160 @@
+{
+  "type": "Collection",
+  "id": "usgs:sciencebase",
+  "stac_version": "1.1.0",
+  "description": "Contains all scientific studies contained within the USGS ScienceBase data catalog. Each feature's geospatial coordinates represents the spatial extent of the scientific study.\n\nMore info can be found at https://www.sciencebase.gov/catalog/\n\nAll features in this dataset derive from the 'usgs:sciencebase' sitemap in Geoconnex.\n\nThe source code that generated the RDF data which was transformed into this asset can be found at https://github.com/internetofwater/sciencebase_bulk_rdf\n\nMainstem association was disabled for this dataset so features will not have an associated Geoconnex mainstem.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Geoconnex Spatial Data Catalog"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/exports/pmtiles/usgs:sciencebase.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "usgs_sciencebase"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json"
+  ],
+  "title": "USGS ScienceBase Catalog",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180.0,
+          -90.0,
+          180.0,
+          90.0
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "providers": [
+    {
+      "name": "Internet of Water Coalition",
+      "roles": [
+        "producer"
+      ]
+    },
+    {
+      "name": "Colton Loftus",
+      "description": "Processed and maintained by Colton Loftus at the Lincoln Institute of Land Policy's Center for Geospatial Solutions. For help, contact cloftus@lincolninst.edu or open an issue at https://github.com/internetofwater/geoconnex.us/issues",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://cgsearth.org/"
+    },
+    {
+      "name": "Internet of Water Coalition",
+      "roles": [
+        "host"
+      ],
+      "url": "https://geoconnex.us"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/summoned/usgs:sciencebase.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "USGS ScienceBase Catalog",
+      "table:columns": [
+        {
+          "name": "id",
+          "type": "string"
+        },
+        {
+          "name": "geoconnex_sitemap",
+          "type": "string"
+        },
+        {
+          "name": "feature_name",
+          "type": "string"
+        },
+        {
+          "name": "feature_description",
+          "type": "string"
+        },
+        {
+          "name": "mainstem_uri",
+          "type": "string"
+        },
+        {
+          "name": "geometry",
+          "type": "binary",
+          "description": "WKB-encoded geometry"
+        }
+      ],
+      "file:size": 15846374,
+      "file:checksum": "12205657605dc0b806077079267651dd07cdbe472ff8fa7dd4d0d465047375dd3029",
+      "roles": [
+        "data",
+        "external"
+      ]
+    },
+    "pmtiles": {
+      "href": "https://storage.googleapis.com/harvest-geoconnex-us/exports/pmtiles/usgs:sciencebase.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Vector tiles",
+      "description": "Features as PMTiles vector tiles for web visualization.",
+      "roles": [
+        "visual"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Default thumbnail",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 23690,
+      "file:checksum": "1220f1a6ab69214b5731180e7b69bb2e4a74b5c2cc40cb830d7c33f6093459abef09"
+    },
+    "style_default": {
+      "href": "./style.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Default MapLibre style",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 2690,
+      "file:checksum": "12203f0e840eda3b8e42319e6afe9c6dea7e92bec251ace7bca54527fb1a56459b6d"
+    }
+  }
+}

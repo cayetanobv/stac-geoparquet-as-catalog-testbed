@@ -1,0 +1,281 @@
+{
+  "type": "Collection",
+  "id": "aluejaot/osa-alueet",
+  "stac_version": "1.1.0",
+  "description": "Helsingin piirijako -aineisto sis\u00e4lt\u00e4\u00e4 kaupungin piirijakoalueiden rajaviivat sek\u00e4 alueiden nimet ja tunnukset. Helsingin piirijakoj\u00e4rjestelm\u00e4 on hallinnollisiin tarkoituksiin luotu aluejako koko Helsingin alueesta.\r\n\r\nPiirijako koostuu seuraavista aluetasoista: suurpiiri (*stordistrikt*), peruspiiri (*distrikt*), osa-alue (*delomr\u00e5de*) ja pienalue (*sm\u00e5omr\u00e5de*). Piirijakojen yll\u00e4pidon l\u00e4ht\u00f6tietoina ovat Kantakartta sek\u00e4 ajantasaiset asemakaavat. Aineistoa yll\u00e4pidet\u00e4\u00e4n vektorimuodossa Oracle Spatial -tietokannassa. Piirijakoaineistoa p\u00e4ivitet\u00e4\u00e4n jatkuvasti kaupungingeodeetin p\u00e4\u00e4t\u00f6sten perusteella.\r\n\r\nAineistoa yll\u00e4pit\u00e4\u00e4 Helsingin kaupunkiymp\u00e4rist\u00f6toimialan kaupunkimittauspalvelut. Piirijako-aineisto julkaistaan avoimena datana tarpeen mukaan rajojen muuttuessa.\nRuotsiksi: Helsingfors distriktsindelning. Englanniksi: District division of the City of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_piirijako_osaalue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue)",
+      "pmtiles:layers": [
+        "avoindata_piirijako_osaalue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-piirijako",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: piirijako_osaalue",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 148,
+  "table:row_count": 148,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Kohteen yksil\u00f6iv\u00e4 tunniste. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "aluejako",
+      "type": "string",
+      "description": "Aluejaon tyyppi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "kunta",
+      "type": "double",
+      "description": "Kunta. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "tunnus",
+      "type": "double",
+      "description": "Piirijaon tunnus. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "nimi_fi",
+      "type": "string",
+      "description": "Piirijaon suomenkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "nimi_se",
+      "type": "string",
+      "description": "Piirijaon ruotsinkielinen nimi. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "yhtluontipvm",
+      "type": "date",
+      "description": "Kohteen luontip\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "yhtmuokkauspvm",
+      "type": "date",
+      "description": "Kohteen edellinen muokkausp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "yhtdatanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "kokotunnus",
+      "type": "double",
+      "description": "Piirijakojen yhdistelm\u00e4 tunnus. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd). Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja. Luotettava, kattavasti olemassa oleva tieto."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.78280556,
+          59.92249326,
+          25.25449667,
+          60.29783944
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue) default style",
+      "description": "Default visualization for Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue), drawn in #6a3d9a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1296,
+      "file:checksum": "1220ac97b46e89591625d1fd96ce05d964aea2cf8f7f77f708e1f2b2adca781ef008"
+    },
+    "avoindata_piirijako_osaalue": {
+      "href": "./avoindata_piirijako_osaalue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 205871,
+      "file:checksum": "1220e2aa6cdcf936dc91bc751e380e4053c5e07bf9f94576be48a9ddb793fef3eed5",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_piirijako_osaalue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 490285,
+      "file:checksum": "12202561b090af6c344003baf3966759ae32464584996abbfebbde1e1fcd6f0f1416"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue) labeled style",
+      "description": "Default visualization for Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue) with yhtdatanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1751,
+      "file:checksum": "1220bcfb46ffb3f84714966d958ed439b155382df09d4650d972f370fad07b7ee9e7"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue) graduated style",
+      "description": "Graduated visualization coloring Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue) by kokotunnus, ramped from 911101010.0 to 918801592.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2121,
+      "file:checksum": "1220f48aa5db1268a617527664babd786499f6ed999c2298d1f5b0ae18c72fadaa6f"
+    },
+    "thumbnail": {
+      "href": "./avoindata_piirijako_osaalue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin piirijako \u2013 osa-alueet (Piirijako_osaalue)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 84799,
+      "file:checksum": "1220d8f3ef73c679073f06393e01e80c85d75c040077a16dec9961c8d0f72cb08b04"
+    }
+  },
+  "keywords": [
+    "alueet",
+    "aluejaot",
+    "hallinto",
+    "hallintoalue",
+    "osa-alueet",
+    "peruspiirit",
+    "pienalueet",
+    "piirijako",
+    "suuralueet",
+    "suurpiirit",
+    "tilastoalueet",
+    "Piirijako_osaalue",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin piirijako\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-piirijako",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

@@ -1,0 +1,221 @@
+{
+  "type": "Collection",
+  "id": "myndighedskredse/retskredse",
+  "stac_version": "1.1.0",
+  "description": "Danmarks 24 retskredse fra DAGI med firecifret retskredskode og navn.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./retskredse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Retskredse",
+      "pmtiles:layers": [
+        "retskredse"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/retskreds",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/retskredse?format=geojson",
+      "rel": "related",
+      "title": "Upstream source: retskredse",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 24,
+  "table:row_count": 24,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "dagi_id",
+      "type": "string"
+    },
+    {
+      "name": "kode",
+      "type": "string"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_version",
+      "type": "int32"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Retskredse",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.07250975,
+          54.55907837,
+          15.19740034,
+          57.75257255
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Retskredse default style",
+      "description": "Default visualization for Retskredse, drawn in #31a354.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1130,
+      "file:checksum": "1220658b91d1092e629e0070aba68930832151b8811195f290ff9b960cb85a416e25"
+    },
+    "retskredse": {
+      "href": "./retskredse.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 18645389,
+      "file:checksum": "12207ae137a79db9732df12d70d7e7866b0039e26b9cd9459d9b45db0287b936f0fb",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./retskredse.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Retskredse (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 8676101,
+      "file:checksum": "12204948557cf830026863f9e2e3f7bff0a32bbc80d6b224a10b511a38ce987dc061"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Retskredse graduated style",
+      "description": "Graduated visualization coloring Retskredse by geo_version, ramped from 7.0 to 27.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1893,
+      "file:checksum": "1220ea4d5995f96199863d3cef59b7676f4cf38487316e7f1defc10853c522412f86"
+    },
+    "thumbnail": {
+      "href": "./retskredse.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Retskredse",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 93966,
+      "file:checksum": "1220eae1619a0f02bee8b3ef0d2237544d9686c1103488bd1f32bbddc81ab9bb32a4"
+    }
+  },
+  "keywords": [
+    "retskredse",
+    "domstole",
+    "DAGI",
+    "administrative inddelinger"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen retskredse, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/retskreds",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

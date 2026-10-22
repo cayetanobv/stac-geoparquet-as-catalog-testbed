@@ -1,0 +1,272 @@
+{
+  "type": "Collection",
+  "id": "forecast/track",
+  "stac_version": "1.1.0",
+  "description": "NHC official forecast track line for Hurricane Melissa (AL132025), one line per advisory connecting the forecast centre positions out to 120 h, all 80 advisories stacked. Derived columns advisory_number, advisory_seq, issue_time (UTC). The line carries no intensity; use forecast/points for that.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.weather.gov/disclaimer",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./forecast-track.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast track line (all 80 advisories)",
+      "pmtiles:layers": [
+        "forecast-track"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.nhc.noaa.gov/gis/archive_forecast_results.php?id=al13&year=2025&name=Hurricane%20MELISSA",
+      "type": "text/html"
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 80,
+  "table:row_count": 80,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "advisory_number",
+      "type": "string",
+      "description": "Derived (CARTO): zero-padded advisory id from the NHC package name, e.g. '003A'; sorts in issue order as text. Join key across the forecast/* Collections."
+    },
+    {
+      "name": "advisory_seq",
+      "type": "int32",
+      "description": "Derived (CARTO): 1-based issue order of the advisory (001 = 1, 001A = 2, ..., 041 = 80)."
+    },
+    {
+      "name": "STORMNAME",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The name given to each tropical cyclone for which the National Hurricane Center is writing forecast advisories'. 'Melissa' in this file."
+    },
+    {
+      "name": "STORMTYPE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The category of the tropical cyclone according to the initial intensity'. TS 33 rows, HU 46, PTC 1 (advisory 041)."
+    },
+    {
+      "name": "ADVDATE",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The date in which an advisory is issued'. Free text in the advisory's local time zone, e.g. '1100 AM EDT Tue Oct 21 2025'. Parsed into issue_time; do not string-compare."
+    },
+    {
+      "name": "ADVISNUM",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The sequential numbering of forecast advisories for each tropical cyclone'. Not zero-padded; sort/join on advisory_number instead."
+    },
+    {
+      "name": "STORMNUM",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The sequential numbering of tropical cyclones for a specific forecast basin according to when the first advisory is issued' (13 = Melissa, AL132025)."
+    },
+    {
+      "name": "FCSTPRD",
+      "type": "double",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The time interval for which the forecast of a tropical cyclone is provided in graphical format' (hours); always 120 here."
+    },
+    {
+      "name": "BASIN",
+      "type": "string",
+      "description": "NHC FGDC metadata (.shp.xml in the source zip): 'The ocean where the tropical cyclone is located'; AL = Atlantic."
+    },
+    {
+      "name": "issue_time",
+      "type": "TIMESTAMP WITH TIME ZONE",
+      "description": "Derived (CARTO): advisory issue time in UTC parsed from ADVDATE (EDT and AST = UTC-4). Use for 'latest advisory known at time T'."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Forecast track LineString (8 or 9 vertices, all valid) in lon/lat WGS 84 (typed OGC:CRS84 in the hosted file); coordinates as shipped by NHC, not transformed."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "GeoParquet bounding-box covering column (xmin, ymin, xmax, ymax) written for predicate pushdown; not an NHC attribute."
+    }
+  ],
+  "title": "Forecast track line (all 80 advisories)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -78.8,
+          14.2,
+          -11.7,
+          62.6
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-10-21T15:00:00Z",
+          "2025-10-31T15:00:00Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast track line (all 80 advisories) default style",
+      "description": "Default visualization for Forecast track line (all 80 advisories), drawn in #1565c0.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1187,
+      "file:checksum": "1220d504f261fc63134595a6cda6d295456a696e41720c3ad1c7d0a63533b96162dd"
+    },
+    "forecast-track": {
+      "href": "./forecast-track.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8295,
+      "file:checksum": "12206f40fa32881398badbcca8a3a40b087720c4344485720c20cfa42c6c6be93378",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./forecast-track.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Forecast track line (all 80 advisories) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 48513180,
+      "file:checksum": "12200ab9d411b5cf66f28fd1260525986188b11e18bdc49a48340e0ff0d6ef36e8e7"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast track line (all 80 advisories) categorical style",
+      "description": "Categorical visualization coloring Forecast track line (all 80 advisories) by STORMTYPE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1855,
+      "file:checksum": "12205e53c491c06935d2cb33188ca64aa436ef642b92b7181cae6b7fb557ee973d38"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast track line (all 80 advisories) labeled style",
+      "description": "Default visualization for Forecast track line (all 80 advisories) with STORMNAME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1609,
+      "file:checksum": "12205f41a0e2ddd7ee5c3aa04187917eefd024518562d93c3a82bd55f4d303474e87"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Forecast track line (all 80 advisories) graduated style",
+      "description": "Graduated visualization coloring Forecast track line (all 80 advisories) by advisory_seq, ramped from 1.0 to 80.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1954,
+      "file:checksum": "1220c820986482b56c27491943a5c6a92eb43b3c7d66006699fc737056071becf96c"
+    },
+    "source": {
+      "href": "https://storage.googleapis.com/carto-open-catalogs/sources/nhc-hurricane-melissa-2025/forecast-track/forecast-track.parquet",
+      "type": "application/vnd.apache.parquet",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: forecast-track",
+      "pipeline:upstream": true,
+      "file:size": 7596,
+      "file:checksum": "122075eab9bd7dc23428c331784feb097f9e5bab2e4e7e55038566d0ee95e8eb8df2"
+    },
+    "thumbnail": {
+      "href": "./forecast-track.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Forecast track line (all 80 advisories)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 76848,
+      "file:checksum": "1220be443e5fb85ad1b6037254ae77255e1afcc1e05e89a4501f1024faaf875fb85c"
+    }
+  },
+  "keywords": [
+    "hurricane",
+    "tropical cyclone",
+    "Melissa",
+    "AL132025",
+    "NHC",
+    "NOAA",
+    "forecast",
+    "Jamaica",
+    "Caribbean",
+    "2025"
+  ],
+  "providers": [
+    {
+      "name": "NOAA National Hurricane Center",
+      "description": "Producer of the operational forecast advisories, GIS products and working best track for Hurricane Melissa (AL132025). Data retrieved from https://www.nhc.noaa.gov/gis/ on 2026-09-23.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.nhc.noaa.gov/gis/",
+      "email": "nhcwebmaster@noaa.gov"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-23T14:30:00Z"
+}

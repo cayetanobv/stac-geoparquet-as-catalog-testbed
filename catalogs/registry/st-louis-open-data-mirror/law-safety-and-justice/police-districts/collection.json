@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "law-safety-and-justice/police-districts",
+  "stac_version": "1.1.0",
+  "description": "GIS data for police district boundaries",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./police-districts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "police-districts"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=83",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Law, Safety, and Justice"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=83",
+      "type": "text/html",
+      "title": "Dataset page on the City of St. Louis open data portal"
+    },
+    {
+      "rel": "via",
+      "href": "https://maps8.stlouis-mo.gov/arcgis/rest/services/STLOUIS/POLICE_DISTRICT/FeatureServer",
+      "type": "text/html",
+      "title": "Source ArcGIS service"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 6,
+  "table:row_count": 6,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "DISTNO",
+      "type": "string"
+    },
+    {
+      "name": "ID1",
+      "type": "int32"
+    },
+    {
+      "name": "DISTNUM",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "geometry_bbox",
+      "type": "struct<xmin: float not null, ymin: float not null, xmax: float not null, ymax: float not null>"
+    }
+  ],
+  "portolan:styles": [
+    "styles/default",
+    "styles/city-renderer"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "law-safety-and-justice",
+          "title": "Law, Safety, and Justice"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.stlouis-mo.gov/government/departments/",
+      "concepts": [
+        {
+          "id": "police-department",
+          "title": "Police Department"
+        }
+      ]
+    }
+  ],
+  "title": "Police District Boundaries",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.3201970937837,
+          38.53255684122102,
+          -90.17627181427606,
+          38.7742449374275
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "City of St. Louis \u2014 Police Department",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=83"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "police-districts": {
+      "href": "./police-districts.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Police District Boundaries (GeoParquet)",
+      "file:size": 29741,
+      "file:checksum": "122070bc4bc5f367532e573c74ba66ad2d9496e7cd83d50a9b8fbe4f6c82ff1fb049",
+      "roles": [
+        "data"
+      ]
+    },
+    "police-districts-tiles": {
+      "href": "./police-districts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "police-districts (vector tiles)",
+      "file:size": 44660,
+      "file:checksum": "1220031cf64fecebcfa08c5462d87499b51770398ce73e66e1efdee612fa8001c9b8",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/city-renderer": {
+      "href": "./styles/city-renderer.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "City renderer",
+      "description": "The city's own symbology, extracted from the source ArcGIS renderer.",
+      "file:size": 769,
+      "file:checksum": "12203a97278be69c00975c4eb9075148c19d3ff8b76bb99012d784a1acc5aeafcb23",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Police districts",
+      "description": "The six SLMPD districts, one color each, labeled by number.",
+      "file:size": 2204,
+      "file:checksum": "12206fc6deefb522b6f46a8766840031726af52a7ee78bef0b25eb01bee568862480",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/style-boundaries": {
+      "href": "./styles/style-boundaries.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "District boundaries",
+      "description": "Outlines only.",
+      "file:size": 478,
+      "file:checksum": "1220aacc4a9fab8c6889540258f747aae5a65f471d371913eed5b9de2485b358eb65",
+      "roles": [
+        "style"
+      ]
+    },
+    "styles/style-subtle": {
+      "href": "./styles/style-subtle.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Subtle districts",
+      "description": "Light tint for underlays.",
+      "file:size": 734,
+      "file:checksum": "122004969b9661c621a5555ca6dba18238a8ebd9ff5d38433663f54c4459bb642beb",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Police District Boundaries rendered with the default style",
+      "file:size": 295720,
+      "file:checksum": "12201f9a71bd287624d173ae60a1c5562e1f2e93b60a32482257f3a67633e30bc75d",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  },
+  "keywords": [
+    "Police Department"
+  ]
+}

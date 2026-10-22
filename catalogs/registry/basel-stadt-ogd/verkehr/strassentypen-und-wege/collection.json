@@ -1,0 +1,321 @@
+{
+  "type": "Collection",
+  "id": "verkehr/strassentypen-und-wege",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beinhaltet das Mobilit\u00e4tsnetz Basel-Stadt sowie die Strassennetzhierarchie des Kantons Basel-Stadt.\n\nWeitere Daten zu \"Strassen und Wege\": https://data.bs.ch/explore/?refine.tags=STWE",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100250.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250)",
+      "pmtiles:layers": [
+        "ods-100250"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100250/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100250/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100250",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 7553,
+  "table:row_count": 7553,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id_strasse_weg",
+      "type": "int32",
+      "description": "Eindeutiger Identifikator der Strasse"
+    },
+    {
+      "name": "strassennummer",
+      "type": "int32",
+      "description": "Strassennummer"
+    },
+    {
+      "name": "strassenname",
+      "type": "string",
+      "description": "Strassenname"
+    },
+    {
+      "name": "gemeinde",
+      "type": "string",
+      "description": "Offizielle Bezeichnung der Gemeinde"
+    },
+    {
+      "name": "strassennetzhierarchie_code",
+      "type": "string",
+      "description": "Abk\u00fcrzung der Strassennetzhierarchie"
+    },
+    {
+      "name": "strassennetzhierarchie_text",
+      "type": "string",
+      "description": "Strassennetzhierarchie"
+    },
+    {
+      "name": "strassenkategorie",
+      "type": "string",
+      "description": "verkehrsorientierte oder siedlungsorientierte Strasssen"
+    },
+    {
+      "name": "wegkategorie",
+      "type": "string",
+      "description": "Wegkategorie"
+    },
+    {
+      "name": "geschwindigkeit",
+      "type": "int32",
+      "description": "permanent signalisierte Geschwindigkeit (H\u00f6chstgeschwindigkeit; ohne tempor\u00e4re Signalisation durch Baustellen oder \u00e4hnliches)"
+    },
+    {
+      "name": "regime",
+      "type": "string",
+      "description": "permanent signalisiertes Temporegime (mit H\u00f6chstgeschwindigkeitsangabe)"
+    },
+    {
+      "name": "strassenlaenge",
+      "type": "double",
+      "description": "Gesamtl\u00e4nge der Strasse"
+    },
+    {
+      "name": "strassenabschnittslaenge",
+      "type": "double",
+      "description": "L\u00e4nge des Geometriesegments einer Strasse"
+    },
+    {
+      "name": "zulassung_velo",
+      "type": "string",
+      "description": "Angabe ob Velo zugelassen ist"
+    },
+    {
+      "name": "eigentuemer",
+      "type": "string",
+      "description": "Eigent\u00fcmer der Strasse"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (LineString) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.555919,
+          47.51977,
+          7.693801,
+          47.600927
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) default style",
+      "description": "Default visualization for Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250), drawn in #636363.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1181,
+      "file:checksum": "12203aefb41cb54674054f6e168158e1a6097f5385f38b8e4c9fd1f3cfa2ee3a1a57"
+    },
+    "ods-100250": {
+      "href": "./ods-100250.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 968868,
+      "file:checksum": "12201ffbeffb5c8c77a2525811f9b0955a1750c05ec2ca18b3fe328b97daa39b1592",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100250.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3579241,
+      "file:checksum": "1220cb64568136084fb52ca7d307c1c1bd867a86daf66f1ca8984821e8ec0c19ef0c"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) categorical style",
+      "description": "Categorical visualization coloring Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) by strassenkategorie, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2037,
+      "file:checksum": "1220e527c58d1fa837837f39538a471ed9f32873c453b72c485d3cf8130d384fb842"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) labeled style",
+      "description": "Default visualization for Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) with strassenname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1598,
+      "file:checksum": "1220f1156a6e90b53fd7dcb5a17bde9ed2e28c2d5ae1f2c010e5be5dee3a4b4b06d8"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) graduated style",
+      "description": "Graduated visualization coloring Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250) by strassenlaenge, ramped from 11.24 to 12168.53.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1986,
+      "file:checksum": "12209c76f39309e72850fe48447639194763128eac0905263ccccd51086757546818"
+    },
+    "thumbnail": {
+      "href": "./ods-100250.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Strassen und Wege: Strassentypen und Wege (data.bs.ch 100250)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 201457,
+      "file:checksum": "122067138fda1997cc6e52af938442432bd8445e197963f6c5e25a11469b969e247d"
+    }
+  },
+  "keywords": [
+    "Durchgangsstrassen",
+    "Erschliessungsstrasse",
+    "Europastrasse",
+    "Feldweg",
+    "Gasse",
+    "Geschwindigkeit",
+    "Hauptstrasse",
+    "Hierarchie",
+    "HLS",
+    "Hochleistungsstrasse",
+    "HSS",
+    "HVS",
+    "Kantonsstrassen",
+    "Mobilit\u00e4t",
+    "Mobilit\u00e4tsnetz",
+    "Nationalstrasse",
+    "Netz",
+    "Parkanlage",
+    "Promenade",
+    "QSS",
+    "Quartiersammelstrasse",
+    "Strassennetzhierarchie",
+    "Temporegime",
+    "Verkehrsorientierte",
+    "Waldweg",
+    "Weg",
+    "Strassennetz",
+    "Wegnetz",
+    "Mobilit\u00e4t und Verkehr",
+    "Geographie",
+    "opendata.swiss",
+    "STWE",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Amt f\u00fcr Mobilit\u00e4t",
+      "description": "Datenquelle: Kanton Basel-Stadt, Amt f\u00fcr Mobilit\u00e4t (Bau- und Verkehrsdepartement), \u00abStrassen und Wege: Strassentypen und Wege\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100250/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

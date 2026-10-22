@@ -1,0 +1,288 @@
+{
+  "type": "Collection",
+  "id": "alkis/flurstuecke",
+  "stac_version": "1.1.0",
+  "description": "Daten des amtlichen Liegenschaftskatsterinformationssystems (ALKIS) - Das Flurst\u00fcck ist als geometrisch eindeutig begrenzter Teil der Erdoberfl\u00e4che Buchungseinheit des Liegenschaftskatasters.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./alkis_flurstuecke_flurstuecke.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS Berlin Flurst\u00fccke",
+      "pmtiles:layers": [
+        "alkis_flurstuecke_flurstuecke"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/alkis-berlin-flurstucke-wfs-1bc014d7",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/alkis_flurstuecke",
+      "rel": "related",
+      "title": "WFS source service: flurstuecke",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wms/alkis_flurstuecke?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "ALKIS Berlin Flurst\u00fccke (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 403526,
+  "table:row_count": 403526,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "uuid",
+      "type": "string",
+      "description": "Objekt-ID des Flurst\u00fccks im ALKIS-Datenbestand, zum Beispiel DEBE00YY11200003."
+    },
+    {
+      "name": "bezeich",
+      "type": "string",
+      "description": "AAA-Beschreibung der Objektart, hier stets AX_Flurstueck."
+    },
+    {
+      "name": "afl",
+      "type": "double",
+      "description": "Amtliche Fl\u00e4che des Flurst\u00fccks in Quadratmetern, wie im Liegenschaftskataster gef\u00fchrt."
+    },
+    {
+      "name": "fsko",
+      "type": "string",
+      "description": "Flurst\u00fcckskennzeichen, der vollst\u00e4ndige zusammengesetzte Schl\u00fcssel des Flurst\u00fccks, mit Unterstrichen auf 20 Zeichen aufgef\u00fcllt."
+    },
+    {
+      "name": "zae",
+      "type": "int64",
+      "description": "Z\u00e4hler des Flurst\u00fcckskennzeichens, die Flurst\u00fccksnummer innerhalb der Flur."
+    },
+    {
+      "name": "nen",
+      "type": "string",
+      "description": "Nenner des Flurst\u00fcckskennzeichens, bei ungeteilten Flurst\u00fccken leer."
+    },
+    {
+      "name": "gmk",
+      "type": "double",
+      "description": "Gemarkungsschl\u00fcssel, vierstellig."
+    },
+    {
+      "name": "namgmk",
+      "type": "string",
+      "description": "Gemarkungsname."
+    },
+    {
+      "name": "fln",
+      "type": "int64",
+      "description": "Flurnummer innerhalb der Gemarkung."
+    },
+    {
+      "name": "gdz",
+      "type": "int64",
+      "description": "Gemeindekennzeichen; in Berlin der achtstellige Schl\u00fcssel des Bezirks."
+    },
+    {
+      "name": "namgem",
+      "type": "string",
+      "description": "Gemeindename; in Berlin der Name des Bezirks."
+    },
+    {
+      "name": "zde",
+      "type": "date",
+      "description": "Zeitpunkt der Entstehung des Flurst\u00fccks laut Publizierer; in den Stichproben vom 18.9.2026 durchgehend leer."
+    },
+    {
+      "name": "dst",
+      "type": "string",
+      "description": "Zust\u00e4ndige Stelle, als Schl\u00fcssel der katasterf\u00fchrenden Dienststelle."
+    },
+    {
+      "name": "beg",
+      "type": "date",
+      "description": "Beginn des Laufzeitintervalls, das Datum, ab dem der aktuelle Stand des Flurst\u00fccks im Kataster gilt."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "ALKIS Berlin Flurst\u00fccke",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.0883476,
+          52.33824557,
+          13.76115913,
+          52.6755077
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Flurst\u00fccke default style",
+      "description": "Default visualization for ALKIS Berlin Flurst\u00fccke, drawn in #b08968.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1281,
+      "file:checksum": "12201d2bf79499f4c31124156341add5ee68e3563b0b5850526c85b016d49a299069"
+    },
+    "alkis_flurstuecke_flurstuecke": {
+      "href": "./alkis_flurstuecke_flurstuecke.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 54006149,
+      "file:checksum": "122074a09dbada96cca370d11e3a143e3c51b15328dc9742075de227415b2a1e2756",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./alkis_flurstuecke_flurstuecke.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS Berlin Flurst\u00fccke (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 58480479,
+      "file:checksum": "12206d653e31451137a26c64e7b6a2b432f7558f5b21a530ef9b87e66df9fa6fff25"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Flurst\u00fccke categorical style",
+      "description": "Categorical visualization coloring ALKIS Berlin Flurst\u00fccke by namgem, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1943,
+      "file:checksum": "122003e12bb91d04a95d9e82d1fecd5a7cf82c041ca04e74aec21d19db06fd47b241"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Flurst\u00fccke labeled style",
+      "description": "Default visualization for ALKIS Berlin Flurst\u00fccke with namgem shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1730,
+      "file:checksum": "1220432220461165e53e9d8c64b85b99803b26c7755a051ec1605c6201c41ef9afab"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS Berlin Flurst\u00fccke graduated style",
+      "description": "Graduated visualization coloring ALKIS Berlin Flurst\u00fccke by afl, ramped from 0.0 to 1751199.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2039,
+      "file:checksum": "1220e4075943bc9e599c2fc426b32e9f8712be8111b47c8181ee7a0f4a3d7dbff30e"
+    },
+    "thumbnail": {
+      "href": "./alkis_flurstuecke_flurstuecke.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of ALKIS Berlin Flurst\u00fccke",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 225543,
+      "file:checksum": "1220cbe41e0c4c73ba4bf5c59d1f7dfadaec95a285370b1ce44a028abcb983c54ce9"
+    }
+  },
+  "keywords": [
+    "ALKIS",
+    "Flurst\u00fccke",
+    "Liegenschaftskataster",
+    "Liegenschaftskarte",
+    "Geobasisdaten",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, ALKIS Berlin Flurst\u00fccke, abgerufen am 18.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "geobasisdatenbereitstellung@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T18:44:21Z"
+}

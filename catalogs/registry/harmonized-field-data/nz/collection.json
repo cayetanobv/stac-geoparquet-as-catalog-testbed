@@ -1,0 +1,261 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "nz",
+  "title": "Irrigated land area",
+  "description": "This dataset covers Irrigated Land. Adapted by Ministry for the Environment and Statistics\nNew Zealand to provide for environmental reporting transparency\n\nThe spatial data covers all mainland regions of New Zealand, with the exception of Nelson, which is not believed to\ncontain significant irrigated areas. The spatial dataset is an update of the national dataset that was first\ncreated in 2017. The current update has incorporated data from the 2019 – 2020 irrigation season.\n\nThis collection holds 2 editions (2017, 2020), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/nz/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2020). Geometries are kept in the source CRS (EPSG:2193). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/nz/AGENTS.md).\n\nBoundaries are mapped: an authority delineated them from imagery or survey, with no farmer's declaration behind them.",
+  "boundaries": "mapped",
+  "keywords": [
+    "Aqualinc",
+    "MfE",
+    "New Zealand",
+    "agriculture",
+    "fiboa",
+    "field boundaries",
+    "irrigated land"
+  ],
+  "license": "CC-BY-4.0",
+  "providers": [
+    {
+      "name": "Aqualinc Research Limited",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://environment.govt.nz/publications/national-irrigated-land-spatial-dataset-2020-update"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          167.62647700278575,
+          -46.33133504768494,
+          178.87507346627325,
+          -34.78044211842903
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2013-01-01T00:00:00Z",
+          "2020-01-01T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:2193"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "large_string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "admin:subdivision_code",
+      "type": "large_string",
+      "description": "ISO 3166-2 code for the principal subdivision (e.g., province or state, aka admin1) of a country that contains the field. Only the second part of the ISO 3166-2 code is stored. ([spec](https://github.com/vecorel/administrative-division-extension/blob/main/README.md))"
+    },
+    {
+      "name": "determination:datetime",
+      "type": "timestamp[ms, tz=UTC]",
+      "description": "The last timestamp at which the field did exist and was observed. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "type",
+      "type": "large_string",
+      "description": "Irrigation type. Drip/micro, Rotorainer, Pivot, K-line/Long lateral, Unknown (per the fiboa data survey)"
+    },
+    {
+      "name": "geometry",
+      "type": "large_binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "collection",
+      "type": "large_string",
+      "description": "The identifier of the collection. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 42133,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 2,
+  "partition:glob": "s3://ftw/harmonized-field-data/nz/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/nz.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "New Zealand — latest edition (2020) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2020/nz-2020.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 15365385,
+      "file:checksum": "122059c563f40e583da42047eb4d4acabc3a5dfcd05b0d4d43f9e4b5a9e91010c5bb",
+      "proj:code": "EPSG:2193"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 2, 5, 10, 50 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1212,
+      "file:checksum": "12207421487b2a33298ff1613b2672f37a45d80034ce2b310b0a13262b267b20f79b"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 731,
+      "file:checksum": "1220c873acaa1c02c5779b80904e5a95e81b12ef2c9d94fa7aedd9ea2759ac124a75"
+    },
+    "visual": {
+      "href": "./year=2020/nz-2020.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "New Zealand — latest edition (2020) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9738961,
+      "file:checksum": "12207bacad605ec42a995e5d56b4c2963a7764b292f6f88dee2ce3717a3c4fcd6d87"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 195926,
+      "file:checksum": "122003809038ab2531aa97016b805048c1e326d7f00ac9166d615f2080decda56a95"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2020/nz-2020.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "nz"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://environment.govt.nz/publications/national-irrigated-land-spatial-dataset-2020-update",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/data-survey/blob/main/data/NZ.md",
+      "type": "text/html",
+      "title": "fiboa data survey entry for this source"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/nz.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2017/nz-2017.json",
+      "type": "application/geo+json",
+      "title": "New Zealand — 2017"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2020/nz-2020.json",
+      "type": "application/geo+json",
+      "title": "New Zealand — 2020"
+    }
+  ],
+  "updated": "2026-08-28T19:08:12Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "nz": [
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml",
+      "https://vecorel.org/specification/v0.1.0/schema.yaml"
+    ]
+  }
+}

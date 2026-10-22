@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "id": "gruenflaechen/hundefreilauf",
+  "stac_version": "1.1.0",
+  "description": "Der Datensatz beinhaltet f\u00fcr die Bezirke Charlottenburg-Wilmersdorf, Friedrichshain-Kreuzberg und Reinickendorf die Standorte der Hundefreilauffl\u00e4chen. In Gr\u00fcnanlagen d\u00fcrfen Hunde nur in eigens daf\u00fcr ausgewiesenen Bereichen ohne Leine freilaufen. Diese Fl\u00e4chen sind entsprechend eingefriedet und gekennzeichnet. In bestimmten Bereichen \u00f6ffentlicher Gr\u00fcnanlagen bestehen Hundemitnahmeverbote, auch wenn in der Gr\u00fcnanlage selbst die Mitnahme von Hunden gestattet ist. Diese Gebiete mit Hundemitnahmeverbote sind ebenfalls in den Daten enthalten. Im Bezirk Steglitz-Zehlendorf existieren keine Hundefreilauffl\u00e4chen in Gr\u00fcnanlagen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./hundefreilauf_hundefreilauf.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hundefreilauffl\u00e4chen",
+      "pmtiles:layers": [
+        "hundefreilauf_hundefreilauf"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/hundefreilauf-wfs-63c580c9",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/hundefreilauf",
+      "rel": "related",
+      "title": "WFS source service: hundefreilauf",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 30,
+  "table:row_count": 30,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "uid",
+      "type": "double"
+    },
+    {
+      "name": "bezirk",
+      "type": "string"
+    },
+    {
+      "name": "typ",
+      "type": "string"
+    },
+    {
+      "name": "info",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "bezeich",
+      "type": "string"
+    },
+    {
+      "name": "zustaendig",
+      "type": "string"
+    },
+    {
+      "name": "datum",
+      "type": "date"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Hundefreilauffl\u00e4chen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.24732669,
+          52.42941133,
+          13.47124309,
+          52.61998505
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundefreilauffl\u00e4chen default style",
+      "description": "Default visualization for Hundefreilauffl\u00e4chen, drawn in #a6761d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1264,
+      "file:checksum": "1220e2f856020c7fb0666ddaefb95ec503637d5cd69a132b5736af6ed0cab15e5aed"
+    },
+    "hundefreilauf_hundefreilauf": {
+      "href": "./hundefreilauf_hundefreilauf.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 16604,
+      "file:checksum": "12201a4ce323fe6d7da2c6a5a7579f50bd0e871267d6687469316f8ff7428b7ec4d5",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./hundefreilauf_hundefreilauf.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Hundefreilauffl\u00e4chen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 40853,
+      "file:checksum": "1220323b1a36867b035b43c14e7c98d6c2165cee6a4deaa9d2672640be3e13a91be3"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundefreilauffl\u00e4chen categorical style",
+      "description": "Categorical visualization coloring Hundefreilauffl\u00e4chen by typ, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1878,
+      "file:checksum": "1220cb6bb2ff050bd7f045029f4d87e7601cdb77cacf986a6b419eb62eef07acaad0"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundefreilauffl\u00e4chen labeled style",
+      "description": "Default visualization for Hundefreilauffl\u00e4chen with typ shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1706,
+      "file:checksum": "12202d970526231d0d3f5d59c20e9b15c917cdf7b7e3a257efade7ee889234d57b3e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Hundefreilauffl\u00e4chen graduated style",
+      "description": "Graduated visualization coloring Hundefreilauffl\u00e4chen by gisid, ramped from 1.0 to 30.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2003,
+      "file:checksum": "122042a3ac457ca53bdd4f2f84f8070c16ed4916df90f80d7f1e54f50fce69ac401d"
+    },
+    "thumbnail": {
+      "href": "./hundefreilauf_hundefreilauf.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Hundefreilauffl\u00e4chen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 115712,
+      "file:checksum": "12200e096653ad66f9f4f4f238c90b7d9b1295dd2f6febb89cf9ea52c82ba6eb92dd"
+    }
+  },
+  "keywords": [
+    "Auslaufgebiete",
+    "Berlin",
+    "Charlottenburg-Wilmersdorf",
+    "Freilauf",
+    "Friedrichshain-Kreuzberg",
+    "Geodaten",
+    "Hund",
+    "Hundeauslauf"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Stadtentwicklung, Bauen und Wohnen Berlin",
+      "description": "Datenquelle Geoportal Berlin, Hundefreilauf, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "philipp.heise@senstadt.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:21:19Z"
+}

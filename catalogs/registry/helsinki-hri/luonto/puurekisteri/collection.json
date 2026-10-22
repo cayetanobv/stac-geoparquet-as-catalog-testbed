@@ -1,0 +1,285 @@
+{
+  "type": "Collection",
+  "id": "luonto/puurekisteri",
+  "stac_version": "1.1.0",
+  "description": "Helsingin puurekisteri (Puuatlas) on Helsingin kaupungin Kaupunkiymp\u00e4rist\u00f6n toimialan j\u00e4rjestelm\u00e4, joka sis\u00e4lt\u00e4\u00e4 tietoja yleisten alueiden (kadut, aukiot, puistot) katu- ja puistopuuomaisuudesta. Mets\u00e4tietoja puurekisteri ei sis\u00e4ll\u00e4. Aineistoa yll\u00e4pidet\u00e4\u00e4n Kaupunkiymp\u00e4rist\u00f6n toimialan k\u00e4ytt\u00f6\u00f6n eik\u00e4 se p\u00e4\u00e4s\u00e4\u00e4nt\u00f6isesti sis\u00e4ll\u00e4 muiden hallintokuntien tai laitosten vastuulla olevia puita, esimerkiksi tonttipuita.\r\n\r\nAineisto sis\u00e4lt\u00e4\u00e4 katu- ja puistopuuomaisuuden sijainti-, laji-, ja kokoluokkatiedot. Osasta puita l\u00f6ytyv\u00e4t my\u00f6s istutusvuositiedot.\r\n\r\nRekisteritiedoissa esiintyy puutteita ja virheit\u00e4, mik\u00e4 kannattaa huomioida aineiston k\u00e4yt\u00f6ss\u00e4. Tietoja ei p\u00e4ivitet\u00e4 systemaattisesti. Katupuiden osalta tiedot on p\u00e4ivitetty melko kattavasti, mutta puistopuiden osalta tietoja on rekisteriss\u00e4 vain osittain.\nRuotsiksi: Helsingfors stads urban tr\u00e4d register. Englanniksi: Urban tree database of the City of Helsinki.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./avoindata_puurekisteri_piste.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste)",
+      "pmtiles:layers": [
+        "avoindata_puurekisteri_piste"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-kaupungin-puurekisteri",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs",
+      "rel": "related",
+      "title": "WFS source service: puurekisteri_piste",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point Z",
+  "geoparquet:feature_count": 67714,
+  "table:row_count": 67714,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Kohteen geometria (GeometryPropertyType) WGS 84 -koordinaatistossa (OGC:CRS84), WFS-lukijan muuntama julkaisijan ETRS-GK25:st\u00e4 (EPSG:3879); ainoa geometriaksi m\u00e4\u00e4ritelty sarake."
+    },
+    {
+      "name": "id",
+      "type": "int64",
+      "description": "Kohteen yksil\u00f6iv\u00e4 tunniste."
+    },
+    {
+      "name": "tunnus",
+      "type": "string",
+      "description": "Puun rekisterinumero (K-alkuiset= katupuu, P-alkuiset=puistopuu)."
+    },
+    {
+      "name": "kadunnimi",
+      "type": "string",
+      "description": "Katupuun sijaintikatu."
+    },
+    {
+      "name": "puistonnimi",
+      "type": "string",
+      "description": "Puistopuun sijaintipuisto."
+    },
+    {
+      "name": "paatyyppi",
+      "type": "string",
+      "description": "Puun sijainnin asemakaavamerkint\u00e4 (katu, puisto)."
+    },
+    {
+      "name": "suomenknimi",
+      "type": "string",
+      "description": "Puun suomenkielinen triviaalinimi."
+    },
+    {
+      "name": "suku",
+      "type": "string",
+      "description": "Puun tieteellinen sukunimi."
+    },
+    {
+      "name": "laji",
+      "type": "string",
+      "description": "Puun tieteellinen lajinimi."
+    },
+    {
+      "name": "kokoluokka",
+      "type": "string",
+      "description": "Puun rinnankorkeusl\u00e4pimitan mukainen kokoluokka."
+    },
+    {
+      "name": "istutusvuosi",
+      "type": "int64",
+      "description": "Puun istutusvuosi."
+    },
+    {
+      "name": "datanomistaja",
+      "type": "string",
+      "description": "Aineiston omistaja."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "Tietopalvelun tallennusp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4 (yyyy-mm-dd)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.83344,
+          60.141081,
+          25.198375,
+          60.288374
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste) default style",
+      "description": "Default visualization for Helsingin kaupungin puurekisteri (Puurekisteri_piste), drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1299,
+      "file:checksum": "12204cd8e8846828cb6ddea207a8e7d71356c5a510e8d7da3fbfd7bbbefc7f826cf2"
+    },
+    "avoindata_puurekisteri_piste": {
+      "href": "./avoindata_puurekisteri_piste.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3253694,
+      "file:checksum": "12201db2d4302edca14955c319a56722a79197708c59a5012e0ed6944db7e2eebfad",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./avoindata_puurekisteri_piste.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2594912,
+      "file:checksum": "1220281e4582f3988b9ae37e9881763140924a7f00c67a537a68d068327b050422ca"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste) categorical style",
+      "description": "Categorical visualization coloring Helsingin kaupungin puurekisteri (Puurekisteri_piste) by paatyyppi, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2018,
+      "file:checksum": "12207b4a4de1614afd54755a7be37fc3534be6bc26077f1d98cebd22f005ed8d9ee1"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste) labeled style",
+      "description": "Default visualization for Helsingin kaupungin puurekisteri (Puurekisteri_piste) with datanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1753,
+      "file:checksum": "12205039e1034c65c3356bb9335aeb403c3b6de02b30a88866a950d69fcb8a2ed35e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin kaupungin puurekisteri (Puurekisteri_piste) graduated style",
+      "description": "Graduated visualization coloring Helsingin kaupungin puurekisteri (Puurekisteri_piste) by istutusvuosi, ramped from 0.0 to 20100.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2084,
+      "file:checksum": "1220be31c4c6410e1146b13407de95b410c4caa31cce62aac4c1b216b5440ec6df61"
+    },
+    "thumbnail": {
+      "href": "./avoindata_puurekisteri_piste.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin kaupungin puurekisteri (Puurekisteri_piste)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 177344,
+      "file:checksum": "12205c63927b30f891f678b3c9179e822bc8823755b33105e8ad8a72a92ccb1dd81a"
+    }
+  },
+  "keywords": [
+    "luonto",
+    "kasvillisuus",
+    "puu",
+    "puusto",
+    "Puurekisteri_piste",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Maank\u00e4ytt\u00f6 ja kaupunkirakenne / Kaupunkitila ja maisemasuunnittelu, \u00abHelsingin kaupungin puurekisteri\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-kaupungin-puurekisteri",
+      "email": "kaupunkiymparisto@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

@@ -1,0 +1,211 @@
+{
+  "type": "Collection",
+  "id": "verwaltungsgrenzen/fluren",
+  "stac_version": "1.1.0",
+  "description": "aktuell g\u00fcltige ALKIS-Fluren (Datenstand tagesaktuell) \u2014 Der WFS-Dienst liefert aktuelle, vektorbasierte ALKIS Daten zu Verwaltungsgrenzen in der NOrA Datenstruktur. Der WFS-Dienst stellt keinen amtlichen Nachweis dar. Der Dienst liefert Flurgrenzen, Gemarkungsgrenzen, Gemeindegrenzen, Kreisgrenzen, Regierungsbezirksgrenzen, Regionsgrenzen sowie Landesgrenze jeweils als FeatureType.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./nora_v_al_flur.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS-Fluren",
+      "pmtiles:layers": [
+        "nora_v_al_flur"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://owsproxy.lgl-bw.de/owsproxy/wfs/WFS_LGL-BW_ALKIS_VGr_KatGr_E?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://owsproxy.lgl-bw.de/owsproxy/wfs/WFS_LGL-BW_ALKIS_VGr_KatGr_E?CQL_FILTER=geom%20IS%20NOT%20NULL",
+      "rel": "related",
+      "title": "WFS source service: alkis-vgr-fluren",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 1015,
+  "table:row_count": 1015,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gemarkung_id",
+      "type": "int64"
+    },
+    {
+      "name": "flurnummer",
+      "type": "int64"
+    },
+    {
+      "name": "flurname",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "ALKIS-Fluren",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.3534409,
+          47.6377992,
+          10.4256438,
+          49.5772919
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Fluren default style",
+      "description": "Default visualization for ALKIS-Fluren, drawn in #6a51a3.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1160,
+      "file:checksum": "1220e8fd961f22afec8c1838e71e41ced8ab1d185eedcf52a0b00f1288cc72ac0d9c"
+    },
+    "nora_v_al_flur": {
+      "href": "./nora_v_al_flur.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 7080241,
+      "file:checksum": "12203b7bd18a3a1c41ca7b92de566ea583047968e08916f7a02461b628849bdcf675",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./nora_v_al_flur.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "ALKIS-Fluren (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 5230727,
+      "file:checksum": "1220b667fb2d15c3209032da94902dc19c33df8e580bf71004cd8df27890d8e35673"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Fluren labeled style",
+      "description": "Default visualization for ALKIS-Fluren with flurname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1581,
+      "file:checksum": "1220116deb9ec27b8c61e7fa05ef90238fa1c828fdd007c154f7461776b624e5fb64"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "ALKIS-Fluren graduated style",
+      "description": "Graduated visualization coloring ALKIS-Fluren by gemarkung_id, ramped from 140.0 to 9890.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1945,
+      "file:checksum": "12205c87a316b2b5dd9d74072a0c34a526cd1be656c76c73c22eefaa9d77c665c764"
+    },
+    "thumbnail": {
+      "href": "./nora_v_al_flur.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of ALKIS-Fluren",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 193797,
+      "file:checksum": "12204d81348bd08bcb24584983827d81a1f6dc7700b94e0daf99abf6420c718a1fbd"
+    }
+  },
+  "keywords": [
+    "Verwaltungsgrenzen",
+    "Katasterbezirke",
+    "ALKIS",
+    "NOrA",
+    "LGL",
+    "Baden-W\u00fcrttemberg"
+  ],
+  "providers": [
+    {
+      "name": "Landesamt f\u00fcr Geoinformation und Landentwicklung Baden-W\u00fcrttemberg",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lgl-bw.de",
+      "email": "benutzerservice@lgl.bwl.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

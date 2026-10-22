@@ -1,0 +1,228 @@
+{
+  "type": "Collection",
+  "id": "verkehr/radverkehrsnetz",
+  "stac_version": "1.1.0",
+  "description": "Das Radverkehrsnetz gem\u00e4\u00df Berliner Mobilit\u00e4tsgesetz (MobG BE) bildet die konzeptionelle stadtweite Grundlage f\u00fcr Radverkehrsanlagen in Berlin. Der tats\u00e4chliche Streckenverlauf vor Ort sowie die konkrete (bauliche) Gestaltung kann erst im Zuge der jeweiligen Ma\u00dfnahmenplanung festgelegt und umgesetzt werden. Vorliegender Netzplan stellt keine an Radfahrerinnen und Radfahrer gerichtete Karte dar. Durch die Darstellung der Netzabschnitte im Radverkehrsnetz werden keine Verkehrssicherungspflichten begr\u00fcndet.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./radverkehrsnetz_radverkehrsnetz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz",
+      "pmtiles:layers": [
+        "radverkehrsnetz_radverkehrsnetz"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/radverkehrsnetz-wfs-086cf065",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/radverkehrsnetz",
+      "rel": "related",
+      "title": "WFS source service: radverkehrsnetz",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 14882,
+  "table:row_count": 14882,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "gisid",
+      "type": "int64"
+    },
+    {
+      "name": "elem_nr",
+      "type": "double"
+    },
+    {
+      "name": "ist_radvorrangnetz",
+      "type": "string"
+    },
+    {
+      "name": "existenz",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.09024654,
+          52.34391313,
+          13.74160563,
+          52.66039291
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz default style",
+      "description": "Default visualization for Radverkehrsnetz nach Mobilit\u00e4tsgesetz, drawn in #238b45.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1309,
+      "file:checksum": "1220489a8d6ba7ca94870d481d48ac967363d6e9f91ff66ddea34e7f370ecb9cdf7a"
+    },
+    "radverkehrsnetz_radverkehrsnetz": {
+      "href": "./radverkehrsnetz_radverkehrsnetz.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1279586,
+      "file:checksum": "122096d268317f833baa198aa46d74e5e1daa546f2b971578aee6a562db210c2f28e",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./radverkehrsnetz_radverkehrsnetz.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 4256972,
+      "file:checksum": "122091d61467e07bed598a7164d688292fa97e28af7bfd477dc265523994bdd3ae9a"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz categorical style",
+      "description": "Categorical visualization coloring Radverkehrsnetz nach Mobilit\u00e4tsgesetz by ist_radvorrangnetz, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1986,
+      "file:checksum": "1220e729c04b366e43346006f1e89a0c66f0b08d4f05d8c12381f92ab2fb4d61d939"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz labeled style",
+      "description": "Default visualization for Radverkehrsnetz nach Mobilit\u00e4tsgesetz with ist_radvorrangnetz shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1774,
+      "file:checksum": "122097fd676aeffd19009d1d4c0bb74bc588331f31726702733e03dad2fda0d991a7"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radverkehrsnetz nach Mobilit\u00e4tsgesetz graduated style",
+      "description": "Graduated visualization coloring Radverkehrsnetz nach Mobilit\u00e4tsgesetz by elem_nr, ramped from 2543000125430004.0 to 6944000169440003.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2185,
+      "file:checksum": "122017911a0b9c2e990cb88c50243908036428d41e2dfeb10b73f158bf7c940441c9"
+    },
+    "thumbnail": {
+      "href": "./radverkehrsnetz_radverkehrsnetz.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Radverkehrsnetz nach Mobilit\u00e4tsgesetz",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 240414,
+      "file:checksum": "1220efd23cb05d7863855a2b28bda7d45d9e05c4da2988858b485b9f945537f9b0e8"
+    }
+  },
+  "keywords": [
+    "Berlin",
+    "Erg\u00e4nzungsnetz",
+    "Fahrrad",
+    "Geodaten",
+    "Karten",
+    "Netz",
+    "Radnetz",
+    "Radverkehr"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Radverkehrsnetz, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://gdi.berlin.de/",
+      "email": "sabine.bongardt@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T10:43:13Z"
+}

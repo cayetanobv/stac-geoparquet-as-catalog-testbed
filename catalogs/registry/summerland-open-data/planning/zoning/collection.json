@@ -1,0 +1,201 @@
+{
+  "type": "Collection",
+  "id": "planning/zoning",
+  "stac_version": "1.1.0",
+  "description": "The Zoning designations are defined in Schedule B of the Summerland's [Zoning](https://www.summerland.ca/planning-building/zoning). A list of amendments can be found in section 16 of the Zoning Bylaw. The corresponding bylaw number and adoption date are also captured in this dataset. \nThe online information is provided for the convenience of our residents and clients and should not be used as a reference in decision-making when buying real estate, finalizing development proposals or seeking building permits. Please [contact](https://www.summerland.ca/your-city-hall/contact) the Development Services Department for more information.\n\nThe District's description above references 2 documents whose link on summerland.ca no longer resolves, so the reference is given as plain text rather than a broken link.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./zoning.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "zoning"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 941,
+  "table:row_count": 941,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "BylawNo",
+      "type": "large_string",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 869 of 941 rows populated; 79 distinct values."
+    },
+    {
+      "name": "Adopted",
+      "type": "timestamp[ms]",
+      "description": "The publisher documents no alias or code list for this column. Measured in this copy: 869 of 941 rows populated; 64 distinct values."
+    },
+    {
+      "name": "ZoningNew",
+      "type": "large_string",
+      "description": "Current zoning designation, as a zone code from the Zoning Bylaw. This is the live column despite the name: its ArcGIS alias is \"Zoning\". All 38 distinct values match the layer's own uniqueValue renderer. The service also publishes a Zoning_Update coded-value domain for this field, but that domain is stale \u2014 it lists RSD1, RSD2, RSD3, RDH, RPN, RSH and RSD1(i), which appear in no row, and omits RU1, RU2, RU3, MX1 and CD10, which do. Treat the renderer, not the domain, as the current code list."
+    },
+    {
+      "name": "Zoning",
+      "type": "large_string",
+      "description": "Zoning designation in force before June 2024, carried forward by the District. Its ArcGIS alias is \"Zoning Prior to June 2024\". Use ZoningNew for current zoning."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Zoning",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.80521874670356,
+          49.48298475537876,
+          -119.60477250214038,
+          49.7160506066114
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "zoning": {
+      "href": "./zoning.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 514029,
+      "file:checksum": "1220f98fe13801a0e88450b3a287133ac8838c24bee33c4d38d12243872435ff6db4",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./zoning.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 33259,
+      "file:checksum": "1220fd7f55519e4a232cd16fe4019469a21dcb5730542b1bde9aee2148583fe99429"
+    },
+    "zoning-tiles": {
+      "href": "./zoning.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "zoning (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 336189,
+      "file:checksum": "1220bfc8c3faaf87f027783dbaa3ff0f5861087dc8cf5dd818cd575729dc07aae09e"
+    },
+    "styles/zone-code": {
+      "href": "./styles/zone-code.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style"
+      ],
+      "title": "Zone code",
+      "file:size": 1880,
+      "file:checksum": "1220062d5202ea47487b587974490623ba771a88bf0be5e7704aae17619d0ebe0af7"
+    },
+    "styles/zone-group": {
+      "href": "./styles/zone-group.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Zone group",
+      "file:size": 1548,
+      "file:checksum": "122018705abaef3b2f2ed535083069059e8d64fce4c4f95e09cce7203399a0653818"
+    }
+  },
+  "keywords": [
+    "Planning",
+    "Building",
+    "Development"
+  ]
+}

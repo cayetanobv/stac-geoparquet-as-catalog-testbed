@@ -1,0 +1,223 @@
+{
+  "type": "Collection",
+  "id": "environment/radon-risk-map",
+  "stac_version": "1.1.0",
+  "description": "This map shows a prediction of the number of the houses in any one area that are likely to have high radon levels. Those areas in red are most at risk from radon and are called High Radon Areas. The map is based on an analysis of indoor radon measurements plus geological information including, bedrock type, quaternary geology, soil permeability and aquifer type. The areas of the map in orange and yellow are areas of medium and low risk respectively..",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./epa_radonriskmapofireland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radon Risk Map of Ireland",
+      "pmtiles:layers": [
+        "epa_radonriskmapofireland"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://gis.epa.ie/geonetwork/srv/eng/catalog.search#/metadata/3b2e9226-c40a-44c9-b4f0-7234c0810769",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gis.epa.ie/geoserver/EPA/ows",
+      "rel": "related",
+      "title": "WFS source service: epa_radonriskmapofireland",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://gis.epa.ie/geoserver/EPA/ows",
+      "rel": "related",
+      "title": "EPA GeoServer WFS 2.0.0, layer EPA:RadonRiskMapofIreland",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 68007,
+  "table:row_count": 68007,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:29902')",
+      "description": "Feature geometry in WGS 84 (OGC:CRS84) after conversion; the service stores it in TM65 / Irish Grid (EPSG:29902). The only column declared as geometry."
+    },
+    {
+      "name": "Risk",
+      "type": "string",
+      "description": "Radon risk statement the EPA publishes for the area, phrased as the share of homes likely to have high radon levels (for example \"About 1 in 10 homes in this area is likely to have high radon levels\")."
+    },
+    {
+      "name": "URL",
+      "type": "string",
+      "description": "Link to the EPA radon testing page the publisher attaches to the area."
+    },
+    {
+      "name": "URLtext",
+      "type": "string",
+      "description": "Display label for the URL column, \"Test your home\" throughout."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Bounding box of the geometry as a struct of xmin, ymin, xmax, ymax, added by the GeoParquet conversion."
+    }
+  ],
+  "title": "Radon Risk Map of Ireland",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -10.656180361530346,
+          51.423512805546004,
+          -5.998944566156524,
+          55.384004163531316
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radon Risk Map of Ireland default style",
+      "description": "Default visualization for Radon Risk Map of Ireland, drawn in #7f2704.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1250,
+      "file:checksum": "122059b3082903c6c084487e8ebaefe51f066027be5ed96b61d2ea97be4532812f79"
+    },
+    "epa_radonriskmapofireland": {
+      "href": "./epa_radonriskmapofireland.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 47372658,
+      "file:checksum": "1220983968036d173e90d052ac9badc420532d6d1177a27dd85d682db1fedc6d2006",
+      "proj:code": "EPSG:29902",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./epa_radonriskmapofireland.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Radon Risk Map of Ireland (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 91016258,
+      "file:checksum": "1220ffaa66926118d5f5bb14a82925614e1e6fd08a4ad2e3015311a768c9e78886eb"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radon Risk Map of Ireland categorical style",
+      "description": "Categorical visualization coloring Radon Risk Map of Ireland by Risk, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2486,
+      "file:checksum": "1220da5d4ddccd2d49d9e1967fb238267e8ad9469313d0770cee14875e7f8174694e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Radon Risk Map of Ireland labeled style",
+      "description": "Default visualization for Radon Risk Map of Ireland with Risk shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1689,
+      "file:checksum": "122064910b22e7ea4b9e3b3d4c6d1fd392a0331d9abc9bd8f54e44ad67753cb58355"
+    },
+    "thumbnail": {
+      "href": "./epa_radonriskmapofireland.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Radon Risk Map of Ireland",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 130049,
+      "file:checksum": "1220e8456aad4cdeb75eb93985a7f2a7ffa60c3d388abb2d6b71ee1307f1ab21d114"
+    }
+  },
+  "keywords": [
+    "Ireland",
+    "EPA",
+    "environment",
+    "open data"
+  ],
+  "providers": [
+    {
+      "name": "Environmental Protection Agency (EPA)",
+      "description": "The Environmental Protection Agency is the Irish competent authority for environmental licensing, monitoring and Water Framework Directive reporting, and publishes the national environmental spatial data through its GeoServer WFS at gis.epa.ie. Source read 2026-09-20.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.epa.ie/",
+      "email": "info@epa.ie"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T16:00:00Z"
+}

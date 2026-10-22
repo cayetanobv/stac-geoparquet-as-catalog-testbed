@@ -1,0 +1,177 @@
+{
+  "type": "Collection",
+  "id": "mjip/wegen",
+  "stac_version": "1.1.0",
+  "description": "Wegen",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./wegen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "wegen"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 218,
+  "table:row_count": 218,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "FID",
+      "type": "int64"
+    },
+    {
+      "name": "Planjaar",
+      "type": "int32"
+    },
+    {
+      "name": "Eindjaar",
+      "type": "int32"
+    },
+    {
+      "name": "FCC_ID",
+      "type": "string"
+    },
+    {
+      "name": "Naam",
+      "type": "string"
+    },
+    {
+      "name": "Locatie_om",
+      "type": "string"
+    },
+    {
+      "name": "Vakgebied",
+      "type": "string"
+    },
+    {
+      "name": "Type_proje",
+      "type": "string"
+    },
+    {
+      "name": "Type_onder",
+      "type": "string"
+    },
+    {
+      "name": "Shape__Area",
+      "type": "double"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Wegen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.9754073405244,
+          52.0410803626058,
+          5.18389009771421,
+          52.1322164847538
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "wegen": {
+      "href": "./wegen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3048360,
+      "file:checksum": "122059b0de9341789308e795b46552d134e05f8f10726361d855395cfae60b7a3765",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./wegen.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 12625,
+      "file:checksum": "122085ec950af6ff5364857c8c1da07d047144f58c3ed56ca6ec68d1967c7ee3244f"
+    },
+    "wegen-tiles": {
+      "href": "./wegen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "wegen (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 976335,
+      "file:checksum": "1220d23d8adf7ecec2c10b8393f7fd68bb5e8c91ea1a7c3a09891adb7b9218010444"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 706,
+      "file:checksum": "1220070c89a2688f8ac41a250a45f78c70519ad13d86590fc34176cad90e7bb74cf0",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

@@ -1,0 +1,208 @@
+{
+  "type": "Collection",
+  "id": "oepnv/haltestellen-wiener-linien",
+  "stac_version": "1.1.0",
+  "description": "Haltestellen der Wiener Linien, Standorte, Wien",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ogdwien_haltestellewlogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Haltestellen Standorte Wien",
+      "pmtiles:layers": [
+        "ogdwien_haltestellewlogd"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/deed.de",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.data.gv.at/katalog/datasets/21fca925-12ac-4215-ba1a-a9c73cb3b082",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.wien.gv.at/daten/geo",
+      "rel": "related",
+      "title": "WFS source service: haltestellewlogd",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1807,
+  "table:row_count": 1807,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31256')",
+      "description": "Geometrie des Objekts (Punkt) in EPSG:31256, MGI / Austria GK East, wie vom WFS geliefert; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Interne Objektkennung."
+    },
+    {
+      "name": "BEZEICHNUNG",
+      "type": "string",
+      "description": "Haltestellenbezeichnung."
+    },
+    {
+      "name": "WL_NUMMER",
+      "type": "int64",
+      "description": "Haltestellennummer der Wiener Linien; vom Publizierer nicht beschrieben."
+    },
+    {
+      "name": "SE_ANNO_CAD_DATA",
+      "type": "string",
+      "description": "Interne CAD-Annotationsspalte, nicht beschrieben, in den Stichproben leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Haltestellen Standorte Wien",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          16.198619897797847,
+          48.12238010924024,
+          16.54938990033123,
+          48.31110010965271
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Haltestellen Standorte Wien default style",
+      "description": "Default visualization for Haltestellen Standorte Wien, drawn in #c51b8a.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1245,
+      "file:checksum": "1220c8a345c06b5acc058c83b83852575ea314d553ac1ac96f96df4311422729b205"
+    },
+    "ogdwien_haltestellewlogd": {
+      "href": "./ogdwien_haltestellewlogd.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 95993,
+      "file:checksum": "1220d627af5df2aa91977a786d9ceb1bfda5ab5486e123eb64fb7160f5489141f7d1",
+      "proj:code": "EPSG:31256",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./ogdwien_haltestellewlogd.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Haltestellen Standorte Wien (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 130224,
+      "file:checksum": "1220f5fc2780bc935abd05d1bf2384c53f5a933bfa9137bf08c0ecc46b412b057cb1"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Haltestellen Standorte Wien graduated style",
+      "description": "Graduated visualization coloring Haltestellen Standorte Wien by WL_NUMMER, ramped from 1.0 to 14199.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2015,
+      "file:checksum": "1220482374df394d1956ca849b0f504bffac515cc1dccef8f692469334418c0101bf"
+    },
+    "thumbnail": {
+      "href": "./ogdwien_haltestellewlogd.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Haltestellen Standorte Wien",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 119834,
+      "file:checksum": "12207fb5a1a7665a3e0468ea3114251573f512f5b49bc85e1ea7138eb06e4377f4cc"
+    }
+  },
+  "keywords": [
+    "ViennaGIS",
+    "\u00d6ffentlicher Verkehr",
+    "Haltestelle",
+    "Wien"
+  ],
+  "providers": [
+    {
+      "name": "Stadt Wien",
+      "description": "Datenquelle: Stadt Wien \u2013 data.wien.gv.at, Haltestellen Standorte Wien, abgerufen am 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://digitales.wien.gv.at/open-data/",
+      "email": "open@post.wien.gv.at"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T14:30:00Z"
+}

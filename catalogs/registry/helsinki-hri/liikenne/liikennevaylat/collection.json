@@ -1,0 +1,304 @@
+{
+  "type": "Collection",
+  "id": "liikenne/liikennevaylat",
+  "stac_version": "1.1.0",
+  "description": "Helsingin liikennev\u00e4yl\u00e4t (keskilinja-aineisto) sis\u00e4lt\u00e4\u00e4 jalankulun ja py\u00f6r\u00e4ilyn sek\u00e4 ajoneuvoliikenteen v\u00e4ylien digitoidut keskilinjat Helsingin alueella. V\u00e4yl\u00e4t on luokiteltu katu- ja py\u00f6r\u00e4liikenteen suunnitteluohjeiden mukaisesti. Ominaisuustietoina on mm. sillat ja alikulut, py\u00f6r\u00e4v\u00e4ylien yksi- ja kaksisuuntaisuus sek\u00e4 hierarkia. Kevyenliikenteen v\u00e4yl\u00e4tyyppej\u00e4 ja useampia samansuuntaisia ajokaistoja on yhdistetty yhdeksi viivaksi.\nRuotsiksi: Helsingfors v\u00e4gkarta. Englanniksi: City of Helsinki road map.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./liikennevaylat.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat)",
+      "pmtiles:layers": [
+        "liikennevaylat"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hri.fi/data/fi/dataset/helsingin-liikennevaylat",
+      "type": "text/html"
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?service=WFS&version=2.0.0&request=GetFeature&typeNames=avoindata:Liikennevaylat&outputFormat=application/json&srsName=EPSG:4326&CQL_FILTER=geom%20IS%20NOT%20NULL",
+      "rel": "related",
+      "title": "Upstream source: liikennevaylat",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wfs?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WFS (avoindata)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://kartta.hel.fi/ws/geoserver/avoindata/wms?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0",
+      "rel": "related",
+      "title": "Helsingin kaupungin avoin WMS (avoindata)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point Z",
+    "LineString Z"
+  ],
+  "geoparquet:feature_count": 111094,
+  "table:row_count": 111094,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "id",
+      "type": "int32",
+      "description": "kohteen yksil\u00f6llinen tunniste."
+    },
+    {
+      "name": "uuid",
+      "type": "string",
+      "description": "uniikki tunniste."
+    },
+    {
+      "name": "paatyyppi",
+      "type": "string",
+      "description": "yl\u00e4m\u00e4\u00e4rittely v\u00e4yl\u00e4tyypille."
+    },
+    {
+      "name": "alatyyppi",
+      "type": "string",
+      "description": "tarkempi v\u00e4yl\u00e4tyyppi."
+    },
+    {
+      "name": "silta_alikulku",
+      "type": "string",
+      "description": "kertoo, onko v\u00e4yl\u00e4 sillalla, alikulussa vai maanpinnan tasossa."
+    },
+    {
+      "name": "yksisuuntaisuus",
+      "type": "string",
+      "description": "v\u00e4yl\u00e4n yksisuuntaisuustieto."
+    },
+    {
+      "name": "hierarkia",
+      "type": "string",
+      "description": "hierarkiatieto."
+    },
+    {
+      "name": "korkeuslahde",
+      "type": "int32"
+    },
+    {
+      "name": "nimi",
+      "type": "string",
+      "description": "nimitieto."
+    },
+    {
+      "name": "pituus",
+      "type": "double",
+      "description": "valitun viivan pituus."
+    },
+    {
+      "name": "lisatietoja",
+      "type": "string",
+      "description": "lis\u00e4tiedot."
+    },
+    {
+      "name": "yhtdatanomistaja",
+      "type": "string",
+      "description": "tiedon omistajan nimi."
+    },
+    {
+      "name": "paivitetty_tietopalveluun",
+      "type": "date",
+      "description": "aineiston p\u00e4ivitysp\u00e4iv\u00e4m\u00e4\u00e4r\u00e4."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Kohteen geometria (CurvePropertyType) WGS 84 -koordinaatistossa (OGC:CRS84); GeoServer palautti sen srsName=EPSG:4326-pyynn\u00f6ll\u00e4 pituus-/leveysasteina. Sarakkeen nimi on geom (GeoJSON-polku), ei geometry."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Geometrian rajaava suorakulmio rakenteena xmin, ymin, xmax, ymax; muunnoksen lis\u00e4\u00e4m\u00e4."
+    }
+  ],
+  "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          24.832256,
+          60.130899,
+          25.251967,
+          60.295541
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) default style",
+      "description": "Default visualization for Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat), drawn in #e41a1c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1218,
+      "file:checksum": "12206bfff2468099cd7238f545a0a8e66e432a1b56beeef351566664390dd6d8267a"
+    },
+    "liikennevaylat": {
+      "href": "./liikennevaylat.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8824656,
+      "file:checksum": "12207f53bfb035ed65524653c85b5cc8a55209e420ca22c0e9fbac9f79137d1cd29b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./liikennevaylat.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 17708029,
+      "file:checksum": "1220b32dbe300efdcbca328a285951b55c80069162dbafa61adc0d6426e029b83283"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) categorical style",
+      "description": "Categorical visualization coloring Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) by paatyyppi, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2045,
+      "file:checksum": "1220441821db70200ef45428f9d8d8a2457f0c3726b50438514e231436694c0bca9c"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) labeled style",
+      "description": "Default visualization for Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) with yhtdatanomistaja shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1647,
+      "file:checksum": "1220ee9e8252ffd934eafdff1352b8d966a84a2435e797dd1033693ee2e4b0dba0e9"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) graduated style",
+      "description": "Graduated visualization coloring Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat) by pituus, ramped from 0.0 to 1874.45.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1979,
+      "file:checksum": "1220be38c2919b5fda46338803d302b30e69438802ae231769c32cb5bc59d6a99e6f"
+    },
+    "thumbnail": {
+      "href": "./liikennevaylat.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Helsingin liikennev\u00e4yl\u00e4t \u2013 keskilinjat (Liikennevaylat)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 252046,
+      "file:checksum": "12200de2339578d9ded2de84ba644ccd695ec02c1eb2b168a42fd1ea821c18d9fe60"
+    }
+  },
+  "keywords": [
+    "ajoneuvot",
+    "jalankulku",
+    "jalkak\u00e4yt\u00e4v\u00e4t",
+    "kadut",
+    "keskilinja",
+    "kevyt-liikenne",
+    "liikenne",
+    "liikennesuunnittelu",
+    "moottoriajoneuvot",
+    "puistot",
+    "puistotiet",
+    "py\u00f6r\u00e4ily",
+    "tieliikenne",
+    "tiest\u00f6",
+    "katutila",
+    "ajoneuvoliikenne",
+    "Liikennevaylat",
+    "Helsinki",
+    "Helsingin kaupunki"
+  ],
+  "providers": [
+    {
+      "name": "Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala",
+      "description": "L\u00e4hde: Helsingin kaupunki, Helsingin kaupunkiymp\u00e4rist\u00f6n toimiala / Kaupunkimittauspalvelut, \u00abHelsingin liikennev\u00e4yl\u00e4t\u00bb, Helsinki Region Infoshare (hri.fi), haettu 19.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://hri.fi/data/fi/dataset/helsingin-liikennevaylat",
+      "email": "kaupunkimittaus@hel.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-19T18:30:00Z"
+}

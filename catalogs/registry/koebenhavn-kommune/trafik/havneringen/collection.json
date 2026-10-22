@@ -1,0 +1,265 @@
+{
+  "type": "Collection",
+  "id": "trafik/havneringen",
+  "stac_version": "1.1.0",
+  "description": "13 km lang gang-, l\u00f8be- og cykelrute langs K\u00f8benhavns havn fra Inderhavnsbroen i nord til slusen i syd.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_havneringen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Havneringen",
+      "pmtiles:layers": [
+        "k101_havneringen"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/havneringen",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: havneringen",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiLineString",
+  "geoparquet:feature_count": 50,
+  "table:row_count": 50,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "traekning_type",
+      "type": "string"
+    },
+    {
+      "name": "groen_cykelrute",
+      "type": "string"
+    },
+    {
+      "name": "groen_cykelrute_navn",
+      "type": "string"
+    },
+    {
+      "name": "groen_cykelrute_nr",
+      "type": "string"
+    },
+    {
+      "name": "supercykelsti",
+      "type": "string"
+    },
+    {
+      "name": "supercykelsti_navn",
+      "type": "string"
+    },
+    {
+      "name": "supercykelsti_nr",
+      "type": "string"
+    },
+    {
+      "name": "national_cykelrute",
+      "type": "string"
+    },
+    {
+      "name": "national_cykelrute_navn",
+      "type": "string"
+    },
+    {
+      "name": "national_cykelrute_nr",
+      "type": "string"
+    },
+    {
+      "name": "plusnet",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "kommune",
+      "type": "string"
+    },
+    {
+      "name": "ogc_fid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Havneringen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.5473063044634,
+          55.64200155355537,
+          12.5978192390245,
+          55.6789558720378
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Havneringen default style",
+      "description": "Default visualization for Havneringen, drawn in #a63603.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1173,
+      "file:checksum": "1220b3436c0d2bf96ed7bc2430b61c24424b0aea920b50449ab056ce487c78a4a5ac"
+    },
+    "k101_havneringen": {
+      "href": "./k101_havneringen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 18169,
+      "file:checksum": "12200a3296b0a23d74c68d276fe9285ba06df6edc3b000066b469db25a9378d808e9",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_havneringen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Havneringen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 29297,
+      "file:checksum": "12202f52b853e446e4d3232b9095f7fcfdc7b0d971698018f786f6a00c2f89cbfc5d"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Havneringen categorical style",
+      "description": "Categorical visualization coloring Havneringen by traekning_type, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1795,
+      "file:checksum": "1220b3bfda10dacc5cdb9a0fbb04233b2a8f65a85b1364ad22a724673f4ca6629edb"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Havneringen labeled style",
+      "description": "Default visualization for Havneringen with traekning_type shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1604,
+      "file:checksum": "1220bd6d95621edfd7bd433ff0786883b28620310b59f000d552cee6ed8324a46c5e"
+    },
+    "thumbnail": {
+      "href": "./k101_havneringen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Havneringen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 168742,
+      "file:checksum": "122044ee2d5b4978e2827c1abaa90768b928ce39031753de09b2c9c4fecc1d9639c9"
+    }
+  },
+  "keywords": [
+    "Havneringen",
+    "cykelrute",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Havneringen, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/havneringen",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

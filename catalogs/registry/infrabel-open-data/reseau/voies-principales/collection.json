@@ -1,0 +1,273 @@
+{
+  "type": "Collection",
+  "id": "reseau/voies-principales",
+  "stac_version": "1.1.0",
+  "description": "Liste et trac\u00e9 g\u00e9ographique des voies principales auxquelles ont \u00e9t\u00e9 attribu\u00e9es un num\u00e9ro de ligne (par ex.: L161)\n\nNote :\nUn autre dataset reprend le trac\u00e9 et la position de tous les segments de voie du r\u00e9seau Infrabel (https://infrabel.opendatasoft.com/explore/dataset/geografische-positie-van-alle-spoorsegmenten).\n\nCe dataset est li\u00e9 \u00e0 trois autres jeux de donn\u00e9es\n\n- Liste et trac\u00e9 de tous les segments de voie (https://infrabel.opendatasoft.com/explore/dataset/geografische-positie-van-alle-spoorsegmenten): Position de tous les segments de voie du r\u00e9seau Infrabel, pas seulement les voies principales.\n- Bornes kilom\u00e9triques (https://infrabel.opendatasoft.com/explore/dataset/kilometerpalen-op-het-netwerk/): Position des bornes kilom\u00e9triques le long des voies.\n- Association entre les bornes kilom\u00e9triques et les voies principales (https://infrabel.opendatasoft.com/explore/dataset/relatie-tussen-kilometerpalen-en-lijnen): Donne quelle borne kilom\u00e9trique est d'application pour quelle voie principale (d'une ligne) G\n\nNote importante :\nCes donn\u00e9es sont g\u00e9r\u00e9es suivant le syst\u00e8me de coordonn\u00e9es Lambert72 (EPSG 31370) et donnent le trac\u00e9 des voies avec une pr\u00e9cision de 10 cm \u00e0 1m selon les endroits.\nPour rendre la repr\u00e9sentation sur carte possible sur ce site, les donn\u00e9es ont \u00e9t\u00e9 converties dans le syst\u00e8me de projection WGS84. Ce qui peut donner un trac\u00e9 moins pr\u00e9cis \u00e0 certains endroits.\nDans l'onglet \"Export\", vous trouverez le fichier original en GeoJSON suivant le syst\u00e8me Lambert 72 et les diff\u00e9rentes conversions vers WGS84.\n\nTitre n\u00e9erlandais du publicateur : \u00ab Lijst en geografische voorstelling van de hoofdsporen \u00bb ; titre anglais : \u00ab List and geographical position of the main tracks \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./geosporen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Liste et position g\u00e9ographique des voies principales",
+      "pmtiles:layers": [
+        "geosporen"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://opendata.infrabel.be/pages/license/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.infrabel.be/explore/dataset/geosporen/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.infrabel.be/api/explore/v2.1/catalog/datasets/geosporen/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: geosporen",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "LineString",
+    "MultiLineString"
+  ],
+  "geoparquet:feature_count": 995,
+  "table:row_count": 995,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Num\u00e9ro d'ordre du lecteur GeoJSON de GDAL/OGR, ajout\u00e9 par la conversion ; non stable d'une ex\u00e9cution \u00e0 l'autre."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Centro\u00efde du portail Opendatasoft (champ geo_point_2d), livr\u00e9 par l'export GeoJSON comme objet imbriqu\u00e9 {lon, lat} et conserv\u00e9 par la conversion sous forme de texte JSON ; redondant avec geom."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "Identifiant de la voie."
+    },
+    {
+      "name": "modifdate",
+      "type": "date",
+      "description": "Date de modification du trac\u00e9. Date de la derni\u00e8re modification du trac\u00e9"
+    },
+    {
+      "name": "trackcode",
+      "type": "string",
+      "description": "Code de la voie."
+    },
+    {
+      "name": "trackname",
+      "type": "string",
+      "description": "Voie. Nom de la voie : A ou B pour les doubles voies ; E/U pour les voies uniques"
+    },
+    {
+      "name": "linecnum",
+      "type": "int32",
+      "description": "Code de la ligne. Code num\u00e9rique de la ligne \u00e0 laquelle appartient la voie"
+    },
+    {
+      "name": "linecalfa",
+      "type": "string",
+      "description": "Num\u00e9ro de ligne. Code alphanum\u00e9rique pour d\u00e9signer les lignes du transport voyageurs"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "description": "Variante n\u00e9erlandaise d'un champ trilingue ; libell\u00e9 du publicateur \u00ab Status \u00bb. M\u00eame information que etat."
+    },
+    {
+      "name": "etat",
+      "type": "string",
+      "description": "Status. La ligne est-elle en activit\u00e9 ou hors service"
+    },
+    {
+      "name": "exploitation",
+      "type": "string",
+      "description": "Variante anglaise d'un champ trilingue ; libell\u00e9 du publicateur \u00ab Operational status \u00bb. Is the track in operation or out of service ? M\u00eame information que etat."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "G\u00e9om\u00e9trie (LineString, MultiLineString et quatre Point) en WGS 84 (OGC:CRS84) telle que servie par l'export GeoJSON du portail ; le publicateur g\u00e8re les donn\u00e9es en Lambert 72 (EPSG:31370) et les reprojette lui-m\u00eame. Seule colonne d\u00e9clar\u00e9e comme g\u00e9om\u00e9trie (nom geom selon la conversion du 20.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rectangle englobant de la g\u00e9om\u00e9trie (structure xmin, ymin, xmax, ymax), ajout\u00e9 par la conversion."
+    }
+  ],
+  "title": "Liste et position g\u00e9ographique des voies principales",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.597545817301533,
+          49.54626848371413,
+          6.126146738289453,
+          51.48595931885757
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liste et position g\u00e9ographique des voies principales default style",
+      "description": "Default visualization for Liste et position g\u00e9ographique des voies principales, drawn in #1f78b4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1170,
+      "file:checksum": "1220c316c790fc397d857c79116fe8fea2ad4baf7f7d005fbeba1c0b8572bef16186"
+    },
+    "geosporen": {
+      "href": "./geosporen.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 6774058,
+      "file:checksum": "1220d64954b9102155cd0beb38ae17173e38fcb489944ed797c7b492b883e02aac88",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./geosporen.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Liste et position g\u00e9ographique des voies principales (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3759032,
+      "file:checksum": "12200665bcb03c083f06d825d00e41afb105ea59b7c3bd5d8ee536b7b2c6a6062c21"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liste et position g\u00e9ographique des voies principales categorical style",
+      "description": "Categorical visualization coloring Liste et position g\u00e9ographique des voies principales by status, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1787,
+      "file:checksum": "122097d2fea1651af266221d49f853c736f14e2fbe96a1777f140bbe3c53cbb22aec"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liste et position g\u00e9ographique des voies principales labeled style",
+      "description": "Default visualization for Liste et position g\u00e9ographique des voies principales with trackname shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1582,
+      "file:checksum": "12203816b578d8cbc2455e6aaabd6b193c1511e66501448299b13704122e5a97275c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Liste et position g\u00e9ographique des voies principales graduated style",
+      "description": "Graduated visualization coloring Liste et position g\u00e9ographique des voies principales by linecnum, ramped from 1.0 to 2241.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1933,
+      "file:checksum": "122077a495f3c33f18f7839c069fe9fcac4b675036e7a374f98ffede0a6fa2a6d830"
+    },
+    "thumbnail": {
+      "href": "./geosporen.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Liste et position g\u00e9ographique des voies principales",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 189169,
+      "file:checksum": "12203b0e14f563dbd80c6f71b6b9d68290e1b87e591d81a306bb6518dea2798c5f6e"
+    }
+  },
+  "keywords": [
+    "G\u00e9olocalisation",
+    "Lignes",
+    "Voies",
+    "Voies principales",
+    "Infrastructure",
+    "Infrabel",
+    "Belgique",
+    "Chemin de fer"
+  ],
+  "providers": [
+    {
+      "name": "Infrabel",
+      "description": "Source : Infrabel, Infrabel Open Data (opendata.infrabel.be), \u00ab Liste et position g\u00e9ographique des voies principales \u00bb, direction publiante \u00ab Assets Management \u00bb, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://infrabel.be",
+      "email": "contact@infrabel.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T14:00:00Z"
+}

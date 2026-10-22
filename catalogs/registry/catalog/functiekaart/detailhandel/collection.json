@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart/detailhandel",
+  "stac_version": "1.1.0",
+  "description": "Detailhandel",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./detailhandel.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "detailhandel"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 2144,
+  "table:row_count": 2144,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Detailhandel",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.97902764050838,
+          52.0556245485922,
+          5.18126968348967,
+          52.1303666195971
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "detailhandel": {
+      "href": "./detailhandel.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 94352,
+      "file:checksum": "12205b1460382c6a93fb27ec282fafcf2609bc7dcbb82b4d980519f04e74604d334e",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./detailhandel.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 9434,
+      "file:checksum": "12203669bd5fa1d3141886100aa46e51b6fdf29e24c9071eee4c0446783eed13d541"
+    },
+    "detailhandel-tiles": {
+      "href": "./detailhandel.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "detailhandel (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 45211,
+      "file:checksum": "1220abaacb6134c9109c1de4e24d067fc01a6a00b23377df37448aa4b011eef9fb7e"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 670,
+      "file:checksum": "1220cbb9402febd954c76fcd45d9475adfdea24d806b7d6eac90b05a5c73004d07ff",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

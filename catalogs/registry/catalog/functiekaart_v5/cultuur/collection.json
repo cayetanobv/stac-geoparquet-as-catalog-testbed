@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_v5/cultuur",
+  "stac_version": "1.1.0",
+  "description": "Cultuur",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./cultuur.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "cultuur"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 699,
+  "table:row_count": 699,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Cultuur",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.98413698204695,
+          52.0603583217373,
+          5.17266552832383,
+          52.1317368934716
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "cultuur": {
+      "href": "./cultuur.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 33011,
+      "file:checksum": "1220018a7e488321b63cc93cb0c0074ab1021b279773540fcb98a6b294b40cd0edb6",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./cultuur.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 9578,
+      "file:checksum": "1220723a23e4d41e4f4e61c1f60b1e711232776a9c9298f0e796191df97a64afd7f3"
+    },
+    "cultuur-tiles": {
+      "href": "./cultuur.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "cultuur (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 18983,
+      "file:checksum": "12206ad93080ef4e7ab12cbe0a7d4cad30c375b42f9dde4a7ac02eaf5d00f6ad13ed"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 648,
+      "file:checksum": "1220e0d34ca930162ad4cc369de1cf6753e5bc9996b4bdc80129c7dd5bcdca621bba",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

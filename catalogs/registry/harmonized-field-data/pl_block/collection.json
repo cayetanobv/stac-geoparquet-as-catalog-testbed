@@ -1,0 +1,248 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/processing/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://schemas.portolan-sdi.org/incubating/partition/v1.0.0/schema.json"
+  ],
+  "id": "pl_block",
+  "title": "Field blocks for Poland",
+  "description": "The maximum eligible area (MKO JPO, \"maksymalny kwalifikowalny obszar\") of Poland's Land Parcel\nIdentification System, published by the paying agency ARiMR. Poland's reference parcel is the\ncadastral parcel; each polygon is the part of one parcel that is eligible for the single area\npayment. The layer carries no crop or land-cover class. ARiMR publishes only the current state.\n\nThis collection holds 1 edition (2025), one GeoParquet file per year under `year=<year>/` (hive layout). Read them all at once with the partition glob `s3://ftw/harmonized-field-data/pl_block/year=*/*.parquet` (S3 through the Source Cooperative proxy, endpoint `https://data.source.coop`; plain https cannot expand `*`); the `data` asset is a copy of the latest edition (2025). Geometries are kept in the source CRS (EPSG:2180). Converted with [fiboa-cli](https://github.com/fiboa/cli) into the [fiboa](https://github.com/fiboa/specification) schema; tested queries are in the collection's [AGENTS.md](https://source.coop/ftw/harmonized-field-data/pl_block/AGENTS.md).\n\nBoundaries are declared: they come from farmers' subsidy applications, or from the parcel register built on those declarations.",
+  "boundaries": "declared",
+  "keywords": [
+    "ARiMR",
+    "LPIS",
+    "MKO",
+    "Poland",
+    "agriculture",
+    "fiboa",
+    "field blocks",
+    "field boundaries",
+    "maximum eligible area"
+  ],
+  "license": "other",
+  "providers": [
+    {
+      "name": "Agencja Restrukturyzacji i Modernizacji Rolnictwa",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://geoportal.arimr.gov.pl/mapy/apps/sites/#/portal"
+    },
+    {
+      "name": "Fields of the World",
+      "url": "https://fieldsofthe.world",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          14.124993574039099,
+          49.012937957241896,
+          24.14578111496658,
+          54.83526763362545
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2025-11-25T00:00:00Z",
+          "2025-11-25T00:00:00Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:2180"
+    ]
+  },
+  "table:columns": [
+    {
+      "name": "metrics:area",
+      "type": "float",
+      "description": "Area of the field, in square meters (m²). Must be > 0 and <= 1,000,000,000. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "An identifier for the field. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "A geometry that reflects the footprint of the field, usually a Polygon. Stored in the source CRS (see `proj:code`), not reprojected. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    },
+    {
+      "name": "admin:subdivision_code",
+      "type": "string",
+      "description": "ISO 3166-2 code for the principal subdivision (e.g., province or state, aka admin1) of a country that contains the field. Only the second part of the ISO 3166-2 code is stored. ([spec](https://github.com/vecorel/administrative-division-extension/blob/main/README.md))"
+    },
+    {
+      "name": "parcel_id",
+      "type": "string",
+      "description": "Carried over from the source column `id_ewidenc`; the publisher documents no meaning for it."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "The bounding box of the field. Per-feature covering column (GeoParquet 1.1), in the source CRS. ([spec](https://github.com/fiboa/specification/blob/main/core/README.md))"
+    }
+  ],
+  "table:primary_geometry": "geometry",
+  "table:row_count": 12955563,
+  "partition:scheme": "hive",
+  "partition:strategy": "temporal",
+  "partition:keys": [
+    {
+      "name": "year",
+      "type": "int32",
+      "description": "Edition year of the source dataset (the converter variant). Not a column in the files; DuckDB adds it with hive_partitioning=true. Expand the glob through S3 (endpoint data.source.coop, path style); plain https has no listing."
+    }
+  ],
+  "partition:file_count": 1,
+  "partition:glob": "s3://ftw/harmonized-field-data/pl_block/year=*/*.parquet",
+  "assets": {
+    "data": {
+      "href": "./latest/pl_block.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Poland (blocks) — latest edition (2025) (GeoParquet)",
+      "description": "Byte-identical copy of `year=2025/pl_block.parquet`, kept at a stable path so `*/latest/*.parquet` selects the newest edition of every collection.",
+      "roles": [
+        "data"
+      ],
+      "file:size": 1588381370,
+      "file:checksum": "1220451bcfbf55da677d2ba32fc86842536451bc963e9317ad0f2b61114952c846ab",
+      "proj:code": "EPSG:2180"
+    },
+    "style-field-size": {
+      "href": "./styles/field-size.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field size (ha)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "description": "Fields shaded light to dark by area in hectares (metrics:area / 10 000). Stops at 0.1, 0.25, 0.5, 1 ha, the nice values nearest this dataset's 20th/40th/60th/80th percentiles so each class holds a similar share of fields.",
+      "file:size": 1239,
+      "file:checksum": "1220f0f455a3ad2866964ea5557978b6b4e02ad836f8247fca614d526828539b1a7e"
+    },
+    "style-outline": {
+      "href": "./styles/outline.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Field boundaries",
+      "roles": [
+        "style"
+      ],
+      "description": "Every field in one colour with a thin outline; for reading the boundaries themselves.",
+      "file:size": 748,
+      "file:checksum": "1220f23a9a9fc5f37dd102114c512e499d3adeb4afcd352abf5252d92db5089ed228"
+    },
+    "visual": {
+      "href": "./year=2025/pl_block.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Poland (blocks) — latest edition (2025) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 986529721,
+      "file:checksum": "12206e1549281ccfd2228e8b0907bcd78bfc72ee1d32d910980c5f4d5bd0773d34b4"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.jpg",
+      "type": "image/jpeg",
+      "title": "Preview of the default style over a light basemap. © OpenStreetMap contributors © CARTO.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 314123,
+      "file:checksum": "1220a13956165492dbf519677ba4b3984eefd57b076e7cc96316162efeccc74629d0"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "href": "https://geoportal.arimr.gov.pl/mapy/apps/sites/#/portal",
+      "title": "Publiczne dane ARiMR, no licence stated",
+      "rel": "license",
+      "type": "text/html"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./year=2025/pl_block.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles",
+      "pmtiles:layers": [
+        "pl_block"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://geoportal.arimr.gov.pl/mapy/apps/sites/#/portal",
+      "type": "text/html",
+      "title": "Original source (publisher page)"
+    },
+    {
+      "rel": "related",
+      "href": "https://github.com/fiboa/cli/blob/main/fiboa_cli/datasets/pl_block.py",
+      "type": "text/html",
+      "title": "Converter source code (fiboa-cli)"
+    },
+    {
+      "rel": "item",
+      "href": "./year=2025/pl_block-2025.json",
+      "type": "application/geo+json",
+      "title": "Poland (blocks) — 2025"
+    }
+  ],
+  "updated": "2026-09-27T14:48:43Z",
+  "fiboa_version": "0.3.0",
+  "vecorel_version": "0.1.0",
+  "vecorel_extensions": {
+    "pl_block": [
+      "https://vecorel.org/specification/v0.1.0/schema.yaml",
+      "https://fiboa.org/specification/v0.3.0/schema.yaml",
+      "https://vecorel.org/administrative-division-extension/v0.1.0/schema.yaml"
+    ]
+  },
+  "attribution": "© ARiMR"
+}

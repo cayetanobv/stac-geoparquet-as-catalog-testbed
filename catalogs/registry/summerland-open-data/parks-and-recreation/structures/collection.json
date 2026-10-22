@@ -1,0 +1,182 @@
+{
+  "type": "Collection",
+  "id": "parks-and-recreation/structures",
+  "stac_version": "1.1.0",
+  "description": "Shows the locations of all the structures in the Summerland parks.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.summerland.ca/docs/default-source/gis/summerland-open-government-licence.pdf",
+      "title": "License"
+    },
+    {
+      "rel": "via",
+      "href": "https://open-data-summerland.hub.arcgis.com/search?collection=dataset",
+      "type": "text/html",
+      "title": "Original source"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./structures.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "structures"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "updated": "2026-10-06T20:29:15Z",
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 6,
+  "table:row_count": 6,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "ArcGIS object identifier assigned by the source service. Stable within one extract; not a durable key across refreshes."
+    },
+    {
+      "name": "PARK_NAME",
+      "type": "large_string",
+      "description": "Permitted values: Arena Curling Rink, Banquet Room & Skateboard Park, Bentley Park, Bristow Rd, Canyon View Cemetery, Crescent Beach, Doggie Beach, Downtown, Fyffe Rd, Garnet Valley Dam, Garnett Valley Dam, Giants Head Elementary School and Dale Meadows Park, Giants Head Parks."
+    },
+    {
+      "name": "Description_1",
+      "type": "large_string",
+      "description": "Structure Type."
+    },
+    {
+      "name": "geometry",
+      "type": "binary",
+      "description": "Feature geometry, in EPSG:26911 (NAD83 / UTM zone 11N) as the District publishes it. Reproject to EPSG:4326 to join against WGS84 data."
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>",
+      "description": "Per-row bounding box, the GeoParquet 1.1 covering used for spatial predicate pushdown. Derived, not upstream data."
+    }
+  ],
+  "title": "Park Structures",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -119.65165029256416,
+          49.599535859908286,
+          -119.65012691590871,
+          49.60756430147097
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "providers": [
+    {
+      "name": "District of Summerland",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.summerland.ca/"
+    },
+    {
+      "name": "James Banting",
+      "roles": [
+        "processor"
+      ],
+      "url": "https://source.coop/jbants"
+    },
+    {
+      "name": "Source Cooperative",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/jbants/summerland-open-data"
+    }
+  ],
+  "assets": {
+    "structures": {
+      "href": "./structures.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 14173,
+      "file:checksum": "1220dd596779f8ecee494ade933c26d5d0406ff2257632f10c8cd2dcf567605cb794",
+      "proj:code": "EPSG:26911",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./structures.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 6357,
+      "file:checksum": "122038cf107287bd8eb4ce37a13ac5d607cc36bc04fdd57fe13957cd9d1a4e359482"
+    },
+    "structures-tiles": {
+      "href": "./structures.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "structures (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 3987,
+      "file:checksum": "12203e54bc00a3b087020278c84554fc8e32b7371984ac12062d91cd9807ab821209"
+    },
+    "styles/structures": {
+      "href": "./styles/structures.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Structure",
+      "file:size": 688,
+      "file:checksum": "1220803a2e95ed8669c79512c96ffc1bb059e5c5f26247122e8a83f397dac2c1a470"
+    }
+  },
+  "keywords": [
+    "Community Resources",
+    "Community",
+    "Culture",
+    "Parks and Recreation"
+  ]
+}

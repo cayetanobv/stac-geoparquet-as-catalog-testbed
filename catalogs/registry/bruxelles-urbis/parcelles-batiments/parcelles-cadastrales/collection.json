@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "parcelles-batiments/parcelles-cadastrales",
+  "stac_version": "1.1.0",
+  "description": "Le produit UrbIS \u2013 Parcelles et b\u00e2timents correspond au jeu de donn\u00e9es des b\u00e2timents mod\u00e9lis\u00e9es de mani\u00e8re bidimensionnelle dans la R\u00e9gion bruxelloise ainsi qu'au Plan parcellaire cadastral. Ce jeu de donn\u00e9es est compos\u00e9 de trois classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond aux b\u00e2timents. La deuxi\u00e8me correspond aux adresses (seules celles de statut \u00ab current \u00bb sont incluses dans ce jeu de donn\u00e9es), et la troisi\u00e8me correspond aux parcelles cadastrales. La trois\u00e8me classe provient du SPF Finances. Sa licence est d'application en ce qui concerne la troisi\u00e8me classe.\n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable sous forme de fichiers zipp\u00e9s et via le WFS ad hoc.\n\nCette collection reprend la classe \u00ab Parcelles plan \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:CadastralParcels (Cadastral parcels : \u00ab Cadastral parcels located in the Brussels Region as defined and maintained by the AGDP. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Percelen en gebouwen \u00bb ; titre anglais : \u00ab UrbIS - Parcels and buildings \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://finances.belgium.be/sites/default/files/Licence_plan_opendata_FR.PDF",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_cadastralparcels.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents)",
+      "pmtiles:layers": [
+        "urbisvector_cadastralparcels"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/2cf42541-1813-11ef-8a81-00090ffe0001",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: cadastralparcels",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 212282,
+  "table:row_count": 212282,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "CAPAKEY",
+      "type": "string",
+      "description": "Cl\u00e9 unique et persistante de la parcelle plan (CaPaKey), attribu\u00e9e par l'AGDP."
+    },
+    {
+      "name": "TYPE",
+      "type": "string",
+      "description": "Type de parcelle plan."
+    },
+    {
+      "name": "CADAST_DIV",
+      "type": "int64",
+      "description": "Identifiant de la division cadastrale comprenant la parcelle, fix\u00e9 et maintenu par l'AGDP."
+    },
+    {
+      "name": "MUNNISCODE",
+      "type": "int64",
+      "description": "Code INS de la commune comprenant la parcelle."
+    },
+    {
+      "name": "LABEL",
+      "type": "string"
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable de la parcelle plan, fix\u00e9 et maintenu par l'AGDP."
+    },
+    {
+      "name": "AREA",
+      "type": "int64",
+      "description": "Superficie au sol de la parcelle plan (m\u00b2)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.243765148901479,
+          50.76372778215456,
+          4.480673667189672,
+          50.91390131823435
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents) default style",
+      "description": "Default visualization for Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents), drawn in #fdbb84.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1303,
+      "file:checksum": "12203b5d5d744ed759b44b8cc737dbbcb6321fe8aaa2821dcf5fb5a7b1c10471266d"
+    },
+    "urbisvector_cadastralparcels": {
+      "href": "./urbisvector_cadastralparcels.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 23041522,
+      "file:checksum": "1220458dde73faf93705baa6d7198445106117fdf5721ec484ad3ab104240ea3f787",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_cadastralparcels.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 19159958,
+      "file:checksum": "1220797ccd9f8a7dacaa52fc1bdbfd24583afac25ce28c087e9eaf950ab13fd11e56"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents) labeled style",
+      "description": "Default visualization for Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents) with LABEL shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1749,
+      "file:checksum": "1220d7c4b49649541b93358228293f7d354b5de7aef74b5f3bfad650f1a28ab6dd24"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents) graduated style",
+      "description": "Graduated visualization coloring Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents) by AREA, ramped from 0.0 to 1717820.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2065,
+      "file:checksum": "1220e81c702d30c6d79575aa1199256ce42c2b47a909f8062da73bc1cbfdc0ea31da"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_cadastralparcels.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parcelles plan (UrbIS \u2013 Parcelles et b\u00e2timents)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 184711,
+      "file:checksum": "12200de1b8afa28b7732a2e85e6f74f9e8ffc08d2c17d2d18e62ea3b22e03212a2a4"
+    }
+  },
+  "keywords": [
+    "b\u00e2timent",
+    "Population et soci\u00e9t\u00e9",
+    "Adresses",
+    "B\u00e2timents",
+    "Parcelles cadastrales",
+    "R\u00e9gional",
+    "Adresse",
+    "AgriBuilding",
+    "Parcelle cadastrale",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 Parcelles et b\u00e2timents \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "SPF Finances \u2013 Administration G\u00e9n\u00e9rale de la Documentation Patrimoniale (AGDP)",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://finances.belgium.be",
+      "email": "datadelivery@minfin.fed.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

@@ -1,0 +1,331 @@
+{
+  "type": "Collection",
+  "id": "tiesto/tieviiva",
+  "stac_version": "1.1.0",
+  "description": "tieviiva",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./tieviiva.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "tieviiva",
+      "pmtiles:layers": [
+        "tieviiva"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/tieviiva/items",
+      "rel": "related",
+      "title": "OGC API source service: tieviiva",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 3792704,
+  "table:row_count": 3792704,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "korkeustarkkuus",
+      "type": "int32",
+      "description": "Kohteen korkeustarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4. Arvo 1 tarkoittaa m\u00e4\u00e4rittelem\u00e4t\u00f6nt\u00e4. Korkeusmallista interpoloitua korkeutta merkit\u00e4\u00e4n omilla koodeillaan, 201 kahden metrin mallille, 100001 kymmenen metrin mallille ja 250001 kahdenkymmenenviiden metrin mallille."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kulkutapa",
+      "type": "int32",
+      "description": "Viivan kulkutavan koodi. Arvot ovat 1 murtoviiva, 2 k\u00e4yr\u00e4viiva ja 4 tihent\u00e4m\u00e4t\u00f6n k\u00e4yr\u00e4viiva. Murtoviiva kulkee kontrollipisteest\u00e4 kontrollipisteeseen, kun taas k\u00e4yr\u00e4viivaan on interpoloitu tihennyspisteit\u00e4 kuvaamaan muotoa tarkemmin."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 25, joka vastaa viivamaisia Tiest\u00f6-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvoja on 13. Autoteiden luokat 12111 ja 12112 ovat Autotie Ia ja Ib, 12121 ja 12122 Autotie IIa ja IIb, 12131 ja 12132 Autotie IIIa ja IIIb ja 12141 ajotie, ja luokka m\u00e4\u00e4r\u00e4ytyy tien liikennekelpoisuuden mukaan. Muut arvot ovat 12151 lautta, 12152 lossi, 12312 talvitie, 12313 polku, 12314 k\u00e4vely- ja py\u00f6r\u00e4tie sek\u00e4 12316 ajopolku."
+    },
+    {
+      "name": "tasosijainti",
+      "type": "int32",
+      "description": "Kohteen tasosijainnin koodi, jossa 0 tarkoittaa pinnalla, -1 pinnan alla ja 1 pinnan yll\u00e4. Tasosijainti kuvaa kulkuyhteyksien ja johtojen keskin\u00e4ist\u00e4 riste\u00e4mist\u00e4, ei korkeutta merenpinnasta."
+    },
+    {
+      "name": "valmiusaste",
+      "type": "int32",
+      "description": "Kohteen valmiusasteen koodi. Luokat ovat valmis, rakenteilla, k\u00e4yt\u00f6st\u00e4 poistettu ja suunnitteilla."
+    },
+    {
+      "name": "paallyste",
+      "type": "int32",
+      "description": "Kohteen p\u00e4\u00e4llysteen koodi. Luokat ovat kestop\u00e4\u00e4llyste, ei p\u00e4\u00e4llystett\u00e4 ja tuntematon."
+    },
+    {
+      "name": "yksisuuntaisuus",
+      "type": "int32",
+      "description": "Tieviivan yksisuuntaisuuden koodi, jossa 0 tarkoittaa kaksisuuntaista v\u00e4yl\u00e4\u00e4. Yksisuuntaisen v\u00e4yl\u00e4n kulkusuunta on viivan digitointisuunta."
+    },
+    {
+      "name": "tienumero",
+      "type": "int32",
+      "description": "V\u00e4yl\u00e4viraston yleiselle tielle antama tienumero. Sarake on tyhj\u00e4 muilla kuin yleisill\u00e4 teill\u00e4."
+    },
+    {
+      "name": "tieosanumero",
+      "type": "int32",
+      "description": "V\u00e4yl\u00e4viraston yleisen tien osalle antama tieosanumero. Sarake on tyhj\u00e4 muilla kuin yleisill\u00e4 teill\u00e4."
+    },
+    {
+      "name": "minosoitenumerovasen",
+      "type": "int32",
+      "description": "Tieosuuden pienin osoitenumero viivan digitointisuuntaan n\u00e4hden vasemmalla puolella."
+    },
+    {
+      "name": "maxosoitenumerovasen",
+      "type": "int32",
+      "description": "Tieosuuden suurin osoitenumero viivan digitointisuuntaan n\u00e4hden vasemmalla puolella."
+    },
+    {
+      "name": "minosoitenumerooikea",
+      "type": "int32",
+      "description": "Tieosuuden pienin osoitenumero viivan digitointisuuntaan n\u00e4hden oikealla puolella."
+    },
+    {
+      "name": "maxosoitenumerooikea",
+      "type": "int32",
+      "description": "Tieosuuden suurin osoitenumero viivan digitointisuuntaan n\u00e4hden oikealla puolella."
+    },
+    {
+      "name": "nimi_suomi",
+      "type": "string",
+      "description": "Kohteen suomenkielinen nimi."
+    },
+    {
+      "name": "nimi_ruotsi",
+      "type": "string",
+      "description": "Kohteen ruotsinkielinen nimi."
+    },
+    {
+      "name": "nimi_inarinsaame",
+      "type": "string",
+      "description": "Kohteen inarinsaamenkielinen nimi."
+    },
+    {
+      "name": "nimi_koltansaame",
+      "type": "string",
+      "description": "Kohteen koltansaamenkielinen nimi."
+    },
+    {
+      "name": "nimi_pohjoissaame",
+      "type": "string",
+      "description": "Kohteen pohjoissaamenkielinen nimi."
+    },
+    {
+      "name": "kuntatunnus",
+      "type": "int32",
+      "description": "V\u00e4est\u00f6rekisterikeskuksen kolminumeroinen kuntatunnus, esimerkiksi 149 on Inkoo."
+    },
+    {
+      "name": "tiesymbolitviittaus",
+      "type": "string",
+      "description": "Viittaus tieviivalle tallennettuihin tiesymboleihin. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "tietekstitviittaus",
+      "type": "string",
+      "description": "Viittaus tieviivaan yhdistettyihin tienumerotekstikohteisiin. Arvona on viitatun kohteen mtk_id, useampi tunnus pilkulla eroteltuna, ja sarake on tyhj\u00e4, jos yhteytt\u00e4 ei ole."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Tien keskiviiva WGS84-koordinaatistossa. Tieviiva on tie, katu tai muu autoliikennett\u00e4 varten kunnossapidett\u00e4v\u00e4 liikennev\u00e4yl\u00e4, kevyen liikenteen kulkuyhteys tai maastoon muodostunut pysyv\u00e4 kulkuura."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "tieviiva",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.316666,
+          59.7662136,
+          31.584115,
+          70.0950863
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "tieviiva default style",
+      "description": "Default visualization for tieviiva, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1114,
+      "file:checksum": "1220c222eb5bb7e58eea9f41923bd044811ac1bff59ad6f2be8ccc2df018cf3502a5"
+    },
+    "tieviiva": {
+      "href": "./tieviiva.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2015925846,
+      "file:checksum": "1220168fedefaf457767c034e251b24f58fa5a4928722cc06179f0a873f12c1bb0c7",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./tieviiva.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "tieviiva (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1213068280,
+      "file:checksum": "1220488ab9f6392d2461a5d8e53cb4ce83d5aecafc233d234a5f5879a87c9bdef187"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "tieviiva labeled style",
+      "description": "Default visualization for tieviiva with nimi_koltansaame shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1531,
+      "file:checksum": "1220804571ccbc862e67342ef3ab26f1b44dc1f995d0f8514f1c38107026ebc8734e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "tieviiva graduated style",
+      "description": "Graduated visualization coloring tieviiva by korkeustarkkuus, ramped from 201.0 to 100001.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1920,
+      "file:checksum": "12207295761da1e397a9f1843e45842e39c801bd2ce16b51995527039d04d80fbfa1"
+    },
+    "thumbnail": {
+      "href": "./tieviiva.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of tieviiva",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 138452,
+      "file:checksum": "1220f0b0403fab469a4e025c7e45edad097339ed907c31bbf768882db12090aae88a"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Tiest\u00f6",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

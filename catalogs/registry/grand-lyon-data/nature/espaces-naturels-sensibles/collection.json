@@ -1,0 +1,268 @@
+{
+  "type": "Collection",
+  "id": "nature/espaces-naturels-sensibles",
+  "stac_version": "1.1.0",
+  "description": "P\u00e9rim\u00e8tres issus pour certains de la r\u00e9vision de l'inventaire des ENS du D\u00e9partement du Rh\u00f4ne en 2013, et mis \u00e0 jour via leur propre Plan de Gestion pour d'autres.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./metropole_de_lyon_eco_ecologie_espace_naturel_sensible.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon",
+      "pmtiles:layers": [
+        "metropole_de_lyon_eco_ecologie_espace_naturel_sensible"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.etalab.gouv.fr/licence-ouverte-open-licence",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://data.grandlyon.com/portail/fr/jeux-de-donnees/espaces-naturels-sensibles-metropole-lyon/info",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows",
+      "rel": "related",
+      "title": "WFS source service: espace-naturel-sensible",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WFS&VERSION=2.0.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon (WFS)",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://data.grandlyon.com/geoserver/metropole-de-lyon/ows?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities",
+      "rel": "related",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 22,
+  "table:row_count": 22,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "identifiant",
+      "type": "string"
+    },
+    {
+      "name": "site",
+      "type": "string"
+    },
+    {
+      "name": "aire_ha",
+      "type": "int64"
+    },
+    {
+      "name": "pilote_gestion",
+      "type": "string"
+    },
+    {
+      "name": "suivi",
+      "type": "string"
+    },
+    {
+      "name": "territoire",
+      "type": "string"
+    },
+    {
+      "name": "zone_preemptee",
+      "type": "boolean"
+    },
+    {
+      "name": "datemaj",
+      "type": "date"
+    },
+    {
+      "name": "gid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.66307411,
+          45.57134688,
+          5.10145389,
+          45.93871647
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "etalab-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon default style",
+      "description": "Default visualization for Espaces Naturels Sensibles de la M\u00e9tropole de Lyon, drawn in #a1d99b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1483,
+      "file:checksum": "12207d6da2b62a24ff195d612370284b5aedf9a52cf08654363fe680fda8b999926e"
+    },
+    "metropole_de_lyon_eco_ecologie_espace_naturel_sensible": {
+      "href": "./metropole_de_lyon_eco_ecologie_espace_naturel_sensible.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 262075,
+      "file:checksum": "1220f4474bfbf5bf23786aab97be033fec81ae087be73395ac3da542c018f1c2ff02",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./metropole_de_lyon_eco_ecologie_espace_naturel_sensible.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 237999,
+      "file:checksum": "122097d570191fab642684e8a3cc2ce51b8d06924fb9719a7c3b10bc7c260ee09e5b"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon categorical style",
+      "description": "Categorical visualization coloring Espaces Naturels Sensibles de la M\u00e9tropole de Lyon by suivi, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2306,
+      "file:checksum": "12203a5ba5d09832e4192dc6927cc294b4670db6c25b6c65d76f7b8434c3725c62f9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon labeled style",
+      "description": "Default visualization for Espaces Naturels Sensibles de la M\u00e9tropole de Lyon with suivi shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1981,
+      "file:checksum": "1220892668304ccdde5efc0808d5d2eefb39b7e3cea8ce7e922f8da0222651eef7dd"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Espaces Naturels Sensibles de la M\u00e9tropole de Lyon graduated style",
+      "description": "Graduated visualization coloring Espaces Naturels Sensibles de la M\u00e9tropole de Lyon by aire_ha, ramped from 11.0 to 3137.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2245,
+      "file:checksum": "1220f4c0d3a800d5597306482435ff49f65d4cb357be60004a39a21ad6bc3dab7ea0"
+    },
+    "thumbnail": {
+      "href": "./metropole_de_lyon_eco_ecologie_espace_naturel_sensible.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Espaces Naturels Sensibles de la M\u00e9tropole de Lyon",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 156961,
+      "file:checksum": "122060f299534f4f7a1b29a62de0ce4260ce05bb23fc279e1353e5cf1cf0a461aafa"
+    }
+  },
+  "keywords": [
+    "protection des espaces naturels",
+    "Habitats et biotopes",
+    "espace naturel",
+    "espace prot\u00e9g\u00e9",
+    "site naturel",
+    "diversit\u00e9 biologique",
+    "Environnement",
+    "Occupation des terres",
+    "sport nature",
+    "Agriculture",
+    "ENS",
+    "M\u00e9tropole de Lyon"
+  ],
+  "providers": [
+    {
+      "name": "M\u00e9tropole de Lyon \u2013 Direction Am\u00e9lioration du cadre de vie",
+      "description": "Source : M\u00e9tropole de Lyon, data.grandlyon.com, Espaces Naturels Sensibles de la M\u00e9tropole de Lyon, consult\u00e9 le 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.grandlyon.com/",
+      "email": "data@grandlyon.com"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:30:00Z"
+}

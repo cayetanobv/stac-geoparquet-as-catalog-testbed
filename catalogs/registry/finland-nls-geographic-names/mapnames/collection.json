@@ -1,0 +1,382 @@
+{
+  "type": "Collection",
+  "id": "mapnames",
+  "stac_version": "1.1.0",
+  "description": "NLS Finland GNR: Map names",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./mapnames.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "MapName",
+      "pmtiles:layers": [
+        "mapnames"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/en/maps-and-spatial-data/datasets-and-interfaces/product-descriptions/geographic-names",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/geographic-names/features/v1/collections/mapnames/items",
+      "rel": "related",
+      "title": "OGC API source service: mapnames",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 1401693,
+  "table:row_count": 1401693,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Running row identifier that the conversion added. It is not an attribute of the Geographic Names Register and it is not a stable identifier for the label. Use mapNameId for that."
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "description": "The service's own feature identifier, formed as the letters MN, an underscore, and the map name identifier. It identifies the feature within this Collection rather than within the register."
+    },
+    {
+      "name": "mapNameId",
+      "type": "int32",
+      "description": "Permanent unique identifier of the map name. The publisher defines it as an eight-digit integer beginning with 7."
+    },
+    {
+      "name": "mapNameVersionId",
+      "type": "int32",
+      "description": "Version number of the map name record. It pairs with mapNameId to identify one state of that label."
+    },
+    {
+      "name": "mapProduct",
+      "type": "string",
+      "description": "The map product this label belongs to. The nine values are K0025 Basic Map 1 to 25,000, K0050 Topographic Map 1 to 50,000, K0100 Topographic Map 1 to 100,000, K0250 Topographic Map 1 to 250,000, K0500 Topographic Map 1 to 500,000, K1000 General Map 1 to 1 million, K2000 General Map 1 to 2 million, K4500 General Map 1 to 4.5 million and K8000 General Map 1 to 8 million. The code is the letter K followed by the scale in thousands, zero-padded to four digits."
+    },
+    {
+      "name": "scaleClass",
+      "type": "int32",
+      "description": "Scale class of the map product, as the bare scale denominator. The nine values correspond one to one with mapProduct, from 25000 to 8000000. Do not confuse this with scaleRelevance, which shares the number space but ranks the underlying place instead, and which also has a value of 0 that this column does not."
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "description": "The label text as it is set on the map. The publisher states that the effects of textCase, textSpacing and textPreference are already applied in this string, so it is the value to render."
+    },
+    {
+      "name": "textDirection",
+      "type": "string",
+      "description": "Map coordinates of the direction point of oriented text, as a GeoJSON Point object serialized into a string, empty where the label is not oriented, which is about 95 percent of rows. This is a geometry rather than an angle in degrees."
+    },
+    {
+      "name": "textBending",
+      "type": "string",
+      "description": "Map coordinates of the vertices of the polyline that guides curved label text, as a GeoJSON LineString serialized into a string, with the first vertex at the label's start point. This is a geometry rather than an angle. It is populated on 0.04 percent of features, with 3 to 10 vertices where present."
+    },
+    {
+      "name": "textBoundingBox",
+      "type": "string",
+      "description": "Extent of the label's text graphic in map coordinates, given as the lower-left and upper-right corners and delivered as a two-vertex GeoJSON LineString serialized into a string."
+    },
+    {
+      "name": "textCase",
+      "type": "int32",
+      "description": "Whether the label is set in uppercase or in the mixed case of the underlying spelling. The values are 0 the original text in lower and upper case letters and 1 the text in upper case letters. The publisher states the effect is already applied in the text column."
+    },
+    {
+      "name": "textFont",
+      "type": "int32",
+      "description": "Font of the label. The values are 10 Liberation Sans, equivalent to Arial, and 20 Liberation Sans Bold, equivalent to Arial Bold."
+    },
+    {
+      "name": "textSize",
+      "type": "int32",
+      "description": "Graphic size of the label in hundredths of a millimetre at the map product's reference scale. The publisher defines the quantity as the height of a lower-case letter such as x multiplied by two, so a value of 190 is 1.90 millimetres."
+    },
+    {
+      "name": "textColour",
+      "type": "int32",
+      "description": "Colour of the label. The values are 10 black and 20 dark blue."
+    },
+    {
+      "name": "textSlant",
+      "type": "int32",
+      "description": "Slant angle of the label's letters in degrees, where 0 is upright text."
+    },
+    {
+      "name": "textSpacing",
+      "type": "int32",
+      "description": "Whether the label is letter-spaced. The values are 0 non-spaced text and 1 spaced text. Where it is spaced, the publisher stretches the text from its start point toward the direction point in textDirection."
+    },
+    {
+      "name": "textSpacingFactor",
+      "type": "int32",
+      "description": "Letter-spacing multiplier, dimensionless, where 10 is normal spacing. The publisher gives 5 as halved spacing and 20 as doubled spacing."
+    },
+    {
+      "name": "textTypesettingCode",
+      "type": "int32",
+      "description": "Composite legacy typesetting code stored for the label. The publisher states that its contents have been unpacked into textFont, textSize, textColour, textSlant and textSpacingFactor, and publishes neither a code list nor the code's internal layout, so it cannot be decoded from published material. It is redundant with those five columns."
+    },
+    {
+      "name": "textPreference",
+      "type": "int32",
+      "description": "Whether this label is the primary one for its language. The values are 0 a normal map name and 1 the primary map name in a particular language. Where a place has two names in one language the publisher sets them one above the other, joining them with a word meaning or in the name's own language. The publisher states the effect is already applied in the text column."
+    },
+    {
+      "name": "placeNameId",
+      "type": "int32",
+      "description": "Permanent unique identifier of the place name this label renders, an eight-digit integer beginning with 4. Many labels share one placeNameId, one per map product the name appears on."
+    },
+    {
+      "name": "placeNameVersionId",
+      "type": "int32",
+      "description": "Version number of the place name record this label renders."
+    },
+    {
+      "name": "spelling",
+      "type": "string",
+      "description": "The written form of the underlying place name, before the label's own case and spacing treatment. Compare with the text column, which is the string as set."
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "description": "Language of the underlying name as a three-letter ISO 639-3 code. The five values are fin Finnish, swe Swedish, sme Northern Sami, smn Inari Sami and sms Skolt Sami."
+    },
+    {
+      "name": "languageOfficiality",
+      "type": "int32",
+      "description": "Standing of the name's language under the Finnish Language Act in the municipality the place's location point falls in. The values are 1 an official language of that municipality and 2 an unofficial language of it."
+    },
+    {
+      "name": "languageDominance",
+      "type": "int32",
+      "description": "Standing of the name's language under the Finnish Language Act as the majority or minority language of the municipality the place's location point falls in. The values are 1 the majority language and 2 the minority language."
+    },
+    {
+      "name": "placeId",
+      "type": "int32",
+      "description": "Permanent unique identifier of the place the labelled name belongs to, an eight-digit integer beginning with 1."
+    },
+    {
+      "name": "placeVersionId",
+      "type": "int32",
+      "description": "Version number of the place record the labelled name belongs to."
+    },
+    {
+      "name": "placeType",
+      "type": "int32",
+      "description": "The place's most precise classification, the fourth level of the place classification hierarchy. There are 153 seven-digit codes, published as Paikannimirekisterin paikkaluokitus and through the publisher's code list service as placetype. This Collection carries only this level, not the three coarser levels the place Collections also carry."
+    },
+    {
+      "name": "placeLocation",
+      "type": "string",
+      "description": "The named place's own location point, as a GeoJSON Point object serialized into a string. It is deliberately different from the label's position, which is textPosition, and it repeats the geometry the places Collection carries for the same placeId."
+    },
+    {
+      "name": "placeElevation",
+      "type": "int32",
+      "description": "Height of the place's location point above sea level in metres, computed by interpolation from an elevation model. It is not a surveyed height."
+    },
+    {
+      "name": "scaleRelevance",
+      "type": "int32",
+      "description": "A ranking of the underlying place's size and importance, expressed as the scale denominator of the smallest-scale national map product on which its name is shown. The ten values are 0, meaning the name is not shown on the publisher's maps at all, then 25000, 50000, 100000, 250000, 500000, 1000000, 2000000, 4500000 and 8000000."
+    },
+    {
+      "name": "mapNameCreationTime",
+      "type": "timestamp with time zone",
+      "description": "Time at which the label was recorded in the register. The column is a timezone-aware timestamp in UTC."
+    },
+    {
+      "name": "mapNameModificationTime",
+      "type": "timestamp with time zone",
+      "description": "Time at which the label record was last changed in the register. The column is a timezone-aware timestamp in UTC."
+    },
+    {
+      "name": "mapNameDeletionTime",
+      "type": "string",
+      "description": "Time at which the label record was deleted from the register, empty for a label still in force. Every row sampled during authoring was empty, so the column may carry a text type rather than a timestamp type until a deleted label is harvested."
+    },
+    {
+      "name": "textPosition",
+      "type": "string",
+      "description": "Map coordinates of the label's start point, which the publisher defines as the lower-left corner of the text graphic, as a GeoJSON Point object serialized into a string. It sits after the deletion timestamp rather than beside the other text columns because that is its position in the object the service emits."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "The label's position in WGS84 coordinates, which is the same point that textPosition carries as serialized text. This is the only column declared as geometry, so the other four geometry-valued columns are opaque strings to a reader."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Bounding rectangle of the row's geometry in WGS84 coordinates. This is the GeoParquet bbox covering column, which speeds up spatial filtering. Because the primary geometry is a point, each box is degenerate and its minimum and maximum ordinates are equal. It is not the label's own extent, which is textBoundingBox."
+    }
+  ],
+  "title": "MapName",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          18.3939036,
+          59.4363271,
+          31.5824067,
+          70.0909205
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "MapName default style",
+      "description": "Default visualization for MapName, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1113,
+      "file:checksum": "1220b68ded00abd50004301d44dce9e0975b4c6e7c593839534de30e38fd74edbafc"
+    },
+    "mapnames": {
+      "href": "./mapnames.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 163404934,
+      "file:checksum": "1220512feb221cd06eb1de191d3c5b6ff1f04a2d846006e736af5223fd50fcdd67c3",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./mapnames.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "MapName (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 525774984,
+      "file:checksum": "1220bac1a6e7de7ca480ca7f0dd48250b0824d132ee5aa629877ee1cf00afa5dcd26"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "MapName categorical style",
+      "description": "Categorical visualization coloring MapName by language, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1669,
+      "file:checksum": "1220ed6e9cd2bbe6bb20a33402800b8fbb9418e275f4b7fa8f66c4a3696ad670ec5f"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "MapName labeled style",
+      "description": "Default visualization for MapName with mapNameId shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1523,
+      "file:checksum": "1220b37364069508ee717fa553dbcd38671573638c08495f2cc926543ea7e28df926"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "MapName graduated style",
+      "description": "Graduated visualization coloring MapName by placeType, ramped from 1010105.0 to 9999999.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1916,
+      "file:checksum": "1220a99861b3859c6c8f873bdf42313f3bc695c2279cef9568f5ae98bb02868da50e"
+    },
+    "thumbnail": {
+      "href": "./mapnames.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of MapName",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 98253,
+      "file:checksum": "122060c22473cf2bc6fe7fba83070bfceb63872ffb7a579e36d38c813fa27036526e"
+    }
+  },
+  "keywords": [
+    "Geographical names",
+    "Map names",
+    "Finland"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Contains data from the National Land Survey of Finland Geographic Names Register, retrieved 9.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "en",
+    "name": "English",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-09T13:53:39Z"
+}

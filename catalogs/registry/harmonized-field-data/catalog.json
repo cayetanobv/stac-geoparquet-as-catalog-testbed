@@ -1,0 +1,473 @@
+{
+  "type": "Catalog",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.2/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "harmonized-field-data",
+  "title": "Harmonized Field Boundary Data",
+  "description": "Field boundary datasets published by government bodies — from their agricultural subsidy registers (IACS/LPIS), cadastres, statistics and mapping programmes — harmonized into the [fiboa](https://github.com/fiboa/specification) schema with [fiboa-cli](https://github.com/fiboa/cli) and republished as cloud-native GeoParquet and PMTiles. 67 collections (AT, BE, BG, BR, CH, CZ, DE, DK, EC, EE, ES, FI, FR, HR, IE, IT, JP, LT, LU, LV, NL, NZ, PL, PT, SE, SI, SK, US). In 61 collections the boundaries are declared — they come from farmers' subsidy applications, or from the parcel register built on those declarations. `br_conab`, `es_cn`, `jp`, `nz`, `us_ca_scm` are mapped by an authority from imagery or survey; `us_usda_cropland` is inferred from imagery by a model. Each collection's `boundaries` field says which. 51 hold crop fields — one declared crop on one parcel — 139,836,309 in their latest editions and 746,440,771 across all 333 editions together, counting a field once per edition it appears in. The other 16 hold field blocks (reference parcels, which several fields can share): 19,341,868 and 25,762,283 over 32 editions. The two are not added together. Each collection is one source dataset, partitioned by edition year; `s3://ftw/harmonized-field-data/*/latest/*.parquet` reads the newest edition of every collection (S3 through the Source Cooperative proxy, see the agent guide). Hosted by [Fields of the World](https://fieldsofthe.world) on [Source Cooperative](https://source.coop/ftw/harmonized-field-data); the metadata is maintained in the [harmonized-field-data-catalog repository](https://github.com/fieldsoftheworld/harmonized-field-data-catalog), where corrections are welcome as pull requests. Start at the catalog [AGENTS.md](https://source.coop/ftw/harmonized-field-data/AGENTS.md) for cross-dataset queries.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "./catalog.json",
+      "type": "application/json",
+      "title": "Harmonized Field Boundary Data"
+    },
+    {
+      "rel": "child",
+      "href": "./at/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Austria"
+    },
+    {
+      "rel": "child",
+      "href": "./at_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Austria"
+    },
+    {
+      "rel": "child",
+      "href": "./be_vlg/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Flanders, Belgium"
+    },
+    {
+      "rel": "child",
+      "href": "./be_wal/collection.json",
+      "type": "application/json",
+      "title": "Belgium Wallonia: Parcellaire Agricole Anonyme"
+    },
+    {
+      "rel": "child",
+      "href": "./bg/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Bulgaria"
+    },
+    {
+      "rel": "child",
+      "href": "./br_conab/collection.json",
+      "type": "application/json",
+      "title": "Brazil Crop Fields (CONAB)"
+    },
+    {
+      "rel": "child",
+      "href": "./ch/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Switzerland"
+    },
+    {
+      "rel": "child",
+      "href": "./cz/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Czech"
+    },
+    {
+      "rel": "child",
+      "href": "./de_bb/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Berlin / Brandenburg, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_bb_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Berlin / Brandenburg, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_bw/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Baden-Württemberg, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_by/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Bavaria, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_by_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Bavaria, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_he/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Hesse, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_mv/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Mecklenburg-Western Pomerania, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_nds/collection.json",
+      "type": "application/json",
+      "title": "Crop Fields for Lower Saxony / Bremen / Hamburg, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_nds_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Lower Saxony / Bremen / Hamburg, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_nrw/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for North Rhine-Westphalia (NRW), Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_sax/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Saxony, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_sh/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Schleswig-Holstein (SH), Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_sl/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Saarland, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_sl_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Saarland, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_st/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Saxony-Anhalt, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./de_th/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Thuringia, Germany"
+    },
+    {
+      "rel": "child",
+      "href": "./dk/collection.json",
+      "type": "application/json",
+      "title": "Denmark Crop Fields (Marker)"
+    },
+    {
+      "rel": "child",
+      "href": "./ec_lt/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Lithuania - Eurocrops 2021"
+    },
+    {
+      "rel": "child",
+      "href": "./ec_lv/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Latvia - Eurocrops 2021"
+    },
+    {
+      "rel": "child",
+      "href": "./ec_ro/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Romania - Eurocrops"
+    },
+    {
+      "rel": "child",
+      "href": "./ec_si/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Slovenia - Eurocrops 2021"
+    },
+    {
+      "rel": "child",
+      "href": "./ee/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Estonia"
+    },
+    {
+      "rel": "child",
+      "href": "./es/collection.json",
+      "type": "application/json",
+      "title": "Spain Declared Crops (Cultivos Declarados SIGPAC)"
+    },
+    {
+      "rel": "child",
+      "href": "./es_an/collection.json",
+      "type": "application/json",
+      "title": "Spain Andalusia Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_ar/collection.json",
+      "type": "application/json",
+      "title": "Spain Aragon Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_cat/collection.json",
+      "type": "application/json",
+      "title": "Catalonia Crop Fields (Mapa de cultius)"
+    },
+    {
+      "rel": "child",
+      "href": "./es_cb/collection.json",
+      "type": "application/json",
+      "title": "Spain Cantabria Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_cl/collection.json",
+      "type": "application/json",
+      "title": "Spain Castile and León Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_cm/collection.json",
+      "type": "application/json",
+      "title": "Spain Castilla-La Mancha Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_cn/collection.json",
+      "type": "application/json",
+      "title": "Spain Crop fields of Canary Islands"
+    },
+    {
+      "rel": "child",
+      "href": "./es_ex/collection.json",
+      "type": "application/json",
+      "title": "Spain Extremadura Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_ga/collection.json",
+      "type": "application/json",
+      "title": "Spain Galicia Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_ib/collection.json",
+      "type": "application/json",
+      "title": "Spain Balearic Islands Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_md/collection.json",
+      "type": "application/json",
+      "title": "Spain Madrid Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_nc/collection.json",
+      "type": "application/json",
+      "title": "Spain Navarra Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_pv/collection.json",
+      "type": "application/json",
+      "title": "Spain Basque Country Crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./es_vc/collection.json",
+      "type": "application/json",
+      "title": "Spain Valencia Crop Fields"
+    },
+    {
+      "rel": "child",
+      "href": "./fi/collection.json",
+      "type": "application/json",
+      "title": "Finnish Crop Fields (Maatalousmaa)"
+    },
+    {
+      "rel": "child",
+      "href": "./fr/collection.json",
+      "type": "application/json",
+      "title": "Registre Parcellaire Graphique; Crop Fields France"
+    },
+    {
+      "rel": "child",
+      "href": "./hr/collection.json",
+      "type": "application/json",
+      "title": "Croatian Field Boundaries"
+    },
+    {
+      "rel": "child",
+      "href": "./ie/collection.json",
+      "type": "application/json",
+      "title": "Ireland INSPIRE Geospatial aid application (GSAA) dataset"
+    },
+    {
+      "rel": "child",
+      "href": "./ie_lpis/collection.json",
+      "type": "application/json",
+      "title": "LPIS parcels for Ireland"
+    },
+    {
+      "rel": "child",
+      "href": "./it_1/collection.json",
+      "type": "application/json",
+      "title": "Italy Tuscany (ITI1) Crop Fields — EuroCropsV2"
+    },
+    {
+      "rel": "child",
+      "href": "./it_bz/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for South Tyrol, Italy"
+    },
+    {
+      "rel": "child",
+      "href": "./jp/collection.json",
+      "type": "application/json",
+      "title": "Japan Fude Parcels"
+    },
+    {
+      "rel": "child",
+      "href": "./lt/collection.json",
+      "type": "application/json",
+      "title": "Lithuania crop fields"
+    },
+    {
+      "rel": "child",
+      "href": "./lu/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Luxembourg"
+    },
+    {
+      "rel": "child",
+      "href": "./lv/collection.json",
+      "type": "application/json",
+      "title": "Latvia Lauki Parcels"
+    },
+    {
+      "rel": "child",
+      "href": "./nl/collection.json",
+      "type": "application/json",
+      "title": "BRP Crop Field Boundaries for The Netherlands (CAP-based)"
+    },
+    {
+      "rel": "child",
+      "href": "./nl_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for The Netherlands"
+    },
+    {
+      "rel": "child",
+      "href": "./nz/collection.json",
+      "type": "application/json",
+      "title": "Irrigated land area"
+    },
+    {
+      "rel": "child",
+      "href": "./pl/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Poland"
+    },
+    {
+      "rel": "child",
+      "href": "./pl_block/collection.json",
+      "type": "application/json",
+      "title": "Field blocks for Poland"
+    },
+    {
+      "rel": "child",
+      "href": "./pt/collection.json",
+      "type": "application/json",
+      "title": "Field boundaries for Portugal"
+    },
+    {
+      "rel": "child",
+      "href": "./se/collection.json",
+      "type": "application/json",
+      "title": "Swedish Crop Fields (Jordbruksskiften)"
+    },
+    {
+      "rel": "child",
+      "href": "./si/collection.json",
+      "type": "application/json",
+      "title": "Slovenia Crop Fields"
+    },
+    {
+      "rel": "child",
+      "href": "./sk/collection.json",
+      "type": "application/json",
+      "title": "Slovakia Agricultural Land Identification System"
+    },
+    {
+      "rel": "child",
+      "href": "./us_ca_scm/collection.json",
+      "type": "application/json",
+      "title": "California (US) Statewide Crop Mapping"
+    },
+    {
+      "rel": "child",
+      "href": "./us_usda_cropland/collection.json",
+      "type": "application/json",
+      "title": "U.S. Department of Agriculture Crop Sequence Boundaries"
+    },
+    {
+      "rel": "icon",
+      "href": "./_assets/ftw-logo.svg",
+      "type": "image/svg+xml",
+      "title": "Fields of the World"
+    },
+    {
+      "rel": "about",
+      "href": "https://source.coop/ftw/harmonized-field-data",
+      "type": "text/html",
+      "title": "Dataset home page on Source Cooperative"
+    },
+    {
+      "rel": "vcs",
+      "href": "https://github.com/fieldsoftheworld/harmonized-field-data-catalog",
+      "type": "text/html",
+      "title": "Source repository"
+    },
+    {
+      "rel": "issues",
+      "href": "https://github.com/fieldsoftheworld/harmonized-field-data-catalog/issues",
+      "type": "text/html",
+      "title": "Issue tracker"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Guidance for AI agents"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "llms",
+      "href": "./llms.txt",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./harmonized-field-data.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Web map tiles: the newest edition of 67 collections (2026-10-07)",
+      "pmtiles:layers": [
+        "fields"
+      ]
+    }
+  ],
+  "updated": "2026-10-15T10:33:36Z"
+}

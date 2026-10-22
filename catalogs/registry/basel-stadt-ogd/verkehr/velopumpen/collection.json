@@ -1,0 +1,260 @@
+{
+  "type": "Collection",
+  "id": "verkehr/velopumpen",
+  "stac_version": "1.1.0",
+  "description": "Dieser Datensatz zeigt die \u00f6ffentlich verf\u00fcgbaren Velopumpen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./ods-100213.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Velopumpen (data.bs.ch 100213)",
+      "pmtiles:layers": [
+        "ods-100213"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://data.bs.ch/explore/dataset/100213/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://data.bs.ch/api/explore/v2.1/catalog/datasets/100213/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: ods-100213",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 32,
+  "table:row_count": 32,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Laufnummer des GDAL/OGR-GeoJSON-Lesers, von der Konvertierung erg\u00e4nzt; nicht stabil \u00fcber L\u00e4ufe."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "2D-Punktkoordinaten der jeweiligen Velopumpe in LV95. Im GeoJSON-Export ein Objekt aus lon und lat; die Konvertierung \u00fcbernimmt es als Text (Beobachtung 21.9.2026)."
+    },
+    {
+      "name": "id_velopumpe",
+      "type": "int32",
+      "description": "Eindeutige Identifikationsnummer der Velopumpe zur internen Referenz und Verwaltung der Velopumpe."
+    },
+    {
+      "name": "anbieter",
+      "type": "string",
+      "description": "Name des Anbieters bzw. des Betreibers, der die Velopumpe zur Verf\u00fcgung stellt."
+    },
+    {
+      "name": "strasse",
+      "type": "string",
+      "description": "Mit diesem Merkmal wird die Strassenbezeichnung in offizieller Schreibweise der Gemeinde erfasst.\nGem\u00e4ss der Verordnung \u00fcber die geografischen Namen f\u00e4llt die Benennung der Strassen in den Zust\u00e4ndigkeitsbereich der Gemeinden.\nDie Strassennamen m\u00fcssen grunds\u00e4tzlich den Empfehlungen \"Geb\u00e4udeadressierung und Schreibweise von Strassennamen f\u00fcr die deutschsprachige Schweiz\", herausgegeben vom Bundesamt f\u00fcr Landestopographie, folgen.\nBei einigen allein stehenden Geb\u00e4uden (landwirtschaftliche Geb\u00e4ude, Bergh\u00fctten usw.) kann die Geb\u00e4udeadresse nicht mit einer Strasse in Verbindung gebracht werden.\nIn diesem Fall kann der Strassenname durch den Namen eines benannten Gebiets ersetzt werden."
+    },
+    {
+      "name": "postleitzahl",
+      "type": "string",
+      "description": "Numerischer Wert mit 4 Positionen gem\u00e4ss offiziellem PLZ-Verzeichnis der Schweizerischen Post."
+    },
+    {
+      "name": "ort",
+      "type": "string",
+      "description": "Bezeichnung der Ortschaft."
+    },
+    {
+      "name": "pumpe",
+      "type": "string",
+      "description": "Typ oder Ausf\u00fchrung der Velopumpe (z. B. Standpumpe, Kompressor, verschiedene Ventilarten)."
+    },
+    {
+      "name": "verfuegbarkeit",
+      "type": "string",
+      "description": "Gibt an, ob die Velopumpe jederzeit, beschr\u00e4nkt oder nicht verf\u00fcgbar ist."
+    },
+    {
+      "name": "webseite",
+      "type": "string",
+      "description": "URL zu weiteren Informationen \u00fcber die Velopumpe oder den betreibenden Veloh\u00e4ndler."
+    },
+    {
+      "name": "map_links",
+      "type": "string",
+      "description": "URL zur Navigation des Standorts in einer Karten-App"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometrie (Point) in WGS 84 (OGC:CRS84); einzige als Geometrie deklarierte Spalte (Name geom laut Probe-Build vom 21.9.2026)."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Velopumpen (data.bs.ch 100213)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          7.557549,
+          47.539984,
+          7.651724,
+          47.584813
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Velopumpen (data.bs.ch 100213) default style",
+      "description": "Default visualization for Velopumpen (data.bs.ch 100213), drawn in #4292c6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1150,
+      "file:checksum": "12201d92434ebf9b49968a6c49ef701ee4394805af29e6fa761412efe08b898db25c"
+    },
+    "ods-100213": {
+      "href": "./ods-100213.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8662,
+      "file:checksum": "1220161bcc1bbf6a9505d7f01c1dee88e3d92ed20f72a77ce3a3e0bf1d9a3853b0ef",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./ods-100213.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Velopumpen (data.bs.ch 100213) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 19849,
+      "file:checksum": "1220e768145793f209c637320b3f89c3dab7c3f5c76c305e8c69d0a6236259c1b3be"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Velopumpen (data.bs.ch 100213) categorical style",
+      "description": "Categorical visualization coloring Velopumpen (data.bs.ch 100213) by ort, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1701,
+      "file:checksum": "1220e30c2fad4eb0c140bf6c8cc961800c46ee8bc3d05aa2a18149d1671ab0280d31"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Velopumpen (data.bs.ch 100213) labeled style",
+      "description": "Default visualization for Velopumpen (data.bs.ch 100213) with ort shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1558,
+      "file:checksum": "12206e4e18053c8533cd92effde163cbf1c62d89421841f9298e12ff2b62880e91dc"
+    },
+    "thumbnail": {
+      "href": "./ods-100213.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Velopumpen (data.bs.ch 100213)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 159064,
+      "file:checksum": "1220cd9b5f0e8082e0f18c9dc6bc1dd85d2669acc352415b158512e5360695eadbd6"
+    }
+  },
+  "keywords": [
+    "Auff\u00fcllen",
+    "Fahrrad",
+    "Pumpen",
+    "Geographie",
+    "Mobilit\u00e4t und Verkehr",
+    "opendata.swiss",
+    "VEPU",
+    "Basel-Stadt",
+    "Kanton Basel-Stadt"
+  ],
+  "providers": [
+    {
+      "name": "Kanton Basel-Stadt \u2013 Amt f\u00fcr Mobilit\u00e4t",
+      "description": "Datenquelle: Kanton Basel-Stadt, Amt f\u00fcr Mobilit\u00e4t (Bau- und Verkehrsdepartement), \u00abVelopumpen\u00bb, Open Data Basel-Stadt, abgerufen am 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://data.bs.ch/explore/dataset/100213/",
+      "email": "opendata@bs.ch"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

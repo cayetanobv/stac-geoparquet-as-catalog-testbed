@@ -1,0 +1,321 @@
+{
+  "type": "Collection",
+  "id": "mobilita/archi-stradali",
+  "stac_version": "1.1.0",
+  "description": "Elenco degli archi stradali. I riferimenti origine e destinazione sono quelli disponibili sul dataset dei Nodi stradali\u00a0assieme ai quali costituisce il grafo stradale integrale del Comune di Bologna.\nIl dataset viene aggiornato ogni giorno alle ore 06:00",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rifterarcstrali.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Archi stradali",
+      "pmtiles:layers": [
+        "rifterarcstrali"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/rifter_arcstra_li/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/rifter_arcstra_li/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: rifterarcstrali",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 8039,
+  "table:row_count": 8039,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "codarco",
+      "type": "int32",
+      "description": "CODARCO. Codice univoco dell'arco."
+    },
+    {
+      "name": "codvia",
+      "type": "int32",
+      "description": "CODVIA. Codice della via."
+    },
+    {
+      "name": "nomevia",
+      "type": "string",
+      "description": "NOMEVIA. Nome della via."
+    },
+    {
+      "name": "numquart",
+      "type": "int32",
+      "description": "NUMQUART. Codice del quartiere."
+    },
+    {
+      "name": "nomequart",
+      "type": "string",
+      "description": "Nome del quartiere."
+    },
+    {
+      "name": "da",
+      "type": "string",
+      "description": "Nome della via di origine dell'arco."
+    },
+    {
+      "name": "a",
+      "type": "string",
+      "description": "Nome della via di destinazione dell'arco."
+    },
+    {
+      "name": "cod_nodo1",
+      "type": "int32",
+      "description": "COD_NODO1. Codice nodo di inizio."
+    },
+    {
+      "name": "cod_nodo2",
+      "type": "int32",
+      "description": "COD_NODO2. Codice nodo di fine."
+    },
+    {
+      "name": "data_istit",
+      "type": "date",
+      "description": "Data istituzione."
+    },
+    {
+      "name": "lunghez",
+      "type": "double",
+      "description": "Lunghezza dell'arco."
+    },
+    {
+      "name": "civico_min",
+      "type": "int32",
+      "description": "CIVICO_MIN. Civico pari minimo."
+    },
+    {
+      "name": "esponente",
+      "type": "string",
+      "description": "Esponente civico pari minimo."
+    },
+    {
+      "name": "civico_mas",
+      "type": "int32",
+      "description": "CIVICO_MAS. Civico pari massimo."
+    },
+    {
+      "name": "esponente0",
+      "type": "string",
+      "description": "ESPONENTE0. Esponente civico pari massimo."
+    },
+    {
+      "name": "civico_mi0",
+      "type": "int32",
+      "description": "CIVICO_MI0. Civico dispari minimo."
+    },
+    {
+      "name": "esponente1",
+      "type": "string",
+      "description": "ESPONENTE1. Esponente civico dispari minimo."
+    },
+    {
+      "name": "civico_ma0",
+      "type": "int32",
+      "description": "CIVICO_MA0. Civico dispari massimo."
+    },
+    {
+      "name": "esponente2",
+      "type": "string",
+      "description": "ESPONENTE2. Esponente civico dispari massimo."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "codice_ans",
+      "type": "int32",
+      "description": "Codice nazionale Anncsu strada."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Archi stradali",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.230017874066913,
+          44.421100092373,
+          11.433625035306557,
+          44.55574401277983
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Archi stradali default style",
+      "description": "Default visualization for Archi stradali, drawn in #08519c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1169,
+      "file:checksum": "122063a0d8a6c3c611d9b221ce799f12ea1846a7c8b64fcb11b51c4d7e4592820d06"
+    },
+    "rifterarcstrali": {
+      "href": "./rifterarcstrali.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1176394,
+      "file:checksum": "12209b193165789c3557174548af0f7d595a668ee63f619d51834c04f396ac9cbf9f",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./rifterarcstrali.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Archi stradali (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 6034142,
+      "file:checksum": "122084841a32fa3efba338b1f956dae289ae1b950c318f2a4ab40d8f53a9a8b0c787"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Archi stradali categorical style",
+      "description": "Categorical visualization coloring Archi stradali by nomequart, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1924,
+      "file:checksum": "1220de31c628bc0bb7d423614de74275ff1526154881b205080d6ef585ae9ac2e27b"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Archi stradali labeled style",
+      "description": "Default visualization for Archi stradali with nomevia shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1591,
+      "file:checksum": "122007104b285b5ab86c8ab8a84898e1066b44e3d688a0905ea6f0ee0c78904e2a13"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Archi stradali graduated style",
+      "description": "Graduated visualization coloring Archi stradali by codice_ans, ramped from 758704.0 to 1351826.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1973,
+      "file:checksum": "1220ad13e638e3175783e494081527a8e55dc12aad91e2c4077a8ea180e960e6dad0"
+    },
+    "thumbnail": {
+      "href": "./rifterarcstrali.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Archi stradali",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 221935,
+      "file:checksum": "1220c362b1589e01123f80a61ffad722295fa4a0ba7475d572948aad4f08c5b25393"
+    }
+  },
+  "keywords": [
+    "Regioni e citt\u00e0",
+    "Trasporti",
+    "infrastrutture",
+    "Mobilit\u00e0 persone e merci",
+    "Citt\u00e0 in 15 minuti"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abArchi stradali\u00bb (rifter_arcstra_li), pubblicato da Comune di Bologna - Innovazione Digitale e Dati, Sistemi Informativi Territoriali (SIT) sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/rifter_arcstra_li/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

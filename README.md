@@ -10,8 +10,8 @@ The question the testbed answers: can one Parquet file replace the walk through 
 |---|---|
 | `docs/schema.md` | The collection index schema under test |
 | `scripts/` | Mirror a catalog's metadata, build an index from it, and time queries against it |
-| `catalogs/` | Metadata mirrors of the two test catalogs: every `catalog.json` and `collection.json`, no data assets |
-| `indexes/` | Indexes built from the two test catalogs on 2026-10-22 |
+| `catalogs/` | Metadata mirrors of the test catalogs and of every catalog in the Portolan registry: `catalog.json` and `collection.json` only, no data assets |
+| `indexes/` | Indexes built from the two test catalogs and from the whole registry on 2026-10-22 |
 | `results/` | Measurements and what they show |
 | `benchmarks/` | Synthetic benchmarks of column shapes at 5 million rows |
 | `docs/upstream-reply-draft.md` | Draft reply for the upstream issue |
@@ -24,8 +24,9 @@ Two real catalogs, both published by [CARTO's Portolan mirrors](https://github.c
 |---|---|---|---|---|---|
 | Berlin Geoportal | 371 | 2 | 132 s, 408 requests | 6.1 s | 0.7 to 1.3 s, 5 requests |
 | Comunidad de Madrid | 1,964 | 3 | 9 min 12 s, 2,141 requests | 30 s | 0.5 to 0.6 s, 4 requests |
+| The whole Portolan registry, 86 catalogs | 5,852 | 4 | 43 min 13 s, 6,726 requests | 2 min 37 s | 0.5 to 0.6 s, 3 requests |
 
-The index query reads 17 to 30 KB of the file. Its time is HTTP round trips, not bytes or rows. See [results/berlin-geoportal.md](results/berlin-geoportal.md) and [results/comunidad-madrid.md](results/comunidad-madrid.md).
+For the registry the question is the point alone, across every catalog. The index query reads 17 to 122 KB of the file. Its time is HTTP round trips, not bytes or rows. See [results/berlin-geoportal.md](results/berlin-geoportal.md), [results/comunidad-madrid.md](results/comunidad-madrid.md), and [results/portolan-registry.md](results/portolan-registry.md). The registry page also covers id collisions across catalogs, antimeridian bboxes, and row group layout.
 
 The tree is stored as a `parents` column, a list of ancestor ids from the root to the direct parent. In the Madrid catalog a filter on the `demografia` theme finds 146 collections through `parents` and 0 through the direct parent alone, because every collection sits under an alphabetical shard sub-catalog. See [results/links-only-variant.md](results/links-only-variant.md) for the comparison with a file that carries only STAC links, and [results/tree-designs.md](results/tree-designs.md) for the alternatives that were measured and rejected.
 
@@ -45,6 +46,16 @@ python3 -I scripts/mirror_catalog.py https://storage.googleapis.com/carto-open-c
 ```
 
 The script follows `child` links from the root and saves each document at its relative path. It does not download assets.
+
+To mirror every catalog in the Portolan registry, and to build one federated index from the mirror:
+
+```bash
+python3 -I scripts/mirror_registry.py https://registry.portolan-sdi.org/next/catalogs.json catalogs/registry
+python3 -I scripts/crawl_registry.py catalogs/registry work/registry/collections.jsonl
+(cd work/registry && duckdb < ../../scripts/build_index.sql)
+```
+
+The mirror writes `catalogs/registry/manifest.json` with counts and failures per catalog. Pass `retry` as a third argument to mirror again only the catalogs that failed.
 
 ## Build an index
 

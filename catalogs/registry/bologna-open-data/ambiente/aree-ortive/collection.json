@@ -1,0 +1,268 @@
+{
+  "type": "Collection",
+  "id": "ambiente/aree-ortive",
+  "stac_version": "1.1.0",
+  "description": "A Bologna l'esperienza degli orti nasce negli anni ottanta con l'obiettivo di promuovere l'impiego del tempo libero in attivit\u00e0 che favoriscano la socializzazione, con momenti di incontro, di discussione e di vita sociale che valorizzino le potenzialit\u00e0 di iniziativa e di auto-organizzazione delle persone, in particolare degli anziani.\nLa realizzazione e gestione delle aree ortive nel corso degli anni ha costituito un'importante esperienza radicata nell'attivit\u00e0 dei Quartieri, con una forte funzione sociale, che l'Amministrazione comunale ha sempre valorizzato.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./areeortive.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Aree ortive",
+      "pmtiles:layers": [
+        "areeortive"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/aree-ortive/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/aree-ortive/exports/geojson",
+      "rel": "related",
+      "title": "Upstream source: areeortive",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 21,
+  "table:row_count": 21,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "denominazione_orto",
+      "type": "string"
+    },
+    {
+      "name": "indirizzo_orto",
+      "type": "string"
+    },
+    {
+      "name": "gestore_orto",
+      "type": "string"
+    },
+    {
+      "name": "indirizzo_gestore_orto",
+      "type": "string"
+    },
+    {
+      "name": "numero_orti",
+      "type": "int32"
+    },
+    {
+      "name": "telefono_gestore",
+      "type": "string"
+    },
+    {
+      "name": "fax_gestore",
+      "type": "string"
+    },
+    {
+      "name": "mail_gestore",
+      "type": "string"
+    },
+    {
+      "name": "quartiere",
+      "type": "string"
+    },
+    {
+      "name": "lon",
+      "type": "string"
+    },
+    {
+      "name": "lat",
+      "type": "string"
+    },
+    {
+      "name": "nomezona",
+      "type": "string",
+      "description": "zona di prossimit\u00e0."
+    },
+    {
+      "name": "area_stati",
+      "type": "string"
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Aree ortive",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.256094,
+          44.446129,
+          11.396593,
+          44.539124
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree ortive default style",
+      "description": "Default visualization for Aree ortive, drawn in #35978f.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1131,
+      "file:checksum": "1220b2735927cc065a6e9721886624728aa7d8535d986609dd76a6a39aa9e046c8de"
+    },
+    "areeortive": {
+      "href": "./areeortive.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 8262,
+      "file:checksum": "12209e07bf66e3c0830b8b809bedbb12a0e1cd0abce25ddf7513ce19ac4c58c3e90c",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./areeortive.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Aree ortive (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 22311,
+      "file:checksum": "1220a3fc59c7ce19bc43a7dc8a326ec7a8aed9c356eb703db30d69d8de6e0d8f9cdf"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree ortive categorical style",
+      "description": "Categorical visualization coloring Aree ortive by quartiere, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2351,
+      "file:checksum": "12208584fbaf00a03d32279b74db4a0b9b77d773de9e0a5fb609bb241371f04e0dd6"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree ortive labeled style",
+      "description": "Default visualization for Aree ortive with denominazione_orto shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1554,
+      "file:checksum": "1220df2056b1a39dedc10ff06bb22ff464783493a85bd142cebdd57511b8f2f3371a"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Aree ortive graduated style",
+      "description": "Graduated visualization coloring Aree ortive by numero_orti, ramped from 24.0 to 427.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1903,
+      "file:checksum": "122030a1a330891dcced483f4faed2b365bc99a709b1f5858d76e84023b43ed5c4a5"
+    },
+    "thumbnail": {
+      "href": "./areeortive.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Aree ortive",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 147932,
+      "file:checksum": "122011720002cb0bf2a4b81fc7a18bffd73cc1d65456a8e361e72daa6d254b7f0a93"
+    }
+  },
+  "keywords": [
+    "Ambiente",
+    "anziani",
+    "Citt\u00e0 in 15 minuti",
+    "piano dei quartieri"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abAree ortive\u00bb (aree-ortive), pubblicato da Comune di Bologna sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/aree-ortive/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

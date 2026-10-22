@@ -1,0 +1,225 @@
+{
+  "type": "Collection",
+  "id": "maasto-2/muuavoinalue",
+  "stac_version": "1.1.0",
+  "description": "muuavoinalue",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./muuavoinalue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "muuavoinalue",
+      "pmtiles:layers": [
+        "muuavoinalue"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.maanmittauslaitos.fi/en/opendata-licence-cc40",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.maanmittauslaitos.fi/maastotietokannan-kyselypalvelu",
+      "type": "text/html"
+    },
+    {
+      "href": "https://avoin-paikkatieto.maanmittauslaitos.fi/maastotiedot/features/v1/collections/muuavoinalue/items",
+      "rel": "related",
+      "title": "OGC API source service: muuavoinalue",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "LineString",
+  "geoparquet:feature_count": 218913,
+  "table:row_count": 218913,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Muunnetun tiedoston juokseva rivitunniste, jonka muunnos on lis\u00e4nnyt. Se ei ole Maastotietokannan ominaisuustieto eik\u00e4 kohteen pysyv\u00e4 tunnus."
+    },
+    {
+      "name": "mtk_id",
+      "type": "int64",
+      "description": "Maastotietokannan kohteen yksil\u00f6iv\u00e4 tunnus. Jokaisella kohteella on oma tunnuksensa."
+    },
+    {
+      "name": "sijaintitarkkuus",
+      "type": "int32",
+      "description": "Kohteen tasosijaintitarkkuusluokka millimetrein\u00e4, esimerkiksi 5000 vastaa viitt\u00e4 metri\u00e4 ja 12500 kahtatoista ja puolta metri\u00e4. Arvo 0 tarkoittaa, ettei tarkkuutta ole m\u00e4\u00e4ritelty. Luokka m\u00e4\u00e4r\u00e4ytyy tiedonkeruussa k\u00e4ytetyst\u00e4 aineistosta ja kohteen luonteesta, eik\u00e4 se ole sama asia kuin laatumallissa m\u00e4\u00e4ritelty sijaintitarkkuusvaatimus."
+    },
+    {
+      "name": "aineistolahde",
+      "type": "int32",
+      "description": "Aineistol\u00e4hteen koodi. Arvot ovat 0 muu, 1 Maanmittauslaitos, 2 SYKE, 3 Merenkulkulaitos, 4 Mets\u00e4hallitus, 5 Puolustusvoimat ja 6 kunta."
+    },
+    {
+      "name": "alkupvm",
+      "type": "date",
+      "description": "P\u00e4iv\u00e4m\u00e4\u00e4r\u00e4, jolloin lis\u00e4tty tai muutettu kohde on rekister\u00f6ity Maastotietokantaan. Se ei kerro maastossa tapahtuneen muutoksen ajankohtaa. Sarake on p\u00e4iv\u00e4m\u00e4\u00e4r\u00e4tyyppinen."
+    },
+    {
+      "name": "kohderyhma",
+      "type": "int32",
+      "description": "Maastotietokannan kohderyhm\u00e4n numerokoodi, joka ryhmittelee kohteet aihepiirin ja kohdetyypin mukaan. T\u00e4ss\u00e4 kokoelmassa arvo on 70, joka vastaa aluemaisia Maasto/2-kohderyhm\u00e4n kohteita."
+    },
+    {
+      "name": "kohdeluokka",
+      "type": "int32",
+      "description": "Maastotietokohteen kohdeluokan numerokoodi, joka yksil\u00f6i maastokohteen lajin. Koodiluettelo on Maanmittauslaitoksen julkaisussa Maanmittauslaitoksen maastotietokohteet. T\u00e4ss\u00e4 kokoelmassa arvoja on kolme, 39110 avoin mets\u00e4maa, 39120 varvikko ja 39130 avoin vesij\u00e4tt\u00f6alue."
+    },
+    {
+      "name": "sijainti_piste",
+      "type": "string",
+      "description": "Aluekohteen sis\u00e4lle digitoitu aluetunnuspiste, joka yksil\u00f6i alueen. Piste on GeoJSON-muotoinen pistegeometria merkkijonona WGS84-koordinaatteina."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')",
+      "description": "Avoimen alueen aluerajaus WGS84-koordinaatistossa. Avoin alue on aukeaksi tai siemenpuuasentoon hakattu mets\u00e4alue, alle metrin korkuinen taimikko, luonnostaan l\u00e4hes puuton kivenn\u00e4ismaa-alue tai vesij\u00e4tt\u00f6alue."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rivin geometrian ymp\u00e4r\u00f6iv\u00e4 suorakulmio WGS84-koordinaatteina. Kyseess\u00e4 on GeoParquetin bbox-peittosarake, joka nopeuttaa alueellista rajausta."
+    }
+  ],
+  "title": "muuavoinalue",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          19.3180561,
+          59.802225,
+          31.5462492,
+          70.0870918
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "muuavoinalue default style",
+      "description": "Default visualization for muuavoinalue, drawn in #2a6275.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1146,
+      "file:checksum": "12203c7fa29fc2248eae4c17771906e2e1f28119f245d8fab0bd399b53f84a9c054a"
+    },
+    "muuavoinalue": {
+      "href": "./muuavoinalue.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 433209421,
+      "file:checksum": "122016ae6d04ba6ad772993480c0c4ed7ec58233ff442c97c76e2561d5657ed71155",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./muuavoinalue.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "muuavoinalue (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 295477709,
+      "file:checksum": "122034a9efa66cb1da5326f7aa9f07c55378eb4565ac59d93aee28951ef01a9208c1"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "muuavoinalue graduated style",
+      "description": "Graduated visualization coloring muuavoinalue by sijaintitarkkuus, ramped from 10000.0 to 12500.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1959,
+      "file:checksum": "12204645ff8f35dab7b23605f82e728c9431ebe4b57ac17198bb74202bced09c69c1"
+    },
+    "thumbnail": {
+      "href": "./muuavoinalue.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of muuavoinalue",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 130608,
+      "file:checksum": "12201a5ecf8b6d9169467bbb05eb989bc4e9999ade785a589e8be266ab717c2d5a56"
+    }
+  },
+  "keywords": [
+    "Maastotietokanta",
+    "Maasto/2",
+    "Suomi"
+  ],
+  "providers": [
+    {
+      "name": "Maanmittauslaitos",
+      "description": "Sis\u00e4lt\u00e4\u00e4 Maanmittauslaitoksen maastotietoja, haettu 1.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.maanmittauslaitos.fi/",
+      "email": "customerservice@nls.fi"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "updated": "2026-09-01T11:45:02Z",
+  "language": {
+    "code": "fi",
+    "name": "Suomi",
+    "dir": "ltr"
+  }
+}

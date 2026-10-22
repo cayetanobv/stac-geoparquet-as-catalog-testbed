@@ -1,0 +1,238 @@
+{
+  "type": "Collection",
+  "id": "urbanisme/peuat-zones",
+  "stac_version": "1.1.0",
+  "description": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona. El PEUAT divideix la ciutat en zones espec\u00edfiques (ZE-1 a ZE-5) que regulen on i com es poden implantar hotels, apartaments tur\u00edstics, albergs, resid\u00e8ncies col\u00b7lectives i habitatges d'\u00fas tur\u00edstic. Aquesta Collection recull els 12 pol\u00edgons de zona del mapa base del pla, amb la zona especial, la superf\u00edcie i el per\u00edmetre.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./peuat.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona",
+      "pmtiles:layers": [
+        "peuat"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata-ajuntament.barcelona.cat/data/ca/dataset/mapa-peuat",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata-ajuntament.barcelona.cat/data/dataset/b4a20b5f-a8df-41bc-ad74-4e8b0507b897/resource/607e9139-d1e6-46af-a7a2-3baa0b5f6016/download",
+      "rel": "related",
+      "title": "Upstream source: peuat",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 12,
+  "table:row_count": 12,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "fid",
+      "type": "int64"
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Identificador intern del registre."
+    },
+    {
+      "name": "ZE",
+      "type": "string",
+      "description": "Zona espec\u00edfica del PEUAT a qu\u00e8 correspon el recinte."
+    },
+    {
+      "name": "AREA",
+      "type": "double",
+      "description": "Superf\u00edcie del recinte."
+    },
+    {
+      "name": "Shape_Length",
+      "type": "double",
+      "description": "Per\u00edmetre del recinte calculat per l'eina d'origen."
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double",
+      "description": "Superf\u00edcie del recinte calculada per l'eina d'origen."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:25831')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.0524513549970274,
+          41.316923593019,
+          2.2292012786788122,
+          41.46824998436909
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona default style",
+      "description": "Default visualization for Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona, drawn in #1b7837.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1190,
+      "file:checksum": "1220e882f132f55d09e345e90d91b9ac4f423ede429de081f82dafb8d0dfbe292789"
+    },
+    "peuat": {
+      "href": "./peuat.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 318370,
+      "file:checksum": "1220acb9b287a033899936ec1d46eee7476d1a32b431806349b55deee17928e1beec",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./peuat.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 146348,
+      "file:checksum": "12208c3fb10a6092a7e4625da0eeba5fbcde457ac316490674524a16dae6a51320fa"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona categorical style",
+      "description": "Categorical visualization coloring Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona by ZE, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2778,
+      "file:checksum": "12204d87c53cdef9d89f3b82650ddeb18f97652b7a98bf6f45a318c01cd6de2fd0de"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona labeled style",
+      "description": "Default visualization for Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona with ZE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1587,
+      "file:checksum": "1220d136992599745cb8958764cd36c7a6c65babb4799104964fc078d5d36b0b7035"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona graduated style",
+      "description": "Graduated visualization coloring Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona by Shape_Length, ramped from 1919.6320778436059 to 159341.1009205483.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2080,
+      "file:checksum": "1220b05440193dfe033918a1121bc93a120b86af7f4dd6ff8656c348fc6a87cce420"
+    },
+    "thumbnail": {
+      "href": "./peuat.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Mapa del Pla especial urban\u00edstic d\u2019allotjament tur\u00edstics (PEUAT) de la ciutat de Barcelona",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 125811,
+      "file:checksum": "1220cfc61fb5630c57240c577bf32c207b01ac4445f449e681e63fe3cd54be2122bd"
+    }
+  },
+  "keywords": [
+    "PEUAT",
+    "allotjament tur\u00edstic",
+    "planejament especial",
+    "hotels",
+    "habitatges d'\u00fas tur\u00edstic",
+    "Barcelona"
+  ],
+  "providers": [
+    {
+      "name": "Ajuntament de Barcelona",
+      "description": "Font de les dades: Ajuntament de Barcelona",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata-ajuntament.barcelona.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T00:00:00Z"
+}

@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "urbanismo/callejero-subviales",
+  "stac_version": "1.1.0",
+  "description": "Servicio de mapas que incluye la de recintos de subvial vigentes. La informaci\u00f3n se actualiza diariamente a partir de los datos del sistema de actualizaci\u00f3n del callejero municipal (CADMA). Adicionalmente se incorpora la denominaci\u00f3n del vial al que pertenece, la numeraci\u00f3n m\u00e1xima y m\u00ednima del tramo y el tipo de subvial, como atributos de cada uno de los recintos.\n\nAVISO: En el [geoportal ](https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/index.iam \"Enlace externo en nueva ventana: acceso al geoportal del Ayuntamiento de Madrid\")del Ayuntamiento de Madrid se encuentra disponible la informaci\u00f3n y los servicios completos de este conjunto de datos a trav\u00e9s del enlace siguiente:[Callejero oficial. Subviales vigentes](https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/dataset.iam?id=96a4719d-29f0-11e9-874b-ecb1d752b636 \"Callejero oficial. Subviales vigentes\")\n\nFuente: [Geoportal Ayuntamiento de Madrid. ](https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/index.iam \"Enlace externo en nueva ventana: Geoportal Ayuntamiento de Madrid.\")\n\n[Visor geogr\u00e1fico del Geoportal (pantalla completa)](https://geoportal.madrid.es/IDEAM_WBGEOPORTAL/visor_din.iam?clave=VISOR_IDE&ArcGIS=https://sigma.madrid.es/hosted/rest/services/CALLEJERO/CALLEJERO_SUBVIALES/MapServer \"Enlace externo en nueva ventana: Acceso al Visor geogr\u00e1fico del Geoportal\")",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./SUBVIALES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Callejero oficial. Subviales vigentes",
+      "pmtiles:layers": [
+        "SUBVIALES"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datos.madrid.es/dataset/300734-0-mapas-callejero-subviales",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.madrid.es/fsdescargas/IDEAM_WBGEOPORTAL/CALLEJERO/SUBVIALES/SUBVIALES_SHP.zip",
+      "rel": "related",
+      "title": "Upstream source: callejero-subviales",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 27727,
+  "table:row_count": 27727,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Identificador interno del registro generado al convertir la capa geogr\u00e1fica de origen."
+    },
+    {
+      "name": "SVIA_ID",
+      "type": "int64",
+      "description": "Identificador del subvial en el sistema de callejero municipal, distinto en cada fila."
+    },
+    {
+      "name": "MIN_IMPAR",
+      "type": "double",
+      "description": "Portal impar m\u00e1s bajo del tramo al que da el recinto, con el valor 0.0 cuando no hay portales impares."
+    },
+    {
+      "name": "MAX_IMPAR",
+      "type": "double",
+      "description": "Portal impar m\u00e1s alto del tramo al que da el recinto, con el valor 0.0 cuando no hay portales impares."
+    },
+    {
+      "name": "MIN_PAR",
+      "type": "double",
+      "description": "Portal par m\u00e1s bajo del tramo al que da el recinto, con el valor 0.0 cuando no hay portales pares."
+    },
+    {
+      "name": "MAX_PAR",
+      "type": "double",
+      "description": "Portal par m\u00e1s alto del tramo al que da el recinto, con el valor 0.0 cuando no hay portales pares."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int64",
+      "description": "Identificador heredado del sistema de origen, tambi\u00e9n distinto en cada fila."
+    },
+    {
+      "name": "TSVIA_ID",
+      "type": "int64",
+      "description": "C\u00f3digo del tipo de subvial, con 8 valores distintos presentes en todas las filas."
+    },
+    {
+      "name": "TSVIA_TX_D",
+      "type": "string",
+      "description": "Descripci\u00f3n del tipo de subvial, presente solo en 254 de las 27783 filas."
+    },
+    {
+      "name": "VIAS",
+      "type": "string",
+      "description": "Denominaci\u00f3n de la v\u00eda a la que pertenece el recinto, presente solo en 254 de las 27783 filas."
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:25830')",
+      "description": "Geometr\u00eda poligonal del recinto de subvial en el sistema de referencia EPSG 25830, ETRS89 UTM huso 30N."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rect\u00e1ngulo envolvente de la geometr\u00eda del recinto, con los valores m\u00ednimo y m\u00e1ximo de X e Y."
+    }
+  ],
+  "title": "Callejero oficial. Subviales vigentes",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -3.8391933733997803,
+          40.31265029623596,
+          -3.5182880131727075,
+          40.643199340037654
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Callejero oficial. Subviales vigentes default style",
+      "description": "Default visualization for Callejero oficial. Subviales vigentes, drawn in #4b7f8c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1150,
+      "file:checksum": "122078b18004925ca1e0f80826b8286e5a86f7019dab70158be19606bd2262135990"
+    },
+    "SUBVIALES": {
+      "href": "./SUBVIALES.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13266801,
+      "file:checksum": "1220ebd3de61135cadf0f7804c397dbfbbe1af8526ee3978520005c2ad1fd22a89de",
+      "proj:code": "EPSG:25830",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./SUBVIALES.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Callejero oficial. Subviales vigentes (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 9508847,
+      "file:checksum": "12209d564524774ef01ab67138c5215d84e59837e1a60613e00ad53ac935d8dcdb95"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Callejero oficial. Subviales vigentes categorical style",
+      "description": "Categorical visualization coloring Callejero oficial. Subviales vigentes by TSVIA_TX_D, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1849,
+      "file:checksum": "122065875cd4f356cf93db2e6439cf7f45d3baef8fdcacfe598363f153ff5daf2c73"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Callejero oficial. Subviales vigentes labeled style",
+      "description": "Default visualization for Callejero oficial. Subviales vigentes with TSVIA_TX_D shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1563,
+      "file:checksum": "1220b25a98beae57c619b9ef1c201235b8b6adbe045f96a1e54bbb7eb1399bf5477e"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Callejero oficial. Subviales vigentes graduated style",
+      "description": "Graduated visualization coloring Callejero oficial. Subviales vigentes by SVIA_ID, ramped from 32000001.0 to 32096255.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1954,
+      "file:checksum": "12208f18007ae831c0375087911539c56797e0d2b2b996a99e6970348fbf61a2275c"
+    },
+    "thumbnail": {
+      "href": "./SUBVIALES.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Callejero oficial. Subviales vigentes",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 164538,
+      "file:checksum": "12205f96786d55ab4c7e94656b9eded4305cf5adba07a3e0a12cc9b1175114285fe7"
+    }
+  },
+  "keywords": [
+    "callejero",
+    "mapas"
+  ],
+  "providers": [
+    {
+      "name": "Direcci\u00f3n General de Planificaci\u00f3n Estrat\u00e9gica",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.madrid.es"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "es",
+    "name": "Espa\u00f1ol",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-08T00:00:00Z"
+}

@@ -1,0 +1,215 @@
+{
+  "type": "Collection",
+  "id": "bydele/kvarterer",
+  "stac_version": "1.1.0",
+  "description": "Opdeling af K\u00f8benhavns kommune i kvarterer. I alt 67 kvarterer.\n\nKvarterer er en opdeling mellem [roder](https://www.opendata.dk/city-of-copenhagen/roder) og [bydele](https://www.opendata.dk/city-of-copenhagen/bydele).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_kvarter.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kvarterer",
+      "pmtiles:layers": [
+        "k101_kvarter"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/kvarter",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: kvarter",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 67,
+  "table:row_count": 67,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "v_id",
+      "type": "int64"
+    },
+    {
+      "name": "kvarternr",
+      "type": "int64"
+    },
+    {
+      "name": "kvarternavn",
+      "type": "string"
+    },
+    {
+      "name": "ogc_fid",
+      "type": "int64"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Kvarterer",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.453045644135974,
+          55.61284307245765,
+          12.734252966168244,
+          55.732711495668084
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kvarterer default style",
+      "description": "Default visualization for Kvarterer, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1143,
+      "file:checksum": "1220b226279a00334309628b86131660b303f3bf44bb6e94e3bbf61247b30143a214"
+    },
+    "k101_kvarter": {
+      "href": "./k101_kvarter.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 159875,
+      "file:checksum": "12201cbc9853b99edc95ed802b4dfd3bf55707ea5a93ca3de1a089f374af178e7640",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_kvarter.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kvarterer (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 154628,
+      "file:checksum": "12206bbc7ea4844f4e55f12bf70e4dc677463e136a474085f998ccc9325d2f8dd516"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kvarterer graduated style",
+      "description": "Graduated visualization coloring Kvarterer by kvarternr, ramped from 20101.0 to 21211.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1928,
+      "file:checksum": "122034638f92c6f9b5ae8140570f65c1e44e0afd9158e691c437fba11a99c1a0c50b"
+    },
+    "thumbnail": {
+      "href": "./k101_kvarter.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kvarterer",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 96067,
+      "file:checksum": "1220a2d2735a4df4b2353a24e49da4d06ceb9d9cb71910fb2a088976f449ab057e57"
+    }
+  },
+  "keywords": [
+    "kvarter",
+    "neigborhood",
+    "opdeling",
+    "Kvarterer",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Kvarterer, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/kvarter",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

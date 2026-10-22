@@ -1,0 +1,207 @@
+{
+  "type": "Collection",
+  "id": "grenzen/kehrbezirke",
+  "stac_version": "1.1.0",
+  "description": "Bei den Kehrbezirken handelt es sich um Fl\u00e4chen innerhalb M\u00fcnchens denen jeweils ein*e Bezirksschornsteinfeger*in durch die Regierung von Oberbayern f\u00fcr die hoheitlichen Aufgaben zugewiesen wurde. Dieser/Diese f\u00fchrt alle hoheitlichen Aufgaben in einem Bezirk aus (z.B. Feuerst\u00e4ttenschau, baurechtliche Abnahmen).\n\nOnline Kaminkehrersuche auf Muenchen.de (stadt.muenchen.de/service/info/kaminkehrer/1049919/n0/)",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./rku_wfs_kehrbezirke.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kehrbezirke",
+      "pmtiles:layers": [
+        "rku_wfs_kehrbezirke"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.muenchen.de/dataset/kehrbezirke_opendata",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/rku_wfs/ows",
+      "rel": "related",
+      "title": "WFS source service: kehrbezirke",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/rku_wfs/wms?service=WMS&request=GetCapabilities",
+      "rel": "related",
+      "title": "Kehrbezirke (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 175,
+  "table:row_count": 175,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "flaeche",
+      "type": "int64"
+    },
+    {
+      "name": "kehr_nr",
+      "type": "string"
+    },
+    {
+      "name": "kehrbezirk",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Kehrbezirke",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.360778275906402,
+          48.06162443606122,
+          11.722909698518494,
+          48.24811837376852
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kehrbezirke default style",
+      "description": "Default visualization for Kehrbezirke, drawn in #08519c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1194,
+      "file:checksum": "1220f99bcd24f33a33ae46382bd16b4430c1537722de2a68c375e6a5c3cf729ec2eb"
+    },
+    "rku_wfs_kehrbezirke": {
+      "href": "./rku_wfs_kehrbezirke.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 400215,
+      "file:checksum": "1220938b7c7f482f7d68de1548145666fcd4ddf30ad8fd660ad7bbddf52914494c82",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./rku_wfs_kehrbezirke.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Kehrbezirke (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 344752,
+      "file:checksum": "122063d209b60f8e6f4ebf8417b93eecf768fc276a45b73d44ee09377a3c00ac5556"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Kehrbezirke graduated style",
+      "description": "Graduated visualization coloring Kehrbezirke by flaeche, ramped from 3353.0 to 17943014.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1983,
+      "file:checksum": "122097528a070a486f7df78e5ef9cbd9b964954ecb90370999cecdeaf6ecb44054b1"
+    },
+    "thumbnail": {
+      "href": "./rku_wfs_kehrbezirke.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Kehrbezirke",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 144822,
+      "file:checksum": "12204bb79aa231d0e0b118c0a0978b0254a8539a36cb0daf014cf5860b79d3e2263e"
+    }
+  },
+  "keywords": [
+    "Digitaler Zwilling M\u00fcnchen",
+    "Opendata",
+    "Umwelt",
+    "infoMapAccessService",
+    "M\u00fcnchen",
+    "Landeshauptstadt M\u00fcnchen",
+    "GeoPortal M\u00fcnchen"
+  ],
+  "providers": [
+    {
+      "name": "Landeshauptstadt M\u00fcnchen, Referat f\u00fcr Klima- und Umweltschutz",
+      "description": "Datenquelle Kehrbezirke, GeoPortal M\u00fcnchen der Landeshauptstadt M\u00fcnchen, abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.muenchen.de/organization/referat-fuer-klima-und-umweltschutz",
+      "email": "kaminkehrerwesen.rku@muenchen.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T07:15:00Z"
+}

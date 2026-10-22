@@ -1,0 +1,226 @@
+{
+  "type": "Collection",
+  "id": "mobiliteit/parkeerplaatsen",
+  "stac_version": "1.1.0",
+  "description": "Deze laag bevat de verschillende soorten parkeerplaatsen die gelegen op dienstenzones (autosnelwegparkings), P&R, Hoppinpunten en carpoolparkings gelegen langs gewest- en autosnelwegen in Vlaanderen. Hierbij worden o.a. bus, fiets, motorfiets, personenvervoer, vrachtwagens en mobilhomes weergegeven.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://data.vlaanderen.be/id/licentie/modellicentie-gratis-hergebruik/v1.0",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./awv_parkeerplaats.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkeerplaatsen",
+      "pmtiles:layers": [
+        "awv_parkeerplaats"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://metadata.vlaanderen.be/srv/dut/catalog.search#/metadata/33bba5ea-8be8-476c-9c0e-2475280cd317",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.apps.mow.vlaanderen.be/opendata-geoserver/awv/wfs",
+      "rel": "related",
+      "title": "WFS source service: parkeerplaats",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 15214,
+  "table:row_count": 15214,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')"
+    },
+    {
+      "name": "Naam_parkeerterrein",
+      "type": "string"
+    },
+    {
+      "name": "Type_Parkeerplaats",
+      "type": "string"
+    },
+    {
+      "name": "Refrigerated_goods",
+      "type": "string"
+    },
+    {
+      "name": "Laadpaal",
+      "type": "string"
+    },
+    {
+      "name": "Mindervalideparking",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Parkeerplaatsen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          2.656,
+          50.697,
+          5.725,
+          51.421
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerplaatsen default style",
+      "description": "Default visualization for Parkeerplaatsen, drawn in #cb181d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1184,
+      "file:checksum": "12203c747347794bdd691a089e456c65111adca065b72e8df8bd57154695c4eb51dc"
+    },
+    "awv_parkeerplaats": {
+      "href": "./awv_parkeerplaats.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 28998,
+      "file:checksum": "122026f7e5dd4a1a2bac67603393192061cc554d5ef56cc71c38eaedf51a8aacb98b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./awv_parkeerplaats.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Parkeerplaatsen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 130605,
+      "file:checksum": "1220dbed6540c1e22ffac0a6c1f3f5fdffba2759a75a5ec869698345bc8936f761f0"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerplaatsen categorical style",
+      "description": "Categorical visualization coloring Parkeerplaatsen by Type_Parkeerplaats, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1912,
+      "file:checksum": "12200871f0e1d8dccbe793fcf8b903487b3765abc8e7e5aca8365477439dafe5cbed"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Parkeerplaatsen labeled style",
+      "description": "Default visualization for Parkeerplaatsen with Naam_parkeerterrein shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1622,
+      "file:checksum": "12207ff72a44bcdf3152729ea3d1ff3f86516ae9d6fae6e4212b276874d1ab765857"
+    },
+    "thumbnail": {
+      "href": "./awv_parkeerplaats.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Parkeerplaatsen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 147764,
+      "file:checksum": "122015901ebee173d3e82b9b2836312f0a77a46e071eaaaa9fe7dc8b0a25e7700c59"
+    }
+  },
+  "keywords": [
+    "Wegen",
+    "Parkeren",
+    "Dienstenzones",
+    "Carpoolparkings",
+    "Vervoer",
+    "wegennet",
+    "vrachtwagen",
+    "vrachtvervoer",
+    "koelen",
+    "parkeervoorziening",
+    "(auto)parkeerplaats",
+    "lichamelijk gehandicapte"
+  ],
+  "providers": [
+    {
+      "name": "Agentschap Wegen en Verkeer",
+      "description": "Bron: Agentschap Wegen en Verkeer, Parkeerplaatsen, Modellicentie voor gratis hergebruik (gratis open datalicentie Vlaanderen v1.2), opgehaald op 20 september 2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://wegenenverkeer.be/",
+      "email": "team.aim@mow.vlaanderen.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "nl",
+    "name": "Nederlands",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

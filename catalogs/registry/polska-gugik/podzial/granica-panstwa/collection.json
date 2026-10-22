@@ -1,0 +1,338 @@
+{
+  "type": "Collection",
+  "id": "podzial/granica-panstwa",
+  "stac_version": "1.1.0",
+  "description": "Granica pa\u0144stwowa Rzeczypospolitej Polskiej z Pa\u0144stwowego Rejestru Granic i Powierzchni Jednostek Podzia\u0142\u00f3w Terytorialnych Kraju (PRG) prowadzonego przez G\u0142\u00f3wnego Geodet\u0119 Kraju. Jeden obiekt poligonowy obejmuj\u0105cy obszar l\u0105dowy kraju wraz z atrybutami rejestrowymi PRG: identyfikatorem jednostki, kodem poziomu podzia\u0142u, nazw\u0105, urz\u0119dow\u0105 powierzchni\u0105 w hektarach, identyfikatorem obiektu w infrastrukturze informacji przestrzennej oraz datami wersji i obowi\u0105zywania. Uk\u0142ad wsp\u00f3\u0142rz\u0119dnych producenta ETRS89 (EPSG:4258).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./A00_Granice_panstwa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PRG \u2013 Granica pa\u0144stwa",
+      "pmtiles:layers": [
+        "A00_Granice_panstwa"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.geoportal.gov.pl/pl/dane/panstwowy-rejestr-granic-prg/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.geoportal.gov.pl/prg/granice/00_jednostki_administracyjne.zip",
+      "rel": "related",
+      "title": "Upstream source: prg_jednostki_administracyjne",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://mapy.geoportal.gov.pl/wss/service/PZGIK/PRG/WFS/AdministrativeBoundaries?SERVICE=WFS&REQUEST=GetCapabilities&VERSION=2.0.0",
+      "rel": "related",
+      "title": "WFS 2.0.0 GUGiK dla PRG, granice administracyjne (warstwa ms:A00_Granice_panstwa). Us\u0142uga udost\u0119pnia wy\u0142\u0105cznie GML, dlatego kopia pobiera plik SHP; szczeg\u00f3\u0142y w AGENTS.md.",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 1,
+  "table:row_count": 1,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Kolejny numer rekordu nadany przy konwersji przez GDAL/geoparquet-io; w pliku producenta nie wyst\u0119puje. Stabilny tylko w obr\u0119bie jednej kopii."
+    },
+    {
+      "name": "JPT_KOD_JE",
+      "type": "string",
+      "description": "Identyfikator jednostki w systemie TERYT. Dla granicy pa\u0144stwa jednoznakowa warto\u015b\u0107 0 (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_SJR_KO",
+      "type": "string",
+      "description": "Kod poziomu jednostki podzia\u0142u terytorialnego. Dla tej warstwy sta\u0142a warto\u015b\u0107 PAN (pa\u0144stwo), 1 rekord (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_NAZWA_",
+      "type": "string",
+      "description": "Nazwa jednostki: POLSKA (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_POWIER",
+      "type": "double",
+      "description": "Urz\u0119dowa powierzchnia jednostki w HEKTARACH, z rejestru producenta, a nie wyliczona z geometrii. Weryfikacja 2026-09-21: 32 272 044,47 ha, czyli 322 720,44 km\u00b2, co odpowiada urz\u0119dowej powierzchni Polski."
+    },
+    {
+      "name": "JPT_ORGAN_",
+      "type": "string",
+      "description": "Nazwa organu w\u0142a\u015bciwego dla jednostki. W tym rekordzie pusta (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_KOD__1",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe towarzysz\u0105ce JPT_KOD_JE (nazwa skr\u00f3cona przez format Shapefile). W tym rekordzie puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_NAZWA1",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe towarzysz\u0105ce JPT_NAZWA_ (nazwa skr\u00f3cona przez format Shapefile do 10 znak\u00f3w). We wszystkich 1 rekordach puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_ORGAN1",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe towarzysz\u0105ce JPT_ORGAN_. Obserwowana warto\u015b\u0107 BRK (2026-09-21). Producent nie publikuje s\u0142ownika tych kod\u00f3w wraz z plikiem do pobrania, dlatego kopia nie przypisuje im znaczenia."
+    },
+    {
+      "name": "JPT_WAZNA_",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe dotycz\u0105ce wa\u017cno\u015bci jednostki. Obserwowana warto\u015b\u0107 NST (2026-09-21). S\u0142ownika kod\u00f3w producent nie do\u0142\u0105cza do pliku, wi\u0119c kopia nie przypisuje im znaczenia."
+    },
+    {
+      "name": "IIP_PRZEST",
+      "type": "string",
+      "description": "Przestrze\u0144 nazw identyfikatora obiektu w infrastrukturze informacji przestrzennej (IIP). W ca\u0142ym zbiorze sta\u0142a warto\u015b\u0107 PL.PZGIK.200 (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "IIP_IDENTY",
+      "type": "string",
+      "description": "Lokalny identyfikator obiektu w IIP: UUID, np. 6b3fe3ac-8239-41d6-84a4-cdc91bd0c88e. Trwa\u0142y identyfikator obiektu u producenta; zmienia si\u0119 tylko przy zast\u0105pieniu obiektu nowym."
+    },
+    {
+      "name": "JPT_KJ_IIP",
+      "type": "string",
+      "description": "Trzyznakowe do dwudziestoznakowe pole kodowe wskazuj\u0105ce zbi\u00f3r \u017ar\u00f3d\u0142owy identyfikatora. W tym rekordzie puste (obserwacja 2026-09-21); w warstwach ni\u017cszych poziom\u00f3w przyjmuje warto\u015b\u0107 EGIB."
+    },
+    {
+      "name": "JPT_KJ_I_1",
+      "type": "string",
+      "description": "Identyfikator jednostki w zbiorze \u017ar\u00f3d\u0142owym. W tym rekordzie pusty (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_KJ_I_2",
+      "type": "string",
+      "description": "Drugie pole identyfikatora zbioru \u017ar\u00f3d\u0142owego (nazwa skr\u00f3cona przez format Shapefile). W tym rekordzie puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_SPS_KO",
+      "type": "string",
+      "description": "Trzyznakowe pole kodowe. Obserwowana warto\u015b\u0107 UZG (2026-09-21). Producent nie do\u0142\u0105cza s\u0142ownika tych kod\u00f3w do pliku, dlatego kopia nie przypisuje im znaczenia."
+    },
+    {
+      "name": "JPT_POWI_1",
+      "type": "double",
+      "description": "Drugie pole powierzchni (nazwa skr\u00f3cona przez format Shapefile). We wszystkich rekordach 0 (obserwacja 2026-09-21), wi\u0119c nie nale\u017cy go u\u017cywa\u0107; powierzchni\u0119 podaje JPT_POWIER."
+    },
+    {
+      "name": "JPT_KJ_I_3",
+      "type": "string",
+      "description": "Trzecie pole kodowe zbioru \u017ar\u00f3d\u0142owego (nazwa skr\u00f3cona przez format Shapefile). W tym rekordzie puste (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_JOR_ID",
+      "type": "double",
+      "description": "Identyfikator rekordu organu w rejestrze producenta. W ca\u0142ym zbiorze sta\u0142a warto\u015b\u0107 13136 (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "WERSJA_OD",
+      "type": "string",
+      "description": "Data i godzina pocz\u0105tku tej wersji obiektu w rejestrze producenta, tekst w formacie YYYY-MM-DDTHH:MM:SS bez strefy czasowej, np. 2026-07-28T01:10:33. Znacznik zmiany w bazie, nie data wej\u015bcia w \u017cycie."
+    },
+    {
+      "name": "WERSJA_DO",
+      "type": "string",
+      "description": "Data i godzina ko\u0144ca wersji obiektu. W pobranym zbiorze pusta we wszystkich rekordach, bo plik zawiera wy\u0142\u0105cznie wersje aktualne (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "WAZNY_OD",
+      "type": "string",
+      "description": "Data, od kt\u00f3rej jednostka jest wa\u017cna w sensie prawnym, tekst YYYY-MM-DDTHH:MM:SS, np. 2012-06-12T00:00:00. R\u00f3\u017cni si\u0119 od WERSJA_OD: WAZNY_OD odnosi si\u0119 do obowi\u0105zywania jednostki, WERSJA_OD do wpisu w bazie."
+    },
+    {
+      "name": "WAZNY_DO",
+      "type": "string",
+      "description": "Data, do kt\u00f3rej jednostka jest wa\u017cna. W pobranym zbiorze pusta we wszystkich rekordach (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "IIP_WERSJA",
+      "type": "string",
+      "description": "Identyfikator wersji obiektu w IIP: ten sam znacznik czasu co WERSJA_OD, niekiedy z przesuni\u0119ciem strefy, np. 2026-07-28T13:10:33+02:00. Producent zapisuje oba warianty, wi\u0119c nie jest to pole por\u00f3wnywalne \u0142a\u0144cuchowo mi\u0119dzy rekordami."
+    },
+    {
+      "name": "JPT_OPIS",
+      "type": "string",
+      "description": "Opis jednostki. W pobranym zbiorze pusty we wszystkich rekordach (obserwacja 2026-09-21)."
+    },
+    {
+      "name": "JPT_ID",
+      "type": "double",
+      "description": "Wewn\u0119trzny identyfikator rekordu w bazie producenta, liczba ca\u0142kowita zapisana jako N19.11. Nie jest to identyfikator TERYT ani IIP."
+    },
+    {
+      "name": "Shape_Leng",
+      "type": "double",
+      "description": "D\u0142ugo\u015b\u0107 obwodu obliczona przez producenta w jednostkach uk\u0142adu wsp\u00f3\u0142rz\u0119dnych zbioru, czyli w STOPNIACH, a nie w metrach (weryfikacja 2026-09-21: granica pa\u0144stwa 42,93, wojew\u00f3dztwo mazowieckie 20,21). Warto\u015b\u0107 nie jest miar\u0105 metryczn\u0105 i nie nale\u017cy jej u\u017cywa\u0107 jako d\u0142ugo\u015bci; do pomiar\u00f3w trzeba przeliczy\u0107 geometri\u0119 na uk\u0142ad metryczny, np. PL-1992 (EPSG:2180)."
+    },
+    {
+      "name": "Shape_Area",
+      "type": "double",
+      "description": "Pole powierzchni obliczone przez producenta w jednostkach uk\u0142adu wsp\u00f3\u0142rz\u0119dnych zbioru, czyli w STOPNIACH KWADRATOWYCH (weryfikacja 2026-09-21: granica pa\u0144stwa 42,44). Nie jest to powierzchnia w km\u00b2 ani w ha; urz\u0119dow\u0105 powierzchni\u0119 w hektarach podaje JPT_POWIER."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4258')",
+      "description": "Geometria jednostki w uk\u0142adzie producenta ETRS89 (EPSG:4258, stopnie geograficzne), zapisana jako WKB; zadeklarowana kolumna geometrii. Zasi\u0119gi STAC kopia przelicza na OGC:CRS84."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Prostok\u0105t otaczaj\u0105cy geometri\u0119 jako struktura xmin, ymin, xmax, ymax, dodany przy konwersji jako kolumna pokrywaj\u0105ca (covering) GeoParquet; pozwala czytnikowi pomin\u0105\u0107 ca\u0142e grupy wierszy."
+    }
+  ],
+  "title": "PRG \u2013 Granica pa\u0144stwa",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          14.069638890222677,
+          49.00204323021097,
+          24.14578307033247,
+          55.03605000130659
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PRG \u2013 Granica pa\u0144stwa default style",
+      "description": "Default visualization for PRG \u2013 Granica pa\u0144stwa, drawn in #08306b.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1214,
+      "file:checksum": "1220a6f38a6f78b1f68cb35b02f66e59819d9e02257fd35f397fa402b5c38fd9d919"
+    },
+    "A00_Granice_panstwa": {
+      "href": "./A00_Granice_panstwa.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 1038769,
+      "file:checksum": "122025847cb17a1a10d47650c69ea24ad2a5d661fd089e6873ffefb7323fec69fb5e",
+      "proj:code": "EPSG:4258",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./A00_Granice_panstwa.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "PRG \u2013 Granica pa\u0144stwa (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 2942690,
+      "file:checksum": "1220756dc204da60fc2a521dde27a2ac9b9740434da8315c99414ab1af8f65a501c9"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "PRG \u2013 Granica pa\u0144stwa labeled style",
+      "description": "Default visualization for PRG \u2013 Granica pa\u0144stwa with JPT_NAZWA_ shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1647,
+      "file:checksum": "122080d51e40d0469eb95675d35367ca168552371d0c05651635d6a91328556506e2"
+    },
+    "thumbnail": {
+      "href": "./A00_Granice_panstwa.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of PRG \u2013 Granica pa\u0144stwa",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 62033,
+      "file:checksum": "122080112194187ef1d1f1ef4660400bf8a30f324dfbeb748c1f7582efb2e8a669fd"
+    }
+  },
+  "keywords": [
+    "PRG",
+    "granica pa\u0144stwa",
+    "granice administracyjne",
+    "Polska",
+    "PZGiK",
+    "GUGiK",
+    "podzia\u0142 terytorialny",
+    "ETRS89"
+  ],
+  "providers": [
+    {
+      "name": "G\u0142\u00f3wny Urz\u0105d Geodezji i Kartografii (GUGiK)",
+      "description": "Wykorzystano/opracowano na podstawie materia\u0142\u00f3w pa\u0144stwowego zasobu geodezyjnego i kartograficznego, G\u0142\u00f3wny Urz\u0105d Geodezji i Kartografii, PRG, stan zbioru 2026-09-17, pobrano 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "http://www.gugik.gov.pl/",
+      "email": "gugik@gugik.gov.pl"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pl",
+    "name": "Polski",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:00:00Z"
+}

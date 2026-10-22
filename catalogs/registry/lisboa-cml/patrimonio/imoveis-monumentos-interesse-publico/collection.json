@@ -1,0 +1,287 @@
+{
+  "type": "Collection",
+  "id": "patrimonio/imoveis-monumentos-interesse-publico",
+  "stac_version": "1.1.0",
+  "description": "Im\u00f3veis e monumentos de interesse p\u00fablico no concelho de Lisboa, com o nome, a morada, a freguesia, os contactos e um texto descritivo, na camada Im\u00f3veis e Monumentos de Interesse P\u00fablico do servi\u00e7o Patrim\u00f3nio da C\u00e2mara Municipal de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./imoveis_interesse_publico.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico",
+      "pmtiles:layers": [
+        "imoveis_interesse_publico"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/36d88f51b75142d4b47f5aae34d56f3c_11",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Patrimonio/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Patrimonio (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 222,
+  "table:row_count": 222,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "INF_NOME",
+      "type": "string",
+      "description": "Nome ou designa\u00e7\u00e3o do ponto de interesse (alias NOME / \u00abDesigna\u00e7\u00e3o\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "INF_MORADA",
+      "type": "string",
+      "description": "Morada do ponto de interesse (alias MORADA)."
+    },
+    {
+      "name": "FREGUESIA",
+      "type": "string",
+      "description": "Nome da freguesia onde o objeto se situa, segundo a divis\u00e3o administrativa de 2012 (Lei n.\u00ba 56/2012); texto do publicador, n\u00e3o uma chave para uma camada de freguesias (este cat\u00e1logo n\u00e3o tem nenhuma, ver AGENTS.md)."
+    },
+    {
+      "name": "INF_TELEFONE",
+      "type": "string",
+      "description": "Telefone de contacto publicado, quando existe (alias TELEFONE)."
+    },
+    {
+      "name": "INF_EMAIL",
+      "type": "string",
+      "description": "Endere\u00e7o de correio eletr\u00f3nico publicado, quando existe (alias EMAIL)."
+    },
+    {
+      "name": "INF_SITE",
+      "type": "string",
+      "description": "URL do s\u00edtio web do ponto de interesse, quando existe (alias SITE)."
+    },
+    {
+      "name": "INF_ACTIVO",
+      "type": "int32",
+      "description": "Indicador de registo ativo, mantido pelo publicador como n\u00famero inteiro curto (alias \u00abACTIVO(S/N)\u00bb)."
+    },
+    {
+      "name": "INF_DESCRICAO",
+      "type": "string",
+      "description": "Texto descritivo livre do ponto de interesse (alias DESCRICAO)."
+    },
+    {
+      "name": "CAMADA_ORIGEM",
+      "type": "string",
+      "description": "Camada do armaz\u00e9m de dados de que o registo foi derivado; dom\u00ednio Multiescolha do servi\u00e7o, com os valores Fra\u00e7\u00f5es Total Consulta, Edif\u00edcios Total Consulta, Eixos de Via Consulta, Pontos de \u00c1gua Consulta, Estatu\u00e1ria Consulta, Miradouro Consulta e Parques e Jardins Consulta."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.22190807323713,
+          38.6935994354201,
+          -9.09501853984895,
+          38.7862959292154
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico default style",
+      "description": "Default visualization for Im\u00f3veis e Monumentos de Interesse P\u00fablico, drawn in #d94801.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1276,
+      "file:checksum": "12204591d6a2db50739fe03b000a84707a96a3d325f6c67a3e924190c09c5261ae30"
+    },
+    "imoveis_interesse_publico": {
+      "href": "./imoveis_interesse_publico.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 135803,
+      "file:checksum": "1220e9930e010ea61c18b9ee071b2f93f9cd43058fbf4465b2044537d318a855289d",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./imoveis_interesse_publico.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 322467,
+      "file:checksum": "122077185965cf29d4e67276551a57a71d28751ac8380a90ca95d0292ff72e360ac7"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico categorical style",
+      "description": "Categorical visualization coloring Im\u00f3veis e Monumentos de Interesse P\u00fablico by INF_EMAIL, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2997,
+      "file:checksum": "122024d3be94c64375b5d7ae2612de3d4c70e04e185edc4c6f70481cc45fa401bc00"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico labeled style",
+      "description": "Default visualization for Im\u00f3veis e Monumentos de Interesse P\u00fablico with INF_NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1719,
+      "file:checksum": "1220051ccf3fbb8d0bcbb88e50a890a333163291dbc9749f9f85f86a95962f44fb3c"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Im\u00f3veis e Monumentos de Interesse P\u00fablico graduated style",
+      "description": "Graduated visualization coloring Im\u00f3veis e Monumentos de Interesse P\u00fablico by INF_ACTIVO, ramped from 1.0 to 1.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2029,
+      "file:checksum": "1220c1a878dd4bf23b9325089a4777edd8f4c37107afc28fb4f38f86e22ca1c9b206"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/36d88f51b75142d4b47f5aae34d56f3c/geojson?layers=11&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: imoveis_interesse_publico",
+      "pipeline:upstream": true,
+      "file:size": 418427,
+      "file:checksum": "1220a65cfa2d2f9b4011dcc38f80672cb56f1887aa65fa6bf3c79386417b732b344f"
+    },
+    "thumbnail": {
+      "href": "./imoveis_interesse_publico.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Im\u00f3veis e Monumentos de Interesse P\u00fablico",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 143818,
+      "file:checksum": "1220ecdf779420dae0a705e9e1320312d286bca34c5100f5cba4409c6ad94775a498"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Patrim\u00f3nio",
+    "Heritage",
+    "CulturaPatrimonio",
+    "POI"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Im\u00f3veis e Monumentos de Interesse P\u00fablico (Patrimonio), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

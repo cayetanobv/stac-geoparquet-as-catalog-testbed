@@ -1,0 +1,344 @@
+{
+  "type": "Collection",
+  "id": "demographics/acs-tracts",
+  "stac_version": "1.1.0",
+  "description": "Indicators the U.S. Census Bureau publishes only at census-tract level \u2014 health insurance coverage, disability, nativity, group-quarters population, and race-iterated income and poverty \u2014 for all 104 census tracts in the City of St. Louis, from the American Community Survey (ACS) 2020\u20132024 5-year estimates. The Census Bureau describes the ACS as \"an ongoing survey that provides vital information on a yearly basis about our nation and its people.\" The companion `acs-block-groups` collection carries the finer-grained indicators; this collection exists because tables like B27001 (health insurance), B18101 (disability), B05002 (nativity), B26001 (group quarters) and the race-iterated B19013B/B17020B have no block-group release. Population and median household income are repeated here as more statistically stable tract-level variants. Every estimate ships with its 90%-confidence margin of error (`*_moe`) and headline rates with a coefficient of variation (`*_cv`); jam values are nulls; each column's description names its ACS table.\n\nUnlike the city's own datasets in this catalog, this is **not** City of St. Louis data: it is federal survey data published by the U.S. Census Bureau, extracted for St. Louis city (FIPS 29510) from the ACS table-based Summary File and joined to the Bureau's 2024 cartographic boundary geometries (1:500,000 scale, clipped to the Mississippi shoreline).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json",
+      "title": "City of St. Louis Open Data (Cloud-Native Mirror)"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json",
+      "title": "Demographics"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./acs-tracts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "acs-tracts"
+      ]
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.census.gov/topics/research/research-transparency-public-access/open-data.html",
+      "type": "text/html",
+      "title": "U.S. Census Bureau \u2014 data license and terms"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/programs-surveys/acs.html",
+      "type": "text/html",
+      "title": "American Community Survey documentation"
+    },
+    {
+      "rel": "via",
+      "href": "https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/",
+      "type": "text/html",
+      "title": "American Community Survey source data"
+    }
+  ],
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.1.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/themes/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 104,
+  "table:row_count": 104,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geoid",
+      "type": "string",
+      "description": "11-digit census tract GEOID (state 29 + county 510 + tract). Join key; equals the first 11 characters of a block-group geoid."
+    },
+    {
+      "name": "population",
+      "type": "int64",
+      "description": "Total population. ACS table B01003."
+    },
+    {
+      "name": "population_moe",
+      "type": "double",
+      "description": "Margin of error for population at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_hh_income",
+      "type": "double",
+      "description": "Median household income in the past 12 months, in 2024 inflation-adjusted dollars. ACS table B19013."
+    },
+    {
+      "name": "median_hh_income_moe",
+      "type": "double",
+      "description": "Margin of error for median_hh_income at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_hh_income_cv",
+      "type": "double",
+      "description": "Coefficient of variation for median_hh_income (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_below_poverty",
+      "type": "double",
+      "description": "Percent of the population for whom poverty status is determined with income below the poverty level (income-to-poverty ratio under 1.00). ACS table C17002."
+    },
+    {
+      "name": "pct_below_poverty_moe",
+      "type": "double",
+      "description": "Margin of error for pct_below_poverty at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_below_poverty_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_below_poverty (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_uninsured",
+      "type": "double",
+      "description": "Percent of the civilian noninstitutionalized population with no health insurance coverage. ACS table B27001."
+    },
+    {
+      "name": "pct_uninsured_moe",
+      "type": "double",
+      "description": "Margin of error for pct_uninsured at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_uninsured_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_uninsured (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_with_disability",
+      "type": "double",
+      "description": "Percent of the civilian noninstitutionalized population with a disability. ACS table B18101."
+    },
+    {
+      "name": "pct_with_disability_moe",
+      "type": "double",
+      "description": "Margin of error for pct_with_disability at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_with_disability_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_with_disability (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_foreign_born",
+      "type": "double",
+      "description": "Percent of the population that is foreign-born. ACS table B05002."
+    },
+    {
+      "name": "pct_foreign_born_moe",
+      "type": "double",
+      "description": "Margin of error for pct_foreign_born at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "group_quarters_pop",
+      "type": "int64",
+      "description": "Population living in group quarters (dormitories, prisons, nursing facilities and similar) \u2014 flag tracts where this is large before computing per-capita rates from household-based columns. ACS table B26001."
+    },
+    {
+      "name": "group_quarters_pop_moe",
+      "type": "double",
+      "description": "Margin of error for group_quarters_pop at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_hh_income_black",
+      "type": "double",
+      "description": "Median household income in the past 12 months (2024 inflation-adjusted dollars) for households with a Black or African American alone householder. ACS table B19013B."
+    },
+    {
+      "name": "median_hh_income_black_moe",
+      "type": "double",
+      "description": "Margin of error for median_hh_income_black at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "median_hh_income_black_cv",
+      "type": "double",
+      "description": "Coefficient of variation for median_hh_income_black (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "pct_below_poverty_black",
+      "type": "double",
+      "description": "Percent of the Black or African American alone population for whom poverty status is determined with income below the poverty level. ACS table B17020B."
+    },
+    {
+      "name": "pct_below_poverty_black_moe",
+      "type": "double",
+      "description": "Margin of error for pct_below_poverty_black at the 90% confidence level (the level the Census Bureau publishes for ACS)."
+    },
+    {
+      "name": "pct_below_poverty_black_cv",
+      "type": "double",
+      "description": "Coefficient of variation for pct_below_poverty_black (moe / 1.645 / estimate): at or below 0.15 is reliable, 0.15\u20130.30 use with caution, above 0.30 unreliable."
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    }
+  ],
+  "portolan:total_size_bytes": 585764,
+  "portolan:asset_count": 6,
+  "portolan:styles": [
+    "styles/default"
+  ],
+  "updated": "2026-08-14T12:21:16+00:00",
+  "themes": [
+    {
+      "scheme": "https://www.stlouis-mo.gov/data/topics/",
+      "concepts": [
+        {
+          "id": "demographics",
+          "title": "Demographics"
+        }
+      ]
+    },
+    {
+      "scheme": "https://www.census.gov/programs-surveys/acs.html",
+      "concepts": [
+        {
+          "id": "acs",
+          "title": "American Community Survey"
+        }
+      ]
+    }
+  ],
+  "proj:epsg": 3857,
+  "pmtiles:min_zoom": 0,
+  "pmtiles:max_zoom": 12,
+  "pmtiles:tile_type": "mvt",
+  "pmtiles:center": [
+    -90.2197265,
+    38.6511901,
+    12
+  ],
+  "pmtiles:layers": [
+    "acs-tracts"
+  ],
+  "title": "ACS Demographics \u2014 Tracts",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -90.32051589533225,
+          38.532001591520135,
+          -90.16671561256314,
+          38.77428387126793
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2020-01-01T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "keywords": [
+    "census",
+    "ACS",
+    "American Community Survey",
+    "health insurance",
+    "disability",
+    "demographics"
+  ],
+  "providers": [
+    {
+      "name": "U.S. Census Bureau",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.census.gov/programs-surveys/acs.html"
+    },
+    {
+      "name": "TGE Labs",
+      "roles": [
+        "host"
+      ],
+      "url": "https://github.com/cholmes/portolan-catalog-stlouis"
+    }
+  ],
+  "assets": {
+    "acs-tracts": {
+      "href": "./acs-tracts.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "ACS Demographics \u2014 Tracts (GeoParquet)",
+      "file:size": 43811,
+      "file:checksum": "1220744e3dfd2491b627e3cbb9c87b2034192d641c96077580e806cb3cc98c906901",
+      "roles": [
+        "data"
+      ]
+    },
+    "acs-tracts-tiles": {
+      "href": "./acs-tracts.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "acs-tracts (vector tiles)",
+      "file:size": 200468,
+      "file:checksum": "12201944945d2d100d2b4de53dcd37a73c7f697fa3d4f1fca6c249fd3a0386a716e4",
+      "roles": [
+        "visual"
+      ]
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Uninsured population",
+      "description": "Share of the civilian noninstitutionalized population with no health insurance coverage \u2014 one of the indicators the Census Bureau only publishes at tract level.",
+      "file:size": 1641,
+      "file:checksum": "12208f66a1ff7b8388751000890fa7eb5290d5a6dc84601b7715d83721e409749882",
+      "roles": [
+        "default",
+        "style"
+      ]
+    },
+    "styles/disability": {
+      "href": "./styles/disability.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Population with a disability",
+      "description": "Share of the civilian noninstitutionalized population with a disability, light to dark blue.",
+      "file:size": 1596,
+      "file:checksum": "1220884c08e020c9512fe5ba43f7f04d9462cd6cf942759b541a58cb9fa37b8ad0b5",
+      "roles": [
+        "style"
+      ]
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "ACS Demographics \u2014 Tracts rendered with the default style",
+      "file:size": 329179,
+      "file:checksum": "1220dea51917e5bb808c095452f3b0ec458d7e0b3661087082cf703b824ac04675da",
+      "roles": [
+        "thumbnail"
+      ]
+    }
+  }
+}

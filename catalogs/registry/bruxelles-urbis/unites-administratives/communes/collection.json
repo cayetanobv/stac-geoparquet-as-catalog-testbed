@@ -1,0 +1,245 @@
+{
+  "type": "Collection",
+  "id": "unites-administratives/communes",
+  "stac_version": "1.1.0",
+  "description": "UrbIS \u2013 Unit\u00e9s administratives  correspond au jeu de donn\u00e9es des unit\u00e9s administratives et statistiques en R\u00e9gion bruxelloise. Ce jeu de donn\u00e9es est compos\u00e9 de six classes g\u00e9om\u00e9triques. La premi\u00e8re classe correspond \u00e0 au territoire de la R\u00e9gion bruxelloise. La deuxi\u00e8me correspond au territoire des dix-neuf communes qui composent la R\u00e9gion, la troisi\u00e8me correspond aux six zones de polices comprises dans la R\u00e9gion, la quatri\u00e8me correspond aux quartiers du monitoring, la cinqui\u00e8me correspond aux secteurs statistiques. \n\nLe jeu de donn\u00e9es est librement t\u00e9l\u00e9chargeable, sous forme de shapefiles zipp\u00e9s. Le jeu de donn\u00e9es est notamment produit par int\u00e9gration des donn\u00e9es du SPF Finances et du SPF Economie. Leurs licences respectives sont d'application en ce qui concerne les classes qui en proviennent.\n\nCette collection reprend la classe \u00ab Communes \u00bb du produit, publi\u00e9e par le WFS sous le type urbisvector:Municipalities (Municipalities : \u00ab Brussels municipalities as established by the legislator. \u00bb). Titre n\u00e9erlandais du jeu de donn\u00e9es : \u00ab UrbIS - Administratieve eenheden \u00bb ; titre anglais : \u00ab UrbIS - Administrative units \u00bb.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://finances.belgium.be/sites/default/files/Licence_plan_opendata_FR.PDF",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./urbisvector_municipalities.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Communes (UrbIS \u2013 Unit\u00e9s administratives)",
+      "pmtiles:layers": [
+        "urbisvector_municipalities"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://datastore.brussels/web/data/dataset/f6b83500-6a62-11ed-be6d-010101010000",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoservices-urbis.irisnet.be/geoserver/urbisvector/ows",
+      "rel": "related",
+      "title": "WFS source service: municipalities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 19,
+  "table:row_count": 19,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:31370')"
+    },
+    {
+      "name": "NISCODE",
+      "type": "int64",
+      "description": "Code INS de la commune, fix\u00e9 et maintenu par Statbel."
+    },
+    {
+      "name": "NAMEFRE",
+      "type": "string",
+      "description": "Nom fran\u00e7ais de la commune tel que d\u00e9fini par l'Arr\u00eat\u00e9 royal du 24 juin 1988."
+    },
+    {
+      "name": "NAMEDUT",
+      "type": "string",
+      "description": "Nom n\u00e9erlandais de la commune tel que d\u00e9fini par l'Arr\u00eat\u00e9 royal du 24 juin 1988."
+    },
+    {
+      "name": "POLICEZONE",
+      "type": "int64",
+      "description": "Identifiant de la zone de police telle que cr\u00e9\u00e9e par le Roi."
+    },
+    {
+      "name": "AREA",
+      "type": "double",
+      "description": "Superficie au sol de la commune (m\u00b2)."
+    },
+    {
+      "name": "INSPIRE_ID",
+      "type": "string",
+      "description": "Identifiant INSPIRE unique et stable de la commune, fix\u00e9 et maintenu par l'AGDP."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Communes (UrbIS \u2013 Unit\u00e9s administratives)",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          4.24376513895666,
+          50.76368007545884,
+          4.482271136369961,
+          50.913901316446776
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "other",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Communes (UrbIS \u2013 Unit\u00e9s administratives) default style",
+      "description": "Default visualization for Communes (UrbIS \u2013 Unit\u00e9s administratives), drawn in #5e3c99.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1283,
+      "file:checksum": "12202318328dc6db09efe3bee24848f0b01922514b990e33c92b0d4a8e911205ac66"
+    },
+    "urbisvector_municipalities": {
+      "href": "./urbisvector_municipalities.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 157895,
+      "file:checksum": "1220030ff9ac4370311b66fde47bbdaeba89d94750be5dcfbc0897a40ae62d29af85",
+      "proj:code": "EPSG:31370",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./urbisvector_municipalities.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Communes (UrbIS \u2013 Unit\u00e9s administratives) (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 133467,
+      "file:checksum": "12203ce83bd0d059881c29535e77209ce20ade49e266c77407fb1a2d67261e8d69d5"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Communes (UrbIS \u2013 Unit\u00e9s administratives) labeled style",
+      "description": "Default visualization for Communes (UrbIS \u2013 Unit\u00e9s administratives) with NAMEFRE shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1727,
+      "file:checksum": "1220cd4ef632378104c88960d8b2f43fa275f59db90ec17db1386fbe8703975c3a0b"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Communes (UrbIS \u2013 Unit\u00e9s administratives) graduated style",
+      "description": "Graduated visualization coloring Communes (UrbIS \u2013 Unit\u00e9s administratives) by AREA, ramped from 1160627.34110408 to 33086943.5859531.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2135,
+      "file:checksum": "1220ba3440ada742223b3f885b5d6ec5b77491f699272c3d3926895e0ac36bca35ab"
+    },
+    "thumbnail": {
+      "href": "./urbisvector_municipalities.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Communes (UrbIS \u2013 Unit\u00e9s administratives)",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 127073,
+      "file:checksum": "12208ffe7d30658301136d8988252b884173ad933f5ed7c54839b6fc65d081109735"
+    }
+  },
+  "keywords": [
+    "administration r\u00e9gionale",
+    "autorit\u00e9 r\u00e9gionale",
+    "limite administrative",
+    "R\u00e9gions et villes",
+    "Unit\u00e9s administratives",
+    "Unit\u00e9s statistiques",
+    "R\u00e9gional",
+    "D\u00e9nomination d'unit\u00e9 administrative",
+    "Limite administrative",
+    "Unit\u00e9 administrative",
+    "R\u00e9gion de Bruxelles-Capitale"
+  ],
+  "providers": [
+    {
+      "name": "Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB)",
+      "description": "Source : Paradigm (Centre d'Informatique pour la R\u00e9gion Bruxelloise, CIRB), \u00ab UrbIS \u2013 Unit\u00e9s administratives \u00bb, datastore.brussels, consult\u00e9 le 20 septembre 2026.",
+      "roles": [
+        "producer"
+      ],
+      "url": "https://paradigm.brussels",
+      "email": "irisline@paradigm.brussels"
+    },
+    {
+      "name": "SPF Finances \u2013 Administration G\u00e9n\u00e9rale de la Documentation Patrimoniale (AGDP)",
+      "roles": [
+        "licensor"
+      ],
+      "url": "https://finances.belgium.be",
+      "email": "datadelivery@minfin.fed.be"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "fr",
+    "name": "Fran\u00e7ais",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T01:30:00Z"
+}

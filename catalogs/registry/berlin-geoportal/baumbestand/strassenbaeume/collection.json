@@ -1,0 +1,323 @@
+{
+  "type": "Collection",
+  "id": "baumbestand/strassenbaeume",
+  "stac_version": "1.1.0",
+  "description": "Die Daten umfassen Stra\u00dfenb\u00e4ume und einen Teil der B\u00e4ume in Gr\u00fcnanlagen. Stra\u00dfenb\u00e4ume (B\u00e4ume im \u00f6ffentlichen Stra\u00dfenraum).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./baumbestand_strassenbaeume.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume",
+      "pmtiles:layers": [
+        "baumbestand_strassenbaeume"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/zero-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://daten.berlin.de/datensaetze/baumbestand-berlin-wfs-48ad3a23",
+      "type": "text/html"
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wfs/baumbestand",
+      "rel": "related",
+      "title": "WFS source service: strassenbaeume",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://gdi.berlin.de/services/wms/baumbestand?request=GetCapabilities&service=WMS",
+      "rel": "related",
+      "title": "Baumbestand Berlin (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 434765,
+  "table:row_count": 434765,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('OGC:CRS84')",
+      "description": "Geometrie des Objekts in WGS 84 (OGC:CRS84), vom WFS-Extraktor aus EPSG:25833 umgerechnet; einzige als Geometrie deklarierte Spalte."
+    },
+    {
+      "name": "gisid",
+      "type": "string",
+      "description": "Technischer Schl\u00fcssel des Baums im GRIS, zum Beispiel 00008100_00150f98."
+    },
+    {
+      "name": "pitid",
+      "type": "string",
+      "description": "Berlinweit eindeutige Baum- und Standortnummer (PITID), zum Beispiel 00008100:00150f98. In 1.589 Zeilen leer, sonst ohne Dubletten (gepr\u00fcft am 20.10.2026)."
+    },
+    {
+      "name": "standortnr",
+      "type": "string",
+      "description": "Bezirkliche Baum- und Standortnummer; laut Publizierer nicht eindeutig."
+    },
+    {
+      "name": "kennzeich",
+      "type": "string",
+      "description": "Objektnummer, laut Publizierer die bezirkliche Nummer des Pflegeobjekts, dem der Baum zugeordnet ist. Text mit erhaltenen f\u00fchrenden Nullen und uneinheitlicher Form, am 20.10.2026 7.864 verschiedene Werte, meist f\u00fcnf- oder sechsstellige Ziffern (\u201e43698\u201c, \u201e000954\u201c) und Nummern mit Zus\u00e4tzen (\u201e44854-B\u201c, \u201e01885-Str\u201c); 1.589 Zeilen leer. Bei Stra\u00dfenb\u00e4umen ist das Pflegeobjekt oft die Stra\u00dfe selbst, in 61.031 Zeilen ist kennzeich die mit Nullen aufgef\u00fcllte strnr; als Schl\u00fcssel zu strnr taugt es dennoch nicht."
+    },
+    {
+      "name": "namenr",
+      "type": "string",
+      "description": "Objektname, der bezirkliche Name des Pflegeobjekts, dem der Baum zugeordnet ist; oft ein Stra\u00dfenname oder Stra\u00dfenabschnitt wie \u201eM\u00e4rkische Allee Teil B\u201c und in 243.212 Zeilen gleich strname."
+    },
+    {
+      "name": "art_dtsch",
+      "type": "string",
+      "description": "Baumart auf Deutsch, zum Beispiel Gew\u00f6hnliche Esche."
+    },
+    {
+      "name": "art_bot",
+      "type": "string",
+      "description": "Baumart botanisch, zum Beispiel Fraxinus excelsior."
+    },
+    {
+      "name": "gattung_deutsch",
+      "type": "string",
+      "description": "Gattung auf Deutsch, gemischt geschrieben, zum Beispiel Esche oder Linde; die Datenformatbeschreibung zeigt sie in Gro\u00dfbuchstaben (ESCHE), geliefert wird keine Zeile so. In 9.348 Zeilen leer."
+    },
+    {
+      "name": "gattung",
+      "type": "string",
+      "description": "Gattung botanisch, mit gro\u00dfem Anfangsbuchstaben, zum Beispiel Fraxinus oder Tilia; die Datenformatbeschreibung zeigt sie in Gro\u00dfbuchstaben (FRAXINUS), geliefert wird keine Zeile so. In 1.601 Zeilen leer."
+    },
+    {
+      "name": "art_gruppe",
+      "type": "string",
+      "description": "Baumartgruppe. Die Datenformatbeschreibung nennt f\u00fcr Stra\u00dfenb\u00e4ume Nadelb\u00e4ume, Laubb\u00e4ume, Obstb\u00e4ume und Gro\u00dfstr\u00e4ucher; geliefert wird zus\u00e4tzlich Str\u00e4ucher, das sie nur bei den Anlagenb\u00e4umen auff\u00fchrt. Am 20.10.2026 Laubb\u00e4ume 425.038, Nadelb\u00e4ume 7.198, Gro\u00dfstr\u00e4ucher 683, Obstb\u00e4ume 240, Str\u00e4ucher 5, leer 1.601."
+    },
+    {
+      "name": "strnr",
+      "type": "double",
+      "description": "Stra\u00dfennummer, der Berliner Stra\u00dfenschl\u00fcssel; nur bei Stra\u00dfenb\u00e4umen gef\u00fcllt. Der Publizierer f\u00fchrt sie als Text mit f\u00fchrender Null, die Datei liefert sie als Gleitkommazahl ohne f\u00fchrende Null (954.0); in 9.263 Zeilen leer."
+    },
+    {
+      "name": "strname",
+      "type": "string",
+      "description": "Stra\u00dfenname; nur bei Stra\u00dfenb\u00e4umen gef\u00fcllt."
+    },
+    {
+      "name": "hausnr",
+      "type": "string",
+      "description": "Hausnummer, als Text mit Zus\u00e4tzen wie \u201eg\u00fc.111/113\u201c f\u00fcr gegen\u00fcber; nur bei Stra\u00dfenb\u00e4umen gef\u00fcllt."
+    },
+    {
+      "name": "zusatz",
+      "type": "string",
+      "description": "Hausnummernzusatz; nur bei Stra\u00dfenb\u00e4umen gef\u00fcllt, meist leer."
+    },
+    {
+      "name": "pflanzjahr",
+      "type": "double",
+      "description": "Pflanzjahr des Baums. Der Publizierer f\u00fchrt es als Text, die Datei liefert es als Gleitkommazahl (DOUBLE), zum Beispiel 1985.0; in 1.755 Zeilen leer, einzelne Werte unplausibel."
+    },
+    {
+      "name": "standalter",
+      "type": "double",
+      "description": "Standalter in Jahren, als Gleitkommazahl; in 1.701 Zeilen leer, zwei Werte negativ."
+    },
+    {
+      "name": "kronedurch",
+      "type": "double",
+      "description": "Kronendurchmesser in Metern. In 85.848 Zeilen leer (NULL) und in 38.590 Zeilen 0; leer bedeutet fehlende Angabe, eine 0 vermutlich auch, was der Publizierer aber nicht angibt."
+    },
+    {
+      "name": "stammumfg",
+      "type": "int64",
+      "description": "Stammumfang in Zentimetern, als Ganzzahl; in 1.733 Zeilen leer und in 66 Zeilen 0."
+    },
+    {
+      "name": "baumhoehe",
+      "type": "double",
+      "description": "Baumh\u00f6he in Metern; vom WFS als Gleitkommazahl geliefert. In 65.640 Zeilen leer und in 3.305 Zeilen 0."
+    },
+    {
+      "name": "eigentuemer",
+      "type": "string",
+      "description": "Eigent\u00fcmer des Baums; am 20.10.2026 \u00fcberall Land Berlin au\u00dfer 1.589 leeren Zeilen."
+    },
+    {
+      "name": "bezirk",
+      "type": "string",
+      "description": "Name des Bezirks, in dem der Baum steht; in 1.589 Zeilen leer."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Umgrenzendes Rechteck der Geometrie als Struktur aus xmin, ymin, xmax und ymax, von der Konvertierung erg\u00e4nzt."
+    }
+  ],
+  "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          13.11261116,
+          52.34118366,
+          13.75675886,
+          52.65993858
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-ZERO-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume default style",
+      "description": "Default visualization for Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume, drawn in #2e8b57.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1280,
+      "file:checksum": "12208d8ce0922e7b377c65a3e7e47ebfa3e814dc2bbc71e8141779916f930e883040"
+    },
+    "baumbestand_strassenbaeume": {
+      "href": "./baumbestand_strassenbaeume.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 25959780,
+      "file:checksum": "12207d72b6bd3ddecfa0b2a6dd7a4fea646dac5ce6b52db3dc841f447ae540feb56b",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./baumbestand_strassenbaeume.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 26557619,
+      "file:checksum": "122002831d21a29fcd22f4bf3949c4923fa97e5e49bfe0b6232eadcc8239ee462f42"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume categorical style",
+      "description": "Categorical visualization coloring Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume by art_gruppe, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1913,
+      "file:checksum": "122029f98eb0cd1a3b3aea3a82b6fff4c33a6b1a1fdae04b6b1dbd5c3d797a3cd983"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume labeled style",
+      "description": "Default visualization for Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume with namenr shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1723,
+      "file:checksum": "122092084668356823dd46380052ecc3296a6a74878e776bc0bc83e0c204d795b111"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume graduated style",
+      "description": "Graduated visualization coloring Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume by pflanzjahr, ramped from 8.0 to 1.985333331443471e+19.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2141,
+      "file:checksum": "12202fec459c685b3a7b0b5a4237ea03debbe6332588aa69c1ab93e668cba5a6b5ec"
+    },
+    "thumbnail": {
+      "href": "./baumbestand_strassenbaeume.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Baumbestand Berlin \u2013 Stra\u00dfenb\u00e4ume",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 244826,
+      "file:checksum": "1220987a3ba7ea2bb473670b6a09992eacc8f9864e06f3ffbb657b56615dbddb2b78"
+    }
+  },
+  "keywords": [
+    "Baum",
+    "B\u00e4ume",
+    "Stra\u00dfenb\u00e4ume",
+    "Baumbestand",
+    "GRIS",
+    "Berlin"
+  ],
+  "providers": [
+    {
+      "name": "Senatsverwaltung f\u00fcr Mobilit\u00e4t, Verkehr, Klimaschutz und Umwelt Berlin",
+      "description": "Datenquelle Geoportal Berlin, Baumbestand Berlin, abgerufen am 18.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.berlin.de/sen/uvk/natur-und-gruen/stadtgruen/stadtbaeume/strassen-und-parkbaeume/",
+      "email": "bjoern.dejoks@senmvku.berlin.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-18T18:44:21Z"
+}

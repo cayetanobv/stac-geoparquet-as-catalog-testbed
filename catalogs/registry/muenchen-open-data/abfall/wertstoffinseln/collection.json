@@ -1,0 +1,252 @@
+{
+  "type": "Collection",
+  "id": "abfall/wertstoffinseln",
+  "stac_version": "1.1.0",
+  "description": "Die Stadtkarte liefert einen \u00dcberblick \u00fcber die Standorte der Wertstoffinseln mit den AWM-Altkleidercontainern und den Wertstoffcontainern f\u00fcr Glas und Verpackungen aus Kunststoff und Metall.\nDie \u00dcbersicht erhebt keinen Anspruch auf Aktualit\u00e4t, Richtigkeit und Vollst\u00e4ndigkeit.\nF\u00fcr die Leerung der Wertstoffcontainer f\u00fcr Glas und Verpackungen, die Sauberkeit der Wertstoffinseln und die Standortauswahl sind die Firmen REMONDIS und Wittmann zust\u00e4ndig. Bitte wenden Sie sich bei Fragen an die f\u00fcr die jeweilige Wertstoffinsel zust\u00e4ndige Firma.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gsm_wfs_awm_container.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wertstoffinseln in M\u00fcnchen",
+      "pmtiles:layers": [
+        "gsm_wfs_awm_container"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.muenchen.de/dataset/awm_container_opendata",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/gsm_wfs/ows",
+      "rel": "related",
+      "title": "WFS source service: awm-container",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/gsm_wfs/wms?service=WMS&request=GetCapabilities",
+      "rel": "related",
+      "title": "Wertstoffinseln in M\u00fcnchen (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 865,
+  "table:row_count": 865,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "altkleider",
+      "type": "int64"
+    },
+    {
+      "name": "url_altkleider",
+      "type": "string"
+    },
+    {
+      "name": "lvp",
+      "type": "int64"
+    },
+    {
+      "name": "url_lvp",
+      "type": "string"
+    },
+    {
+      "name": "glas_braun",
+      "type": "int64"
+    },
+    {
+      "name": "glas_gruen",
+      "type": "int64"
+    },
+    {
+      "name": "glas_weiss",
+      "type": "int64"
+    },
+    {
+      "name": "url_glas",
+      "type": "string"
+    },
+    {
+      "name": "adresse",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Wertstoffinseln in M\u00fcnchen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.387342584074137,
+          48.068983391980886,
+          11.711617879480595,
+          48.222636208393716
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wertstoffinseln in M\u00fcnchen default style",
+      "description": "Default visualization for Wertstoffinseln in M\u00fcnchen, drawn in #bf812d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1228,
+      "file:checksum": "1220486cb71b1c93c2d401bf1f7577e346e16d415d5a13bc8f6fe1e3f31ee95ccf90"
+    },
+    "gsm_wfs_awm_container": {
+      "href": "./gsm_wfs_awm_container.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 53997,
+      "file:checksum": "122011274fe987d38632a147ea7f7b82a27957f66a65636138eedbe13f5ae9d305c5",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./gsm_wfs_awm_container.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Wertstoffinseln in M\u00fcnchen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 78434,
+      "file:checksum": "12209ebb177458e9e7ce4f5a7644fe8cc5acadc03ce5242fcff49423de78bad93c44"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wertstoffinseln in M\u00fcnchen categorical style",
+      "description": "Categorical visualization coloring Wertstoffinseln in M\u00fcnchen by url_glas, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2537,
+      "file:checksum": "12204d1d3ec31e7bd7175f5646260f9f621cd9485b56dba2f683a2d2393830620b9e"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wertstoffinseln in M\u00fcnchen labeled style",
+      "description": "Default visualization for Wertstoffinseln in M\u00fcnchen with url_glas shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1663,
+      "file:checksum": "1220cf5643eb6538900bc7af0ce00564081e28377771d9b60e920615fd3c38c3ccef"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Wertstoffinseln in M\u00fcnchen graduated style",
+      "description": "Graduated visualization coloring Wertstoffinseln in M\u00fcnchen by lvp, ramped from 1.0 to 6.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1953,
+      "file:checksum": "1220f04ce014a6a182b1b75d7f1c7bc6a04366ee3c85815f1c980e2f98663ceee223"
+    },
+    "thumbnail": {
+      "href": "./gsm_wfs_awm_container.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Wertstoffinseln in M\u00fcnchen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 113393,
+      "file:checksum": "122072ee4e5071c13361e81aefa2f779e511ac15f29ab557ff72adb0127ce7256f83"
+    }
+  },
+  "keywords": [
+    "Digitaler Zwilling M\u00fcnchen",
+    "Ver- und Entsorgung",
+    "opendata",
+    "M\u00fcnchen",
+    "Landeshauptstadt M\u00fcnchen",
+    "GeoPortal M\u00fcnchen"
+  ],
+  "providers": [
+    {
+      "name": "Landeshauptstadt M\u00fcnchen, Kommunalreferat \u2013 GeodatenService M\u00fcnchen",
+      "description": "Datenquelle Wertstoffinseln in M\u00fcnchen, GeoPortal M\u00fcnchen der Landeshauptstadt M\u00fcnchen, abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.muenchen.de/organization/geodatenservice-muenchen",
+      "email": "geoportal@muenchen.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T07:15:00Z"
+}

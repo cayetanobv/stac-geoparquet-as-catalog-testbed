@@ -1,0 +1,251 @@
+{
+  "type": "Collection",
+  "id": "dagi/landsdele",
+  "stac_version": "1.1.0",
+  "description": "Danmarks 11 landsdele fra DAGI med DAGI-id, navn, NUTS3-kode og den region landsdelen h\u00f8rer til.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./landsdele.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Landsdele",
+      "pmtiles:layers": [
+        "landsdele"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://dawadocs.dataforsyningen.dk/dok/api/landsdel",
+      "type": "text/html"
+    },
+    {
+      "href": "https://api.dataforsyningen.dk/landsdele?format=geojson",
+      "rel": "related",
+      "title": "Upstream source: landsdele",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 11,
+  "table:row_count": 11,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64"
+    },
+    {
+      "name": "dagi_id",
+      "type": "string"
+    },
+    {
+      "name": "navn",
+      "type": "string"
+    },
+    {
+      "name": "nuts3",
+      "type": "string"
+    },
+    {
+      "name": "regionskode",
+      "type": "string"
+    },
+    {
+      "name": "regionsnavn",
+      "type": "string"
+    },
+    {
+      "name": "\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_\u00e6ndret",
+      "type": "timestamp with time zone"
+    },
+    {
+      "name": "geo_version",
+      "type": "int32"
+    },
+    {
+      "name": "visueltcenter_x",
+      "type": "double"
+    },
+    {
+      "name": "visueltcenter_y",
+      "type": "double"
+    },
+    {
+      "name": "geom",
+      "type": "geometry('epsg:4326')"
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)"
+    }
+  ],
+  "title": "Landsdele",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          8.07250975,
+          54.55907837,
+          15.19740034,
+          57.75257255
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landsdele default style",
+      "description": "Default visualization for Landsdele, drawn in #3182bd.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1122,
+      "file:checksum": "1220fb7ff150a7a6dc7d8ab92579491f31008fb423d2495b02dda9bc70dcc2ee5c58"
+    },
+    "landsdele": {
+      "href": "./landsdele.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 16767205,
+      "file:checksum": "122036f4f1e97799dcb81739337765109ff50c64c541d1b12d929d7fa6bac691f901",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./landsdele.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Landsdele (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 7846596,
+      "file:checksum": "122024c1b16ca998890dd32124222a831cfc0b6ddeee120e0cea959e20594d4cd7ef"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landsdele categorical style",
+      "description": "Categorical visualization coloring Landsdele by regionskode, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2047,
+      "file:checksum": "122039ff204001312edffc3b8dcd1e9550fe3ed03393da1deb53acddfa97f071d048"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landsdele labeled style",
+      "description": "Default visualization for Landsdele with regionskode shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1536,
+      "file:checksum": "12204a6b4dfc6172c40762a6ccd8ef5d5bb44ad98b3f83cb816e2c548b1377eae9a2"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Landsdele graduated style",
+      "description": "Graduated visualization coloring Landsdele by geo_version, ramped from 3.0 to 20.0.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1885,
+      "file:checksum": "1220f24124f3ee0a458986ddcec51b7fcf077acc27637d7055d40fc297e08941a1c7"
+    },
+    "thumbnail": {
+      "href": "./landsdele.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Landsdele",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 92581,
+      "file:checksum": "12209eebb7b1430a7848f5459c7857e54fe8f9e59e4fb21f5644ed2388d3396a3aef"
+    }
+  },
+  "keywords": [
+    "landsdele",
+    "DAGI",
+    "NUTS3",
+    "administrative inddelinger"
+  ],
+  "providers": [
+    {
+      "name": "Klimadatastyrelsen",
+      "description": "Datakilde: Klimadatastyrelsen, Danmarks Adressers Web API (DAWA), ressourcen landsdele, hentet 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://dawadocs.dataforsyningen.dk/dok/api/landsdel",
+      "email": "support@kds.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

@@ -1,0 +1,202 @@
+{
+  "type": "Collection",
+  "id": "grenzen/bezirksteile",
+  "stac_version": "1.1.0",
+  "description": "Fl\u00e4chenhafte Darstellung der Verwaltungsgrenzen von Stadtbezirksteilen der Landeshauptstadt M\u00fcnchen. Die Verwaltungsfl\u00e4chen k\u00f6nnen bei allen Darstellungen, \u00dcbersichten, Auswertungen und Planungen verwendet werden, die sich auf den Bereich einer administrativen Gebietseinheit (Gebietsk\u00f6rperschaften) beziehen.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./gsm_wfs_vablock_bezirksteil.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stadtbezirksteile M\u00fcnchen",
+      "pmtiles:layers": [
+        "gsm_wfs_vablock_bezirksteil"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://www.govdata.de/dl-de/by-2-0",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.muenchen.de/dataset/vablock_bezirksteil_opendata",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/gsm_wfs/ows",
+      "rel": "related",
+      "title": "WFS source service: vablock-bezirksteil",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoportal.muenchen.de/geoserver/gsm_wfs/wms?service=WMS&request=GetCapabilities",
+      "rel": "related",
+      "title": "Stadtbezirksteile M\u00fcnchen (WMS)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Polygon",
+  "geoparquet:feature_count": 110,
+  "table:row_count": 110,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "bt_nummer",
+      "type": "double"
+    },
+    {
+      "name": "flaeche_qm",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Stadtbezirksteile M\u00fcnchen",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.360778275906402,
+          48.06162443606122,
+          11.722909698518494,
+          48.24811837376852
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "DL-DE-BY-2.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stadtbezirksteile M\u00fcnchen default style",
+      "description": "Default visualization for Stadtbezirksteile M\u00fcnchen, drawn in #6baed6.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1269,
+      "file:checksum": "12203b6b8f720b27c0f4ebddb38661790c9e6f0ac9d4d400801e107f861a208a3ab2"
+    },
+    "gsm_wfs_vablock_bezirksteil": {
+      "href": "./gsm_wfs_vablock_bezirksteil.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 242791,
+      "file:checksum": "1220af916475cc3522ef15d5a7dd4e92c539da3de56efe8c7fa349b8c751ee48d124",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./gsm_wfs_vablock_bezirksteil.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Stadtbezirksteile M\u00fcnchen (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 232350,
+      "file:checksum": "12203a710ccceadd2d111656db4fb5476cd4d7bee58e59492d4422a0fa563552b092"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Stadtbezirksteile M\u00fcnchen graduated style",
+      "description": "Graduated visualization coloring Stadtbezirksteile M\u00fcnchen by flaeche_qm, ramped from 193377.66282514 to 16404853.4420732.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2136,
+      "file:checksum": "122030a65b2498f0ffd5abe2c882e2c71227b064edf297e088c8996a69cddc939868"
+    },
+    "thumbnail": {
+      "href": "./gsm_wfs_vablock_bezirksteil.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Stadtbezirksteile M\u00fcnchen",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 121494,
+      "file:checksum": "122097355b446a45572c81e69aa502d86e50fdea35ae0b08a15edaf5dea2ac2d1dbc"
+    }
+  },
+  "keywords": [
+    "Digitaler Zwilling M\u00fcnchen",
+    "Planungsunterlagen",
+    "opendata",
+    "M\u00fcnchen",
+    "Landeshauptstadt M\u00fcnchen",
+    "GeoPortal M\u00fcnchen"
+  ],
+  "providers": [
+    {
+      "name": "Landeshauptstadt M\u00fcnchen, Kommunalreferat \u2013 GeodatenService M\u00fcnchen",
+      "description": "Datenquelle Stadtbezirksteile M\u00fcnchen, GeoPortal M\u00fcnchen der Landeshauptstadt M\u00fcnchen, abgerufen am 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.muenchen.de/organization/geodatenservice-muenchen",
+      "email": "geoportal@muenchen.de"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "de",
+    "name": "Deutsch",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T07:15:00Z"
+}

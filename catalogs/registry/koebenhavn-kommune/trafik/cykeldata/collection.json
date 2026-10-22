@@ -1,0 +1,242 @@
+{
+  "type": "Collection",
+  "id": "trafik/cykeldata",
+  "stac_version": "1.1.0",
+  "description": "Indeholder Cykelsti/baner, Cykelmuligheder (cykelforbindelser til det \u00f8vrige cykelrutenet. Dvs. veje uden cykelstier, men som er velegnede cykelruter, samt cykelstier uden for vejnettet), Gr\u00f8nne Cykelruter (et sammenh\u00e6ngende net af cykel- og gangstier, der p\u00e5 lange str\u00e6kninger l\u00f8ber gennem \u00e5bne, rekreative omr\u00e5der, fx parker og havnefronter), Supercykelstier (et sammenh\u00e6ngende net af cykelpendlerruter i hovedstadsregionen) og Havneringen (en 13 km gang-, l\u00f8be- og cykelrute langs K\u00f8benhavns havn fra Inderhavnsbroen i nord til Slusen i syd).",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "License",
+      "type": "text/html"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./k101_cykeldata_kk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Cykeldata",
+      "pmtiles:layers": [
+        "k101_cykeldata_kk"
+      ]
+    },
+    {
+      "rel": "via",
+      "href": "https://www.opendata.dk/city-of-copenhagen/cykeldata",
+      "type": "text/html"
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows",
+      "rel": "related",
+      "title": "WFS source service: cykeldata_kk",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://wfs-kbhkort.kk.dk/k101/ows?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "K\u00f8benhavns Kommunes WFS (k101) \u2013 GetCapabilities",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Point",
+    "MultiLineString",
+    "GeometryCollection"
+  ],
+  "geoparquet:feature_count": 3386,
+  "table:row_count": 3386,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "geometry",
+      "type": "GEOMETRY('EPSG:25832')"
+    },
+    {
+      "name": "id",
+      "type": "int64"
+    },
+    {
+      "name": "rute_nr",
+      "type": "string"
+    },
+    {
+      "name": "rutenavn",
+      "type": "string"
+    },
+    {
+      "name": "status",
+      "type": "string"
+    },
+    {
+      "name": "kategori",
+      "type": "string"
+    },
+    {
+      "name": "under_kategori",
+      "type": "string"
+    },
+    {
+      "name": "kommune",
+      "type": "string"
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)"
+    }
+  ],
+  "title": "Cykeldata",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          12.020641999999972,
+          55.48078365325279,
+          12.654964743192995,
+          56.063384600873206
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Cykeldata default style",
+      "description": "Default visualization for Cykeldata, drawn in #e6550d.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1178,
+      "file:checksum": "1220ebdaf5213f7835b7308b4648f7ef76db6544af44bb4a7409a232f1c94485ec37"
+    },
+    "k101_cykeldata_kk": {
+      "href": "./k101_cykeldata_kk.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 503875,
+      "file:checksum": "12204642a35d78296e65dd3ea50dd723ec7128f0225172ab857a27d2a4f7fadeb618",
+      "proj:code": "EPSG:25832",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./k101_cykeldata_kk.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Cykeldata (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 944362,
+      "file:checksum": "1220f22af96d44e43ae2551886a466ebc04b06299dc48a1dbbb292be1fc852233877"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Cykeldata categorical style",
+      "description": "Categorical visualization coloring Cykeldata by status, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1906,
+      "file:checksum": "1220a53c9f735bd9b38d6238712812889962550568894118282bf4a3e73317d6c2d0"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Cykeldata labeled style",
+      "description": "Default visualization for Cykeldata with status shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1603,
+      "file:checksum": "122046a11fb6d2b940cc56d80805d7474fec77dd00a07dae3b85751bc075a4b09cec"
+    },
+    "thumbnail": {
+      "href": "./k101_cykeldata_kk.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Cykeldata",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 117170,
+      "file:checksum": "122031aa2df42578640ad52571409bc0697acd892de945a171bddc3253bf9885a6cb"
+    }
+  },
+  "keywords": [
+    "Cykelruter",
+    "Gr\u00f8nne Cykelruter",
+    "Havneringen",
+    "Supercykelsti",
+    "Vej med cykelsti",
+    "sti",
+    "Cykeldata",
+    "K\u00f8benhavns Kommune",
+    "K\u00f8benhavn",
+    "opendata.dk"
+  ],
+  "providers": [
+    {
+      "name": "K\u00f8benhavns Kommune \u2013 Bydata",
+      "description": "Datakilde: K\u00f8benhavns Kommune, Cykeldata, opendata.dk, hentet 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.opendata.dk/city-of-copenhagen/cykeldata",
+      "email": "bydata@kk.dk"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "da",
+    "name": "Dansk",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

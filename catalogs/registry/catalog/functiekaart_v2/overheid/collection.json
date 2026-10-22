@@ -1,0 +1,153 @@
+{
+  "type": "Collection",
+  "id": "functiekaart_v2/overheid",
+  "stac_version": "1.1.0",
+  "description": "Overheid",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./overheid.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "pmtiles:layers": [
+        "overheid"
+      ]
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "Point",
+  "geoparquet:feature_count": 5,
+  "table:row_count": 5,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "OBJECTID",
+      "type": "int64"
+    },
+    {
+      "name": "Categorie_functie",
+      "type": "string"
+    },
+    {
+      "name": "Subcategorie",
+      "type": "string"
+    },
+    {
+      "name": "Subklasse",
+      "type": "string"
+    },
+    {
+      "name": "Aantal",
+      "type": "double"
+    },
+    {
+      "name": "bbox",
+      "type": "struct<xmin: double, ymin: double, xmax: double, ymax: double>"
+    },
+    {
+      "name": "geometry",
+      "type": "binary"
+    }
+  ],
+  "title": "Overheid",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          5.14528108951867,
+          52.0805642243548,
+          5.15305349105868,
+          52.0833020300997
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "overheid": {
+      "href": "./overheid.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 2193,
+      "file:checksum": "1220fb3c3fdb721a3b1f7c0f4f6634991e5e17035cba925d1c2b46b3b2d8105e87e3",
+      "roles": [
+        "data"
+      ]
+    },
+    "thumbnail": {
+      "href": "./overheid.thumb.jpg",
+      "type": "image/jpeg",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 1888,
+      "file:checksum": "1220d5d787a8f3abc686ec66d6a0803d35991182ed5ea38867230e44aedf5d2b3228"
+    },
+    "overheid-tiles": {
+      "href": "./overheid.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "overheid (vector tiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1670,
+      "file:checksum": "12200692a2c3a35edc3c33b9041aaf089f7bcd6ab87cfbfdf7519d3fe5cd844d425e"
+    },
+    "styles/default": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "title": "Default",
+      "file:size": 640,
+      "file:checksum": "122029ab25bad392c74d9c7b1352ad01575a9e4ebc2f1b5a4137cf72555971044f47",
+      "description": "Afgeleid van de drawingInfo.renderer van de ArcGIS-FeatureServer."
+    }
+  },
+  "providers": [
+    {
+      "name": "Gemeente Utrecht",
+      "roles": [
+        "producer",
+        "licensor",
+        "host"
+      ],
+      "url": "https://www.utrecht.nl"
+    }
+  ]
+}

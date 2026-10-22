@@ -1,0 +1,267 @@
+{
+  "type": "Collection",
+  "id": "verde/popolazione-arborea",
+  "stac_version": "1.1.0",
+  "description": "Popolazione Arborea Comune di Bologna.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./popolazionearborea.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Popolazione Arborea",
+      "pmtiles:layers": [
+        "popolazionearborea"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://opendata.comune.bologna.it/explore/dataset/popolazione-arborea/information/",
+      "type": "text/html"
+    },
+    {
+      "href": "https://opendata.comune.bologna.it/api/explore/v2.1/catalog/datasets/popolazione-arborea/exports/geojson?where=geo_shape%20is%20not%20null",
+      "rel": "related",
+      "title": "Upstream source: popolazionearborea",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 9010,
+  "table:row_count": 9010,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "Numero d'ordine assegnato dal lettore GeoJSON di GDAL/OGR, aggiunto dalla conversione; non stabile fra un'esecuzione e l'altra."
+    },
+    {
+      "name": "geo_point_2d",
+      "type": "string",
+      "description": "Coordinate del centroide fornite dal portale come testo \u00ablatitudine, longitudine\u00bb; la geometria usata dal mirror \u00e8 nella colonna geom."
+    },
+    {
+      "name": "pop_area",
+      "type": "double",
+      "description": "Area della popolazione arborea."
+    },
+    {
+      "name": "classe_popolamento",
+      "type": "string",
+      "description": "Tipo di popolazione."
+    },
+    {
+      "name": "classe_origine",
+      "type": "string",
+      "description": "Origine."
+    },
+    {
+      "name": "classe_dimora",
+      "type": "string",
+      "description": "Dimora."
+    },
+    {
+      "name": "classe",
+      "type": "string",
+      "description": "Specie Arborea Predominante. Specie predominante."
+    },
+    {
+      "name": "data_agg",
+      "type": "date"
+    },
+    {
+      "name": "in_patrim",
+      "type": "string"
+    },
+    {
+      "name": "classe_struttura",
+      "type": "string",
+      "description": "Struttura."
+    },
+    {
+      "name": "classe_circonferenza_diametro",
+      "type": "string",
+      "description": "Cllasse di circonferenza (diametro)."
+    },
+    {
+      "name": "classe_altezza",
+      "type": "string",
+      "description": "Classe di Altezza."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria in GeoParquet (WKB, EPSG:4326), ottenuta dal campo geografico del portale."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Rettangolo di inviluppo della geometria (struttura xmin, ymin, xmax, ymax), aggiunto dalla conversione."
+    }
+  ],
+  "title": "Popolazione Arborea",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          11.23316840911428,
+          44.42132350357709,
+          11.433695323935972,
+          44.55217809054757
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Popolazione Arborea default style",
+      "description": "Default visualization for Popolazione Arborea, drawn in #006d2c.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1195,
+      "file:checksum": "1220480709427aa47b9e6d0a18b20cb8628481ee099efce504d39f52a1ea848b31cf"
+    },
+    "popolazionearborea": {
+      "href": "./popolazionearborea.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 3354521,
+      "file:checksum": "1220b247683762f0bf7a91227cf0804faf5c003b624752ffe9245a656f289bfc9d17",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./popolazionearborea.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Popolazione Arborea (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 1725704,
+      "file:checksum": "1220052fcd8cc681f583074f48d36d43f272a9202b452e6f76cd1d0f03cce6aaf5e7"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Popolazione Arborea categorical style",
+      "description": "Categorical visualization coloring Popolazione Arborea by classe_origine, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1955,
+      "file:checksum": "122021049769f6b16c556e7495296565c1b616ae4e56b80bf5d6ac82b84511605494"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Popolazione Arborea labeled style",
+      "description": "Default visualization for Popolazione Arborea with classe_origine shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1630,
+      "file:checksum": "12202ef13ce74b5be10a9805f237de5e34744610bd766c97f450c8f9a2e639a459f5"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Popolazione Arborea graduated style",
+      "description": "Graduated visualization coloring Popolazione Arborea by pop_area, ramped from 0.05 to 163846.37.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2003,
+      "file:checksum": "1220af444eeaa97f75646d236b64d179704d10940a63d02855c8b46a8ece041676b5"
+    },
+    "thumbnail": {
+      "href": "./popolazionearborea.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Popolazione Arborea",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 136653,
+      "file:checksum": "122067489afa56deda7c9f1e306f243fc149ad3b6c20189fc462b7c515e6f1cbdc40"
+    }
+  },
+  "keywords": [
+    "Ambiente",
+    "Verde urbano",
+    "parchi"
+  ],
+  "providers": [
+    {
+      "name": "Comune di Bologna",
+      "description": "Fonte: Comune di Bologna, \u00abPopolazione Arborea\u00bb (popolazione-arborea), pubblicato da Comune di Bologna - Settore Ambiente e Verde sul portale Open Data Comune di Bologna, consultato il 20.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://opendata.comune.bologna.it/explore/dataset/popolazione-arborea/information/",
+      "email": "opendata@comune.bologna.it"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "it",
+    "name": "Italiano",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-20T12:00:00Z"
+}

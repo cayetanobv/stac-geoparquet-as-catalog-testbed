@@ -1,0 +1,315 @@
+{
+  "type": "Collection",
+  "id": "planeamento/planos-urbanizacao",
+  "stac_version": "1.1.0",
+  "description": "Layer com os limites das \u00e1reas de interven\u00e7\u00e3o dos Planos de Urbaniza\u00e7\u00e3o no concelho de Lisboa.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./planos_urbanizacao.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limite de Planos de Urbaniza\u00e7\u00e3o",
+      "pmtiles:layers": [
+        "planos_urbanizacao"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://hub.arcgis.com/datasets/98329b0625f94bc49e228660f9f63a20_1",
+      "type": "text/html"
+    },
+    {
+      "href": "https://services.arcgis.com/1dSrzEWVQn5kHHyK/arcgis/rest/services/Planeamento/FeatureServer",
+      "rel": "related",
+      "title": "ArcGIS FeatureServer Planeamento (servi\u00e7o vivo da C\u00e2mara Municipal de Lisboa)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": [
+    "Polygon",
+    "MultiPolygon"
+  ],
+  "geoparquet:feature_count": 20,
+  "table:row_count": 20,
+  "table:primary_geometry": "geom",
+  "table:columns": [
+    {
+      "name": "OGC_FID",
+      "type": "int64",
+      "description": "N\u00famero de linha sequencial acrescentado pela convers\u00e3o GeoJSON \u2192 GeoParquet (GDAL/DuckDB ST_Read); n\u00e3o \u00e9 atributo do publicador nem identificador est\u00e1vel do objeto."
+    },
+    {
+      "name": "OBJECTID",
+      "type": "int32",
+      "description": "N\u00famero de ordem interno do objeto no servi\u00e7o ArcGIS (OBJECTID); n\u00e3o \u00e9 est\u00e1vel entre vers\u00f5es dos dados."
+    },
+    {
+      "name": "IDTIPO",
+      "type": "string",
+      "description": "C\u00f3digo de tipo do objeto no modelo de dados da CML (alias \u00abID Tipo\u00bb); o publicador n\u00e3o divulga a tabela de correspond\u00eancia dos c\u00f3digos."
+    },
+    {
+      "name": "NOME",
+      "type": "string",
+      "description": "Nome do plano, texto do publicador."
+    },
+    {
+      "name": "COD_SIG",
+      "type": "string",
+      "description": "C\u00f3digo SIG do objeto no armaz\u00e9m de dados geogr\u00e1ficos da CML (alias \u00abC\u00f3digo SIG\u00bb no servi\u00e7o)."
+    },
+    {
+      "name": "ESTADO",
+      "type": "string",
+      "description": "Estado do plano no seu procedimento (por exemplo em vigor ou em elabora\u00e7\u00e3o), texto do publicador."
+    },
+    {
+      "name": "PUBLICACAO",
+      "type": "string",
+      "description": "Refer\u00eancia da publica\u00e7\u00e3o em Di\u00e1rio da Rep\u00fablica que aprovou o plano, texto do publicador."
+    },
+    {
+      "name": "DATAPUBLICACAO",
+      "type": "string",
+      "description": "Data de publica\u00e7\u00e3o do plano, mantida como texto pelo publicador."
+    },
+    {
+      "name": "TIPO",
+      "type": "string",
+      "description": "Tipo de plano, texto do publicador."
+    },
+    {
+      "name": "LABEL",
+      "type": "string",
+      "description": "R\u00f3tulo curto do plano usado na cartografia do publicador."
+    },
+    {
+      "name": "NOME_LABEL",
+      "type": "string",
+      "description": "Nome do plano na forma usada como r\u00f3tulo cartogr\u00e1fico."
+    },
+    {
+      "name": "FREGUESIA",
+      "type": "string",
+      "description": "Nome da freguesia onde o objeto se situa, segundo a divis\u00e3o administrativa de 2012 (Lei n.\u00ba 56/2012); texto do publicador, n\u00e3o uma chave para uma camada de freguesias (este cat\u00e1logo n\u00e3o tem nenhuma, ver AGENTS.md)."
+    },
+    {
+      "name": "PUBLIC_ANTIGAS",
+      "type": "string",
+      "description": "Refer\u00eancias de publica\u00e7\u00f5es anteriores do plano, texto do publicador."
+    },
+    {
+      "name": "PERIMETRO",
+      "type": "double",
+      "description": "Per\u00edmetro da geometria em metros, calculado pelo publicador (alias \u00abPer\u00edmetro\u00bb)."
+    },
+    {
+      "name": "AREA_M2",
+      "type": "double",
+      "description": "\u00c1rea da geometria em metros quadrados, calculada pelo publicador no sistema de proje\u00e7\u00e3o de origem (alias \u00ab\u00c1rea (m2)\u00bb)."
+    },
+    {
+      "name": "ID",
+      "type": "int32",
+      "description": "Identificador num\u00e9rico do plano no invent\u00e1rio do publicador."
+    },
+    {
+      "name": "ATIVO",
+      "type": "string",
+      "description": "Indicador de plano ativo, texto do publicador."
+    },
+    {
+      "name": "GlobalID",
+      "type": "string",
+      "description": "Identificador global \u00fanico do objeto (GUID) atribu\u00eddo pela geodatabase do publicador."
+    },
+    {
+      "name": "geom",
+      "type": "GEOMETRY('EPSG:4326')",
+      "description": "Geometria do objeto em WGS 84 (EPSG:4326), tal como o export do ArcGIS Hub a devolve com spatialRefId=4326; \u00fanica coluna declarada como geometria. A convers\u00e3o d\u00e1-lhe o nome geom."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin DOUBLE, ymin DOUBLE, xmax DOUBLE, ymax DOUBLE)",
+      "description": "Ret\u00e2ngulo envolvente da geometria como estrutura xmin, ymin, xmax, ymax, acrescentado pela convers\u00e3o."
+    }
+  ],
+  "title": "Limite de Planos de Urbaniza\u00e7\u00e3o",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -9.19792447862988,
+          38.6979001932709,
+          -9.08791945231963,
+          38.7971240661269
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC0-1.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Urbaniza\u00e7\u00e3o default style",
+      "description": "Default visualization for Limite de Planos de Urbaniza\u00e7\u00e3o, drawn in #9970ab.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1217,
+      "file:checksum": "1220df69df58db3a220393c70be8a9743fd5e8e7d457f7965e32df7fd17ce6e9042e"
+    },
+    "planos_urbanizacao": {
+      "href": "./planos_urbanizacao.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 65027,
+      "file:checksum": "12200467f5d20a78b9bfbb93952b62169994698930b24f6278e5593a079cbe06aec7",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "OGC:CRS84"
+    },
+    "visual": {
+      "href": "./planos_urbanizacao.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Limite de Planos de Urbaniza\u00e7\u00e3o (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 87508,
+      "file:checksum": "122012d743abd14e2f3fcdd7509e72cb50341925aa3c5d55c53a68818df80f59df47"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Urbaniza\u00e7\u00e3o categorical style",
+      "description": "Categorical visualization coloring Limite de Planos de Urbaniza\u00e7\u00e3o by ATIVO, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1749,
+      "file:checksum": "12201f269f61511f6af9e06cc5c11e4ed35a15508a078a2979b86a511338bdb50e59"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Urbaniza\u00e7\u00e3o labeled style",
+      "description": "Default visualization for Limite de Planos de Urbaniza\u00e7\u00e3o with NOME shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1642,
+      "file:checksum": "122017f21e601d3ef12caec6419de00e6bfd5dd12f2a75a086cfe75218f83edc24b8"
+    },
+    "style-graduated": {
+      "href": "./styles/graduated.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Limite de Planos de Urbaniza\u00e7\u00e3o graduated style",
+      "description": "Graduated visualization coloring Limite de Planos de Urbaniza\u00e7\u00e3o by AREA_M2, ramped from 263896.94 to 4282276.63.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2021,
+      "file:checksum": "1220ec77dfa12c7fdb954376b96e6f202ae31ba6e3d26129046d0f26a65478a406b0"
+    },
+    "source": {
+      "href": "https://hub.arcgis.com/api/download/v1/items/98329b0625f94bc49e228660f9f63a20/geojson?layers=1&spatialRefId=4326",
+      "type": "application/geo+json",
+      "roles": [
+        "source"
+      ],
+      "title": "Original source: planos_urbanizacao",
+      "pipeline:upstream": true,
+      "file:size": 234513,
+      "file:checksum": "1220534ea332d43b464b0691a2f370a5ceb072f8581e8926688d6a62b19284c33f31"
+    },
+    "thumbnail": {
+      "href": "./planos_urbanizacao.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Limite de Planos de Urbaniza\u00e7\u00e3o",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 141701,
+      "file:checksum": "122055f4f281905eb838d5a4a68285a25e4ad03dcc1fae7e176d7d794eb679e7b851"
+    }
+  },
+  "keywords": [
+    "Lisboa",
+    "Planeamento",
+    "Planos de Urbaniza\u00e7\u00e3o",
+    "Urban Plan",
+    "PlaneamentoUrbano"
+  ],
+  "providers": [
+    {
+      "name": "C\u00e2mara Municipal de Lisboa",
+      "description": "Dados \u00a9 C\u00e2mara Municipal de Lisboa, Limite de Planos de Urbaniza\u00e7\u00e3o (Planeamento), geodados.cm-lisboa.pt, obtidos em 2026-09-21.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.lisboa.pt/",
+      "email": "geodados@cm-lisboa.pt"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "pt",
+    "name": "Portugu\u00eas",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T00:40:00Z"
+}

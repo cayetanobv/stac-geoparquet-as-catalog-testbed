@@ -1,0 +1,220 @@
+{
+  "type": "Collection",
+  "id": "litoral/platges-objectiu",
+  "stac_version": "1.1.0",
+  "description": "Platges i ports que l'ICGC segueix com a objectiu dins de l'inventari del litoral. El productor titula la capa \u00abBeach targets\u00bb i en classifica cada element per tipus, per exemple \u00abOPEN BEACH\u00bb o \u00abPORT\u00bb. La capa forma part de l'inventari del litoral de Catalunya que l'ICGC publica al geoservei icgc_icoast; el productor en redacta els t\u00edtols i les paraules clau en angl\u00e8s i en catal\u00e0.",
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "./icgc_icoast_03_btar_ln.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Beach targets \u2013 platges objectiu",
+      "pmtiles:layers": [
+        "icgc_icoast_03_btar_ln"
+      ]
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html"
+    },
+    {
+      "rel": "via",
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "type": "text/html"
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs",
+      "rel": "related",
+      "title": "WFS source service: platges-objectiu",
+      "pipeline:upstream": true
+    },
+    {
+      "href": "https://geoserveis.icgc.cat/geoserver/wfs?service=WFS&version=2.0.0&request=GetCapabilities",
+      "rel": "related",
+      "title": "Geoservei WFS de l'ICGC (capa icgc_icoast:03_BTAR_LN, servei en viu)",
+      "pipeline:upstream": true
+    }
+  ],
+  "stac_extensions": [
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/language/v1.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "geoparquet:geometry_type": "MultiPolygon",
+  "geoparquet:feature_count": 23,
+  "table:row_count": 23,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "Id",
+      "type": "int64",
+      "description": "Camp identificador del productor; val 0 en tots els objectes observats el 21.9.2026."
+    },
+    {
+      "name": "Name",
+      "type": "string",
+      "description": "Nom de la platja o del port, per exemple \u00abL'ESCALA BEACH\u00bb."
+    },
+    {
+      "name": "Beach_type",
+      "type": "string",
+      "description": "Tipus d'element segons el productor, per exemple \u00abOPEN BEACH\u00bb o \u00abPORT\u00bb."
+    },
+    {
+      "name": "geometry",
+      "type": "geometry('epsg:25831')",
+      "description": "Geometria de l'objecte, columna de geometria declarada. El servei WFS de l'ICGC la declara en EPSG:25831 (ETRS89 / UTM fus 31N); el mirall la publica reprojectada a OGC:CRS84 (WGS 84 longitud/latitud) com a WKB."
+    },
+    {
+      "name": "bbox",
+      "type": "struct(xmin double, ymin double, xmax double, ymax double)",
+      "description": "Rectangle envolupant de la geometria com a estructura xmin, ymin, xmax, ymax, afegit per la conversi\u00f3."
+    }
+  ],
+  "title": "Beach targets \u2013 platges objectiu",
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          0.6951489320232166,
+          40.56527536910796,
+          3.2249548080589747,
+          42.38026021031797
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  "license": "CC-BY-4.0",
+  "assets": {
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Beach targets \u2013 platges objectiu default style",
+      "description": "Default visualization for Beach targets \u2013 platges objectiu, drawn in #41b6c4.",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1241,
+      "file:checksum": "1220bb8f220696010c1234e88e59a2d0d33ee4888d5646d2059f07a68a681638b36f"
+    },
+    "icgc_icoast_03_btar_ln": {
+      "href": "./icgc_icoast_03_btar_ln.parquet",
+      "type": "application/vnd.apache.parquet",
+      "file:size": 13350,
+      "file:checksum": "122001973ea3d86360bb990355a4f815ce984cc403094b192eae8de0f04074478bfc",
+      "proj:code": "EPSG:25831",
+      "roles": [
+        "data"
+      ]
+    },
+    "visual": {
+      "href": "./icgc_icoast_03_btar_ln.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Beach targets \u2013 platges objectiu (PMTiles)",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 60735,
+      "file:checksum": "1220606753370250f909530c05954bcf289b007ff5488eb046d95bf4eab00b8bba95"
+    },
+    "style-categorical": {
+      "href": "./styles/categorical.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Beach targets \u2013 platges objectiu categorical style",
+      "description": "Categorical visualization coloring Beach targets \u2013 platges objectiu by Beach_type, one distinct color per value.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 2705,
+      "file:checksum": "122072f2730d0d1634be6a98f8653f3cf1401cbd5bd8d2c31ecc672c3e6d43eb0fd3"
+    },
+    "style-labeled": {
+      "href": "./styles/labeled.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Beach targets \u2013 platges objectiu labeled style",
+      "description": "Default visualization for Beach targets \u2013 platges objectiu with Name shown as text labels.",
+      "roles": [
+        "style"
+      ],
+      "file:size": 1674,
+      "file:checksum": "12203643d36903a2d5e2cc47b3684ad68bdc0ded336dfec75729b79b3c8c54255cc4"
+    },
+    "thumbnail": {
+      "href": "./icgc_icoast_03_btar_ln.thumb.jpg",
+      "type": "image/jpeg",
+      "title": "Thumbnail preview of Beach targets \u2013 platges objectiu",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 55136,
+      "file:checksum": "1220e13e93bacf2a22730bed9c40432ef63119e2c61a8411b0f9cb42b8443e2aee7a"
+    }
+  },
+  "keywords": [
+    "litoral",
+    "costa",
+    "platges",
+    "ports",
+    "Catalunya"
+  ],
+  "providers": [
+    {
+      "name": "Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC)",
+      "description": "Beach targets \u2013 platges objectiu de l'Institut Cartogr\u00e0fic i Geol\u00f2gic de Catalunya (ICGC), sota una llic\u00e8ncia CC BY 4.0, consultat el 21.9.2026.",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://www.icgc.cat/"
+    },
+    {
+      "name": "CARTO",
+      "roles": [
+        "processor",
+        "host"
+      ],
+      "url": "https://carto.com/"
+    }
+  ],
+  "language": {
+    "code": "ca",
+    "name": "Catal\u00e0",
+    "dir": "ltr"
+  },
+  "updated": "2026-09-21T12:00:00Z"
+}

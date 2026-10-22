@@ -1,0 +1,281 @@
+{
+  "type": "Collection",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json",
+    "https://stac-extensions.github.io/table/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/version/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/alternate-assets/v1.2.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/web-map-links/v1.3.0/schema.json"
+  ],
+  "id": "cd120",
+  "title": "Congressional Districts (120th Congress), 2026",
+  "description": "The 'Congressional Districts' layer of the 2026 TIGER/Line Legislative Areas National GeoPackage: 444 rows, of which 435 areas in 50 states and territories (the rest are TIGER's placeholders, documented in table:columns). Columns and values unchanged; 2D geometry in NAD83 (EPSG:4269) with a bbox covering, Hilbert-sorted, as one GeoParquet 2.0 file read in place over HTTPS or the anonymous S3 endpoint s3.geomermaids.com, and a PMTiles archive for web maps. The Census Bureau makes no warranty on the accuracy of TIGER/Line, and its boundaries are for statistical data collection and tabulation only: not a determination of jurisdictional authority, ownership or entitlement, and not legal land descriptions. Credit: U.S. Census Bureau, TIGER/Line 2026.",
+  "keywords": [
+    "TIGER/Line",
+    "US Census Bureau",
+    "boundaries",
+    "elections",
+    "districts",
+    "cd120",
+    "GeoParquet",
+    "PMTiles"
+  ],
+  "license": "other",
+  "attribution": "U.S. Census Bureau, TIGER/Line 2026",
+  "version": "2026",
+  "updated": "2026-10-22T13:57:21Z",
+  "providers": [
+    {
+      "name": "U.S. Census Bureau, Geography Division",
+      "description": "Produces TIGER/Line from its MAF/TIGER system and publishes it as national GeoPackages. A US government work, not subject to copyright in the United States.",
+      "url": "https://www.census.gov/geographies/mapping-files.html",
+      "roles": [
+        "producer",
+        "licensor"
+      ]
+    },
+    {
+      "name": "Geomermaids",
+      "description": "Converted the GeoPackage layers to GeoParquet, tiled them, and maintains and hosts this catalog and its data.",
+      "url": "https://geoparquet.geomermaids.com/",
+      "email": "gsueur@geomermaids.com",
+      "roles": [
+        "processor",
+        "host"
+      ]
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          144.5632,
+          -14.601828,
+          -64.5126,
+          71.439857
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "2026-01-01T00:00:00Z",
+          "2026-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "table:row_count": 444,
+  "table:primary_geometry": "geometry",
+  "table:columns": [
+    {
+      "name": "STATEFP",
+      "type": "VARCHAR",
+      "description": "State FIPS code."
+    },
+    {
+      "name": "CD120FP",
+      "type": "VARCHAR",
+      "description": "120th congressional district FIPS code. 00: at-large district; 98: non-voting delegate or resident commissioner; ZZ: no district defined."
+    },
+    {
+      "name": "GEOID",
+      "type": "VARCHAR",
+      "description": "Area identifier: the codes of the areas it nests in, then its own code (e.g. state + county + tract for a tract)."
+    },
+    {
+      "name": "GEOIDFQ",
+      "type": "VARCHAR",
+      "description": "Fully qualified GEOID, used to join data tables from data.census.gov."
+    },
+    {
+      "name": "NAMELSAD",
+      "type": "VARCHAR",
+      "description": "Name and translated legal/statistical area description."
+    },
+    {
+      "name": "LSAD",
+      "type": "VARCHAR",
+      "description": "Legal/statistical area description code."
+    },
+    {
+      "name": "CDSESSN",
+      "type": "VARCHAR",
+      "description": "Congressional session code (120)."
+    },
+    {
+      "name": "MTFCC",
+      "type": "VARCHAR",
+      "description": "MAF/TIGER feature class code, the kind of area (e.g. G5200 congressional district, G4020 county, G5020 census tract)."
+    },
+    {
+      "name": "FUNCSTAT",
+      "type": "VARCHAR",
+      "description": "Functional status."
+    },
+    {
+      "name": "ALAND",
+      "type": "DOUBLE",
+      "description": "Land area, square metres."
+    },
+    {
+      "name": "AWATER",
+      "type": "DOUBLE",
+      "description": "Water area, square metres."
+    },
+    {
+      "name": "INTPTLAT",
+      "type": "VARCHAR",
+      "description": "Latitude of the internal point (text, as published)."
+    },
+    {
+      "name": "INTPTLON",
+      "type": "VARCHAR",
+      "description": "Longitude of the internal point (text, as published)."
+    },
+    {
+      "name": "geometry",
+      "type": "GEOMETRY",
+      "description": "Area outline as native Parquet GEOMETRY (WKB), NAD83 (EPSG:4269), longitude and latitude, 2D."
+    },
+    {
+      "name": "bbox",
+      "type": "STRUCT(xmin FLOAT, ymin FLOAT, xmax FLOAT, ymax FLOAT)",
+      "description": "Per-row bounding box (xmin, ymin, xmax, ymax), declared as the GeoParquet covering. Filter on it to prune row groups."
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/legislative/cd120.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Congressional Districts (120th Congress), 2026",
+      "description": "444 rows in 16 row groups of at most 4 MiB of geometry.",
+      "roles": [
+        "data"
+      ],
+      "proj:code": "EPSG:4269",
+      "file:size": 20038338,
+      "file:checksum": "122028f2f24b723aed5668b3714ed26de86efae444640c0371eae36763d0815b6185",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/legislative/cd120.parquet",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "pmtiles": {
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/legislative/cd120.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Congressional Districts (120th Congress), vector tiles",
+      "description": "PMTiles, layer `cd120`, zoom 0 to 12, 327,336 tiles; properties STATEFP, CD120FP, GEOID, NAMELSAD, ALAND, AWATER, color_index (color_index: a colour per area such that neighbours differ). Built with tylertoo 0.8.0.",
+      "roles": [
+        "visual"
+      ],
+      "file:size": 26727357,
+      "file:checksum": "1220294fea4ce1087228109b357e36ee2daf245f844d797d8c30ed1bb971528c726a",
+      "alternate": {
+        "s3": {
+          "href": "s3://parquetry/census/tiger/2026/legislative/cd120.pmtiles",
+          "title": "S3 endpoint s3.geomermaids.com, path style"
+        }
+      }
+    },
+    "style": {
+      "href": "./styles/default.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Areas, coloured so neighbours differ",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1866,
+      "file:checksum": "1220d9f4cf84613dfce2f3c444c94ccd16e551d6260c7ac8f5808742fcb517096e5e"
+    },
+    "style-outlines": {
+      "href": "./styles/outlines.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Outlines only, to lay over other data",
+      "roles": [
+        "style"
+      ],
+      "file:size": 677,
+      "file:checksum": "1220df07c0c64d785a36e3b7f79319e4fa2ce6bfa1f018365e9e86043069a563e814"
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Congressional Districts (120th Congress), overview map",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 89592,
+      "file:checksum": "12201039dbb3a5d90bf089482d4cc91c9953872e36e42bbb7f9a77dcdb9833eac4fc"
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Congressional Districts (120th Congress): README"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Congressional Districts (120th Congress): agent guide"
+    },
+    {
+      "rel": "license",
+      "href": "https://www.usa.gov/government-copyright",
+      "type": "text/html",
+      "title": "Works of the US federal government are not subject to copyright in the United States (17 U.S.C. 105)"
+    },
+    {
+      "rel": "via",
+      "href": "https://www.census.gov/geographies/mapping-files/time-series/geo/tiger-geopackage-file.html",
+      "type": "text/html",
+      "title": "TIGER/Line GeoPackages on census.gov, where they are published"
+    },
+    {
+      "rel": "describedby",
+      "href": "https://www2.census.gov/geo/pdfs/maps-data/data/tiger/tgrshp2026/2026_TIGERLINE_GPKG_Record_Layouts.pdf",
+      "type": "application/pdf",
+      "title": "2026 TIGER/Line GeoPackage record layouts"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/legislative/",
+      "type": "text/html",
+      "title": "Browse the files"
+    },
+    {
+      "rel": "alternate",
+      "href": "https://census.geomermaids.com/",
+      "type": "text/html",
+      "title": "census.geomermaids.com"
+    },
+    {
+      "rel": "pmtiles",
+      "href": "https://parquetry.geomermaids.com/census/tiger/2026/legislative/cd120.pmtiles",
+      "type": "application/vnd.pmtiles",
+      "title": "Congressional Districts (120th Congress), vector tiles",
+      "pmtiles:layers": [
+        "cd120"
+      ]
+    }
+  ]
+}

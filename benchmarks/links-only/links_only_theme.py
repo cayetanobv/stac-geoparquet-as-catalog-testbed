@@ -13,7 +13,7 @@ def fetch(url):
 for workers in (16, 1):
     t0 = time.perf_counter()
     con = duckdb.connect(); con.execute("LOAD httpfs")
-    rows = con.execute(f"""SELECT id, href, list_filter(links, l -> l.rel = 'parent')[1].href AS p
+    rows = con.execute(f"""SELECT id, href, list_filter(links, lambda l: l.rel = 'parent')[1].href AS p
                            FROM read_parquet('{B}/collections-links.parquet')""").fetchall()
     t_index = time.perf_counter() - t0
     parent_url = {cid: urllib.parse.urljoin(h, p) for cid, h, p in rows}

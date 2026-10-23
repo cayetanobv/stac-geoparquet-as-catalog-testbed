@@ -10,20 +10,20 @@ Three real fixtures from the Portolan registry, from one city catalog to the who
 
 | Fixture | Collections | Depth | JSON walk, sequential | JSON walk, 16 threads | One query on the index over HTTPS |
 |---|---|---|---|---|---|
-| Berlin Geoportal | 371 | 2 | 132 s, 408 requests | 6.1 s | 0.7 to 1.3 s, 5 requests |
-| Comunidad de Madrid | 1,964 | 3 | 9 min 12 s, 2,141 requests | 30 s | 0.5 to 0.6 s, 4 requests |
-| Portolan registry, 86 catalogs | 5,852 | 4 | 43 min 13 s, 6,726 requests | 2 min 37 s | 0.5 to 0.6 s, 3 requests |
+| Berlin Geoportal | 371 | 2 | 78 s, 408 requests | 6.1 s | 0.44 to 0.48 s, 2 requests |
+| Comunidad de Madrid | 1,964 | 3 | 7 min 2 s, 2,141 requests | 25 s | 0.74 to 0.78 s, 2 requests |
+| Portolan registry, 86 catalogs | 5,852 | 4 | 40 min 41 s, 6,726 requests | 2 min 35 s | 0.8 to 1.3 s, 4 requests |
 
-For the registry the question is the point alone, across every catalog. The index query reads 17 to 122 KB of the file. Its time is HTTP round trips, not bytes or rows.
+For the registry the question is the point alone, across every catalog. Measured on 2026-10-23 with DuckDB 2.0.0 and Python 3.14.9. DuckDB 2.0 reads a file of a few megabytes whole in one request, so the index query's time is one handshake and one or three round trips, not rows.
 
 What the pages under [results/](results/README.md) establish:
 
-- **The index turns a cost that grows with the tree into a constant.** Three to five requests whatever the row count, against one request per document. ([01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md))
+- **The index turns a cost that grows with the tree into a constant.** Two to four requests whatever the row count, against one request per document. ([01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md))
 - **`parents` answers the mid-tree case that the STAC links cannot.** In Madrid the `demografia` theme has 146 collections through `parents` and 0 through the direct parent, because every collection sits under a shard sub-catalog. A links-only file needs 181 requests for that question. ([02](results/02-comunidad-madrid.md), [06](results/06-links-only-variant.md))
 - **No measured alternative to `parents` is better for generic STAC.** A materialized path is faster above a million rows but needs an escaping rule, since STAC ids may contain any character. Level columns fix the depth. A recursive query is slowest. ([05](results/05-tree-designs.md), [07](results/07-list-shapes.md))
 - **Federation works with `parents` plus `id` as the key.** 26 ids repeat across the 86 catalogs. The pair is unique for all 5,852 rows. ([03](results/03-portolan-registry.md))
 - **A bbox that crosses the antimeridian must be split.** 30 collections have west greater than east, and as plain envelopes 26 of them matched a point in Madrid. ([03](results/03-portolan-registry.md))
-- **Row group layout matters for one query shape.** Reading one `original` document costs the whole column chunk on a one-row-group file. Tree-sorted groups of about 2,000 rows cut it fivefold without slowing the other fifteen query shapes. ([03](results/03-portolan-registry.md), [04](results/04-query-suite.md))
+- **One row group is the right layout at this size, and the engine decides it.** DuckDB 2.0 coalesces nearby byte ranges into one request, so every extra row group adds requests and bytes to every query. The one expensive shape, reading a full `original` document, costs the whole column chunk, 5.9 MB on the registry, and smaller row groups cut it only modestly. Under DuckDB 1.5.6 the opposite held. ([03](results/03-portolan-registry.md), [04](results/04-query-suite.md))
 
 ## Repository layout
 
@@ -34,9 +34,17 @@ What the pages under [results/](results/README.md) establish:
 | `catalogs/` | Metadata mirrors: every `catalog.json` and `collection.json` of the three fixtures, no data assets, with a manifest for the registry |
 | `indexes/` | The indexes built from the mirrors, as measured |
 | `scripts/` | The pipeline: mirror, crawl, build, check, and measure |
-| `benchmarks/` | SQL and Python behind results pages 5 to 7 |
+| `benchmarks/` | SQL and Python behind the row group layouts on page 3 and the design comparisons on pages 5 to 7 |
 
-Requirements: Python 3.10 or later, [DuckDB CLI](https://duckdb.org/docs/installation/) 1.5 or later with the `spatial` and `httpfs` extensions, and [gpio](https://github.com/geoparquet-io/geoparquet-io) for the GeoParquet check.
+Requirements: the [DuckDB CLI](https://duckdb.org/docs/installation/) 2.0 or later with the `spatial` and `httpfs` extensions, [uv](https://docs.astral.sh/uv/) for the Python environment, and [gpio](https://github.com/geoparquet-io/geoparquet-io) for the GeoParquet check.
+
+```bash
+uv sync                      # Python 3.12 with duckdb 2.0 and pyarrow 26, as pinned in pyproject.toml
+pipx install geoparquet-io   # gpio pins an older duckdb, so it gets its own environment
+duckdb -c "INSTALL spatial; INSTALL httpfs;"
+```
+
+The scripts under `scripts/` use the standard library. Only `benchmarks/row-groups/build_pa512.py` and `benchmarks/links-only/links_only_theme.py` import the pinned packages. Measured with Python 3.14.9.
 
 ## Reproduce
 
@@ -63,14 +71,16 @@ Both follow `child` links and save each document at its relative path. Pass `ret
 One catalog, from its mirror, with the public URL so that `href` holds canonical links. The same script accepts the published URL instead of a local path.
 
 ```bash
-scripts/index_catalog.sh catalogs/berlin-geoportal/catalog.json work/berlin https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json
+uv run bash scripts/index_catalog.sh catalogs/berlin-geoportal/catalog.json work/berlin https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json
 ```
 
 The federated index from the registry mirror:
 
 ```bash
-scripts/index_registry.sh https://registry.portolan-sdi.org/next/catalogs.json catalogs/registry work/registry
+uv run bash scripts/index_registry.sh https://registry.portolan-sdi.org/next/catalogs.json catalogs/registry work/registry
 ```
+
+`uv run` puts the pinned Python first on the path. The drivers also run with any system Python 3.12 or later.
 
 Each writes `collections.jsonl` and `collections.parquet` in the output directory and runs `gpio check`. The index built from the Berlin mirror matched the committed one in every row.
 
@@ -95,7 +105,7 @@ duckdb -c "SET VARIABLE u='https://storage.googleapis.com/carto-open-catalogs/be
 The sixteen-query suite, cold and warm, as a Markdown table:
 
 ```bash
-python3 scripts/run_suite.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet --lon 13.405 --lat 52.52 --grp verkehr --kw Radverkehr --cat berlin-geoportal --id gruenflaechen/grillflaechen --runs 3
+uv run python scripts/run_suite.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet --lon 13.405 --lat 52.52 --grp verkehr --kw Radverkehr --cat berlin-geoportal --id gruenflaechen/grillflaechen --runs 3
 ```
 
 Measure against the published storage, not a local server. A mirror served with `python3 -m http.server` is fine for checking results, and useless for latency, for the reasons in [docs/method.md](docs/method.md).

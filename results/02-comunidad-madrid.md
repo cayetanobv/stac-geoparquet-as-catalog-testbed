@@ -1,7 +1,7 @@
 # Comunidad de Madrid
 
 Catalog: https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/catalog.json
-Largest catalog in the Portolan registry on 2026-10-22. Measured with DuckDB 1.5.6.
+Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from a machine with about 150 ms round trip to Google Cloud Storage. See [docs/method.md](../docs/method.md).
 
 ## The catalog
 
@@ -23,7 +23,7 @@ Largest catalog in the Portolan registry on 2026-10-22. Measured with DuckDB 1.5
 | Rows | 1,964 |
 | Size | 1.5 MB |
 | Row groups | 1 |
-| GeoParquet | 1.1 with `bbox` covering, 26 `gpio check` checks passed |
+| GeoParquet | 1.1 with `bbox` covering, 30 `gpio check` checks passed |
 
 ## Question: collections under the `demografia` theme whose extent contains the city centre
 
@@ -31,20 +31,14 @@ Point -3.7038, 40.4168. The answer is 146 collections.
 
 | Method | HTTP requests | Bytes read | Time |
 |---|---|---|---|
-| JSON walk, `demografia` subtree, sequential | 159 | | 34 s |
-| JSON walk, `demografia` subtree, 16 threads | 159 | | 2.7 s |
-| JSON walk, whole tree, 16 threads | 2,141 | 11 MB | 30 s |
-| JSON walk, whole tree, sequential | 2,141 | 11 MB | 9 min 12 s |
-| Index over HTTPS, cold DuckDB process, 3 runs | 4 (1 HEAD, 3 GET) | 17 KB | 0.63 s, 0.52 s, 0.54 s |
-| Index over HTTPS, warm session, runs 1 to 3 | | | 0.73 s, 0.17 s, 0.17 s |
+| JSON walk, `demografia` subtree, sequential | 159 | | 27 s |
+| JSON walk, `demografia` subtree, 16 threads | 159 | | 2.1 s |
+| JSON walk, whole tree, 16 threads | 2,141 | 11 MB | 25 s |
+| JSON walk, whole tree, sequential | 2,141 | 11 MB | 7 min 2 s |
+| Index over HTTPS, cold DuckDB process, 3 runs | 2 (1 HEAD, 1 GET) | 1.4 MB, the whole file | 0.76 s, 0.78 s, 0.74 s |
+| Index over HTTPS, warm session | | | 0.06 to 0.11 s |
 
-Other queries against the remote index, cold process:
-
-| Query | Time |
-|---|---|
-| Whole tree, count of collections containing the point | 0.17 s |
-| `demografia` subtree with `title` returned | 0.64 to 0.77 s |
-| One full collection document by id | 0.78 to 0.86 s |
+DuckDB 2.0 reads this file whole in one request. Under 1.5.6 the same query read 17 KB in 4 requests and took 0.5 to 0.6 s. The extra bytes cost about 0.2 s at this round trip and save two requests.
 
 ## The mid-tree case
 

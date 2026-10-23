@@ -1,6 +1,6 @@
 # The whole Portolan registry as one federated index
 
-Registry export: https://registry.portolan-sdi.org/next/catalogs.json, a STAC Catalog whose child links are the 86 registered catalogs. Mirrored on 2026-10-22, measured on 2026-10-22 and 2026-10-23 with DuckDB 1.5.6. Scripts: `scripts/mirror_registry.py`, `scripts/crawl_registry.py`, `scripts/build_index.sql`.
+Registry export: https://registry.portolan-sdi.org/next/catalogs.json, a STAC Catalog whose child links are the 86 registered catalogs. Mirrored on 2026-10-22. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from a machine with about 150 ms round trip to Google Cloud Storage. See [docs/method.md](../docs/method.md). Scripts: `scripts/mirror_registry.py`, `scripts/crawl_registry.py`, `scripts/build_index.sql`.
 
 ## The federation
 
@@ -14,7 +14,7 @@ Registry export: https://registry.portolan-sdi.org/next/catalogs.json, a STAC Ca
 | Distinct ancestor chains | 790 |
 | Mirror time | 282 s for the first pass, 110 s for the 28 catalogs retried |
 
-Source Cooperative and the R2 host answer HTTP 403 to Python's default User-Agent. The mirror script sends a named User-Agent.
+Source Cooperative and the R2 host answer HTTP 403 to Python's default User-Agent. The mirror script sends a named one.
 
 ## Ids collide across catalogs
 
@@ -29,50 +29,55 @@ Source Cooperative and the R2 host answer HTTP 403 to Python's default User-Agen
 | Rows | 5,852 |
 | Size | 6.5 MB |
 | Row groups | 1 |
-| GeoParquet | 1.1 with `bbox` covering, 26 `gpio check` checks passed |
+| GeoParquet | 1.1 with `bbox` covering, 30 `gpio check` checks passed |
 
 ## Antimeridian
 
-30 collections in 4 catalogs have a bbox with west greater than east, for example UTM zone 1 tiles with `xmin` 179.9 and `xmax` -173.9, and OpenStreetMap extracts. A polygon built from such a bbox with `ST_MakeEnvelope` covers the whole globe in longitude, and 26 of those collections matched a point in Madrid. The builder now splits such a bbox into a multipolygon of two boxes at the antimeridian. After the fix the index and the JSON walk agree on every count below.
+30 collections in 4 catalogs have a bbox with west greater than east, for example UTM zone 1 tiles with `xmin` 179.9 and `xmax` -173.9, and OpenStreetMap extracts. A polygon built from such a bbox with `ST_MakeEnvelope` covers the whole globe in longitude, and 26 of those collections matched a point in Madrid. The builder splits such a bbox into a multipolygon of two boxes at the antimeridian. After the fix the index and the JSON walk agree on every count below.
 
 ## Question: collections in any catalog whose extent contains a point in Madrid
 
 Point -3.7038, 40.4168. The answer is 2,254 collections in 35 catalogs. Most are global or national datasets.
 
-| Method | HTTP requests | Time |
-|---|---|---|
-| JSON walk, whole registry, sequential | 6,726 | 43 min 13 s |
-| JSON walk, whole registry, 16 threads | 6,726 | 2 min 37 s |
-| JSON walk, Comunidad de Madrid only, sequential | 2,142 | 10 min 16 s |
-| JSON walk, Comunidad de Madrid only, 16 threads | 2,142 | 30 s |
-| Index over HTTPS, cold DuckDB process, 3 runs | 3 (1 HEAD, 2 GET), 122 KB read | 0.54 s, 0.55 s, 0.64 s |
-| Index over HTTPS, warm session, runs 1 to 3 | | 0.62 s, 0.25 s, 0.24 s |
+| Method | HTTP requests | Bytes read | Time |
+|---|---|---|---|
+| JSON walk, whole registry, sequential | 6,726 | | 40 min 41 s |
+| JSON walk, whole registry, 16 threads | 6,726 | | 2 min 35 s |
+| JSON walk, Comunidad de Madrid only, sequential | 2,142 | | 6 min 17 s |
+| JSON walk, Comunidad de Madrid only, 16 threads | 2,142 | | 26 s |
+| Index over HTTPS, cold DuckDB process, 3 runs | 4 (1 HEAD, 3 GET) | 1.0 MB | 1.10 s, 1.34 s, 0.77 s |
+| Index over HTTPS, warm session | | | 0.07 to 0.09 s |
 
 ## Other federated queries over HTTPS, one row group, cold process
 
-| Query | Hits | Requests | Bytes read | Time, 2 runs |
+| Query | Hits | Requests | Bytes read | Cold median of 3 |
 |---|---|---|---|---|
-| Same point, bbox narrower than 1 degree, `id` and catalog returned | 62 in 4 catalogs | 3 | | 0.71 s, 0.83 s |
-| Keyword `flood` in `keywords` or `title`, all catalogs | 25 in 9 catalogs | 3 | 574 KB | 0.85 s, 1.07 s |
-| One catalog by root id, one group through `parents` | 146 | 3 | 33 KB | 0.60 s, 0.66 s |
-| One full `original` document by catalog and id | 1 | 5 | 5.7 MB | 2.98 s, 3.23 s |
+| Box test on the `bbox` struct alone | 2,254 | 4 | 110 KB | 0.53 s |
+| Keyword `Total` across all catalogs | 261 | 4 | 490 KB | 0.75 s |
+| Title substring across all catalogs | 50 | 3 | 110 KB | 0.52 s |
+| One catalog by root id, one group through `parents` | 146 | 4 | 1.0 MB | 0.82 s |
+| One full `original` document by catalog and id | 1 | 7 | 5.9 MB | 2.41 s |
 
-Two runs in an earlier series took 5.6 s and 10.2 s while the background JSON walk was competing for the network. They are not in the table.
+The full table of sixteen shapes is in the [query suite](04-query-suite.md).
 
 ## Row group layout
 
-The one-document lookup reads 5.7 MB because the file is one row group, so `original` is read whole. Two more layouts, both sorted by `parents` and `id`, change that.
+The one-document lookup reads 5.9 MB because the file is one row group, so `original` is read whole. Two more layouts, both sorted by `parents` and `id`, were measured.
 
-| Layout | Row groups | One document: bytes, requests, time | Point query, all catalogs: requests, time | Keyword query: requests, time |
-|---|---|---|---|---|
-| One row group, Hilbert order | 1 | 5.7 MB, 5, 3.0 s | 3, 0.75 s | 3, 0.85 to 1.07 s |
-| DuckDB writer, 2,048 rows per group, tree order | 3 | 1.1 MB, 7, 1.5 s | 5, 0.8 to 0.9 s | 5, 0.85 to 0.90 s |
-| pyarrow writer, 512 rows per group, tree order | 12 | 0.5 MB, 15, 1.0 to 1.3 s | 15, 0.77 to 0.79 s | 15, 0.97 to 1.01 s |
+| Layout | Row groups | One document: bytes, requests, time | Point query, all catalogs: bytes, requests, time |
+|---|---|---|---|
+| One row group, Hilbert order | 1 | 5.9 MB, 7, 2.4 s | 1.0 MB, 4, 0.85 s |
+| DuckDB writer, 2,048 rows per group, tree order | 3 | 3.3 MB, 9, 1.9 s | 2.8 MB, 8, 1.8 s |
+| pyarrow writer, 512 rows per group, tree order | 12 | 4.7 MB, 20, 2.1 s | 5.6 MB, 34, 2.3 s |
 
-Smaller row groups cut the bytes of a point lookup tenfold, and every query then pays one range request per row group, so the whole-file queries get no faster. At this size, about 2,000 rows per group in tree order is the balance. DuckDB cannot write row groups smaller than 2,048 rows. pyarrow can, and DuckDB prunes on pyarrow's statistics even though DuckDB's `parquet_metadata()` does not display them.
+Under DuckDB 2.0 one row group is the right layout at this size. Its prefetch cost model coalesces nearby byte ranges into one request, and every extra row group adds requests and bytes to every query. Smaller groups cut the one-document lookup only modestly. Under DuckDB 1.5.6 the same variants had cut that lookup from 5.7 MB to 1.1 MB without a penalty elsewhere, so this conclusion is engine specific.
 
-The files are `indexes/portolan-registry/collections.parquet`, `collections-rg2048.parquet`, and `collections-pa512.parquet`.
+The files are `indexes/portolan-registry/collections.parquet`, `collections-rg2048.parquet`, and `collections-pa512.parquet`, built by `benchmarks/row-groups/`.
 
-## A defect found on the way
+## Defects found on the way
 
-Reading the `geo` key back from `parquet_kv_metadata()` with a cast to text escapes every quote, and a file written with that string as its `geo` metadata opens with `geometry` as a plain blob. Use `decode(value)`. The derived files in this repository were rebuilt after the fix.
+Three, all in how the `geo` metadata was written, and none visible to the gpio version first used. The files in this repository were rebuilt after each fix and hold the same rows.
+
+- Reading the `geo` key back from `parquet_kv_metadata()` with a cast to text escapes every quote, and a file written with that string as its `geo` metadata opens with `geometry` as a plain blob. Use `decode(value)`.
+- The builder wrote `"crs": null`, which GeoParquet reads as an unknown CRS. The key is now omitted, which means OGC:CRS84.
+- The derived files carried two `geo` keys, one passed as `KV_METADATA` and one DuckDB adds for a geometry column when `spatial` is loaded. They are now written from a WKB blob, so only the passed key remains.

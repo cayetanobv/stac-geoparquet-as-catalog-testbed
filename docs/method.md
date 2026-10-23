@@ -21,12 +21,14 @@ The JSON walk runs twice: sequential, one request at a time, which is what a bro
 | Item | Value |
 |---|---|
 | Dates | 2026-10-22 and 2026-10-23 |
-| DuckDB | 1.5.6 CLI with the `spatial` and `httpfs` extensions |
-| gpio | 1.1.0b1 |
-| Python | 3.10 |
+| DuckDB | 2.0.0 CLI with the `spatial` and `httpfs` extensions, released 2026-10-21 |
+| Python | 3.14.9, with duckdb 2.0.0 and pyarrow 26.0.0 pinned in `pyproject.toml` and `uv.lock` |
+| gpio | 1.7.0 |
 | Round trip to Google Cloud Storage from the test machine | about 150 ms |
 
-Two outlier runs of 5 and 10 s occurred while a background walk competed for the network. They are reported on the registry page and excluded from its tables.
+Every number in `results/` comes from one recompute on 2026-10-23 with this toolchain, after an earlier pass with DuckDB 1.5.6, Python 3.10, and gpio 1.0 on 2026-10-22. The indexes were rebuilt with the pinned toolchain and hold the same rows as before. Where the two engines disagree, the pages say so: DuckDB 2.0's prefetch cost model reads small files whole and penalises extra row groups, which 1.5.6 did not.
+
+Cold runs vary by up to a factor of two between repeats on the same query. The suite tables list every run beside the median for that reason.
 
 ## Known pitfalls
 
@@ -34,3 +36,8 @@ Two outlier runs of 5 and 10 s occurred while a background walk competed for the
 - Reading the `geo` key back through `parquet_kv_metadata()` with a cast to text escapes every quote. Use `decode(value)`, or the derived file opens with `geometry` as a plain blob.
 - A rewrite through pyarrow drops the bloom filters DuckDB wrote. DuckDB still prunes on pyarrow's statistics, although `parquet_metadata()` does not display them.
 - DuckDB writes row groups of at least 2,048 rows. pyarrow honours smaller sizes.
+- DuckDB 2.0 rejects the `x -> expr` lambda syntax from its Python module and accepts it with a deprecation in the CLI. The scripts use `lambda x: expr`.
+- The DuckDB 2.0 CLI switches to a JSON "agent mode" when it detects an agent environment variable and stdout is not a terminal. Pass `-no-agent` in that situation.
+- An explicit `"crs": null` in the `geo` metadata means an unknown CRS. Omit the key to mean OGC:CRS84. gpio 1.7.0 warns about the null; gpio 1.0 did not.
+- With the `spatial` extension loaded, DuckDB adds its own `geo` key when it writes a geometry column. A `KV_METADATA` `geo` key on top of it gives the file two `geo` keys, and readers pick different ones. Write the geometry as a WKB blob, with `ST_AsWKB`, when you pass the metadata yourself. gpio 1.7.0 fails a file with two keys; gpio 1.0 did not.
+- The geoparquet-io package pins duckdb below 1.6, so gpio lives in its own environment, installed with pipx, while the project environment carries duckdb 2.0.

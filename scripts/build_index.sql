@@ -32,6 +32,6 @@ FROM ext
 ORDER BY ST_Hilbert(ST_MakeEnvelope(least(bb[1], bb[3]), bb[2], greatest(bb[1], bb[3]), bb[4]));
 -- geo metadata with the real extent
 CREATE TABLE meta AS SELECT min(bbox.xmin) AS x0, min(bbox.ymin) AS y0, max(bbox.xmax) AS x1, max(bbox.ymax) AS y1 FROM idx;
-SET VARIABLE geo = (SELECT '{"version":"1.1.0","primary_column":"geometry","columns":{"geometry":{"encoding":"WKB","geometry_types":["Polygon","MultiPolygon"],"crs":null,"bbox":[' || x0 || ',' || y0 || ',' || x1 || ',' || y1 || '],"covering":{"bbox":{"xmin":["bbox","xmin"],"ymin":["bbox","ymin"],"xmax":["bbox","xmax"],"ymax":["bbox","ymax"]}}}}}' FROM meta);
+SET VARIABLE geo = (SELECT '{"version":"1.1.0","primary_column":"geometry","columns":{"geometry":{"encoding":"WKB","geometry_types":["Polygon","MultiPolygon"],"bbox":[' || x0 || ',' || y0 || ',' || x1 || ',' || y1 || '],"covering":{"bbox":{"xmin":["bbox","xmin"],"ymin":["bbox","ymin"],"xmax":["bbox","xmax"],"ymax":["bbox","ymax"]}}}}}' FROM meta);
 COPY idx TO 'collections.parquet' (FORMAT PARQUET, COMPRESSION ZSTD, KV_METADATA {geo: getvariable('geo')});
 SELECT count(*) AS rows, count(DISTINCT id) AS ids, count(DISTINCT parents) AS chains, max(len(parents)) AS max_depth FROM idx;

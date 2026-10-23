@@ -39,7 +39,7 @@ What the pages under [results/](results/README.md) establish:
 Requirements: the [DuckDB CLI](https://duckdb.org/docs/installation/) 2.0 or later with the `spatial` and `httpfs` extensions, [uv](https://docs.astral.sh/uv/) for the Python environment, and [gpio](https://github.com/geoparquet-io/geoparquet-io) for the GeoParquet check.
 
 ```bash
-uv sync                      # Python 3.12 with duckdb 2.0 and pyarrow 26, as pinned in pyproject.toml
+uv sync                      # Python 3.14.9 with duckdb 2.0.0 and pyarrow 26.0.0, as pinned in pyproject.toml and uv.lock
 pipx install geoparquet-io   # gpio pins an older duckdb, so it gets its own environment
 duckdb -c "INSTALL spatial; INSTALL httpfs;"
 ```
@@ -80,7 +80,7 @@ The federated index from the registry mirror:
 uv run bash scripts/index_registry.sh https://registry.portolan-sdi.org/next/catalogs.json catalogs/registry work/registry
 ```
 
-`uv run` puts the pinned Python first on the path. The drivers also run with any system Python 3.12 or later.
+`uv run` puts the pinned Python 3.14.9 first on the path. The drivers use only the standard library.
 
 Each writes `collections.jsonl` and `collections.parquet` in the output directory and runs `gpio check`. The index built from the Berlin mirror matched the committed one in every row.
 

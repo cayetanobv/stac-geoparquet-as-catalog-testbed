@@ -25,16 +25,6 @@ STAC ids are unique only among siblings, and a collection document links only to
 
 The unique key of a row is `parents` plus `id`.
 
-## Where the bytes go
+## Size
 
-In the Comunidad de Madrid index, 1.5 MB for 1,964 rows:
-
-| Column | Share |
-|---|---|
-| `original` | 60% |
-| `keywords` | 28% |
-| `description` | 5% |
-| `href`, `title`, `id` | 2% each |
-| `parents` | 0.1% |
-
-A query engine with column projection never reads `original` unless the query names it. The remote measurements confirm it.
+In the Comunidad de Madrid index `original` is 60 percent of the bytes and `keywords` 28 percent. See [results/02-comunidad-madrid.md](../results/02-comunidad-madrid.md). A query engine with column projection reads neither unless the query names it.

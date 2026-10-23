@@ -12,8 +12,12 @@ The question the testbed answers: can one Parquet file replace the walk through 
 | `scripts/` | Mirror a catalog's metadata, build an index from it, and time queries against it |
 | `catalogs/` | Metadata mirrors of the test catalogs and of every catalog in the Portolan registry: `catalog.json` and `collection.json` only, no data assets |
 | `indexes/` | Indexes built from the two test catalogs and from the whole registry on 2026-10-22 |
-| `results/` | Measurements and what they show |
+| `results/` | Measurements and what they show, including a sixteen-query suite in `results/query-suite.md` |
 | `benchmarks/` | Synthetic benchmarks of column shapes at 5 million rows |
+
+## Why this question
+
+Every results page asks the same question: collections under one group of the tree whose extent contains a point. It is what an SDI user asks, "what transport data is there for this place", and it is the smallest query that touches everything under test. The group filter exercises the `parents` column, which is the point debated upstream, and in Madrid it is a mid-tree case that a direct-parent column cannot answer. The point filter exercises the GeoParquet side, geometry and `bbox` covering. And because the extent lives inside each `collection.json`, a client without the index has to open every collection document to answer it, so the walk pays its real cost. Both methods return the same count, which is how the antimeridian defect was caught. `results/query-suite.md` adds fifteen more query shapes for comparison.
 
 ## Results in one table
 

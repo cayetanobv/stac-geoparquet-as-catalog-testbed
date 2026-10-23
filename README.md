@@ -97,7 +97,24 @@ Each writes `collections.jsonl` and `collections.parquet` in the output director
 
 ### 3. Upload
 
-The measured indexes sit beside their catalogs on the same storage, unlinked from `catalog.json`. A later publish of a catalog can remove them. Upload your own with any tool that sets the content type `application/vnd.apache.parquet`.
+The measured files are served from the same bucket as the CARTO catalogs. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Nothing links to them from a `catalog.json`, and a later publish of a catalog can remove them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
+
+| File | URL |
+|---|---|
+| Berlin index | https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet |
+| Madrid index | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections.parquet |
+| Madrid, links-only variant | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections-links.parquet |
+| Registry index, 1 row group | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections.parquet |
+| Registry index, 3 row groups | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-rg2048.parquet |
+| Registry index, 12 row groups | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-pa512.parquet |
+
+The real-polygon queries also read two boundary files that the catalogs publish: Berlin districts at `berlin-geoportal/main/alkis/bezirke/alkis_bezirke_bezirksgrenzen.parquet` and Madrid neighbourhoods at `madrid-datos-abiertos/main/urbanismo/barrios-municipales/BARRIOS.parquet`, under the same host.
+
+Upload your own copies with any tool that sets the content type `application/vnd.apache.parquet`:
+
+```bash
+gsutil -h "Content-Type:application/vnd.apache.parquet" cp work/berlin/collections.parquet gs://<bucket>/<catalog prefix>/collections.parquet
+```
 
 ### 4. Measure
 

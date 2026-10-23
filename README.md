@@ -6,7 +6,7 @@ The testbed answers two questions. Can one Parquet file replace the walk through
 
 ## Findings
 
-Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The question is the same on each: collections under one group of the tree whose extent contains a point. [docs/method.md](docs/method.md) says why that question and why the measurements are remote.
+Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The headline measurement on each is one question, collections under one group of the tree whose extent contains a point, asked two ways: a walk through the catalog JSON and one query on the index. For the registry the question is the point alone, across every catalog. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why that question and why the measurements are remote.
 
 | Fixture | Collections | Depth | JSON walk, sequential | JSON walk, 16 threads | One query on the index over HTTPS |
 |---|---|---|---|---|---|
@@ -16,7 +16,18 @@ Three real fixtures from the Portolan registry, from one city catalog to the who
 
 For the registry the question is the point alone, across every catalog. Measured on 2026-10-23 with DuckDB 2.0.0 and Python 3.14.9. DuckDB 2.0 reads a file of a few megabytes whole in one request, so the index query's time is one handshake and one or three round trips, not rows.
 
-What the pages under [results/](results/README.md) establish:
+What the pages under [results/](results/README.md) establish, in one table:
+
+| Question | Finding | Evidence |
+|---|---|---|
+| Does one file replace the JSON walk? | Yes. Two to four requests whatever the row count, against one request per document: 78 s, 7 min, and 41 min of sequential walking become under a second. | [01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md) |
+| Does the tree column need the full ancestor chain? | Yes. In Madrid the theme has 146 collections through `parents` and 0 through the direct parent. A links-only file needs 178 requests for the same answer. | [02](results/02-comunidad-madrid.md), [06](results/06-links-only-variant.md) |
+| Is there a better tree column for generic STAC? | No. A path string is faster above a million rows but needs an escaping rule; level columns fix the depth; a recursive query is slowest. | [05](results/05-tree-designs.md), [07](results/07-list-shapes.md) |
+| Does the schema hold across a federation? | Yes, with `parents` plus `id` as the key. 26 ids repeat across 86 catalogs; the pair is unique for all 5,852 rows. | [03](results/03-portolan-registry.md) |
+| Does the geometry column earn its place? | Yes. Point, box, polygon containment, distance, area ranking, and a spatial join with real boundaries all run in under a second over HTTPS. Antimeridian bboxes must be split or they match everywhere. | [04](results/04-query-suite.md), [03](results/03-portolan-registry.md) |
+| How should the file be laid out? | One row group at this size. DuckDB 2.0 reads small files whole and charges every extra row group on every query. Only a full-document lookup gains from smaller groups, and modestly. | [03](results/03-portolan-registry.md), [04](results/04-query-suite.md) |
+
+The same findings, with the numbers behind them:
 
 - **The index turns a cost that grows with the tree into a constant.** Two to four requests whatever the row count, against one request per document. ([01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md))
 - **`parents` answers the mid-tree case that the STAC links cannot.** In Madrid the `demografia` theme has 146 collections through `parents` and 0 through the direct parent, because every collection sits under a shard sub-catalog. A links-only file needs 181 requests for that question. ([02](results/02-comunidad-madrid.md), [06](results/06-links-only-variant.md))

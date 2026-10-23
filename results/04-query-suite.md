@@ -144,3 +144,60 @@ Index: `https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/col
 | C1 combined: group, point, keyword, title returned | 42 | 31 | 2.4MiB | 1.26, 1.72, 1.37 s | 1.37 s | 0.09 s |
 
 C1 uses the keyword `Total`, which occurs inside the group.
+
+## Real polygons
+
+Seven more shapes that use the `geometry` column against real polygons from the catalogs themselves, fetched over HTTPS inside the same query. The region for Berlin is the district Mitte from `alkis/bezirke`, 12 multipolygons in OGC:CRS84. The region for Madrid and for the registry is the neighbourhood Sol from `urbanismo/barrios-municipales` in the Madrid city catalog, 131 polygons in EPSG:25830, transformed to EPSG:4326 in the query. The region is the feature that contains the test point. G7 joins the index with every feature of the file.
+
+```bash
+uv run python scripts/run_suite.py <index URL> ... --only G --region-url <GeoParquet URL> --region-geom geometry --region-name namgem [--region-crs EPSG:25830]
+```
+
+What the three tables show:
+
+- **Polygon predicates cost the same as point predicates.** `ST_Intersects`, `ST_Within`, `ST_Contains`, `ST_DWithin`, an intersection-area ranking, and a spatial join against 12 or 131 real polygons all finish in 0.5 to 0.9 s cold and 0.05 to 0.25 s warm. The extra bytes are the region file.
+- **The counts say what the extents are.** In Berlin 370 of 371 extents intersect Mitte and 355 contain it whole, because most extents are city-wide. One lies inside it. In Madrid every extent contains the neighbourhood, because every collection carries the region-wide bbox. The join with narrow extents finds nothing in the Comunidad de Madrid catalog and 20 collections per neighbourhood in the Madrid city catalog, all from `madrid-datos-abiertos`.
+- **G5 is the query a catalog browser wants.** It ranks collections by the share of their extent that falls inside the region, which puts local datasets first.
+- **No row group is skipped by geometry on these files.** The same `ST_Intersects` reads the same bytes for a point in Madrid, a point in the Pacific, and a box over Berlin, on the one-, three-, and twelve-row-group registry files. DuckDB pushes the predicate into the scan, but every row group holds global datasets, so its bbox statistics span the globe. That is the data, not the engine.
+
+### Berlin Geoportal, region district Mitte
+
+Index: `https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet`  point 13.405,52.52  group `verkehr`  keyword `Radverkehr`  runs 3  region from `https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/alkis/bezirke/alkis_bezirke_bezirksgrenzen.parquet`
+
+| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Warm median |
+|---|---|---|---|---|---|---|
+| G1 extents that intersect a box of about 5 x 3 km | 371 | 2 | 312.4KiB | 0.35, 0.36, 0.33 s | 0.35 s | 0.05 s |
+| G2 extents that intersect the region polygon | 370 | 3 | 654.3KiB | 0.48, 0.53, 0.49 s | 0.49 s | 0.11 s |
+| G3 extents that lie inside the region polygon | 1 | 3 | 654.3KiB | 0.50, 0.47, 0.46 s | 0.47 s | 0.12 s |
+| G4 extents that contain the whole region polygon | 355 | 3 | 654.3KiB | 0.46, 0.52, 0.54 s | 0.52 s | 0.11 s |
+| G5 ten most local datasets for the region: share of the extent that falls inside it | 10 | 3 | 654.3KiB | 0.61, 0.61, 0.66 s | 0.61 s | 0.25 s |
+| G6 extents within 0.05 degrees of the point | 371 | 2 | 312.4KiB | 0.34, 0.32, 0.32 s | 0.32 s | 0.05 s |
+| G7 spatial join with every feature of the file: collections per feature, extents narrower than 0.3 degrees | 5 | 3 | 654.3KiB | 0.46, 0.81, 0.51 s | 0.51 s | 0.11 s |
+
+### Comunidad de Madrid, region neighbourhood Sol
+
+Index: `https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections.parquet`  point -3.7038,40.4168  group `demografia`  keyword `Total`  runs 3  region from `https://storage.googleapis.com/carto-open-catalogs/madrid-datos-abiertos/main/urbanismo/barrios-municipales/BARRIOS.parquet`
+
+| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Warm median |
+|---|---|---|---|---|---|---|
+| G1 extents that intersect a box of about 5 x 3 km | 1964 | 2 | 1.4MiB | 0.42, 0.41, 0.43 s | 0.42 s | 0.05 s |
+| G2 extents that intersect the region polygon | 1964 | 3 | 1.6MiB | 0.53, 0.55, 0.54 s | 0.54 s | 0.12 s |
+| G3 extents that lie inside the region polygon | 0 | 3 | 1.6MiB | 0.52, 0.56, 0.58 s | 0.56 s | 0.12 s |
+| G4 extents that contain the whole region polygon | 1964 | 3 | 1.6MiB | 0.57, 0.54, 0.60 s | 0.57 s | 0.12 s |
+| G5 ten most local datasets for the region: share of the extent that falls inside it | 10 | 3 | 1.6MiB | 0.59, 0.54, 0.56 s | 0.56 s | 0.14 s |
+| G6 extents within 0.05 degrees of the point | 1964 | 2 | 1.4MiB | 0.40, 0.42, 0.40 s | 0.40 s | 0.06 s |
+| G7 spatial join with every feature of the file: collections per feature, extents narrower than 0.3 degrees | 0 | 3 | 1.6MiB | 0.54, 0.57, 0.53 s | 0.54 s | 0.11 s |
+
+### Portolan registry, region neighbourhood Sol
+
+Index: `https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections.parquet`  point -3.7038,40.4168  group `demografia`  keyword `Total`  runs 3  region from `https://storage.googleapis.com/carto-open-catalogs/madrid-datos-abiertos/main/urbanismo/barrios-municipales/BARRIOS.parquet`
+
+| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Warm median |
+|---|---|---|---|---|---|---|
+| G1 extents that intersect a box of about 5 x 3 km | 2254 | 4 | 1001.5KiB | 0.50, 0.58, 0.60 s | 0.58 s | 0.05 s |
+| G2 extents that intersect the region polygon | 2254 | 5 | 1.1MiB | 0.64, 0.68, 0.64 s | 0.64 s | 0.12 s |
+| G3 extents that lie inside the region polygon | 0 | 5 | 1.1MiB | 0.92, 0.65, 0.66 s | 0.66 s | 0.12 s |
+| G4 extents that contain the whole region polygon | 2254 | 5 | 1.1MiB | 0.90, 0.62, 0.69 s | 0.69 s | 0.13 s |
+| G5 ten most local datasets for the region: share of the extent that falls inside it | 10 | 5 | 1.2MiB | 0.65, 0.66, 0.67 s | 0.66 s | 0.15 s |
+| G6 extents within 0.05 degrees of the point | 2254 | 4 | 1001.5KiB | 0.49, 0.49, 0.51 s | 0.49 s | 0.05 s |
+| G7 spatial join with every feature of the file: collections per feature, extents narrower than 0.3 degrees | 5 | 6 | 1.1MiB | 0.88, 0.94, 0.83 s | 0.88 s | 0.13 s |

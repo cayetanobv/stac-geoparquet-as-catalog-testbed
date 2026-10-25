@@ -1,8 +1,11 @@
 """Run the query suite against a collection index and print a Markdown table.
 Each query runs COLD (a fresh DuckDB process per run, so nothing is cached) and WARM (one process,
 after a first run). HTTP request counts and bytes come from EXPLAIN ANALYZE on a remote file.
+Cold time is reported twice: the EXPLAIN ANALYZE total, which leaves out reads made while planning, and the
+wall clock of a fresh process running the plain query, minus the median wall clock of a process that only
+loads the extensions.
 usage: run_suite.py INDEX_URL_OR_PATH --lon X --lat Y --grp GROUP --kw KEYWORD --cat ROOT_ID --id COLLECTION_ID [--runs 3]"""
-import argparse, re, statistics, subprocess, sys, textwrap
+import argparse, re, statistics, subprocess, sys, textwrap, time
 
 ap = argparse.ArgumentParser()
 ap.add_argument("index"); ap.add_argument("--lon", type=float, required=True); ap.add_argument("--lat", type=float, required=True)
@@ -30,7 +33,7 @@ QUERIES = [
     ("T1 everything under one group, id and title",
      "SELECT id, title FROM t WHERE list_contains(parents, '{grp}') ORDER BY id"),
     ("T2 collections per direct parent",
-     "SELECT parents[-1], count(*) FROM t GROUP BY 1 ORDER BY 2 DESC"),
+     "SELECT parents, count(*) FROM t GROUP BY 1 ORDER BY 2 DESC"),
     ("T3 one catalog by root id, one group",
      "SELECT count(*) FROM t WHERE parents[1] = '{cat}' AND list_contains(parents, '{grp}')"),
     ("A1 keyword equality",
@@ -82,29 +85,34 @@ def sql_for(q):
     return ctes + body
 
 PRE = "LOAD spatial; LOAD httpfs;"
+def wall(args):
+    t0 = time.perf_counter(); out = subprocess.run(args, capture_output=True, text=True); return time.perf_counter() - t0, out
+BASE = statistics.median(wall(["duckdb", "-no-agent", "-c", f"{PRE} SELECT 1;"])[0] for _ in range(3))   # process start and extension loading
 def run_cold(sql):
-    out = subprocess.run(["duckdb", "-c", f"{PRE} EXPLAIN ANALYZE {sql};"], capture_output=True, text=True).stdout + "\n"
+    out = subprocess.run(["duckdb", "-no-agent", "-c", f"{PRE} EXPLAIN ANALYZE {sql};"], capture_output=True, text=True).stdout + "\n"
     t = re.search(r"Total Time:\s*([\d.]+)s", out); b = re.search(r"in:\s*([\d.]+\s*\w+)", out); g = re.search(r"#GET:\s*(\d+)", out)
-    csv = subprocess.run(["duckdb", "-csv", "-noheader", "-c", f"{PRE} {sql};"], capture_output=True, text=True).stdout.strip()
+    w, res = wall(["duckdb", "-no-agent", "-csv", "-noheader", "-c", f"{PRE} {sql};"])
+    csv = res.stdout.strip()
     lines = csv.splitlines()
     body = sql[sql.rfind(" SELECT ") + 1:] if sql.startswith("WITH ") else sql   # the main query after the region CTEs
     is_count = body.lstrip().startswith("SELECT count(*) FROM")
     rows = lines[0] if is_count and len(lines) == 1 else str(len(lines))   # a count, or the number of result rows
-    return float(t.group(1)) if t else None, (b.group(1).replace(" ", "") if b else "local"), (int(g.group(1)) + 1 if g else None), rows
+    return float(t.group(1)) if t else None, (b.group(1).replace(" ", "") if b else "local"), (int(g.group(1)) + 1 if g else None), rows, w - BASE
 
 def run_warm(sql, n):
     cmds = ["-c", f"{PRE}"] + sum([["-c", f"EXPLAIN ANALYZE {sql};"] for _ in range(n + 1)], [])
-    out = subprocess.run(["duckdb"] + cmds, capture_output=True, text=True).stdout
+    out = subprocess.run(["duckdb", "-no-agent"] + cmds, capture_output=True, text=True).stdout
     return [float(x) for x in re.findall(r"Total Time:\s*([\d.]+)s", out)][1:]
 
 print(f"Index: `{a.index}`  point {a.lon},{a.lat}  group `{a.grp}`  keyword `{a.kw}`  runs {a.runs}" + (f"  region from `{a.region_url}`" if a.region_url else "") + "\n")
-print("| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Warm median |")
-print("|---|---|---|---|---|---|---|")
+print(f"Process start and extension loading, subtracted from the wall clock: {BASE:.2f} s\n")
+print("| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Cold wall median | Warm median |")
+print("|---|---|---|---|---|---|---|---|")
 for label, q in QUERIES:
     sql = sql_for(q)
     cold = [run_cold(sql) for _ in range(a.runs)]
     times = [c[0] for c in cold if c[0] is not None]
     if not times:
-        print(f"| {label} | error | | | | | |"); print(subprocess.run(["duckdb", "-c", f"{PRE} {sql};"], capture_output=True, text=True).stderr[:300], file=sys.stderr); continue
+        print(f"| {label} | error | | | | | | |"); print(subprocess.run(["duckdb", "-no-agent", "-c", f"{PRE} {sql};"], capture_output=True, text=True).stderr[:300], file=sys.stderr); continue
     warm = run_warm(sql, a.runs)
-    print(f"| {label} | {cold[0][3]} | {cold[0][2] or ''} | {cold[0][1]} | {', '.join(f'{t:.2f}' for t in times)} s | {statistics.median(times):.2f} s | {statistics.median(warm):.2f} s |", flush=True)
+    print(f"| {label} | {cold[0][3]} | {cold[0][2] or ''} | {cold[0][1]} | {', '.join(f'{t:.2f}' for t in times)} s | {statistics.median(times):.2f} s | {statistics.median(c[4] for c in cold):.2f} s | {statistics.median(warm):.2f} s |", flush=True)

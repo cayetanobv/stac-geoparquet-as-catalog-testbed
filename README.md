@@ -125,13 +125,15 @@ The JSON walk a client does today:
 python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 verkehr
 ```
 
+Each thread keeps one connection alive per host. Add `fresh` as a fifth argument to open a new connection for every document, as the measurements before 2026-10-25 did.
+
 The same question against the index:
 
 ```bash
 duckdb -c "SET VARIABLE u='https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet'; SET VARIABLE lon=13.405; SET VARIABLE lat=52.52; SET VARIABLE grp='verkehr';" -c ".read scripts/remote_queries.sql"
 ```
 
-The sixteen-query suite, cold and warm, as a Markdown table:
+The sixteen-query suite, cold and warm, as a Markdown table. Cold time is given both as the `EXPLAIN ANALYZE` total and as the wall clock of a fresh process minus process start and extension loading:
 
 ```bash
 uv run python scripts/run_suite.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet --lon 13.405 --lat 52.52 --grp verkehr --kw Radverkehr --cat berlin-geoportal --id gruenflaechen/grillflaechen --runs 3

@@ -25,6 +25,7 @@ What the pages under [results/](results/README.md) establish, in one table:
 | Is there a better tree column for generic STAC? | No. A path string is faster above a million rows but needs an escaping rule; level columns fix the depth; a recursive query is slowest. | [05](results/05-tree-designs.md), [07](results/07-list-shapes.md) |
 | Does the schema hold across a federation? | Yes, with `parents` plus `id` as the key. 26 ids repeat across 86 catalogs; the pair is unique for all 5,852 rows. | [03](results/03-portolan-registry.md) |
 | Does the geometry column earn its place? | Yes. Point, box, polygon containment, distance, area ranking, and a spatial join with real boundaries all run in under a second over HTTPS. Antimeridian bboxes must be split or they match everywhere. | [04](results/04-query-suite.md), [03](results/03-portolan-registry.md) |
+| How does a catalog advertise the file? | As a link with `rel: "data"` and the Parquet media type. A Catalog has no `assets` field, so the asset form used for `items.parquet` is not available one level up. | [docs/discovery.md](docs/discovery.md) |
 | How should the file be laid out? | One row group at this size. DuckDB 2.0 reads small files whole and charges every extra row group on every query. Only a full-document lookup gains from smaller groups, and modestly. | [03](results/03-portolan-registry.md), [04](results/04-query-suite.md) |
 
 The same findings, with the numbers behind them:
@@ -40,7 +41,7 @@ The same findings, with the numbers behind them:
 
 | Path | Content |
 |---|---|
-| `docs/` | The schema under test and the method |
+| `docs/` | The schema under test, how a catalog advertises the file, and the method |
 | `results/` | One page per measurement, numbered in reading order, with an index |
 | `catalogs/` | Metadata mirrors: every `catalog.json` and `collection.json` of the three fixtures, no data assets, with a manifest for the registry |
 | `indexes/` | The indexes built from the mirrors, as measured |
@@ -97,7 +98,7 @@ Each writes `collections.jsonl` and `collections.parquet` in the output director
 
 ### 3. Upload
 
-The measured files are served from the same bucket as the CARTO catalogs. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Nothing links to them from a `catalog.json`, and a later publish of a catalog can remove them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
+The measured files are served from the same bucket as the CARTO catalogs. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Nothing links to them from a `catalog.json` yet; [docs/discovery.md](docs/discovery.md) says how a catalog would. A later publish of a catalog can remove them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
 
 | File | URL |
 |---|---|

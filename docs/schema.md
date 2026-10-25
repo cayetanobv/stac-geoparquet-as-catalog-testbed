@@ -21,31 +21,7 @@ One file, `collections.parquet`, at the catalog root. One row per collection in 
 
 ## How a catalog points at the file
 
-The upstream spec references `items.parquet` as an Asset Object on the Collection, with the media type `application/vnd.apache.parquet` and the role `collection-mirror`. That form is not available one level up: the STAC 1.1.0 Catalog schema has no `assets` field. So the index is a Link Object in the catalog's `links`:
-
-```json
-{
-  "rel": "data",
-  "href": "./collections.parquet",
-  "type": "application/vnd.apache.parquet",
-  "title": "Every collection in this catalog, one row each"
-}
-```
-
-`data` is the relation that OGC API Features defines, and STAC API inherits, for the landing page link to the list of all collections, the `/collections` endpoint. The index is that list as Parquet, so the relation already fits and no new vocabulary is needed. A client that knows only the JSON form filters on `type`, as STAC best practice already asks for hierarchical links. The registry export is itself a STAC Catalog, so a federated index gets the same link from its root.
-
-STAC does not restrict `rel` to a list. Its link specification recommends IANA relation types where possible, and STAC uses its own where IANA has none with the right meaning: `root`, `parent`, `child`, `items`, `data`. `data` is not in the IANA registry. `alternate` is, but it means a substitute representation of the same resource, which the index is not, and catalogs use it for their HTML view. The Portolan incubating draft of 2026-10-13 used `rel: "alternate"` and listed the relation as an open question. `data` is the answer proposed here, with `alternate` acceptable but weaker. A dedicated relation defined by stac-geoparquet would be the most explicit choice and the one no client knows yet.
-
-| | `items.parquet` | `collections.parquet` |
-|---|---|---|
-| Lives under | a Collection | a Catalog, or a registry root |
-| Referenced as | Asset Object, role `collection-mirror` | Link Object, `rel: "data"` |
-| One row per | Item of that collection | Collection anywhere in that catalog's tree |
-| Why the difference | Collections have `assets` | Catalogs do not |
-
-Generic STAC lets a Collection hold child collections. An index of that subtree could sit as an asset of the Collection and would need a role of its own, distinct from `collection-mirror`. Portolan never needs that form, because a Portolan collection has no child collections.
-
-None of the catalogs measured here carry the link yet. The published root documents of Berlin, Madrid, and the registry do not reference the index, and the mirrors under `catalogs/` are verbatim copies, so the measurements read the files by their known URLs, listed in the README under Upload.
+As a Link Object in the catalog's `links` with `rel: "data"` and the Parquet media type, not as an asset, because a STAC Catalog has no `assets` field. The options and the reasoning are in [discovery.md](discovery.md).
 
 ## Why `parents` is a list
 

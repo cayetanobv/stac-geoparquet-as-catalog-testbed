@@ -1,6 +1,6 @@
 # The whole Portolan registry as one federated index
 
-Registry export: https://registry.portolan-sdi.org/next/catalogs.json, a STAC Catalog whose child links are the 86 registered catalogs. Mirrored on 2026-10-22. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from a machine with about 150 ms round trip to Google Cloud Storage. See [docs/method.md](../docs/method.md). Scripts: `scripts/mirror_registry.py`, `scripts/crawl_registry.py`, `scripts/build_index.sql`.
+Registry export: https://registry.portolan-sdi.org/next/catalogs.json, a STAC Catalog whose child links are the 86 registered catalogs. Mirrored on 2026-10-22, with the failed catalogs retried early on 2026-10-23; the manifest's timestamp is the retry. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from the test machine described in [docs/method.md](../docs/method.md). Scripts: `scripts/mirror_registry.py`, `scripts/crawl_registry.py`, `scripts/build_index.sql`.
 
 ## The federation
 
@@ -18,7 +18,7 @@ Source Cooperative and the R2 host answer HTTP 403 to Python's default User-Agen
 
 ## Ids collide across catalogs
 
-26 collection ids appear in more than one catalog, 55 rows in all. `naturschutz/naturschutzgebiete` exists in Berlin, Bavaria, and North Rhine-Westphalia. `verkehr/behindertenparkplaetze` exists in Berlin, Munich, and Cologne. `places` exists in two unrelated catalogs. The key `parents` plus `id` is unique for all 5,852 rows. No two registered catalogs share a root id, so the first element of `parents` identifies the catalog, which is the federated rule in the schema.
+26 collection ids appear more than once, 55 rows in all. 25 of them, 53 rows, appear in more than one catalog. The other, `post-event-planetscope-2026-10-11`, appears twice inside `disasterdata` under different parents, so even within one catalog `id` alone is not a key. `naturschutz/naturschutzgebiete` exists in Berlin, Bavaria, and North Rhine-Westphalia. `verkehr/behindertenparkplaetze` exists in Berlin, Munich, and Cologne. `places` exists in two unrelated catalogs. The key `parents` plus `id` is unique for all 5,852 rows. No two registered catalogs share a root id, so the first element of `parents` identifies the catalog, which is the federated rule in the schema.
 
 ## The index
 
@@ -33,11 +33,11 @@ Source Cooperative and the R2 host answer HTTP 403 to Python's default User-Agen
 
 ## Antimeridian
 
-30 collections in 4 catalogs have a bbox with west greater than east, for example UTM zone 1 tiles with `xmin` 179.9 and `xmax` -173.9, and OpenStreetMap extracts. A polygon built from such a bbox with `ST_MakeEnvelope` covers the whole globe in longitude, and 26 of those collections matched a point in Madrid. The builder splits such a bbox into a multipolygon of two boxes at the antimeridian. After the fix the index and the JSON walk agree on every count below.
+30 collections in 4 catalogs have a bbox with west greater than east, for example UTM zone 1 tiles with `xmin` 179.9 and `xmax` -173.9, and OpenStreetMap extracts. A polygon built from such a bbox with `ST_MakeEnvelope` covers the whole globe in longitude, and 26 of those collections matched a point in Madrid. The builder splits such a bbox into a multipolygon of two boxes at the antimeridian. After the fix the index and the JSON walk agree on every count below. The walk's own bbox test treats a box with west greater than east as empty, so it agrees with the split polygons for points outside those boxes, such as Madrid, and would miss them for a point inside one.
 
 ## Question: collections in any catalog whose extent contains a point in Madrid
 
-Point -3.7038, 40.4168. The answer is 2,254 collections in 35 catalogs. Most are global or national datasets.
+Point -3.7038, 40.4168. The answer is 2,254 collections in 33 catalogs. 1,964 of them are the whole Comunidad de Madrid catalog, 1,960 of those through the whole-world placeholder extent described on [page 02](02-comunidad-madrid.md). The other 290 come from 32 catalogs.
 
 | Method | HTTP requests | Bytes read | Time |
 |---|---|---|---|
@@ -70,7 +70,7 @@ The one-document lookup reads 5.9 MB because the file is one row group, so `orig
 | DuckDB writer, 2,048 rows per group, tree order | 3 | 3.3 MB, 9, 1.9 s | 2.8 MB, 8, 1.8 s |
 | pyarrow writer, 512 rows per group, tree order | 12 | 4.7 MB, 20, 2.1 s | 5.6 MB, 34, 2.3 s |
 
-Under DuckDB 2.0 one row group is the right layout at this size. Its prefetch cost model coalesces nearby byte ranges into one request, and every extra row group adds requests and bytes to every query. Smaller groups cut the one-document lookup only modestly. Under DuckDB 1.5.6 the same variants had cut that lookup from 5.7 MB to 1.1 MB without a penalty elsewhere, so this conclusion is engine specific.
+Under DuckDB 2.0 one row group is the right layout at this size. Its prefetch cost model coalesces nearby byte ranges into one request, and the files with more row groups read more bytes in more requests for every query. Smaller groups cut the one-document lookup only modestly. The three files differ in more than the row group count: the one-group file is in Hilbert order and the others in tree order, and the 12-group file is written by pyarrow, without DuckDB's bloom filters. The comparison does not separate those effects. Under DuckDB 1.5.6 the same variants had cut that lookup from 5.7 MB to 1.1 MB without a penalty elsewhere, so this conclusion is engine specific.
 
 The files are `indexes/portolan-registry/collections.parquet`, `collections-rg2048.parquet`, and `collections-pa512.parquet`, built by `benchmarks/row-groups/`.
 

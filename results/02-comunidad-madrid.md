@@ -1,7 +1,7 @@
 # Comunidad de Madrid
 
 Catalog: https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/catalog.json
-Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from a machine with about 150 ms round trip to Google Cloud Storage. See [docs/method.md](../docs/method.md).
+Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from the test machine described in [docs/method.md](../docs/method.md).
 
 ## The catalog
 
@@ -12,7 +12,7 @@ Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 w
 | Tree depth | 3 for 1,917 collections, 2 for 47 |
 | Shape | root, then a theme such as `demografia`, then an alphabetical shard such as `demografia/e-i` |
 | Distinct ancestor chains | 159 |
-| Spatial extents | the same region-wide bbox on every collection |
+| Spatial extents | the whole-world bbox `[-180, -90, 180, 90]` on 1,960 collections, a placeholder; a bbox of the region on 4 |
 
 ## The index
 
@@ -27,7 +27,7 @@ Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 w
 
 ## Question: collections under the `demografia` theme whose extent contains the city centre
 
-Point -3.7038, 40.4168. The answer is 146 collections.
+Point -3.7038, 40.4168. The answer is 146 collections, every collection in the theme, because every one carries the whole-world placeholder extent. On this catalog the question tests the tree filter and the request count, not spatial selectivity.
 
 | Method | HTTP requests | Bytes read | Time |
 |---|---|---|---|

@@ -19,6 +19,32 @@ One file, `collections.parquet`, at the catalog root. One row per collection in 
 
 `scripts/build_index.sql` writes this schema. A bbox with west greater than east crosses the antimeridian, and the builder splits it into a multipolygon of two boxes. The Portolan registry holds 30 such collections, and without the split they match every point on Earth. The file it produces is GeoParquet 1.1 with the `bbox` covering declared, ZSTD compression, rows in Hilbert order on the geometry, and the DuckDB writer's statistics and bloom filters.
 
+## How a catalog points at the file
+
+The upstream spec references `items.parquet` as an Asset Object on the Collection, with the media type `application/vnd.apache.parquet` and the role `collection-mirror`. That form is not available one level up: the STAC 1.1.0 Catalog schema has no `assets` field. So the index is a Link Object in the catalog's `links`:
+
+```json
+{
+  "rel": "data",
+  "href": "./collections.parquet",
+  "type": "application/vnd.apache.parquet",
+  "title": "Every collection in this catalog, one row each"
+}
+```
+
+`data` is the relation that STAC API and OGC API Features use on a landing page for the list of all collections, the `/collections` endpoint. The index is that list as Parquet, so the relation already fits and no new vocabulary is needed. A client that knows only the JSON form filters on `type`. The registry export is itself a STAC Catalog, so a federated index gets the same link from its root. The Portolan incubating draft of 2026-10-13 used `rel: "alternate"` and listed the relation as an open question; `data` is the answer proposed here.
+
+| | `items.parquet` | `collections.parquet` |
+|---|---|---|
+| Lives under | a Collection | a Catalog, or a registry root |
+| Referenced as | Asset Object, role `collection-mirror` | Link Object, `rel: "data"` |
+| One row per | Item of that collection | Collection anywhere in that catalog's tree |
+| Why the difference | Collections have `assets` | Catalogs do not |
+
+Generic STAC lets a Collection hold child collections. An index of that subtree could sit as an asset of the Collection and would need a role of its own, distinct from `collection-mirror`. Portolan never needs that form, because a Portolan collection has no child collections.
+
+None of the catalogs measured here carry the link yet. The published root documents of Berlin, Madrid, and the registry do not reference the index, and the mirrors under `catalogs/` are verbatim copies, so the measurements read the files by their known URLs, listed in the README under Upload.
+
 ## Why `parents` is a list
 
 STAC ids are unique only among siblings, and a collection document links only to its direct parent and to the root. A filter on a catalog in the middle of the tree needs the full chain of ancestor ids. `list_contains(parents, 'transport')` matches a collection at any depth below `transport`. In generic STAC an ancestor can be a catalog or a collection, so the column name does not state the type.

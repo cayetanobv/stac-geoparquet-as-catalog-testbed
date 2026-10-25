@@ -31,20 +31,26 @@ def get_fresh(url):
 def fetch(url):
     for a in range(5):
         try: return (get_fresh if FRESH else get_keepalive)(url)
+        except ValueError: raise                      # not JSON: a retry returns the same page
         except Exception:
             if a == 4: raise
             time.sleep(0.5 * 2 ** a)
+def fetch_or_fail(url):
+    try: return fetch(url)
+    except Exception as e: return e
 def contains(b, x, y):
     # a bbox with west > east crosses the antimeridian, as in scripts/build_index.sql
     in_x = b[0] <= x <= b[2] if b[0] <= b[2] else (x >= b[0] or x <= b[2])
     return in_x and b[1] <= y <= b[3]
 def run(workers, group):
-    t0 =time.perf_counter(); reqs = 0; hits = 0
+    t0 = time.perf_counter(); reqs = 0; hits = 0; failed = []
     frontier = [ROOT]
     with cf.ThreadPoolExecutor(workers) as ex:
         while frontier:
-            docs = list(zip(frontier, ex.map(fetch, frontier))); reqs += len(frontier); frontier = []
+            docs = list(zip(frontier, ex.map(fetch_or_fail, frontier))); reqs += len(frontier); frontier = []
             for url, d in docs:
+                if isinstance(d, Exception):          # counted as a request, its subtree is not walked
+                    failed.append(f"{url}: {type(d).__name__}: {str(d)[:80]}"); continue
                 if d.get("type") == "Collection":
                     hits += contains(d["extent"]["spatial"]["bbox"][0], QX, QY)
                     continue
@@ -54,8 +60,9 @@ def run(workers, group):
                     if group and url == ROOT and l["href"].strip("./").split("/")[0] != group \
                             and l.get("portolan_registry:id") != group: continue
                     frontier.append(urllib.parse.urljoin(url, l["href"]))
-    return time.perf_counter() - t0, reqs, hits
+    return time.perf_counter() - t0, reqs, hits, failed
 mode = "fresh connections" if FRESH else "keep-alive"
 for label, w, g in [(f"one group ({GROUP}), sequential", 1, GROUP), (f"one group ({GROUP}), 16 threads", 16, GROUP),
                     ("whole tree, 16 threads", 16, None), ("whole tree, sequential", 1, None)]:
-    t, n, h = run(w, g); print(f"{label:36s} {mode} requests={n:5d} hits={h:5d} time={t:7.2f} s", flush=True)
+    t, n, h, f = run(w, g); print(f"{label:36s} {mode} requests={n:5d} hits={h:5d} failed={len(f)} time={t:7.2f} s", flush=True)
+    for x in f: print(f"  failed {x}", file=sys.stderr)

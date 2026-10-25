@@ -2,10 +2,10 @@
 Each query runs COLD (a fresh DuckDB process per run, so nothing is cached) and WARM (one process,
 after a first run). HTTP request counts and bytes come from EXPLAIN ANALYZE on a remote file.
 Cold time is reported twice: the EXPLAIN ANALYZE total, which leaves out reads made while planning, and the
-wall clock of a fresh process running the plain query, minus the median wall clock of a process that only
-loads the extensions.
+wall clock of the plain query in a fresh process, measured inside that process after the extensions load,
+so it includes planning and leaves out process start.
 usage: run_suite.py INDEX_URL_OR_PATH --lon X --lat Y --grp GROUP --kw KEYWORD --cat ROOT_ID --id COLLECTION_ID [--runs 3]"""
-import argparse, re, statistics, subprocess, sys, textwrap, time
+import argparse, json, re, statistics, subprocess, sys, textwrap
 
 ap = argparse.ArgumentParser()
 ap.add_argument("index"); ap.add_argument("--lon", type=float, required=True); ap.add_argument("--lat", type=float, required=True)
@@ -85,19 +85,19 @@ def sql_for(q):
     return ctes + body
 
 PRE = "LOAD spatial; LOAD httpfs;"
-def wall(args):
-    t0 = time.perf_counter(); out = subprocess.run(args, capture_output=True, text=True); return time.perf_counter() - t0, out
-BASE = statistics.median(wall(["duckdb", "-no-agent", "-c", f"{PRE} SELECT 1;"])[0] for _ in range(3))   # process start and extension loading
+# a fresh Python process per run: load the extensions, then time the query and fetch its rows
+TIMED = ("import duckdb, json, sys, time; con = duckdb.connect(); con.execute(sys.argv[1]); "
+         "t = time.perf_counter(); rows = con.execute(sys.argv[2]).fetchall(); t = time.perf_counter() - t; "
+         "print(json.dumps({'t': t, 'rows': [[str(v) for v in r] for r in rows]}))")
 def run_cold(sql):
     out = subprocess.run(["duckdb", "-no-agent", "-c", f"{PRE} EXPLAIN ANALYZE {sql};"], capture_output=True, text=True).stdout + "\n"
     t = re.search(r"Total Time:\s*([\d.]+)s", out); b = re.search(r"in:\s*([\d.]+\s*\w+)", out); g = re.search(r"#GET:\s*(\d+)", out)
-    w, res = wall(["duckdb", "-no-agent", "-csv", "-noheader", "-c", f"{PRE} {sql};"])
-    csv = res.stdout.strip()
-    lines = csv.splitlines()
+    res = json.loads(subprocess.run([sys.executable, "-I", "-c", TIMED, PRE, sql], capture_output=True, text=True, check=True).stdout)
+    w, lines = res["t"], res["rows"]
     body = sql[sql.rfind(" SELECT ") + 1:] if sql.startswith("WITH ") else sql   # the main query after the region CTEs
     is_count = body.lstrip().startswith("SELECT count(*) FROM")
-    rows = lines[0] if is_count and len(lines) == 1 else str(len(lines))   # a count, or the number of result rows
-    return float(t.group(1)) if t else None, (b.group(1).replace(" ", "") if b else "local"), (int(g.group(1)) + 1 if g else None), rows, w - BASE
+    rows = lines[0][0] if is_count and len(lines) == 1 else str(len(lines))   # a count, or the number of result rows
+    return float(t.group(1)) if t else None, (b.group(1).replace(" ", "") if b else "local"), (int(g.group(1)) + 1 if g else None), rows, w
 
 def run_warm(sql, n):
     cmds = ["-c", f"{PRE}"] + sum([["-c", f"EXPLAIN ANALYZE {sql};"] for _ in range(n + 1)], [])
@@ -105,7 +105,6 @@ def run_warm(sql, n):
     return [float(x) for x in re.findall(r"Total Time:\s*([\d.]+)s", out)][1:]
 
 print(f"Index: `{a.index}`  point {a.lon},{a.lat}  group `{a.grp}`  keyword `{a.kw}`  runs {a.runs}" + (f"  region from `{a.region_url}`" if a.region_url else "") + "\n")
-print(f"Process start and extension loading, subtracted from the wall clock: {BASE:.2f} s\n")
 print("| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Cold wall median | Warm median |")
 print("|---|---|---|---|---|---|---|---|")
 for label, q in QUERIES:

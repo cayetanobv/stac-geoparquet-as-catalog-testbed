@@ -43,7 +43,7 @@ All sixteen shapes of the [query suite](04-query-suite.md) read the same 312 KB.
 
 The point filter is not selective here: 367 of 371 extents contain the city centre, because most extents cover the whole city. The 19 hits are all 19 collections under `verkehr`.
 
-The JSON walk was run with a client that opens a new connection per document. Over one kept-alive connection the sequential whole-tree walk took 41 s on 2026-10-25.
+The JSON walk was run with a client that opens a new connection per document, so its times are an upper bound; see [docs/method.md](../docs/method.md).
 
 ## Notes
 

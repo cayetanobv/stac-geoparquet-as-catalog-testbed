@@ -14,9 +14,9 @@ Times depend on where you measure from. The request counts do not, so they are t
 
 ## Two baselines
 
-The JSON walk runs twice: sequential, one request at a time, which is what a plain script does, and with 16 threads. Both use `urllib`, which opens a new connection for every document, so every request pays TCP and TLS setup. A client that keeps connections alive does better: a sequential Berlin walk over one kept-alive connection took 41 s on 2026-10-25, against 83 s without it. The walk times are wall clock for the whole walk.
+The JSON walk runs twice: sequential, one request at a time, which is what a plain script does, and with 16 threads. Both use `urllib`, which opens a new connection for every document, so every request pays TCP and TLS setup. A client that keeps connections alive would be faster, so the walk times are an upper bound for their request counts. The walk times are wall clock for the whole walk.
 
-The index query runs cold, a fresh DuckDB process per run so nothing is cached, and warm, repeated in one process after a first run. Both times are the Total Time that `EXPLAIN ANALYZE` reports. Cold includes the TLS handshake and the reads made while the query runs, and leaves out process start, extension loading, and any read DuckDB makes while planning. A box test on the `bbox` struct shows 0.00 s for that reason: DuckDB answers it from the footer while planning, and the whole process took about 0.5 s of wall clock. Warm is a cache hit: DuckDB sends one HEAD request to check the file and reads no data.
+The index query runs cold, a fresh DuckDB process per run so nothing is cached, and warm, repeated in one process after a first run. Both times are the Total Time that `EXPLAIN ANALYZE` reports. Cold includes the TLS handshake and the reads made while the query runs, and leaves out process start, extension loading, and any read DuckDB makes while planning. A box test on the `bbox` struct shows 0.00 s for that reason: DuckDB answers it from the footer while planning, so 0.00 s is not the cost of that query, which reads the same file as the others. Warm is a cache hit: DuckDB sends one HEAD request to check the file and reads no data.
 
 ## Environment
 
@@ -26,9 +26,9 @@ The index query runs cold, a fresh DuckDB process per run so nothing is cached, 
 | DuckDB | 2.0.0 CLI with the `spatial` and `httpfs` extensions, released 2026-10-21 |
 | Python | 3.14.9, with duckdb 2.0.0 and pyarrow 26.0.0 pinned in `pyproject.toml` and `uv.lock` |
 | gpio | 1.7.0 |
-| TCP connect to `storage.googleapis.com` from the test machine | about 70 ms, measured with curl on 2026-10-25 |
+| Round trip to Google Cloud Storage from the test machine | about 150 ms |
 
-Earlier versions of these pages gave about 150 ms as the round trip. That figure does not fit the warm times, where a HEAD request completes in 0.05 s, and it is replaced by the measured connect time above.
+The measured times suggest the round trip was lower. A request of the sequential walk opens a new TCP and TLS connection, so it needs at least three round trips, and the Berlin walk averaged 0.19 s per request, 78 s for 408 requests. That puts the round trip nearer 60 ms.
 
 Every number in `results/` comes from one recompute on 2026-10-23 with this toolchain, after an earlier pass with DuckDB 1.5.6, Python 3.10, and gpio 1.0 on 2026-10-22 and early on 2026-10-23. The indexes were rebuilt with the pinned toolchain and hold the same rows as before. Where the two engines disagree, the pages say so: DuckDB 2.0's prefetch cost model reads small files whole and penalises extra row groups, which 1.5.6 did not.
 

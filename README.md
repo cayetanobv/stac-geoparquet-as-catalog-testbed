@@ -39,7 +39,7 @@ The same findings, with the numbers behind them:
 
 ## Caveats
 
-- **The walk client opens a new connection for every document.** `scripts/walk_timing.py` uses `urllib`, which does not keep connections alive, so each request pays TCP and TLS setup. A sequential Berlin walk over one kept-alive connection took 41 s on 2026-10-25, against 83 s for the same walk without it. The request counts do not change.
+- **The walk client opens a new connection for every document.** `scripts/walk_timing.py` uses `urllib`, which does not keep connections alive, so each request pays TCP and TLS setup. The walk times are therefore higher than a client that reuses connections would see; the request counts do not depend on it.
 - **The spatial filter selects almost nothing in the two city catalogs.** 1,960 of the 1,964 Comunidad de Madrid collections carry the whole-world bbox `[-180, -90, 180, 90]` as a placeholder, and 367 of 371 Berlin extents contain the test point. Those fixtures test the tree filter and the request count. Only the registry tests spatial selectivity.
 - **Cold times are `EXPLAIN ANALYZE` totals.** They include the TLS handshake and the reads made while the query runs. They leave out process start and any read DuckDB makes while planning, which is why one query shows 0.00 s. Warm times are cache hits: one HEAD request, no data read.
 - **The engine decides the layout result.** The row group conclusion holds for DuckDB 2.0 and reversed under 1.5.6. Other readers were not measured.

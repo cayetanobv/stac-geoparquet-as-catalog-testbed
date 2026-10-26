@@ -6,7 +6,7 @@ The testbed answers two questions. Can one Parquet file replace the walk through
 
 ## Findings
 
-Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The headline asks each one the question a user brings to a catalog: what data about a topic, or any data, covers this place? It is asked two ways: a walk through the catalog JSON, as a client does today, and one query on the index, `collections.parquet`, the GeoParquet file at the catalog root with one row per collection. "The index" means that file throughout. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why the measurements are remote.
+Two real catalogs from the Portolan registry, Berlin Geoportal and Comunidad de Madrid, and the whole registry as one federated index of 86 catalogs. The headline asks each one the question a user brings to a catalog: what data about a topic, or any data, covers this place? It is asked two ways: a walk through the catalog JSON, as a client does today, and one query on the index, `collections.parquet`, the GeoParquet file at the catalog root with one row per collection. "The index" means that file throughout. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why the measurements are remote.
 
 | Question | Answer | JSON walk of the whole catalog | One query on the GeoParquet index | What a walk of only the groups named like the topic finds |
 |---|---|---|---|---|
@@ -56,7 +56,7 @@ KB and MB in these pages are KiB and MiB.
 |---|---|
 | `docs/` | The schema under test, how a catalog advertises the file, and the method |
 | `results/` | One page per measurement, numbered in reading order, with an index |
-| `catalogs/` | Metadata mirrors: every `catalog.json` and `collection.json` of the three fixtures, no data assets, with a manifest for the registry |
+| `catalogs/` | Metadata mirrors: every `catalog.json` and `collection.json` of Berlin, Madrid, and the whole registry, no data assets, with a manifest for the registry |
 | `indexes/` | The indexes built from the mirrors, as measured |
 | `scripts/` | The pipeline: mirror, crawl, build, check, and measure |
 | `benchmarks/` | SQL and Python behind the row group layouts on page 3 and the design comparisons on pages 5 to 7 |

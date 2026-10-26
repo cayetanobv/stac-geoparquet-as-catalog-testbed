@@ -1,6 +1,6 @@
 # Query suite
 
-Sixteen query shapes against each index over HTTPS, three cold runs each in a fresh DuckDB process and three warm runs in one process after a first run. Measured on 2026-10-23 with DuckDB 2.0.0 and Python 3.14.9 from a machine with about 150 ms round trip to Google Cloud Storage. Requests count one HEAD plus the range GETs. Bytes are what the query read from the file. See [docs/method.md](../docs/method.md).
+Sixteen query shapes against each index over HTTPS, three cold runs each in a fresh DuckDB process and three warm runs in one process after a first run. Measured on 2026-10-23 with DuckDB 2.0.0 and Python 3.14.9, from the test machine described in [docs/method.md](../docs/method.md). Requests count one HEAD plus the range GETs. Bytes are what the query read from the file.
 
 Runner: `scripts/run_suite.py`. Rerun any table with the command under its heading, or point the runner at another index.
 
@@ -10,11 +10,11 @@ uv run python scripts/run_suite.py <index URL> --lon <x> --lat <y> --grp <group 
 
 ## What the five tables show
 
-- **On a file of a few megabytes, DuckDB 2.0 reads the whole file in one request, whatever the query.** Every Berlin query reads 312 KB and every Madrid query reads 1.4 MB. The prefetch cost model coalesces the byte ranges a query needs when the gaps between them are small, and on these files that is everything. Cold time is then one handshake plus one request: 0.44 to 0.56 s on Berlin, 0.7 to 0.9 s on Madrid.
+- **On a file of a few megabytes, DuckDB 2.0 reads the whole file in one request, whatever the query.** Every Berlin query reads 312 KB and every Madrid query reads 1.4 MB. The prefetch cost model coalesces the byte ranges a query needs when the gaps between them are small, and on these files that is everything. Cold time is then one handshake plus one request: medians of 0.44 to 0.56 s on Berlin and 0.71 to 1.04 s on Madrid, leaving out S3, and T1 on Madrid, whose three runs ranged from 1.1 to 3.2 s.
 - **On the 6.5 MB registry file the bytes follow the columns named.** A count on `license` reads 21 KB, a title search 110 KB, a keyword search 490 KB, the `parents` filter 1.0 MB, and one `original` document 5.9 MB. Requests stay at three to seven.
-- **Warm queries cost 0.06 to 0.12 s whatever the question.** After the first run the file is in DuckDB's buffer and only the range requests on an open connection remain.
-- **A box test on the `bbox` struct can finish without a scan.** When every row group's statistics prove the filter true, DuckDB answers from the footer and the planner removes the scan, which is why S3 reports 0.00 s on Berlin and Madrid. That number excludes the footer fetch. The registry file needs a scan because its statistics span the globe.
-- **More row groups mean more requests and more bytes under DuckDB 2.0.** The 3-group file reads 2.8 MB in 8 requests for the point query that the 1-group file answers with 1.0 MB in 4. The 12-group file reads 5.6 MB in 34 requests. Only the full-document lookup gains, and only on the 3-group file.
+- **Warm queries cost 0.06 to 0.12 s whatever the question.** They are cache hits: after the first run DuckDB holds the file, sends one HEAD request to check it, and reads no data. They show what a repeated query costs in one session, not what a new question costs a new client.
+- **A box test on the `bbox` struct can finish without a scan.** When every row group's statistics prove the filter true, DuckDB answers from the footer and the planner removes the scan. It reads the file while planning, outside the time `EXPLAIN ANALYZE` reports, which is why S3 shows 0.00 s on Berlin and Madrid. Its real cost is the same file read as the other queries. The registry file needs a scan because its statistics span the globe.
+- **More row groups mean more requests and more bytes under DuckDB 2.0.** The 3-group file reads 2.8 MB in 8 requests for the point query that the 1-group file answers with 1.0 MB in 4. The 12-group file reads 5.6 MB in 34 requests. Only the full-document lookup gains: 3.3 MB on the 3-group file and 4.7 MB on the 12-group file, against 5.9 MB. The multi-group files are also in tree order, and the 12-group one is written by pyarrow, so these tables do not isolate the row group count.
 - **Counts agree with the JSON walk.** S1 gives 367, 1,964, and 2,254, the numbers the walk produced on the same catalogs.
 
 Under DuckDB 1.5.6, measured on 2026-10-23 before the toolchain was pinned, the same suite read 16 to 30 KB per query on Berlin in three to five requests, and the 3-group registry file cut the one-document lookup fivefold with no cost elsewhere. The engine's prefetch strategy, not the file, changed those two results.
@@ -95,6 +95,8 @@ Index: `https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/col
 
 C1 uses the keyword `Total`, which occurs inside the group.
 
+T2 groups by the direct parent id, `parents[-1]`. In a federated index that merges parents whose ids collide across catalogs; grouped by the full `parents` chain the registry has 790 groups, not 716. The same applies to the two tables below.
+
 ## Portolan registry, 5,852 rows, 5.8 MB, 3 row groups of 2,048 rows, tree order
 
 Index: `https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-rg2048.parquet`  point -3.7038,40.4168  group `demografia`  keyword `Total`  runs 3
@@ -155,10 +157,10 @@ uv run python scripts/run_suite.py <index URL> ... --only G --region-url <GeoPar
 
 What the three tables show:
 
-- **Polygon predicates cost the same as point predicates.** `ST_Intersects`, `ST_Within`, `ST_Contains`, `ST_DWithin`, an intersection-area ranking, and a spatial join against 12 or 131 real polygons all finish in 0.5 to 0.9 s cold and 0.05 to 0.25 s warm. The extra bytes are the region file.
-- **The counts say what the extents are.** In Berlin 370 of 371 extents intersect Mitte and 355 contain it whole, because most extents are city-wide. One lies inside it. In Madrid every extent contains the neighbourhood, because every collection carries the region-wide bbox. The join with narrow extents finds nothing in the Comunidad de Madrid catalog and 20 collections per neighbourhood in the Madrid city catalog, all from `madrid-datos-abiertos`.
+- **Polygon predicates cost the same as point predicates.** `ST_Intersects`, `ST_Within`, `ST_Contains`, `ST_DWithin`, an intersection-area ranking, and a spatial join against 12 or 131 real polygons all finish in 0.3 to 0.9 s cold and 0.05 to 0.25 s warm. The extra bytes are the region file.
+- **The counts say what the extents are.** In Berlin 370 of 371 extents intersect Mitte and 355 contain it whole, because most extents are city-wide. One lies inside it. In Madrid every extent contains the neighbourhood, because 1,960 of the 1,964 collections carry the whole-world bbox as a placeholder and the other 4 cover the region. The join with narrow extents finds nothing in the Comunidad de Madrid catalog and 20 collections per neighbourhood in the Madrid city catalog, all from `madrid-datos-abiertos`.
 - **G5 is the query a catalog browser wants.** It ranks collections by the share of their extent that falls inside the region, which puts local datasets first.
-- **No row group is skipped by geometry on these files.** The same `ST_Intersects` reads the same bytes for a point in Madrid, a point in the Pacific, and a box over Berlin, on the one-, three-, and twelve-row-group registry files. DuckDB pushes the predicate into the scan, but every row group holds global datasets, so its bbox statistics span the globe. That is the data, not the engine.
+- **No row group is skipped by geometry on these files.** The same `ST_Intersects` reads the same bytes for a point in Madrid, a point in the Pacific, and a box over Berlin, on the one-, three-, and twelve-row-group registry files. DuckDB pushes the predicate into the scan, but every row group holds global datasets, so its bbox statistics span the globe. The files with several row groups are in tree order, not spatial order, so this does not show whether a Hilbert-ordered file with several row groups would skip any; that layout was not built.
 
 ### Berlin Geoportal, region district Mitte
 

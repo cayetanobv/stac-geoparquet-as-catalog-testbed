@@ -26,7 +26,11 @@ The answer is 146.
 | links only, done properly, 16 threads | read the index, fetch 177 catalog documents upward in 2 rounds, walk each chain | 178 | 3.2 s |
 | links only, done properly, sequential | same | 178 | 30 s |
 
-The path shortcut is a URL naming convention, not a links query. The honest links-only client has to fetch every parent catalog, then their parents, up to the root, because the links in the file name locations and not ids, and name only one level up.
+The path shortcut is a URL naming convention, not a links query. A links-only client that reads only this file has to fetch every parent catalog, then their parents, up to the root, because the links in the file name locations and not ids, and name only one level up.
+
+## What this does not test
+
+A links file that also held one row per catalog, as [page 05](05-tree-designs.md) suggests, could resolve every parent link inside the file, with a recursive query and no extra fetches. That variant was not built. At this size it would most likely read the whole file in one request like the others, so the case for `parents` over it is not speed. It is that one column of ids answers the subtree question without catalog rows, without resolving relative URLs, and with the ids a federated index needs for its key.
 
 ## Local CPU, same queries, 1,964 rows
 

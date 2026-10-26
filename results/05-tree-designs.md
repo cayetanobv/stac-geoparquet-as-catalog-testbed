@@ -9,9 +9,11 @@ The question is the subtree of one level-1 catalog, 100,000 rows.
 | `parents` list, `list_contains` | 35 ms, 0.25 s CPU | 71 ms, 0.55 s CPU | yes |
 | Materialized `path` string, prefix `LIKE` | 14 ms, 0.03 s CPU | 106 ms, 0.87 s CPU | needs an escaping rule |
 | Flat per-level columns `p1`, `p2`, `p3` | 5 ms, 0.02 s CPU | 14 ms, 0.09 s CPU | no, fixed depth |
-| `parent` only, recursive CTE over catalog rows | 519 ms, 1.18 s CPU | 210 ms, 1.38 s CPU | yes, ids must be globally unique |
+| `parent` only, recursive CTE over catalog rows | 519 ms, 1.18 s CPU | 210 ms, 1.38 s CPU | only with a unique key for every catalog row; ids are unique only among siblings |
 
 File size: 89 MB sorted in tree order, 183 MB in random order.
+
+The recursive CTE joins on the materialized path, so it inherits the path's escaping problem; a version that joins on ids needs globally unique ids, which STAC does not guarantee. Its wall time is lower on the random-order file than on the sorted one while its CPU time is higher. That was not investigated.
 
 Rejected without measurement:
 
@@ -20,7 +22,7 @@ Rejected without measurement:
 
 ## Assessment
 
-The materialized path is the only serious rival to `parents`. It is eight times cheaper in CPU when the file is sorted in tree order, because prefix matches prune row groups, and the sort halves the file. But it needs a separator that cannot appear in an id, and STAC does not restrict ids. In the Comunidad de Madrid catalog the shard id `demografia/e-i` contains a slash. A slash-joined path has a false-positive case for a sibling whose id starts with `demografia/`. A spec would have to define an escaping rule for every writer and reader, for a gain that appears above roughly a million rows.
+The materialized path is the only serious rival to `parents`. It is eight times cheaper in CPU when the file is sorted in tree order, because prefix matches prune row groups, and the sort halves the file. But it needs a separator that cannot appear in an id, and STAC does not restrict ids. In the Comunidad de Madrid catalog the shard id `demografia/e-i` contains a slash. A slash-joined path has a false-positive case for a sibling whose id starts with `demografia/`. A spec would have to define an escaping rule for every writer and reader, for a gain measured at 5 million rows, three orders of magnitude above the largest real catalog here. Sizes between were not measured.
 
 Every real catalog in the registry fits in one row group. There the whole file is one to four HTTP round trips and the shape of the tree column is invisible. The Comunidad de Madrid remote queries show it: the `parents` filter and the plain point filter cost the same.
 

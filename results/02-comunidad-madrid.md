@@ -1,7 +1,7 @@
 # Comunidad de Madrid
 
 Catalog: https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/catalog.json
-Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 with DuckDB 2.0.0, Python 3.14.9, and gpio 1.7.0, from the test machine described in [docs/method.md](../docs/method.md).
+Largest catalog in the Portolan registry on 2026-10-22. Index built and checked on 2026-10-23 with gpio 1.7.0. Timings measured on 2026-10-26 with DuckDB 2.0.0 and Python 3.14.9, from the test machine described in [docs/method.md](../docs/method.md).
 
 ## The catalog
 
@@ -29,16 +29,18 @@ Largest catalog in the Portolan registry on 2026-10-22. Measured on 2026-10-23 w
 
 Point -3.7038, 40.4168. The answer is 146 collections, every collection in the theme, because every one carries the whole-world placeholder extent. On this catalog the question tests the tree filter and the request count, not spatial selectivity.
 
-| Method | HTTP requests | Bytes read | Time |
-|---|---|---|---|
-| JSON walk, `demografia` subtree, sequential | 159 | | 27 s |
-| JSON walk, `demografia` subtree, 16 threads | 159 | | 2.1 s |
-| JSON walk, whole tree, 16 threads | 2,141 | 11 MB | 25 s |
-| JSON walk, whole tree, sequential | 2,141 | 11 MB | 7 min 2 s |
-| Index over HTTPS, cold DuckDB process, 3 runs | 2 (1 HEAD, 1 GET) | 1.4 MB, the whole file | 0.76 s, 0.78 s, 0.74 s |
-| Index over HTTPS, warm session | | | 0.06 to 0.11 s |
+| Method | HTTP requests | Bytes read | Time, connections reused | Time, new connection per document |
+|---|---|---|---|---|
+| JSON walk, `demografia` subtree, sequential | 159 | | 9.7 s | 20 s |
+| JSON walk, `demografia` subtree, 16 threads | 159 | | 1.1 s | 1.7 s |
+| JSON walk, whole tree, 16 threads | 2,141 | 11 MB | 8.1 s | 20 s |
+| JSON walk, whole tree, sequential | 2,141 | 11 MB | 1 min 16 s | 4 min 57 s |
+| Index over HTTPS, cold DuckDB process, 3 runs | 2 (1 HEAD, 1 GET) | 1.4 MB, the whole file | 0.59 s, 0.57 s, 0.60 s; wall-clock median 0.60 s | |
+| Index over HTTPS, warm session | | | 0.06 s | |
 
-DuckDB 2.0 reads this file whole in one request. Under 1.5.6 the same query read 17 KB in 4 requests and took 0.5 to 0.6 s. The extra bytes cost about 0.2 s at this round trip and save two requests.
+The index rows are S2 of the [query suite](04-query-suite.md), in the same session as the walks.
+
+DuckDB 2.0 reads this file whole in one request. Under 1.5.6, in the earlier pass, the same query read 17 KB in 4 requests.
 
 ## The mid-tree case
 

@@ -86,13 +86,13 @@ def sql_for(q):
 
 PRE = "LOAD spatial; LOAD httpfs;"
 # a fresh Python process per run: load the extensions, then time the query and fetch its rows
-TIMED = ("import duckdb, json, sys, time; con = duckdb.connect(); con.execute(sys.argv[1]); "
+TIMED = ("import duckdb, json, sys, time; con = duckdb.connect(); con.execute(sys.argv[1]); con.execute('SET enable_progress_bar = false'); "
          "t = time.perf_counter(); rows = con.execute(sys.argv[2]).fetchall(); t = time.perf_counter() - t; "
          "print(json.dumps({'t': t, 'rows': [[str(v) for v in r] for r in rows]}))")
 def run_cold(sql):
     out = subprocess.run(["duckdb", "-no-agent", "-c", f"{PRE} EXPLAIN ANALYZE {sql};"], capture_output=True, text=True).stdout + "\n"
     t = re.search(r"Total Time:\s*([\d.]+)s", out); b = re.search(r"in:\s*([\d.]+\s*\w+)", out); g = re.search(r"#GET:\s*(\d+)", out)
-    res = json.loads(subprocess.run([sys.executable, "-I", "-c", TIMED, PRE, sql], capture_output=True, text=True, check=True).stdout)
+    res = json.loads(subprocess.run([sys.executable, "-I", "-c", TIMED, PRE, sql], capture_output=True, text=True, check=True).stdout.splitlines()[-1])
     w, lines = res["t"], res["rows"]
     body = sql[sql.rfind(" SELECT ") + 1:] if sql.startswith("WITH ") else sql   # the main query after the region CTEs
     is_count = body.lstrip().startswith("SELECT count(*) FROM")

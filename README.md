@@ -6,9 +6,9 @@ The testbed answers two questions. Can one Parquet file replace the walk through
 
 ## Findings
 
-Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The headline measurement on each is one question, collections under one group of the tree whose extent contains a point, asked two ways: a walk through the catalog JSON and one query on the index. For the registry the question is the point alone, across every catalog. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why that question and why the measurements are remote.
+Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The headline measurement on each is one question, collections under one group of the tree whose extent contains a point, asked two ways: a walk through the catalog JSON, and one query on the index, `collections.parquet`, the GeoParquet file at the catalog root with one row per collection. "The index" means that file throughout. For the registry the question is the point alone, across every catalog. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why that question and why the measurements are remote.
 
-| Fixture | Collections | Depth | JSON walk, whole tree | JSON walk, group known in advance | JSON walk, group found from the root's links | One query on the index over HTTPS |
+| Fixture | Collections | Depth | JSON walk, whole tree | JSON walk, group known in advance | JSON walk, group found from the root's links | One query on `collections.parquet`, the GeoParquet index, over HTTPS |
 |---|---|---|---|---|---|---|
 | Berlin Geoportal | 371 | 2 | 7.7 s, 408 requests | 0.87 s, 21 requests | 0.80 s, 32 requests | 0.43 to 0.62 s, 2 requests |
 | Comunidad de Madrid | 1,964 | 3 | 31 s, 2,141 requests | 2.2 s, 159 requests | 1.7 s, 159 requests | 0.58 to 1.08 s, 2 requests |

@@ -37,7 +37,7 @@ STAC does not restrict `rel` to a list. Its link specification recommends IANA r
 
 | Option | Status | Meaning | Assessment |
 |---|---|---|---|
-| `alternate` | IANA registered | a substitute representation of the same resource | Registered but wrong. The index is not another form of `catalog.json`; it is the list of the catalog's collections. Catalogs also use `alternate` for their HTML view, so a client has to tell the two apart by `type`. This is what the Portolan draft uses today. |
+| `alternate` | IANA registered | a substitute representation of the same resource | Registered but wrong. The index is not another form of `catalog.json`; it is the list of the catalog's collections. Catalogs also use `alternate` for their HTML view, so a client has to tell the two apart by `type`. This is what the Portolan draft uses provisionally, while it lists the relation type as open. |
 | `data` | OGC API Features relation, inherited by STAC API, not in IANA | the link from a landing page to the list of all collections, the `/collections` endpoint | Exact meaning, no new vocabulary. Every STAC API landing page already carries it. A client that follows `data` on an API reads the static index the same way. The client still filters on `type`, which STAC best practice already asks for hierarchical links. |
 | a dedicated relation, for example `collection-index`, defined by stac-geoparquet | would be new | this file and nothing else | The most explicit option and the one no client knows. Worth it only if the community rejects `data`. |
 

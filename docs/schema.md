@@ -17,7 +17,7 @@ One file, `collections.parquet`, at the catalog root. One row per collection in 
 | `title` | string | SHOULD | The collection `title` |
 | `keywords` | list of string | SHOULD | The collection `keywords` |
 
-`scripts/build_index.sql` writes this schema. A bbox with west greater than east crosses the antimeridian, and the builder splits it into a multipolygon of two boxes. The Portolan registry holds 30 such collections, and without the split they match every point on Earth. The file it produces is GeoParquet 1.1 with the `bbox` covering declared, ZSTD compression, rows in Hilbert order on the geometry, and the DuckDB writer's statistics and bloom filters.
+`scripts/build_index.sql` writes this schema. A bbox with west greater than east crosses the antimeridian, and the builder splits it into a multipolygon of two boxes. The Portolan registry holds 30 such collections, and without the split they match every longitude within their latitude band. The file it produces is GeoParquet 1.1 with the `bbox` covering declared, ZSTD compression, rows in Hilbert order on the geometry, and the DuckDB writer's statistics and bloom filters.
 
 ## How a catalog points at the file
 
@@ -31,4 +31,4 @@ The unique key of a row is `parents` plus `id`.
 
 ## Size
 
-In the Comunidad de Madrid index `original` is 60 percent of the bytes and `keywords` 28 percent. See [results/02-comunidad-madrid.md](../results/02-comunidad-madrid.md). A query engine with column projection reads neither unless the query names it.
+In the Comunidad de Madrid index `original` is 60 percent of the bytes and `keywords` 28 percent. See [results/02-comunidad-madrid.md](../results/02-comunidad-madrid.md). A query engine with column projection can skip both unless the query names them. On files of a few megabytes DuckDB 2.0 reads the whole file anyway, in one request, so the saving shows only on larger files: on the 6.5 MB registry file a query that does not name `original` reads about 1 MB. See [results/04-query-suite.md](../results/04-query-suite.md).

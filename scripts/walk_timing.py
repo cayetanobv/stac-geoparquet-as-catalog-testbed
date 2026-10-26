@@ -1,7 +1,9 @@
 """Time what a client does today: walk catalog JSONs over HTTPS, any depth, to find collections
-under one group whose bbox contains a point.  usage: walk_timing.py ROOT_URL LON LAT GROUP [fresh]
+under one group whose bbox contains a point.  usage: walk_timing.py ROOT_URL LON LAT GROUP [fresh] [concurrency=1,16]
 Each thread keeps one connection alive per host. Pass `fresh` to open a new connection for every
-document instead, as urllib does and as the measurements before 2026-10-25 did.
+document instead, as urllib does and as the measurements before 2026-10-25 did. `concurrency` lists how many
+requests a walk keeps in flight, one thread each; 1 is a sequential walk. Threads wait on the network, so the
+number is not tied to CPU cores.
 
 GROUP as `find:TERM,TERM` makes the client find the group itself, three runs each: fetch the root,
 keep every child whose link title contains a term, and walk those subtrees, or every subtree when none
@@ -9,7 +11,8 @@ matches. `describe:TERM,TERM` also fetches each child catalog and matches its ti
 Terms match without case or accents."""
 import http.client, json, sys, threading, time, unicodedata, urllib.request, urllib.parse, concurrent.futures as cf
 ROOT, QX, QY, GROUP = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), sys.argv[4]
-FRESH = len(sys.argv) > 5 and sys.argv[5] == "fresh"
+FRESH = "fresh" in sys.argv[5:]
+CONC = next([int(c) for c in a.split("=")[1].split(",")] for a in sys.argv[5:] + ["concurrency=1,16"] if a.startswith("concurrency="))
 UA = "Mozilla/5.0 (compatible; stac-geoparquet-as-catalog-testbed/0.1)"
 local = threading.local()
 def get_keepalive(url):
@@ -90,14 +93,15 @@ def find(workers, terms, describe):
 mode = "fresh connections" if FRESH else "keep-alive"
 if GROUP.split(":")[0] in ("find", "describe"):
     how, terms = GROUP.split(":", 1); terms = [norm(t) for t in terms.split(",")]
-    for label, w in [(f"{how} group ({','.join(terms)}), sequential", 1), (f"{how} group ({','.join(terms)}), 16 threads", 16)]:
+    for w in CONC:
+        label = f"{how} group ({','.join(terms)}), " + ("sequential" if w == 1 else f"{w} concurrent")
         for _ in range(3):
             tf, t, nf, n, h, f, g = find(w, terms, how == "describe")
             print(f"{label:45s} {mode} find_requests={nf:3d} find_time={tf:6.2f} s requests={n:5d} hits={h:5d} failed={len(f)} "
                   f"time={t:7.2f} s groups={','.join(g)}", flush=True)
             for x in f: print(f"  failed {x}", file=sys.stderr)
 else:
-    for label, w, g in [(f"one group ({GROUP}), sequential", 1, GROUP), (f"one group ({GROUP}), 16 threads", 16, GROUP),
-                        ("whole tree, 16 threads", 16, None), ("whole tree, sequential", 1, None)]:
+    for label, w, g in [(f"one group ({GROUP}), ", w, GROUP) for w in CONC] + [("whole tree, ", w, None) for w in sorted(CONC, reverse=True)]:
+        label += "sequential" if w == 1 else f"{w} concurrent"
         t, n, h, f = run(w, g); print(f"{label:36s} {mode} requests={n:5d} hits={h:5d} failed={len(f)} time={t:7.2f} s", flush=True)
         for x in f: print(f"  failed {x}", file=sys.stderr)

@@ -8,7 +8,9 @@ number is not tied to CPU cores.
 GROUP as `find:TERM,TERM` makes the client find the group itself, three runs each: fetch the root,
 keep every child whose link title contains a term, and walk those subtrees, or every subtree when none
 matches. `describe:TERM,TERM` also fetches each child catalog and matches its title and description.
-Terms match without case or accents."""
+Terms match without case or accents. GROUP `whole` walks only the whole tree.
+`topic=TERM,TERM` counts as hits only the collections whose title or a keyword contains a term, the question of
+A6 in scripts/run_suite.py."""
 import http.client, json, sys, threading, time, unicodedata, urllib.request, urllib.parse, concurrent.futures as cf
 ROOT, QX, QY, GROUP = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), sys.argv[4]
 FRESH = "fresh" in sys.argv[5:]
@@ -52,6 +54,10 @@ def contains(b, x, y):
     return in_x and b[1] <= y <= b[3]
 def norm(s):
     return "".join(c for c in unicodedata.normalize("NFKD", s or "") if not unicodedata.combining(c)).lower()
+TOPIC = next([norm(t) for t in a.split("=")[1].split(",") if t] for a in sys.argv[5:] + ["topic="] if a.startswith("topic="))
+def on_topic(d):
+    text = [norm(d.get("title"))] + [norm(k) for k in d.get("keywords") or []]
+    return not TOPIC or any(t in x for t in TOPIC for x in text)
 def walk(ex, frontier, keep=lambda url, link: True, fetched=()):
     """Breadth-first from `frontier`, plus documents already `fetched` as (url, doc), which cost no request here."""
     reqs = 0; hits = 0; failed = []; docs = list(fetched)
@@ -61,7 +67,7 @@ def walk(ex, frontier, keep=lambda url, link: True, fetched=()):
             if isinstance(d, Exception):              # counted as a request, its subtree is not walked
                 failed.append(f"{url}: {type(d).__name__}: {str(d)[:80]}"); continue
             if d.get("type") == "Collection":
-                hits += contains(d["extent"]["spatial"]["bbox"][0], QX, QY)
+                hits += contains(d["extent"]["spatial"]["bbox"][0], QX, QY) and on_topic(d)
                 continue
             frontier += [urllib.parse.urljoin(url, l["href"]) for l in d["links"] if l["rel"] == "child" and keep(url, l)]
         docs = []
@@ -101,7 +107,7 @@ if GROUP.split(":")[0] in ("find", "describe"):
                   f"time={t:7.2f} s groups={','.join(g)}", flush=True)
             for x in f: print(f"  failed {x}", file=sys.stderr)
 else:
-    for label, w, g in [(f"one group ({GROUP}), ", w, GROUP) for w in CONC] + [("whole tree, ", w, None) for w in sorted(CONC, reverse=True)]:
+    for label, w, g in [(f"one group ({GROUP}), ", w, GROUP) for w in CONC if GROUP != "whole"] + [("whole tree, ", w, None) for w in sorted(CONC, reverse=True)]:
         label += "sequential" if w == 1 else f"{w} concurrent"
         t, n, h, f = run(w, g); print(f"{label:36s} {mode} requests={n:5d} hits={h:5d} failed={len(f)} time={t:7.2f} s", flush=True)
         for x in f: print(f"  failed {x}", file=sys.stderr)

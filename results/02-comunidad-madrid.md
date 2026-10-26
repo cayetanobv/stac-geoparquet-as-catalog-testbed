@@ -51,7 +51,18 @@ DuckDB 2.0 reads this file whole in one request. Under 1.5.6, in the earlier pas
 
 ## Finding the group first
 
-Matching the titles of the root's child links and matching the description of every child catalog both choose `demografia` alone. By the same terms on title and keywords, 461 collections are about population, all with extents that contain the point. `demografia` holds 129 of them, 28%. `salud` holds 206, `empleo` 54, `economia` 48, and six more themes the rest. A walk that finds its group by name is as fast as one that knows it, and answers about a quarter of the topic. The index answers the whole topic in one query, A6 in `scripts/run_suite.py`, which filters `title` and `keywords` over every collection as `scripts/topic_coverage.sql` does. In a short session at 18:10 UTC it returned the 461 collections in the same 2 requests and 1.4 MB as S2, in 0.74 to 1.05 s cold, against 0.72 to 1.16 s for S2 in the same runs; warm median 0.22 s, against 0.06 s for S2, since matching every keyword of every row costs CPU.
+Matching the titles of the root's child links and matching the description of every child catalog both choose `demografia` alone. By the same terms on title and keywords, 461 collections are about population, all with extents that contain the point. `demografia` holds 129 of them, 28%. `salud` holds 206, `empleo` 54, `economia` 48, and six more themes the rest. A walk that finds its group by name is as fast as one that knows it, and answers about a quarter of the topic. The index answers the whole topic in one query, A6 in `scripts/run_suite.py`, which filters `title` and `keywords` over every collection as `scripts/topic_coverage.sql` does. In a session on 2026-10-26, 18:41 to 19:02 UTC, it was timed against a walk of the whole tree that counts the same topic, `walk_timing.py` with `whole topic=demograf,poblacion`. Both return 461.
+
+| Method | HTTP requests | Time, connections reused |
+|---|---|---|
+| JSON walk, whole tree, sequential | 2,141 | 1 min 10 s |
+| JSON walk, whole tree, 6 concurrent | 2,141 | 20 s |
+| JSON walk, whole tree, 16 concurrent | 2,141 | 9.1 s |
+| Index, A6, cold, 3 runs at the start of the session | 2 (1 HEAD, 1 GET), 1.4 MB | 0.72, 0.78, 0.68 s; wall-clock median 0.69 s |
+| Index, A6, cold, 3 runs at the end of the session | 2 (1 HEAD, 1 GET), 1.4 MB | 0.74, 0.76, 0.74 s; wall-clock median 0.77 s |
+| Index, A6, warm median | | 0.21 to 0.25 s |
+
+The warm time is higher than for the group query, 0.06 s, because matching every keyword of every row costs CPU once the file is cached.
 
 ## The mid-tree case
 

@@ -55,6 +55,8 @@ The GeoParquet index, `collections.parquet`, over HTTPS, the same question:
 
 Walks and index queries come from one session on 2026-10-26, 13:30 to 15:40 UTC, the same as pages [01](01-berlin-geoportal.md) and [02](02-comunidad-madrid.md). The index rows are S1 of the [query suite](04-query-suite.md), run at the start and the end of the session. The question is the point alone, so no group applies; the Comunidad de Madrid row shows what one catalog of the federation costs to walk. On 2026-10-26 one catalog, root id `bot-portolan-catalog`, answered its `catalog.json` URL at `data.back-on-track.eu/bot-open-data/` with a redirect to an HTML page. The walk counts that request, records the failure, and finds 2,251 collections instead of 2,254, one request fewer than on 2026-10-23. The 3 missing collections are that catalog's, all of which contain the Madrid point; the index holds them from the mirror of 2026-10-22.
 
+The README headline repeats this question in a shorter session on 2026-10-26, 18:41 to 19:02 UTC, with the whole walk only and reused connections: 15 min 4 s sequential, 2 min 14 s at 6 concurrent, 56 s at 16 concurrent, the same 6,725 requests and 2,251 hits. The index, S1, took 0.59, 0.70, 0.70 s cold at the start and 0.62, 0.60, 0.61 s at the end, with wall-clock medians 0.61 and 0.60 s.
+
 ## Other federated queries over HTTPS, one row group, cold process
 
 From the [query suite](04-query-suite.md), measured in an earlier session the same day, 08:20 to 09:47 UTC. Its times are not compared with the walks above.

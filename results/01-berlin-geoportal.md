@@ -58,7 +58,16 @@ The point filter is not selective here: 367 of 371 extents contain the city cent
 
 A client asked for transport data has to find the group before it can walk only that group. The two find rows above do that from the root: from the titles of its child links, which costs no request beyond the root, or from the title and description of every child catalog, which costs one request per group. With reused connections both take under 1.5 s at 6 or 16 concurrent requests, close to the walk of a known group. The question is what they miss.
 
-By the same terms on title and keywords, 65 collections are about transport, all with extents that contain the point. Matching link titles chooses `verkehr` and `mobilitaet`, which hold 15 of them, 23%. Matching descriptions adds `oepnv` and `strassenbefahrung-punkte` and reaches 34, 52%. The road survey groups `strassenbefahrung-flaechen` and `strassenbefahrung-linien` hold 30 more and match neither way. A STAC Catalog has no extent, so the walk cannot prune by place either. The index answers the whole topic in one query, A6 in `scripts/run_suite.py`, which filters `title` and `keywords` over every collection as `scripts/topic_coverage.sql` does. In a short session at 18:10 UTC it returned the 65 collections in the same 2 requests and 312 KB as S2, in 0.41 to 0.52 s cold, against 0.57 to 0.64 s for S2 in the same runs; warm median 0.06 s.
+By the same terms on title and keywords, 65 collections are about transport, all with extents that contain the point. Matching link titles chooses `verkehr` and `mobilitaet`, which hold 15 of them, 23%. Matching descriptions adds `oepnv` and `strassenbefahrung-punkte` and reaches 34, 52%. The road survey groups `strassenbefahrung-flaechen` and `strassenbefahrung-linien` hold 30 more and match neither way. A STAC Catalog has no extent, so the walk cannot prune by place either. The index answers the whole topic in one query, A6 in `scripts/run_suite.py`, which filters `title` and `keywords` over every collection as `scripts/topic_coverage.sql` does. In a session on 2026-10-26, 18:41 to 19:02 UTC, it was timed against a walk of the whole tree that counts the same topic, `walk_timing.py` with `whole topic=verkehr,mobilit`. Both return 65.
+
+| Method | HTTP requests | Time, connections reused |
+|---|---|---|
+| JSON walk, whole tree, sequential | 408 | 27 s |
+| JSON walk, whole tree, 6 concurrent | 408 | 6.6 s |
+| JSON walk, whole tree, 16 concurrent | 408 | 2.9 s |
+| Index, A6, cold, 3 runs at the start of the session | 2 (1 HEAD, 1 GET), 312 KB | 0.48, 0.40, 0.41 s; wall-clock median 0.41 s |
+| Index, A6, cold, 3 runs at the end of the session | 2 (1 HEAD, 1 GET), 312 KB | 0.42, 0.81, 0.43 s; wall-clock median 0.43 s |
+| Index, A6, warm median | | 0.06 s |
 
 
 ## Notes

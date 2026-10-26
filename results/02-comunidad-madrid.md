@@ -29,18 +29,40 @@ Largest catalog in the Portolan registry on 2026-10-22. Index built and checked 
 
 Point -3.7038, 40.4168. The answer is 146 collections, every collection in the theme, because every one carries the whole-world placeholder extent. On this catalog the question tests the tree filter and the request count, not spatial selectivity.
 
-| Method | HTTP requests | Bytes read | Time, connections reused | Time, new connection per document |
-|---|---|---|---|---|
-| JSON walk, `demografia` subtree, sequential | 159 | | 9.7 s | 20 s |
-| JSON walk, `demografia` subtree, 16 threads | 159 | | 1.1 s | 1.7 s |
-| JSON walk, whole tree, 16 threads | 2,141 | 11 MB | 8.1 s | 20 s |
-| JSON walk, whole tree, sequential | 2,141 | 11 MB | 1 min 16 s | 4 min 57 s |
-| Index over HTTPS, cold DuckDB process, 3 runs | 2 (1 HEAD, 1 GET) | 1.4 MB, the whole file | 0.59 s, 0.57 s, 0.60 s; wall-clock median 0.60 s | |
-| Index over HTTPS, warm session | | | 0.06 s | |
+The walks, at 1, 6 and 16 concurrent requests. Each cell gives the time with connections reused, then with a new connection for every document.
 
-The index rows are S2 of the [query suite](04-query-suite.md), in the same session as the walks.
+| Walk | HTTP requests | Hits | Sequential | 6 concurrent | 16 concurrent |
+|---|---|---|---|---|---|
+| Whole tree | 2,141, 11 MB | 1,964 | 3 min 9 s / 11 min 10 s | 31 s / 1 min 36 s | 14 s / 41 s |
+| `demografia` subtree, known in advance | 159 | 146 | 11 s / 38 s | 2.2 s / 6.4 s | 1.4 s / 2.8 s |
+| Group found from the titles of the root's child links, terms `demograf`, `poblacion` | 159, 1 of them to find | 146 | 5.4 s / 40 s | 1.7 s / 5.6 s | 1.1 s / 2.8 s |
+| Group found from the title and description of every child catalog, same terms | 180, 23 of them to find | 146 | 11 s / 48 s | 2.6 s / 8.5 s | 1.3 s / 3.8 s |
+
+The GeoParquet index, `collections.parquet`, over HTTPS, the same question:
+
+| When in the session | HTTP requests | Bytes read | Cold, 3 runs | Cold wall-clock median | Warm median |
+|---|---|---|---|---|---|
+| Start, before the walks | 2 (1 HEAD, 1 GET) | 1.4 MB, the whole file | 1.13, 1.07, 1.08 s | 1.08 s | 0.07 s |
+| End, after the walks | 2 (1 HEAD, 1 GET) | 1.4 MB, the whole file | 0.56, 0.65, 0.58 s | 0.57 s | 0.06 s |
+
+Walks and index queries come from one session on 2026-10-26, 13:30 to 15:40 UTC, the same as [page 01](01-berlin-geoportal.md). The index rows are S2 of the [query suite](04-query-suite.md), run at the start and the end of the session; the same query took about half the time at the end. The walk rows are one run each, except the two that find their group, which are medians of 3. The noise shows in two walks that make the same 159 requests: run sequentially with reused connections, the one that knew the group took 11 s, early in the session, and the one that found it took 5.4 s.
 
 DuckDB 2.0 reads this file whole in one request. Under 1.5.6, in the earlier pass, the same query read 17 KB in 4 requests.
+
+## Finding the group first
+
+Matching the titles of the root's child links and matching the description of every child catalog both choose `demografia` alone. By the same terms on title and keywords, 461 collections are about population, all with extents that contain the point. `demografia` holds 129 of them, 28%. `salud` holds 206, `empleo` 54, `economia` 48, and six more themes the rest. A walk that finds its group by name is as fast as one that knows it, and answers about a quarter of the topic. The index answers the whole topic in one query, A6 in `scripts/run_suite.py`, which filters `title` and `keywords` over every collection as `scripts/topic_coverage.sql` does. In a session on 2026-10-26, 18:41 to 19:02 UTC, it was timed against a walk of the whole tree that counts the same topic, `walk_timing.py` with `whole topic=demograf,poblacion`. Both return 461.
+
+| Method | HTTP requests | Time, connections reused |
+|---|---|---|
+| JSON walk, whole tree, sequential | 2,141 | 1 min 10 s |
+| JSON walk, whole tree, 6 concurrent | 2,141 | 20 s |
+| JSON walk, whole tree, 16 concurrent | 2,141 | 9.1 s |
+| Index, A6, cold, 3 runs at the start of the session | 2 (1 HEAD, 1 GET), 1.4 MB | 0.72, 0.78, 0.68 s; wall-clock median 0.69 s |
+| Index, A6, cold, 3 runs at the end of the session | 2 (1 HEAD, 1 GET), 1.4 MB | 0.74, 0.76, 0.74 s; wall-clock median 0.77 s |
+| Index, A6, warm median | | 0.21 to 0.25 s |
+
+The warm time is higher than for the group query, 0.06 s, because matching every keyword of every row costs CPU once the file is cached.
 
 ## The mid-tree case
 

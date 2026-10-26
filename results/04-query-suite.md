@@ -1,6 +1,6 @@
 # Query suite
 
-Sixteen query shapes against each index over HTTPS, three cold runs each in a fresh DuckDB process and three warm runs in one process after a first run. Measured on 2026-10-26 with DuckDB 2.0.0 and Python 3.14.9, from the test machine described in [docs/method.md](../docs/method.md). Requests count one HEAD plus the range GETs. Bytes are what the query read from the file.
+Sixteen query shapes against each GeoParquet index, `collections.parquet` and its variants, over HTTPS, three cold runs each in a fresh DuckDB process and three warm runs in one process after a first run. Measured on 2026-10-26 with DuckDB 2.0.0 and Python 3.14.9, from the test machine described in [docs/method.md](../docs/method.md). Requests count one HEAD plus the range GETs. Bytes are what the query read from the file. A seventeenth query, A6, the topic query, runs only with `--terms`; it was timed separately and is on pages [01](01-berlin-geoportal.md) and [02](02-comunidad-madrid.md).
 
 Cold time is given twice. "Cold, each run" and "Cold median" are the `EXPLAIN ANALYZE` total, which leaves out reads made while planning. "Cold wall median" is the wall clock of the plain query in a separate fresh process, timed after the extensions load, so it includes planning and leaves out process start.
 

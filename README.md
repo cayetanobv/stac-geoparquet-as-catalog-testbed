@@ -6,21 +6,22 @@ The testbed answers two questions. Can one Parquet file replace the walk through
 
 ## Findings
 
-Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The headline measurement on each is one question, collections under one group of the tree whose extent contains a point, asked two ways: a walk through the catalog JSON and one query on the index. For the registry the question is the point alone, across every catalog. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why that question and why the measurements are remote.
+Three real fixtures from the Portolan registry, from one city catalog to the whole federation. The headline asks each one the question a user brings to a catalog: what data about a topic, or any data, covers this place? It is asked two ways: a walk through the catalog JSON, as a client does today, and one query on the index, `collections.parquet`, the GeoParquet file at the catalog root with one row per collection. "The index" means that file throughout. Beyond the headline, the [query suite](results/04-query-suite.md) runs sixteen more shapes, spatial, tree, attribute, document, and combined, plus seven against real polygons from the catalogs, and two synthetic benchmarks compare designs at 5 million rows. [docs/method.md](docs/method.md) says why the measurements are remote.
 
-| Fixture | Collections | Depth | JSON walk, whole tree: sequential, 16 threads | JSON walk, the group only: sequential, 16 threads | One query on the index over HTTPS |
-|---|---|---|---|---|---|
-| Berlin Geoportal | 371 | 2 | 27 s, 2.5 s, 408 requests (66 s, 13 s) | 1.8 s, 0.54 s, 21 requests (3.4 s, 0.71 s) | 0.25 to 0.41 s, 2 requests |
-| Comunidad de Madrid | 1,964 | 3 | 1 min 16 s, 8.1 s, 2,141 requests (4 min 57 s, 20 s) | 9.7 s, 1.1 s, 159 requests (20 s, 1.7 s) | 0.57 to 0.60 s, 2 requests |
-| Portolan registry, 86 catalogs | 5,852 | 4 | 14 min 48 s, 57 s, 6,725 requests (31 min 45 s, 3 min 32 s) | does not apply | 0.60 to 0.70 s, 4 requests |
+| Question | Answer | JSON walk of the whole catalog | One query on the GeoParquet index | What a walk of only the groups named like the topic finds |
+|---|---|---|---|---|
+| Berlin Geoportal, 371 collections: transport datasets whose extent covers the city centre | 65 collections | 408 requests, 6.6 s | 2 requests, 0.41 to 0.43 s | 15 of the 65 |
+| Comunidad de Madrid, 1,964 collections: population datasets whose extent covers the city centre | 461 collections | 2,141 requests, 20 s | 2 requests, 0.72 to 0.74 s | 129 of the 461 |
+| Portolan registry, 86 catalogs and 5,852 collections: every dataset whose extent covers central Madrid | 2,254 collections in 33 catalogs | 6,725 requests, 2 min 14 s | 4 requests, 0.61 to 0.70 s | no group applies: the answer spans 33 catalogs, and a Catalog has no extent to prune by |
 
-For the registry the question is the point alone, across every catalog, so only the whole walk answers it. For the two city catalogs the group-only walk is the cheapest a client can do when it already knows which child link leads to the group; the whole walk is what it pays when it does not, or when the question spans groups. The walk reuses one connection per host and thread; the times in parentheses open a new connection for every document. The index time is three cold runs in a fresh process. All measured in one session on 2026-10-26 with DuckDB 2.0.0 and Python 3.14.9. DuckDB 2.0 reads a file of a few megabytes whole in one request, so the index query's time is one handshake and one or three round trips, not rows. Read the [caveats](#caveats) before quoting these numbers.
+A dataset is about transport when its title or a keyword contains `verkehr` or `mobilit`, and about population when it contains `demograf` or `poblacion`, without case or accents. The walk and the index return the same counts, except that the registry walk finds 2,251 because one catalog now answers with an HTML page; see [page 03](results/03-portolan-registry.md). The walk keeps 6 requests in flight, a typical HTTP/1.1 client, and reuses one connection per host and thread. One request at a time it takes 27 s, 1 min 10 s, and 15 min 4 s; with 16 in flight, 2.9 s, 9.1 s, and 56 s. The index time is the median of three cold runs in a fresh process, at the start and at the end of the session. All measured in one session on 2026-10-26, 18:41 to 19:02 UTC, with DuckDB 2.0.0 and Python 3.14.9. DuckDB 2.0 reads a file of a few megabytes whole in one request, so the index query's time is one handshake and one or three round trips, not rows. The last column counts, in the committed index, the answer that sits under the groups whose link titles match the same terms: `verkehr` and `mobilitaet` in Berlin, `demografia` in Madrid. Walking only those is the shortcut a client has without the index; [pages 01 to 03](results/01-berlin-geoportal.md) time it, with the group known or found, at 1, 6 and 16 concurrent requests. Read the [caveats](#caveats) before quoting these numbers.
 
 What the pages under [results/](results/README.md) establish, in one table:
 
 | Question | Finding | Evidence |
 |---|---|---|
-| Does one file replace the JSON walk? | Yes. Two to four requests at these sizes, against one request per document: 27 s, 76 s, and 15 min of sequential walking with reused connections become under a second. A 16-thread walk of one known small group is about as fast as the index; there the gain is requests, 21 against 2. | [01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md) |
+| Does one file replace the JSON walk? | Yes. Two to four requests at these sizes, against one request per document: 27 s, 1 min 10 s, and 15 min of sequential walking with reused connections become under a second. A walk of one small group with 6 requests in flight is about as fast as the index; there the gain is requests, 21 against 2, and coverage. | [01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md) |
+| Can a walk prune to the right group by itself? | Only by name, and names miss most of a topic. Matching the root's child links costs no extra request and takes about as long as walking a known group, but the groups it finds hold 23% of the transport collections in Berlin and 28% of the population collections in Madrid. Reading every group's description raises Berlin to 52%. A Catalog has no extent, so a walk cannot prune by place. | [01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md) |
 | Does the tree column need the full ancestor chain? | Yes, for a file that holds only collections. In Madrid the theme has 146 collections through `parents` and 0 through the direct parent. A links-only file needs 178 requests for the same answer. With catalog rows in the same file it needs none beyond the file and costs about the same as `parents`, so the case for `parents` there is simplicity and ids, not speed. | [02](results/02-comunidad-madrid.md), [06](results/06-links-only-variant.md), [08](results/08-follow-up-checks.md) |
 | Is there a better tree column for generic STAC? | Not at real sizes, where the column shape does not change the cost. At 5 million rows a path string is faster but needs an escaping rule; level columns fix the depth; a recursive query is slowest. | [05](results/05-tree-designs.md), [07](results/07-list-shapes.md) |
 | Does the schema hold across a federation? | Yes, with `parents` plus `id` as the key. 26 ids repeat, 25 of them across catalogs and one under two parents in the same catalog; the pair is unique for all 5,852 rows. | [03](results/03-portolan-registry.md) |
@@ -30,7 +31,8 @@ What the pages under [results/](results/README.md) establish, in one table:
 
 The same findings, with the numbers behind them:
 
-- **The index turns a cost that grows with the tree into a near constant.** Two to four requests at these sizes, against one request per document. Time follows only where the walk is large: a 16-thread walk of Berlin's `verkehr` group, 21 documents over reused connections, took 0.54 s against 0.25 to 0.41 s for the index, while the whole registry took 57 s against 0.7 s. The bytes read still grow with the file: 312 KB on Berlin, 1.4 MB on Madrid, 1.0 MB of 6.5 MB on the registry. ([01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md))
+- **The index turns a cost that grows with the tree into a near constant.** Two to four requests at these sizes, against one request per document. Time follows only where the walk is large: with 6 requests in flight over reused connections, the whole registry took 2 min 14 s against 0.61 to 0.70 s for the index, while in an earlier session a walk of Berlin's `verkehr` group alone, 21 documents, took 0.87 s against 0.43 to 0.62 s for the index's group query. The bytes read still grow with the file: 312 KB on Berlin, 1.4 MB on Madrid, 1.0 MB of 6.5 MB on the registry. ([01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md), [03](results/03-portolan-registry.md))
+- **Finding the group by name misses most of the topic.** A client that matches the titles of the root's child links walks `verkehr` and `mobilitaet` in Berlin, 15 of 65 transport collections, and `demografia` in Madrid, 129 of 461 population collections; `salud` alone holds 206. Matching every group's description reaches 34 in Berlin, at 37 extra requests. The index answers the whole topic, filtering title and keywords across every collection, in 2 requests and under a second, against 408 and 2,141 requests for the walks of the whole catalogs. ([01](results/01-berlin-geoportal.md), [02](results/02-comunidad-madrid.md))
 - **`parents` answers the mid-tree case that the STAC links cannot.** In Madrid the `demografia` theme has 146 collections through `parents` and 0 through the direct parent, because every collection sits under a shard sub-catalog. A links-only file needs 178 requests for that question. ([02](results/02-comunidad-madrid.md), [06](results/06-links-only-variant.md))
 - **The case for `parents` is simplicity, not speed.** At real sizes every tree column costs the same over HTTPS. `parents` answers the subtree question in one column, with ids rather than URLs to resolve, and without catalog rows in the file. At 5 million rows a materialized path is faster but needs an escaping rule, since STAC ids may contain any character. Level columns fix the depth. A recursive query is slowest. ([05](results/05-tree-designs.md), [07](results/07-list-shapes.md))
 - **Federation works with `parents` plus `id` as the key.** 25 ids repeat across the 86 catalogs, and one more repeats under two parents inside one catalog. The pair is unique for all 5,852 rows. ([03](results/03-portolan-registry.md))
@@ -39,10 +41,10 @@ The same findings, with the numbers behind them:
 
 ## Caveats
 
-- **The walk is measured both ways.** With reused connections and 16 threads, a walk of one small group the client already knows is close to the index in time; the index wins on requests there, and on time once the walk is large or sequential. Measurements before 2026-10-25 opened a new connection per document, which made every walk slower.
+- **The walk is measured several ways.** At 1, 6 and 16 concurrent requests, with reused connections and with a new connection per document. With reused connections and 6 or more requests in flight, a walk of one small group, known or found by name, is close to the index in time; the index wins on requests there, on coverage of a topic, and on time once the walk is large or sequential. Concurrency means requests in flight, one thread each, not CPU cores. Measurements before 2026-10-25 opened a new connection per document, which made every walk slower.
 - **The spatial filter selects almost nothing in the two city catalogs.** 1,960 of the 1,964 Comunidad de Madrid collections carry the whole-world bbox `[-180, -90, 180, 90]` as a placeholder, and 367 of 371 Berlin extents contain the test point. Those fixtures test the tree filter and the request count. Only the registry tests spatial selectivity.
 - **Cold times are given two ways.** The `EXPLAIN ANALYZE` total leaves out any read DuckDB makes while planning, which is why one query shows 0.00 s; the wall clock of the same query in a fresh process includes it. Both leave out process start. Warm times are cache hits: one HEAD request, no data read.
-- **Times depend on the network of the day.** All timings on pages 01 to 04 come from one session on 2026-10-26, and only times from the same session are compared. Pages 05 to 07 come from 2026-10-23. The request counts are the durable result.
+- **Times depend on the network of the hour.** The headline table comes from one session on 2026-10-26, 18:41 to 19:02 UTC, where the medians of the index queries at its start and its end agreed within 0.1 s. The group walks on pages 01 to 03 come from an afternoon session, 13:30 to 15:40 UTC, where the same index query took up to almost twice as long at the start as at the end. The query suite on page 04 and the remote checks on page 08 come from a morning session, 08:20 to 09:47 UTC. Only times from the same session are compared. Pages 05 to 07 come from 2026-10-23. The request counts are the durable result.
 - **The engine decides the layout result.** The row group conclusion holds for DuckDB 2.0 and reversed under 1.5.6. Other readers were not measured.
 - **The sizes are small.** The largest file is 6.5 MB. Whether the request count stays flat for a federation of a hundred thousand collections was not measured.
 
@@ -138,7 +140,24 @@ The JSON walk a client does today:
 python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 verkehr
 ```
 
-Each thread keeps one connection alive per host. Add `fresh` as a fifth argument to open a new connection for every document, as the measurements before 2026-10-25 did.
+Each thread keeps one connection alive per host. Add `fresh` to open a new connection for every document, as the measurements before 2026-10-25 did. `concurrency=1,6,16` sets how many requests each walk keeps in flight, one thread each; the default is `1,6,16`, as in the pages. Pass `whole` as the group to walk only the whole tree, and `topic=verkehr,mobilit` to count as hits only the collections whose title or a keyword contains a term, as the headline does:
+
+```bash
+python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 whole topic=verkehr,mobilit
+```
+
+A client that has to find the group first, from the titles of the root's child links, then walks every group that matches, or the whole tree when none does. `describe:` also fetches each child catalog and matches its description. Terms match without case or accents:
+
+```bash
+python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 find:verkehr,mobilit
+python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 describe:verkehr,mobilit
+```
+
+How much of the topic, by the same terms on title and keywords, sits under the groups the walk chose:
+
+```bash
+duckdb -c "SET VARIABLE u='indexes/berlin-geoportal/collections.parquet'; SET VARIABLE lon=13.405; SET VARIABLE lat=52.52; SET VARIABLE terms=['verkehr','mobilit']; SET VARIABLE groups=['verkehr','mobilitaet'];" -c ".read scripts/topic_coverage.sql"
+```
 
 The same question against the index:
 
@@ -151,6 +170,8 @@ The sixteen-query suite, cold and warm, as a Markdown table. Cold time is given 
 ```bash
 uv run python scripts/run_suite.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet --lon 13.405 --lat 52.52 --grp verkehr --kw Radverkehr --cat berlin-geoportal --id gruenflaechen/grillflaechen --runs 3
 ```
+
+Add `--terms verkehr,mobilit` to run A6 as well, the topic query that `scripts/topic_coverage.sql` counts: collections at the point whose title or a keyword contains a term, across every group.
 
 Measure against the published storage, not a local server. A mirror served with `python3 -m http.server` is fine for checking results, and useless for latency, for the reasons in [docs/method.md](docs/method.md).
 

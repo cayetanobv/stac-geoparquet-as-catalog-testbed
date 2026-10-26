@@ -39,18 +39,27 @@ Source Cooperative and the R2 host answer HTTP 403 to Python's default User-Agen
 
 Point -3.7038, 40.4168. The answer is 2,254 collections in 33 catalogs. 1,964 of them are the whole Comunidad de Madrid catalog, 1,960 of those through the whole-world placeholder extent described on [page 02](02-comunidad-madrid.md). The other 290 come from 32 catalogs.
 
-| Method | HTTP requests | Bytes read | Time, connections reused | Time, new connection per document |
-|---|---|---|---|---|
-| JSON walk, whole registry, sequential | 6,725 | | 14 min 48 s | 31 min 45 s |
-| JSON walk, whole registry, 16 threads | 6,725 | | 57 s | 3 min 32 s |
-| JSON walk, Comunidad de Madrid only, sequential | 2,142 | | 3 min 5 s | 5 min 57 s |
-| JSON walk, Comunidad de Madrid only, 16 threads | 2,142 | | 6.9 s | 36 s |
-| Index over HTTPS, cold DuckDB process, 3 runs | 4 (1 HEAD, 3 GET) | 1.0 MB | 0.62 s, 0.60 s, 0.70 s; wall-clock median 0.68 s | |
-| Index over HTTPS, warm session | | | 0.07 s | |
+The walks, at 1, 6 and 16 concurrent requests, one run each. Each cell gives the time with connections reused, then with a new connection for every document.
 
-The index rows are S1 of the [query suite](04-query-suite.md), in the same session as the walks. On 2026-10-26 one catalog, root id `bot-portolan-catalog`, answered its `catalog.json` URL at `data.back-on-track.eu/bot-open-data/` with a redirect to an HTML page. The walk counts that request, records the failure, and finds 2,251 collections instead of 2,254, one request fewer than on 2026-10-23. The 3 missing collections are that catalog's, all of which contain the Madrid point; the index holds them from the mirror of 2026-10-22. A video call ran on the same connection during part of the walks with reused connections.
+| Walk | HTTP requests | Hits | Sequential | 6 concurrent | 16 concurrent |
+|---|---|---|---|---|---|
+| Whole registry | 6,725 | 2,251 | 17 min 48 s / 34 min 36 s | 2 min 49 s / 13 min 43 s | 1 min 31 s / 7 min 22 s |
+| Comunidad de Madrid only, known in advance | 2,142 | 1,964 | 3 min 16 s / 11 min 39 s | 50 s / 2 min 55 s | 18 s / 1 min 26 s |
+
+The GeoParquet index, `collections.parquet`, over HTTPS, the same question:
+
+| When in the session | HTTP requests | Bytes read | Cold, 3 runs | Cold wall-clock median | Warm median |
+|---|---|---|---|---|---|
+| Start, before the walks | 4 (1 HEAD, 3 GET) | 1.0 MB | 1.09, 0.92, 0.99 s | 1.14 s | 0.07 s |
+| End, after the walks | 4 (1 HEAD, 3 GET) | 1.0 MB | 0.68, 0.72, 0.66 s | 0.66 s | 0.06 s |
+
+Walks and index queries come from one session on 2026-10-26, 13:30 to 15:40 UTC, the same as pages [01](01-berlin-geoportal.md) and [02](02-comunidad-madrid.md). The index rows are S1 of the [query suite](04-query-suite.md), run at the start and the end of the session. The question is the point alone, so no group applies; the Comunidad de Madrid row shows what one catalog of the federation costs to walk. On 2026-10-26 one catalog, root id `bot-portolan-catalog`, answered its `catalog.json` URL at `data.back-on-track.eu/bot-open-data/` with a redirect to an HTML page. The walk counts that request, records the failure, and finds 2,251 collections instead of 2,254, one request fewer than on 2026-10-23. The 3 missing collections are that catalog's, all of which contain the Madrid point; the index holds them from the mirror of 2026-10-22.
+
+The README headline repeats this question in a shorter session on 2026-10-26, 18:41 to 19:02 UTC, with the whole walk only and reused connections: 15 min 4 s sequential, 2 min 14 s at 6 concurrent, 56 s at 16 concurrent, the same 6,725 requests and 2,251 hits. The index, S1, took 0.59, 0.70, 0.70 s cold at the start and 0.62, 0.60, 0.61 s at the end, with wall-clock medians 0.61 and 0.60 s.
 
 ## Other federated queries over HTTPS, one row group, cold process
+
+From the [query suite](04-query-suite.md), measured in an earlier session the same day, 08:20 to 09:47 UTC. Its times are not compared with the walks above.
 
 | Query | Hits | Requests | Bytes read | Cold median of 3 |
 |---|---|---|---|---|

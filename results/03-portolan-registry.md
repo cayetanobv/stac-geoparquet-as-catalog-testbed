@@ -64,17 +64,18 @@ The full table of sixteen shapes is in the [query suite](04-query-suite.md).
 
 ## Row group layout
 
-The one-document lookup reads 5.9 MB because the file is one row group, so `original` is read whole. Two more layouts, both sorted by `parents` and `id`, were measured.
+The one-document lookup reads 5.9 MB because the file is one row group, so `original` is read whole. Three more layouts were measured: two sorted by `parents` and `id`, and one in Hilbert order from [page 08](08-follow-up-checks.md).
 
 | Layout | Row groups | One document: bytes, requests, time | Point query, all catalogs: bytes, requests, time |
 |---|---|---|---|
 | One row group, Hilbert order | 1 | 5.9 MB, 7, 1.41 s | 1.0 MB, 4, 0.62 s |
 | DuckDB writer, 2,048 rows per group, tree order | 3 | 3.3 MB, 9, 0.93 s | 2.8 MB, 8, 1.11 s |
 | pyarrow writer, 512 rows per group, tree order | 12 | 4.7 MB, 20, 1.03 s | 5.6 MB, 33, 1.21 s |
+| DuckDB writer, 2,048 rows per group, Hilbert order | 3 | 5.3 MB, 10, 1.86 s | 2.8 MB, 8, 0.94 s |
 
 Times are `EXPLAIN ANALYZE` cold medians of 3 from the [query suite](04-query-suite.md), D1 and S1.
 
-Under DuckDB 2.0 one row group is the right layout at this size. Its prefetch cost model coalesces nearby byte ranges into one request, and the files with more row groups read more bytes in more requests for every query. Smaller groups cut the one-document lookup, to 0.93 s against 1.41 s on the 3-group file, and every other query pays for them. The three files differ in more than the row group count: the one-group file is in Hilbert order and the others in tree order, and the 12-group file is written by pyarrow, without DuckDB's bloom filters. The comparison does not separate those effects. Under DuckDB 1.5.6 the same variants had cut that lookup from 5.7 MB to 1.1 MB without a penalty elsewhere, so this conclusion is engine specific.
+Under DuckDB 2.0 one row group is the right layout at this size. Its prefetch cost model coalesces nearby byte ranges into one request, and the files with more row groups read more bytes in more requests for every query. Smaller groups cut the one-document lookup, to 0.93 s against 1.41 s on the 3-group file, and every other query pays for them. The three files differ in more than the row group count: the one-group file is in Hilbert order and the others in tree order, and the 12-group file is written by pyarrow, without DuckDB's bloom filters. The Hilbert-ordered file with three row groups separates the sort order: it reads the same 2.8 MB in 8 requests for the point query as the tree-ordered one, so the cost comes from the row group count. Only the one-document lookup differs, because the order decides which row group holds the document. Under DuckDB 1.5.6 the same variants had cut that lookup from 5.7 MB to 1.1 MB without a penalty elsewhere, so this conclusion is engine specific.
 
 The files are `indexes/portolan-registry/collections.parquet`, `collections-rg2048.parquet`, and `collections-pa512.parquet`, built by `benchmarks/row-groups/`.
 

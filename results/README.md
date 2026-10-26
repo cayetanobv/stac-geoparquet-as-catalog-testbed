@@ -11,5 +11,6 @@ Read in order. Pages 1 to 4 measure the index against real catalogs over HTTPS. 
 | [05 Tree designs](05-tree-designs.md) | `parents` list against path string, level columns, recursive query | synthetic, 5 million rows |
 | [06 Links-only variant](06-links-only-variant.md) | The Madrid index with STAC `links` instead of `parents` | 1,964 collections |
 | [07 List shapes](07-list-shapes.md) | How DuckDB filters a flat column, a list of strings, and a list of structs | synthetic, 5 million rows |
+| [08 Follow-up checks](08-follow-up-checks.md) | A links file with catalog rows, and row groups with the Hilbert order kept | 2,141 rows, 5,852 rows |
 
 Every remote measurement reads the files listed under [Upload](../README.md#3-upload) in the README.

@@ -51,7 +51,7 @@ DuckDB 2.0 reads this file whole in one request. Under 1.5.6, in the earlier pas
 
 ## Finding the group first
 
-Matching the titles of the root's child links and matching the description of every child catalog both choose `demografia` alone. By the same terms on title and keywords, 461 collections are about population, all with extents that contain the point. `demografia` holds 129 of them, 28%. `salud` holds 206, `empleo` 54, `economia` 48, and six more themes the rest. A walk that finds its group by name is as fast as one that knows it, and answers about a quarter of the topic. The index answers the topic with a filter on `title` and `keywords` over every collection, as `scripts/topic_coverage.sql` does on the local file; that query was not timed over HTTPS.
+Matching the titles of the root's child links and matching the description of every child catalog both choose `demografia` alone. By the same terms on title and keywords, 461 collections are about population, all with extents that contain the point. `demografia` holds 129 of them, 28%. `salud` holds 206, `empleo` 54, `economia` 48, and six more themes the rest. A walk that finds its group by name is as fast as one that knows it, and answers about a quarter of the topic. The index answers the whole topic in one query, A6 in `scripts/run_suite.py`, which filters `title` and `keywords` over every collection as `scripts/topic_coverage.sql` does. In a short session at 18:10 UTC it returned the 461 collections in the same 2 requests and 1.4 MB as S2, in 0.74 to 1.05 s cold, against 0.72 to 1.16 s for S2 in the same runs; warm median 0.22 s, against 0.06 s for S2, since matching every keyword of every row costs CPU.
 
 ## The mid-tree case
 

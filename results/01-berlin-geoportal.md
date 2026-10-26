@@ -37,7 +37,7 @@ The walks, at 1, 6 and 16 concurrent requests. Each cell gives the time with con
 | Group found from the titles of the root's child links, terms `verkehr`, `mobilit` | 32, 1 of them to find | 29 | 2.9 s / 9.3 s | 0.80 s / 1.5 s | 0.80 s / 0.90 s |
 | Group found from the title and description of every child catalog, same terms | 88, 37 of them to find | 51 | 6.9 s / 23 s | 1.4 s / 3.4 s | 0.79 s / 2.5 s |
 
-The index, the same question:
+The GeoParquet index, `collections.parquet`, over HTTPS, the same question:
 
 | When in the session | HTTP requests | Bytes read | Cold, 3 runs | Cold wall-clock median | Warm median |
 |---|---|---|---|---|---|

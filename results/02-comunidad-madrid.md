@@ -38,7 +38,7 @@ The walks, at 1, 6 and 16 concurrent requests. Each cell gives the time with con
 | Group found from the titles of the root's child links, terms `demograf`, `poblacion` | 159, 1 of them to find | 146 | 5.4 s / 40 s | 1.7 s / 5.6 s | 1.1 s / 2.8 s |
 | Group found from the title and description of every child catalog, same terms | 180, 23 of them to find | 146 | 11 s / 48 s | 2.6 s / 8.5 s | 1.3 s / 3.8 s |
 
-The index, the same question:
+The GeoParquet index, `collections.parquet`, over HTTPS, the same question:
 
 | When in the session | HTTP requests | Bytes read | Cold, 3 runs | Cold wall-clock median | Warm median |
 |---|---|---|---|---|---|

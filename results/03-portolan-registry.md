@@ -46,7 +46,7 @@ The walks, at 1, 6 and 16 concurrent requests, one run each. Each cell gives the
 | Whole registry | 6,725 | 2,251 | 17 min 48 s / 34 min 36 s | 2 min 49 s / 13 min 43 s | 1 min 31 s / 7 min 22 s |
 | Comunidad de Madrid only, known in advance | 2,142 | 1,964 | 3 min 16 s / 11 min 39 s | 50 s / 2 min 55 s | 18 s / 1 min 26 s |
 
-The index, the same question:
+The GeoParquet index, `collections.parquet`, over HTTPS, the same question:
 
 | When in the session | HTTP requests | Bytes read | Cold, 3 runs | Cold wall-clock median | Warm median |
 |---|---|---|---|---|---|

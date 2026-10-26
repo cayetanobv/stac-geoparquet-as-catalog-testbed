@@ -1,6 +1,6 @@
 # Follow-up checks
 
-Two variants built to close gaps that the earlier pages leave open. Built and measured locally on 2026-10-25. Measured over HTTPS on 2026-10-26 with DuckDB 2.0.0 and Python 3.14.9, in the same session as pages 01 to 04, from the files under `_testbed/` listed in the [README](../README.md#3-upload).
+Two variants built to close gaps that the earlier pages leave open. Built and measured locally on 2026-10-25. Measured over HTTPS on 2026-10-26 with DuckDB 2.0.0 and Python 3.14.9, in the same session as the query suite on page 04, 08:20 to 09:47 UTC, from the files under `_testbed/` listed in the [README](../README.md#3-upload).
 
 ## A links file with catalog rows
 

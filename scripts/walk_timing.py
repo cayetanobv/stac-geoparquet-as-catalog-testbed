@@ -1,5 +1,5 @@
 """Time what a client does today: walk catalog JSONs over HTTPS, any depth, to find collections
-under one group whose bbox contains a point.  usage: walk_timing.py ROOT_URL LON LAT GROUP [fresh] [concurrency=1,16]
+under one group whose bbox contains a point.  usage: walk_timing.py ROOT_URL LON LAT GROUP [fresh] [concurrency=1,6,16]
 Each thread keeps one connection alive per host. Pass `fresh` to open a new connection for every
 document instead, as urllib does and as the measurements before 2026-10-25 did. `concurrency` lists how many
 requests a walk keeps in flight, one thread each; 1 is a sequential walk. Threads wait on the network, so the
@@ -12,7 +12,7 @@ Terms match without case or accents."""
 import http.client, json, sys, threading, time, unicodedata, urllib.request, urllib.parse, concurrent.futures as cf
 ROOT, QX, QY, GROUP = sys.argv[1], float(sys.argv[2]), float(sys.argv[3]), sys.argv[4]
 FRESH = "fresh" in sys.argv[5:]
-CONC = next([int(c) for c in a.split("=")[1].split(",")] for a in sys.argv[5:] + ["concurrency=1,16"] if a.startswith("concurrency="))
+CONC = next([int(c) for c in a.split("=")[1].split(",")] for a in sys.argv[5:] + ["concurrency=1,6,16"] if a.startswith("concurrency="))
 UA = "Mozilla/5.0 (compatible; stac-geoparquet-as-catalog-testbed/0.1)"
 local = threading.local()
 def get_keepalive(url):

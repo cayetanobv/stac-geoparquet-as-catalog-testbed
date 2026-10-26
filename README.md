@@ -140,6 +140,19 @@ python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-cata
 
 Each thread keeps one connection alive per host. Add `fresh` as a fifth argument to open a new connection for every document, as the measurements before 2026-10-25 did.
 
+A client that has to find the group first, from the titles of the root's child links, then walks every group that matches, or the whole tree when none does. `describe:` also fetches each child catalog and matches its description. Terms match without case or accents:
+
+```bash
+python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 find:verkehr,mobilit
+python3 -I scripts/walk_timing.py https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json 13.405 52.52 describe:verkehr,mobilit
+```
+
+How much of the topic, by the same terms on title and keywords, sits under the groups the walk chose:
+
+```bash
+duckdb -c "SET VARIABLE u='indexes/berlin-geoportal/collections.parquet'; SET VARIABLE lon=13.405; SET VARIABLE lat=52.52; SET VARIABLE terms=['verkehr','mobilit']; SET VARIABLE groups=['verkehr','mobilitaet'];" -c ".read scripts/topic_coverage.sql"
+```
+
 The same question against the index:
 
 ```bash

@@ -1,4 +1,5 @@
-"""Walk a static STAC catalog breadth-first and write one JSON line per collection with its ancestor chain.
+"""Walk a static STAC catalog breadth-first and write one JSON line per collection with its ancestor chain,
+as ids in `parents` and as catalog URLs in `parent_hrefs`.
 usage: crawl.py ROOT_CATALOG OUT_JSONL [PUBLIC_ROOT_CATALOG_URL]
 ROOT_CATALOG is an https URL or a local path to catalog.json (for example a mirror made by mirror_catalog.py).
 With a local root, pass the catalog's public URL as the third argument so the href column holds canonical URLs."""
@@ -26,18 +27,18 @@ def fetch(url):
             time.sleep(0.5 * 2 ** attempt)
 
 rows, catalogs = [], 0
-frontier = [(ROOT, [])]                       # (url, parents)
+frontier = [(ROOT, [], [])]                   # (url, parents, parent_hrefs)
 with cf.ThreadPoolExecutor(WORKERS) as ex:
     while frontier:
-        docs = list(ex.map(lambda t: (t[0], t[1], fetch(t[0])), frontier))
+        docs = list(ex.map(lambda t: (*t, fetch(t[0])), frontier))
         frontier = []
-        for url, parents, doc in docs:
+        for url, parents, hrefs, doc in docs:
             if doc.get("type") == "Collection":
-                rows.append({"href": public_href(url), "parents": parents, "doc": doc})
+                rows.append({"href": public_href(url), "parents": parents, "parent_hrefs": hrefs, "doc": doc})
                 continue
             catalogs += 1
-            chain = parents + [doc["id"]]
-            frontier += [(urllib.parse.urljoin(url, l["href"]), chain) for l in doc["links"] if l["rel"] == "child"]
+            chain, hchain = parents + [doc["id"]], hrefs + [public_href(url)]
+            frontier += [(urllib.parse.urljoin(url, l["href"]), chain, hchain) for l in doc["links"] if l["rel"] == "child"]
 
 with open(OUT, "w") as f:
     for r in rows:

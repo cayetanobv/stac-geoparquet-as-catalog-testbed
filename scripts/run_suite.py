@@ -4,7 +4,7 @@ after a first run). HTTP request counts and bytes come from EXPLAIN ANALYZE on a
 Cold time is reported twice: the EXPLAIN ANALYZE total, which leaves out reads made while planning, and the
 wall clock of the plain query in a fresh process, measured inside that process after the extensions load,
 so it includes planning and leaves out process start.
-usage: run_suite.py INDEX_URL_OR_PATH --lon X --lat Y --grp GROUP --kw KEYWORD --cat ROOT_ID --id COLLECTION_ID [--runs 3] [--terms TERM,TERM]"""
+usage: run_suite.py INDEX_URL_OR_PATH --lon X --lat Y --grp GROUP --kw KEYWORD --cat ROOT_ID --id COLLECTION_ID [--runs 3] [--terms TERM,TERM] [--parents-struct]"""
 import argparse, json, re, statistics, subprocess, sys, textwrap
 
 ap = argparse.ArgumentParser()
@@ -12,6 +12,7 @@ ap.add_argument("index"); ap.add_argument("--lon", type=float, required=True); a
 ap.add_argument("--grp", required=True); ap.add_argument("--kw", required=True); ap.add_argument("--cat", required=True)
 ap.add_argument("--id", required=True); ap.add_argument("--runs", type=int, default=3); ap.add_argument("--only", default=None, help="comma-separated label prefixes, for example G or S1,T3")
 ap.add_argument("--terms", help="comma-separated topic terms, for the A6 query; matched as scripts/topic_coverage.sql does")
+ap.add_argument("--parents-struct", action="store_true", help="the index holds parents as a list of {id, href}: read the ids with list_transform")
 ap.add_argument("--region-url", help="GeoParquet file with real polygons, for the G queries")
 ap.add_argument("--region-geom", default="geometry", help="its geometry column")
 ap.add_argument("--region-name", default="name", help="its name column")
@@ -80,6 +81,8 @@ if a.region_url:
 if a.only: QUERIES = [q for q in QUERIES if any(q[0].startswith(o) for o in a.only.split(","))]
 
 def sql_for(q):
+    if a.parents_struct:   # before the file name goes in, as it can contain the word
+        q = re.sub(r"\bparents\b", "list_transform(parents, lambda p: p.id)", q)
     body = q.format(lon=a.lon, lat=a.lat, dx=dx, dy=dy, grp=a.grp, kw=a.kw, cat=a.cat, id=a.id, terms=[t.strip() for t in (a.terms or '').split(',')]).replace(" FROM t", f" FROM read_parquet('{a.index}') t")
     if "region" not in body and "features" not in body:
         return body

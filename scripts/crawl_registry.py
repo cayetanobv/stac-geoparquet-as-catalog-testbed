@@ -1,5 +1,5 @@
 """Walk every catalog in a registry mirror made by mirror_registry.py and write one JSON line per
-collection, with the ancestor chain and the collection's public URL, for build_index.sql.
+collection, with the ancestor chain as ids and as public catalog URLs and the collection's public URL, for build_index.sql.
 usage: crawl_registry.py MIRROR_DIR OUT_JSONL"""
 import json, os, sys, urllib.parse
 from collections import Counter
@@ -19,20 +19,20 @@ def walk(root_url, folder):
         else:
             p = urllib.parse.urlparse(url); rel = os.path.join("_external", p.netloc, p.path.lstrip("/"))
         return os.path.join(folder, urllib.parse.unquote(rel))
-    rows, missing, frontier, seen = [], 0, [(root_url, [])], set()
+    rows, missing, frontier, seen = [], 0, [(root_url, [], [])], set()
     while frontier:
         nxt = []
-        for url, parents in frontier:
+        for url, parents, hrefs in frontier:
             seen.add(url); path = local(url)
             if not os.path.exists(path): missing += 1; continue
             doc = load(path)
             if doc.get("type") == "Collection":
-                rows.append({"href": url, "parents": parents, "doc": doc}); continue
-            chain = parents + [doc["id"]]
+                rows.append({"href": url, "parents": parents, "parent_hrefs": hrefs, "doc": doc}); continue
+            chain, hchain = parents + [doc["id"]], hrefs + [url]
             for l in doc.get("links", []):
                 if l.get("rel") == "child":
                     u = urllib.parse.urljoin(url, l["href"])
-                    if u not in seen: nxt.append((u, chain))
+                    if u not in seen: nxt.append((u, chain, hchain))
         frontier = nxt
     return rows, missing
 

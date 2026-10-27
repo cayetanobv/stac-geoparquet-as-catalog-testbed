@@ -8,6 +8,8 @@ In radiantearth/stac-geoparquet-spec#17 the question came up of how a reader out
 | Struct | `parents`: list of `{id, href}` | `collections-parents-struct.parquet` |
 | Two columns | `parents`: list of ids, as published, and `parent_hrefs`: list of hrefs, the href of `parents[i]` at `parent_hrefs[i]` | `collections-parent-hrefs.parquet` |
 
+Both variants are described with the other schemas the testbed measured in [docs/schema.md](../docs/schema.md#variants-measured), and compared with them in the [README](../README.md#schema-proposals-compared).
+
 ## The files
 
 Built on 2026-10-27 from the committed indexes and the committed mirrors. `scripts/crawl.py` and `scripts/crawl_registry.py` now also record the public URL of each ancestor catalog, and `scripts/parent_hrefs.sql` writes both variants from an index and that crawl. Every other column, the row order, and the geo metadata are copied from the committed index. The hrefs are absolute and always filled.

@@ -8,7 +8,7 @@ In radiantearth/stac-geoparquet-spec#17 the question came up of how a reader out
 | Struct | `parents`: list of `{id, href}` | `collections-parents-struct.parquet` |
 | Two columns | `parents`: list of ids, as published, and `parent_hrefs`: list of hrefs, the href of `parents[i]` at `parent_hrefs[i]` | `collections-parent-hrefs.parquet` |
 
-Both variants are described with the other schemas the testbed measured in [docs/schema.md](../docs/schema.md#variants-measured), and compared with them in the [README](../README.md#schema-proposals-compared).
+Both variants are described with the other schemas the testbed measured in [docs/schema.md](../docs/schema.md), as schemas 4 and 5,, and compared with them in the [README](../README.md#schema-proposals-compared).
 
 ## The files
 

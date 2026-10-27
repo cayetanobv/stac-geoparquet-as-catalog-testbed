@@ -4,7 +4,9 @@ after a first run). HTTP request counts and bytes come from EXPLAIN ANALYZE on a
 Cold time is reported twice: the EXPLAIN ANALYZE total, which leaves out reads made while planning, and the
 wall clock of the plain query in a fresh process, measured inside that process after the extensions load,
 so it includes planning and leaves out process start.
-usage: run_suite.py INDEX_URL_OR_PATH --lon X --lat Y --grp GROUP --kw KEYWORD --cat ROOT_ID --id COLLECTION_ID [--runs 3] [--terms TERM,TERM]"""
+usage: run_suite.py INDEX_URL_OR_PATH --lon X --lat Y --grp GROUP --kw KEYWORD --cat ROOT_ID --id COLLECTION_ID [--runs 3] [--terms TERM,TERM] [--parents-struct] [--ranges]
+With --ranges, nothing is timed: each query runs once in a fresh process and the HTTP requests DuckDB sends are listed
+with their byte ranges, from its HTTP log."""
 import argparse, json, re, statistics, subprocess, sys, textwrap
 
 ap = argparse.ArgumentParser()
@@ -12,6 +14,8 @@ ap.add_argument("index"); ap.add_argument("--lon", type=float, required=True); a
 ap.add_argument("--grp", required=True); ap.add_argument("--kw", required=True); ap.add_argument("--cat", required=True)
 ap.add_argument("--id", required=True); ap.add_argument("--runs", type=int, default=3); ap.add_argument("--only", default=None, help="comma-separated label prefixes, for example G or S1,T3")
 ap.add_argument("--terms", help="comma-separated topic terms, for the A6 query; matched as scripts/topic_coverage.sql does")
+ap.add_argument("--parents-struct", action="store_true", help="the index holds parents as a list of {id, href}: read the ids with list_transform")
+ap.add_argument("--ranges", action="store_true", help="list the byte ranges each query requests instead of timing it")
 ap.add_argument("--region-url", help="GeoParquet file with real polygons, for the G queries")
 ap.add_argument("--region-geom", default="geometry", help="its geometry column")
 ap.add_argument("--region-name", default="name", help="its name column")
@@ -80,6 +84,8 @@ if a.region_url:
 if a.only: QUERIES = [q for q in QUERIES if any(q[0].startswith(o) for o in a.only.split(","))]
 
 def sql_for(q):
+    if a.parents_struct:   # before the file name goes in, as it can contain the word
+        q = re.sub(r"\bparents\b", "list_transform(parents, lambda p: p.id)", q)
     body = q.format(lon=a.lon, lat=a.lat, dx=dx, dy=dy, grp=a.grp, kw=a.kw, cat=a.cat, id=a.id, terms=[t.strip() for t in (a.terms or '').split(',')]).replace(" FROM t", f" FROM read_parquet('{a.index}') t")
     if "region" not in body and "features" not in body:
         return body
@@ -109,6 +115,21 @@ def run_warm(sql, n):
     out = subprocess.run(["duckdb", "-no-agent"] + cmds, capture_output=True, text=True).stdout
     return [float(x) for x in re.findall(r"Total Time:\s*([\d.]+)s", out)][1:]
 
+# a fresh Python process per query: run it with the HTTP log on and return the log, one message per request
+RANGES = ("import duckdb, json, sys; con = duckdb.connect(); con.execute(sys.argv[1]); con.execute(\"CALL enable_logging('HTTP')\"); "
+          "con.execute(sys.argv[2]).fetchall(); "
+          "print(json.dumps([m for (m,) in con.execute(\"SELECT message FROM duckdb_logs WHERE type = 'HTTP' ORDER BY timestamp\").fetchall()]))")
+if a.ranges:
+    print(f"Index: `{a.index}`  point {a.lon},{a.lat}  group `{a.grp}`  keyword `{a.kw}`\n")
+    print("| Query | Requests | Byte ranges | Bytes |")
+    print("|---|---|---|---|")
+    for label, q in QUERIES:
+        log = json.loads(subprocess.run([sys.executable, "-I", "-c", RANGES, PRE, sql_for(q)], capture_output=True, text=True, check=True).stdout.splitlines()[-1])
+        reqs = [(re.search(r"'type': (\w+)", m).group(1), re.search(r"Range='bytes=(\d+)-(\d+)'", m)) for m in log]
+        spans = [(int(r.group(1)), int(r.group(2))) for _, r in reqs if r]
+        print(f"| {label} | {len(reqs)} ({', '.join(f'{sum(m == k for m, _ in reqs)} {k}' for k in sorted({m for m, _ in reqs}, reverse=True))}) | "
+              f"{', '.join(f'{x:,}-{y:,}' for x, y in spans)} | {sum(y - x + 1 for x, y in spans):,} |", flush=True)
+    sys.exit()
 print(f"Index: `{a.index}`  point {a.lon},{a.lat}  group `{a.grp}`  keyword `{a.kw}`  runs {a.runs}" + (f"  region from `{a.region_url}`" if a.region_url else "") + "\n")
 print("| Query | Result (count or rows) | Requests | Bytes read | Cold, each run | Cold median | Cold wall median | Warm median |")
 print("|---|---|---|---|---|---|---|---|")

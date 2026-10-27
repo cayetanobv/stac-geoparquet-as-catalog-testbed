@@ -52,7 +52,7 @@ One session on 2026-10-27, 17:51 to 18:07 UTC, from the test machine in [docs/me
 | D2 JSON field for a group | 20 | 0.56 / 0.55 s | 0.67 / 0.68 s | 0.69 / 0.56 s |
 | C1 combined | 42 | 0.57 / 0.57 s | 0.60 / 0.65 s | 0.67 / 0.59 s |
 
-**Registry**, the same requests and bytes in every shape: 4 requests and 1.0 MB for S1, S2, T2 and T3, 5 and 1.1 MB for T1, 7 and 1.6 MB for C1, 7 and 5.9 MB for D1 and D2.
+**Registry**, the same requests in every shape: 4 for S1, S2, T2 and T3, 5 for T1, 7 for D1, D2 and C1. The bytes are in the next section.
 
 | Query | Result | Ids | Struct | Two columns |
 |---|---|---|---|---|
@@ -69,7 +69,36 @@ Warm medians were 0.05 to 0.10 s in every shape. Which shape is fastest changes 
 
 ## Does the reader skip the hrefs?
 
-A query that needs only the ids does not need the `href` chunk, and a Parquet reader can leave it out. DuckDB 2.0 reads it anyway at these sizes. With HTTP logging on, S2 on the three registry files asked for the same byte ranges: the footer, 4 KB at offset 73,728, and 976 KB from offset 77,824, which runs from the start of `parents` past `geometry` and `bbox`. In the struct and two-column files the `href` chunk, at offset 102,869, falls inside that range. DuckDB merges nearby ranges into one read, so the 21 KB of hrefs cost no extra request and no visible time. Berlin and Madrid are read whole. Whether DuckDB, or another reader, leaves the `href` chunk out on a file large enough to read in separate ranges was not measured.
+A query that needs only the ids does not need the hrefs, and a Parquet reader can leave their column chunk out. DuckDB 2.0 fetches it anyway at these sizes, inside a read it makes for other columns. Berlin and Madrid are read whole in every shape, so only the registry can show it.
+
+Where the columns sit in the registry files, in bytes from the start of the file. The other columns follow in the same order in all three, shifted by the hrefs.
+
+| Column chunk | Ids | Struct | Two columns |
+|---|---|---|---|
+| `id` | 4 to 74,666 | 4 to 74,666 | 4 to 74,666 |
+| `parents`, the ids | 74,666 to 92,527 | 74,666 to 92,527 | 74,666 to 92,527 |
+| The ancestor hrefs | none | 92,527 to 114,449 | 92,527 to 114,449 |
+| `href` of the collection | 92,527 to 192,187 | 114,449 to 214,109 | 114,449 to 214,109 |
+| `geometry` | 192,187 to 301,165 | 214,109 to 323,087 | 214,109 to 323,087 |
+| `bbox`, four chunks | 301,165 to 393,080 | 323,087 to 415,002 | 323,087 to 415,002 |
+| `description` | 397,419 to 850,367 | 419,341 to 872,289 | 419,341 to 872,289 |
+| `original` | 851,904 to 6,196,130 | 873,826 to 6,218,052 | 873,826 to 6,218,052 |
+
+The byte ranges DuckDB requested, from its HTTP log, one fresh process per query, after a HEAD request for the file size. Every first range is the footer.
+
+| Query | Ids | Struct | Two columns |
+|---|---|---|---|
+| S1 control, `geometry` | 6,766,592-6,784,578, 188,416-192,511, 192,512-1,196,031: 1,025,603 B | 6,791,168-6,808,981, 212,992-217,087, 217,088-1,216,511: 1,021,334 B | 6,791,168-6,809,004, 212,992-217,087, 217,088-1,216,511: 1,021,357 B |
+| S2, T2, T3: `parents` and `geometry` | 6,766,592-6,784,578, 73,728-77,823, 77,824-1,077,247: 1,021,507 B | 6,791,168-6,808,981, 73,728-77,823, 77,824-1,077,247: 1,021,334 B | 6,791,168-6,809,004, 73,728-77,823, 77,824-1,077,247: 1,021,357 B |
+| T1, also `id` and `title` | 4 ranges, 1,189,443 B | 4 ranges, 1,185,174 B | 4 ranges, 1,185,197 B |
+| C1, also `keywords` | 6 ranges, 1,771,075 B | 6 ranges, 1,774,998 B | 6 ranges, 1,775,021 B |
+| D1, D2, `original` | 6 ranges, 6,215,235 B | 6 ranges, 6,239,638 B | 6 ranges, 6,239,661 B |
+
+Logged on 2026-10-27, 19:30 to 19:31 UTC, with `scripts/run_suite.py --ranges`. The totals equal the bytes that `EXPLAIN ANALYZE` reported in the timed session, 997.5, 997.3 and 997.4 KB for S2.
+
+Every range starts and ends on a multiple of 4,096 bytes. DuckDB fetches the 4 KB block where the first column it needs begins, then one range from the next block to the block that holds the point 1,000,000 bytes after that column's start. S2 needs `parents` from 74,666, so it reads 73,728 to 1,077,247, which holds `parents`, `geometry` and `bbox`, and also everything between them that it does not need. In the struct and two-column files that includes the ancestor hrefs; in all three it includes the collection `href` and part of `description`. Where the data a query needs starts at the same offset, the data ranges are the same in every shape. The totals differ only by the footer, which starts on a block boundary, so its length depends on where the file ends. S1 starts at `geometry`, which the hrefs move by 21,922 bytes, so its range moves with it; on the ids file the range happens to span one more block, 4,096 bytes.
+
+The hrefs show in the bytes only where a query reads `original`, which spans most of the file: D1 and D2 read everything from the start of the file to the end of `original`, so the struct file costs 24,403 bytes more: the 21,922 bytes of hrefs, and block rounding and the footer. The 1,000,000-byte window is read from the log, not from DuckDB's documentation. Whether DuckDB, or another reader, leaves the hrefs out on a file whose columns are farther apart than that window was not measured.
 
 ## What it means for the schema
 

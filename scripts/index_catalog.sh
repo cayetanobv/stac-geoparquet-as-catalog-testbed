@@ -7,4 +7,4 @@ mkdir -p "$OUT"
 PUBLIC="${3:-}"
 python3 -I "$HERE/crawl.py" "$ROOT" "$OUT/collections.jsonl" $PUBLIC
 ( cd "$OUT" && duckdb < "$HERE/build_index.sql" )
-gpio check "$OUT/collections.parquet"
+duckdb -c "SET VARIABLE f='$OUT/collections.parquet';" -c ".read $HERE/check_index.sql"

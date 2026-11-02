@@ -1,6 +1,6 @@
 # Collection index schemas
 
-One file, `collections.parquet`, at the catalog root, with one row per collection in the catalog tree. The testbed measures one proposed schema and six variants of it, each built to answer a question raised in [portolan-sdi/portolan-spec#44](https://github.com/portolan-sdi/portolan-spec/issues/44) or [radiantearth/stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17). Each has its full column list below. In the variants, the columns that differ from the proposed schema are in bold. What each one showed is compared in the [README findings](../README.md#schema-proposals-compared).
+One file, `collections.parquet`, at the catalog root, with one row per collection in the catalog tree. The testbed measures one proposed schema and seven variants of it, each built to answer a question raised in [portolan-sdi/portolan-spec#44](https://github.com/portolan-sdi/portolan-spec/issues/44) or [radiantearth/stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17). Each has its full column list below. In the variants, the columns that differ from the proposed schema are in bold. What each one showed is compared in the [README findings](../README.md#schema-proposals-compared).
 
 | Schema | Question it answers | Files | Measured on |
 |---|---|---|---|
@@ -11,6 +11,7 @@ One file, `collections.parquet`, at the catalog root, with one row per collectio
 | [5. `parents` with `parent_hrefs`](#5-parents-with-parent_hrefs) | The same, without changing `parents` | `indexes/*/collections-parent-hrefs.parquet` | [09](../results/09-parent-hrefs.md) |
 | [6. Tree columns, synthetic](#6-tree-columns-synthetic) | Is there a faster tree column than `parents`? | `benchmarks/tree-designs/` | [05](../results/05-tree-designs.md) |
 | [7. List shapes, synthetic](#7-list-shapes-synthetic) | How searchable is a list, of strings or of structs? | `benchmarks/list-shapes/` | [07](../results/07-list-shapes.md) |
+| [8. Resolved assets and `items_href`](#8-resolved-assets-and-items_href) | Can a reader reach the data without resolving hrefs or reading `original`? | `indexes/*/collections-agent.parquet` | [10](../results/10-agent-columns.md) |
 
 The row group layouts measured on page 03 and page 08 keep schema 1 and change only how the file is written; they are listed [at the end](#layouts).
 
@@ -158,6 +159,29 @@ One file that stores the same parent fact three ways, to measure how DuckDB filt
 | `id` | string | `col-0` to `col-4999999` | |
 | **`parents`** | **list of string** | **`[cat000, sub00]`, without the root** | list of strings |
 | **`links`** | **list of struct of `href`, `rel`, `type`, `title`** | **Three links: `root` to `../../catalog.json`, `parent` to `../sub00/catalog.json`, `self` to `./collection.json`** | list of structs, as in schema 2 |
+
+## 8. Resolved assets and `items_href`
+
+Schema 1 with each collection's assets as absolute URLs, and the URL of its `items.parquet` in a column of its own. Raised in issue #9, for readers such as agents that query the file in SQL and do not resolve relative hrefs. Built for all three indexes by `scripts/agent_columns.sql`, from the committed index alone. Rows, row order, and every other value as in schema 1.
+
+| Column | Type | Content |
+|---|---|---|
+| `id` | string | The collection `id` |
+| `parents` | list of string | Ancestor ids from the root to the direct parent, in order |
+| `href` | string | URL of the `collection.json` |
+| `geometry` | GeoParquet geometry, OGC:CRS84 | `extent.spatial.bbox[0]` as a polygon |
+| `bbox` | struct of `xmin`, `ymin`, `xmax`, `ymax` | The 2D values of `extent.spatial.bbox[0]` |
+| `start_datetime` | timestamp, UTC | `extent.temporal.interval[0][0]`, null when open |
+| `end_datetime` | timestamp, UTC | `extent.temporal.interval[0][1]`, null when open |
+| `description` | string | The collection `description` |
+| `license` | string | The collection `license` |
+| **`items_href`** | **string** | **The absolute URL of the asset whose file name is `items.parquet` and whose media type is Parquet, null when there is none** |
+| **`assets`** | **list of struct of `key`, `href`, `type`, `roles`, `title`** | **Every asset of the collection, sorted by key, with `href` resolved against `href` above** |
+| `original` | string, JSON | The full collection document |
+| `title` | string | The collection `title` |
+| `keywords` | list of string | The collection `keywords` |
+
+A reader goes from the index to an items file with `read_parquet(items_href)`, and to a collection-level file with `list_filter(assets, lambda a: list_contains(a.roles, 'data'))`.
 
 ## Layouts
 

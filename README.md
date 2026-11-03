@@ -80,11 +80,10 @@ KB and MB in these pages are KiB and MiB.
 | `scripts/` | The pipeline: mirror, crawl, build, check, and measure |
 | `benchmarks/` | SQL and Python behind the row group layouts on page 3 and the design comparisons on pages 5 to 7 |
 
-Requirements: the [DuckDB CLI](https://duckdb.org/docs/installation/) 2.0 or later with the `spatial` and `httpfs` extensions, [uv](https://docs.astral.sh/uv/) for the Python environment, and [gpio](https://github.com/geoparquet-io/geoparquet-io) for the GeoParquet check.
+Requirements: the [DuckDB CLI](https://duckdb.org/docs/installation/) 2.0 or later with the `spatial` and `httpfs` extensions, and [uv](https://docs.astral.sh/uv/) for the Python environment. The GeoParquet check is `scripts/check_index.sql`, run in DuckDB.
 
 ```bash
 uv sync                      # Python 3.14.9 with duckdb 2.0.0 and pyarrow 26.0.0, as pinned in pyproject.toml and uv.lock
-pipx install geoparquet-io   # gpio pins an older duckdb, so it gets its own environment
 duckdb -c "INSTALL spatial; INSTALL httpfs;"
 ```
 
@@ -126,7 +125,7 @@ uv run bash scripts/index_registry.sh https://registry.portolan-sdi.org/next/cat
 
 `uv run` puts the pinned Python 3.14.9 first on the path. The drivers use only the standard library.
 
-Each writes `collections.jsonl` and `collections.parquet` in the output directory and runs `gpio check`. The index built from the Berlin mirror matched the committed one in every row. The crawl also records each ancestor catalog's URL, from which `scripts/parent_hrefs.sql` writes the two variants on [page 09](results/09-parent-hrefs.md), one with `parents` as a list of `{id, href}` and one with a `parent_hrefs` list beside `parents`:
+Each writes `collections.jsonl` and `collections.parquet` in the output directory and runs `scripts/check_index.sql`, which checks the `geo` metadata, the geometry, the bbox covering, and the `parents` and `id` key in DuckDB, and exits non-zero if any check fails. The index built from the Berlin mirror matched the committed one in every row. The crawl also records each ancestor catalog's URL, from which `scripts/parent_hrefs.sql` writes the two variants on [page 09](results/09-parent-hrefs.md), one with `parents` as a list of `{id, href}` and one with a `parent_hrefs` list beside `parents`:
 
 ```bash
 duckdb -c "SET VARIABLE u='indexes/berlin-geoportal/collections.parquet'; SET VARIABLE j='work/berlin/collections.jsonl'; SET VARIABLE os='work/berlin/collections-parents-struct.parquet'; SET VARIABLE oc='work/berlin/collections-parent-hrefs.parquet';" -c ".read scripts/parent_hrefs.sql"

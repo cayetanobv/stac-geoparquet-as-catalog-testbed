@@ -11,4 +11,4 @@ else
 fi
 python3 -I "$HERE/crawl_registry.py" "$MIRROR" "$OUT/collections.jsonl"
 ( cd "$OUT" && duckdb < "$HERE/build_index.sql" )
-gpio check "$OUT/collections.parquet"
+duckdb -c "SET VARIABLE f='$OUT/collections.parquet';" -c ".read $HERE/check_index.sql"

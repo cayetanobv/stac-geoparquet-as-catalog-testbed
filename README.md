@@ -131,6 +131,12 @@ Each writes `collections.jsonl` and `collections.parquet` in the output director
 duckdb -c "SET VARIABLE u='indexes/berlin-geoportal/collections.parquet'; SET VARIABLE j='work/berlin/collections.jsonl'; SET VARIABLE os='work/berlin/collections-parents-struct.parquet'; SET VARIABLE oc='work/berlin/collections-parent-hrefs.parquet';" -c ".read scripts/parent_hrefs.sql"
 ```
 
+`scripts/agent_columns.sql` writes the variant on [page 10](results/10-agent-columns.md) from an index alone, with every asset href resolved to an absolute URL and the collection's `items.parquet` URL in `items_href`:
+
+```bash
+duckdb -c "SET VARIABLE u='indexes/portolan-registry/collections.parquet'; SET VARIABLE o='work/registry/collections-agent.parquet';" -c ".read scripts/agent_columns.sql"
+```
+
 ### 3. Upload
 
 The measured files are served from the same bucket as the CARTO catalogs. Both city fixtures, and 43 of the 86 catalogs in the registry, are published by CARTO in that bucket; the other 43 are published by others on their own hosting. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Nothing links to them from a `catalog.json` yet; [docs/discovery.md](docs/discovery.md) says how a catalog would. A later publish of a catalog can remove them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.

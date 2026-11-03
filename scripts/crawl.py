@@ -11,6 +11,7 @@ PUBLIC = sys.argv[3] if len(sys.argv) > 3 else None
 if "://" not in ROOT:
     ROOT = "file://" + os.path.abspath(ROOT)
 WORKERS = 12
+UA = "Mozilla/5.0 (compatible; stac-geoparquet-as-catalog-testbed/0.1; +https://github.com/cayetanobv/stac-geoparquet-as-catalog-testbed)"
 
 def public_href(url):
     if PUBLIC and url.startswith(ROOT.rsplit("/", 1)[0] + "/"):
@@ -20,7 +21,7 @@ def public_href(url):
 def fetch(url):
     for attempt in range(5):
         try:
-            with urllib.request.urlopen(url, timeout=60) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=60) as r:
                 return json.load(r)
         except Exception as e:
             if attempt == 4: raise

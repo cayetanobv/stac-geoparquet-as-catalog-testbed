@@ -6,12 +6,13 @@ from collections import Counter
 
 ROOT, OUT = sys.argv[1], sys.argv[2]
 WORKERS = 12
+UA = "Mozilla/5.0 (compatible; stac-geoparquet-as-catalog-testbed/0.1; +https://github.com/cayetanobv/stac-geoparquet-as-catalog-testbed)"
 BASE = ROOT.rsplit("/", 1)[0] + "/"            # directory of the root catalog
 
 def fetch(url):
     for a in range(5):
         try:
-            with urllib.request.urlopen(url, timeout=60) as r:
+            with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": UA}), timeout=60) as r:
                 return r.read()
         except Exception:
             if a == 4: raise

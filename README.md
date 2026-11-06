@@ -143,12 +143,12 @@ uv run python benchmarks/catalog-rows/sizes.py indexes/berlin-geoportal/collecti
 
 ### 3. Upload
 
-The measured files are served from the same bucket as the CARTO catalogs. Both city fixtures, and 43 of the 86 catalogs in the registry, are published by CARTO in that bucket; the other 43 are published by others on their own hosting. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Nothing links to them from a `catalog.json` yet; [docs/discovery.md](docs/discovery.md) says how a catalog would. A later publish of a catalog can remove them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
+The measured files are served from the same bucket as the CARTO catalogs. Both city fixtures, and 43 of the 86 catalogs in the registry, are published by CARTO in that bucket; the other 43 are published by others on their own hosting. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Since 2026-11-05 the CARTO publication pipeline writes its own `collections.parquet` beside every catalog it publishes, in the shape of [schema 8](docs/schema.md#8-catalog-and-collection-rows), with a `rel: "data"` link from the root `catalog.json`. It replaced the testbed's Berlin index that day, and replaces Madrid's at its next publication. So the two URLs below no longer serve the files that pages 01 to 04 measured. The committed copies under `indexes/` still reproduce them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
 
 | File | URL |
 |---|---|
-| Berlin index | https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet |
-| Madrid index | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections.parquet |
+| Berlin index, until 2026-11-05; now the pipeline's index | https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet |
+| Madrid index, until the pipeline's next publication of Madrid | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections.parquet |
 | Madrid, links-only variant | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections-links.parquet |
 | Registry index, 1 row group | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections.parquet |
 | Registry index, 3 row groups | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-rg2048.parquet |

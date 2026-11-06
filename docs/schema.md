@@ -178,7 +178,7 @@ The shape that the discussion in [stac-geoparquet-spec#17](https://github.com/ra
 | `license` | string | The collection `license` | **null** |
 | `original` | string, JSON | The full collection document | **The full catalog document** |
 | `title` | string | The collection `title` | **The catalog `title`** |
-| `keywords` | list of string | The collection `keywords` | **The catalog `keywords`, null when absent** |
+| `keywords` | list of string | The collection `keywords` | **null: STAC defines `keywords` for a Collection only** |
 | **`links`** | **list of struct of `href`, `rel`, `type`, `title`** | **Every link of the collection document, as written there** | **Every link of the catalog document, as written there** |
 
 `links` is the last column, so a query that does not name it reads the same byte ranges as on the files without it. A filter on a subtree reads the ancestor hrefs with `list_transform(parents, lambda p: p.href)`, which matches one catalog even where catalog ids repeat. The catalog rows come first, then the collection rows in the Hilbert order of the published index.

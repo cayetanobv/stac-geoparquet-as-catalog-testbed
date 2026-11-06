@@ -1,6 +1,6 @@
 # Collection index schemas
 
-One file, `collections.parquet`, at the catalog root, with one row per collection in the catalog tree. The testbed measures one proposed schema and six variants of it, each built to answer a question raised in [portolan-sdi/portolan-spec#44](https://github.com/portolan-sdi/portolan-spec/issues/44) or [radiantearth/stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17). Each has its full column list below. In the variants, the columns that differ from the proposed schema are in bold. What each one showed is compared in the [README findings](../README.md#schema-proposals-compared).
+One file, `collections.parquet`, at the catalog root, with one row per collection in the catalog tree. The testbed measures one proposed schema and seven variants of it, each built to answer a question raised in [portolan-sdi/portolan-spec#44](https://github.com/portolan-sdi/portolan-spec/issues/44) or [radiantearth/stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17). Each has its full column list below. In the variants, the columns that differ from the proposed schema are in bold. What each one showed is compared in the [README findings](../README.md#schema-proposals-compared).
 
 | Schema | Question it answers | Files | Measured on |
 |---|---|---|---|
@@ -11,6 +11,7 @@ One file, `collections.parquet`, at the catalog root, with one row per collectio
 | [5. `parents` with `parent_hrefs`](#5-parents-with-parent_hrefs) | The same, without changing `parents` | `indexes/*/collections-parent-hrefs.parquet` | [09](../results/09-parent-hrefs.md) |
 | [6. Tree columns, synthetic](#6-tree-columns-synthetic) | Is there a faster tree column than `parents`? | `benchmarks/tree-designs/` | [05](../results/05-tree-designs.md) |
 | [7. List shapes, synthetic](#7-list-shapes-synthetic) | How searchable is a list, of strings or of structs? | `benchmarks/list-shapes/` | [07](../results/07-list-shapes.md) |
+| [8. Catalog and collection rows](#8-catalog-and-collection-rows) | The shape agreed in stac-geoparquet-spec#17 on 2026-11-03 and 2026-11-04 | `indexes/*/collections-catalog-rows.parquet` | [10](../results/10-catalog-and-collection-rows.md) |
 
 The row group layouts measured on page 03 and page 08 keep schema 1 and change only how the file is written; they are listed [at the end](#layouts).
 
@@ -158,6 +159,29 @@ One file that stores the same parent fact three ways, to measure how DuckDB filt
 | `id` | string | `col-0` to `col-4999999` | |
 | **`parents`** | **list of string** | **`[cat000, sub00]`, without the root** | list of strings |
 | **`links`** | **list of struct of `href`, `rel`, `type`, `title`** | **Three links: `root` to `../../catalog.json`, `parent` to `../sub00/catalog.json`, `self` to `./collection.json`** | list of structs, as in schema 2 |
+
+## 8. Catalog and collection rows
+
+The shape that the discussion in [stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17#issuecomment-6613935189) settled on: catalogs and collections as rows of one file, a `type` column, the STAC `links` on every row, and `parents` as an optional list of `{id, href}` on every row. Schema 3 had the catalog rows and the links, but left every catalog field null and had no `parents`. Built for all three indexes by `benchmarks/catalog-rows/crawl_tree.py` and `benchmarks/catalog-rows/build.sql`. The collection rows equal those of schema 4 in every shared column.
+
+| Column | Type | Content in a collection row | Content in a catalog row |
+|---|---|---|---|
+| **`type`** | **string** | **`Collection`** | **`Catalog`** |
+| `id` | string | The collection `id` | **The catalog `id`** |
+| **`parents`** | **list of struct of `id`, `href`** | **One element per ancestor, from the root to the direct parent: its id, and the absolute URL of its `catalog.json`** | **The same; an empty list in the root catalog's row** |
+| `href` | string | URL of the `collection.json` | **URL of the `catalog.json`** |
+| `geometry` | GeoParquet geometry, OGC:CRS84 | `extent.spatial.bbox[0]` as a polygon | **null** |
+| `bbox` | struct of `xmin`, `ymin`, `xmax`, `ymax` | The 2D values of `extent.spatial.bbox[0]` | **null** |
+| `start_datetime` | timestamp, UTC | `extent.temporal.interval[0][0]`, null when open | **null** |
+| `end_datetime` | timestamp, UTC | `extent.temporal.interval[0][1]`, null when open | **null** |
+| `description` | string | The collection `description` | **The catalog `description`** |
+| `license` | string | The collection `license` | **null** |
+| `original` | string, JSON | The full collection document | **The full catalog document** |
+| `title` | string | The collection `title` | **The catalog `title`** |
+| `keywords` | list of string | The collection `keywords` | **The catalog `keywords`, null when absent** |
+| **`links`** | **list of struct of `href`, `rel`, `type`, `title`** | **Every link of the collection document, as written there** | **Every link of the catalog document, as written there** |
+
+`links` is the last column, so a query that does not name it reads the same byte ranges as on the files without it. A filter on a subtree reads the ancestor hrefs with `list_transform(parents, lambda p: p.href)`, which matches one catalog even where catalog ids repeat. The catalog rows come first, then the collection rows in the Hilbert order of the published index.
 
 ## Layouts
 

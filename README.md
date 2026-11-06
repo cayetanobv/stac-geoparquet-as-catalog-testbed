@@ -161,6 +161,9 @@ The measured files are served from the same bucket as the CARTO catalogs. Both c
 | Madrid, `parents` and `parent_hrefs` | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-parent-hrefs.parquet |
 | Registry, `parents` as `{id, href}` | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-parents-struct.parquet |
 | Registry, `parents` and `parent_hrefs` | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-parent-hrefs.parquet |
+| Berlin, catalog and collection rows | https://storage.googleapis.com/carto-open-catalogs/_testbed/berlin-geoportal/collections-catalog-rows.parquet |
+| Madrid, catalog and collection rows | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-catalog-rows.parquet |
+| Registry, catalog and collection rows | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-catalog-rows.parquet |
 
 The real-polygon queries also read two boundary files that the catalogs publish: Berlin districts at `berlin-geoportal/main/alkis/bezirke/alkis_bezirke_bezirksgrenzen.parquet` and Madrid neighbourhoods at `madrid-datos-abiertos/main/urbanismo/barrios-municipales/BARRIOS.parquet`, under the same host.
 

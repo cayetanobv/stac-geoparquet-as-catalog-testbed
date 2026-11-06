@@ -44,6 +44,7 @@ Every schema the testbed measured, against the one under test. The number links 
 | [6](docs/schema.md#6-tree-columns-synthetic) `parent` only, recursive query over catalog rows | Recursive join from the node down | Slowest at 5 million rows: 0.21 to 0.52 s, against 0.04 to 0.07 s for `parents` | Not adopted: needs ids unique across the tree, which STAC does not guarantee | [05](results/05-tree-designs.md) |
 | [4](docs/schema.md#4-parents-as-id-href) `parents` as a list of `{id, href}` | `list_contains(list_transform(parents, lambda p: p.id), 'demografia')` | Same requests, results and times as `parents`; the hrefs add 21 KB on the registry | Works; every filter needs a lambda or an unnest | [09](results/09-parent-hrefs.md) |
 | [5](docs/schema.md#5-parents-with-parent_hrefs) `parents` plus `parent_hrefs` | `list_contains(parents, 'demografia')`, unchanged | Same requests, results and times as `parents`; the hrefs add 21 KB on the registry | Works; keeps the filter and lets the hrefs be optional. The one to propose if hrefs are needed | [09](results/09-parent-hrefs.md) |
+| [8](docs/schema.md#8-catalog-and-collection-rows) Catalog and collection rows, `type`, `links` on every row, optional `parents` as `{id, href}`: the shape agreed in stac-geoparquet-spec#17 | `list_contains(list_transform(parents, lambda p: p.href), …)`, or the links climb of schema 3 without `parents` | Same results as schema 4 on all 17 queries. On the registry, 1.9 MB more on disk and 22 MB more in memory, almost all of it the 151,188 item links in `links`. Not timed over HTTPS yet | Under test | [10](results/10-catalog-and-collection-rows.md) |
 
 Layouts of the same schema, measured on the registry: one row group in Hilbert order, the published file, against three and twelve row groups in tree order and three in Hilbert order. One row group reads the fewest bytes in the fewest requests for every query except the lookup of one full document, under DuckDB 2.0 ([03](results/03-portolan-registry.md), [08](results/08-follow-up-checks.md)). How a catalog points at the file, `rel: "data"` against `alternate` and an asset, is argued in [docs/discovery.md](docs/discovery.md).
 
@@ -129,6 +130,15 @@ Each writes `collections.jsonl` and `collections.parquet` in the output director
 
 ```bash
 duckdb -c "SET VARIABLE u='indexes/berlin-geoportal/collections.parquet'; SET VARIABLE j='work/berlin/collections.jsonl'; SET VARIABLE os='work/berlin/collections-parents-struct.parquet'; SET VARIABLE oc='work/berlin/collections-parent-hrefs.parquet';" -c ".read scripts/parent_hrefs.sql"
+```
+
+The variant with catalog and collection rows on [page 10](results/10-catalog-and-collection-rows.md) walks the mirror again, because the crawl above keeps no catalog documents. `build.sql` checks the rules of the shape before it writes the file. For the registry, run `crawl_tree.py registry catalogs/registry work/registry-tree/tree.jsonl`.
+
+```bash
+mkdir -p work/berlin-tree
+python3 -I benchmarks/catalog-rows/crawl_tree.py catalog catalogs/berlin-geoportal https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/catalog.json work/berlin-tree/tree.jsonl
+duckdb -c "SET VARIABLE j='work/berlin-tree/tree.jsonl'; SET VARIABLE o='work/berlin-tree/collections-catalog-rows.parquet';" -c ".read benchmarks/catalog-rows/build.sql"
+uv run python benchmarks/catalog-rows/sizes.py indexes/berlin-geoportal/collections-parents-struct.parquet indexes/berlin-geoportal/collections-catalog-rows.parquet
 ```
 
 ### 3. Upload

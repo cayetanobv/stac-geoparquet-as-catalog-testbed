@@ -2,7 +2,7 @@
 
 On 2026-11-03 and 2026-11-04 the discussion in [radiantearth/stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17) settled on a new shape. One file holds a row per catalog and a row per collection, with a `type` column and the STAC `links` on every row. `parents` becomes optional, as a list of `{id, href}` on every row. This page builds that shape for the three indexes and compares it with the `{id, href}` files of [page 09](09-parent-hrefs.md), which hold collection rows only. The full column list is [schema 8](../docs/schema.md#8-catalog-and-collection-rows).
 
-Everything on this page was measured on local files on 2026-11-06, with DuckDB 2.0.0, pyarrow 26.0.0 and Python 3.14.9. The files are not uploaded yet, so nothing here is timed over HTTPS.
+Everything on this page was measured on local files on 2026-11-06, with DuckDB 2.0.0, pyarrow 26.0.0 and Python 3.14.9. The files were uploaded under `_testbed/` the same day and are listed under [Upload](../README.md#3-upload). They are not timed over HTTPS yet.
 
 ## The files
 
@@ -70,6 +70,6 @@ What it shows:
 
 ## Not measured yet
 
-- Times and byte ranges over HTTPS. The files have to be uploaded beside the others under `_testbed/` first.
+- Times and byte ranges over HTTPS, against the uploaded files.
 - Readers other than DuckDB and pyarrow.
 - A file without the `item` links. The size table suggests it would remove most of the cost of `links` in the registry.

@@ -45,6 +45,7 @@ Every schema the testbed measured, against the one under test. The number links 
 | [4](docs/schema.md#4-parents-as-id-href) `parents` as a list of `{id, href}` | `list_contains(list_transform(parents, lambda p: p.id), 'demografia')` | Same requests, results and times as `parents`; the hrefs add 21 KB on the registry | Works; every filter needs a lambda or an unnest | [09](results/09-parent-hrefs.md) |
 | [5](docs/schema.md#5-parents-with-parent_hrefs) `parents` plus `parent_hrefs` | `list_contains(parents, 'demografia')`, unchanged | Same requests, results and times as `parents`; the hrefs add 21 KB on the registry | Works; keeps the filter and lets the hrefs be optional. The one to propose if hrefs are needed | [09](results/09-parent-hrefs.md) |
 | [8](docs/schema.md#8-catalog-and-collection-rows) Catalog and collection rows, `type`, `links` on every row, optional `parents` as `{id, href}`: the shape agreed in stac-geoparquet-spec#17 | `list_contains(list_transform(parents, lambda p: p.href), …)`, or the links climb of schema 3 without `parents` | Same results as schema 4 on all 17 queries. On the registry, 1.9 MB more on disk and 22 MB more in memory, almost all of it the 151,188 item links in `links`. Not timed over HTTPS yet | Under test | [10](results/10-catalog-and-collection-rows.md) |
+| [9](docs/schema.md#9-decomposed-columns) Decomposed columns: one column per STAC field, `extra_fields` for the rest, no `original`, no `parents`, links inside the file as `#id=<id>`: proposed in stac-geoparquet-spec#17 on 2026-11-18 | A recursive query on `id` and the `#id=` parent links | Same results and times as schema 8 for search, over HTTPS. On the registry, 35% smaller on disk and 40% smaller in memory. One field from the document in about half the time, one whole document in 1.7 times the time. 137 of 6,725 registry documents do not come back exactly. Fragments fail where ids repeat, as in the registry | Under test | [11](results/11-decomposed-columns.md) |
 
 Layouts of the same schema, measured on the registry: one row group in Hilbert order, the published file, against three and twelve row groups in tree order and three in Hilbert order. One row group reads the fewest bytes in the fewest requests for every query except the lookup of one full document, under DuckDB 2.0 ([03](results/03-portolan-registry.md), [08](results/08-follow-up-checks.md)). How a catalog points at the file, `rel: "data"` against `alternate` and an asset, is argued in [docs/discovery.md](docs/discovery.md).
 
@@ -141,14 +142,23 @@ duckdb -c "SET VARIABLE j='work/berlin-tree/tree.jsonl'; SET VARIABLE o='work/be
 uv run python benchmarks/catalog-rows/sizes.py indexes/berlin-geoportal/collections-parents-struct.parquet indexes/berlin-geoportal/collections-catalog-rows.parquet
 ```
 
+The decomposed columns of [page 11](results/11-decomposed-columns.md) are built from the schema 8 file of each index. `roundtrip.py` compares each rebuilt document with `original`. `remote.py` times the questions of page 11 over HTTPS against the uploaded files, for `berlin`, `madrid` or `registry`.
+
+```bash
+uv run python -I benchmarks/decomposed/build.py indexes/berlin-geoportal/collections-catalog-rows.parquet indexes/berlin-geoportal/collections
+uv run python -I benchmarks/decomposed/roundtrip.py indexes/berlin-geoportal/collections-decomposed.parquet indexes/berlin-geoportal/collections-catalog-rows.parquet
+uv run python -I benchmarks/decomposed/sizes.py indexes/berlin-geoportal/collections-catalog-rows.parquet indexes/berlin-geoportal/collections-decomposed*.parquet
+uv run python -I benchmarks/decomposed/remote.py berlin 3
+```
+
 ### 3. Upload
 
-The measured files are served from the same bucket as the CARTO catalogs. Both city fixtures, and 43 of the 86 catalogs in the registry, are published by CARTO in that bucket; the other 43 are published by others on their own hosting. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Nothing links to them from a `catalog.json` yet; [docs/discovery.md](docs/discovery.md) says how a catalog would. A later publish of a catalog can remove them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
+The measured files are served from the same bucket as the CARTO catalogs. Both city fixtures, and 43 of the 86 catalogs in the registry, are published by CARTO in that bucket; the other 43 are published by others on their own hosting. The Berlin and Madrid indexes sit beside their catalogs. The registry files sit in a scratch prefix, because the registry export is not a bucket this testbed can write to. Since 2026-11-05 the CARTO publication pipeline writes its own `collections.parquet` beside every catalog it publishes, in the shape of [schema 8](docs/schema.md#8-catalog-and-collection-rows), with a `rel: "data"` link from the root `catalog.json`. It replaced the testbed's Berlin index that day, and replaces Madrid's at its next publication. So the two URLs below no longer serve the files that pages 01 to 04 measured. The committed copies under `indexes/` still reproduce them. The same files are committed under `indexes/`, so any host that answers HTTP range requests reproduces the measurements.
 
 | File | URL |
 |---|---|
-| Berlin index | https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet |
-| Madrid index | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections.parquet |
+| Berlin index, until 2026-11-05; now the pipeline's index | https://storage.googleapis.com/carto-open-catalogs/berlin-geoportal/main/collections.parquet |
+| Madrid index, until the pipeline's next publication of Madrid | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections.parquet |
 | Madrid, links-only variant | https://storage.googleapis.com/carto-open-catalogs/comunidad-madrid-datos-abiertos/main/collections-links.parquet |
 | Registry index, 1 row group | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections.parquet |
 | Registry index, 3 row groups | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-rg2048.parquet |
@@ -161,6 +171,17 @@ The measured files are served from the same bucket as the CARTO catalogs. Both c
 | Madrid, `parents` and `parent_hrefs` | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-parent-hrefs.parquet |
 | Registry, `parents` as `{id, href}` | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-parents-struct.parquet |
 | Registry, `parents` and `parent_hrefs` | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-parent-hrefs.parquet |
+| Berlin, catalog and collection rows | https://storage.googleapis.com/carto-open-catalogs/_testbed/berlin-geoportal/collections-catalog-rows.parquet |
+| Madrid, catalog and collection rows | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-catalog-rows.parquet |
+| Registry, catalog and collection rows | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-catalog-rows.parquet |
+| Berlin, decomposed columns | https://storage.googleapis.com/carto-open-catalogs/_testbed/berlin-geoportal/collections-decomposed.parquet |
+| Berlin, decomposed columns with search columns | https://storage.googleapis.com/carto-open-catalogs/_testbed/berlin-geoportal/collections-decomposed-search.parquet |
+| Berlin, decomposed columns with fragment links | https://storage.googleapis.com/carto-open-catalogs/_testbed/berlin-geoportal/collections-decomposed-fragments.parquet |
+| Madrid, decomposed columns | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-decomposed.parquet |
+| Madrid, decomposed columns with search columns | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-decomposed-search.parquet |
+| Madrid, decomposed columns with fragment links | https://storage.googleapis.com/carto-open-catalogs/_testbed/comunidad-madrid/collections-decomposed-fragments.parquet |
+| Registry, decomposed columns | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-decomposed.parquet |
+| Registry, decomposed columns with search columns | https://storage.googleapis.com/carto-open-catalogs/_testbed/registry/collections-decomposed-search.parquet |
 
 The real-polygon queries also read two boundary files that the catalogs publish: Berlin districts at `berlin-geoportal/main/alkis/bezirke/alkis_bezirke_bezirksgrenzen.parquet` and Madrid neighbourhoods at `madrid-datos-abiertos/main/urbanismo/barrios-municipales/BARRIOS.parquet`, under the same host.
 

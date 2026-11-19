@@ -178,10 +178,39 @@ The shape that the discussion in [stac-geoparquet-spec#17](https://github.com/ra
 | `license` | string | The collection `license` | **null** |
 | `original` | string, JSON | The full collection document | **The full catalog document** |
 | `title` | string | The collection `title` | **The catalog `title`** |
-| `keywords` | list of string | The collection `keywords` | **The catalog `keywords`, null when absent** |
+| `keywords` | list of string | The collection `keywords` | **null: STAC defines `keywords` for a Collection only** |
 | **`links`** | **list of struct of `href`, `rel`, `type`, `title`** | **Every link of the collection document, as written there** | **Every link of the catalog document, as written there** |
 
 `links` is the last column, so a query that does not name it reads the same byte ranges as on the files without it. A filter on a subtree reads the ancestor hrefs with `list_transform(parents, lambda p: p.href)`, which matches one catalog even where catalog ids repeat. The catalog rows come first, then the collection rows in the Hilbert order of the published index.
+
+## 9. Decomposed columns
+
+The layout proposed in [stac-geoparquet-spec#17](https://github.com/radiantearth/stac-geoparquet-spec/issues/17) on 2026-11-18. Each field that STAC 1.1 defines for a Catalog or a Collection has a column of its own. Every other top-level field goes into `extra_fields`. The file has no `original`, no `parents` and no `href`. Built for all three indexes from the schema 8 file by `benchmarks/decomposed/build.py`, with the same rows in the same order. Measured on [page 11](../results/11-decomposed-columns.md).
+
+| Column | Type | Content in a collection row | Content in a catalog row |
+|---|---|---|---|
+| `type` | string | `Collection` | `Catalog` |
+| `stac_version` | string | The `stac_version` | The `stac_version` |
+| `stac_extensions` | list of string | The `stac_extensions` | The `stac_extensions` |
+| `id` | string | The collection `id` | The catalog `id` |
+| `title` | string | The `title` | The `title` |
+| `description` | string | The `description` | The `description` |
+| `keywords` | list of string | The `keywords` | The `keywords`, when the catalog has them |
+| `license` | string | The `license` | null |
+| `providers` | list of struct, keys inferred | The `providers` | The `providers`, when the catalog has them |
+| `extent` | struct of `spatial.bbox`, a list of lists of double, and `temporal.interval`, a list of lists of timestamp in UTC | Every box and every interval of the `extent` | null |
+| `summaries` | string, JSON | The `summaries` | null |
+| `item_assets` | map of string to struct, keys inferred | The `item_assets` | null |
+| `assets` | map of string to struct, keys inferred | The `assets` | null |
+| `extra_fields` | string, JSON | Every other top-level field, null when there is none | The same |
+| `links` | list of struct, keys inferred | Every link of the document | Every link of the document |
+
+"Keys inferred" means that the struct holds every key that occurs in any document of the file, extension keys included. A key that a document does not have is null in that row.
+
+Two more files of each index add columns:
+
+- `collections-decomposed-search.parquet` adds `geometry`, `bbox`, `start_datetime` and `end_datetime` after `id`, the same values as schema 8. It has the GeoParquet metadata of schema 8.
+- `collections-decomposed-fragments.parquet` is the search file with each `child`, `parent`, `root` and `collection` link to a row of the same file written as `#id=<id>`. It exists for Berlin and Madrid only, because 124 registry rows share an id with another row.
 
 ## Layouts
 

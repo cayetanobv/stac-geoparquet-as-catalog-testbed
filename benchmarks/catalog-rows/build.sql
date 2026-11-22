@@ -33,7 +33,8 @@ SELECT
   CASE WHEN type = 'Collection' THEN json_extract_string(doc, '$.license') END AS license,
   doc::VARCHAR                                                       AS original,
   json_extract_string(doc, '$.title')                                AS title,
-  json_extract(doc, '$.keywords')::VARCHAR[]                         AS keywords,
+  -- STAC defines keywords for a Collection only, so a catalog row leaves it null, as the CARTO pipeline does
+  CASE WHEN type = 'Collection' THEN json_extract(doc, '$.keywords')::VARCHAR[] END AS keywords,
   json_transform(json_extract(doc, '$.links'),
     '[{"href": "VARCHAR", "rel": "VARCHAR", "type": "VARCHAR", "title": "VARCHAR"}]') AS links
 FROM ext
@@ -48,7 +49,7 @@ SELECT
   count(*) FILTER (WHERE description IS NULL)                                     AS missing_description,
   count(*) FILTER (WHERE type = 'Collection' AND (geometry IS NULL OR bbox IS NULL OR license IS NULL)) AS collection_missing_required,
   count(*) FILTER (WHERE type = 'Catalog' AND (geometry IS NOT NULL OR bbox IS NOT NULL OR license IS NOT NULL
-                   OR start_datetime IS NOT NULL OR end_datetime IS NOT NULL)) AS catalog_with_collection_fields,
+                   OR start_datetime IS NOT NULL OR end_datetime IS NOT NULL OR keywords IS NOT NULL)) AS catalog_with_collection_fields,
   count(*) FILTER (WHERE len(parents) = 0)                                        AS root_rows,
   count(DISTINCT href) = count(*)                                                 AS href_unique
 FROM idx;

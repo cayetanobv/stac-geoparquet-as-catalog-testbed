@@ -1,6 +1,6 @@
 # Results
 
-Read in order. Pages 1 to 4 measure the index against real catalogs over HTTPS. Pages 5 to 7 compare designs for the tree column, on real data and on synthetic files. Pages 8 to 10 follow up on questions raised by the first pages and by the spec discussion. [docs/method.md](../docs/method.md) explains the question and the measurement setup.
+Read in order. Pages 1 to 4 measure the index against real catalogs over HTTPS. Pages 5 to 7 compare designs for the tree column, on real data and on synthetic files. Pages 8 to 11 follow up on questions raised by the first pages and by the spec discussion. [docs/method.md](../docs/method.md) explains the question and the measurement setup.
 
 | Page | What it measures | Data |
 |---|---|---|
@@ -14,5 +14,6 @@ Read in order. Pages 1 to 4 measure the index against real catalogs over HTTPS. 
 | [08 Follow-up checks](08-follow-up-checks.md) | A links file with catalog rows, and row groups with the Hilbert order kept | 2,141 rows, 5,852 rows |
 | [09 Ancestor hrefs](09-parent-hrefs.md) | The three indexes with each ancestor's href, as a list of structs and as a second list | 371 to 5,852 rows |
 | [10 Catalog and collection rows](10-catalog-and-collection-rows.md) | The shape agreed in stac-geoparquet-spec#17: catalog rows, `type`, `links`, optional `parents` as `{id, href}`. Same answers, size on disk and in memory, local only | 408 to 6,725 rows |
+| [11 Decomposed columns](11-decomposed-columns.md) | The layout proposed in stac-geoparquet-spec#17 on 2026-11-18: one column per STAC field, `extra_fields`, no `original`. Round trip, size, times over HTTPS against schema 8, and a tree walk on `#id=` links | 408 to 6,725 rows |
 
 Every remote measurement reads the files listed under [Upload](../README.md#3-upload) in the README.

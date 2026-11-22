@@ -14,6 +14,28 @@ Schema 8 has one row per catalog and one row per collection, with a `type` colum
 
 Schema 9 has one column for each field that STAC defines and an `extra_fields` column for the rest. It has no `original` and no `parents`.
 
+### How we got here
+
+Each schema answers a question from the discussion, in the order the questions came up:
+
+| Schema | Question | What the testbed showed | What it changed |
+|---|---|---|---|
+| [1](docs/schema.md#1-parents-as-ids) `parents` as ids, one row per collection | Does one file replace the JSON walk? | Yes: 2 to 4 requests against one per document. `list_contains(parents, 'demografia')` finds a whole subtree | The base of every later schema |
+| [2](docs/schema.md#2-links-only) STAC `links` instead of `parents` | `parents` repeats the `parent` links. Can the links replace it? | Not in a file of collections only. In Madrid the direct parent finds 0 of the 146 collections under `demografia`. The client needs 178 more requests | Rejected |
+| [6](docs/schema.md#6-tree-columns-synthetic) Path string, level columns, recursive query | Is there a faster tree column? | Only at 5 million rows. A path needs an escaping rule, level columns fix the depth, a recursive query is slowest | Not adopted |
+| [7](docs/schema.md#7-list-shapes-synthetic) List of strings against list of structs | Is a list of structs harder to filter? | DuckDB does not push the filter into the scan. At real sizes the cost does not show | A list of structs is acceptable |
+| [3](docs/schema.md#3-links-with-catalog-rows) Links plus a row per catalog | Can the links resolve inside the file? | Yes, in about the time of `parents`. Each client then climbs the tree in its own code | The catalog rows and the links went into schema 8 |
+| [4](docs/schema.md#4-parents-as-id-href) `parents` as `{id, href}` | How does a reader outside Portolan find each ancestor? | Same requests and results as the ids. The hrefs add 21 KB on the registry | This `parents` went into schema 8 |
+| [5](docs/schema.md#5-parents-with-parent_hrefs) `parents` plus `parent_hrefs` | The same, without a change to `parents` | Same cost as schema 4 | Not adopted |
+| [8](docs/schema.md#8-catalog-and-collection-rows) Catalog and collection rows | One shape for upstream | Same results as schema 4 on all 17 queries. The item links add 1.9 MB on the registry | Agreed in #17, `parents` optional |
+| [9](docs/schema.md#9-decomposed-columns) Decomposed columns | Is one column per STAC field better than a copy of the document? | Same search cost as schema 8. Faster for one field, slower for a whole document, smaller, and not exact for 137 registry documents | Under discussion |
+
+The questions still open in #17:
+
+- A copy of the document in `original`, or one column per field with `extra_fields`.
+- `parents` as an optional column, or the `links` alone to climb the tree.
+- Links to a row of a file with a URL fragment such as `#id=x`. #17 deferred fragments to a later version. Schema 9 needs them, and they need an id that is unique in the file.
+
 ## What the measurements show
 
 The main question is the one a user brings to a catalog: which collections about a topic cover this place? The walk opens every JSON document, because the extent is only there. The file answers with one query.

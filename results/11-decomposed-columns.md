@@ -31,7 +31,7 @@ The nested columns use the Arrow type that pyarrow infers from the documents. A 
 
 The registry has no fragments file. 81 ids occur in more than one row, and 205 of its 6,725 rows have one of these ids. Thus `#id=x` does not point at one row.
 
-The files are committed as `indexes/*/collections-decomposed*.parquet` and are uploaded under `_testbed/`. The [README](../README.md#3-upload) lists their URLs.
+The files are committed as `indexes/*/collections-decomposed*.parquet` and are uploaded under `_testbed/`. The [docs/files.md](../docs/files.md) lists their URLs.
 
 ## Round trip
 

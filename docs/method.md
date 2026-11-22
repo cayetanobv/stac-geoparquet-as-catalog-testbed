@@ -2,39 +2,38 @@
 
 ## The question
 
-The headline measurement on every catalog page is one question: collections under one group of the tree whose extent contains a point. For the registry it is the point alone, across every catalog. It is what an SDI user asks, "what transport data is there for this place", and it is the smallest query that touches everything under test. The group filter exercises the `parents` column, the point debated upstream, and in Madrid it is a mid-tree case that a direct-parent column cannot answer. The point filter exercises the GeoParquet side, geometry and `bbox` covering. Because the extent lives inside each `collection.json`, a client without the index has to open every collection document to answer it, so the walk pays its real cost. Both methods return the same count, which is how an antimeridian defect was caught. The [query suite](../results/04-query-suite.md) adds sixteen more shapes and seven against real polygons, and the synthetic benchmarks compare designs at a scale no real catalog reaches.
+The main question on every catalog page is the one a user brings to a catalog: which collections about a topic cover this place? Without the file, a client opens every `collection.json`, because the extent is only there. With the file, the client runs one query. Both methods return the same count, which is how the testbed found the antimeridian defect. Page 04 adds sixteen more query shapes and seven queries with real polygons. Pages 05 and 07 use synthetic files of 5 million rows, a size that no real catalog reaches.
 
 ## Why the measurements are remote
 
-The cost under test is network round trips. A static catalog is a tree of small JSON documents on object storage, one request per document, and each request costs a fixed round trip. A Parquet reader asks for the footer and the column chunks the query needs, a few requests that do not grow with the row count. DuckDB 2.0 goes further on small files: when the gaps between the byte ranges it needs are small, it reads the whole file in one request. Locally both finish in milliseconds and the difference disappears. A local HTTP server distorts the ratio in both directions: Python's server is single threaded, has no keep-alive, and handles range requests badly. So every latency figure comes from the published catalog on its real storage, with the index uploaded beside it, both methods run from the same machine in the same session.
-
-The local mirrors under `catalogs/` serve correctness and reproduction. They prove the index builder produces the same rows from the same documents and they keep working after the published catalogs change.
+The cost under test is network round trips. A static catalog needs one request per JSON document. A Parquet reader needs a few requests for the footer and the column chunks, and that number does not grow with the rows. DuckDB 2.0 reads a file of a few MB whole, in one request. Locally, both methods finish in milliseconds. A local HTTP server distorts the ratio, because Python's server has one thread and no keep-alive. So every time comes from the published storage, from the same machine, with both methods in the same session.
 
 Times depend on where you measure from. The request counts do not, so they are the durable result.
 
-## Two baselines
+## How each method is timed
 
-The JSON walk runs at three levels of concurrency: 1, one request at a time, which is what a plain script does; 6, what a browser keeps in flight per host over HTTP/1.1; and 16, a client tuned for the task. The walk speaks HTTP/1.1, one request per connection at a time. The bucket also serves HTTP/2, over which a browser multiplexes many requests on one connection, so 6 is a typical HTTP/1.1 client rather than a browser against this bucket. Concurrency is the number of requests in flight, one thread each. The threads wait on the network, so the number is not tied to CPU cores. Each level runs in two connection modes. By default each thread keeps one connection alive per host, as a well-written client does. With `fresh` it opens a new connection for every document, as `urllib` does and as the measurements before 2026-10-25 did, so every request pays TCP and TLS setup. The request counts are the same in both modes. The walk times are wall clock for the whole walk.
+- **The JSON walk** keeps 1, 6 or 16 requests in flight. 1 is a plain script, 6 is a typical HTTP/1.1 client, 16 is a client tuned for the task. Each thread reuses one connection per host. With `fresh`, it opens a new connection per document, as the measurements before 2026-10-25 did. The walk of a group either knows the group or finds it from the link titles of the root.
+- **The query on the file** runs cold, in a fresh DuckDB process, and warm, a second time in the same process. `EXPLAIN ANALYZE` gives the requests and the bytes. Its total time leaves out the reads that DuckDB makes while it plans, so the cold time is also the wall clock of the query in a fresh process, after the extensions load. A warm run is a cache hit: one HEAD request and no data read.
 
-The walk of a group either knows the group in advance, as the client would if a person had picked it, or finds it. A client that finds it fetches the root and keeps every child whose link title contains a term, without case or accents, or with `describe:` also fetches every child catalog and matches its title and description. `scripts/topic_coverage.sql` then counts how many collections about the same terms, by title and keywords, sit under the chosen groups.
-
-The index query runs cold, a fresh DuckDB process per run so nothing is cached, and warm, repeated in one process after a first run. Both are reported as the Total Time of `EXPLAIN ANALYZE`, which gives the request count and bytes read as well. It includes the TLS handshake and the reads made while the query runs, and leaves out process start, extension loading, and any read DuckDB makes while planning. A box test on the `bbox` struct shows 0.00 s for that reason: DuckDB answers it from the footer while planning. So cold time is also measured as wall clock: the plain query in a fresh Python process, timed from after the extensions load until the rows are fetched. That includes planning and leaves out process start. The two come from separate cold runs, so they differ by the noise between runs, up to 0.2 s on most queries and up to 0.6 s where one run was slow, and neither is consistently higher. The exception is that box test, where only the wall clock shows the file read, at the same cost as the other queries. Warm is a cache hit: DuckDB sends one HEAD request to check the file and reads no data.
+Cold runs of the same query vary by up to four times. The tables give every run beside the median.
 
 ## Environment
 
-| Item | Value |
+DuckDB 2.0.0 CLI with `spatial` and `httpfs`, Python 3.14.9 with duckdb 2.0.0 and pyarrow 26.0.0 as pinned in `uv.lock`, gpio 1.7.0. The round trip to Google Cloud Storage from the test machine was 40 to 75 ms.
+
+| Pages | Measured |
 |---|---|
-| Dates | Mirrors and indexes 2026-10-22 and 2026-10-23; remote timings in four sessions, three on 2026-10-26: the query suite on page 04 and the checks on page 08 from 08:20 to 09:47 UTC, the walks and the headline index queries on pages 01 to 03 from 13:30 to 15:40 UTC; the README headline, whole walks against the topic query A6 and S1, from 18:41 to 19:02 UTC; the ancestor hrefs on page 09 on 2026-10-27 from 17:51 to 18:07 UTC |
-| DuckDB | 2.0.0 CLI with the `spatial` and `httpfs` extensions, released 2026-10-21 |
-| Python | 3.14.9, with duckdb 2.0.0 and pyarrow 26.0.0 pinned in `pyproject.toml` and `uv.lock` |
-| gpio | 1.7.0 |
-| Round trip to Google Cloud Storage from the test machine | 40 to 75 ms, measured with curl at the start of each session: TCP connect took 0.062 s and TLS setup ended at 0.144 s in the morning, 0.073 s and 0.162 s in the afternoon, 0.066 s and 0.147 s in the evening; 0.040 s and 0.112 s on 2026-10-27 |
+| 01 to 03, the walks and the group queries | 2026-10-26, 13:30 to 15:40 UTC |
+| README headline | 2026-10-26, 18:41 to 19:02 UTC |
+| 04 and 08 | 2026-10-26, 08:20 to 09:47 UTC |
+| 05 to 07 | 2026-10-23, local |
+| 09 | 2026-10-27, 17:51 to 18:07 UTC |
+| 10 | 2026-11-06, local |
+| 11 | 2026-11-19, 23:12 to 23:16 UTC |
 
-The remote timings come from three sessions on 2026-10-26 and one on 2026-10-27, all run with the machine kept from sleeping. The morning session ran the query suite, the checks on page 08, and the walks, whose times the afternoon session replaces. The afternoon session reran the walks at three levels of concurrency, added the walks that find their group, and ran the headline index query of each fixture at its start and its end; those are the numbers on pages 01 to 03 and in the README. The same index query took up to almost twice as long at the start of the afternoon session as at its end, so times within one session also carry that much noise. A third session in the evening ran the README headline: the whole walk of each fixture at 1, 6 and 16 concurrent requests with reused connections, counting the same topic as the index, and the topic query A6 on the two cities and S1 on the registry at its start and its end, whose medians agreed within 0.1 s. A fourth session, on 2026-10-27, ran the `parents` queries of the suite on three shapes of each index for page 09, at its start and its end, with the shapes in reverse order at the end. Every result count, request count, and byte count matches the recompute of 2026-10-23, except where a page says otherwise. Times from different sessions are not compared in these pages. Pages 05 to 07 come from the recompute of 2026-10-23, which followed an earlier pass with DuckDB 1.5.6, Python 3.10, and gpio 1.0 on 2026-10-22 and early on 2026-10-23. The indexes were rebuilt with the pinned toolchain and hold the same rows as before. Where the two engines disagree, the pages say so: DuckDB 2.0's prefetch cost model reads small files whole and penalises extra row groups, which 1.5.6 did not.
+The pages compare only times from the same session. In one session the same query took up to twice as long at the start as at the end. Before 2026-10-23 the testbed used DuckDB 1.5.6. Where the two versions disagree, the pages say so.
 
-Cold runs vary by up to a factor of four between repeats on the same query. The suite tables list every run beside the median for that reason.
-
-KB and MB in these pages are KiB and MiB.
+KB and MB in these pages are KiB and MiB, except on pages 10 and 11, where MB is 10⁶ bytes.
 
 ## Known pitfalls
 

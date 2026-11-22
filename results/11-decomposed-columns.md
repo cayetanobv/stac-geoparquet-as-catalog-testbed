@@ -29,7 +29,7 @@ The difference is in the document:
 
 The nested columns use the Arrow type that pyarrow infers from the documents. A struct holds every key that occurs in any document, and a key that a document does not have is null in that row. stac-geoparquet infers the item schema in the same way. The real documents need this. Their links, assets and providers carry extension fields, such as `file:size`, `file:checksum`, `pmtiles:layers` and `alternate`. A struct with only the core fields loses them. `summaries` is JSON text, because its values have no fixed type. The inference worked on all three indexes, with the mixed extensions of the 91 registered catalogs.
 
-The registry has no fragments file. 124 of its 6,725 rows have an id that another row also has, so `#id=x` does not point at one row. 81 ids repeat.
+The registry has no fragments file. 81 ids occur in more than one row, and 205 of its 6,725 rows have one of these ids. Thus `#id=x` does not point at one row.
 
 The files are committed as `indexes/*/collections-decomposed*.parquet` and are uploaded under `_testbed/`. The [README](../README.md#3-upload) lists their URLs.
 
@@ -132,10 +132,10 @@ It gives 146 in Madrid and 19 for `verkehr` in Berlin, the same as `parents`, in
 ## What it shows
 
 - **For search, the layout does not change the cost.** The place, topic, list and subtree queries read the same bytes in both layouts.
-- **The full copy costs time only when a query reads it.** DuckDB reads `original` only for Q3, Q4 and Q5. On the registry, schema 9 answers Q4 and Q5 in about half the time, because `providers` and `extra_fields` are smaller than `original`. A `providers` column in schema 8 gives the same gain for Q4.
+- **The full copy costs time only when a query reads it.** DuckDB reads `original` only for Q3, Q4 and Q5. On the registry, schema 9 answers Q4 and Q5 in about half the time, because `providers` and `extra_fields` are smaller than `original`. A `providers` column in schema 8 would probably give the same gain for Q4. This page does not measure it.
 - **The full copy is faster for a whole document.** Schema 9 reads each column chunk of the row group for one row: 16 requests against 6.
 - **The full copy is exact.** Schema 9 changes 137 registry documents. The cause is the inferred types and the null keys, not a lost field.
-- **Fragments need ids that are unique in the file.** The registry has 124 rows that share an id. A federated file needs another way to point at a row.
+- **Fragments need ids that are unique in the file.** In the registry, 205 rows share one of 81 ids. A federated file needs another way to point at a row.
 - **The search columns trust the first box.** 11 registry collections have a first box that does not contain the others. `extent` finds them, and `geometry` from the first box does not.
 
 ## Not measured yet

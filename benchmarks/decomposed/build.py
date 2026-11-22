@@ -16,6 +16,7 @@ Three files are written next to OUT_PREFIX:
 
 usage: uv run python build.py SCHEMA8_FILE OUT_PREFIX"""
 import json, sys, urllib.parse
+from datetime import datetime
 import duckdb, pyarrow as pa, pyarrow.parquet as pq
 
 SRC, OUT = sys.argv[1], sys.argv[2]
@@ -39,7 +40,6 @@ def columns(docs):
         elif k == "extent":                        # keep every box and every interval, intervals as timestamps
             t = pa.struct([("spatial", pa.struct([("bbox", pa.list_(pa.list_(pa.float64())))])),
                            ("temporal", pa.struct([("interval", pa.list_(pa.list_(pa.timestamp("us", "UTC"))))]))])
-            from datetime import datetime
             def p(s): return None if s is None else datetime.fromisoformat(s.replace("Z", "+00:00"))
             cols[k] = pa.array([None if v is None else {"spatial": {"bbox": v["spatial"]["bbox"]},
                                 "temporal": {"interval": [[p(x) for x in i] for i in v["temporal"]["interval"]]}}

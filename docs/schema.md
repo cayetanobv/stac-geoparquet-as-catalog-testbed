@@ -210,7 +210,7 @@ The layout proposed in [stac-geoparquet-spec#17](https://github.com/radiantearth
 Two more files of each index add columns:
 
 - `collections-decomposed-search.parquet` adds `geometry`, `bbox`, `start_datetime` and `end_datetime` after `id`, the same values as schema 8. It has the GeoParquet metadata of schema 8.
-- `collections-decomposed-fragments.parquet` is the search file with each `child`, `parent`, `root` and `collection` link to a row of the same file written as `#id=<id>`. It exists for Berlin and Madrid only, because 124 registry rows share an id with another row.
+- `collections-decomposed-fragments.parquet` is the search file with each `child`, `parent`, `root` and `collection` link to a row of the same file written as `#id=<id>`. It exists for Berlin and Madrid only, because 205 registry rows share one of 81 ids.
 
 ## Layouts
 
